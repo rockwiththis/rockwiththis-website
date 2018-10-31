@@ -295,7 +295,6 @@ class SongsContainer extends Component {
 
 
 
-
                             </Carousel>
                           </div>
                           <div className='song-grid-footer'>
