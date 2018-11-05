@@ -11,6 +11,7 @@ import FiltersBar from 'components/FiltersBar/FiltersBar'
 import LoadingComponent from 'components/Loading/LoadingComponent'
 import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlaceholder'
 import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
+import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
@@ -273,30 +274,31 @@ class SongsContainer extends Component {
 
                       <div className="songGrid">
 
-                          <div className='grid-container-wrapper'>
-                            <Carousel
-                              showThumbs={false}
-                              showStatus={false}
-                              showIndicators={false}
-                              selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
-                              useKeyboardArrows={true}>
+                      {songGridsFull.length > 0 ?
 
-                              {songGridsFull.length > 0 ?
-                                songGridsFull.map(grid => {
-                                return (
-                                  <div className='grid-container'>
-                                    {grid}
-                                  </div>
-                                )
-                              })
-                                :
-                                <p>loading...</p>
-                              }
+                            <div className='grid-container-wrapper'>
+                              <Carousel
+                                showThumbs={false}
+                                showStatus={false}
+                                showIndicators={false}
+                                selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
+                                useKeyboardArrows={true}>
 
+                                {
+                                  songGridsFull.map(grid => {
+                                  return (
+                                    <div className='grid-container'>
+                                      {grid}
+                                    </div>
+                                  )
+                                })
+                                }
+                              </Carousel>
+                            </div>
 
-
-                            </Carousel>
-                          </div>
+                            :
+                          <SongGridPlaceholder />
+                        }
                           <div className='song-grid-footer'>
                             <button className='grid-arrow previous' onClick={() => this.navGrid(false)}>
                               <img src='http://www.dashboard.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-arrow-25-48.png' />
