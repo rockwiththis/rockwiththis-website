@@ -6,7 +6,7 @@ const nestResultingSongsWIthGenres = (songs) => {
   let result = [];
   let first = { genre_id, genre_name, ...initialSong } = songs[0];
   let currentSong = initialSong;
-  
+
   for (let i = 0; i < songs.length; i++) {
     if (currentSong.id != songs[i].id) {
       result.push(currentSong)
@@ -45,5 +45,20 @@ router.get('/', (req, res) => {
     res.json(songsWithSubGenres);
   });
 });
+
+
+router.get('/:id', (req, res) => {
+
+  var singleSongId = parseInt(req.params.id);
+
+
+  database.query("SELECT * FROM songs WHERE id = " + singleSongId)
+    .then(results => {
+      return res.json({ singleSong: results.rows });
+    })
+})
+
+
+
 
 module.exports = router;
