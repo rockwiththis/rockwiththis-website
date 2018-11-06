@@ -26,6 +26,7 @@ const nestResultingSongsWithGenres = (songs) => {
     }
   }
 
+  result.push(currentSong)
   return result;
 }
 
@@ -42,7 +43,7 @@ router.get('/', (req, res) => {
     ORDER by songs.id`
   )
   .then(result => {
-    console.log(result.rows);
+    // console.log(result.rows);
     const songsWithSubGenres = nestResultingSongsWithGenres(result.rows);
     res.json(songsWithSubGenres);
   });
@@ -52,20 +53,21 @@ router.get('/', (req, res) => {
 
 
 
-
-const nestSingleSongWithGenres = (song) => {
+const nestSingleSongWithGenres = (songs) => {
   let result = [];
-  let first = { genre_id, genre_name, ...initialSong } = song;
+  let first = { genre_id, genre_name, ...initialSong } = songs[0];
   let currentSong = initialSong;
 
+  for (let i = 0; i < songs.length; i++) {
+    if (currentSong.id != songs[i].id) {
       result.push(currentSong)
-      const clone = { genre_id, genre_name, ...cloned_song } = song;
+      const clone = { genre_id, genre_name, ...cloned_song } = songs[i];
       currentSong = cloned_song;
-
+    }
 
     const genre = {
-      id: song.genre_id,
-      name: song.genre_name
+      id: songs[i].genre_id,
+      name: songs[i].genre_name
     };
 
     if (!currentSong.sub_genres) {
@@ -73,8 +75,8 @@ const nestSingleSongWithGenres = (song) => {
     } else {
       currentSong.sub_genres.push(genre);
     }
-
-
+  }
+  result.push(currentSong)
   return result;
 }
 
@@ -82,28 +84,21 @@ const nestSingleSongWithGenres = (song) => {
 router.get('/:id', (req, res) => {
 
   var singleSongId = parseInt(req.params.id);
+  const query = {
+    text: 'SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.* FROM songs JOIN subgenre_songs ON songs.id = subgenre_songs.song_id JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id WHERE songs.id = $1',
+    values: [singleSongId],
+  }
 
+  database.query(query)
+  .then(results => {
 
-  database.query("SELECT * FROM songs WHERE id = " + singleSongId)
-    .then(results => {
-      return res.json(result.rows);
-    })
+    const singleSongWithSubGenres = nestSingleSongWithGenres(results.rows);
+
+    return res.json(singleSongWithSubGenres);
+  })
 })
-// router.get('/:id', (req, res) => {
-//
-//   var singleSongId = parseInt(req.params.id);
-//
-//
-//   database.query("SELECT * FROM songs WHERE id = " + singleSongId)
-//     .then(results => {
-//       console.log(result.rows);
-//
-//       const singleSongWithSubGenres = nestSingleSongWithGenres(result.rows);
-//
-//
-//       return res.json(singleSongWithSubGenres);
-//     })
-// })
+
+
 
 
 
