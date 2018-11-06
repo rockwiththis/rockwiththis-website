@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../../db');
 
-const nestResultingSongsWIthGenres = (songs) => {
+const nestResultingSongsWithGenres = (songs) => {
   let result = [];
   let first = { genre_id, genre_name, ...initialSong } = songs[0];
   let currentSong = initialSong;
@@ -29,6 +29,8 @@ const nestResultingSongsWIthGenres = (songs) => {
   return result;
 }
 
+
+
 router.get('/', (req, res) => {
   database.query(`
     SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*
@@ -41,10 +43,40 @@ router.get('/', (req, res) => {
   )
   .then(result => {
     console.log(result.rows);
-    const songsWithSubGenres = nestResultingSongsWIthGenres(result.rows);
+    const songsWithSubGenres = nestResultingSongsWithGenres(result.rows);
     res.json(songsWithSubGenres);
   });
 });
+
+
+
+
+
+
+const nestSingleSongWithGenres = (song) => {
+  let result = [];
+  let first = { genre_id, genre_name, ...initialSong } = song;
+  let currentSong = initialSong;
+
+      result.push(currentSong)
+      const clone = { genre_id, genre_name, ...cloned_song } = song;
+      currentSong = cloned_song;
+
+
+    const genre = {
+      id: song.genre_id,
+      name: song.genre_name
+    };
+
+    if (!currentSong.sub_genres) {
+      currentSong.sub_genres = [genre];
+    } else {
+      currentSong.sub_genres.push(genre);
+    }
+
+
+  return result;
+}
 
 
 router.get('/:id', (req, res) => {
@@ -54,9 +86,24 @@ router.get('/:id', (req, res) => {
 
   database.query("SELECT * FROM songs WHERE id = " + singleSongId)
     .then(results => {
-      return res.json({ singleSong: results.rows });
+      return res.json(result.rows);
     })
 })
+// router.get('/:id', (req, res) => {
+//
+//   var singleSongId = parseInt(req.params.id);
+//
+//
+//   database.query("SELECT * FROM songs WHERE id = " + singleSongId)
+//     .then(results => {
+//       console.log(result.rows);
+//
+//       const singleSongWithSubGenres = nestSingleSongWithGenres(result.rows);
+//
+//
+//       return res.json(singleSongWithSubGenres);
+//     })
+// })
 
 
 
