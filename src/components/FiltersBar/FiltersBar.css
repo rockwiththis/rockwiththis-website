@@ -33,12 +33,10 @@
       margin-left: 10px; }
   .filters-bar .ToggleViewsDropDown button:hover {
     background: #1a6ea9;
-    display: block;
     text-decoration: none;
     cursor: pointer;
     color: #fff; }
     .filters-bar .ToggleViewsDropDown button:hover svg {
-      width: 12px;
       fill: #fff; }
     .filters-bar .ToggleViewsDropDown button:hover span {
       font-size: 12px;

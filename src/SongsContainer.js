@@ -33,7 +33,7 @@ class SongsContainer extends Component {
         this.loadMoreSongs = this.loadMoreSongs.bind(this)
         this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
         this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
-        this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
+        // this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
         this.navGrid = this.navGrid.bind(this)
         this.handleCarousel = this.handleCarousel.bind(this)
@@ -131,16 +131,19 @@ class SongsContainer extends Component {
         })
     }
 
-    fixedFiltersBar() {
-        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
-        const fixedFilterBar = window.scrollY > scrollHeight
-        this.setState({ fixedFilterBar })
-    }
+    // fixedFiltersBar() {
+    //     const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+    //     const fixedFilterBar = window.scrollY > scrollHeight
+    //     this.setState({ fixedFilterBar })
+    // }
 
     enableDiscoverScroll() {
+      if (location.pathname == "/") {
+
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
         window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
+    }
     }
 
     renderPaginationDots() {

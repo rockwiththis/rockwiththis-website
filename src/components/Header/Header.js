@@ -36,9 +36,13 @@ class Header extends Component {
 
 
     checkDiscoverOrThisWeek() {
+
+      if (location.pathname == "/") {
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         const thisWeek = window.scrollY < scrollHeight
         this.setState({ thisWeek })
+      }
+
     }
 
     scrollToDiscover() {
