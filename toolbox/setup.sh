@@ -11,6 +11,7 @@ DIR="$( dirname "$SOURCE" )"
 
 # Variables
 export GITHUB_ROOT="$DIR/.."
+export ENV_CONFIG_FILE="$GITHUB_ROOT/config/production.js"
 
 # Aliases
 alias rwt="cd $GITHUB_ROOT"

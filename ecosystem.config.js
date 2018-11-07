@@ -2,7 +2,8 @@ module.exports = {
   apps: [{
     name: 'rwt-website',
     script: 'npm',
-    args: 'start'
+    args: 'start',
+    env: { "ENV_CONFIG_FILE": "/home/ubuntu/config.js" }
   }],
   deploy: {
     production: {
