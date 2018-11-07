@@ -10,7 +10,7 @@ done
 DIR="$( dirname "$SOURCE" )"
 
 # Variables
-export GITHUB_ROOT="$DIR/../"
+export GITHUB_ROOT="$DIR/.."
 
 # Aliases
 alias rwt="cd $GITHUB_ROOT"
