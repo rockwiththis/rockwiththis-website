@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Scroll from 'react-scroll'
-import { fetchFilters } from 'actions/filters'
-import LoadingComponent from 'components/Loading/LoadingComponent'
-import './FiltersBar.scss'
 
+import { fetchFilters } from '../../actions/filters'
+import LoadingComponent from '../Loading/LoadingComponent'
+
+import './FiltersBar.scss'
 
 class FiltersBar extends Component {
     constructor(props) {

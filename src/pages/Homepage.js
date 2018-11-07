@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet';
+
 import SongsContainer from '../SongsContainer.js'
-import { fetchPosts } from 'actions/index'
-// import { fetchFeaturedPosts } from 'actions/featuredPosts'
-import { fetchFilters } from 'actions/filters'
-import { Helmet } from "react-helmet";
+import { fetchPosts } from '../actions/index'
+// import { fetchFeaturedPosts } from '../actions/featuredPosts'
+import { fetchFilters } from '../actions/filters'
 
 class Homepage extends Component {
     componentWillMount() {

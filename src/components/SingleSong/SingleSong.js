@@ -6,12 +6,14 @@ import Moment from 'react-moment'
 import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
-import { toggleSong, togglePlayPause } from 'actions/queue'
-import ShareBox from 'components/ShareBox/ShareBox'
-import { Helmet } from "react-helmet";
-import  pauseButton  from 'images/PAUSE-BUTTON.png'
-import './SingleSong.scss'
+import { Helmet } from 'react-helmet';
 
+import { toggleSong, togglePlayPause } from '../../actions/queue'
+import ShareBox from '../ShareBox/ShareBox'
+
+import  pauseButton  from '../../images/PAUSE-BUTTON.png'
+
+import './SingleSong.scss'
 
 
 class SingleSong extends Component {

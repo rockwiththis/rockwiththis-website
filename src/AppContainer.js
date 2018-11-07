@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import * as Actions from 'actions/index'
+import { Element } from 'react-scroll'
 import { bindActionCreators } from 'redux'
+
+import * as Actions from './actions/index'
 import OffScreen from './components/OffScreenPlayer/OffScreen'
 import SocialLinks from './components/SocialLinks/SocialLinks.js'
 import Header from './components/Header/Header.js'
 import MainPlayer from './components/FooterPlayer/MainPlayer'
-import { Element } from 'react-scroll'
 
 
 class AppContainer extends Component {

@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
-import  playButton  from 'images/playbutton.svg'
-import  pauseButton  from 'images/pauseButton.png'
 import YouTube from 'react-youtube'
-import { toggleSong, togglePlayPause } from 'actions/queue'
+
+import { toggleSong, togglePlayPause } from '../../actions/queue'
+
+import  playButton  from '../../images/playbutton.svg'
+import  pauseButton  from '../../images/pauseButton.png'
 
 class HeroSong extends Component {
     constructor(props) {

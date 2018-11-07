@@ -3,17 +3,19 @@ import { connect } from 'react-redux'
 import YouTube from 'react-youtube'
 import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
-import HeroPosts from 'components/HeroGrid/HeroPosts'
-import SongGrid from 'components/SongGrid/SongGrid'
-import Song from 'components/Song/Song'
-import ShareBox from 'components/ShareBox/ShareBox'
-import FiltersBar from 'components/FiltersBar/FiltersBar'
-import LoadingComponent from 'components/Loading/LoadingComponent'
-import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlaceholder'
-import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
-import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+import HeroPosts from './components/HeroGrid/HeroPosts'
+import SongGrid from './components/SongGrid/SongGrid'
+import Song from './components/Song/Song'
+import ShareBox from './components/ShareBox/ShareBox'
+import FiltersBar from './components/FiltersBar/FiltersBar'
+import LoadingComponent from './components/Loading/LoadingComponent'
+import FullSongPlaceHolder from './components/FullSongPlaceholder/FullSongPlaceholder'
+import SongGridPlaceholder from './components/SongGridPlaceholder/SongGridPlaceholder'
+import HeroGridPlaceholder from './components/HeroGridPlaceholder/HeroGridPlaceholder'
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 /* eslint-disable */
 
