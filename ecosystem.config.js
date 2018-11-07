@@ -7,7 +7,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ubuntu@ec2-18-208-165-207.compute-1.amazonaws.com',
+      host: 'ec2-18-208-165-207.compute-1.amazonaws.com',
       key: '~/.ssh/RWT.pem',
       ref: 'origin/master',
       repo: 'git@github.com:rockwiththis/rockwiththis-website.git',
