@@ -32,6 +32,24 @@ const nestResultingSongsWithGenres = (songs) => {
 
 
 
+// router.get('/', (req, res) => {
+//   database.query(`
+//     SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*
+//     FROM songs
+//     JOIN subgenre_songs
+//     ON songs.id = subgenre_songs.song_id
+//     JOIN subgenres
+//     ON subgenres.id = subgenre_songs.subgenre_id
+//     ORDER by songs.created_at desc`
+//   )
+//   .then(result => {
+//     // console.log(result.rows);
+//     const songsWithSubGenres = nestResultingSongsWithGenres(result.rows);
+//     res.json(songsWithSubGenres);
+//   });
+// });
+
+
 router.get('/', (req, res) => {
   database.query(`
     SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*
@@ -40,7 +58,8 @@ router.get('/', (req, res) => {
     ON songs.id = subgenre_songs.song_id
     JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
-    ORDER by songs.id`
+    ORDER by songs.created_at desc
+    LIMIT 40`
   )
   .then(result => {
     // console.log(result.rows);
