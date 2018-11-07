@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "server": "node server.js",
+    "start": "npm-run-all -p watch-css start-js server",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "build": "npm-run-all build-css build-js",
+    "build-js": "react-scripts build",
+    "build-css": "node-sass-chokidar src/ -o src/",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "server": "node server.js"
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "aws-sdk": "^2.334.0",
