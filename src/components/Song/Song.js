@@ -110,10 +110,10 @@ class Song extends Component {
 
                 <p className="metaInfo">
                     <p className="leftInfo desktop">
-                    <span className="postDate "><Moment format="ll" date={song.date} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                    <span className="postDate "><Moment format="ll" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                     </p>
                     <p className="leftInfo mobile">
-                    <span className="postDate "><Moment format="d/M/YY" date={song.date} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                    <span className="postDate "><Moment format="d/M/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                     </p>
                     {this.renderTags(song)}
                     <ShareBox song={song} />

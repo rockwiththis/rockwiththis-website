@@ -99,7 +99,7 @@ export const clearFilters = () => (dispatch) => {
 export const FETCH_SINGLE_SONG = createAction('app/FETCH_SINGLE_SONG')
 export const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS')
 export const fetchSingleSong = (songId, callback) => (dispatch) => {
-  const songURL = `https://dashboard.rockwiththis.com/wp-json/wp/v2/songs/${songId}`
+  const songURL = `http:${songId}`
   fetch(songURL).then(res => res.json()).then((res) => {
     dispatch(FETCH_SINGLE_SONG(res))
     if (callback) {
