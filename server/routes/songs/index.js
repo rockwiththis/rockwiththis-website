@@ -119,6 +119,25 @@ router.get('/:id', (req, res) => {
 
 
 
+router.get('/?tags=tags', (req, res) => {
+
+  const tags = JSON.parse(req.query.tags);
+  console.log(tags);
+
+  const query = {
+    text: 'SELECT * songs WHERE genre_id = $1',
+    values: [tags],
+  }
+
+  database.query(query)
+  .then(results => {
+
+    return res.json(singleSongWithSubGenres);
+  })
+})
+
+
+
 
 
 
