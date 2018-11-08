@@ -45,6 +45,8 @@ class ShareBox extends Component {
 }
 
     render() {
+      console.log("this.props.song on sharebox");
+      console.log(this.props.song);
       const url = `https://rockwiththis.com/songs/${this.props.song.id}`
 
         return (

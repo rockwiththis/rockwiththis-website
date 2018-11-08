@@ -110,19 +110,21 @@ export const FETCH_SINGLE_SONG = createAction('app/FETCH_SINGLE_SONG')
 export const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS')
 
 export const fetchSingleSong = (songId, callback) => (dispatch) => {
-  const songURL = `http://localhost:9292/v1/songs${songId}`
+  const songURL = `http://localhost:9292/v1/songs/${songId}`
+  console.log("songURL");
+  console.log(songURL);
   fetch(songURL).then(res => res.json()).then((res) => {
     dispatch(FETCH_SINGLE_SONG(res))
     if (callback) {
       callback()
     }
-    const baseURL = 'https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=35&tags[]='
-    const filterIds = res.pure_taxonomies.tags.map(filter => filter.term_id)
-    const filterParamsString = filterIds.join('&tags[]=')
-    const fullURL = baseURL + filterParamsString
-    fetch(fullURL).then(related_res => related_res.json()).then((related_res) => {
-      dispatch(SET_RELATED_SONGS(related_res))
-    })
+
+    // const tags = res.sub_genres.map((subgenre) => subgenre.id)
+
+    // const tagURL = `songs?tags=${tags}`
+    // fetch(tagURL).then(related_res => related_res.json()).then((related_res) => {
+    //   dispatch(SET_RELATED_SONGS(related_res))
+    // })
   })
 }
 
