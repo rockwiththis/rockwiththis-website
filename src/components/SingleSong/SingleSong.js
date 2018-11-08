@@ -103,7 +103,9 @@ class SingleSong extends Component {
             activeSong,
             isPlaying,
         } = this.props
-        const song = this.props.singleSong
+        const song = this.props.singleSong[0]
+        console.log("SONGSONGSONG");
+        console.log(song);
 
         const { height } = this.state
         const songTagsMeta = song.sub_genres.map(tag => {
@@ -137,7 +139,7 @@ class SingleSong extends Component {
                         <p className="song-artist">{song.artist_name}</p>
                     </div>
                     <div className="shareContainer">
-                      <ShareBox song={song} />
+                      {/*<ShareBox song={song} /> */}
                     </div>
                   </div>
                 </div>
@@ -162,7 +164,7 @@ class SingleSong extends Component {
                             {songTags}
                             <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                         </p>
-                        <span className="ss-sharebox-desktop"><ShareBox props={song.slug} /></span>
+                        <span className="ss-sharebox-desktop">{/*<ShareBox props={song.slug} /> */}</span>
 
 
 
