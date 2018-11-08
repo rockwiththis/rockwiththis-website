@@ -4,7 +4,7 @@ import YouTube from 'react-youtube'
 import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
 import HeroPosts from 'components/HeroGrid/HeroPosts'
-import SongGrid from 'components/SongGrid/SongGrid'
+import SongGridSquare from 'components/SongGrid/SongGridSquare'
 import Song from 'components/Song/Song'
 import ShareBox from 'components/ShareBox/ShareBox'
 import FiltersBar from 'components/FiltersBar/FiltersBar'
@@ -210,18 +210,20 @@ class SongsContainer extends Component {
         const heroPosts = this.props.posts.slice(0,7)
         const songGrids = []
         let individualGrid = []
-        this.props.filteredPosts.forEach((post, index) => {
-          individualGrid.push(post)
-          if ((this.props.filteredPosts.length % 16 != 0)? (index % 15 == 0) ? true : (this.props.filteredPosts.length == index) : individualGrid.length == 16) {
-            songGrids.push(individualGrid)
-            individualGrid = []
-          }
-        })
-        console.log("songGrids" + songGrids)
-        const songGridsFull = songGrids.map((thisGrid, indexTop) => {
-          return thisGrid.map((song, index) => {
+        console.log("this.props.filteredPosts",this.props.filteredPosts)
+        // this.props.filteredPosts.forEach((post, index) => {
+        //   individualGrid.push(post)
+        //   if ((this.props.filteredPosts.length % 16 != 0)? (index % 15 == 0) ? true : (this.props.filteredPosts.length == index) : individualGrid.length == 16) {
+        //     songGrids.push(individualGrid)
+        //     individualGrid = []
+        //   }
+        // })
+        // console.log("songGrids" + JSON.stringify(songGrids))
+        const indexTop = 0
+        const songGridsFull = this.props.filteredPosts.map((song, index) => {
+          console.log("HEREREEEEEE")
             return (
-                <SongGrid
+                <SongGridSquare
                     {...this.props}
                     index={(indexTop == 0) ? index : index + (indexTop)*16}
                     activeDiscoverFullSong={this.state.discoverFullSongIndex === ((indexTop == 0) ? index : index + (indexTop)*16)}
@@ -230,10 +232,8 @@ class SongsContainer extends Component {
                     song={song}
                 />
             )
-          })
         })
 
-        console.log("SONG GRIDS FULL: " + songGridsFull)
 
 
 
@@ -249,13 +249,6 @@ class SongsContainer extends Component {
           )
         })
 
-        console.log(songGridsFull.map(grid => {
-          return (
-            <div className='grid-container'>
-              {grid}
-            </div>
-          )
-        }));
 
         // const disableBack = this.props.posts[0] && this.props.posts[0].id === this.props.activeSong.id
         // Make this section look at `this.props.currentRequestLoading` to change display
@@ -287,15 +280,11 @@ class SongsContainer extends Component {
                                 selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
                                 useKeyboardArrows={true}>
 
-                                {
-                                  songGridsFull.map(grid => {
-                                  return (
-                                    <div className='grid-container'>
-                                      {grid}
-                                    </div>
-                                  )
-                                })
-                                }
+
+                                <div className='grid-container'>
+                                  {songGridsFull}
+                                </div>
+
                               </Carousel>
                             </div>
 
