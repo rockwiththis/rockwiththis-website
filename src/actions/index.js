@@ -6,28 +6,47 @@ export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
   dispatch(CLEAR_FILTERS())
   // const smallDataURL = 'https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=7'
   // const bigDataURL = 'https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=9&offset=7'
-  const smallDataURL = 'http://localhost:9292/v1/songs'
-  const bigDataURL = 'http://localhost:9292/v1/songs'
+  // const smallDataURL = 'http://localhost:9292/v1/songs'
+  const dataURL = 'http://localhost:9292/v1/songs'
 
-  fetch(smallDataURL).then(res => res.json()).then((res) => {
+  fetch(dataURL).then(res => res.json()).then((res) => {
 
-    console.log("res", res)
+    console.log("res1", res)
     dispatch(FETCH_POSTS(res))
-    fetch(bigDataURL).then(resBig => resBig.json()).then((resBig) => {
-      if (callback) callback()
-      dispatch(SET_REMAINING_POSTS(resBig))
-    })
+    // fetch(dataURL).then(resBig => resBig.json()).then((resBig) => {
+    //   if (callback) callback()
+    //   dispatch(SET_REMAINING_POSTS(resBig))
+    // })
   })
 }
 
+// export const CURRENT_REQUEST_LOADING = createAction('app/CURRENT_REQUEST_LOADING')
+// export const FETCH_CURRENT_REQUEST = createAction('app/FETCH_CURRENT_REQUEST')
+// export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
+//   dispatch(CURRENT_REQUEST_LOADING(true))
+//   const baseURL = 'https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=16&tags[]='
+//   const filterIds = getState().selectedFilters.map(filter => filter.term_id)
+//   const filterParamsString = filterIds.join('&tags[]=')
+//   const fullURL = baseURL + filterParamsString
+//   fetch(fullURL).then(res => res.json()).then((res) => {
+//     dispatch(CURRENT_REQUEST_LOADING(false))
+//     if (res.length > 0) {
+//       dispatch(FETCH_CURRENT_REQUEST(res))
+//       if (callback) callback()
+//     } else {
+//       if (callback) callback(true)
+//     }
+//   })
+// }
 export const CURRENT_REQUEST_LOADING = createAction('app/CURRENT_REQUEST_LOADING')
 export const FETCH_CURRENT_REQUEST = createAction('app/FETCH_CURRENT_REQUEST')
 export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
   dispatch(CURRENT_REQUEST_LOADING(true))
-  const baseURL = 'https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=16&tags[]='
+  const baseURL = 'http://localhost:9292/v1/songs'
   const filterIds = getState().selectedFilters.map(filter => filter.term_id)
   const filterParamsString = filterIds.join('&tags[]=')
   const fullURL = baseURL + filterParamsString
+  return
   fetch(fullURL).then(res => res.json()).then((res) => {
     dispatch(CURRENT_REQUEST_LOADING(false))
     if (res.length > 0) {
@@ -75,8 +94,11 @@ export const changeGridView = layout => (dispatch) => {
 
 export const FETCH_FILTERS = createAction('app/FETCH_FILTERS')
 export const fetchFilters = () => (dispatch) => {
-    const dataURL = 'https://dashboard.rockwiththis.com/wp-json/wp/v2/all-terms'
+    const dataURL = 'http://localhost:9292/v1/subgenres'
+
     fetch(dataURL).then(res => res.json()).then((res) => {
+      console.log("res")
+      console.log(res)
         dispatch(FETCH_FILTERS(res))
     }).catch((er) => {
         dispatch({
@@ -98,8 +120,9 @@ export const clearFilters = () => (dispatch) => {
 
 export const FETCH_SINGLE_SONG = createAction('app/FETCH_SINGLE_SONG')
 export const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS')
+
 export const fetchSingleSong = (songId, callback) => (dispatch) => {
-  const songURL = `http:${songId}`
+  const songURL = `http://localhost:9292/v1/songs${songId}`
   fetch(songURL).then(res => res.json()).then((res) => {
     dispatch(FETCH_SINGLE_SONG(res))
     if (callback) {

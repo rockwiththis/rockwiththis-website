@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Scroll from 'react-scroll'
-import { fetchFilters } from 'actions/filters'
 import LoadingComponent from 'components/Loading/LoadingComponent'
 import './FiltersBar.scss'
 /* eslint-disable */

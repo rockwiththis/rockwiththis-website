@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import SongsContainer from '../SongsContainer.js'
 import { fetchPosts } from 'actions/index'
 // import { fetchFeaturedPosts } from 'actions/featuredPosts'
-import { fetchFilters } from 'actions/filters'
 import { Helmet } from "react-helmet";
 
 class Homepage extends Component {

@@ -40,6 +40,7 @@ const appReducers = handleActions({
     })
   },
   'app/SET_REMAINING_POSTS': (state, action) => {
+    return state
     return update(state, {
       filteredPosts: { $set: [...state.posts, ...action.payload] }
     })
@@ -101,8 +102,10 @@ const appReducers = handleActions({
     })
   },
   'app/FETCH_FILTERS': (state, action) => {
+    console.log("action.payload");
+    console.log(action.payload);
     return update(state, {
-      filters: { $set: action.payload.tags }
+      filters: { $set: action.payload.subgenres }
     })
   },
   'app/TOGGLE_FILTER': (state, action) => {
