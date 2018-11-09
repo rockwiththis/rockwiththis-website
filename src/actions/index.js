@@ -79,8 +79,7 @@ export const changeGridView = layout => (dispatch) => {
 
 
 export const fetchFilters = () => (dispatch) => {
-  // const dataURL = 'http://localhost:9292/v1/subgenres'
-  const dataURL = 'http://google.com'
+  const dataURL = 'http://localhost:9292/v1/subgenres'
 
   fetch(dataURL).then(res => res.json()).then((res) => {
     console.log("SUBGENRES-DANE")

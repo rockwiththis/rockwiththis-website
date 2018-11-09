@@ -131,11 +131,6 @@ class SongsContainer extends Component {
         })
     }
 
-    // fixedFiltersBar() {
-    //     const scrollHeight = document.getElementById('hero-post').clientHeight + 45
-    //     const fixedFilterBar = window.scrollY > scrollHeight
-    //     this.setState({ fixedFilterBar })
-    // }
 
     enableDiscoverScroll() {
       if (location.pathname == "/") {
@@ -210,18 +205,9 @@ class SongsContainer extends Component {
         const heroPosts = this.props.posts.slice(0,7)
         const songGrids = []
         let individualGrid = []
-        console.log("this.props.filteredPosts",this.props.filteredPosts)
-        // this.props.filteredPosts.forEach((post, index) => {
-        //   individualGrid.push(post)
-        //   if ((this.props.filteredPosts.length % 16 != 0)? (index % 15 == 0) ? true : (this.props.filteredPosts.length == index) : individualGrid.length == 16) {
-        //     songGrids.push(individualGrid)
-        //     individualGrid = []
-        //   }
-        // })
-        // console.log("songGrids" + JSON.stringify(songGrids))
+
         const indexTop = 0
         const songGridsFull = this.props.filteredPosts.map((song, index) => {
-          console.log("HEREREEEEEE")
             return (
                 <SongGridSquare
                     {...this.props}
@@ -233,8 +219,6 @@ class SongsContainer extends Component {
                 />
             )
         })
-
-
 
 
         const songList = this.props.filteredPosts.map((song, index) => {
