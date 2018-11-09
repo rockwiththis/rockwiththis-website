@@ -18,39 +18,27 @@ router.get('/', (req, res) => {
   );
 
   // 'limit' query
-  const queryLimit = (isQuery && req.query.limit) || 16;
+  const queryLimit = (isQuery && req.query.limit) || 40;
   const queryLimitStatement = `LIMIT ${Number(queryLimit)}`;
 
   // 'offset' query
   const queryOffset = (isQuery && req.query.offset) || 0;
   const queryOffsetStatement = `OFFSET ${Number(queryOffset)}`;
 
+    //SELECT songs.*, subgenres.id as genre_id, subgenres.name as genre_name
   const queryText = (`
-    SELECT song.* , subgenres.id as genre_id, subgenres.name as genre_name
+    SELECT songs.* , subgenres.id as genre_id, subgenres.name as genre_name
     FROM songs
     JOIN subgenre_songs
     ON songs.id = subgenre_songs.song_id
     JOIN subgenres
     ON (subgenres.id = subgenre_songs.subgenre_id ${queryTagsWHEREStatement})
+    ORDER BY created_at desc, songs.id asc
     ${queryOffsetStatement}
     ${queryLimitStatement}
   `);
-  // const queryText = (`
-  //   SELECT s1.*, subgenres.id as genre_id, subgenres.name as genre_name
-  //   FROM (
-  //     SELECT *
-  //     from songs
-  //     ORDER BY created_at desc
-  //     ${queryOffsetStatement}
-  //     ${queryLimitStatement}
-  //   ) as s1
-  //   JOIN subgenre_songs
-  //   ON s1.id = subgenre_songs.song_id
-  //   JOIN subgenres
-  //   ON (subgenres.id = subgenre_songs.subgenre_id ${queryTagsWHEREStatement})
-  //   ORDER BY s1.id asc
-  // `);
 
+  console.log(queryText);
 
 
   const queryObj = {
@@ -82,7 +70,7 @@ router.get('/:id', (req, res) => {
 
     const singleSongWithSubGenres = nestSingleSongWithGenres(results.rows);
 
-    return res.json(singleSongWithSubGenres);
+    return res.json(singleSongWithSubGenres[0]);
   })
 })
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import SongsContainer from '../SongsContainer.js'
 import { fetchPosts } from 'actions/index'
 // import { fetchFeaturedPosts } from 'actions/featuredPosts'
-import { fetchFilters } from 'actions/filters'
+// import { fetchFilters } from 'actions/filters'
 import { Helmet } from "react-helmet";
 import Mailchimp from 'react-mailchimp-form'
 import { Link } from 'react-router-dom'

@@ -44,7 +44,8 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 
 export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS')
 export const loadMoreSongs = (callback) => (dispatch, getState) => {
-  const baseURL = `https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=16&offset=${getState().filteredPosts.length}`
+  // const baseURL = `https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?_embed&per_page=16&offset=${getState().filteredPosts.length}`
+  const baseURL = `http://localhost:9292/v1/songs?offset=16`
   const filterIds = getState().selectedFilters.map(filter => filter.term_id)
   const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
   const fullURL = baseURL + filterParamsString
@@ -78,10 +79,11 @@ export const changeGridView = layout => (dispatch) => {
 
 
 export const fetchFilters = () => (dispatch) => {
-  const dataURL = 'http://localhost:9292/v1/subgenres'
+  // const dataURL = 'http://localhost:9292/v1/subgenres'
+  const dataURL = 'http://google.com'
 
   fetch(dataURL).then(res => res.json()).then((res) => {
-    console.log("res")
+    console.log("SUBGENRES-DANE")
     console.log(res)
       dispatch({
         type: FETCH_FILTERS.SUCCESS,
@@ -118,13 +120,17 @@ export const fetchSingleSong = (songId, callback) => (dispatch) => {
     if (callback) {
       callback()
     }
+    console.log("res.sub_genres");
+    console.log(res.sub_genres);
+    const tags = res.sub_genres.map((subgenre) => subgenre.id)
 
-    // const tags = res.sub_genres.map((subgenre) => subgenre.id)
-
-    // const tagURL = `songs?tags=${tags}`
-    // fetch(tagURL).then(related_res => related_res.json()).then((related_res) => {
-    //   dispatch(SET_RELATED_SONGS(related_res))
-    // })
+    const tagURL = `http://localhost:9292/v1/songs?tags=[${tags}]`
+    console.log("tagURL");
+    console.log(tagURL);
+    // const tagURL = "http://localhost:9292/v1/songs?tags=[107,55]"
+    fetch(tagURL).then(related_res => related_res.json()).then((related_res) => {
+      dispatch(SET_RELATED_SONGS(related_res))
+    })
   })
 }
 
@@ -149,40 +155,7 @@ export const FETCH_RELATED_SONGS = {
     FAILURE: 'FETCH_RELATED_SONGS_FAILURE',
 }
 
-export const fetchRelatedSongs = slug => (dispatch, getState) => {
-  dispatch({
-    type: FETCH_RELATED_SONGS.IN_PROGRESS,
-  })
-  // const dataURL = `http://localhost:9292/v1/songs/${slug}`
-  const dataURL = `http://localhost:9292/v1/songs/3007`
-  fetch(dataURL).then(res => res.json()).then((res) => {
-      const tags = res.tags
-      const tag1 = tags[0]
-      const tag2 = tags[1]
-      const tag1Songs = `https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?tags=${tag1}`
-      const tag2Songs = `https://dashboard.rockwiththis.com/wp-json/wp/v2/songs?tags=${tag2}`
-      const relatedSongs = [];
-      console.log(tag1Songs)
-      console.log(dataURL)
 
-      fetch(tag1Songs).then(res => res.json()).then((res) => {
-          const relatedSongs = res.slice(0,5)
-
-          fetch(tag2Songs).then(res => res.json()).then((res) => {
-              const relatedSongs2 = res.slice(0,5)
-
-              dispatch({
-                  type: FETCH_RELATED_SONGS.SUCCESS,
-                  relatedSongs,
-              })
-          })
-      })
-  }).catch((er) => {
-      dispatch({
-          type: FETCH_RELATED_SONGS.FAILURE,
-      })
-  })
-}
 
 export const playNextSong = () => (dispatch, getState) => {
   const nextSong = getState().queue.queue[0]

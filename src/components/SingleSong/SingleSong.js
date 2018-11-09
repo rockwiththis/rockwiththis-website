@@ -90,9 +90,11 @@ class SingleSong extends Component {
 
     renderDescription() {
         const song = this.props.singleSong
+        console.log("this.props.singleSong");
+        console.log(this.props.singleSong);
         return (
               <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
-                  <p className="songDescription" dangerouslySetInnerHTML={{ __html: song.description }} />
+                  <p className="songDescription" dangerouslySetInnerHTML={{ __html: this.props.singleSong.description }} />
               </div>
         )
     }
@@ -103,7 +105,7 @@ class SingleSong extends Component {
             activeSong,
             isPlaying,
         } = this.props
-        const song = this.props.singleSong[0]
+        const song = this.props.singleSong
         console.log("SONGSONGSONG");
         console.log(song);
 
