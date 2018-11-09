@@ -118,12 +118,12 @@ const appReducers = handleActions({
     })
   },
   'app/CLEAR_FILTERS': (state, action) => {
-    const filters = state.filters.map(filter => {
-      filter.selected = false
-      return filter
-    })
+    // const filters = state.filters.map(filter => {
+    //   filter.selected = false
+    //   return filter
+    // })
     return update(state, {
-      filters: { $set: filters },
+      // filters: { $set: filters },
       filteredPosts: { $set: state.posts },
       selectedFilters: { $set: [] }
     })

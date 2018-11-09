@@ -43,7 +43,6 @@ class SongsContainer extends Component {
       this.setState({
         loading: false,
       })
-      console.log("Pulling la stuff")
     }
 
     componentDidMount() {
@@ -80,7 +79,7 @@ class SongsContainer extends Component {
       if (e){
         num = this.state.gridPage + 1
       } else if (!e && this.state.gridPage != 0){
-        console.log("bakcing")
+        console.log("backing")
         this.setState({
           gridPage: this.state.gridPage - 1,
         })
@@ -100,8 +99,7 @@ class SongsContainer extends Component {
     }
 
     handleCarousel() {
-      const things = this.carousel
-      console.log(things)
+  
       this.setState({
         discoverFullSongIndex: this.carousel.state.selectedItem
       })

@@ -197,7 +197,7 @@ button.clearButton:hover {
   margin-left: 15px;
   vertical-align: top;
   margin-top: 18px;
-  width: calc(100% - 300px);
+  width: auto;
   overflow: hidden;
   height: 40px !important; }
   .discovery-section .selectedFilters button.clearButton {
