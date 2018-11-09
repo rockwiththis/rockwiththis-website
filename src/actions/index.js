@@ -46,7 +46,7 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 
   console.log("filtersArray:", filtersArray);
 
-  const fullURL = `http://localhost:9292/v1/songs?tags=[${filtersArray}]`
+  const fullURL = `http://localhost:9292/v1/songs?tags=[${filtersArray}]&limit=16`
 
   fetch(fullURL).then(res => res.json()).then((res) => {
 
