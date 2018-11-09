@@ -25,32 +25,20 @@ router.get('/', (req, res) => {
   const queryOffset = (isQuery && req.query.offset) || 0;
   const queryOffsetStatement = `OFFSET ${Number(queryOffset)}`;
 
+    //SELECT songs.*, subgenres.id as genre_id, subgenres.name as genre_name
   const queryText = (`
-    SELECT song.* , subgenres.id as genre_id, subgenres.name as genre_name
+    SELECT songs.id, songs.name, subgenres.name as genre_name
     FROM songs
     JOIN subgenre_songs
     ON songs.id = subgenre_songs.song_id
     JOIN subgenres
     ON (subgenres.id = subgenre_songs.subgenre_id ${queryTagsWHEREStatement})
+    ORDER BY created_at desc, songs.id asc
     ${queryOffsetStatement}
     ${queryLimitStatement}
   `);
-  // const queryText = (`
-  //   SELECT s1.*, subgenres.id as genre_id, subgenres.name as genre_name
-  //   FROM (
-  //     SELECT *
-  //     from songs
-  //     ORDER BY created_at desc
-  //     ${queryOffsetStatement}
-  //     ${queryLimitStatement}
-  //   ) as s1
-  //   JOIN subgenre_songs
-  //   ON s1.id = subgenre_songs.song_id
-  //   JOIN subgenres
-  //   ON (subgenres.id = subgenre_songs.subgenre_id ${queryTagsWHEREStatement})
-  //   ORDER BY s1.id asc
-  // `);
 
+  console.log(queryText);
 
 
   const queryObj = {
