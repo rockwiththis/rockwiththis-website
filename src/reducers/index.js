@@ -127,6 +127,11 @@ const appReducers = handleActions({
       filteredPosts: { $set: state.posts },
       selectedFilters: { $set: [] }
     })
+  },
+  'FETCH_FILTERS_SUCCESS': (state, action) => {
+    return update(state, {
+      filters: { $set: action.filters },
+    })
   }
 }, INITIAL_STATE)
 

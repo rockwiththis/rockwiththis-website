@@ -3,20 +3,3 @@ export const FETCH_FILTERS = {
   SUCCESS: 'FETCH_FILTERS_SUCCESS',
   FAILURE: 'FETCH_FILTERS_FAILURE',
 }
-
-export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
-  dispatch({
-      type: FETCH_FILTERS.IN_PROGRESS,
-  })
-  const dataURL = 'http://localhost:9292/v1/subgenres'
-  fetch(dataURL).then(res => res.json()).then(res => {
-    dispatch({
-      type: FETCH_FILTERS.SUCCESS,
-      filters: res.tags,
-    })
-  }).catch((er) => {
-    dispatch({
-      type: FETCH_FILTERS.FAILURE,
-    })
-  })
-}
