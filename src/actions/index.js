@@ -63,10 +63,12 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 
 export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS')
 export const loadMoreSongs = (callback) => (dispatch, getState) => {
+
   const baseURL = `http://localhost:9292/v1/songs?offset=16`
   const filterIds = getState().selectedFilters.map(filter => filter.term_id)
   const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
   const fullURL = baseURL + filterParamsString
+  
   fetch(fullURL).then(res => res.json()).then((res) => {
     if (res.length > 0) {
       dispatch(LOAD_MORE_SONGS(res))
