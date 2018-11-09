@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   );
 
   // 'limit' query
-  const queryLimit = (isQuery && req.query.limit) || 16;
+  const queryLimit = (isQuery && req.query.limit) || 40;
   const queryLimitStatement = `LIMIT ${Number(queryLimit)}`;
 
   // 'offset' query
@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
     //SELECT songs.*, subgenres.id as genre_id, subgenres.name as genre_name
   const queryText = (`
-    SELECT songs.id, songs.name, subgenres.name as genre_name
+    SELECT songs.* , subgenres.id as genre_id, subgenres.name as genre_name
     FROM songs
     JOIN subgenre_songs
     ON songs.id = subgenre_songs.song_id
@@ -70,7 +70,7 @@ router.get('/:id', (req, res) => {
 
     const singleSongWithSubGenres = nestSingleSongWithGenres(results.rows);
 
-    return res.json(singleSongWithSubGenres);
+    return res.json(singleSongWithSubGenres[0]);
   })
 })
 
