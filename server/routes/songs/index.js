@@ -1,107 +1,65 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../../db');
-
-const nestResultingSongsWithGenres = (songs) => {
-  let result = [];
-  let first = { genre_id, genre_name, ...initialSong } = songs[0];
-  let currentSong = initialSong;
-
-  for (let i = 0; i < songs.length; i++) {
-    if (currentSong.id != songs[i].id) {
-      result.push(currentSong)
-      const clone = { genre_id, genre_name, ...cloned_song } = songs[i];
-      currentSong = cloned_song;
-    }
-
-    const genre = {
-      id: songs[i].genre_id,
-      name: songs[i].genre_name
-    };
-
-    if (!currentSong.sub_genres) {
-      currentSong.sub_genres = [genre];
-    } else {
-      currentSong.sub_genres.push(genre);
-    }
-  }
-
-  result.push(currentSong)
-  return result;
-}
-
-
-
-// router.get('/', (req, res) => {
-//   database.query(`
-//     SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*
-//     FROM songs
-//     JOIN subgenre_songs
-//     ON songs.id = subgenre_songs.song_id
-//     JOIN subgenres
-//     ON subgenres.id = subgenre_songs.subgenre_id
-//     ORDER by songs.created_at desc`
-//   )
-//   .then(result => {
-//     // console.log(result.rows);
-//     const songsWithSubGenres = nestResultingSongsWithGenres(result.rows);
-//     res.json(songsWithSubGenres);
-//   });
-// });
+const {
+  nestSingleSongWithGenres,
+  nestResultingSongsWithGenres,
+} = require('./utils');
 
 
 router.get('/', (req, res) => {
-  database.query(`
-    SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*
-    FROM songs
+  const isQuery = req.query && (Object.keys(req.query).length > 0);
+
+  // 'tag' queries
+  const queryTags = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
+  const isQueryTags = (queryTags.length > 0);
+  const queryTagsWHEREStatement = (
+    isQueryTags ? `WHERE subgenres.id = ANY(ARRAY${req.query.tags})` : ''
+  );
+
+  // 'limit' query
+  const queryLimit = (isQuery && req.query.limit) || 16;
+  const queryLimitStatement = `LIMIT ${Number(queryLimit)}`;
+
+  // 'offset' query
+  const queryOffset = (isQuery && req.query.offset) || 0;
+  const queryOffsetStatement = `OFFSET ${Number(queryOffset)}`;
+
+  const queryText = (`
+    SELECT s1.*, subgenres.id as genre_id, subgenres.name as genre_name
+    FROM (
+      SELECT *
+      from songs
+      LIMIT 5
+    ) as s1
     JOIN subgenre_songs
-    ON songs.id = subgenre_songs.song_id
+    ON s1.id = subgenre_songs.song_id
     JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
-    ORDER by songs.created_at desc
-    LIMIT 40`
-  )
+    ${queryTagsWHEREStatement}
+    ORDER by s1.created_at desc
+    ${queryLimitStatement}
+    ${queryOffsetStatement}
+  `);
+
+  const queryObj = {
+    text: queryText,
+    // values: []
+  };
+
+  database.query(queryObj)
   .then(result => {
-    // console.log(result.rows);
     const songsWithSubGenres = nestResultingSongsWithGenres(result.rows);
     res.json(songsWithSubGenres);
+  })
+  .catch((error) => {
+    console.log('>>> GET SONGS route error', error);
+    res.json([]);
   });
 });
 
 
-
-
-
-const nestSingleSongWithGenres = (songs) => {
-  let result = [];
-  let first = { genre_id, genre_name, ...initialSong } = songs[0];
-  let currentSong = initialSong;
-
-  for (let i = 0; i < songs.length; i++) {
-    if (currentSong.id != songs[i].id) {
-      result.push(currentSong)
-      const clone = { genre_id, genre_name, ...cloned_song } = songs[i];
-      currentSong = cloned_song;
-    }
-
-    const genre = {
-      id: songs[i].genre_id,
-      name: songs[i].genre_name
-    };
-
-    if (!currentSong.sub_genres) {
-      currentSong.sub_genres = [genre];
-    } else {
-      currentSong.sub_genres.push(genre);
-    }
-  }
-  result.push(currentSong)
-  return result;
-}
-
-
 router.get('/:id', (req, res) => {
-
   var singleSongId = parseInt(req.params.id);
   const query = {
     text: 'SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.* FROM songs JOIN subgenre_songs ON songs.id = subgenre_songs.song_id JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id WHERE songs.id = $1',
@@ -116,29 +74,6 @@ router.get('/:id', (req, res) => {
     return res.json(singleSongWithSubGenres);
   })
 })
-
-
-
-router.get('/?tags=tags', (req, res) => {
-
-  const tags = JSON.parse(req.query.tags);
-  console.log(tags);
-
-  const query = {
-    text: 'SELECT * songs WHERE genre_id = $1',
-    values: [tags],
-  }
-
-  database.query(query)
-  .then(results => {
-
-    return res.json(singleSongWithSubGenres);
-  })
-})
-
-
-
-
 
 
 module.exports = router;
