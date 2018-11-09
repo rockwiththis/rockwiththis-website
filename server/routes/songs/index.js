@@ -30,21 +30,21 @@ router.get('/', (req, res) => {
     FROM (
       SELECT *
       from songs
-      LIMIT 5
+      ORDER BY created_at desc
+      ${queryOffsetStatement}
+      ${queryLimitStatement}
     ) as s1
     JOIN subgenre_songs
     ON s1.id = subgenre_songs.song_id
     JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
     ${queryTagsWHEREStatement}
-    ORDER by s1.created_at desc
-    ${queryLimitStatement}
-    ${queryOffsetStatement}
+    ORDER BY s1.id asc
   `);
 
   const queryObj = {
     text: queryText,
-    // values: []
+    // values: [${queryOffsetStatement}, ${queryLimitStatement}, ${queryTagsWHEREStatement}]
   };
 
   database.query(queryObj)
