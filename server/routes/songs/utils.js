@@ -21,6 +21,7 @@ const nestSingleSongWithGenres = (songs) => {
       currentSong.sub_genres.push(genre);
     }
   }
+
   result.push(currentSong)
   return result;
 }
@@ -49,9 +50,20 @@ const nestResultingSongsWithGenres = (songs) => {
     }
   }
 
-  result.push(currentSong)
-  return result;
-}
+  result.push(currentSong);
+  return result.sort((a, b) => {
+    let first = new Date(a.created_at);
+    let second = new Date(b.created_at);
+
+    if (first > second) {
+        return -1;
+    } else if (second == first) {
+        return 0;
+    } else {
+        return 1;
+    }
+  });
+};
 
 module.exports = {
   nestSingleSongWithGenres,
