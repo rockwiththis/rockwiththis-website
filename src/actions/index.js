@@ -2,6 +2,24 @@ import { createAction } from 'redux-actions'
 import { FETCH_FILTERS } from './filters'
 
 
+export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
+  dispatch({
+    type: FETCH_FILTERS.IN_PROGRESS,
+  })
+  const dataURL = 'http://localhost:9292/v1/subgenres'
+  fetch(dataURL).then(res => res.json()).then(res => {
+    dispatch({
+      type: FETCH_FILTERS.SUCCESS,
+      filters: res,
+    })
+  }).catch((error) => {
+    dispatch({
+      type: FETCH_FILTERS.FAILURE,
+      payload: error,
+    })
+  })
+}
+
 export const FETCH_POSTS = createAction('app/FETCH_POSTS')
 export const SET_REMAINING_POSTS = createAction('app/SET_REMAINING_POSTS')
 export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
@@ -75,25 +93,6 @@ export const toggleSong = song => (dispatch) => {
 export const CHANGE_GRID_VIEW = createAction('app/CHANGE_GRID_VIEW')
 export const changeGridView = layout => (dispatch) => {
   dispatch(CHANGE_GRID_VIEW(layout))
-}
-
-
-export const fetchFilters = () => (dispatch) => {
-  const dataURL = 'http://localhost:9292/v1/subgenres'
-
-  fetch(dataURL).then(res => res.json()).then((res) => {
-    console.log("SUBGENRES-DANE")
-    console.log(res)
-      dispatch({
-        type: FETCH_FILTERS.SUCCESS,
-        payload: res,
-      })
-  }).catch((error) => {
-      dispatch({
-        type: FETCH_FILTERS.FAILURE,
-        payload: error,
-      })
-  })
 }
 
 export const TOGGLE_FILTER = createAction('app/TOGGLE_FILTER')
