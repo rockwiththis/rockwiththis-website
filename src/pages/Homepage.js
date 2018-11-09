@@ -12,6 +12,8 @@ class Homepage extends Component {
       if (this.props.filteredPosts.length === 0) {
         this.props.actions.fetchPosts()
       }
+      console.log("eatttt");
+      console.log(this.props.actions.fetchPosts());
     }
 
     render() {

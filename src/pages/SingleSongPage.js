@@ -51,7 +51,7 @@ class SingleSongPage extends Component {
                   <div className="singleSongContainer">
                       <SingleSong {...this.props} />
                   </div>
-                      {/* <RelatedSongs {...this.props} /> */}
+                      <RelatedSongs {...this.props} />
                   </Fragment>
 
               }

@@ -22,11 +22,15 @@ class AppContainer extends Component {
 
     componentWillMount() {
       this.props.actions.fetchFilters()
-      // this.props.actions.fetchFeaturedPosts()
+
+      console.log("this.props.actions.fetchFilters()");
+      console.log(this.props.actions.fetchFilters());
     }
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
+        console.log("stste");
+        console.log(this.props);
     }
 
     handleScroll() {
