@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   const queryTags = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
   const isQueryTags = (queryTags.length > 0);
   const queryTagsWHEREStatement = (
-    isQueryTags ? `WHERE subgenres.id = ANY(ARRAY${req.query.tags})` : ''
+    isQueryTags ? `AND subgenres.id = ANY(ARRAY${req.query.tags})` : ''
   );
 
   // 'limit' query
@@ -37,10 +37,11 @@ router.get('/', (req, res) => {
     JOIN subgenre_songs
     ON s1.id = subgenre_songs.song_id
     JOIN subgenres
-    ON subgenres.id = subgenre_songs.subgenre_id
-    ${queryTagsWHEREStatement}
+    ON (subgenres.id = subgenre_songs.subgenre_id ${queryTagsWHEREStatement})
     ORDER BY s1.id asc
   `);
+
+
 
   const queryObj = {
     text: queryText,
