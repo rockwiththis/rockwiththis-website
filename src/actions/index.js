@@ -153,7 +153,8 @@ export const fetchRelatedSongs = slug => (dispatch, getState) => {
   dispatch({
     type: FETCH_RELATED_SONGS.IN_PROGRESS,
   })
-  const dataURL = `https://dashboard.rockwiththis.com/wp-json/wp/v2/songs/${slug}?_embed`
+  // const dataURL = `http://localhost:9292/v1/songs/${slug}`
+  const dataURL = `http://localhost:9292/v1/songs/3007`
   fetch(dataURL).then(res => res.json()).then((res) => {
       const tags = res.tags
       const tag1 = tags[0]
@@ -166,14 +167,9 @@ export const fetchRelatedSongs = slug => (dispatch, getState) => {
 
       fetch(tag1Songs).then(res => res.json()).then((res) => {
           const relatedSongs = res.slice(0,5)
-          // console.log(relatedSongs1)
-          // relatedSongs.push([relatedSongs1]);
 
           fetch(tag2Songs).then(res => res.json()).then((res) => {
               const relatedSongs2 = res.slice(0,5)
-
-              // const relatedSongs = [relatedSongs1, relatedSongs2]
-              // console.log(relatedSongs)
 
               dispatch({
                   type: FETCH_RELATED_SONGS.SUCCESS,
