@@ -43,7 +43,6 @@ class SongsContainer extends Component {
       this.setState({
         loading: false,
       })
-      console.log("Pulling la stuff")
     }
 
     componentDidMount() {
@@ -80,7 +79,7 @@ class SongsContainer extends Component {
       if (e){
         num = this.state.gridPage + 1
       } else if (!e && this.state.gridPage != 0){
-        console.log("bakcing")
+        console.log("backing")
         this.setState({
           gridPage: this.state.gridPage - 1,
         })
@@ -100,8 +99,7 @@ class SongsContainer extends Component {
     }
 
     handleCarousel() {
-      const things = this.carousel
-      console.log(things)
+  
       this.setState({
         discoverFullSongIndex: this.carousel.state.selectedItem
       })
@@ -131,11 +129,6 @@ class SongsContainer extends Component {
         })
     }
 
-    // fixedFiltersBar() {
-    //     const scrollHeight = document.getElementById('hero-post').clientHeight + 45
-    //     const fixedFilterBar = window.scrollY > scrollHeight
-    //     this.setState({ fixedFilterBar })
-    // }
 
     enableDiscoverScroll() {
       if (location.pathname == "/") {
@@ -210,18 +203,9 @@ class SongsContainer extends Component {
         const heroPosts = this.props.posts.slice(0,7)
         const songGrids = []
         let individualGrid = []
-        console.log("this.props.filteredPosts",this.props.filteredPosts)
-        // this.props.filteredPosts.forEach((post, index) => {
-        //   individualGrid.push(post)
-        //   if ((this.props.filteredPosts.length % 16 != 0)? (index % 15 == 0) ? true : (this.props.filteredPosts.length == index) : individualGrid.length == 16) {
-        //     songGrids.push(individualGrid)
-        //     individualGrid = []
-        //   }
-        // })
-        // console.log("songGrids" + JSON.stringify(songGrids))
+
         const indexTop = 0
         const songGridsFull = this.props.filteredPosts.map((song, index) => {
-          console.log("HEREREEEEEE")
             return (
                 <SongGridSquare
                     {...this.props}
@@ -233,8 +217,6 @@ class SongsContainer extends Component {
                 />
             )
         })
-
-
 
 
         const songList = this.props.filteredPosts.map((song, index) => {
