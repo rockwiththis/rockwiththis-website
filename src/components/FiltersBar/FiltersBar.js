@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Scroll from 'react-scroll'
 
-import { fetchFilters } from '../../actions/filters'
-import LoadingComponent from '../Loading/LoadingComponent'
+import LoadingComponent from 'components/Loading/LoadingComponent'
 
 import './FiltersBar.scss'
+
+/* eslint-disable */
 
 class FiltersBar extends Component {
     constructor(props) {
@@ -64,40 +65,44 @@ class FiltersBar extends Component {
       this.setState({ loading: true })
       const callback = () => {
         document.removeEventListener('click', this.closeSubGenreFilters)
-        this.setState({
-          showSubGenreFilters: false,
-          showToggleViewsDropdown: false,
-          filtersToShow: [],
-          loading: false,
-        })
       }
+
+      console.log("this.state");
+      console.log(this.state.filtersToShow);
+
+
+      this.state.filtersToShow.map((filter, i) => {
+        filter.selected = false;
+
+      })
+
       this.props.actions.fetchPosts(false, callback)
+      this.setState({
+        showSubGenreFilters: false,
+        showToggleViewsDropdown: false,
+        loading: false,
+        selectedFilters: [],
+        filtersToShow: [],
+      })
     }
 
     fixedFiltersBar() {
+
+      if (location.pathname == "/") {
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         const fixedFilterBar = window.scrollY > scrollHeight
         this.setState({ fixedFilterBar })
+      }
     }
 
     showSubGenreFilters(event) {
-      // scroller.scrollTo('scroll-to-element', {
-      //    duration: 800,
-      //    delay: 0,
-      //    smooth: 'easeInOutQuart'
-      // })
+
 
       const scrollHeight = document.getElementById('hero-post').clientHeight + 45
 
 
 
       event.preventDefault();
-
-      // Scroll.scroller.scrollTo('discoverySectionScroll', {
-      //   duration: 500,
-      //   smooth: true
-      // })
-
 
 
       this.setState({

@@ -4,12 +4,10 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as Scroll from 'react-scroll';
 
-import { fetchRelatedSongs } from '../actions/relatedSongs'
-// import { fetchFeaturedPosts } from '../actions/featuredPosts'
-import SingleSong from '../components/SingleSong/SingleSong'
-import RelatedSongs from '../components/RelatedSongs/RelatedSongs'
-import LoadingComponent from '../components/Loading/LoadingComponent'
-import SingleSongPlaceholder from '../components/SingleSongPlaceholder/SingleSongPlaceholder'
+import SingleSong from 'components/SingleSong/SingleSong'
+import RelatedSongs from 'components/RelatedSongs/RelatedSongs'
+import LoadingComponent from 'components/Loading/LoadingComponent'
+import SingleSongPlaceholder from 'components/SingleSongPlaceholder/SingleSongPlaceholder'
 
 class SingleSongPage extends Component {
     constructor(props) {
@@ -65,7 +63,6 @@ class SingleSongPage extends Component {
 SingleSongPage.propTypes = {
       fetchSingleSong: PropTypes.func.isRequired,
       fetchFeaturedPosts: PropTypes.func.isRequired,
-      fetchRelatedSongs: PropTypes.func.isRequired,
       isFetchingSingleSong: PropTypes.bool.isRequired,
       singleSong: PropTypes.shape({}).isRequired,
 }

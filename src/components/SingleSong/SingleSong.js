@@ -8,10 +8,10 @@ import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 import { Helmet } from 'react-helmet';
 
-import { toggleSong, togglePlayPause } from '../../actions/queue'
-import ShareBox from '../ShareBox/ShareBox'
+import { toggleSong, togglePlayPause } from 'actions/queue'
+import ShareBox from 'components/ShareBox/ShareBox'
 
-import  pauseButton  from '../../images/PAUSE-BUTTON.png'
+import  pauseButton  from 'images/PAUSE-BUTTON.png'
 
 import './SingleSong.scss'
 
@@ -92,9 +92,11 @@ class SingleSong extends Component {
 
     renderDescription() {
         const song = this.props.singleSong
+        console.log("this.props.singleSong");
+        console.log(this.props.singleSong);
         return (
               <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
-                  <p className="songDescription" dangerouslySetInnerHTML={{ __html: song.description }} />
+                  <p className="songDescription" dangerouslySetInnerHTML={{ __html: this.props.singleSong.description }} />
               </div>
         )
     }
@@ -106,6 +108,8 @@ class SingleSong extends Component {
             isPlaying,
         } = this.props
         const song = this.props.singleSong
+        console.log("SONGSONGSONG");
+        console.log(song);
 
         const { height } = this.state
         const songTagsMeta = song.sub_genres.map(tag => {
@@ -139,7 +143,7 @@ class SingleSong extends Component {
                         <p className="song-artist">{song.artist_name}</p>
                     </div>
                     <div className="shareContainer">
-                      <ShareBox song={song} />
+                      {/*<ShareBox song={song} /> */}
                     </div>
                   </div>
                 </div>
@@ -156,15 +160,15 @@ class SingleSong extends Component {
                     </div>
                         <p className="metaInfo">
                         <p className="leftInfo desktop">
-                        <span className="postDate "><Moment format="ll" date={song.date} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                        <span className="postDate "><Moment format="ll" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                         </p>
                         <p className="leftInfo mobile">
-                        <span className="postDate "><Moment format="d/M/YY" date={song.date} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                        <span className="postDate "><Moment format="d/M/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                         </p>
                             {songTags}
                             <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                         </p>
-                        <span className="ss-sharebox-desktop"><ShareBox props={song.slug} /></span>
+                        <span className="ss-sharebox-desktop">{/*<ShareBox props={song.slug} /> */}</span>
 
 
 

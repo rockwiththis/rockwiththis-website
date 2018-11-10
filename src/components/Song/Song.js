@@ -7,12 +7,11 @@ import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 
-//import { toggleSong, togglePlayPause } from '../../actions/queue'
-import ShareBox from '../ShareBox/ShareBox'
+import ShareBox from 'components/ShareBox/ShareBox'
 
-import  playButton  from '../../images/playbutton.svg'
-import  pauseButton  from '../../images/pauseButton.png'
-import pauseButtonWhite from '../../images/PAUSE-BUTTON.png'
+import  playButton  from 'images/playbutton.svg'
+import  pauseButton  from 'images/pauseButton.png'
+import pauseButtonWhite from 'images/PAUSE-BUTTON.png'
 
 
 class Song extends Component {
@@ -110,10 +109,10 @@ class Song extends Component {
 
                 <p className="metaInfo">
                     <p className="leftInfo desktop">
-                    <span className="postDate "><Moment format="ll" date={song.date} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                    <span className="postDate "><Moment format="ll" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                     </p>
                     <p className="leftInfo mobile">
-                    <span className="postDate "><Moment format="d/M/YY" date={song.date} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                    <span className="postDate "><Moment format="d/M/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                     </p>
                     {this.renderTags(song)}
                     <ShareBox song={song} />

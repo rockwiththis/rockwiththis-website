@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 
 import HeroSong from './HeroSong'
-import HeroPostsPlaceholder from '../HeroGridPlaceholder/HeroGridPlaceholder'
+import HeroPostsPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 
-import hoverGradient from '../../images/rwt-hover-gradient.png'
+import hoverGradient from 'images/rwt-hover-gradient.png'
 
 import './HeroGrid.scss'
 
@@ -30,14 +30,15 @@ class HeroPosts extends React.Component {
 
 
     render() {
-      console.log(this.props)
+      console.log("hero posts!")
+      console.log(this.props.heroPosts)
         const { heroPosts } = this.props
 
         const trackDisplay = (post, i, isSmall) => {
             const image = post.image_url
             // const month = moment(post.date).format('MMM')
-            const date = moment(post.date).format('D')
-            const day = moment(post.date).format('ddd');
+            const date = moment(post.created_at).format('D')
+            const day = moment(post.created_at).format('ddd');
             const title = post.name
             const artist = post.artist_name
             const tags = post.sub_genres.map(tag =>

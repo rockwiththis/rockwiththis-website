@@ -7,10 +7,10 @@ import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 
-import { toggleSong, togglePlayPause } from '../../actions/queue'
+import { toggleSong, togglePlayPause } from 'actions/queue'
 
-import  playButton  from '../../images/playbutton.svg'
-import  pauseButton  from '../../images/pauseButton.png'
+import  playButton  from 'images/playbutton.svg'
+import  pauseButton  from 'images/pauseButton.png'
 
 class HeroSong extends Component {
     constructor(props) {

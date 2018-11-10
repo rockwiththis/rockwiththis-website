@@ -5,17 +5,17 @@ import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
 import { Carousel } from 'react-responsive-carousel';
 
-import HeroPosts from './components/HeroGrid/HeroPosts'
-import SongGrid from './components/SongGrid/SongGrid'
-import Song from './components/Song/Song'
-import ShareBox from './components/ShareBox/ShareBox'
-import FiltersBar from './components/FiltersBar/FiltersBar'
-import LoadingComponent from './components/Loading/LoadingComponent'
-import FullSongPlaceHolder from './components/FullSongPlaceholder/FullSongPlaceholder'
-import SongGridPlaceholder from './components/SongGridPlaceholder/SongGridPlaceholder'
-import HeroGridPlaceholder from './components/HeroGridPlaceholder/HeroGridPlaceholder'
-
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+import HeroPosts from 'components/HeroGrid/HeroPosts'
+import SongGridSquare from 'components/SongGrid/SongGridSquare'
+import Song from 'components/Song/Song'
+import ShareBox from 'components/ShareBox/ShareBox'
+import FiltersBar from 'components/FiltersBar/FiltersBar'
+import LoadingComponent from 'components/Loading/LoadingComponent'
+import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlaceholder'
+import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
+import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 
 /* eslint-disable */
 
@@ -35,7 +35,7 @@ class SongsContainer extends Component {
         this.loadMoreSongs = this.loadMoreSongs.bind(this)
         this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
         this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
-        this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
+        // this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
         this.navGrid = this.navGrid.bind(this)
         this.handleCarousel = this.handleCarousel.bind(this)
@@ -45,7 +45,6 @@ class SongsContainer extends Component {
       this.setState({
         loading: false,
       })
-      console.log("Pulling la stuff")
     }
 
     componentDidMount() {
@@ -82,7 +81,7 @@ class SongsContainer extends Component {
       if (e){
         num = this.state.gridPage + 1
       } else if (!e && this.state.gridPage != 0){
-        console.log("bakcing")
+        console.log("backing")
         this.setState({
           gridPage: this.state.gridPage - 1,
         })
@@ -102,8 +101,7 @@ class SongsContainer extends Component {
     }
 
     handleCarousel() {
-      const things = this.carousel
-      console.log(things)
+  
       this.setState({
         discoverFullSongIndex: this.carousel.state.selectedItem
       })
@@ -133,16 +131,14 @@ class SongsContainer extends Component {
         })
     }
 
-    fixedFiltersBar() {
-        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
-        const fixedFilterBar = window.scrollY > scrollHeight
-        this.setState({ fixedFilterBar })
-    }
 
     enableDiscoverScroll() {
+      if (location.pathname == "/") {
+
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
         window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
+    }
     }
 
     renderPaginationDots() {
@@ -209,18 +205,11 @@ class SongsContainer extends Component {
         const heroPosts = this.props.posts.slice(0,7)
         const songGrids = []
         let individualGrid = []
-        this.props.filteredPosts.forEach((post, index) => {
-          individualGrid.push(post)
-          if ((this.props.filteredPosts.length % 16 != 0)? (index % 15 == 0) ? true : (this.props.filteredPosts.length == index) : individualGrid.length == 16) {
-            songGrids.push(individualGrid)
-            individualGrid = []
-          }
-        })
-        console.log("songGrids" + songGrids)
-        const songGridsFull = songGrids.map((thisGrid, indexTop) => {
-          return thisGrid.map((song, index) => {
+
+        const indexTop = 0
+        const songGridsFull = this.props.filteredPosts.map((song, index) => {
             return (
-                <SongGrid
+                <SongGridSquare
                     {...this.props}
                     index={(indexTop == 0) ? index : index + (indexTop)*16}
                     activeDiscoverFullSong={this.state.discoverFullSongIndex === ((indexTop == 0) ? index : index + (indexTop)*16)}
@@ -229,11 +218,7 @@ class SongsContainer extends Component {
                     song={song}
                 />
             )
-          })
         })
-
-        console.log("SONG GRIDS FULL: " + songGridsFull)
-
 
 
         const songList = this.props.filteredPosts.map((song, index) => {
@@ -248,13 +233,6 @@ class SongsContainer extends Component {
           )
         })
 
-        console.log(songGridsFull.map(grid => {
-          return (
-            <div className='grid-container'>
-              {grid}
-            </div>
-          )
-        }));
 
         // const disableBack = this.props.posts[0] && this.props.posts[0].id === this.props.activeSong.id
         // Make this section look at `this.props.currentRequestLoading` to change display
@@ -286,15 +264,11 @@ class SongsContainer extends Component {
                                 selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
                                 useKeyboardArrows={true}>
 
-                                {
-                                  songGridsFull.map(grid => {
-                                  return (
-                                    <div className='grid-container'>
-                                      {grid}
-                                    </div>
-                                  )
-                                })
-                                }
+
+                                <div className='grid-container'>
+                                  {songGridsFull}
+                                </div>
+
                               </Carousel>
                             </div>
 

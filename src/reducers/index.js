@@ -28,7 +28,7 @@ export const INITIAL_STATE = {
   filters: [],
   selectedFilters: [],
   currentlyFetchedPageNumber: 0,
-
+  songsLoaded: 16
 }
 
 const appReducers = handleActions({
@@ -40,6 +40,7 @@ const appReducers = handleActions({
     })
   },
   'app/SET_REMAINING_POSTS': (state, action) => {
+    return state
     return update(state, {
       filteredPosts: { $set: [...state.posts, ...action.payload] }
     })
@@ -101,8 +102,10 @@ const appReducers = handleActions({
     })
   },
   'app/FETCH_FILTERS': (state, action) => {
+    console.log("action.payload");
+    console.log(action.payload);
     return update(state, {
-      filters: { $set: action.payload.tags }
+      filters: { $set: action.payload.subgenres }
     })
   },
   'app/TOGGLE_FILTER': (state, action) => {
@@ -115,14 +118,19 @@ const appReducers = handleActions({
     })
   },
   'app/CLEAR_FILTERS': (state, action) => {
-    const filters = state.filters.map(filter => {
-      filter.selected = false
-      return filter
-    })
+    // const filters = state.filters.map(filter => {
+    //   filter.selected = false
+    //   return filter
+    // })
     return update(state, {
-      filters: { $set: filters },
+      // filters: { $set: filters },
       filteredPosts: { $set: state.posts },
       selectedFilters: { $set: [] }
+    })
+  },
+  'FETCH_FILTERS_SUCCESS': (state, action) => {
+    return update(state, {
+      filters: { $set: action.filters },
     })
   }
 }, INITIAL_STATE)

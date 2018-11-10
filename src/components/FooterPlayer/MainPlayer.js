@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'rc-slider'
 
-import { toggleSong, togglePlayPause } from '../../actions/queue'
-import OffScreen from '../OffScreenPlayer/OffScreen'
-
-import  playButton  from '../../images/main-player-play-button.svg'
-import  pauseButton  from '../../images/pauseButton-main-player-new.png'
-import  soundCloudImage  from '../../images/soundcloud-darker.png'
-
 import 'rc-slider/assets/index.css'
+
+import { toggleSong, togglePlayPause } from 'actions/queue'
+import OffScreen from 'components/OffScreenPlayer/OffScreen'
+
+import  playButton  from 'images/main-player-play-button.svg'
+import  pauseButton  from 'images/pauseButton-main-player-new.png'
+import  soundCloudImage  from 'images/soundcloud-darker.png'
 import './MainPlayer.scss'
 
 const formatTime = (seconds = 0) => {

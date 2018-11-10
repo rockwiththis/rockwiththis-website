@@ -40,13 +40,12 @@
 
     }button:hover {
       background: #1a6ea9;
-      display: block;
       text-decoration: none;
       cursor: pointer;
       color: #fff;
 
       svg {
-        width: 12px;
+        // width: 12px;
         fill: #fff;
       }
 
@@ -56,11 +55,6 @@
 
       }
 
-    }
-
-        img {
-        // margin-right: 10px;
-        // padding: 10px;
     }
 }
 
@@ -302,7 +296,8 @@ cursor: pointer;
     margin-left: 15px;
     vertical-align: top;
     margin-top: 18px;
-    width: calc(100% - 300px);
+    // width: calc(100% - 300px);
+    width: auto;
     overflow: hidden;
     height: 40px !important;
 

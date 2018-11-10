@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { Element } from 'react-scroll'
 import { bindActionCreators } from 'redux'
 
-import * as Actions from './actions/index'
-import OffScreen from './components/OffScreenPlayer/OffScreen'
-import SocialLinks from './components/SocialLinks/SocialLinks.js'
-import Header from './components/Header/Header.js'
-import MainPlayer from './components/FooterPlayer/MainPlayer'
+import * as Actions from 'actions/index'
+import { fetchFilters } from 'actions/filters'
+import * as Actions from 'actions/index'
+
+import OffScreen from 'components/OffScreenPlayer/OffScreen'
+import SocialLinks from 'components/SocialLinks/SocialLinks.js'
+import Header from 'components/Header/Header.js'
+import MainPlayer from 'components/FooterPlayer/MainPlayer'
 
 
 class AppContainer extends Component {
@@ -23,11 +25,15 @@ class AppContainer extends Component {
 
     componentWillMount() {
       this.props.actions.fetchFilters()
-      // this.props.actions.fetchFeaturedPosts()
+
+      console.log("this.props.actions.fetchFilters()");
+      console.log(this.props.actions.fetchFilters());
     }
 
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll)
+        console.log("stste");
+        console.log(this.props);
     }
 
     handleScroll() {
