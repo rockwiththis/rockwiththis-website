@@ -1594,42 +1594,42 @@ form.rwt-email-form button {
   font-size: 14px;
   padding: 10px; }
 
-.middle {
+.main-content {
   position: relative;
   background: rgba(0, 0, 0, 0) !important;
   background: linear-gradient(-193deg, rgba(255, 255, 255, 0) 25%, #fafafa 25%) !important;
   padding-bottom: 475px; }
-  .middle img.diagblue {
-    position: absolute;
-    bottom: 0; }
-  .middle img.logo2 {
+  .main-content img.diagblue {
+    position: absolute; }
+  .main-content img.logo2 {
     position: absolute;
     position: absolute;
     z-index: 2;
     width: 900px;
     bottom: -60px;
     right: -200px; }
-  .middle img.color2 {
+  .main-content img.color2 {
     transform: rotate(180deg);
     width: 650px;
     position: absolute;
     left: 0;
     bottom: 315px;
     z-index: 48; }
-  .middle img.diagblue.cover {
+  .main-content img.diagblue.cover {
     z-index: 45; }
-  .middle img.color.bottom {
+  .main-content img.color.bottom {
     top: 50px !important; }
-  .middle .middle-content {
+  .main-content .middle-content {
     margin: 0 auto;
     width: 1150px;
     padding-top: 20px; }
-  .middle .four-content {
+  .main-content .four-content {
     margin-left: 25px;
-    transform: translateY(-35px);
     position: relative;
-    z-index: 499; }
-    .middle .four-content h3 {
+    z-index: 499;
+    vertical-align: top;
+    padding-top: 120px; }
+    .main-content .four-content h3 {
       font-size: 40px;
       color: #000;
       font-weight: 700;
@@ -1637,20 +1637,37 @@ form.rwt-email-form button {
       line-height: 50px;
       text-align: left;
       margin-bottom: 8px; }
-    .middle .four-content p {
+    .main-content .four-content p {
       font-size: 20px;
       line-height: 30px;
       font-weight: 400 !important;
       font-family: Open-Sans,sans-serif; }
-    .middle .four-content p.mission-tagline {
+    .main-content .four-content p.mission-tagline {
       margin-bottom: 10px; }
-    .middle .four-content p.email-text {
+    .main-content .four-content p.email-text {
       margin-top: 10px; }
-  .middle .gridPic {
+  .main-content .gridPic {
     max-width: 600px;
     z-index: 499;
     position: relative;
     margin-right: 25px; }
+
+.blue-content {
+  height: 400px;
+  width: 100%;
+  position: absolute;
+  margin-top: 200px; }
+  .blue-content .blue-content-container {
+    max-width: 580px;
+    padding: 100px 100px; }
+    .blue-content .blue-content-container p {
+      color: #fff;
+      font-size: 20px;
+      line-height: 30px; }
+    .blue-content .blue-content-container h1.blue-title {
+      color: #fff;
+      font-size: 40px;
+      line-height: 50px; }
 
 .connectPage {
   padding-top: 0px;
@@ -1710,7 +1727,7 @@ form.rwt-email-form button {
   border-width: 0 !important;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
 
-.middle h3 {
+.main-content h3 {
   font-size: 40px;
   color: #000;
   font-weight: 700;
@@ -1723,7 +1740,7 @@ form.rwt-email-form button {
   max-width: 500px;
   display: inline-block; }
 
-.middle img.cross {
+.main-content img.cross {
   height: 250px;
   display: inline-block;
   vertical-align: top; }
