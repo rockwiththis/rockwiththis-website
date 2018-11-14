@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 
-import * as Actions from 'actions/index'
 import { fetchFilters } from 'actions/filters'
 import * as Actions from 'actions/index'
 
