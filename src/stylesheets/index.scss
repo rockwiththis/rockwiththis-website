@@ -3360,3 +3360,29 @@ img.hands1 {
     border: 1px solid #fff !important;
 }
 }
+
+
+
+
+
+
+
+
+
+
+// ABOUT PAGE SOCIAL CONTAINER
+.social-container {
+
+  ul {
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: inline-block;
+
+      img {
+        max-width: 75px;
+      }
+    }
+  }
+}

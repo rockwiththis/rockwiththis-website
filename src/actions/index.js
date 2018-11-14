@@ -27,6 +27,7 @@ export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
 
   const dataURL = 'http://localhost:9292/v1/songs'
 
+
   fetch(dataURL).then(res => res.json()).then((res) => {
 
     console.log("res1", res)
@@ -68,7 +69,9 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const filterIds = getState().selectedFilters.map(filter => filter.term_id)
   const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
   const fullURL = baseURL + filterParamsString
-  
+
+
+
   fetch(fullURL).then(res => res.json()).then((res) => {
     if (res.length > 0) {
       dispatch(LOAD_MORE_SONGS(res))

@@ -1955,3 +1955,11 @@ img.hands1 {
     margin-top: -3px;
     cursor: pointer;
     border: 1px solid #fff !important; } }
+
+.social-container ul {
+  padding: 0;
+  list-style: none; }
+  .social-container ul li {
+    display: inline-block; }
+    .social-container ul li img {
+      max-width: 75px; }

@@ -25,7 +25,11 @@ import color1 from 'images/connectColors.png'
 import colorIntroLong from 'images/connectColorsIntroLong.png'
 import cross from 'images/cross.svg'
 import logoWriting from 'images/logo-writing-black.png'
-import blackLogo from 'images/rwt-head-black.png'
+import instagram from 'images/instagram.png'
+import facebook from 'images/facebook.png'
+import twitter from 'images/twitter.png'
+import soundcloud from 'images/soundcloud.png'
+import spotify from 'images/spotify.png'
 
 
 
@@ -91,6 +95,15 @@ class ConnectPage extends Component {
 
                           className='rwt-email-form'
                         />
+                        <div className="social-container">
+                          <ul>
+                          <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
+                          <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
+                          </ul>
+                        </div>
 
                     </div>
 
@@ -109,18 +122,12 @@ class ConnectPage extends Component {
 
                   </div>
 
-
                   {/* <img className="logo2" src={logo1} /> */}
                   <img className="color2" src={colorFull} />
-
 
                 </div>
 
               </div>
-
-
-
-
 
            </div>
         )
