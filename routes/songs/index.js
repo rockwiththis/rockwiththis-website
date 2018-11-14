@@ -21,7 +21,6 @@ router.get('/', (req, res) => {
     .then(songsResult => {
       querySongSubgenres(songsResult.rows.map(song => song.id))
         .then(subgenresResult => {
-          console.log(subgenresResult.rows);
           res.json(nestSongsWithSubgenres(songsResult.rows, subgenresResult.rows))
         })
         .catch(error => {
@@ -65,6 +64,7 @@ const querySongs = (limit, offset, subgenreIds) => {
     ON songs.id = subgenre_songs.song_id
     JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
+    ORDER BY songs.created_at DESC, songs.id
     ${subgenreIdFilter}
     ${limitStatement}
     ${offsetStatement}
@@ -103,6 +103,5 @@ const getSubgenresBySongId = subgenreRows => (
     [nextSubgenreRow.song_id]: (keyedSubgenres[nextSubgenreRow.song_id] || []).concat([nextSubgenreRow])
   }), {})
 );
-
 
 module.exports = router;
