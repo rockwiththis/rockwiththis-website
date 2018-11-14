@@ -3,6 +3,10 @@ import { connect } from 'react-redux'
 import YouTube from 'react-youtube'
 import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
+import { Carousel } from 'react-responsive-carousel';
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
 import HeroPosts from 'components/HeroGrid/HeroPosts'
 import SongGridSquare from 'components/SongGrid/SongGridSquare'
 import Song from 'components/Song/Song'
@@ -12,8 +16,6 @@ import LoadingComponent from 'components/Loading/LoadingComponent'
 import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlaceholder'
 import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
-import { Carousel } from 'react-responsive-carousel';
-import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 /* eslint-disable */
 

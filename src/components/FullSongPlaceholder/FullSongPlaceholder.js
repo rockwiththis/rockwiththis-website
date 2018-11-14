@@ -1,6 +1,9 @@
 import React from 'react'
+
 import logo from 'images/RWT-head-logo.png'
+
 import './FullSongPlaceholder.scss'
+
 
 const FullSongPlaceHolder = () =>
   (

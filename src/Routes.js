@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
-import Homepage from './pages/Homepage'
-import ConnectPage from './pages/ConnectPage'
-import SingleSongPage from './pages/SingleSongPage'
-import SubmitSongPage from './pages/SubmitSongPage'
+
+import Homepage from 'pages/Homepage'
+import ConnectPage from 'pages/ConnectPage'
+import SingleSongPage from 'pages/SingleSongPage'
+import SubmitSongPage from 'pages/SubmitSongPage'
 
 const Routes = (props) => {
     return (

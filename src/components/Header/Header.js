@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import { Link, NavLink, Nav } from 'react-router-dom'
 // import * as Scroll from 'react-scroll'
 import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+
 import desktopLogo from 'images/logo-desktop.png'
 import mobileLogo from 'images/logo-mobile.png'
+
 import './Header.scss'
+
 /* eslint-disable */
 
 class Header extends Component {
@@ -36,7 +39,7 @@ class Header extends Component {
 
 
     checkDiscoverOrThisWeek() {
-      
+
       if (location.pathname == "/") {
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         const thisWeek = window.scrollY < scrollHeight

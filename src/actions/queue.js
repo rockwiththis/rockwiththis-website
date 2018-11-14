@@ -32,10 +32,10 @@ export const toggleSong = postId => (dispatch, getState) => {
              sc_track_id,
          },
      } = postId.acf
-    
+
      const isPlaying = getState().queue.isPlaying
      const queue = getState().filteredPosts.map(post => post.id).slice(postIndex + 1)
-    
+
      dispatch({
          type: TOGGLE_SONG,
          postId,
