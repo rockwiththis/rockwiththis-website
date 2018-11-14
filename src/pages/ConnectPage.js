@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import SongsContainer from '../SongsContainer.js'
-import { fetchPosts } from 'actions/index'
-// import { fetchFeaturedPosts } from 'actions/featuredPosts'
-import { fetchFilters } from 'actions/filters'
 import { Helmet } from "react-helmet";
 import Mailchimp from 'react-mailchimp-form'
 import { Link } from 'react-router-dom'
+
+import SongsContainer from 'SongsContainer.js'
+import { fetchPosts } from 'actions/index'
+import { fetchFilters } from 'actions/filters'
+
 import introImage from 'images/intro-bigger.png'
 import diag2 from 'images/diagblue.png'
 import diagTall from 'images/blue-logo-image-grid.png'
@@ -30,9 +31,6 @@ import facebook from 'images/facebook.png'
 import twitter from 'images/twitter.png'
 import soundcloud from 'images/soundcloud.png'
 import spotify from 'images/spotify.png'
-
-
-
 
 
 class ConnectPage extends Component {

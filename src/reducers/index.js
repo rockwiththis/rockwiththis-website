@@ -27,8 +27,7 @@ export const INITIAL_STATE = {
   relatedSongs: [],
   filters: [],
   selectedFilters: [],
-  currentlyFetchedPageNumber: 0,
-  songsLoaded: 16
+  currentlyFetchedPageNumber: 0
 }
 
 const appReducers = handleActions({

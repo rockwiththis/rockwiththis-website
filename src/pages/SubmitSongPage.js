@@ -1,19 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import SongsContainer from '../SongsContainer.js'
-import { fetchPosts } from 'actions/index'
-// import { fetchFeaturedPosts } from 'actions/featuredPosts'
-// import { fetchFilters } from 'actions/filters'
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet';
 import Mailchimp from 'react-mailchimp-form'
 import { Link } from 'react-router-dom'
+
+import SongsContainer from 'SongsContainer.js'
+
 import hands1 from 'images/hands.svg'
-
-
-
-
-
 
 
 class SubmitSongPage extends Component {
