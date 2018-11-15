@@ -101,7 +101,7 @@ class SongsContainer extends Component {
     }
 
     handleCarousel() {
-  
+
       this.setState({
         discoverFullSongIndex: this.carousel.state.selectedItem
       })
@@ -277,11 +277,11 @@ class SongsContainer extends Component {
                         }
                           <div className='song-grid-footer'>
                             <button className='grid-arrow previous' onClick={() => this.navGrid(false)}>
-                              <img src='http://www.dashboard.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-arrow-25-48.png' />
+                              <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
                             </button>
                             {this.renderPaginationDots()}
                             <button className='grid-arrow next' onClick={() => this.navGrid(true, songGridsFull.length)}>
-                              <img src='http://www.dashboard.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-arrow-25-48.png' />
+                              <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
                             </button>
                           </div>
                       </div>
@@ -302,7 +302,7 @@ class SongsContainer extends Component {
                         <div>
                             <button
                             className="toggle-song previous" onClick={() => this.changeDiscoverSong(false)}>
-                                <img src='http://www.dashboard.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-arrow-25-48.png' />
+                                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
                             </button>
                             <div className='carousel-wrapper'>
                               {this.props.filteredPosts[discoverFullSongIndex] &&
@@ -331,7 +331,7 @@ class SongsContainer extends Component {
                             </div>
                             <button
                             className="toggle-song next" onClick={() => this.changeDiscoverSong(true)}>
-                                <img src='http://www.dashboard.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-arrow-25-48.png' />
+                                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
                             </button>
                           </div>
                       }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from "react-helmet";
-import Mailchimp from 'react-mailchimp-form'
+import Mailchimp from 'components/Newsletter/Mailchimp.js'
 import { Link } from 'react-router-dom'
 
 import SongsContainer from 'SongsContainer.js'
@@ -11,6 +11,7 @@ import { fetchFilters } from 'actions/filters'
 
 import introImage from 'images/intro-bigger.png'
 import diag2 from 'images/diagblue.png'
+import diagTall from 'images/blue-logo-image-grid.png'
 import logo1 from 'images/connect-logo.svg'
 import logo2 from 'images/connect-logo.svg'
 import gridPic from 'images/collage-full.png'
@@ -25,13 +26,16 @@ import color1 from 'images/connectColors.png'
 import colorIntroLong from 'images/connectColorsIntroLong.png'
 import cross from 'images/cross.svg'
 import logoWriting from 'images/logo-writing-black.png'
-import blackLogo from 'images/rwt-head-black.png'
+import instagram from 'images/instagram.png'
+import facebook from 'images/facebook.png'
+import twitter from 'images/twitter.png'
+import soundcloud from 'images/soundcloud.png'
+import spotify from 'images/spotify.png'
 
 
 class ConnectPage extends Component {
     constructor(props) {
         super(props)
-
     }
 
     render() {
@@ -48,7 +52,6 @@ class ConnectPage extends Component {
         )
       })
 
-
         return (
           <div>
           <Helmet>
@@ -57,7 +60,7 @@ class ConnectPage extends Component {
              <div className="connectPage">
 
 
-                <div className="middle">
+                <div className="main-content">
                 <img className="color bottomMiddle" src={color1} />
 
                   <div className="middle-content">
@@ -88,23 +91,39 @@ class ConnectPage extends Component {
 
                           className='rwt-email-form'
                         />
+                        <div className="social-container">
+                          <ul>
+                          <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
+                          <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
+                          </ul>
+                        </div>
 
                     </div>
 
                   </div>
+                  <img className="diagblue"src={diagTall} />
 
-                  <img className="diagblue"src={diag2} />
-                  <img className="logo2" src={logo1} />
+                  <div className="blue-content">
+
+                  <div className="blue-content-container">
+
+                  <h1 className="blue-title">{"We don't have every song."}<br/>
+                  {"Just the best you haven't heard"}.
+                  </h1>
+                  <p>{"Our team consists of huge music lovers who spend hours each day digging through tracks, to deliver the best of what's breaking and uncover the left behind tracks that need to be heard."} </p>
+                  </div>
+
+                  </div>
+
+                  {/* <img className="logo2" src={logo1} /> */}
                   <img className="color2" src={colorFull} />
-
 
                 </div>
 
               </div>
-
-
-
-
 
            </div>
         )
