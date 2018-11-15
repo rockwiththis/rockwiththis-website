@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from "react-helmet";
-import Mailchimp from 'react-mailchimp-form'
+import Mailchimp from 'components/Newsletter/Mailchimp.js'
 import { Link } from 'react-router-dom'
 
 import SongsContainer from 'SongsContainer.js'
@@ -36,7 +36,6 @@ import spotify from 'images/spotify.png'
 class ConnectPage extends Component {
     constructor(props) {
         super(props)
-
     }
 
     render() {
@@ -52,7 +51,6 @@ class ConnectPage extends Component {
             </div>
         )
       })
-
 
         return (
           <div>
