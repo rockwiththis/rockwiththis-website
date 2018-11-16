@@ -5,6 +5,7 @@ const cors = require('cors');
 
 const PROD_ENV_PATH = '/home/ubuntu/.env'
 const envConfigPath = process.env.NODE_ENV == 'production' ? PROD_ENV_PATH : __dirname
+console.log('SETTING ENV VARIABLES @ ' + envConfigPath);
 require('dotenv').config({ path: envConfigPath + '/.env' });
 
 const routes = require('./routes');
