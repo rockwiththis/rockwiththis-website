@@ -1024,8 +1024,8 @@ button {
     .discovery-container.fullGridLayout .songList .topContentContainer {
       display: none !important; }
     .discovery-container.fullGridLayout .songList .songContainer {
-      width: 19vw;
-      height: 19vw;
+      width: 24vw;
+      height: 24vw;
       padding: 0 !important;
       display: inline-block;
       max-width: none;
@@ -1038,15 +1038,15 @@ button {
         height: 100%;
         overflow: hidden; }
       .discovery-container.fullGridLayout .songList .songContainer .imageContainer {
-        height: 19vw;
-        width: 19vw;
+        height: 24vw;
+        width: 24vw;
         display: inline-block;
         vertical-align: top;
         padding-right: 0px;
         max-height: none; }
         .discovery-container.fullGridLayout .songList .songContainer .imageContainer img {
-          max-width: 19vw;
-          max-height: 19vw; } }
+          max-width: 24vw;
+          max-height: 24vw; } }
 
 @media only screen and (max-width: 800px) {
   .goToSongPage {
@@ -1956,10 +1956,16 @@ img.hands1 {
     cursor: pointer;
     border: 1px solid #fff !important; } }
 
-.social-container ul {
-  padding: 0;
-  list-style: none; }
-  .social-container ul li {
-    display: inline-block; }
-    .social-container ul li img {
-      max-width: 75px; }
+.social-container {
+  width: 100%;
+  margin-top: 25px; }
+  .social-container ul {
+    padding: 0;
+    list-style: none; }
+    .social-container ul li {
+      display: inline-block;
+      width: 20%;
+      text-align: center; }
+      .social-container ul li img {
+        width: 60%;
+        border-radius: 6px; }

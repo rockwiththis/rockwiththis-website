@@ -51,7 +51,10 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 
   fetch(fullURL).then(res => res.json()).then((res) => {
 
+
     dispatch(CURRENT_REQUEST_LOADING(false))
+    console.log("resx");
+    console.log(res);
     if (res.length > 0) {
       dispatch(FETCH_CURRENT_REQUEST(res))
 
@@ -70,8 +73,6 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const filterIds = getState().selectedFilters.map(filter => filter.term_id)
   const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
   const fullURL = baseURL + filterParamsString
-
-
 
   fetch(fullURL).then(res => res.json()).then((res) => {
     if (res.length > 0) {

@@ -75,7 +75,7 @@ Mailchimp.defaultProps = {
     success: "Thanks for subscribing to Rock With This!",
     error: "Woops sorry. Try refreshing the page and trying again.",
     empty: "You must write an actual e-mail.",
-    duplicate: "Too many subscribe attempts for this email address"
+    duplicate: "You've already subscribed to Rock With This!"
   },
   styles: {
     sendingMsg: {

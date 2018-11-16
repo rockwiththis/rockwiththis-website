@@ -1746,8 +1746,8 @@ button {
       }
 
       .songContainer {
-        width: 19vw;
-        height: 19vw;
+        width: 24vw;
+        height: 24vw;
         padding: 0 !important;
         display: inline-block;
         max-width: none;
@@ -1765,16 +1765,16 @@ button {
         }
 
         .imageContainer {
-            height: 19vw;
-            width: 19vw;
+            height: 24vw;
+            width: 24vw;
             display: inline-block;
             vertical-align: top;
             padding-right: 0px;
             max-height: none;
 
             img {
-              max-width: 19vw;
-              max-height: 19vw;
+              max-width: 24vw;
+              max-height: 24vw;
             }
         }
     }
@@ -3372,6 +3372,9 @@ img.hands1 {
 
 // ABOUT PAGE SOCIAL CONTAINER
 .social-container {
+    width: 100%;
+    margin-top: 25px;
+
 
   ul {
     padding: 0;
@@ -3379,9 +3382,13 @@ img.hands1 {
 
     li {
       display: inline-block;
+      width: 20%;
+      text-align: center;
 
       img {
-        max-width: 75px;
+        // max-width: 75px;
+        width: 60%;
+        border-radius: 6px;
       }
     }
   }
