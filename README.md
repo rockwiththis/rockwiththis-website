@@ -14,5 +14,7 @@ $ npm start
 
 ## Deployment
 ```
+$ git checkout master
+$ git pull
 $ pm2 deploy ecosystem.config.js production
 ```
