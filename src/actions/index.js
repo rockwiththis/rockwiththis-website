@@ -1,13 +1,13 @@
 import { createAction } from 'redux-actions'
 import { FETCH_FILTERS } from './filters'
 
-const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'localhost:3000' : ''
+const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
 
 export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
   dispatch({
     type: FETCH_FILTERS.IN_PROGRESS,
   })
-  const dataURL = apiBaseUrl + '/v1/subgenres'
+  const dataURL = apiBaseUrl + '/subgenres'
   fetch(dataURL).then(res => res.json()).then(res => {
     dispatch({
       type: FETCH_FILTERS.SUCCESS,
@@ -26,10 +26,10 @@ export const SET_REMAINING_POSTS = createAction('app/SET_REMAINING_POSTS')
 export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
   dispatch(CLEAR_FILTERS())
 
-  const dataURL = apiBaseUrl + '/v1/songs'
+  const dataURL = apiBaseUrl + '/songs'
+  console.log('QUERYING FOR DATA FROM ' + dataURL);
 
-
-  fetch(dataURL).then(r => console.log(r)).then(res => res.json()).then((res) => {
+  fetch(dataURL).then(res => res.json()).then((res) => {
 
     console.log("res1", res)
     dispatch(FETCH_POSTS(res))
@@ -41,14 +41,14 @@ export const FETCH_CURRENT_REQUEST = createAction('app/FETCH_CURRENT_REQUEST')
 
 export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
   dispatch(CURRENT_REQUEST_LOADING(true))
-  const baseURL = apiBaseUrl + '/v1/songs'
+  const baseURL = apiBaseUrl + '/songs'
   const filtersArray = []
   const filterIds = getState().selectedFilters.map(filter => filter.id)
   filtersArray.push(filterIds)
 
   console.log("filtersArray:", filtersArray);
 
-  const fullURL = apiBaseUrl + `/v1/songs?tags=[${filtersArray}]&limit=16`
+  const fullURL = apiBaseUrl + `/songs?tags=[${filtersArray}]&limit=16`
 
   fetch(fullURL).then(res => res.json()).then((res) => {
 
@@ -73,7 +73,7 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const filterIds = getState().selectedFilters.map(filter => filter.id)
   filtersArray.push(filterIds)
 
-  const fullURL = apiBaseUrl + apiBaseUrl + `/v1/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+  const fullURL = apiBaseUrl + apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
   console.log("sss");
   console.log(fullURL);
 
@@ -124,7 +124,7 @@ export const FETCH_SINGLE_SONG = createAction('app/FETCH_SINGLE_SONG')
 export const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS')
 
 export const fetchSingleSong = (songId, callback) => (dispatch) => {
-  const songURL = apiBaseUrl + apiBaseUrl + `/v1/songs/${songId}`
+  const songURL = apiBaseUrl + apiBaseUrl + `/songs/${songId}`
 
   fetch(songURL).then(res => res.json()).then((res) => {
     dispatch(FETCH_SINGLE_SONG(res))
@@ -133,7 +133,7 @@ export const fetchSingleSong = (songId, callback) => (dispatch) => {
     }
 
     const tags = res.sub_genres.map((subgenre) => subgenre.id)
-    const tagURL = apiBaseUrl + apiBaseUrl + `/v1/songs?tags=[${tags}]`
+    const tagURL = apiBaseUrl + apiBaseUrl + `/songs?tags=[${tags}]`
 
     fetch(tagURL).then(related_res => related_res.json()).then((related_res) => {
       dispatch(SET_RELATED_SONGS(related_res))
