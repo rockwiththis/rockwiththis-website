@@ -64,11 +64,12 @@ const querySongs = (limit, offset, subgenreIds) => {
     ON songs.id = subgenre_songs.song_id
     JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
-    ORDER BY songs.created_at DESC, songs.id
     ${subgenreIdFilter}
+    ORDER BY songs.created_at DESC, songs.id
     ${limitStatement}
     ${offsetStatement}
   `);
+  console.log('SONGS', queryText);
 
   return database.query({ text: queryText });
 }
@@ -85,6 +86,8 @@ const querySongSubgenres = (songIds) => {
     WHERE songs.id IN (${songIds})
     ORDER BY songs.id
   `);
+
+  console.log('subgenres', queryText)
 
   return database.query({ text: queryText });
 }
