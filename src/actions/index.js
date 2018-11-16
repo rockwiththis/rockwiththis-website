@@ -41,17 +41,15 @@ export const FETCH_CURRENT_REQUEST = createAction('app/FETCH_CURRENT_REQUEST')
 
 export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
   dispatch(CURRENT_REQUEST_LOADING(true))
-  const baseURL = apiBaseUrl + '/songs'
+
   const filtersArray = []
   const filterIds = getState().selectedFilters.map(filter => filter.id)
   filtersArray.push(filterIds)
-
   console.log("filtersArray:", filtersArray);
 
   const fullURL = apiBaseUrl + `/songs?tags=[${filtersArray}]&limit=16`
 
   fetch(fullURL).then(res => res.json()).then((res) => {
-
 
     dispatch(CURRENT_REQUEST_LOADING(false))
     console.log("resx");
@@ -73,13 +71,9 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const filterIds = getState().selectedFilters.map(filter => filter.id)
   filtersArray.push(filterIds)
 
-  const fullURL = apiBaseUrl + apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+  const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
   console.log("sss");
   console.log(fullURL);
-
-  // const filterIds = getState().selectedFilters.map(filter => filter.term_id)
-  // const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
-  // const fullURL = baseURL + filterParamsString
 
   fetch(fullURL).then(res => res.json()).then((res) => {
     if (res.length > 0) {
@@ -124,7 +118,7 @@ export const FETCH_SINGLE_SONG = createAction('app/FETCH_SINGLE_SONG')
 export const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS')
 
 export const fetchSingleSong = (songId, callback) => (dispatch) => {
-  const songURL = apiBaseUrl + apiBaseUrl + `/songs/${songId}`
+  const songURL = apiBaseUrl + `/songs/${songId}`
 
   fetch(songURL).then(res => res.json()).then((res) => {
     dispatch(FETCH_SINGLE_SONG(res))
@@ -133,7 +127,7 @@ export const fetchSingleSong = (songId, callback) => (dispatch) => {
     }
 
     const tags = res.sub_genres.map((subgenre) => subgenre.id)
-    const tagURL = apiBaseUrl + apiBaseUrl + `/songs?tags=[${tags}]`
+    const tagURL =  apiBaseUrl + `/songs?tags=[${tags}]`
 
     fetch(tagURL).then(related_res => related_res.json()).then((related_res) => {
       dispatch(SET_RELATED_SONGS(related_res))
