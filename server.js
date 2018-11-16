@@ -3,7 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const envConfigPath = process.env.NODE_ENV == 'production' ? '~' : __dirname
+const PROD_ENV_PATH = '/home/ubuntu/.env'
+const envConfigPath = process.env.NODE_ENV == 'production' ? PROD_ENV_PATH : __dirname
 require('dotenv').config({ path: envConfigPath + '/.env' });
 
 const routes = require('./routes');
