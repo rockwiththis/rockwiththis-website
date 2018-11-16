@@ -3,7 +3,11 @@ module.exports = {
     name: 'rwt-website',
     script: 'npm',
     args: 'start',
-    env: { "NODE_ENV": "production" }
+    env: {
+      'NODE_ENV': 'production',
+      'NODE_PATH': './src',
+      'ENV_CONFIG_FILE': 'home/ubuntu/config.js'
+    }
   }],
   deploy: {
     production: {
