@@ -7,7 +7,7 @@ while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 
-DIR="$( dirname "$SOURCE" )"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" > /dev/null && pwd )"
 
 # Variables
 export GITHUB_ROOT="$DIR/.."
