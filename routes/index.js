@@ -5,8 +5,8 @@ const songs = require('./songs');
 const subgenres = require('./subgenres');
 const curators = require('./curators');
 
-router.use('/songs', songs);
-router.use('/subgenres', subgenres);
-router.use('/curators', curators);
+router.use('/api/songs', songs);
+router.use('/api/subgenres', subgenres);
+router.use('/api/curators', curators);
 
 module.exports = router;

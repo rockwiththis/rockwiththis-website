@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config({ path: __dirname + '/.env' });
+
+const envConfigPath = process.env.NODE_ENV == 'production' ? '~' : __dirname
+require('dotenv').config({ path: envConfigPath + '/.env' });
 
 const routes = require('./routes');
 

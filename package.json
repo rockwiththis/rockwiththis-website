@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "server": "node server.js",
-    "start": "export NODE_PATH='./src'; npm-run-all -p watch-css start-js server",
+    "start": "npm-run-all -p watch-css start-js server",
     "start-js": "react-scripts start",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "build": "export NODE_PATH='./src'; npm-run-all build-css build-js",
