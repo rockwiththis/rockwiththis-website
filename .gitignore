@@ -18,3 +18,4 @@ yarn-error.log*
 yarn.lock
 *.swp
 config/production.js
+ecosystem.*
