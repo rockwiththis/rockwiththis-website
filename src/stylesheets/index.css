@@ -556,7 +556,8 @@ a.spotifyLink {
         margin: 0px;
         margin-top: -3px;
         cursor: pointer;
-        border: 1px solid #fff !important; }
+        border: 1px solid #fff !important;
+        float: left; }
       .discovery-container .songGrid .pagination-container {
         width: 125px;
         flex-direction: row;
@@ -1655,11 +1656,16 @@ form.rwt-email-form button {
 .blue-content {
   height: 400px;
   width: 100%;
-  position: absolute;
-  margin-top: 200px; }
+  position: relative;
+  margin-top: -475px; }
+  .blue-content img.diagblue {
+    position: absolute;
+    top: 0; }
   .blue-content .blue-content-container {
     max-width: 580px;
-    padding: 100px 100px; }
+    padding: 100px 100px;
+    position: relative;
+    z-index: 1; }
     .blue-content .blue-content-container p {
       color: #fff;
       font-size: 20px;
@@ -1968,4 +1974,5 @@ img.hands1 {
       text-align: center; }
       .social-container ul li img {
         width: 60%;
-        border-radius: 6px; }
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.5) 0 1px 3px !important; }

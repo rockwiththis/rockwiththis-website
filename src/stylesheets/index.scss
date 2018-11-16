@@ -993,6 +993,7 @@ a.spotifyLink {
           margin-top: -3px;
           cursor: pointer;
           border: 1px solid #fff !important;
+              float: left;
         }
         .pagination-container{
           width: 125px;
@@ -2842,14 +2843,29 @@ margin-right: 25px;
 }
 
 .blue-content {
-  height: 400px;
-  width: 100%;
-  position: absolute;
-  margin-top: 200px;
+  // height: 400px;
+  // width: 100%;
+  // position: absolute;
+  // margin-top: 200px;
+    height: 400px;
+    width: 100%;
+    position: relative;
+    margin-top: -475px;
+
+    img.diagblue {
+      position: absolute;
+      top: 0;
+    }
+
 
   .blue-content-container {
+        // max-width: 580px;
+        // padding: 100px 100px;
+        //
         max-width: 580px;
         padding: 100px 100px;
+        position: relative;
+        z-index: 1;
 
         p {
           color: #fff;
@@ -3389,6 +3405,7 @@ img.hands1 {
         // max-width: 75px;
         width: 60%;
         border-radius: 6px;
+        box-shadow: rgba(0,0,0,.5) 0 1px 3px !important;
       }
     }
   }

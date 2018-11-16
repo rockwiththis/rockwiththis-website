@@ -59,9 +59,11 @@ class FiltersBar extends Component {
         })
       }
       this.props.actions.fetchCurrentRequest(callback)
+      this.props.resetGridPage()
     }
 
     clearFilters() {
+
       this.setState({ loading: true })
       const callback = () => {
         document.removeEventListener('click', this.closeSubGenreFilters)
@@ -84,6 +86,8 @@ class FiltersBar extends Component {
         selectedFilters: [],
         filtersToShow: [],
       })
+
+      this.props.resetGridPage()
     }
 
     fixedFiltersBar() {

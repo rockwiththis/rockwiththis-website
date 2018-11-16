@@ -104,22 +104,23 @@ class ConnectPage extends Component {
                     </div>
 
                   </div>
-                  <img className="diagblue"src={diagTall} />
 
-                  <div className="blue-content">
 
-                  <div className="blue-content-container">
-
-                  <h1 className="blue-title">{"We don't have every song."}<br/>
-                  {"Just the best you haven't heard"}.
-                  </h1>
-                  <p>{"Our team consists of huge music lovers who spend hours each day digging through tracks, to deliver the best of what's breaking and uncover the left behind tracks that need to be heard."} </p>
-                  </div>
-
-                  </div>
-
-                  {/* <img className="logo2" src={logo1} /> */}
                   <img className="color2" src={colorFull} />
+
+                </div>
+
+                <div className="blue-content">
+                <img className="diagblue"src={diagTall} />
+
+
+                <div className="blue-content-container">
+
+                <h1 className="blue-title">{"We don't have every song."}<br/>
+                {"Just the best you haven't heard"}.
+                </h1>
+                <p>{"Our team consists of huge music lovers who spend hours each day digging through tracks, to deliver the best of what's breaking and uncover the left behind tracks that need to be heard."} </p>
+                </div>
 
                 </div>
 

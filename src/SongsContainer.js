@@ -4,6 +4,7 @@ import YouTube from 'react-youtube'
 import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
 import { Carousel } from 'react-responsive-carousel';
+import { chunk } from 'lodash';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
@@ -200,6 +201,10 @@ class SongsContainer extends Component {
       }
     }
 
+    resetGridPage = () => {
+      this.setState({ gridPage: 0 })
+    }
+
     render() {
         const { discoverFullSongIndex } = this.state
         const heroPosts = this.props.posts.slice(0,7)
@@ -233,6 +238,8 @@ class SongsContainer extends Component {
           )
         })
 
+        const chunkLength = window.innerWidth > 1100 ? 16 : 8;
+        const chunkedSongsGridsFull = chunk(songGridsFull, chunkLength);
 
         // const disableBack = this.props.posts[0] && this.props.posts[0].id === this.props.activeSong.id
         // Make this section look at `this.props.currentRequestLoading` to change display
@@ -246,7 +253,7 @@ class SongsContainer extends Component {
 
               <div id="discover" className="discovery-section">
                 <Element >
-                  <FiltersBar {...this.props} />
+                  <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
                 </Element>
                 <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
                   <div onScroll={(e) => this.props.discoverLayout === 'snapshot' && !this.state.loadingMore && this.handleScroll(e)} className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}>
@@ -264,11 +271,12 @@ class SongsContainer extends Component {
                                 selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
                                 useKeyboardArrows={true}>
 
+                                { chunkedSongsGridsFull.map(grid => (
+                                  <div className='grid-container'>
+                                    {grid}
+                                  </div>
+                                )) }
 
-                                <div className='grid-container'>
-                                  {songGridsFull}
-                                </div>
-                                
                               </Carousel>
                             </div>
 

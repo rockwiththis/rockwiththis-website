@@ -68,11 +68,17 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS')
 export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const state = getState();
+  const filtersArray = []
+  const filterIds = getState().selectedFilters.map(filter => filter.id)
+  filtersArray.push(filterIds)
 
-  const baseURL = `http://localhost:9292/v1/songs?offset=${state.filteredPosts.length}`
-  const filterIds = getState().selectedFilters.map(filter => filter.term_id)
-  const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
-  const fullURL = baseURL + filterParamsString
+  const fullURL = `http://localhost:9292/v1/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+  console.log("sss");
+  console.log(fullURL);
+
+  // const filterIds = getState().selectedFilters.map(filter => filter.term_id)
+  // const filterParamsString = filterIds.length > 0 ? '&tags[]=' + filterIds.join('&tags[]=') : ''
+  // const fullURL = baseURL + filterParamsString
 
   fetch(fullURL).then(res => res.json()).then((res) => {
     if (res.length > 0) {
