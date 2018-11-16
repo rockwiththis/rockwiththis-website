@@ -10,7 +10,7 @@ require('dotenv').config({ path: envConfigPath + '/.env' });
 
 const routes = require('./routes');
 
-console.log(process.env);
+console.log(process.env.NODE_PATH);
 
 app.use(cors());
 
