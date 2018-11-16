@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('dotenv').config({ path: __dirname + '/.env' });
+
+require('dotenv').config();
 
 const routes = require('./routes');
 
@@ -11,8 +12,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Require all routes and namespace by version /v1
-app.use('/v1', routes);
+// Require all routes and namespace by version api
+app.use('/api', routes);
 
 
 // Server initialization
