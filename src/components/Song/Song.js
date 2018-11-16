@@ -6,22 +6,18 @@ import Moment from 'react-moment'
 import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
-
 import ShareBox from 'components/ShareBox/ShareBox'
-
 import  playButton  from 'images/playbutton.svg'
 import  pauseButton  from 'images/pauseButton.png'
 import pauseButtonWhite from 'images/PAUSE-BUTTON.png'
+import hoverGradient from 'images/rwt-hover-gradient.png'
 
 
 class Song extends Component {
     constructor(props) {
         super(props)
-
         this.ytPlayer = null
-
         this.toggleDescription = this.toggleDescription.bind(this)
-
         this.state = {
             expanded: false
         }
@@ -29,8 +25,9 @@ class Song extends Component {
     }
 
     onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.actions.toggleSong(song)
+          this.updateStorePlayPause(song.id !== this.props.activeSong.id)
+          this.props.actions.toggleSong(song)
+
     }
 
     updateStorePlayPause(newSong) {
@@ -59,10 +56,21 @@ class Song extends Component {
             </span>
         )
     }
+    renderHoverTags() {
+        const {
+            song,
+        } = this.props
 
-    // componentDidMount() {
-    //   this.isElementOverflowing()
-    // }
+        const tags = song.sub_genres.map(tag =>
+            <span key={tag.name} className="hover-tag">#{tag.name}</span>)
+
+        return (
+            <span className="postTags">
+                {tags}
+            </span>
+        )
+    }
+
 
     renderTop() {
         const {
@@ -149,7 +157,21 @@ class Song extends Component {
             <div className="wrapper"  >
                 <div className="postContent" >
 
-                    <div className="imageContainer" onClick={ () => this.onPressPlay(song)}>
+                    <div className="imageContainer"
+                    onClick={
+                      () => this.onPressPlay(song)
+                    }>
+                            <Link className="song-hover-link" to={`/songs/${song.id}`}>
+                              <div className="hover-content">
+                                  <div className="tagWrapper">
+                                    {this.renderHoverTags()}
+                                  </div>
+                                  <p className="goToPage">
+                                    Read More
+                                  </p>
+                              </div>
+                              <img className="heroHoverGradient" src={hoverGradient} />
+                            </Link>
 
                             <img className="songImage" src={song.image_url} />
                             <div className="songImageInfoContainer grid">

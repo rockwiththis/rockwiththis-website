@@ -433,8 +433,7 @@
   .singleSongContainer .songInfo {
     padding-bottom: 10px; }
   .singleSongContainer .bottomContentContainer {
-    max-height: calc(100vh - 355px);
-    overflow-y: scroll; }
+    max-height: none; }
   .postContent {
     padding-bottom: 0 !important; } }
 

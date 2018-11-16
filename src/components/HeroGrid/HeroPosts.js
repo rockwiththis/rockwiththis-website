@@ -1,12 +1,9 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-
 import HeroSong from './HeroSong'
 import HeroPostsPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
-
 import hoverGradient from 'images/rwt-hover-gradient.png'
-
 import './HeroGrid.scss'
 
 
@@ -28,10 +25,7 @@ class HeroPosts extends React.Component {
     }
 
 
-
     render() {
-      console.log("hero posts!")
-      console.log(this.props.heroPosts)
         const { heroPosts } = this.props
 
         const trackDisplay = (post, i, isSmall) => {

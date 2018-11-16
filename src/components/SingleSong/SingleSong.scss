@@ -713,8 +713,8 @@ padding: 5px 0;
     padding-bottom: 10px;
   }
   .bottomContentContainer {
-    max-height: calc(100vh - 355px);
-    overflow-y: scroll;
+    // max-height: calc(100vh - 355px);
+    max-height: none;
   }
 }
 

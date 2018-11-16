@@ -28,6 +28,9 @@ body::-webkit-scrollbar-thumb {
 .discovery-container::-webkit-scrollbar-thumb {
   background: red; }
 
+.discover-full-song .toggle-song {
+  display: none !important; }
+
 .hero-posts {
   padding-bottom: 0px;
   background: #fff; }
@@ -319,12 +322,12 @@ p {
     line-height: 28px; }
 
 .discovery-section .songList .songContainer .imageContainer {
-  max-height: 200px;
+  max-height: 100%;
   display: inline-block;
   vertical-align: top;
   padding-right: 25px; }
   .discovery-section .songList .songContainer .imageContainer img {
-    max-height: 200px;
+    max-height: 100%;
     border-radius: 4px; }
 
 @media (max-width: 800px) {
@@ -905,14 +908,14 @@ button {
       text-align: left;
       vertical-align: top; }
     .discovery-container.previewScrollLayout button.singlePostPlayerButton {
-      width: 40px;
-      height: 40px; }
+      width: 35px;
+      height: 35px; }
       .discovery-container.previewScrollLayout button.singlePostPlayerButton img {
-        width: 40px !important;
-        height: 40px !important; }
+        width: 35px !important;
+        height: 35px !important; }
     .discovery-container.previewScrollLayout .playButton, .discovery-container.previewScrollLayout .pauseButton {
-      width: 40px;
-      height: 40px; }
+      width: 35px;
+      height: 35px; }
   .disableScroll {
     overflow: hidden !important; }
   .previewScrollLayout .discover-full-song {
@@ -1025,8 +1028,8 @@ button {
     .discovery-container.fullGridLayout .songList .topContentContainer {
       display: none !important; }
     .discovery-container.fullGridLayout .songList .songContainer {
-      width: 24vw;
-      height: 24vw;
+      width: calc(20vw - 4px);
+      height: calc(20vw - 4px);
       padding: 0 !important;
       display: inline-block;
       max-width: none;
@@ -1039,15 +1042,12 @@ button {
         height: 100%;
         overflow: hidden; }
       .discovery-container.fullGridLayout .songList .songContainer .imageContainer {
-        height: 24vw;
-        width: 24vw;
+        width: calc(20vw - 4px);
+        height: calc(20vw - 4px);
         display: inline-block;
         vertical-align: top;
         padding-right: 0px;
-        max-height: none; }
-        .discovery-container.fullGridLayout .songList .songContainer .imageContainer img {
-          max-width: 24vw;
-          max-height: 24vw; } }
+        max-height: none; } }
 
 @media only screen and (max-width: 800px) {
   .goToSongPage {
@@ -1317,7 +1317,7 @@ button {
 
 .fullGridLayout .songImageInfoContainer.grid {
   display: inline-block;
-  z-index: 2;
+  z-index: 103;
   left: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.7);
@@ -1328,11 +1328,12 @@ button {
     float: left;
     width: calc(100% - 50px);
     text-align: left;
-    margin-left: 5px; }
+    margin-left: 5px;
+    padding: 5px 0; }
     .fullGridLayout .songImageInfoContainer.grid .song-info p.song-title {
       font-weight: 700;
-      font-size: 14px;
-      line-height: 16px;
+      font-size: 16px;
+      line-height: 20px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis; }
@@ -1343,13 +1344,13 @@ button {
   .fullGridLayout .songImageInfoContainer.grid .singlePostPlayerButton {
     pointer-events: all !important;
     cursor: pointer !important;
-    width: 40px !important;
-    height: 40px !important;
     display: inline-block !important;
-    float: left !important; }
+    float: left !important;
+    height: 100%;
+    padding: 5px; }
     .fullGridLayout .songImageInfoContainer.grid .singlePostPlayerButton img {
-      width: 40px !important;
-      height: 40px !important;
+      width: 35px !important;
+      height: 35px !important;
       border-radius: 0 !important; }
 
 @media (min-width: 800px) {
@@ -1369,6 +1370,17 @@ button {
       max-height: 125px;
       border-radius: 4px;
       margin: 0px; } }
+
+@media screen and (max-width: 1200px) and (min-width: 800px) {
+  .fullGridLayout .songContainer {
+    width: calc(25vw - 4px) !important;
+    height: calc(25vw - 4px) !important; }
+    .fullGridLayout .songContainer .imageContainer {
+      width: calc(25vw - 4px) !important;
+      height: calc(25vw - 4px) !important; }
+      .fullGridLayout .songContainer .imageContainer img {
+        width: 100%;
+        height: 100%; } }
 
 .songList {
   padding-bottom: 75px; }
@@ -1406,8 +1418,8 @@ span.postTags:nth-of-type(3) {
       font-size: 16px !important;
       line-height: 26px; }
   .discover-full-song .singlePostPlayerButton .pauseButton, .discover-full-song .singlePostPlayerButton .playButton {
-    max-width: 40px !important;
-    max-height: 40px !important;
+    max-width: 35px !important;
+    max-height: 35px !important;
     margin-top: 8px; } }
 
 .toggle-song {
@@ -1514,10 +1526,8 @@ a.nav-link.is-active {
 
 @media (min-width: 800px) {
   .bottomContentContainer {
-    max-height: calc(100vh - 350px);
-    overflow-wrap: inherit;
-    text-overflow: ellipsis;
-    padding-bottom: 0 !important;
+    max-height: none;
+    padding-bottom: 100px !important;
     pointer-events: all; }
     .bottomContentContainer .songDescription {
       padding-bottom: 25px; }
@@ -1639,8 +1649,8 @@ form.rwt-email-form button {
       text-align: left;
       margin-bottom: 8px; }
     .main-content .four-content p {
-      font-size: 20px;
-      line-height: 30px;
+      font-size: 24px;
+      line-height: 34px;
       font-weight: 400 !important;
       font-family: Open-Sans,sans-serif; }
     .main-content .four-content p.mission-tagline {
@@ -1668,8 +1678,8 @@ form.rwt-email-form button {
     z-index: 1; }
     .blue-content .blue-content-container p {
       color: #fff;
-      font-size: 20px;
-      line-height: 30px; }
+      font-size: 24px;
+      line-height: 34px; }
     .blue-content .blue-content-container h1.blue-title {
       color: #fff;
       font-size: 40px;
@@ -1975,4 +1985,67 @@ img.hands1 {
       .social-container ul li img {
         width: 60%;
         border-radius: 6px;
-        box-shadow: rgba(0, 0, 0, 0.5) 0 1px 3px !important; }
+        box-shadow: rgba(0, 0, 0, 0.5) 0 1px 3px;
+        transition: all .3s ease; }
+      .social-container ul li :hover {
+        box-shadow: none;
+        cursor: pointer; }
+
+.discovery-container .songContainer .hover-content {
+  display: none; }
+
+.discovery-container .songContainer .heroHoverGradient {
+  display: none; }
+
+.song-hover-link {
+  display: none; }
+
+.discovery-container.fullGridLayout .songContainer .song-hover-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  pointer-events: all; }
+
+.discovery-container.fullGridLayout .songContainer .hover-content {
+  display: inline-block;
+  opacity: 0;
+  transition: all .3s ease; }
+  .discovery-container.fullGridLayout .songContainer .hover-content .hover-tag {
+    color: #fff;
+    margin: 0px !important;
+    padding: 0px !important;
+    border-radius: 6px;
+    letter-spacing: .5px;
+    font-family: 'Baloo', cursive !important;
+    display: block !important;
+    font-size: 20px !important;
+    line-height: 20px !important;
+    border: none !important;
+    background: none !important; }
+
+.discovery-container.fullGridLayout .songContainer .heroHoverGradient {
+  display: inline-block;
+  opacity: 0;
+  transition: all .3s ease; }
+
+.discovery-container.fullGridLayout .songContainer:hover {
+  cursor: pointer; }
+  .discovery-container.fullGridLayout .songContainer:hover .hover-content {
+    display: inline-block;
+    opacity: 1;
+    transition: all .3s ease; }
+  .discovery-container.fullGridLayout .songContainer:hover .heroHoverGradient {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    opacity: 1;
+    max-height: none;
+    height: 100%; }
