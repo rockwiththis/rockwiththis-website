@@ -268,7 +268,7 @@ class SongsContainer extends Component {
                                 <div className='grid-container'>
                                   {songGridsFull}
                                 </div>
-
+                                
                               </Carousel>
                             </div>
 
