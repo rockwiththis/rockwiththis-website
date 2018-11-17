@@ -16,4 +16,4 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 *.swp
-config/production.js
+db/config-prod.js
