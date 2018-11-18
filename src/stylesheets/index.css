@@ -1527,355 +1527,12 @@ a.nav-link.is-active {
 @media (min-width: 800px) {
   .bottomContentContainer {
     max-height: none;
-    padding-bottom: 100px !important;
+    padding-bottom: 75px !important;
     pointer-events: all; }
     .bottomContentContainer .songDescription {
       padding-bottom: 25px; }
   .disableScroll .bottomContentContainer {
     pointer-events: none; } }
-
-.socialLinks {
-  z-index: 2;
-  position: relative; }
-
-.connectPage .intro {
-  min-height: calc(100vh - 75px - 75px - 45px);
-  position: relative;
-  background: #fafafa !important; }
-  .connectPage .intro img.intro1Image {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    left: 0;
-    bottom: -360px; }
-  .connectPage .intro img.logo1 {
-    position: absolute;
-    z-index: 6;
-    width: 900px;
-    bottom: -60px;
-    left: -200px;
-    display: none; }
-  .connectPage .intro .intro-pic {
-    position: absolute;
-    border: 2px solid #fff;
-    box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px !important;
-    height: 300px;
-    width: 300px; }
-  .connectPage .intro .intro-pic.pic1 {
-    top: 377px;
-    right: 550px;
-    z-index: 6; }
-  .connectPage .intro .intro-pic.pic2 {
-    top: 450px;
-    right: 208px;
-    z-index: 4; }
-  .connectPage .intro .intro-pic.pic3 {
-    top: 200px;
-    right: 100px;
-    z-index: 3; }
-  .connectPage .intro img.color {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    right: 0;
-    height: 1200px; }
-  .connectPage .intro img.colorbottom2 {
-    position: absolute;
-    height: 344px;
-    left: 350px;
-    bottom: 0;
-    z-index: 4; }
-
-form.rwt-email-form {
-  margin-top: 15px; }
-
-form.rwt-email-form input {
-  height: 50px;
-  border: none;
-  width: 69%; }
-
-form.rwt-email-form button {
-  height: 50px;
-  border: 1px solid black;
-  width: 30%;
-  color: #fff;
-  background: #1a6ea9;
-  border: 1px solid #1a6ea9;
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 10px; }
-
-.main-content {
-  position: relative;
-  background: rgba(0, 0, 0, 0) !important;
-  background: linear-gradient(-193deg, rgba(255, 255, 255, 0) 25%, #fafafa 25%) !important;
-  padding-bottom: 475px; }
-  .main-content img.diagblue {
-    position: absolute; }
-  .main-content img.logo2 {
-    position: absolute;
-    position: absolute;
-    z-index: 2;
-    width: 900px;
-    bottom: -60px;
-    right: -200px; }
-  .main-content img.color2 {
-    transform: rotate(180deg);
-    width: 650px;
-    position: absolute;
-    left: 0;
-    bottom: 315px;
-    z-index: 48; }
-  .main-content img.diagblue.cover {
-    z-index: 45; }
-  .main-content img.color.bottom {
-    top: 50px !important; }
-  .main-content .middle-content {
-    margin: 0 auto;
-    width: 1150px;
-    padding-top: 20px; }
-  .main-content .four-content {
-    margin-left: 25px;
-    position: relative;
-    z-index: 499;
-    vertical-align: top;
-    padding-top: 120px; }
-    .main-content .four-content h3 {
-      font-size: 40px;
-      color: #000;
-      font-weight: 700;
-      margin-top: 25px;
-      line-height: 50px;
-      text-align: left;
-      margin-bottom: 8px; }
-    .main-content .four-content p {
-      font-size: 24px;
-      line-height: 34px;
-      font-weight: 400 !important;
-      font-family: Open-Sans,sans-serif; }
-    .main-content .four-content p.mission-tagline {
-      margin-bottom: 10px; }
-    .main-content .four-content p.email-text {
-      margin-top: 10px; }
-  .main-content .gridPic {
-    max-width: 600px;
-    z-index: 499;
-    position: relative;
-    margin-right: 25px; }
-
-.blue-content {
-  height: 400px;
-  width: 100%;
-  position: relative;
-  margin-top: -475px; }
-  .blue-content img.diagblue {
-    position: absolute;
-    top: 0; }
-  .blue-content .blue-content-container {
-    max-width: 580px;
-    padding: 100px 100px;
-    position: relative;
-    z-index: 1; }
-    .blue-content .blue-content-container p {
-      color: #fff;
-      font-size: 24px;
-      line-height: 34px; }
-    .blue-content .blue-content-container h1.blue-title {
-      color: #fff;
-      font-size: 40px;
-      line-height: 50px; }
-
-.connectPage {
-  padding-top: 0px;
-  max-width: 1685px;
-  margin: 0 auto; }
-  .connectPage .emailContainer {
-    position: absolute;
-    padding: 15px;
-    height: 300px;
-    width: 300px;
-    top: 30px;
-    text-align: left;
-    background: linear-gradient(to right, #0097d5, #1a6ea9);
-    border-radius: 0px;
-    border: 2px solid #fff;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    right: 25%;
-    z-index: 7; }
-    .connectPage .emailContainer .email {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      max-width: 300px;
-      text-align: center; }
-      .connectPage .emailContainer .email .email-logo {
-        width: 100px;
-        margin: 0 auto;
-        display: block;
-        margin-bottom: 15px; }
-      .connectPage .emailContainer .email p {
-        color: #fff;
-        font-size: 24px;
-        line-height: 34px;
-        margin-bottom: 15px; }
-    .connectPage .emailContainer form.rwt-email-form {
-      max-width: 250px;
-      margin: 0 auto; }
-    .connectPage .emailContainer input[type="email"] {
-      width: 100%; }
-
-.connectPage .missionContainer .content {
-  max-width: 500px; }
-  .connectPage .missionContainer .content h3 {
-    font-size: 40px;
-    color: #000;
-    font-weight: 700;
-    margin-top: 0;
-    line-height: 45px;
-    text-align: left; }
-
-.connectPage .emailContainer form.rwt-email-form {
-  max-width: 300px;
-  margin: 0 auto;
-  overflow-x: hidden;
-  border-width: 0 !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
-
-.main-content h3 {
-  font-size: 40px;
-  color: #000;
-  font-weight: 700;
-  margin-top: 0;
-  line-height: 45px;
-  text-align: left;
-  display: inline-block; }
-
-.four-content {
-  max-width: 500px;
-  display: inline-block; }
-
-.main-content img.cross {
-  height: 250px;
-  display: inline-block;
-  vertical-align: top; }
-
-.connectPage .intro img.color.bottom {
-  z-index: 5; }
-
-.connectPage .intro .intro-pic.pic1 {
-  top: 377px;
-  right: 550px;
-  z-index: 7; }
-
-.connectPage .intro .intro-pic.pic2 {
-  top: 450px;
-  right: 208px;
-  z-index: 6; }
-
-.connectPage .intro img.colorbottom2 {
-  position: absolute;
-  height: auto;
-  left: 350px;
-  bottom: -250px;
-  z-index: 4;
-  width: 630px; }
-
-.connectPage img.color.bottomMiddle {
-  position: absolute;
-  top: -200px;
-  right: 0;
-  width: 800px; }
-
-.connectPage .intro img.logo1 {
-  position: absolute;
-  z-index: 4;
-  width: 1200px;
-  bottom: -222px;
-  left: -200px; }
-
-@media (max-width: 1250px) {
-  .connectPage .middle-content {
-    max-width: 950px;
-    padding-top: 50px; }
-    .connectPage .middle-content .gridPic {
-      max-width: 500px; }
-    .connectPage .middle-content .four-content {
-      max-width: 400px;
-      display: inline-block;
-      transform: translateY(0px); }
-  .connectPage img.color.bottomMiddle {
-    position: absolute;
-    top: -105px;
-    right: 0;
-    width: 500px; }
-  .connectPage img.color2 {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-    width: 500px;
-    position: absolute;
-    left: 0;
-    bottom: 245px;
-    z-index: 48; } }
-
-@media (max-width: 1050px) {
-  .connectPage .middle-content {
-    max-width: 100%; }
-    .connectPage .middle-content .gridPic {
-      max-width: calc(60% - 50px);
-      padding-left: 25px;
-      left: -18%;
-      transform: rotate(20deg);
-      position: absolute; }
-    .connectPage .middle-content .four-content {
-      display: block;
-      transform: translateY(0px);
-      max-width: calc(60% - 50px);
-      padding-right: 25px;
-      transform: translateY(50px);
-      padding-left: 40%; }
-      .connectPage .middle-content .four-content p {
-        font-size: 18px;
-        line-height: 28px; }
-      .connectPage .middle-content .four-content h3 {
-        font-size: 30px;
-        color: #000;
-        font-weight: 700;
-        margin-top: 25px;
-        line-height: 40px;
-        text-align: left;
-        margin-bottom: 8px; }
-  .connectPage img.color.bottomMiddle {
-    position: absolute;
-    top: -148px;
-    right: 0;
-    width: 500px; }
-  .connectPage img.color2 {
-    -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    transform: rotate(180deg);
-    width: 500px;
-    position: absolute;
-    left: 0;
-    bottom: 245px;
-    z-index: 48; } }
-
-.logoWriting {
-  max-width: 500px;
-  margin: 15px 0 10px; }
-
-.emailContainer h3.tagline {
-  color: #fff;
-  font-size: 30px;
-  line-height: 40px; }
-
-.emailContainer .email p {
-  color: #fff;
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 15px; }
 
 ul.control-dots {
   bottom: -30px !important;
@@ -2049,3 +1706,452 @@ img.hands1 {
     opacity: 1;
     max-height: none;
     height: 100%; }
+
+.socialLinks {
+  z-index: 2;
+  position: relative; }
+
+.connectPage .intro {
+  min-height: calc(100vh - 75px - 75px - 45px);
+  position: relative;
+  background: #fafafa !important; }
+  .connectPage .intro img.intro1Image {
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    bottom: -360px; }
+  .connectPage .intro img.logo1 {
+    position: absolute;
+    z-index: 6;
+    width: 900px;
+    bottom: -60px;
+    left: -200px;
+    display: none; }
+  .connectPage .intro .intro-pic {
+    position: absolute;
+    border: 2px solid #fff;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 1px 3px !important;
+    height: 300px;
+    width: 300px; }
+  .connectPage .intro .intro-pic.pic1 {
+    top: 377px;
+    right: 550px;
+    z-index: 6; }
+  .connectPage .intro .intro-pic.pic2 {
+    top: 450px;
+    right: 208px;
+    z-index: 4; }
+  .connectPage .intro .intro-pic.pic3 {
+    top: 200px;
+    right: 100px;
+    z-index: 3; }
+  .connectPage .intro img.color {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    height: 1200px; }
+  .connectPage .intro img.colorbottom2 {
+    position: absolute;
+    height: 344px;
+    left: 350px;
+    bottom: 0;
+    z-index: 4; }
+
+form.rwt-email-form {
+  margin-top: 15px; }
+
+form.rwt-email-form input {
+  height: 50px;
+  border: none;
+  width: 69%; }
+
+form.rwt-email-form button {
+  height: 50px;
+  border: 1px solid black;
+  width: 30%;
+  color: #fff;
+  background: #1a6ea9;
+  border: 1px solid #1a6ea9;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 10px; }
+
+.main-content {
+  position: relative;
+  background: rgba(0, 0, 0, 0) !important;
+  background: linear-gradient(-193deg, rgba(255, 255, 255, 0) 25%, #fafafa 25%) !important;
+  padding-bottom: 475px; }
+  .main-content img.diagblue {
+    position: absolute; }
+  .main-content img.logo2 {
+    position: absolute;
+    position: absolute;
+    z-index: 2;
+    width: 900px;
+    bottom: -60px;
+    right: -200px; }
+  .main-content img.color2 {
+    transform: rotate(180deg);
+    width: 650px;
+    position: absolute;
+    left: 0;
+    bottom: 315px;
+    z-index: 48; }
+  .main-content img.diagblue.cover {
+    z-index: 45; }
+  .main-content img.color.bottom {
+    top: 50px !important; }
+  .main-content .middle-content {
+    margin: 0 auto;
+    width: 1150px;
+    padding-top: 20px; }
+  .main-content .four-content {
+    margin-left: 25px;
+    position: relative;
+    z-index: 499;
+    vertical-align: top;
+    padding-top: 120px; }
+    .main-content .four-content h3 {
+      font-size: 40px;
+      color: #000;
+      font-weight: 700;
+      margin-top: 25px;
+      line-height: 50px;
+      text-align: left;
+      margin-bottom: 8px; }
+    .main-content .four-content p {
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: 400 !important;
+      font-family: Open-Sans,sans-serif; }
+    .main-content .four-content p.mission-tagline {
+      margin-bottom: 10px; }
+    .main-content .four-content p.email-text {
+      margin-top: 10px; }
+  .main-content .gridPic {
+    max-width: 600px;
+    z-index: 499;
+    position: relative;
+    margin-right: 25px; }
+
+.blue-content {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  margin-top: -475px; }
+  .blue-content img.diagblue {
+    position: absolute;
+    top: 0; }
+  .blue-content .blue-content-container {
+    max-width: 580px;
+    padding: 100px 100px;
+    position: relative;
+    z-index: 1; }
+    .blue-content .blue-content-container p {
+      color: #fff;
+      font-size: 24px;
+      line-height: 34px; }
+    .blue-content .blue-content-container h1.blue-title {
+      color: #fff;
+      font-size: 40px;
+      line-height: 50px; }
+
+.connectPage {
+  padding-top: 0px;
+  max-width: 1685px;
+  margin: 0 auto; }
+  .connectPage .emailContainer {
+    position: absolute;
+    padding: 15px;
+    height: 300px;
+    width: 300px;
+    top: 30px;
+    text-align: left;
+    background: linear-gradient(to right, #0097d5, #1a6ea9);
+    border-radius: 0px;
+    border: 2px solid #fff;
+    box-shadow: 0 3px 2px -2px #C9C6CB;
+    right: 25%;
+    z-index: 7; }
+    .connectPage .emailContainer .email {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      max-width: 300px;
+      text-align: center; }
+      .connectPage .emailContainer .email .email-logo {
+        width: 100px;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 15px; }
+      .connectPage .emailContainer .email p {
+        color: #fff;
+        font-size: 24px;
+        line-height: 34px;
+        margin-bottom: 15px; }
+    .connectPage .emailContainer form.rwt-email-form {
+      max-width: 250px;
+      margin: 0 auto; }
+    .connectPage .emailContainer input[type="email"] {
+      width: 100%; }
+
+.connectPage .missionContainer .content {
+  max-width: 500px; }
+  .connectPage .missionContainer .content h3 {
+    font-size: 40px;
+    color: #000;
+    font-weight: 700;
+    margin-top: 0;
+    line-height: 45px;
+    text-align: left; }
+
+.connectPage .emailContainer form.rwt-email-form {
+  max-width: 300px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  border-width: 0 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
+
+.main-content h3 {
+  font-size: 40px;
+  color: #000;
+  font-weight: 700;
+  margin-top: 0;
+  line-height: 45px;
+  text-align: left;
+  display: inline-block; }
+
+.four-content {
+  max-width: 500px;
+  display: inline-block; }
+
+.main-content img.cross {
+  height: 250px;
+  display: inline-block;
+  vertical-align: top; }
+
+.connectPage .intro img.color.bottom {
+  z-index: 5; }
+
+.connectPage .intro .intro-pic.pic1 {
+  top: 377px;
+  right: 550px;
+  z-index: 7; }
+
+.connectPage .intro .intro-pic.pic2 {
+  top: 450px;
+  right: 208px;
+  z-index: 6; }
+
+.connectPage .intro img.colorbottom2 {
+  position: absolute;
+  height: auto;
+  left: 350px;
+  bottom: -250px;
+  z-index: 4;
+  width: 630px; }
+
+.connectPage img.color.bottomMiddle {
+  position: absolute;
+  top: -200px;
+  right: 0;
+  width: 800px; }
+
+.connectPage .intro img.logo1 {
+  position: absolute;
+  z-index: 4;
+  width: 1200px;
+  bottom: -222px;
+  left: -200px; }
+
+@media (max-width: 1250px) {
+  .connectPage img.color2 {
+    width: 450px; }
+  .connectPage img.color.bottomMiddle {
+    position: absolute;
+    top: -60px;
+    right: 0;
+    width: 500px; }
+  .connectPage .middle-content {
+    max-width: 950px;
+    padding-top: 50px; }
+    .connectPage .middle-content .gridPic {
+      max-width: 500px; }
+    .connectPage .middle-content .four-content {
+      max-width: 400px;
+      display: inline-block;
+      transform: translateY(0px); }
+      .connectPage .middle-content .four-content p {
+        font-size: 18px;
+        line-height: 28px; }
+      .connectPage .middle-content .four-content h3 {
+        font-size: 36px;
+        color: #000;
+        font-weight: 700;
+        margin-top: 25px;
+        line-height: 46px;
+        text-align: left;
+        margin-bottom: 8px; }
+  .connectPage .form-input button.submit-btn {
+    width: 27%; } }
+
+@media (max-width: 1050px) {
+  .connectPage .main-content {
+    background: #fafafa !important; }
+  .connectPage .middle-content {
+    max-width: 100%; }
+    .connectPage .middle-content .gridPic {
+      max-width: calc(60% - 50px);
+      padding-left: 25px;
+      left: -25%;
+      transform: rotate(20deg);
+      position: absolute;
+      display: none; }
+    .connectPage .middle-content .four-content {
+      display: block;
+      -webkit-transform: translateY(0px);
+      transform: translateY(0px);
+      max-width: none;
+      padding-right: 0px;
+      padding-left: 0px;
+      padding-top: 60px;
+      padding-bottom: 60px;
+      width: 100%;
+      margin: 0 auto; }
+      .connectPage .middle-content .four-content p {
+        max-width: 500px;
+        margin: 0 auto;
+        font-size: 24px;
+        line-height: 34px;
+        text-align: center; }
+      .connectPage .middle-content .four-content form.form-input {
+        margin-top: 15px;
+        max-width: 500px;
+        margin: 15px auto; }
+      .connectPage .middle-content .four-content p.email-text {
+        max-width: 450px; }
+      .connectPage .middle-content .four-content hr {
+        max-width: 400px;
+        margin: 15px auto; }
+      .connectPage .middle-content .four-content h3 {
+        font-size: 50px;
+        color: #000;
+        font-weight: 700;
+        margin-top: 25px;
+        line-height: 60px;
+        text-align: left;
+        margin-bottom: 8px;
+        width: 100%;
+        text-align: center; }
+      .connectPage .middle-content .four-content .social-container {
+        width: 100%;
+        margin-top: 25px;
+        max-width: 500px;
+        margin: 25px auto; }
+  .connectPage img.color.bottomMiddle {
+    position: absolute;
+    top: -35px;
+    right: 0;
+    width: 500px; }
+  .connectPage img.color2 {
+    width: 500px;
+    bottom: 385px; } }
+
+.logoWriting {
+  max-width: 500px;
+  margin: 15px 0 10px; }
+
+.emailContainer h3.tagline {
+  color: #fff;
+  font-size: 30px;
+  line-height: 40px; }
+
+.emailContainer .email p {
+  color: #fff;
+  font-size: 24px;
+  line-height: 30px;
+  margin-bottom: 15px; }
+
+@media (max-width: 915px) {
+  img.color.bottomMiddle, img.color2 {
+    opacity: .5; } }
+
+@media (max-width: 650px) {
+  img.color.bottomMiddle, img.color2 {
+    opacity: .2;
+    width: 350px !important; }
+  .connectPage .four-content {
+    display: block;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+    max-width: none;
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    width: 100%;
+    margin: 0 auto; }
+    .connectPage .four-content p {
+      max-width: 400px !important;
+      margin: 0 auto;
+      font-size: 20px !important;
+      line-height: 30px !important;
+      text-align: center; }
+    .connectPage .four-content form.form-input {
+      margin-top: 15px;
+      max-width: 400px;
+      margin: 15px auto; }
+    .connectPage .four-content p.email-text {
+      max-width: 350px !important; }
+    .connectPage .four-content hr {
+      max-width: 400px;
+      margin: 15px auto; }
+    .connectPage .four-content h3 {
+      font-size: 40px !important;
+      color: #000;
+      font-weight: 700;
+      margin-top: 25px;
+      line-height: 50px !important;
+      text-align: left;
+      margin-bottom: 8px;
+      width: 100%;
+      text-align: center; }
+    .connectPage .four-content .social-container {
+      width: 100%;
+      margin-top: 25px;
+      max-width: 400px;
+      margin: 25px auto; }
+  .connectPage .middle-content .four-content form.form-input {
+    margin-top: 15px;
+    max-width: 400px;
+    margin: 15px auto; }
+  .connectPage .middle-content .four-content .social-container {
+    max-width: 400px; } }
+
+@media (max-width: 500px) {
+  .connectPage .middle-content .four-content form.form-input {
+    max-width: 350px; }
+    .connectPage .middle-content .four-content form.form-input input {
+      height: 50px;
+      width: 100%;
+      border: 1px solid #0097d5;
+      padding: 0px;
+      border-right: 1px solid #0097d5;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      border-bottom-left-radius: 0px;
+      text-align: center; }
+    .connectPage .middle-content .four-content form.form-input button.submit-btn {
+      height: 50px;
+      width: 100%;
+      padding: 0 5px;
+      border-bottom-left-radius: 6px;
+      border-bottom-right-radius: 6px;
+      border-top-right-radius: 0px;
+      margin-top: -1px; }
+  .blue-content {
+    z-index: 50; } }

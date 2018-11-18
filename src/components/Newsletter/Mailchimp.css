@@ -6,13 +6,17 @@ form.form-input input {
   width: 70%;
   border: 1px solid #0097d5;
   padding: 0 5px;
-  border-right: 0; }
+  border-right: 0;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px; }
 
 button.submit-btn {
   height: 42px;
   width: 27%;
   border: 1px solid #000;
-  padding: 0; }
+  padding: 0;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px; }
 
 button.submit-btn {
   height: 42px;
