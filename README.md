@@ -2,13 +2,9 @@
 
 ## Running Locally
 
-### Database Configuration
+### Environment Configuration
 We have not yet set up a development database, so we are querying a remote production database in both local dev and production environments.
-To keep the credentials safe, save them in a file called `config/production.js` using the format of `config/production.sample.js` and run
-```
-$ toolbox/setup.sh
-```
-I suggest always running that file on start-up by adding a line in your `./bashrc`.
+To keep the credentials safe, save them in a file called `db/config-prod.js` using the format of `db/config-prod.sample.js`
 
 ### Boot App
 ```
@@ -16,7 +12,9 @@ $ npm install
 $ npm start
 ```
 
-## Deploy App
+## Deployment
 ```
+$ git checkout master
+$ git pull
 $ pm2 deploy ecosystem.config.js production
 ```

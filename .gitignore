@@ -11,10 +11,9 @@ node_modules
 
 # misc
 .DS_Store
-.env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
 *.swp
-config/production.js
+db/config-prod.js
