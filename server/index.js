@@ -3,8 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-require('dotenv').config();
-
 const routes = require('./routes');
 
 app.use(cors());
@@ -14,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Require all routes and namespace by version api
 app.use('/api', routes);
-
 
 // Server initialization
 app.listen(process.env.PORT || 9292, () => {
