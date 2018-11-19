@@ -10,6 +10,7 @@ const {
 const DEFAULT_SONG_LIMIT = 16;
 
 router.get('/', (req, res) => {
+  console.log("fetching songs");
   const isQuery = req.query && (Object.keys(req.query).length > 0);
 
   const songsLimit = (isQuery && req.query.limit) || DEFAULT_SONG_LIMIT;
@@ -21,6 +22,7 @@ router.get('/', (req, res) => {
     .then(songsResult => {
       querySongSubgenres(songsResult.rows.map(song => song.id))
         .then(subgenresResult => {
+          console.log(`successfully fetched ${songsResult.rows.length} songs`);
           res.json(nestSongsWithSubgenres(songsResult.rows, subgenresResult.rows))
         })
         .catch(error => {
@@ -69,7 +71,6 @@ const querySongs = (limit, offset, subgenreIds) => {
     ${limitStatement}
     ${offsetStatement}
   `);
-  console.log('SONGS', queryText);
 
   return database.query({ text: queryText });
 }
@@ -86,8 +87,6 @@ const querySongSubgenres = (songIds) => {
     WHERE songs.id IN (${songIds})
     ORDER BY songs.id
   `);
-
-  console.log('subgenres', queryText)
 
   return database.query({ text: queryText });
 }
