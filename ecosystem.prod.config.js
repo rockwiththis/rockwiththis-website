@@ -17,7 +17,8 @@ module.exports = {
       ref: 'origin/split-processes',
       repo: 'git@github.com:rockwiththis/rockwiththis-website.git',
       path: '/home/ubuntu/rockwiththis-website',
-      'post-deploy': 'npm install && npm run build && pm2 startOrRestart ecosystem.prod.js'
+      'post-setup': 'npm install && npm run build'
+      'post-deploy': 'pm2 startOrRestart ecosystem.prod.js'
     }
   }
 }
