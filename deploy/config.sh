@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY_BRANCH='origin/split-processes'
+DEPLOY_BRANCH='origin/master'
 
 REMOTE_USER='ubuntu'
 REMOTE_HOST='ec2-18-208-165-207.compute-1.amazonaws.com'

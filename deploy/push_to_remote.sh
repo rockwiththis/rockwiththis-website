@@ -1,15 +1,13 @@
 #!/bin/bash
 
-echo
-echo "Archiving remote $REMOTE_PATH/$TARGET_NAME"
+printf "Archiving remote $REMOTE_PATH/$TARGET_NAME\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   cp -r $REMOTE_PATH/$TARGET_NAME $REMOTE_PATH/archive/$TARGET_NAME"
 
-echo "Success!"
-echo
+printf "Success!\n"
 
-echo "Pushing from ./$TARGET_NAME to remote $REMOTE_PATH/$TARGET_NAME"
+printf "Pushing from ./$TARGET_NAME to remote $REMOTE_PATH/$TARGET_NAME\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   rm -rf $REMOTE_PATH/$TARGET_NAME"
@@ -19,5 +17,4 @@ find $TARGET_NAME -type f -not -path '*/node_modules*' \
   | ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
     tar xf - -C $REMOTE_PATH"
 
-echo "Success!"
-echo
+printf "Success!\n"
