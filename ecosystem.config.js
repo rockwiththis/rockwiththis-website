@@ -6,10 +6,12 @@ module.exports = {
     env: {
       'NODE_ENV': 'development',
       'NODE_PATH': './src',
+      'IM_WORKING': 'false'
     },
     env_production: {
       'NODE_ENV': 'production',
       'NODE_PATH': './src',
+      'IM_WORKING': 'true'
     }
   }, {
     name: 'rwt-api',
