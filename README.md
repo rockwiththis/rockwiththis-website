@@ -10,7 +10,7 @@ To keep the credentials safe, save them in a file called `server/db/config-prod.
 ```
 $ npm install                   # Install client packages
 $ npm install --prefix server   # Install server packages
-$ npm start-all                 # Boot server + client webpack server
+$ npm run start-all             # Boot server + client webpack server
 ```
 You can also boot the data server and react webpack server separately from the root directory with the following commands:
 ```
