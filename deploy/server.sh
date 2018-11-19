@@ -2,12 +2,14 @@
 
 source deploy/setup.sh
 
-export SOURCE_PATH=./server
-export TARGET_NAME=server
+TARGET_NAME=server
 
-deploy/push_to_remote.sh
+source deploy/push_to_remote.sh
 
-ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_HOST "\
+echo "Starting server process"
+ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   cd $REMOTE_PATH/server \
-  && npm install
+  && npm install \
   && pm2 startOrRestart ecosystem.config.js"
+echo "Success!"
+echo
