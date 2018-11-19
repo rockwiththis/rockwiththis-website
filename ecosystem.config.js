@@ -6,7 +6,7 @@ module.exports = {
     env: {
       'NODE_ENV': 'production',
       'NODE_PATH': './src',
-      'ENV_CONFIG_FILE': '/home/ubuntu/config.js'
+      'DB_CONFIG_FILE': '/home/ubuntu/config.js'
     }
   }],
   deploy: {
