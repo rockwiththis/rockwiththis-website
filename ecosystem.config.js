@@ -2,11 +2,12 @@ module.exports = {
   apps: [{
     name: 'rwt-homepage',
     script: 'npm',
-    args: 'run start',
+    args: 'start',
     env_production: {
       'NODE_ENV': 'production',
       'NODE_PATH': './src',
-    },
+    }
+  }, {
     name: 'rwt-api',
     script: 'npm',
     args: 'run server',
