@@ -8,17 +8,22 @@ To keep the credentials safe, save them in a file called `server/db/config-prod.
 
 ### Boot App
 ```
-$ npm install
-$ npm start-all
+$ npm install                   # Install client packages
+$ npm install --prefix server   # Install server packages
+$ npm start-all                 # Boot server + client webpack server
 ```
-You can also boot the data server and react webpack server separately with the following commands:
+You can also boot the data server and react webpack server separately from the root directory with the following commands:
 ```
 $ npm start         # react server
 $ npm start-server  # data server
 ```
 
 ## Deployment
+The following scripts will pull the latest code from the branch specified in `deploy/config.sh` and deploy to the remote server configured in the same file. The client script will first create a new build of the specified branch. The server script will start or restart an active server process on the remote server.
 ```
 $ deploy/client.sh  # build and deploy react client
 $ deploy/server.sh  # deploy data server + reboot running process
 ```
+### Notes
++ The scripts require an ssh key downloaded from from AWS existing at the path specified in `deploy/config.sh`. Contact a system admistrator for guidance on how to get this key.
++ Deployment will be blocked if you have any uncommitted changes.
