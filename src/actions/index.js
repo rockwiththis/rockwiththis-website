@@ -27,6 +27,7 @@ export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
   dispatch(CLEAR_FILTERS())
 
   const dataURL = apiBaseUrl + '/songs'
+  console.log(process.env.NODE_ENV);
   console.log('QUERYING FOR DATA FROM ' + dataURL);
 
   fetch(dataURL).then(res => res.json()).then((res) => {
