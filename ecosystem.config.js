@@ -3,6 +3,10 @@ module.exports = {
     name: 'rwt-homepage',
     script: 'npm',
     args: 'run start-homepage',
+    env: {
+      'NODE_ENV': 'development',
+      'NODE_PATH': './src',
+    },
     env_production: {
       'NODE_ENV': 'production',
       'NODE_PATH': './src',
@@ -11,6 +15,10 @@ module.exports = {
     name: 'rwt-api',
     script: 'npm',
     args: 'run start-api',
+    env: {
+      'NODE_ENV': 'development',
+      'DB_CONFIG_FILE': './config-prod.js'
+    },
     env_production: {
       'NODE_ENV': 'production',
       'DB_CONFIG_FILE': '/home/ubuntu/config.js'
