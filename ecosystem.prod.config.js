@@ -17,7 +17,7 @@ module.exports = {
       repo: 'git@github.com:rockwiththis/rockwiththis-website.git',
       path: '/home/ubuntu/rockwiththis-website',
       'post-setup': 'npm install && npm run build',
-      'post-deploy': 'pm2 startOrRestart ecosystem.prod.js'
+      'post-deploy': 'pm2 startOrRestart ecosystem.prod.config.js'
     }
   }
 }
