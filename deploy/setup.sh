@@ -3,7 +3,10 @@
 # Load configuration
 source deploy/config.sh
 
-git status -s > /dev/null || echo "Stash or commit your changes before deployment" && return 1;
+if [[ $(git status -s) ]]; then
+  echo "Stash or commit your changes before deployment. Aborting deployment."
+  exit 1
+fi
 
 git fetch
 git checkout $DEPLOY_BRANCH
