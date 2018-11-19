@@ -4,13 +4,13 @@
   "private": true,
   "scripts": {
     "start-all": "npm-run-all -p start start-server",
-    "start-server": "npm start --prefix server",
+    "start-server": "npm run start-dev --prefix server",
     "start": "npm-run-all -p watch-css start-js",
     "start-js": "NODE_PATH=./src; react-scripts start",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "build": "npm-run-all build:css build:js",
-    "build:js": "NODE_PATH=./src; react-scripts build",
-    "build:css": "node-sass-chokidar src/ -o src/",
+    "build": "npm-run-all build-css build-js",
+    "build-js": "NODE_PATH=./src; react-scripts build",
+    "build-css": "node-sass-chokidar src/ -o src/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
