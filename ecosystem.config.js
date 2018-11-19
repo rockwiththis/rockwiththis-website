@@ -17,7 +17,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'git@github.com:rockwiththis/rockwiththis-website.git',
       path: '/home/ubuntu/rockwiththis-website',
-      post-deploy: 'npm install'
+      'post-deploy': 'npm install'
     }
   }
 }
