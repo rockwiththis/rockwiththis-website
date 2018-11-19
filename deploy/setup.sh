@@ -8,6 +8,6 @@ if [[ $(git status -s) ]]; then
   exit 1
 fi
 
-print "Checking out deploy branch $DEPLOY_BRANCH\n"
+print "Checking out deploy branch $DEPLOY_BRANCH for deployment\n"
 git fetch
 git checkout $DEPLOY_BRANCH

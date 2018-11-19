@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Require all routes and namespace by version api
 app.use('/api', routes);
 
-console.log(process.env.DB_CONFIG_FILE);
-
 // Server initialization
 app.listen(process.env.PORT || 9292, () => {
   console.log('Magic is happening on port 9292...');
