@@ -49,8 +49,11 @@ class SongsContainer extends Component {
     }
 
     componentDidMount() {
+      const e = document.getElementsByClassName('discovery-container');
         window.addEventListener('scroll', this.fixedFiltersBar)
-        window.addEventListener('resize', this.fixedFiltersBar);
+        window.addEventListener('scroll', this.fixedFiltersBar)
+        window.addEventListener('scroll', this.handleScroll(e))
+
         window.addEventListener('scroll', this.enableDiscoverScroll)
         window.addEventListener('resize', this.enableDiscoverScroll);
 
@@ -125,6 +128,7 @@ class SongsContainer extends Component {
         if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100)) {
             this.loadMoreSongs()
         }
+        console.log("e.target", e.target);
         console.log("e.target.scrollTop", e.target.scrollTop);
         console.log("e.target.scrollHeight", e.target.scrollHeight);
         console.log("e.target.offsetHeight", e.target.offsetHeight);
