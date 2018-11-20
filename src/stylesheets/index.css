@@ -2155,3 +2155,93 @@ form.rwt-email-form button {
       margin-top: -1px; }
   .blue-content {
     z-index: 50; } }
+
+@media (max-width: 400px) {
+  .connectPage .main-content {
+    background: #fafafa !important;
+    padding-top: 35px; }
+  .connectPage .middle-content {
+    padding-top: 0px; }
+    .connectPage .middle-content .four-content h3 {
+      margin-top: 0;
+      font-size: 34px !important;
+      line-height: 44px !important;
+      margin-bottom: 20px; }
+    .connectPage .middle-content .four-content p.mission-tagline {
+      padding: 0 15px;
+      font-size: 18px !important;
+      line-height: 28px !important; }
+    .connectPage .middle-content .four-content p.email-text {
+      max-width: none !important;
+      padding: 0 15px;
+      font-size: 18px !important;
+      line-height: 28px !important; }
+    .connectPage .middle-content .four-content hr {
+      max-width: 250px;
+      margin: 20px auto; }
+    .connectPage .middle-content form.form-input {
+      margin-top: 20px !important; }
+      .connectPage .middle-content form.form-input input {
+        text-align: center;
+        font-size: 16px; }
+      .connectPage .middle-content form.form-input button.submit-btn {
+        font-size: 16px; }
+  .connectPage .middle-content .four-content {
+    padding-top: 0; } }
+
+.socialLinks.hide {
+  display: none; }
+
+@media (min-width: 400px) {
+  .connectPage {
+    margin-top: 75px; } }
+
+.connectPage .main-content {
+  padding-top: 45px; }
+
+@media (max-width: 480px) {
+  .headerContainer {
+    height: 50px !important; }
+    .headerContainer #headerLogoMobile {
+      width: 50px !important; }
+      .headerContainer #headerLogoMobile img {
+        width: 50px !important; }
+  .socialLinks {
+    top: 50px; } }
+
+.homeContainer .hero-posts {
+  top: 90px; }
+
+.discovery-section {
+  margin-top: calc(100vw + 90px); }
+
+.footer-player {
+  height: 50px !important; }
+  .footer-player .player-info-image-wrapper img {
+    height: 40px !important;
+    width: 40px !important;
+    margin-top: 12.5px !important;
+    border: 0px solid #fff !important; }
+  .footer-player .artist-info {
+    height: 40px !important; }
+    .footer-player .artist-info a.songImageLink {
+      margin-bottom: 0 !important; }
+      .footer-player .artist-info a.songImageLink span {
+        display: inline-block;
+        font-size: 16px !important;
+        line-height: 20px !important; }
+    .footer-player .artist-info span.artist-title {
+      font-size: 16px;
+      line-height: 20px !important;
+      display: inline-block;
+      margin: 0 !important;
+      font-weight: 100px !important;
+      color: #fafafa !important; }
+  .footer-player .player-control-button svg {
+    margin-top: 10px !important;
+    height: 30px !important;
+    width: 30px !important; }
+  .footer-player .songSourceContainer {
+    padding-top: 0 !important; }
+    .footer-player .songSourceContainer svg {
+      fill: #b0b0b0 !important; }
