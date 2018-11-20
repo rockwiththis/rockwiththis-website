@@ -14,8 +14,8 @@ $ npm run start-all             # Boot server + client webpack server
 ```
 You can also boot the data server and react webpack server separately from the root directory with the following commands:
 ```
-$ npm start         # react server
-$ npm start-server  # data server
+$ npm run start         # react server
+$ npm run start-server  # data server
 ```
 
 ## Deployment
@@ -27,3 +27,4 @@ $ deploy/server.sh  # deploy data server + reboot running process
 ### Notes
 + The scripts require an ssh key downloaded from from AWS existing at the path specified in `deploy/config.sh`. Contact a system admistrator for guidance on how to get this key.
 + Deployment will be blocked if you have any uncommitted changes.
++ When you first pull these files, you might have to run `chmod -R 777 deploy/` to grant yourself permission to execute the scripts
