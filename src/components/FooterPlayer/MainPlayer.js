@@ -31,8 +31,6 @@ class MainPlayer extends Component {
 
     onChangeSlider(progress) {
       this.offScreen.player.seekTo(progress)
-      console.log("yup")
-      console.log(this.props.activeSongDuration)
     }
 
     updateStorePlayPause() {
@@ -93,8 +91,6 @@ class MainPlayer extends Component {
             activeSong
         } = this.props
 
-        console.log("this.props.activeSongDuration");
-        console.log(this.props.activeSongDuration);
 
         const playPauseButton = this.props.isPlaying ? (
             <img src={pauseButton} className="pause-main"/>

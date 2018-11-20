@@ -47,7 +47,7 @@
 
 .rc-slider .rc-slider-track {
   /* background-color: #975de8 !important; */
-  background: #afafaf !important; }
+  background: #0097d5 !important; }
 
 .rc-slider .rc-slider-track:hover {
   background: #0097d5 !important; }
@@ -57,7 +57,7 @@
   .rc-slider .rc-slider-track {
     height: 5px !important;
     /* background-color: #975de8 !important; */
-    background: #afafaf !important; }
+    background: #0097d5 !important; }
   .player-controls-wrapper {
     flex: 0 0 100px !important;
     flex: 0 0 75px !important;

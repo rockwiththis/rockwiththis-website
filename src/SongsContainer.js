@@ -36,7 +36,7 @@ class SongsContainer extends Component {
         this.loadMoreSongs = this.loadMoreSongs.bind(this)
         this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
         this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
-        // this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
+        this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
         this.navGrid = this.navGrid.bind(this)
         this.handleCarousel = this.handleCarousel.bind(this)
@@ -61,6 +61,15 @@ class SongsContainer extends Component {
             this.props.activeSong !== nextProps.activeSong) {
 
         }
+    }
+
+    fixedFiltersBar() {
+
+      if (location.pathname == "/") {
+        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+        const fixedFilterBar = window.scrollY > scrollHeight
+        this.setState({ fixedFilterBar })
+      }
     }
 
     loadMoreSongs(altCallback) {
@@ -109,9 +118,16 @@ class SongsContainer extends Component {
     }
 
     handleScroll(e) {
+        if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 ) {
+          return;
+        }
+
         if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100)) {
             this.loadMoreSongs()
         }
+        console.log("e.target.scrollTop", e.target.scrollTop);
+        console.log("e.target.scrollHeight", e.target.scrollHeight);
+        console.log("e.target.offsetHeight", e.target.offsetHeight);
     }
 
     changeDiscoverSong(increment) {
@@ -256,7 +272,7 @@ class SongsContainer extends Component {
                   <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
                 </Element>
                 <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
-                  <div onScroll={(e) => this.props.discoverLayout === 'snapshot' && !this.state.loadingMore && this.handleScroll(e)} className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}>
+                  <div onScroll={(e) => !this.state.loadingMore && this.handleScroll(e)} className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}>
                     {this.props.discoverLayout !== 'snapshot' &&
 
                       <div className="songGrid">
