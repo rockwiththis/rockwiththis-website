@@ -49,10 +49,10 @@ class SongsContainer extends Component {
     }
 
     componentDidMount() {
-      const e = document.getElementsByClassName('discovery-container');
+      // const e = document.getElementsByClassName('discovery-container');
         window.addEventListener('scroll', this.fixedFiltersBar)
         window.addEventListener('scroll', this.fixedFiltersBar)
-        window.addEventListener('scroll', this.handleScroll(e))
+        // window.addEventListener('scroll', this.handleScroll(e))
 
         window.addEventListener('scroll', this.enableDiscoverScroll)
         window.addEventListener('resize', this.enableDiscoverScroll);

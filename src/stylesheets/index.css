@@ -1852,7 +1852,8 @@ form.rwt-email-form button {
     max-width: 580px;
     padding: 100px 100px;
     position: relative;
-    z-index: 1; }
+    z-index: 1;
+    padding-top: 250px; }
     .blue-content .blue-content-container p {
       color: #fff;
       font-size: 24px;
