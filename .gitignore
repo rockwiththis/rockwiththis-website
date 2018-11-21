@@ -18,4 +18,4 @@ yarn-error.log*
 yarn.lock
 *.swp
 server/db/config-prod.js
-config/config.sh
+deploy/config.sh
