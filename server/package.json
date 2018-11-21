@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start-dev": "DB_CONFIG_FILE='./config-prod.js' npm start"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

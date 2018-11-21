@@ -248,9 +248,9 @@ class FiltersBar extends Component {
                       this.ToggleViewsDropDown = element;
                     }}
                     >
-                    <button className="mobile" name='expanded' onClick={this.changeGridView}>Full</button>
-                    <button className="mobile" name='snapshot' onClick={this.changeGridView}>Snap</button>
-                    <button className="mobile" name='fullGrid' onClick={this.changeGridView}>Grid</button>
+                    <button className={`mobile ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} name='expanded' onClick={this.changeGridView}>Full</button>
+                    <button className={`mobile ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} name='snapshot' onClick={this.changeGridView}>Snap</button>
+                    <button className={`mobile ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} name='fullGrid' onClick={this.changeGridView}>Grid</button>
                   </div>
                 )
                 : (

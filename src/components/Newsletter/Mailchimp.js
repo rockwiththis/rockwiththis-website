@@ -55,7 +55,7 @@ class Mailchimp extends React.Component {
           disabled={status === "sending" || status === "success"}
           type="submit"
         >
-          Subscribe
+          JOIN
         </button>
         <div className='msg-alert'>
           {status === "sending" && <p style={styles.sendingMsg}>{messages.sending}</p>}

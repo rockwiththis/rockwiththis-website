@@ -229,7 +229,7 @@ ul.toggleContainer {
 .discovery-section .filters-bar button.filters-button.active {
   display: inline-block;
   border: 1px solid #1a6ea9 !important;
-  background: #1a6ea9;
+  background: #1a6ea9 !important;
   border-radius: 4px;
   color: #fff;
   transition: all .3s ease;
@@ -376,7 +376,7 @@ a.viewButton svg path {
     position: relative;
 }
 .ToggleViewsWrapper svg path {
-    fill: #e1e1e1;
+    fill: #282828;
 }
 .ToggleViewsWrapper svg.active path {
     fill: #1a6ea9;

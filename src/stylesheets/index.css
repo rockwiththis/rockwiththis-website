@@ -37,7 +37,7 @@ body::-webkit-scrollbar-thumb {
 
 @media (max-width: 800px) {
   .fixedFiltersBarPadding {
-    padding-top: 80px !important; } }
+    padding-top: 75px !important; } }
 
 body {
   padding-bottom: 75px !important; }
@@ -145,7 +145,7 @@ p {
 .discovery-section .filters-bar {
   width: 100%;
   height: 70px;
-  background: #fff;
+  background: #fff !important;
   position: relative;
   padding: 0px;
   max-width: 1685px;
@@ -208,7 +208,7 @@ p {
       margin-left: 10px; }
   .discovery-section .filters-bar button.toggle-views-button:hover {
     border: 1px solid #1a6ea9 !important;
-    background: #1a6ea9;
+    background: #1a6ea9 !important;
     color: #fff;
     cursor: pointer; }
     .discovery-section .filters-bar button.toggle-views-button:hover i.im.im-angle-down {
@@ -227,7 +227,8 @@ p {
     transition: all .3s ease;
     vertical-align: top;
     margin-top: 20px;
-    margin-left: 0px; }
+    margin-left: 0px;
+    background: #fff; }
   .discovery-section .filters-bar button.filters-button:hover {
     border: 1px solid #1a6ea9 !important;
     background: #1a6ea9 !important;
@@ -1504,6 +1505,9 @@ a.nav-link.is-active {
   border: 0px solid #fff;
   border-bottom: 1px solid #fff !important; }
 
+a.nav-link.is-active.submit {
+  border-bottom: 0px solid #fff !important; }
+
 @media (max-width: 1000px) and (min-width: 800px) {
   .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .pauseButton, .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .playButton {
     width: 45px !important;
@@ -2155,3 +2159,188 @@ form.rwt-email-form button {
       margin-top: -1px; }
   .blue-content {
     z-index: 50; } }
+
+@media screen and (max-width: 480px) {
+  .connectPage .main-content {
+    background: #fafafa !important;
+    padding-top: 35px; }
+  .connectPage .middle-content {
+    padding-top: 0px; }
+    .connectPage .middle-content .four-content h3 {
+      margin-top: 0;
+      font-size: 28px !important;
+      line-height: 38px !important;
+      margin-bottom: 20px; }
+    .connectPage .middle-content .four-content p.mission-tagline {
+      padding: 0 15px;
+      font-size: 18px !important;
+      line-height: 28px !important; }
+    .connectPage .middle-content .four-content p.email-text {
+      max-width: none !important;
+      padding: 0 15px;
+      font-size: 18px !important;
+      line-height: 28px !important; }
+    .connectPage .middle-content .four-content hr {
+      max-width: 250px;
+      margin: 20px auto; }
+    .connectPage .middle-content form.form-input {
+      margin-top: 20px !important; }
+      .connectPage .middle-content form.form-input input {
+        text-align: center;
+        font-size: 16px; }
+      .connectPage .middle-content form.form-input button.submit-btn {
+        font-size: 16px; }
+  .connectPage .middle-content .four-content {
+    padding-top: 0; } }
+
+.socialLinks.hide {
+  display: none; }
+
+@media (min-width: 400px) {
+  .connectPage {
+    margin-top: 75px; } }
+
+.connectPage .main-content {
+  padding-top: 45px; }
+
+@media screen and (max-width: 400px) {
+  .headerContainer {
+    height: 50px !important; }
+    .headerContainer #headerLogoMobile {
+      width: 50px !important; }
+      .headerContainer #headerLogoMobile img {
+        width: 50px !important; }
+  .socialLinks {
+    top: 50px; }
+  .footer-player {
+    height: 50px !important; }
+    .footer-player .player-info-image-wrapper img {
+      height: 40px !important;
+      width: 40px !important;
+      margin-top: 12.5px !important;
+      border: 0px solid #fff !important; }
+    .footer-player .artist-info {
+      height: 40px !important; }
+      .footer-player .artist-info a.songImageLink {
+        margin-bottom: 0 !important; }
+        .footer-player .artist-info a.songImageLink span {
+          display: inline-block;
+          font-size: 16px !important;
+          line-height: 20px !important; }
+      .footer-player .artist-info span.artist-title {
+        font-size: 16px;
+        line-height: 20px !important;
+        display: inline-block;
+        margin: 0 !important;
+        font-weight: 100px !important;
+        color: #fafafa !important; }
+    .footer-player .player-control-button svg, .footer-player .player-control-button img {
+      margin-top: 6px !important;
+      height: 30px !important;
+      width: 30px !important; }
+    .footer-player .songSourceContainer {
+      padding-top: 0 !important; }
+      .footer-player .songSourceContainer svg {
+        fill: #b0b0b0 !important; }
+  .homeContainer .hero-posts {
+    top: 90px; }
+  .discovery-section {
+    margin-top: calc(100vw + 90px); }
+  .discovery-section .filters-bar {
+    height: 50px !important;
+    background: #fff !important; }
+    .discovery-section .filters-bar .toggle-views-button {
+      background: rgba(255, 255, 255, 0) !important;
+      margin-top: 8px !important;
+      font-size: 14px !important;
+      padding: 8px !important;
+      position: absolute;
+      right: 0 !important;
+      top: 0;
+      width: 50%;
+      height: 50px;
+      margin-top: 0 !important;
+      border: 0px !important;
+      border-radius: 0 !important; }
+    .discovery-section .filters-bar .filters-button {
+      background: rgba(255, 255, 255, 0) !important;
+      margin-top: 8px !important;
+      font-size: 14px !important;
+      padding: 8px !important;
+      position: absolute;
+      left: 0 !important;
+      top: 0;
+      width: 50%;
+      height: 50px;
+      margin-top: 0 !important;
+      border: 0px !important;
+      border-radius: 0 !important;
+      border-right-width: 1px !important; }
+    .discovery-section .filters-bar .filters-button .toggle-views-button:hover {
+      background: #1a6ea9 !important; }
+    .discovery-section .filters-bar .SubgenreFiltersDropDown {
+      position: absolute;
+      border: 1px solid #C9C6CB;
+      border-top: 0;
+      left: 15px;
+      background: #fff;
+      z-index: 1000;
+      max-width: 300px;
+      top: 50px;
+      border-radius: 4px;
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+      box-shadow: 0 3px 2px -2px #C9C6CB;
+      max-height: 0;
+      overflow: hidden;
+      transition: .2s ease all; }
+    .discovery-section .filters-bar .ToggleViewsDropDown {
+      border-left-width: 1px !important;
+      top: 50px !important;
+      padding: 10px !important;
+      background: #fff !important;
+      max-width: 100% !important;
+      border-radius: 0px !important; }
+      .discovery-section .filters-bar .ToggleViewsDropDown button.mobile {
+        display: inline-block;
+        width: 23% !important;
+        text-align: center !important;
+        margin-right: 5%;
+        margin-left: 5%;
+        margin-bottom: 0 !important;
+        background: #fff;
+        font-size: 12px; }
+      .discovery-section .filters-bar .ToggleViewsDropDown button.mobile:hover {
+        background: #1a6ea9; }
+  .headerContainer {
+    box-shadow: none !important; }
+  .discovery-section .fixedFiltersBar {
+    position: fixed;
+    top: 50px !important;
+    background: linear-gradient(to right, #1e0c49, #0097d5) !important;
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    border-left: 0px !important; }
+    .discovery-section .fixedFiltersBar button.filters-button {
+      border: 1px solid rgba(0, 0, 0, 0) !important;
+      color: #fff; }
+    .discovery-section .fixedFiltersBar button.toggle-views-button {
+      border: 1px solid rgba(0, 0, 0, 0) !important;
+      color: #fff; }
+    .discovery-section .fixedFiltersBar .ToggleViewsDropDown .mobile.active {
+      background: #1a6ea9;
+      color: #fff !important; }
+  .footer-player {
+    padding-bottom: 5px !important; }
+    .footer-player .songSourceContainer {
+      top: 10px !important; }
+  .discovery-section .songList .songContainer .postContent p.songDescription {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    line-height: 16px;
+    max-height: 58px !important;
+    padding: 5px;
+    margin-top: -5px; }
+  .hover-content {
+    display: none !important; }
+  .singleSongPage.page .singleSongContainer {
+    margin-top: 95px !important; } }
