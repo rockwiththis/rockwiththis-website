@@ -49,10 +49,10 @@ class SongsContainer extends Component {
     }
 
     componentDidMount() {
-      // const e = document.getElementsByClassName('discovery-container');
+
         window.addEventListener('scroll', this.fixedFiltersBar)
         window.addEventListener('scroll', this.fixedFiltersBar)
-        // window.addEventListener('scroll', this.handleScroll(e))
+        // window.addEventListener('scroll', this.handleScroll(target))
 
         window.addEventListener('scroll', this.enableDiscoverScroll)
         window.addEventListener('resize', this.enableDiscoverScroll);
@@ -121,18 +121,38 @@ class SongsContainer extends Component {
     }
 
     handleScroll(e) {
+      console.log("SCROLL");
+
         if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 ) {
           return;
         }
 
         if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100)) {
+          console.log("scrollscroll");
             this.loadMoreSongs()
         }
-        console.log("e.target", e.target);
-        console.log("e.target.scrollTop", e.target.scrollTop);
-        console.log("e.target.scrollHeight", e.target.scrollHeight);
-        console.log("e.target.offsetHeight", e.target.offsetHeight);
+        // console.log("e.target", e.target);
+        // console.log("e.target.scrollTop", e.target.scrollTop);
+        // console.log("e.target.scrollHeight", e.target.scrollHeight);
+        // console.log("e.target.offsetHeight", e.target.offsetHeight);
     }
+    // mobileScroll = () => {
+    //
+    //   if (window.innerWidth < 800) {
+    //     console.log("scrolling");
+    //
+    //
+    //       const target = document.getElementById('discovery-container')
+    //
+    //       if (target.scrollTop > target.scrollHeight - (target.offsetHeight + 100)) {
+    //
+    //           this.props.actions.loadMoreSongs()
+    //
+    //       }
+    //
+    //   }
+    //
+    // }
 
     changeDiscoverSong(increment) {
         let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
@@ -276,7 +296,7 @@ class SongsContainer extends Component {
                   <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
                 </Element>
                 <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
-                  <div onScroll={(e) => !this.state.loadingMore && this.handleScroll(e)} className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}>
+                  <div id="discovery-container" onScroll={(e) => this.handleScroll(e)} className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}>
                     {this.props.discoverLayout !== 'snapshot' &&
 
                       <div className="songGrid">

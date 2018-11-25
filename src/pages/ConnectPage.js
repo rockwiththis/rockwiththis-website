@@ -91,11 +91,23 @@ class ConnectPage extends Component {
 
                           className='rwt-email-form'
                         />
-                        <div className="social-container">
+                        <div className="social-container desktop-social">
                           <ul>
                           <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
                           <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
+                          </ul>
+                        </div>
+                        <div className="social-container mobile-social">
+                          <ul>
+                          <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
+                          <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
+                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
+                          </ul>
+                          <br/>
+                          <ul>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
                           </ul>
@@ -116,8 +128,8 @@ class ConnectPage extends Component {
 
                 <div className="blue-content-container">
 
-                <h1 className="blue-title">{"We don't have every song."}<br/>
-                {"Just the best you haven't heard"}.
+                <h1 className="blue-title">We<b>{" don't"}</b> have<br className="mobile-br"/> every song...<br/>
+                Just the best<br className="mobile-br"/> you {" haven't"} heard.
                 </h1>
                 <p>{"Our team consists of huge music lovers who spend hours each day digging through tracks, to deliver the best of what's breaking and uncover the left behind tracks that need to be heard."} </p>
                 </div>
