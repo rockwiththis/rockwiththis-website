@@ -1,3 +1,13 @@
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0; } }
+
 body {
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
@@ -1986,29 +1996,28 @@ form.rwt-email-form button {
   display: inline-block;
   vertical-align: top; }
 
-.connectPage .intro img.color.bottom {
-  z-index: 5; }
-
-.connectPage .intro img.colorbottom2 {
-  position: absolute;
-  height: auto;
-  left: 350px;
-  bottom: -250px;
-  z-index: 4;
-  width: 630px; }
-
-.connectPage img.color.bottomMiddle {
-  position: absolute;
-  top: -200px;
-  right: 0;
-  width: 800px; }
-
-.connectPage .intro img.logo1 {
-  position: absolute;
-  z-index: 4;
-  width: 1200px;
-  bottom: -222px;
-  left: -200px; }
+.connectPage {
+  overflow-x: hidden !important; }
+  .connectPage .intro img.color.bottom {
+    z-index: 5; }
+  .connectPage .intro img.colorbottom2 {
+    position: absolute;
+    height: auto;
+    left: 350px;
+    bottom: -250px;
+    z-index: 4;
+    width: 630px; }
+  .connectPage img.color.bottomMiddle {
+    position: absolute;
+    top: -200px;
+    right: 0;
+    width: 800px; }
+  .connectPage .intro img.logo1 {
+    position: absolute;
+    z-index: 4;
+    width: 1200px;
+    bottom: -222px;
+    left: -200px; }
 
 @media (max-width: 1250px) {
   .connectPage img.color2 {
