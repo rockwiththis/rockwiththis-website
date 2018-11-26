@@ -52,7 +52,6 @@ class SongsContainer extends Component {
 
         window.addEventListener('scroll', this.fixedFiltersBar)
         window.addEventListener('scroll', this.fixedFiltersBar)
-        // window.addEventListener('scroll', this.handleScroll(target))
 
         window.addEventListener('scroll', this.enableDiscoverScroll)
         window.addEventListener('resize', this.enableDiscoverScroll);
@@ -132,27 +131,10 @@ class SongsContainer extends Component {
             this.loadMoreSongs()
         }
         // console.log("e.target", e.target);
-        // console.log("e.target.scrollTop", e.target.scrollTop);
-        // console.log("e.target.scrollHeight", e.target.scrollHeight);
-        // console.log("e.target.offsetHeight", e.target.offsetHeight);
+        console.log("e.target.scrollTop", e.target.scrollTop);
+        console.log("e.target.scrollHeight", e.target.scrollHeight);
+        console.log("e.target.offsetHeight", e.target.offsetHeight);
     }
-    // mobileScroll = () => {
-    //
-    //   if (window.innerWidth < 800) {
-    //     console.log("scrolling");
-    //
-    //
-    //       const target = document.getElementById('discovery-container')
-    //
-    //       if (target.scrollTop > target.scrollHeight - (target.offsetHeight + 100)) {
-    //
-    //           this.props.actions.loadMoreSongs()
-    //
-    //       }
-    //
-    //   }
-    //
-    // }
 
     changeDiscoverSong(increment) {
         let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
