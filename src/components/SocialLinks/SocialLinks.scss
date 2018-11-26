@@ -48,3 +48,15 @@
     }
   }
 }
+
+
+.socialLinks.notFixed {
+    position: relative !important;
+}
+
+.socialLinks.notFixed + .singleSongPage {
+    position: relative !important;
+}
+.socialLinks.notFixed + .singleSongPage .singleSongContainer{
+    margin-top: 50px !important
+}

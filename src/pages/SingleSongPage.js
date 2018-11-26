@@ -22,7 +22,7 @@ class SingleSongPage extends Component {
         this.setState({
           loading: false,
         }, () => {
-          Scroll.animateScroll.scrollToTop()
+          // Scroll.animateScroll.scrollToTop()
         })
       }
 

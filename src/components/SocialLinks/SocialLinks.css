@@ -33,3 +33,12 @@
         font-size: 22px;
         height: auto;
         color: #282828; }
+
+.socialLinks.notFixed {
+  position: relative !important; }
+
+.socialLinks.notFixed + .singleSongPage {
+  position: relative !important; }
+
+.socialLinks.notFixed + .singleSongPage .singleSongContainer {
+  margin-top: 50px !important; }

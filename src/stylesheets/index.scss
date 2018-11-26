@@ -3739,11 +3739,6 @@ width: 800px;
   display: none;
 }
 
-@media (min-width: 400px) {
-  .connectPage {
-        margin-top: 75px;
-  }
-}
 
 .connectPage .main-content {
   padding-top: 45px;
@@ -3990,5 +3985,13 @@ width: 800px;
    div#discovery-container.disableScroll {
       height: calc(100vh - 100px );
       overflow: visible !important;
+  }
+}
+
+
+
+@media (min-width: 800px) and (max-width: 1200px) {
+  .singleSongPage .relatedSongs .songContainer {
+      max-width: calc(20% - 2px) !important;
   }
 }

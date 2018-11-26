@@ -6,7 +6,7 @@ class SocialLinks extends Component {
 
     render() {
         return (
-          <div className={`socialLinks ${location.pathname == "/connect" ? 'hide' : ''}`}>
+          <div className={`socialLinks ${location.pathname !== "/" ? 'notFixed' : ''}`}>
             <ul>
             <li><a target="_blank" href="https://open.spotify.com/user/jaredp21/playlist/2eWK5PGSTEl8I5ZvMG5VPS"><i className="im im-spotify"></i></a></li>
             <li className="sc"><a target="_blank" href="https://soundcloud.com/rockwiththis/sets/rock-with-this"><i className="im im-soundcloud"></i></a></li>
