@@ -2318,32 +2318,15 @@ form.rwt-email-form button {
     height: 50px !important;
     background: #fff !important; }
     .discovery-section .filters-bar .toggle-views-button {
-      background: rgba(255, 255, 255, 0) !important;
-      margin-top: 8px !important;
+      margin-top: 6px !important;
       font-size: 14px !important;
-      padding: 8px !important;
-      position: absolute;
-      right: 0 !important;
-      top: 0;
-      width: 50%;
-      height: 50px;
-      margin-top: 0 !important;
-      border: 0px !important;
-      border-radius: 0 !important; }
+      padding: 10px !important;
+      border-radius: 6px !important; }
     .discovery-section .filters-bar .filters-button {
-      background: rgba(255, 255, 255, 0) !important;
-      margin-top: 8px !important;
+      margin-top: 6px !important;
       font-size: 14px !important;
-      padding: 8px !important;
-      position: absolute;
-      left: 0 !important;
-      top: 0;
-      width: 50%;
-      height: 50px;
-      margin-top: 0 !important;
-      border: 0px !important;
-      border-radius: 0 !important;
-      border-right-width: 1px !important; }
+      padding: 10px !important;
+      border-radius: 6px !important; }
     .discovery-section .filters-bar .filters-button .toggle-views-button:hover {
       background: #1a6ea9 !important; }
     .discovery-section .filters-bar .SubgenreFiltersDropDown {
@@ -2385,15 +2368,14 @@ form.rwt-email-form button {
   .discovery-section .fixedFiltersBar {
     position: fixed;
     top: 50px !important;
-    background: linear-gradient(to right, #1e0c49, #0097d5) !important;
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     border-left: 0px !important; }
     .discovery-section .fixedFiltersBar button.filters-button {
-      border: 1px solid rgba(0, 0, 0, 0) !important;
-      color: #fff; }
+      border: 1px solid #1a6ea9 !important;
+      color: #1a6ea9; }
     .discovery-section .fixedFiltersBar button.toggle-views-button {
-      border: 1px solid rgba(0, 0, 0, 0) !important;
-      color: #fff; }
+      border: 1px solid #1a6ea9 !important;
+      color: #1a6ea9; }
     .discovery-section .fixedFiltersBar .ToggleViewsDropDown .mobile.active {
       background: #1a6ea9;
       color: #fff !important; }
