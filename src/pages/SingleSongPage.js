@@ -34,7 +34,6 @@ class SingleSongPage extends Component {
         if(this.props.match.params.id !== prevProps.match.params.id){
           Scroll.animateScroll.scrollToTop()
             this.props.actions.fetchSingleSong(this.props.match.params.id)
-
         }
     }
 

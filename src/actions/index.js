@@ -82,7 +82,7 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
       dispatch(LOAD_MORE_SONGS(res))
       if (callback) callback()
     } else {
-      if (callback) callback(true)
+      return
     }
   })
 }
