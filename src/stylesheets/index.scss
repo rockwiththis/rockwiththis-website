@@ -35,6 +35,9 @@ body::-webkit-scrollbar-thumb {
 
 
 
+
+
+
 .pause-main {
     width: 35px;
     height: 35px;
@@ -488,15 +491,15 @@ $discovery-parallax-padding: calc(100vw + 115px);
           }
 
             .playButton, .pauseButton {
-              width: 60px ;
-              height: 60px;
+              width: 50px ;
+              height: 50px;
              }
              button:focus {
                   outline: none;
               }
 
             .singlePostPlayer {
-                width: 60px;
+                width: 50px;
                 display: inline-block;
                 text-align: left;
             }
@@ -670,6 +673,7 @@ $discovery-parallax-padding: calc(100vw + 115px);
                           cursor: pointer;
                           letter-spacing: .7px;
                           box-shadow: 0 3px 2px -2px #C9C6CB;
+                              font-family: 'Baloo', cursive;
                       }
                     }
                   }
@@ -807,8 +811,9 @@ a.spotifyLink {
   .playButton, .pauseButton {
     display: flex !important;
     transition: all 0.3s ease;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+    // margin-top: 5px;
 
   }
 
@@ -990,7 +995,7 @@ a.spotifyLink {
       }
 
       .pauseButton {
-          width: 60px !important;
+          width: 50px !important;
       }
 
       button.toggle-song:hover {
@@ -1163,6 +1168,7 @@ a.spotifyLink {
                 cursor: pointer;
                 letter-spacing: .7px;
                 box-shadow: 0 3px 2px -2px #C9C6CB;
+                    font-family: 'Baloo', cursive;
             }
           }
 
@@ -1340,7 +1346,7 @@ button {
               width: calc(100% - 75px);
               display: inline-block;
               padding-left: 5px;
-              height: 60px;
+              height: 50px;
               overflow: hidden;
               pointer-events: all;
 
@@ -1373,7 +1379,8 @@ button {
           }
 
           .singlePostPlayer {
-              width: 60px;
+              width: 50px;
+              height: 50px;
               display: inline-block;
               text-align: left;
               vertical-align: top;
@@ -1570,7 +1577,7 @@ button {
           }
 
           .singlePostPlayer {
-              width: 60px;
+              width: 50px;
               display: inline-block;
               text-align: left;
               vertical-align: top;
@@ -2003,14 +2010,6 @@ button {
 
 
 .discover-full-song .songContainer .spotify {
-    // position: relative;
-    // color: #65d36e;
-    // font-size: 30px;
-    // z-index: 1;
-    // display: inline-block;
-    // transform: translateY(6px);
-    // margin-left: 5px;
-    //     width: 30px;
 
     position: absolute;
     color: #65d36e;
@@ -2020,7 +2019,7 @@ button {
     margin-left: 5px;
     width: 30px;
     right: 0px;
-    top: 30px;
+    top: 35px;
 }
 
 .discover-full-song .songContainer .spotify:hover {
@@ -2322,6 +2321,7 @@ span.postTags:nth-of-type(3) {
     letter-spacing: .7px;
     box-shadow: 0 3px 2px -2px #C9C6CB;
     padding: 5px;
+        font-family: 'Baloo', cursive;
 }
 
 
@@ -3972,9 +3972,13 @@ width: 800px;
 
 // SINGLE SONG PAGE
 .singleSongPage.page .singleSongContainer {
-
     margin-top: 95px !important;
+}
 
+@media(min-width: 800px) {
+  .singleSongPage {
+    padding: 0 25px;
+  }
 }
 
 }

@@ -7,6 +7,8 @@ import YouTube from 'react-youtube'
 import head from 'images/head.png'
 import  pauseButton  from 'images/PAUSE-BUTTON.png'
 import  playButton  from 'images/playbutton.svg'
+import './SongGridSquare.scss'
+
 
 
 class SongGrid extends Component {
@@ -37,7 +39,7 @@ class SongGrid extends Component {
         } = this.props
 
         const tags = song.sub_genres.map(tag =>
-            <span key={tag.name} className="tag" dangerouslySetInnerHTML={{ __html: tag.name }} />)
+            <span key={tag.name} className="grid-tag">#{tag.name}</span>)
 
         return (
             <span className="postTags">
@@ -60,6 +62,10 @@ class SongGrid extends Component {
                 <div className="imageContainer">
                   <div className="imageHover">
                     <img src={head} />
+                    <div className="tagWrapper">
+                      {this.renderTags()}
+                    </div>
+
                   </div>
                     <img className="songImage" src={song.image_url} />
                 </div>

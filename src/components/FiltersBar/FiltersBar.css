@@ -71,6 +71,7 @@
 .SubgenreFiltersDropDown {
   max-width: 400px !important; }
   .SubgenreFiltersDropDown .tag {
+    font-family: 'Baloo', cursive;
     margin: 5px;
     cursor: pointer;
     display: inline-block; }

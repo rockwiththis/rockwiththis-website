@@ -154,7 +154,8 @@ img.heroHoverGradient {
         margin-left: 50px !important;
         height: 50px;
         margin-top: 0;
-        padding: 5px 0; }
+        padding: 5px 0;
+        padding-top: 7px; }
   @media screen and (max-width: 1200px) {
     .homeContainer .hero-posts {
       height: calc(50vw - 2px); }
@@ -224,7 +225,7 @@ img.heroHoverGradient {
     text-transform: uppercase;
     border-top-right-radius: 6px;
     padding-left: 12px;
-    font-weight: 400; }
+    font-weight: 800; }
   .homeContainer .feature-track .post-info {
     position: absolute;
     bottom: 0;
@@ -272,6 +273,7 @@ img.heroHoverGradient {
         text-overflow: ellipsis;
         font-size: 14px;
         max-height: 20px;
+        line-height: 16px;
         overflow-x: hidden; }
 
 .homeContainer .featured-track-wrapper .feature-track .post-info {
@@ -309,13 +311,14 @@ img.heroHoverGradient {
   .homeContainer .featured-track-wrapper .feature-track .post-info .song-info {
     width: calc(100% - 200px) !important;
     margin-left: 100px !important;
-    padding: 10px 0; }
+    padding: 18px 0 0; }
     .homeContainer .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-      font-size: 28px;
-      line-height: 40px; }
+      font-size: 32px;
+      line-height: 32px;
+      padding-bottom: 2px; }
     .homeContainer .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-      font-size: 26px;
-      line-height: 40px;
+      font-size: 28px;
+      line-height: 32px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -434,7 +437,7 @@ img.heroHoverGradient {
     text-transform: uppercase;
     border-top-right-radius: 6px;
     padding-left: 12px;
-    font-weight: 400; }
+    font-weight: 800; }
   .homeContainer .featured-track-wrapper .feature-track .post-info {
     height: 80px; }
     .homeContainer .featured-track-wrapper .feature-track .post-info .post-square-wrapper {
@@ -573,7 +576,7 @@ img.heroHoverGradient {
     .homeContainer .featured-track-wrapper .feature-track .post-info .song-info {
       width: calc(100% - 150px) !important;
       margin-left: 70px !important;
-      padding: 5px 0; }
+      padding: 6px 0; }
       .homeContainer .featured-track-wrapper .feature-track .post-info .song-info .song-title {
         font-size: 20px;
         line-height: 30px; }

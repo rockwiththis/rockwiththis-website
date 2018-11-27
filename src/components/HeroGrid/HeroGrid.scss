@@ -233,6 +233,7 @@
               height: 50px;
               margin-top: 0;
               padding: 5px 0;
+              padding-top: 7px;
 
             }
 
@@ -344,7 +345,7 @@
         text-transform: uppercase;
         border-top-right-radius: 6px;
             padding-left: 12px;
-            font-weight: 400;
+            font-weight: 800;
       }
       .post-info {
         position: absolute;
@@ -406,6 +407,7 @@
       text-overflow: ellipsis;
       font-size: 14px;
       max-height: 20px;
+      line-height: 16px;
       overflow-x: hidden;
           }
         }
@@ -478,16 +480,17 @@
         .song-info {
           width: calc(100% - 200px) !important;
           margin-left: 100px !important;
-              padding: 10px 0;
+              padding: 18px 0 0;
 
           .song-title {
-            font-size: 28px;
-            line-height: 40px;
+            font-size: 32px;
+            line-height: 32px;
+            padding-bottom: 2px;
 
           }
           .song-artist {
-            font-size: 26px;
-            line-height: 40px;
+            font-size: 28px;
+            line-height: 32px;
             overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -687,7 +690,7 @@
             text-transform: uppercase;
             border-top-right-radius: 6px;
             padding-left: 12px;
-            font-weight: 400;
+            font-weight: 800;
           }
           .post-info {
             height: 80px;
@@ -913,7 +916,7 @@
           .song-info {
             width: calc(100% - 150px) !important;
             margin-left: 70px !important;
-                padding: 5px 0;
+                padding: 6px 0;
 
             .song-title {
               font-size: 20px;

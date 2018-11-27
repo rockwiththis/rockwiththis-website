@@ -302,12 +302,12 @@ p {
   .discovery-section .songList .songContainer .postContent p.metaInfo {
     margin-top: 10px !important; }
   .discovery-section .songList .songContainer .postContent .playButton, .discovery-section .songList .songContainer .postContent .pauseButton {
-    width: 60px;
-    height: 60px; }
+    width: 50px;
+    height: 50px; }
   .discovery-section .songList .songContainer .postContent button:focus {
     outline: none; }
   .discovery-section .songList .songContainer .postContent .singlePostPlayer {
-    width: 60px;
+    width: 50px;
     display: inline-block;
     text-align: left; }
   .discovery-section .songList .songContainer .postContent .topContentContainer {
@@ -429,7 +429,8 @@ p {
               border: 1px solid #1a6ea9 !important;
               cursor: pointer;
               letter-spacing: .7px;
-              box-shadow: 0 3px 2px -2px #C9C6CB; }
+              box-shadow: 0 3px 2px -2px #C9C6CB;
+              font-family: 'Baloo', cursive; }
       .discovery-section .songList .songContainer .postContent a.postTitleLink {
         text-decoration: none;
         color: black;
@@ -523,8 +524,8 @@ a.spotifyLink {
 .playButton, .pauseButton {
   display: flex !important;
   transition: all 0.3s ease;
-  width: 60px;
-  height: 60px; }
+  width: 50px;
+  height: 50px; }
 
 @media (min-width: 800px) {
   .songList {
@@ -646,7 +647,7 @@ a.spotifyLink {
           margin-top: 10px;
           padding: 0 5px; }
       .discovery-container .discover-full-song .pauseButton {
-        width: 60px !important; }
+        width: 50px !important; }
       .discovery-container .discover-full-song button.toggle-song:hover {
         opacity: 1; }
       .discovery-container .discover-full-song button.toggle-song {
@@ -759,7 +760,8 @@ a.spotifyLink {
           border: 1px solid #1a6ea9 !important;
           cursor: pointer;
           letter-spacing: .7px;
-          box-shadow: 0 3px 2px -2px #C9C6CB; }
+          box-shadow: 0 3px 2px -2px #C9C6CB;
+          font-family: 'Baloo', cursive; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .songDescription {
           font-size: 16px;
           line-height: 28px;
@@ -861,7 +863,7 @@ button {
           width: calc(100% - 75px);
           display: inline-block;
           padding-left: 5px;
-          height: 60px;
+          height: 50px;
           overflow: hidden;
           pointer-events: all; }
           .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent .topContentContainer .songInfo a.postTitleLink {
@@ -886,7 +888,8 @@ button {
             height: 30px;
             max-height: 30px; }
         .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent .topContentContainer .singlePostPlayer {
-          width: 60px;
+          width: 50px;
+          height: 50px;
           display: inline-block;
           text-align: left;
           vertical-align: top; }
@@ -1010,7 +1013,7 @@ button {
               overflow-x: hidden;
               font-weight: 700 !important; }
         .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent .topContentContainer .singlePostPlayer {
-          width: 60px;
+          width: 50px;
           display: inline-block;
           text-align: left;
           vertical-align: top; }
@@ -1276,7 +1279,7 @@ button {
   margin-left: 5px;
   width: 30px;
   right: 0px;
-  top: 30px; }
+  top: 35px; }
 
 .discover-full-song .songContainer .spotify:hover {
   cursor: pointer;
@@ -1448,7 +1451,8 @@ span.postTags:nth-of-type(3) {
   cursor: pointer;
   letter-spacing: .7px;
   box-shadow: 0 3px 2px -2px #C9C6CB;
-  padding: 5px; }
+  padding: 5px;
+  font-family: 'Baloo', cursive; }
 
 @media (max-width: 1075px) and (min-width: 800px) {
   .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent .topContentContainer .songInfo .artistName {
@@ -2397,6 +2401,10 @@ form.rwt-email-form button {
     display: none !important; }
   .singleSongPage.page .singleSongContainer {
     margin-top: 95px !important; } }
+
+@media screen and (max-width: 400px) and (min-width: 800px) {
+  .singleSongPage {
+    padding: 0 25px; } }
 
 @media (max-width: 800px) {
   div#discovery-container {

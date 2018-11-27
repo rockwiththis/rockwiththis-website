@@ -1,0 +1,26 @@
+.imageHover .tagWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute; }
+  .imageHover .tagWrapper .postTags {
+    display: inline-block;
+    margin: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+    .imageHover .tagWrapper .postTags span.grid-tag {
+      color: #fff;
+      margin: 0px;
+      padding: 0px;
+      border-radius: 6px;
+      letter-spacing: .5px;
+      font-size: 16px;
+      font-family: 'Baloo', cursive;
+      display: block;
+      line-height: 18px; }
+
+.activeDiscoverFullSong .tagWrapper {
+  display: none; }
