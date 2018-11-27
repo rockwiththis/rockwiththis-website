@@ -4,7 +4,8 @@
   margin: 0 auto;
   text-align: left; }
   .ShareBox i.im.im-paperplane {
-    color: #f85f27; }
+    color: #f85f27;
+    font-size: 22px; }
   .ShareBox a {
     margin: 10px; }
   .ShareBox a:nth-of-type(1) {

@@ -71,10 +71,11 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const filtersArray = []
   const filterIds = getState().selectedFilters.map(filter => filter.id)
   filtersArray.push(filterIds)
+  console.log("state.filteredPosts");
+  console.log(state.filteredPosts);
 
   const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
-  console.log("sss");
-  console.log(fullURL);
+
 
   fetch(fullURL).then(res => res.json()).then((res) => {
     if (res.length > 0) {

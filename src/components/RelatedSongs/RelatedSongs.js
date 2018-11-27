@@ -2,9 +2,14 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import * as Scroll from 'react-scroll';
+
 import './RelatedSongs.scss'
 
 class RelatedSongs extends Component {
+
+
+  
 
     renderRelatedSong(song, index) {
         return (

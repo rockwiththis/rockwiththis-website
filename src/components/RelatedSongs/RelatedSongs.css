@@ -53,3 +53,8 @@
     margin-left: 2px; }
     .relatedSongsContainer .stack .songContainer:nth-of-type(10) {
       display: none !important; } }
+
+@media (min-width: 800px) {
+  .relatedSongs img.songImage:hover {
+    cursor: pointer;
+    filter: brightness(0.8); } }

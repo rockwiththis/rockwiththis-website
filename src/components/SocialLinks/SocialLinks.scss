@@ -57,6 +57,9 @@
 .socialLinks.notFixed + .singleSongPage {
     position: relative !important;
 }
-.socialLinks.notFixed + .singleSongPage .singleSongContainer{
-    margin-top: 50px !important
+
+@media (max-width: 800px) {
+  .socialLinks.notFixed + .singleSongPage .singleSongContainer{
+      margin-top: 50px !important
+  }
 }

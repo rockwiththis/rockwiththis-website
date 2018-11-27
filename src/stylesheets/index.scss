@@ -1991,8 +1991,8 @@ button {
 }
 .discovery-container .discover-full-song .songContainer .ShareBox {
     position: absolute;
-    top: 10px;
-    right: 3px;
+    top: 5px;
+    right: 10px;
     width: auto;
 }
 
@@ -2003,24 +2003,30 @@ button {
 
 
 .discover-full-song .songContainer .spotify {
-    position: relative;
+    // position: relative;
+    // color: #65d36e;
+    // font-size: 30px;
+    // z-index: 1;
+    // display: inline-block;
+    // transform: translateY(6px);
+    // margin-left: 5px;
+    //     width: 30px;
+
+    position: absolute;
     color: #65d36e;
-    font-size: 30px;
+    font-size: 26px;
     z-index: 1;
     display: inline-block;
-    transform: translateY(6px);
     margin-left: 5px;
-        width: 30px;
+    width: 30px;
+    right: 0px;
+    top: 30px;
 }
 
 .discover-full-song .songContainer .spotify:hover {
   cursor: pointer;
   filter: brightness(.9);
 }
-
-
-
-
 
 .seeMore {
   display: none;
