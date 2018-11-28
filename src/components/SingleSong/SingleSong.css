@@ -1,9 +1,11 @@
 @media (min-width: 800px) {
   .singleSongPage {
-    padding: 0 35px; } }
+    padding: 0 35px; }
+    .singleSongPage .imageContainer {
+      padding-top: 25px; } }
 
 .singleSongPage .singleSongContainer {
-  width: 85%;
+  width: 86%;
   display: inline-block; }
   .singleSongPage .singleSongContainer .songContainer .imageContainer {
     width: 45%;
@@ -94,6 +96,14 @@
     max-width: 75px;
     margin: 0 !important;
     border-radius: 6px; }
+
+@media (min-width: 1200px) and (max-width: 1250px) {
+  .singleSongPage .singleSongContainer .songContainer .postContent {
+    width: 49%; } }
+
+@media (min-width: 800px) and (max-width: 1075px) {
+  .singleSongPage .singleSongContainer .songContainer .postContent {
+    padding-left: 30px !important; } }
 
 @media (max-width: 800px) {
   .singleSongPage.page .relatedSongs {
@@ -201,6 +211,11 @@
         margin: 0 !important;
         border-radius: 0px; } }
 
+@media (min-width: 800px) and (max-width: 1200px) {
+  .singleSongPage .singleSongContainer .songContainer .postContent {
+    padding-right: 0px;
+    padding-left: 50px; } }
+
 @media (max-width: 1000px) and (min-width: 835px) {
   .singleSongPage .singleSongContainer {
     width: 100%; }
@@ -237,12 +252,6 @@
     width: 100%;
     display: inline-block;
     margin-top: 0px !important; } }
-
-@media (max-width: 400px) {
-  .singleSongPage .singleSongContainer {
-    width: 100%;
-    display: inline-block;
-    margin-top: 115px !important; } }
 
 .singleSongPage .ShareBox {
   display: block; }
@@ -290,9 +299,9 @@
       vertical-align: top;
       transition: .15s linear all; }
       .songImageInfoContainer .player-button button.singlePostPlayerButton {
-        width: 70px;
-        height: 70px;
-        padding: 7px; }
+        width: 50px;
+        height: 50px;
+        margin-top: 10px; }
     .songImageInfoContainer .song-info {
       display: inline-block;
       height: 100%;
