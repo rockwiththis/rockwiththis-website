@@ -131,3 +131,15 @@ a.nav-link.active {
     display: none; }
   .nav-left .nav-submit {
     display: inline-block; } }
+
+.singleSongBackButton {
+  transform: rotate(180deg);
+  fill: #fff;
+  height: 30px;
+  width: 30px; }
+
+@media (max-width: 500px) {
+  .singleSongBackButton {
+    height: 25px;
+    width: 25px;
+    margin-top: 5px; } }

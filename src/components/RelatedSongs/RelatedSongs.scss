@@ -23,6 +23,10 @@
       vertical-align: top;
       // padding-top: 15px;
       float: right;
+
+      .songContainer:nth-of-type(11) {
+        display: none;
+      }
   }
 
   .relatedSongsContainer .stack {

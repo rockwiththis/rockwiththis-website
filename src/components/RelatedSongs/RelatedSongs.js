@@ -9,9 +9,10 @@ import './RelatedSongs.scss'
 class RelatedSongs extends Component {
 
 
-  
+
 
     renderRelatedSong(song, index) {
+
         return (
             <div className="songContainer" key={index}>
                 <Link className="songImageLink" to={`/songs/${song.id}`}>
@@ -22,7 +23,9 @@ class RelatedSongs extends Component {
     }
 
     relatedSongsStack () {
-      const relatedSongs = this.props.relatedSongs.slice(0,10).map(this.renderRelatedSong)
+      const filteredRelatedSongs = this.props.relatedSongs.filter(relatedSong => relatedSong.id !== this.props.singleSong.id)
+
+      const relatedSongs = filteredRelatedSongs.slice(0,11).map(this.renderRelatedSong)
 
       return (
         <div className="stack">{relatedSongs}</div>
@@ -31,11 +34,7 @@ class RelatedSongs extends Component {
 
 
     render() {
-      // const relatedSongs = this.props.relatedSongs
-      // const relatedSongs = this.props.relatedSongs.map(this.renderRelatedSong)
 
-      // const relatedSongs = this.props.relatedSongs.map(this.renderRelatedSong)
-      // const tagName = this.props.relatedSongs
       return (
             <div className="relatedSongs">
               <div className="relatedSongsContainer">

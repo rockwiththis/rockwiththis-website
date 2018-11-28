@@ -13,6 +13,7 @@
     box-shadow: 0 3px 2px -2px #C9C6CB;
     padding: 15px;
 
+
     button {
       padding: 6px 15px;
     width: 100%;
@@ -39,7 +40,7 @@
       }
 
     }button:hover {
-      background: #1a6ea9;
+      // background: #1a6ea9;
       text-decoration: none;
       cursor: pointer;
       color: #fff;
@@ -56,6 +57,7 @@
       }
 
     }
+
 }
 
 
@@ -100,6 +102,43 @@
     display: inline-block;
   }
 }
+@media (max-width: 800px) {
+
+  .filters-bar .ToggleViewsDropDown .mobile {
+    display: inline-block;
+    padding: 6px 15px 35px;
+    border: 0 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    width: 33.3% !important;
+    position: relative;
+    z-index: 10;
+
+      color: rgba(0,0,0,0) !important;
+  }
+
+  .filters-bar .ToggleViewsDropDown .mobile:nth-of-type(1).active + .svg-container .fake-button:nth-of-type(1) {
+   background: #1a6ea9;
+
+  }
+
+  .fake-button {
+    width: 33.3%;
+    display: inline-block;
+    text-align: center;
+    height: 100%;
+    z-index: 9;
+    position: relative;
+
+
+    span {
+      display: block;
+    }
+}
+
+
+
+}
 
 
 
@@ -111,7 +150,7 @@
 
 // DROPDOWN FILTER TAG STYLES
 .SubgenreFiltersDropDown {
-  max-width: 400px !important;
+  // max-width: 400px !important;
   .tag {
     font-family: 'Baloo', cursive;
       margin: 5px;
@@ -154,7 +193,13 @@ button.large-bottom.tag {
   .SubgenreFiltersDropDown {
     max-width: 100% !important;
     left: 0 !important;
+
+    button.large-bottom.tag {
+    font-size: 14px;
 }
+}
+
+
 }
 
 
@@ -212,7 +257,7 @@ ul.toggleContainer {
   font-size: 12px;
   border: 1px solid #1a6ea9 !important;
   border-radius: 4px;
-  padding: 10px;
+  padding: 12px;
   color: #1a6ea9;
   transition: all .3s ease;
   vertical-align: top;
@@ -249,37 +294,60 @@ display: none !important;
 button.clearButton {
 border: 1px solid #1a6ea9 !important;
 border-radius: 4px;
-padding: 10px;
+padding: 12px;
 color: #1a6ea9;
 margin-left: 15px;
 }
 button.clearButton:hover {
 border: 1px solid #1a6ea9 !important;
 border-radius: 4px;
-padding: 10px;
+padding: 12px;
 color: #fff !important;
 background: #1a6ea9;
 cursor: pointer;
 }
 
 
-
+.ToggleViewsDropdown {
+  .svg-container {
+    display: none;
+}
+}
 
 @media (max-width: 800px) {
-  .ToggleViewsDropDown {
-      width: 100%;
-      left: 0;
-      right: 0;
-      max-width: calc(100vw - 30px) !important;
 
-     button.mobile {
-    display: inline-block;
-    width: 23% !important;
-    text-align: center !important;
-    margin-right: 5%;
-    margin-left: 5%;
-}
-  }
+   .discovery-section {
+     .ToggleViewsDropDown {
+         width: 100%;
+         left: 0;
+         right: 0;
+         max-width: calc(100vw - 30px) !important;
+         height: 35px;
+
+        button.mobile {
+          // background: #1a6ea9;
+       color: #fff !important;
+       height: 100%;
+       width: 100% !important;
+       position: absolute;
+       left: 0;
+       right: 0;
+       top: 0;
+       bottom: 0;
+       max-width: none;
+       width: 100%;
+   }
+
+       .svg-container {
+           position: absolute;
+           top: 0;
+           bottom: 0;
+           right: 0;
+           left: 0;
+       }
+     }
+   }
+
 
   .discovery-section .selectedFilters {
     display: none !important;
@@ -300,12 +368,12 @@ cursor: pointer;
     // width: calc(100% - 300px);
     width: auto;
     overflow: hidden;
-    height: 40px !important;
+    // height: 40px !important;
 
     button.clearButton {
       border: 1px solid #1a6ea9 !important;
       border-radius: 4px;
-      padding: 10px;
+      padding: 12px;
       color: #1a6ea9;
       margin-left: 0px;
       margin-right: 10px;
@@ -313,7 +381,7 @@ cursor: pointer;
     button.clearButton {
       border: 1px solid #1a6ea9 !important;
       border-radius: 4px;
-      padding: 10px;
+      padding: 12px;
       color: #1a6ea9;
       margin-left: 0px;
       margin-right: 10px;
@@ -357,10 +425,20 @@ a.viewButton {
     vertical-align: top;
     transform: translateY(-13px);
     // border: 1px solid black;
-    color: rgba(255,255,255,0) !important;
+    // color: rgba(255,255,255,0) !important;
+    font-size: 10px;
     position: relative;
     z-index: 6;
     cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    span {
+      transform: translateY(33px);
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+  }
 }
 
 a.viewButton:hover + svg path {
@@ -372,7 +450,8 @@ a.viewButton svg path {
 }
 
 .ToggleViewsWrapper svg {
-    transform: translateX(-135%);
+    // transform: translateX(-135%);
+    transform: translate(-127%, -6px);
     z-index: 5;
     position: relative;
 }
@@ -382,5 +461,279 @@ a.viewButton svg path {
 .ToggleViewsWrapper svg.active path {
     fill: #1a6ea9;
 }
+// .ToggleViewsWrapper svg.active + .viewButton span {
+//     color: #1a6ea9;
+// }
 
+}
+
+
+
+
+@media (max-width: 800px)  {
+  .discovery-section .fixedFiltersBar {
+      position: fixed;
+      top: 50px !important;
+          // background: linear-gradient(to right, #1e0c49, #0097d5) !important;
+          box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+          border-left: 0px !important;
+
+          button.filters-button {
+            border: 1px solid #1a6ea9 !important;
+            color: #1a6ea9;
+          }
+          button.toggle-views-button  {
+            border: 1px solid #1a6ea9 !important;
+            color: #1a6ea9;
+          }
+  }
+}
+
+
+
+.ToggleViewsDropDown {
+  .mobile.active + svg, .mobile.active ~ span {
+    fill: #1a6ea9;
+    color: #1a6ea9 !important;
+  }
+}
+.ToggleViewsDropDown {
+  .mobile ~ span {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+.ToggleViewsDropDown {
+  .mobile:hover + svg, .mobile:hover ~ span {
+    fill: #1a6ea9;
+    color: #1a6ea9 !important;
+  }
+}
+
+.filters-bar {
+  width: 100%;
+  height: 70px;
+  background: #fff !important;
+  position: relative;
+  padding: 0px;
+  max-width: 1685px;
+
+  border-bottom: 1px solid #C9C6CB;
+  border-left: 1px solid #C9C6CB;
+  border-right: 1px solid #C9C6CB;
+  // border-top: 1px solid #C9C6CB;
+  // box-shadow: 0 3px 2px -2px #C9C6CB;
+  z-index: 100;
+
+  .filters-bar-content {
+    padding: 0 35px;
+    position: relative;
+    height: 100%;
+  }
+
+  .SubgenreFiltersDropDown {
+    position: absolute;
+    border: 1px solid #C9C6CB;
+    border-top: 0;
+    left: 30px;
+    background: #fff;
+    z-index: 1000;
+    // max-width: 300px;
+
+    top: 70px;
+    border-radius: 4px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    box-shadow: 0 3px 2px -2px #C9C6CB;
+    max-height: 0;
+    overflow: hidden;
+    transition: .2s ease all;
+
+    .closeDropdown {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      cursor: pointer;
+      transition: all .3s ease;
+
+      i.im.im-x-mark {
+          font-size: 20px;
+          color: #1a6ea9;
+      }
+    }
+
+      .closeDropdown:hover {
+        opacity: .8;
+      }
+    .dropdown-internal {
+      padding: 30px 15px 15px 15px;
+      // text-align: center;
+
+    }
+    &.expand {
+      max-height: none;
+
+    }
+  }
+
+
+
+  button.toggle-views-button {
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid #1a6ea9 !important;
+  border-radius: 4px;
+  padding: 10px;
+  color: #1a6ea9;
+  transition: all .3s ease;
+  vertical-align: top;
+  margin-top: 20px;
+  margin-left: 0px;
+  position: absolute;
+  right: 35px;
+
+      i.im.im-angle-down {
+      font-size: 12px;
+      -webkit-transform: translateY(2px);
+      -ms-transform: translateY(2px);
+      transform: translateY(2px);
+      margin-left: 10px;
+  }
+}
+  button.toggle-views-button:hover {
+  border: 1px solid #1a6ea9 !important;
+  background: #1a6ea9 !important;
+  color: #fff;
+  cursor: pointer;
+
+      i.im.im-angle-down {
+      font-size: 12px;
+      -webkit-transform: translateY(2px);
+      -ms-transform: translateY(2px);
+      transform: translateY(2px);
+      margin-left: 10px;
+  }
+}
+
+  button.filters-button {
+    display: inline-block;
+    font-size: 14px;
+    border: 1px solid #1a6ea9 !important;
+    border-radius: 4px;
+    padding: 8px;
+    color: #1a6ea9;
+    transition: all .3s ease;
+    vertical-align: top;
+    margin-top: 20px;
+    margin-left: 0px;
+    background: #fff;
+  }
+
+  button.filters-button:hover {
+  border: 1px solid #1a6ea9 !important;
+  background: #1a6ea9 !important;
+  color: #fff;
+  transition: all .3s ease;
+  cursor: pointer;
+  }
+
+  .search-wrapper {
+    float: none;
+      display: inline-block;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 200px;
+      input {
+        height: 25px;
+        width: 200px;
+
+      }
+  }
+}
+
+
+.selectedFilters {
+  display: inline-block;
+  margin-left: 50px;
+  vertical-align: top;
+  margin-top: 20px;
+
+  .tag {
+    margin: 0 2px;
+font-size: 14px;
+border-radius: 6px;
+transition: all .2s ease;
+color: #fff;
+background: #1a6ea9;
+border: 1px solid #1a6ea9;
+cursor: pointer;
+letter-spacing: 1px;
+box-shadow: 0 3px 2px -2px #C9C6CB;
+padding: 6px;
+font-family: 'Baloo', cursive;
+}
+}
+
+
+
+
+
+// FILTER DROP DOWN RESPONSIVE
+
+@media (min-width: 800px) {
+  .discovery-section .filters-bar .SubgenreFiltersDropDown {
+      height: calc(100vh - 225px);
+      width: calc(38vw - 30px);
+
+      .tag {
+      font-size: 16px !important;
+      margin: 8px;
+      letter-spacing: 1px;
+  }
+
+      .bottom-buttons {
+        position: absolute;
+        bottom: 15px;
+      }
+  }
+}
+
+
+@media (min-width: 800px) and (max-width: 1415px) {
+  .discovery-section .filters-bar .SubgenreFiltersDropDown {
+      .tag {
+      font-size: 14px !important;
+      margin: 6px;
+      letter-spacing: 1px;
+  }
+
+  }
+}
+@media (min-width: 800px) and (max-width: 1175px) {
+  .discovery-section .filters-bar .SubgenreFiltersDropDown {
+
+    height: calc(100vh - 225px);
+    width: calc(45vw - 30px);
+      .tag {
+      font-size: 12px !important;
+      margin: 6px;
+      letter-spacing: 1px;
+  }
+
+  }
+}
+@media (min-width: 800px) and (max-width: 1000px) {
+  .discovery-section .filters-bar .SubgenreFiltersDropDown {
+
+    height: calc(100vh - 225px);
+    width: 500px;
+      .tag {
+      font-size: 14px !important;
+      margin: 6px;
+      letter-spacing: 1px;
+  }
+
+  }
 }

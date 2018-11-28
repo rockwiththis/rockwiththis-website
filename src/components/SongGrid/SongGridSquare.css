@@ -1,3 +1,8 @@
+.imageHover {
+  border: 2px solid #fff;
+  border-top: 4px solid #fff;
+  border-bottom: 4px solid #fff; }
+
 .imageHover .tagWrapper {
   height: 100%;
   width: 100%;
@@ -23,4 +28,7 @@
       line-height: 18px; }
 
 .activeDiscoverFullSong .tagWrapper {
+  display: none; }
+
+.songGrid .tagWrapper .postTags span.grid-tag:nth-of-type(3), .songGrid .tagWrapper .postTags span.grid-tag:nth-of-type(4), .songGrid .tagWrapper .postTags span.grid-tag:nth-of-type(5) {
   display: none; }

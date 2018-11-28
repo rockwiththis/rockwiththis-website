@@ -1,3 +1,7 @@
+@media (min-width: 800px) {
+  .singleSongPage {
+    padding: 0 35px; } }
+
 .singleSongPage .singleSongContainer {
   width: 85%;
   display: inline-block; }
@@ -46,6 +50,9 @@
       .singleSongPage .singleSongContainer .songContainer .postContent .player-button img {
         width: 60px;
         height: 60px; }
+      .singleSongPage .singleSongContainer .songContainer .postContent .player-button svg {
+        width: 60px !important;
+        height: 60px !important; }
     .singleSongPage .singleSongContainer .songContainer .postContent .singleSongInfo {
       width: auto;
       display: inline-block;

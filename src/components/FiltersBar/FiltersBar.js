@@ -201,16 +201,16 @@ class FiltersBar extends Component {
               <button onClick={this.showToggleViewsDropdown} className="toggle-views-button ">Toggle Views <i class="im im-angle-down"></i></button>
               <div className="ToggleViewsWrapper">
               <a className="viewButton" name='expanded' onClick={this.changeGridView}>
-                Full
+                <span>Full</span>
               </a>
               <svg className={`viewIcon ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/></svg>
 
               <a className="viewButton" name='snapshot' onClick={this.changeGridView}>
-              Snap
+              <span>Snap</span>
               </a>
               <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
               <a className="viewButton" name='fullGrid' onClick={this.changeGridView}>
-              Grid
+              <span>Grid</span>
               </a>
               <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
 
@@ -248,10 +248,32 @@ class FiltersBar extends Component {
                       this.ToggleViewsDropDown = element;
                     }}
                     >
+
+
+
+                    <div className="fake-button">
                     <button className={`mobile ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} name='expanded' onClick={this.changeGridView}>Full</button>
+                    <svg className={`viewIcon ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/></svg>
+                    <span>Full</span>
+                    </div>
+                    <div className="fake-button">
                     <button className={`mobile ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} name='snapshot' onClick={this.changeGridView}>Snap</button>
+                    <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
+                    <span>Snap</span>
+
+                    </div>
+                    <div className="fake-button">
                     <button className={`mobile ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} name='fullGrid' onClick={this.changeGridView}>Grid</button>
-                  </div>
+
+                    <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
+                    <span>Grid</span>
+
+                    </div>
+
+
+
+                    </div>
+
                 )
                 : (
                   null

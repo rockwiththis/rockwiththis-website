@@ -12,6 +12,8 @@
   display: inline-block;
   vertical-align: top;
   float: right; }
+  .singleSongPage .relatedSongs .songContainer:nth-of-type(11) {
+    display: none; }
 
 .relatedSongsContainer .stack {
   width: 100%;

@@ -25,6 +25,21 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background: #FF0000; }
 
+#discover {
+  position: relative; }
+
+img.discover-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 499;
+  width: 101%;
+  opacity: .8;
+  display: none;
+  max-height: calc(100vh - 135px); }
+
 .pause-main {
   width: 35px;
   height: 35px; }
@@ -52,17 +67,18 @@ body {
 .songsContainer {
   background: #fff; }
 
-.carousel-wrapper {
-  margin-left: 30px;
-  margin-right: 30px; }
-
-.carousel.carousel-slider {
+.discover-full-song .carousel.carousel-slider {
   overflow: visible; }
-  .carousel.carousel-slider .slide {
+  .discover-full-song .carousel.carousel-slider .slide {
     background: transparent;
     padding: 0 3 px; }
-  .carousel.carousel-slider .slide.selected + .slide {
+  .discover-full-song .carousel.carousel-slider .slide.selected + .slide {
     opacity: 0; }
+
+.songGrid .carousel.carousel-slider {
+  overflow: visible; }
+  .songGrid .carousel.carousel-slider .slide {
+    background: transparent; }
 
 p {
   margin: 0; }
@@ -133,131 +149,9 @@ p {
     .discovery-section .songList {
       overflow: visible !important; } }
 
-.discovery-section .selectedFilters {
-  display: inline-block;
-  margin-left: 50px;
-  vertical-align: top;
-  margin-top: 20px; }
-  .discovery-section .selectedFilters .tag {
-    margin: 0 2px;
-    font-size: 12px;
-    border-radius: 6px;
-    transition: all .2s ease;
-    color: #fff;
-    background: #1a6ea9;
-    border: 1px solid #1a6ea9;
-    cursor: pointer;
-    letter-spacing: .7px;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    padding: 8px; }
-
-.discovery-section .filters-bar {
-  width: 100%;
-  height: 70px;
-  background: #fff !important;
-  position: relative;
-  padding: 0px;
-  max-width: 1685px;
-  border-bottom: 1px solid #C9C6CB;
-  border-left: 1px solid #C9C6CB;
-  border-right: 1px solid #C9C6CB;
-  z-index: 100; }
-  .discovery-section .filters-bar .filters-bar-content {
-    padding: 0 35px;
-    position: relative; }
-  .discovery-section .filters-bar .SubgenreFiltersDropDown {
-    position: absolute;
-    border: 1px solid #C9C6CB;
-    border-top: 0;
-    left: 15px;
-    background: #fff;
-    z-index: 1000;
-    max-width: 300px;
-    top: 70px;
-    border-radius: 4px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    max-height: 0;
-    overflow: hidden;
-    transition: .2s ease all; }
-    .discovery-section .filters-bar .SubgenreFiltersDropDown .closeDropdown {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      cursor: pointer;
-      transition: all .3s ease; }
-      .discovery-section .filters-bar .SubgenreFiltersDropDown .closeDropdown i.im.im-x-mark {
-        font-size: 20px;
-        color: #1a6ea9; }
-    .discovery-section .filters-bar .SubgenreFiltersDropDown .closeDropdown:hover {
-      opacity: .8; }
-    .discovery-section .filters-bar .SubgenreFiltersDropDown .dropdown-internal {
-      padding: 15px; }
-    .discovery-section .filters-bar .SubgenreFiltersDropDown.expand {
-      max-height: none; }
-  .discovery-section .filters-bar button.toggle-views-button {
-    display: inline-block;
-    font-size: 12px;
-    border: 1px solid #1a6ea9 !important;
-    border-radius: 4px;
-    padding: 10px;
-    color: #1a6ea9;
-    transition: all .3s ease;
-    vertical-align: top;
-    margin-top: 20px;
-    margin-left: 0px;
-    position: absolute;
-    right: 35px; }
-    .discovery-section .filters-bar button.toggle-views-button i.im.im-angle-down {
-      font-size: 12px;
-      -webkit-transform: translateY(2px);
-      -ms-transform: translateY(2px);
-      transform: translateY(2px);
-      margin-left: 10px; }
-  .discovery-section .filters-bar button.toggle-views-button:hover {
-    border: 1px solid #1a6ea9 !important;
-    background: #1a6ea9 !important;
-    color: #fff;
-    cursor: pointer; }
-    .discovery-section .filters-bar button.toggle-views-button:hover i.im.im-angle-down {
-      font-size: 12px;
-      -webkit-transform: translateY(2px);
-      -ms-transform: translateY(2px);
-      transform: translateY(2px);
-      margin-left: 10px; }
-  .discovery-section .filters-bar button.filters-button {
-    display: inline-block;
-    font-size: 14px;
-    border: 1px solid #1a6ea9 !important;
-    border-radius: 4px;
-    padding: 8px;
-    color: #1a6ea9;
-    transition: all .3s ease;
-    vertical-align: top;
-    margin-top: 20px;
-    margin-left: 0px;
-    background: #fff; }
-  .discovery-section .filters-bar button.filters-button:hover {
-    border: 1px solid #1a6ea9 !important;
-    background: #1a6ea9 !important;
-    color: #fff;
-    transition: all .3s ease;
-    cursor: pointer; }
-  .discovery-section .filters-bar .search-wrapper {
-    float: none;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 200px; }
-    .discovery-section .filters-bar .search-wrapper input {
-      height: 25px;
-      width: 200px; }
-
 .discovery-section .songGrid {
-  width: calc(40% - 50px);
-  width: calc(39% - 50px);
+  height: calc(38vw - 30px);
+  width: calc(38vw - 30px);
   padding: 25px;
   display: inline-block;
   vertical-align: top; }
@@ -542,8 +436,8 @@ a.spotifyLink {
     margin: 0 auto;
     overflow: auto; }
     .discovery-container .songGrid {
-      width: calc(40% - 35px);
-      width: calc(39% - 35px);
+      height: calc(38vw - 30px);
+      width: calc(38vw - 30px);
       display: inline-block;
       max-height: 674px;
       padding: 0px;
@@ -556,8 +450,8 @@ a.spotifyLink {
       .discovery-container .songGrid button.toggle-song {
         display: none; }
       .discovery-container .songGrid .grid-container-wrapper {
-        height: calc(40vw - 30px);
-        width: calc(40vw - 30px);
+        height: calc(38vw - 30px);
+        width: calc(38vw - 30px);
         overflow: hidden;
         white-space: nowrap; }
       .discovery-container .songGrid .grid-container {
@@ -585,17 +479,17 @@ a.spotifyLink {
         margin-right: 2.5px;
         height: 8px;
         width: 8px;
-        background-color: #D8D8D8;
+        background-color: #282828;
         border-radius: 50%; }
         .discovery-container .songGrid .pagination-dot-small i {
-          color: #D8D8D8; }
+          color: #282828; }
       .discovery-container .songGrid .pagination-dot {
         right: 0;
         top: 0;
         margin-left: 5px;
         margin-right: 5px; }
         .discovery-container .songGrid .pagination-dot i {
-          color: #D8D8D8; }
+          color: #282828; }
         .discovery-container .songGrid .pagination-dot i.active {
           color: #4A90E2; }
       .discovery-container .songGrid .pagination-dot-active i {
@@ -620,11 +514,12 @@ a.spotifyLink {
             opacity: 1;
             cursor: pointer; }
     .discovery-container .discover-full-song {
-      width: calc(56% - 0px);
+      width: calc(57% - 0px);
       display: inline-block;
       height: auto;
       margin: 0 auto;
-      margin-left: 30px;
+      margin-left: 35px;
+      margin-right: 35px;
       position: relative;
       margin-top: 20px;
       padding-bottom: 35px; }
@@ -770,6 +665,14 @@ a.spotifyLink {
           display: none; }
   .disableScroll {
     overflow: hidden !important; } }
+
+@media (min-width: 1250px) and (max-width: 1500px) {
+  .discovery-container .discover-full-song {
+    width: calc(56% - 0px); } }
+
+@media (min-width: 800px) and (max-width: 1249px) {
+  .discovery-container .discover-full-song {
+    width: calc(55% - 0px); } }
 
 .songDescription {
   font-family: 'Open-Sans', sans-serif;
@@ -1619,8 +1522,6 @@ img.hands1 {
     width: calc(30% - 35px);
     max-height: none; }
   .discovery-container .songGrid .grid-container-wrapper {
-    overflow: scroll;
-    white-space: nowrap;
     height: auto;
     width: 100% !important; }
   .discovery-container .discover-full-song {
@@ -1711,6 +1612,8 @@ img.hands1 {
     line-height: 20px !important;
     border: none !important;
     background: none !important; }
+  .discovery-container.fullGridLayout .songContainer .hover-content .hover-tag:nth-of-type(3), .discovery-container.fullGridLayout .songContainer .hover-content .hover-tag:nth-of-type(4), .discovery-container.fullGridLayout .songContainer .hover-content .hover-tag:nth-of-type(5) {
+    display: none !important; }
 
 .discovery-container.fullGridLayout .songContainer .heroHoverGradient {
   display: inline-block;
@@ -2343,7 +2246,6 @@ form.rwt-email-form button {
       left: 15px;
       background: #fff;
       z-index: 1000;
-      max-width: 300px;
       top: 50px;
       border-radius: 4px;
       border-top-right-radius: 0px;
@@ -2359,33 +2261,8 @@ form.rwt-email-form button {
       background: #fff !important;
       max-width: 100% !important;
       border-radius: 0px !important; }
-      .discovery-section .filters-bar .ToggleViewsDropDown button.mobile {
-        display: inline-block;
-        width: 23% !important;
-        text-align: center !important;
-        margin-right: 5%;
-        margin-left: 5%;
-        margin-bottom: 0 !important;
-        background: #fff;
-        font-size: 12px; }
-      .discovery-section .filters-bar .ToggleViewsDropDown button.mobile:hover {
-        background: #1a6ea9; }
   .headerContainer {
     box-shadow: none !important; }
-  .discovery-section .fixedFiltersBar {
-    position: fixed;
-    top: 50px !important;
-    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    border-left: 0px !important; }
-    .discovery-section .fixedFiltersBar button.filters-button {
-      border: 1px solid #1a6ea9 !important;
-      color: #1a6ea9; }
-    .discovery-section .fixedFiltersBar button.toggle-views-button {
-      border: 1px solid #1a6ea9 !important;
-      color: #1a6ea9; }
-    .discovery-section .fixedFiltersBar .ToggleViewsDropDown .mobile.active {
-      background: #1a6ea9;
-      color: #fff !important; }
   .footer-player {
     padding-bottom: 5px !important; }
     .footer-player .songSourceContainer {
@@ -2408,10 +2285,10 @@ form.rwt-email-form button {
 
 @media (max-width: 800px) {
   div#discovery-container {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 0px);
     overflow: scroll; }
   div#discovery-container.disableScroll {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 0px);
     overflow: visible !important; } }
 
 @media (min-width: 800px) and (max-width: 1200px) {

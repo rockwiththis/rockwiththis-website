@@ -5,6 +5,7 @@ import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from '
 
 import desktopLogo from 'images/logo-desktop.png'
 import mobileLogo from 'images/logo-mobile.png'
+import NavLeftNotHome from './NavLeftNotHome.js'
 
 import './Header.scss'
 
@@ -65,7 +66,6 @@ class Header extends Component {
         return (
             <div className={`headerContainer shrunk ${location.pathname == "/submit" ? 'submit' : ''}`}>
               <div className="content-wrapper">
-
                   {   location.pathname == "/" ?
                   <div className="nav-left">
                   <Link className={`nav-link nav-week ${this.state.thisWeek ? 'active' : ''}`} onClick={this.scrollToTop} to="/" >This Week</Link>
@@ -76,12 +76,10 @@ class Header extends Component {
                   </div>
 
                     :
-                    <div className="nav-left">
-                      <NavLink className="nav-link" to="/" activeClassName='none'>HOME</NavLink>
-                    </div>
 
+                    <NavLeftNotHome />
 
-                  }
+                    }
 
               {   location.pathname == "/" ?
 

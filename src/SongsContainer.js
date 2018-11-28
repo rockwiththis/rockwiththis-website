@@ -14,6 +14,7 @@ import Song from 'components/Song/Song'
 import ShareBox from 'components/ShareBox/ShareBox'
 import FiltersBar from 'components/FiltersBar/FiltersBar'
 import LoadingComponent from 'components/Loading/LoadingComponent'
+import black from 'images/black.jpg'
 import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlaceholder'
 import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
@@ -274,6 +275,8 @@ class SongsContainer extends Component {
                 />
 
               <div id="discover" className="discovery-section">
+              <img className="discover-cover" src={black} />
+
                 <Element >
                   <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
                 </Element>
@@ -381,7 +384,7 @@ class SongsContainer extends Component {
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
         )
     }
 }

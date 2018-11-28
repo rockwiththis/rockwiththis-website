@@ -1,4 +1,10 @@
 
+@media (min-width: 800px) {
+  .singleSongPage {
+    padding: 0 35px;
+  }
+}
+
 .singleSongPage {
   .singleSongContainer {
     width: 85%;
@@ -71,6 +77,10 @@
               img {
                 width: 60px;
                 height: 60px;
+              }
+              svg {
+                width: 60px !important;
+                height: 60px !important;
               }
           }
 
@@ -241,6 +251,7 @@ position: relative;
                   height: 50px;
                   text-align: center;
                 }
+
             }
           }
     }

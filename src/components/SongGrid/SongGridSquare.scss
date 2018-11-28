@@ -1,7 +1,19 @@
+.imageHover {
+    border: 2px solid #fff;
+    border-top: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+}
+
 .imageHover .tagWrapper {
     height: 100%;
     width: 100%;
     position: absolute;
+    // height: calc(100% - 0px);
+    // width: calc(100% - 0px);
+    // position: absolute;
+    // border: 2px solid #fff;
+    // border-top: 4px solid #fff;
+    // border-bottom: 4px solid #fff;
 
     .postTags {
       display: inline-block;
@@ -31,5 +43,14 @@
 .activeDiscoverFullSong {
   .tagWrapper {
     display: none;
+  }
+}
+.songGrid {
+  .tagWrapper {
+    .postTags {
+      span.grid-tag:nth-of-type(3), span.grid-tag:nth-of-type(4), span.grid-tag:nth-of-type(5) {
+          display: none;
+      }
+    }
   }
 }
