@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Slider from 'rc-slider'
-
+import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css'
-
 import { toggleSong, togglePlayPause } from 'actions/queue'
 import OffScreen from 'components/OffScreenPlayer/OffScreen'
 
@@ -66,7 +65,8 @@ class MainPlayer extends Component {
         const { activeSong } = this.props
 
         return (
-            <div className="player-info">
+          <div>
+            <div className="player-info player-info-desktop">
                 <div className="player-info-image-wrapper">
                     <div className="player-image">
                         <Link className="songImageLink" to={`/songs/${activeSong.id}`}>
@@ -81,6 +81,21 @@ class MainPlayer extends Component {
                   <span className="artist-title">{activeSong.artist_name}</span>
                 </p>
             </div>
+
+            <div className="tappable-section">
+              <div className="player-info player-info-mobile">
+                    <div className="expand-arrow">
+                        <svg className="expand-arrow" width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
+                    </div>
+                <p className="artist-info">
+                        <span className="song-title">{activeSong.name}</span>
+                 <br />
+                 <i className="fas fa-circle"></i>
+                  <span className="artist-title">{activeSong.artist_name}</span>
+                </p>
+              </div>
+            </div>
+        </div>
         )
     }
 
@@ -184,19 +199,19 @@ class MainPlayer extends Component {
 
         return (
             <footer>
-                <div className="footer-player">
-                    {this.renderInfo()}
-                    <div className="player-controls-wrapper">
-                        {this.renderButtons()}
-                    </div>
-                    {this.renderShareButtons()}
-                </div>
-                <OffScreen
-                  {...this.props}
-                  changeSongOnEnd={this.changeSongOnEnd}
-                  ref={(e) => {
-                    this.offScreen = e;
-                  }} />
+                  <div className="footer-player">
+                      {this.renderInfo()}
+                      <div className="player-controls-wrapper">
+                          {this.renderButtons()}
+                      </div>
+                      {this.renderShareButtons()}
+                  </div>
+                  <OffScreen
+                    {...this.props}
+                    changeSongOnEnd={this.changeSongOnEnd}
+                    ref={(e) => {
+                      this.offScreen = e;
+                    }} />
             </footer>
         )
     }

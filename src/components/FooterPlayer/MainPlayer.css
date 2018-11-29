@@ -1,4 +1,4 @@
-@media screen and (max-width: 600px) {
+@media (min-width: 480px) and (max-width: 600px) {
   .footer-player .artist-info {
     float: left;
     margin-left: 0px;
@@ -53,7 +53,7 @@
   background: #0097d5 !important; }
 
 /*MainPlayer*/
-@media (max-width: 1000px) {
+@media (min-width: 480px) and (max-width: 1000px) {
   .rc-slider .rc-slider-track {
     height: 5px !important;
     /* background-color: #975de8 !important; */
@@ -243,23 +243,22 @@
   font-family: Open Sans;
   letter-spacing: 2px; }
 
-.player-controls-buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 5px; }
-
-.player-controls {
-  display: flex;
-  flex: 0 0 550px;
-  flex-direction: column;
-  height: inherit;
-  justify-content: center;
-  margin-right: auto; }
-
-.player-controls-wrapper {
-  display: flex;
-  flex: 1 1 550px; }
+@media (min-width: 480px) {
+  .player-controls-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px; }
+  .player-controls {
+    display: flex;
+    flex: 0 0 550px;
+    flex-direction: column;
+    height: inherit;
+    justify-content: center;
+    margin-right: auto; }
+  .player-controls-wrapper {
+    display: flex;
+    flex: 1 1 550px; } }
 
 @media (min-width: 800px) {
   .footer-player {
@@ -372,7 +371,7 @@ footer .songSourceContainer {
   position: absolute;
   right: 0; }
 
-@media (min-width: 650px) {
+@media (min-width: 480px) and (min-width: 650px) {
   footer .songSourceContainer {
     top: 50%;
     transform: translateY(-50%);
@@ -405,7 +404,7 @@ footer .songSourceContainer .source.youtube :hover {
   .player-controls-wrapper {
     margin-right: 150px !important; } }
 
-@media (max-width: 650px) {
+@media (min-width: 480px) and (max-width: 650px) {
   .player-info {
     -webkit-box-flex: 1 !important;
     -ms-flex: 1 !important;
@@ -434,3 +433,101 @@ footer .songSourceContainer .source.youtube :hover {
 @media (max-width: 800px) {
   #player-control-button-next, #player-control-button-back {
     display: none; } }
+
+.player-info-mobile {
+  display: none; }
+
+@media (max-width: 480px) {
+  .footer-player {
+    position: relative;
+    height: 40px !important; }
+    .footer-player .tappable-section {
+      width: calc(100% - 80px);
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      height: 40px;
+      left: 0; }
+      .footer-player .tappable-section .artist-info {
+        height: 40px !important;
+        float: none;
+        position: absolute;
+        left: 40px;
+        top: 0;
+        max-width: none;
+        width: calc(100% - 40px);
+        text-align: center;
+        padding-top: 10px; }
+        .footer-player .tappable-section .artist-info i.fas.fa-circle {
+          font-size: 5px;
+          margin: 4px;
+          transform: translateY(-2.5px); }
+        .footer-player .tappable-section .artist-info br {
+          display: none; }
+        .footer-player .tappable-section .artist-info span.song-title, .footer-player .tappable-section .artist-info .artist-title {
+          font-size: 14px;
+          line-height: 14px; }
+      .footer-player .tappable-section .expand-arrow {
+        fill: #fff;
+        height: 40px;
+        width: 40px;
+        position: absolute;
+        padding-top: 3px;
+        padding-left: 5px; }
+    .footer-player .player-controls-wrapper {
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 40px;
+      top: 0;
+      height: 40px;
+      margin-right: 10px; }
+      .footer-player .player-controls-wrapper #player-control-button-play {
+        display: block;
+        margin: 0; }
+    .footer-player .player-info-image-wrapper img {
+      height: 40px !important;
+      width: 40px !important;
+      margin-top: 12.5px !important;
+      border: 0px solid #fff !important; }
+    .footer-player .artist-info {
+      height: 40px !important;
+      max-width: none !important; }
+      .footer-player .artist-info a.songImageLink {
+        margin-bottom: 0 !important; }
+        .footer-player .artist-info a.songImageLink span {
+          display: inline-block;
+          font-size: 16px !important;
+          line-height: 20px !important; }
+      .footer-player .artist-info span.artist-title {
+        font-size: 16px;
+        line-height: 20px !important;
+        display: inline-block;
+        margin: 0 !important;
+        font-weight: 100px !important;
+        color: #fafafa !important; }
+    .footer-player .player-control-button svg, .footer-player .player-control-button img {
+      margin-top: 6px !important;
+      height: 30px !important;
+      width: 30px !important; }
+    .footer-player .songSourceContainer {
+      padding-top: 0 !important; }
+      .footer-player .songSourceContainer svg {
+        fill: #b0b0b0 !important; }
+  .footer-player .songSourceContainer {
+    display: none; }
+  .rc-slider .rc-slider-handle {
+    display: none !important; }
+  .player-controls-wrapper {
+    display: block; }
+    .player-controls-wrapper .player-controls {
+      display: block; }
+      .player-controls-wrapper .player-controls .player-controls-buttons {
+        display: block; }
+        .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play {
+          display: block; }
+  .player-info-mobile {
+    display: block !important;
+    height: 40px; }
+  .player-info-desktop {
+    display: none !important; } }

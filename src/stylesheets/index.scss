@@ -81,6 +81,11 @@ background: #fff;
     padding-top: 100px !important;
   }
 }
+@media(max-width: 800px) {
+  .fixedFiltersBarPadding {
+    padding-top: 105px !important;
+  }
+}
 
 
 body {
@@ -3701,50 +3706,7 @@ width: 800px;
       top: 50px;
   }
 
-  .footer-player {
-      height: 50px !important;
 
-      .player-info-image-wrapper img {
-      height: 40px !important;
-      width: 40px !important;
-      margin-top: 12.5px !important;
-      border: 0px solid #fff !important;
-      }
-
-      .artist-info {
-        height: 40px !important;
-        a.songImageLink {
-            margin-bottom: 0 !important;
-            span {
-              display: inline-block;
-              font-size: 16px !important;
-              line-height: 20px !important;
-            }
-        }
-        span.artist-title {
-            font-size: 16px;
-            line-height: 20px !important;
-            display: inline-block;
-            margin: 0 !important;
-            font-weight: 100px !important;
-            color: #fafafa !important;
-        }
-      }
-      .player-control-button svg, .player-control-button img {
-      margin-top: 6px !important;
-      height: 30px !important;
-      width: 30px !important;
-  }
-
-  .songSourceContainer {
-
-      padding-top: 0 !important;
-
-      svg {
-        fill: #b0b0b0 !important;
-      }
-  }
-  }
 
   .homeContainer .hero-posts {
       top: 90px;

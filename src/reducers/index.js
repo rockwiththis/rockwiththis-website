@@ -13,6 +13,7 @@ export const INITIAL_STATE = {
   shrinkHeader: false,
   isPlaying: false,
   discoverLayout: 'expanded',
+  fullHeightPlayer: false,
   activeSong: {
     better_featured_image: '',
     acf: {}

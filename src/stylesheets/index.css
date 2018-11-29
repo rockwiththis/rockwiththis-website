@@ -61,6 +61,10 @@ img.discover-cover {
   .fixedFiltersBarPadding {
     padding-top: 100px !important; } }
 
+@media (max-width: 800px) {
+  .fixedFiltersBarPadding {
+    padding-top: 105px !important; } }
+
 body {
   padding-bottom: 50px !important; }
 
@@ -2194,36 +2198,6 @@ form.rwt-email-form button {
         width: 50px !important; }
   .socialLinks {
     top: 50px; }
-  .footer-player {
-    height: 50px !important; }
-    .footer-player .player-info-image-wrapper img {
-      height: 40px !important;
-      width: 40px !important;
-      margin-top: 12.5px !important;
-      border: 0px solid #fff !important; }
-    .footer-player .artist-info {
-      height: 40px !important; }
-      .footer-player .artist-info a.songImageLink {
-        margin-bottom: 0 !important; }
-        .footer-player .artist-info a.songImageLink span {
-          display: inline-block;
-          font-size: 16px !important;
-          line-height: 20px !important; }
-      .footer-player .artist-info span.artist-title {
-        font-size: 16px;
-        line-height: 20px !important;
-        display: inline-block;
-        margin: 0 !important;
-        font-weight: 100px !important;
-        color: #fafafa !important; }
-    .footer-player .player-control-button svg, .footer-player .player-control-button img {
-      margin-top: 6px !important;
-      height: 30px !important;
-      width: 30px !important; }
-    .footer-player .songSourceContainer {
-      padding-top: 0 !important; }
-      .footer-player .songSourceContainer svg {
-        fill: #b0b0b0 !important; }
   .homeContainer .hero-posts {
     top: 90px; }
   .discovery-section .filters-bar {
