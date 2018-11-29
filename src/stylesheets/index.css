@@ -68,6 +68,9 @@ img.discover-cover {
 body {
   padding-bottom: 50px !important; }
 
+@media (max-width: 480px) {
+  padding-bottom: 40px !important; }
+
 .songsContainer {
   background: #fff; }
 

@@ -92,6 +92,11 @@ body {
   // background: linear-gradient(to right, #1e0c49, #0097d5);
   padding-bottom: 50px !important;
 }
+
+@media(max-width: 480px) {
+  padding-bottom: 40px !important;
+
+}
 .songsContainer {
   background: #fff;
 }
