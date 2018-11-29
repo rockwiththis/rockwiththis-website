@@ -53,7 +53,12 @@
 @media (max-width: 800px) {
   .fixedFiltersBar {
     position: fixed !important;
-    top: 70px; } }
+    top: 75px; } }
+
+@media (max-width: 480px) {
+  .fixedFiltersBar {
+    position: fixed !important;
+    top: 50px; } }
 
 @media (min-width: 800px) {
   .ToggleViewsDropDown .desktop {
@@ -302,7 +307,6 @@ button.clearButton:hover {
 @media (max-width: 800px) {
   .discovery-section .fixedFiltersBar {
     position: fixed;
-    top: 50px !important;
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     border-left: 0px !important; }
     .discovery-section .fixedFiltersBar button.filters-button {

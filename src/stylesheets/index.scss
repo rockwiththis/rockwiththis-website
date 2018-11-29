@@ -85,7 +85,7 @@ background: #fff;
 
 body {
   // background: linear-gradient(to right, #1e0c49, #0097d5);
-  padding-bottom: 75px !important;
+  padding-bottom: 50px !important;
 }
 .songsContainer {
   background: #fff;
@@ -196,7 +196,7 @@ p {
 
 // MOBILE PARALLAX
 
-$discovery-parallax-padding: calc(100vw + 115px);
+$discovery-parallax-padding: calc(100vw + 90px);
 
 @media screen and (max-width: 400px) {
 
@@ -532,7 +532,7 @@ $discovery-parallax-padding: calc(100vw + 115px);
 
                         .tag {
                           margin: 0 5px;
-                          padding: 6px 6px;
+                          padding: 2px;
                           transition: all .3s ease;
                           background: #fff;
                           font-size: 10px;
@@ -577,7 +577,7 @@ $discovery-parallax-padding: calc(100vw + 115px);
             }
 
             .imageContainer {
-                max-height: 130px;
+                // max-height: 130px;
                 display: inline-block;
                 vertical-align: top;
                 padding-right: 5px;
@@ -1129,7 +1129,7 @@ button {
 
 
 
-@media(max-width: 800px) {
+@media(max-width: 400px) {
 
   .fixedFiltersBar + .discovery-container {
         padding-top: 75px;
@@ -1574,6 +1574,8 @@ button {
 
 
 
+
+
 // MOBILE PLAYLIST VIEW
 
 @media only screen and (max-width: 800px) {
@@ -1746,14 +1748,21 @@ button {
         height: auto !important;
         padding: 0 !important;
         margin: 0 !important;
-        max-height: 130px !important;
+        // max-height: 130px !important;
+        height:calc(33vw - 2px) !important;
+
+        .postContent {
+          height:calc(33vw - 2px) !important;
+
+        }
     }
         .songContainer {
         display: inline-block;
         vertical-align: top;
         padding: 0 0;
         margin: 1px;
-        width: calc(33% - 2px);
+        width: calc(33vw - 2px);
+        height: calc(33vw - 2px);
         position: relative;
 
         .goToSongPage {
@@ -1775,13 +1784,13 @@ button {
     }
 
     .imageContainer {
-      max-height: 130px;
+      // max-height: 140px;
       display: inline-block;
       vertical-align: top;
       padding-right: 0px !important;
 
       img {
-          max-height: 130px;
+          // max-height: 140px;
           border-radius: 0 !important;
           margin-left: 0px;
 
@@ -2063,12 +2072,19 @@ button {
   .fullGridLayout .songList {
     text-align: center;
 
-    .songContainer .imageContainer img {
-    border-radius: 4px;
-    max-height: 125px;
-    border-radius: 4px;
-    margin: 0px;
-  }
+    .songContainer .imageContainer {
+      height: 100%;
+      width: 100%;
+
+      img {
+        border-radius: 4px;
+        // max-height: 140px;
+        border-radius: 4px;
+        margin: 0px;
+        height: 100%;
+        width: 100%;
+    }
+    }
   }
 }
 
@@ -3668,7 +3684,7 @@ width: 800px;
 
 // MOBILE ONLY HEADER/FOOTER-STYLES
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
 
   .headerContainer {
     height: 50px !important;
@@ -3735,7 +3751,7 @@ width: 800px;
   }
 
   .discovery-section {
-      margin-top: calc(100vw + 90px);
+      // margin-top: calc(100vw + 90px);
   }
 
 
@@ -3839,7 +3855,6 @@ width: 800px;
   display: none !important;
 }
 
-// SINGLE SONG PAGE
 .singleSongPage.page .singleSongContainer {
     margin-top: 95px !important;
 }
