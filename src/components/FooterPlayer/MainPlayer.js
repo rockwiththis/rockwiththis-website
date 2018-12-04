@@ -65,7 +65,7 @@ class MainPlayer extends Component {
         const { activeSong } = this.props
 
         return (
-          <div>
+          <React.Fragment>
             <div className="player-info player-info-desktop">
                 <div className="player-info-image-wrapper">
                     <div className="player-image">
@@ -95,7 +95,7 @@ class MainPlayer extends Component {
                 </p>
               </div>
             </div>
-        </div>
+        </React.Fragment>
         )
     }
 

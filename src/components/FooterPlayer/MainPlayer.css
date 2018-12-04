@@ -258,7 +258,18 @@
     margin-right: auto; }
   .player-controls-wrapper {
     display: flex;
-    flex: 1 1 550px; } }
+    flex: 1 1 550px; }
+  .player-info {
+    font-size: 15px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0;
+    min-width: 0;
+    padding-right: 0;
+    display: flex; } }
 
 @media (min-width: 800px) {
   .footer-player {
@@ -530,4 +541,8 @@ footer .songSourceContainer .source.youtube :hover {
     display: block !important;
     height: 40px; }
   .player-info-desktop {
+    display: none !important; } }
+
+@media (min-width: 480px) {
+  .tappable-section {
     display: none !important; } }
