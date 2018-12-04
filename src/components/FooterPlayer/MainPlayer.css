@@ -557,7 +557,7 @@ footer .songSourceContainer .source.youtube :hover {
   z-index: 9000; }
 
 .footer-player.fullMobilePlayer {
-  height: 100vh !important;
+  height: 100% !important;
   transition: all .5s ease; }
   .footer-player.fullMobilePlayer .expand-arrow {
     display: none; }
