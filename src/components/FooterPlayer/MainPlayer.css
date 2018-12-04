@@ -567,12 +567,75 @@ footer .songSourceContainer .source.youtube :hover {
     .footer-player.fullMobilePlayer .collapse-arrow svg {
       fill: #fff;
       transform: rotate(180deg); }
+  .footer-player.fullMobilePlayer .artist-info br {
+    display: block; }
+  .footer-player.fullMobilePlayer .fa-circle {
+    display: none; }
+  .footer-player.fullMobilePlayer .player-info {
+    font-size: 18px;
+    align-items: center;
+    display: block;
+    flex: none; }
+  .footer-player.fullMobilePlayer .tappable-section {
+    width: 100vw; }
+    .footer-player.fullMobilePlayer .tappable-section .artist-info {
+      height: auto !important;
+      float: none;
+      position: absolute;
+      left: auto;
+      top: 95vw;
+      max-width: none;
+      width: auto;
+      text-align: center;
+      padding-top: 0;
+      margin: 0 auto;
+      width: 100vw; }
+      .footer-player.fullMobilePlayer .tappable-section .artist-info .artist-title, .footer-player.fullMobilePlayer .tappable-section .artist-info .song-title {
+        font-size: 22px;
+        line-height: 30px !important; }
+  .footer-player.fullMobilePlayer .player-duration-bar-wrapper {
+    transform: translateY(-50px); }
+  .footer-player.fullMobilePlayer .player-controls-wrapper {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    bottom: 50px;
+    margin-right: 0px !important;
+    top: auto !important;
+    height: auto !important;
+    z-index: 90;
+    transition: all .5s ease; }
+    .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-next, .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-back {
+      display: inline-block; }
+    .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-play {
+      display: inline-block; }
+    .footer-player.fullMobilePlayer .player-controls-wrapper .player-controls-buttons {
+      display: block;
+      transform: translateY(40px);
+      width: 120px;
+      margin: 0 auto; }
+    .footer-player.fullMobilePlayer .player-controls-wrapper .player-control-button svg, .footer-player.fullMobilePlayer .player-controls-wrapper .player-control-button img {
+      margin-top: 6px !important;
+      height: 50px !important;
+      width: 50px !important;
+      margin: 6px 15px 0; }
+    .footer-player.fullMobilePlayer .player-controls-wrapper .im {
+      display: inline-block;
+      font: normal normal normal 20px/1 'iconmonstr-iconic-font' !important;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale; }
+    .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-back, .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-next {
+      vertical-align: top;
+      margin-top: 23px !important; }
   .footer-player.fullMobilePlayer .fullMobilePlayerImage {
     display: inline-block;
     position: absolute;
-    top: 75px;
-    width: 100vw; }
+    top: 50px;
+    width: 100vw;
+    z-index: 100; }
     .footer-player.fullMobilePlayer .fullMobilePlayerImage img {
-      width: 90vw;
-      height: 90vw !important;
-      margin: 0 5vw; }
+      width: 80vw;
+      height: 80vw !important;
+      margin: 0 10vw; }

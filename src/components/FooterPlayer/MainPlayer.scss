@@ -763,6 +763,7 @@ footer .songSourceContainer .source.youtube {
 }
 
 .footer-player.fullMobilePlayer {
+
   height: 100% !important;
   transition: all .5s ease;
 
@@ -779,16 +780,111 @@ footer .songSourceContainer .source.youtube {
     }
   }
 
+  .artist-info br {
+    display: block;
+}
+ .fa-circle {
+   display: none;
+ }
+
+ .player-info {
+    font-size: 18px;
+    align-items: center;
+    display: block;
+    flex: none;
+}
+
+.tappable-section {
+  width: 100vw;
+
+  .artist-info {
+     height: auto !important;
+     float: none;
+     position: absolute;
+     left: auto;
+     top: 95vw;
+     max-width: none;
+     width: auto;
+     text-align: center;
+     padding-top: 0;
+     margin: 0 auto;
+     width: 100vw;
+
+     .artist-title, .song-title {
+    font-size: 22px;
+    line-height: 30px !important;
+}
+ }
+}
+
+
+
+.player-duration-bar-wrapper {
+    transform: translateY(-50px);
+}
+
+.player-controls-wrapper {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    bottom: 50px;
+    margin-right: 0px !important;
+    top: auto !important;
+    height: auto !important;
+    z-index: 90;
+    transition: all .5s ease;
+
+
+        #player-control-button-next, #player-control-button-back {
+        display: inline-block;
+    }
+    #player-control-button-play {
+        display: inline-block;
+    }
+
+    .player-controls-buttons {
+    display: block;
+    transform: translateY(40px);
+    width: 120px;
+    margin: 0 auto;
+}
+
+
+.player-control-button svg, .player-control-button img {
+    margin-top: 6px !important;
+    height: 50px !important;
+    width: 50px !important;
+    margin: 6px 15px 0;
+}
+
+.im {
+    display: inline-block;
+    font: normal normal normal 20px/1 'iconmonstr-iconic-font' !important;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#player-control-button-back, #player-control-button-next {
+  vertical-align: top;
+    margin-top: 23px !important;
+}
+}
+
+
+
     .fullMobilePlayerImage {
       display: inline-block;
       position: absolute;
-      top: 75px;
+      top: 50px;
       width: 100vw;
+      z-index: 100;
 
       img {
-        width: 90vw;
-        height: 90vw !important;
-        margin: 0 5vw;
+        width: 80vw;
+        height: 80vw !important;
+        margin: 0 10vw;
       }
     }
 
