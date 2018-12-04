@@ -546,3 +546,33 @@ footer .songSourceContainer .source.youtube :hover {
 @media (min-width: 480px) {
   .tappable-section {
     display: none !important; } }
+
+.fullMobilePlayerImage, .collapse-arrow {
+  display: none; }
+
+.footer-player .collapse-arrow {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  z-index: 9000; }
+
+.footer-player.fullMobilePlayer {
+  height: 100vh !important;
+  transition: all .5s ease; }
+  .footer-player.fullMobilePlayer .expand-arrow {
+    display: none; }
+  .footer-player.fullMobilePlayer .collapse-arrow {
+    display: block;
+    position: absolute; }
+    .footer-player.fullMobilePlayer .collapse-arrow svg {
+      fill: #fff;
+      transform: rotate(180deg); }
+  .footer-player.fullMobilePlayer .fullMobilePlayerImage {
+    display: inline-block;
+    position: absolute;
+    top: 75px;
+    width: 100vw; }
+    .footer-player.fullMobilePlayer .fullMobilePlayerImage img {
+      width: 90vw;
+      height: 90vw !important;
+      margin: 0 5vw; }

@@ -745,3 +745,51 @@ footer .songSourceContainer .source.youtube {
     display: none !important;
   }
 }
+
+
+
+
+.fullMobilePlayerImage, .collapse-arrow {
+  display: none;
+}
+
+.footer-player {
+  .collapse-arrow {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    z-index: 9000;
+  }
+}
+
+.footer-player.fullMobilePlayer {
+  height: 100vh !important;
+  transition: all .5s ease;
+
+  .expand-arrow {
+    display: none;
+  }
+  .collapse-arrow {
+    display: block;
+    position: absolute;
+
+    svg {
+      fill: #fff;
+      transform: rotate(180deg);
+    }
+  }
+
+    .fullMobilePlayerImage {
+      display: inline-block;
+      position: absolute;
+      top: 75px;
+      width: 100vw;
+
+      img {
+        width: 90vw;
+        height: 90vw !important;
+        margin: 0 5vw;
+      }
+    }
+
+}

@@ -21,11 +21,33 @@ class MainPlayer extends Component {
     constructor(props) {
         super(props)
 
+        this.state = {
+          fullMobilePlayer: false
+        }
+
         this.renderButtons = this.renderButtons.bind(this)
         this.changeSong = this.changeSong.bind(this)
         this.changeSongOnEnd = this.changeSongOnEnd.bind(this)
         this.onChangeSlider = this.onChangeSlider.bind(this)
         this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
+        this.expandMobilePlayer = this.expandMobilePlayer.bind(this)
+        this.collapseMobilePlayer = this.collapseMobilePlayer.bind(this)
+    }
+
+
+
+    expandMobilePlayer() {
+      this.setState({
+          fullMobilePlayer: true
+      })
+
+    }
+    collapseMobilePlayer() {
+      this.setState({
+          fullMobilePlayer: false
+      })
+      console.log(this.state);
+
     }
 
     onChangeSlider(progress) {
@@ -82,19 +104,27 @@ class MainPlayer extends Component {
                 </p>
             </div>
 
-            <div className="tappable-section">
-              <div className="player-info player-info-mobile">
-                    <div className="expand-arrow">
-                        <svg className="expand-arrow" width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
-                    </div>
-                <p className="artist-info">
-                        <span className="song-title">{activeSong.name}</span>
-                 <br />
-                 <i className="fas fa-circle"></i>
-                  <span className="artist-title">{activeSong.artist_name}</span>
-                </p>
-              </div>
-            </div>
+            <Tappable onTap={this.collapseMobilePlayer} className="collapse-arrow">
+                <svg className="collapse-arrow" width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
+            </Tappable>
+
+              <Tappable onTap={this.expandMobilePlayer} className="tappable-section">
+                  <div className="player-info player-info-mobile">
+                      <div className="expand-arrow">
+                          <svg className="expand-arrow" width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
+                      </div>
+
+                      <Link className="fullMobilePlayerImage" to={`/songs/${activeSong.id}`}>
+                          <img className="songImage" src={activeSong.image_url} alt="" />
+                      </Link>
+                      <p className="artist-info">
+                          <span className="song-title">{activeSong.name}</span>
+                   <br />
+                   <i className="fas fa-circle"></i>
+                    <span className="artist-title">{activeSong.artist_name}</span>
+                  </p>
+                </div>
+            </Tappable>
         </React.Fragment>
         )
     }
@@ -199,7 +229,7 @@ class MainPlayer extends Component {
 
         return (
             <footer>
-                  <div className="footer-player">
+                  <div className={`footer-player ${this.state.fullMobilePlayer ? 'fullMobilePlayer' : ''}`}>
                       {this.renderInfo()}
                       <div className="player-controls-wrapper">
                           {this.renderButtons()}
