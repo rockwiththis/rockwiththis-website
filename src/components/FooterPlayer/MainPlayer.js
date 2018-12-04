@@ -32,9 +32,22 @@ class MainPlayer extends Component {
         this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
         this.expandMobilePlayer = this.expandMobilePlayer.bind(this)
         this.collapseMobilePlayer = this.collapseMobilePlayer.bind(this)
+        this.checkIfStillMobile = this.checkIfStillMobile.bind(this)
     }
 
+    componentDidMount() {
 
+        window.addEventListener('resize', this.checkIfStillMobile);
+
+    }
+    checkIfStillMobile() {
+
+      if (window.innerWidth > 480 ) {
+        this.setState({
+            fullMobilePlayer: false
+        })
+      }
+    }
 
     expandMobilePlayer() {
       this.setState({
@@ -46,8 +59,6 @@ class MainPlayer extends Component {
       this.setState({
           fullMobilePlayer: false
       })
-      console.log(this.state);
-
     }
 
     onChangeSlider(progress) {
