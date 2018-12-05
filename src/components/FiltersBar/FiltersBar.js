@@ -69,10 +69,6 @@ class FiltersBar extends Component {
         document.removeEventListener('click', this.closeSubGenreFilters)
       }
 
-      console.log("this.state");
-      console.log(this.state.filtersToShow);
-
-
       this.state.filtersToShow.map((filter, i) => {
         filter.selected = false;
 

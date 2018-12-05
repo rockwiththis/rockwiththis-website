@@ -125,6 +125,14 @@ button.large-bottom.tag {
     .SubgenreFiltersDropDown button.large-bottom.tag {
       font-size: 14px; } }
 
+@media (max-width: 480px) {
+  .SubgenreFiltersDropDown {
+    max-width: 100% !important;
+    left: 0 !important; }
+    .SubgenreFiltersDropDown .tag {
+      font-size: 11px !important;
+      padding: 4px !important; } }
+
 .toggle-view.mobile {
   display: none; }
 

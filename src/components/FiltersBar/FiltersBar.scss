@@ -207,6 +207,19 @@ button.large-bottom.tag {
 
 
 }
+@media (max-width: 480px) {
+  .SubgenreFiltersDropDown {
+    max-width: 100% !important;
+    left: 0 !important;
+
+  .tag {
+    font-size: 11px !important;
+    padding: 4px !important;
+}
+}
+
+
+}
 
 
 
