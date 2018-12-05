@@ -528,7 +528,8 @@ footer .songSourceContainer .source.youtube :hover {
   .footer-player .songSourceContainer {
     display: none; }
   .rc-slider .rc-slider-handle {
-    display: none !important; }
+    display: block !important;
+    z-index: 500; }
   .player-controls-wrapper {
     display: block; }
     .player-controls-wrapper .player-controls {

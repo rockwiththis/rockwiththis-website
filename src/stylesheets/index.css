@@ -2274,3 +2274,9 @@ form.rwt-email-form button {
 @media (min-width: 800px) and (max-width: 1200px) {
   .singleSongPage .relatedSongs .songContainer {
     max-width: calc(20% - 2px) !important; } }
+
+@media (max-width: 800px) {
+  .marquee.songInfo.mobile a.postTitleLink {
+    pointer-events: auto !important; }
+  .previewScrollLayout .marquee.songInfo.mobile .postTitleLink {
+    pointer-events: none !important; } }

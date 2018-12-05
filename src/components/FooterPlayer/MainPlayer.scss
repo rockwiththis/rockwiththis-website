@@ -708,7 +708,8 @@ footer .songSourceContainer .source.youtube {
   }
 
   .rc-slider .rc-slider-handle {
-    display: none !important;
+    display: block !important;
+    z-index: 500;
   }
 
 

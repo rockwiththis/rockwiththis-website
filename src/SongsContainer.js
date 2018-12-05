@@ -257,6 +257,7 @@ class SongsContainer extends Component {
                 isPlaying={true}
                 key={`${song.id}`}
                 song={song}
+                layout={this.props.discoverLayout}
             />
           )
         })

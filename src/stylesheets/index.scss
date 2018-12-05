@@ -3857,3 +3857,19 @@ width: 800px;
       max-width: calc(20% - 2px) !important;
   }
 }
+
+
+
+@media (max-width: 800px) {
+  .marquee.songInfo.mobile {
+      // pointer-events: none;
+
+      a.postTitleLink {
+          pointer-events: auto !important;
+      }
+  }
+
+  .previewScrollLayout .marquee.songInfo.mobile .postTitleLink {
+    pointer-events: none !important;
+  }
+}
