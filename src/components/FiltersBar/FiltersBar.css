@@ -131,7 +131,10 @@ button.large-bottom.tag {
     left: 0 !important; }
     .SubgenreFiltersDropDown .tag {
       font-size: 10px !important;
-      padding: 4px !important; } }
+      padding: 4px !important; }
+    .SubgenreFiltersDropDown .large-bottom.tag {
+      padding: 6px;
+      font-size: 12px; } }
 
 .toggle-view.mobile {
   display: none; }
