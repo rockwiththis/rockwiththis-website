@@ -3872,4 +3872,8 @@ width: 800px;
   .previewScrollLayout .marquee.songInfo.mobile .postTitleLink {
     pointer-events: none !important;
   }
+
+  .fullGridLayout a.song-hover-link {
+    display: none !important;
+}
 }

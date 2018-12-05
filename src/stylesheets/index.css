@@ -2279,4 +2279,6 @@ form.rwt-email-form button {
   .marquee.songInfo.mobile a.postTitleLink {
     pointer-events: auto !important; }
   .previewScrollLayout .marquee.songInfo.mobile .postTitleLink {
-    pointer-events: none !important; } }
+    pointer-events: none !important; }
+  .fullGridLayout a.song-hover-link {
+    display: none !important; } }
