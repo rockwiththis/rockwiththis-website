@@ -229,6 +229,9 @@ class SongsContainer extends Component {
     }
 
     render() {
+
+
+
         const { discoverFullSongIndex } = this.state
         const heroPosts = this.props.posts.slice(0,7)
         const songGrids = []
