@@ -110,11 +110,14 @@ const appReducers = handleActions({
   },
   'app/TOGGLE_FILTER': (state, action) => {
     const filters = state.filters
+    console.log("filters", filters);
+    console.log(action.payload.i);
     filters[action.payload.i].selected = !filters[action.payload.i].selected
+
     const selectedFilters = filters.filter(filter => filter.selected === true)
     return update(state, {
       filters: { $set: filters },
-      selectedFilters: { $set: selectedFilters }
+      selectedFilters: { $set: selectedFilters}
     })
   },
   'app/CLEAR_FILTERS': (state, action) => {

@@ -111,7 +111,7 @@ p {
     padding: 13px;
     transition: all .3s ease; } }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
   .filters-bar .toggle-view {
     display: inline-block;
     width: 50px;
@@ -2281,4 +2281,4 @@ form.rwt-email-form button {
   .previewScrollLayout .marquee.songInfo.mobile .postTitleLink {
     pointer-events: none !important; }
   .fullGridLayout a.song-hover-link {
-    display: none !important; } }
+    display: none; } }

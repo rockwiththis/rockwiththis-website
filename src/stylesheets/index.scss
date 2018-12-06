@@ -209,7 +209,7 @@ p {
 
 $discovery-parallax-padding: calc(100vw + 90px);
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
 
   .filters-bar {
     .toggle-view {
@@ -3874,6 +3874,6 @@ width: 800px;
   }
 
   .fullGridLayout a.song-hover-link {
-    display: none !important;
+    display: none;
 }
 }

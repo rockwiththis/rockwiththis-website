@@ -167,10 +167,12 @@ class FiltersBar extends Component {
 
         const selectedFilters = this.state.filtersToShow.map((filter, i) => {
           return (
-            <button
-              className="tag"
+            <button 
+              className={`tag selected-filter ${filter.selected ? 'selected' : ''}`}
             >
-             #{filter.name}
+             <span className="filter-name">#{filter.name}</span>
+             {/* <span className="remove-x">X</span> */}
+
             </button>
           )
         })
@@ -211,9 +213,6 @@ class FiltersBar extends Component {
               <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
 
               </div>
-
-
-
           </div>
 
           <div className={`SubgenreFiltersDropDown ${this.state.showSubGenreFilters ? 'expand' : ''}`}>
