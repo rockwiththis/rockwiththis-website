@@ -185,8 +185,6 @@ p {
 
 @media (max-width:800px) {
 
-
-
     .discovery-section {
       .toggle-view {
     width: 48px;
@@ -543,18 +541,18 @@ $discovery-parallax-padding: calc(100vw + 90px);
 
                         .tag {
                           margin: 0 5px;
-                          padding: 2px;
+                          padding: 0px;
                           transition: all .3s ease;
                           background: #fff;
-                          font-size: 10px;
+                          font-size: 12px;
                           border-radius: 6px !important;
                           transition: all .3s ease;
-                          color: #fff !important;
-                          background: #1a6ea9 !important;
-                          border: 1px solid #1a6ea9 !important;
+                          color: #1a6ea9 !important;
+                          background: none !important;
+                          border: 0px solid #1a6ea9 !important;
                           cursor: pointer;
                           letter-spacing: .7px;
-                          box-shadow: 0 3px 2px -2px #C9C6CB;
+                          box-shadow: none;
                               font-family: 'Baloo', cursive;
                       }
                     }
@@ -592,12 +590,13 @@ $discovery-parallax-padding: calc(100vw + 90px);
                 display: inline-block;
                 vertical-align: top;
                 padding-right: 5px;
+                position: relative;
 
 
                 img {
                   // max-height: 130px;
                   border-radius: 4px;
-                  max-height: 125px;
+                  max-height: 135px;
                   border-radius: 4px;
                   margin-left: 10px;
 
@@ -1593,6 +1592,7 @@ button {
   .goToSongPage {
     display: none;
   }
+
   .discovery-container .songContainer .wrapper {
     pointer-events: none;
     cursor: pointer;
@@ -1604,6 +1604,7 @@ button {
   .discovery-container.previewScrollLayout {
 
     .songContainer {
+      position: relative;
         display: inline-block;
         vertical-align: top;
         padding: 0 0;
@@ -1937,9 +1938,48 @@ button {
   filter: brightness(.9);
 }
 
-.seeMore {
+@media (max-width:800px) {
+  #discover .songContainer {
+    position: relative;
+  }
+
+  .seeMore {
+    position: absolute;
+    display: block;
+    bottom: 30px;
+    right: 15px;
+    text-decoration: none !important;
+    font-size: 12px;
+    color: black;
+    width: 60%;
+height: 55%;
+
+span {
+  position: absolute;
+  bottom: -1px;
+  right: 15px;
+
+}
+
+
+    .im {
+      font-size: 12px;
+      margin-left: 2px;
+      transform: translateY(2px);
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+.previewScrollLayout .seeMore, .fullGridLayout .seeMore {
   display: none;
 }
+
+
+
+
 
 @media (min-width:800px) {
 
@@ -3812,9 +3852,11 @@ width: 800px;
 .discovery-section .songList .songContainer .postContent p.songDescription {
     font-family: 'Open Sans', sans-serif;
     font-size: 10px;
-    line-height: 16px;
-    max-height: 58px !important;
+    line-height: 20px;
+    max-height: 55px !important;
+    overflow: hidden;
     padding: 5px;
+    padding-top: 0px;
     margin-top: -5px;
 }
 
@@ -3875,5 +3917,17 @@ width: 800px;
 
   .fullGridLayout a.song-hover-link {
     display: none;
+}
+
+
+.song-hover-link {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    pointer-events: auto;
+}
+.fullGridLayout .song-hover-link, .previewScrollLayout .song-hover-link {
+    display: none !important;
 }
 }

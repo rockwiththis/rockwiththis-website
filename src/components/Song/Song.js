@@ -167,10 +167,7 @@ class Song extends Component {
             <div className="wrapper"  >
                 <div className="postContent" >
 
-                    <div className="imageContainer"
-                    onClick={
-                      () => this.onPressPlay(song)
-                    }>
+                    <div className="imageContainer">
                             <Link className="song-hover-link" to={`/songs/${song.id}`}>
                               <div className="hover-content">
                                   <div className="tagWrapper">
