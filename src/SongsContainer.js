@@ -50,6 +50,7 @@ class SongsContainer extends Component {
       })
     }
 
+
     componentDidMount() {
 
         window.addEventListener('scroll', this.fixedFiltersBar)
@@ -60,24 +61,38 @@ class SongsContainer extends Component {
         window.addEventListener('resize', this.enableDiscoverScroll);
 
     }
+
+    componentWillUnmount() {
+      window.addEventListener('scroll', this.fixedFiltersBar)
+      window.addEventListener('scroll', this.fixedFiltersBar)
+
+      window.addEventListener('scroll', this.mobileLoadMore)
+      window.addEventListener('scroll', this.enableDiscoverScroll)
+      window.addEventListener('resize', this.enableDiscoverScroll);    }
+
     mobileLoadMore() {
 
       // console.log(document.getElementById('songList').clientHeight);
       // console.log(window.scrollY);
-      if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
-        console.log("Here's some more songs buddy!");
 
-              this.setState({ loadingMoreSongs: true })
-              const callback = (noMorePosts) => {
-                this.setState({
-                  loadingMoreSongs: false,
-                  noMorePosts,
-                  totalCarouselPages: this.state.totalCarouselPages + 1
-                })
-              }
-                this.props.actions.loadMoreSongs(callback)
+      // if ((window.innerWidth < 800) && (location.pathname == "/"))  {
+      //
+      //   if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
+      //    console.log("Here's some more songs buddy!");
 
-      }
+               // this.setState({ loadingMoreSongs: true })
+               // const callback = (noMorePosts) => {
+               //   this.setState({
+               //     loadingMoreSongs: false,
+               //     noMorePosts,
+               //     totalCarouselPages: this.state.totalCarouselPages + 1
+               //   })
+               // }
+               //   this.props.actions.loadMoreSongs(callback)
+
+      //  }
+      // }
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -97,7 +112,7 @@ class SongsContainer extends Component {
     }
 
     loadMoreSongs(altCallback) {
-      debugger
+
       this.setState({ loadingMoreSongs: true })
       const callback = (noMorePosts) => {
         this.setState({
@@ -107,7 +122,7 @@ class SongsContainer extends Component {
         }, altCallback)
       }
       if (!this.state.loadingMoreSongs) {
-        debugger
+
         this.props.actions.loadMoreSongs(callback)
       }
     }
