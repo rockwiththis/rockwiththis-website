@@ -59,11 +59,11 @@ img.discover-cover {
 
 @media (min-width: 480px) and (max-width: 800px) {
   .fixedFiltersBarPadding {
-    padding-top: 165px !important; } }
+    padding-top: 110px !important; } }
 
 @media (max-width: 480px) {
   .fixedFiltersBarPadding {
-    padding-top: 105px !important; } }
+    padding-top: 65px !important; } }
 
 body {
   padding-bottom: 50px !important; }
@@ -349,6 +349,7 @@ p {
         font-size: 10px;
         line-height: 20px;
         max-height: 55px;
+        overflow: hidden;
         padding: 5px;
         margin-top: -5px; }
     .discovery-section .songList .songContainer .imageContainer {
@@ -2276,12 +2277,12 @@ form.rwt-email-form button {
       top: 10px !important; }
   .discovery-section .songList .songContainer .postContent p.songDescription {
     font-family: 'Open Sans', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 20px;
-    max-height: 55px !important;
+    max-height: 58px !important;
     overflow: hidden;
     padding: 5px;
-    padding-top: 0px;
+    padding-top: 2px;
     margin-top: -5px; }
   .hover-content {
     display: none !important; }
@@ -2294,8 +2295,7 @@ form.rwt-email-form button {
 
 @media (max-width: 800px) {
   div#discovery-container {
-    height: calc(100vh - 50px);
-    overflow: scroll; }
+    height: calc(100vh - 50px); }
   div#discovery-container.disableScroll {
     height: calc(100vh - 0px);
     overflow: visible !important; } }

@@ -78,12 +78,12 @@ background: #fff;
 
 @media (min-width: 480px) and (max-width: 800px) {
   .fixedFiltersBarPadding {
-    padding-top: 165px !important;
+    padding-top: 110px !important;
   }
 }
 @media (max-width: 480px) {
   .fixedFiltersBarPadding {
-    padding-top: 105px !important;
+    padding-top: 65px !important;
   }
 }
 
@@ -579,6 +579,7 @@ $discovery-parallax-padding: calc(100vw + 90px);
                 font-size: 10px;
                 line-height: 20px;
                 max-height: 55px;
+                overflow: hidden;
                 padding: 5px;
                 margin-top: -5px;
               }
@@ -1960,8 +1961,6 @@ span {
   right: 15px;
 
 }
-
-
     .im {
       font-size: 12px;
       margin-left: 2px;
@@ -3851,12 +3850,12 @@ width: 800px;
 
 .discovery-section .songList .songContainer .postContent p.songDescription {
     font-family: 'Open Sans', sans-serif;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 20px;
-    max-height: 55px !important;
+    max-height: 58px !important;
     overflow: hidden;
     padding: 5px;
-    padding-top: 0px;
+    padding-top: 2px;
     margin-top: -5px;
 }
 
@@ -3884,7 +3883,7 @@ width: 800px;
 
   div#discovery-container {
       height: calc(100vh - 50px );
-      overflow: scroll;
+      // overflow: scroll;
   }
    div#discovery-container.disableScroll {
       height: calc(100vh - 0px );

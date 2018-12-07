@@ -89,7 +89,8 @@ class FiltersBar extends Component {
     fixedFiltersBar() {
 
       if (location.pathname == "/") {
-        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+        const scrollHeight = (document.getElementById('hero-post').clientHeight + document.getElementById('header').clientHeight - 12)
+        console.log(document.getElementById('header').clientHeight)
         const fixedFilterBar = window.scrollY > scrollHeight
         this.setState({ fixedFilterBar })
       }
@@ -98,7 +99,7 @@ class FiltersBar extends Component {
     showSubGenreFilters(event) {
 
 
-      const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+      const scrollHeight = document.getElementById('hero-post').clientHeight + document.getElementById('hero-post').clientHeight
 
 
 
@@ -167,7 +168,7 @@ class FiltersBar extends Component {
 
         const selectedFilters = this.state.filtersToShow.map((filter, i) => {
           return (
-            <button 
+            <button
               className={`tag selected-filter ${filter.selected ? 'selected' : ''}`}
             >
              <span className="filter-name">#{filter.name}</span>
