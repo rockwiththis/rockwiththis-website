@@ -1939,6 +1939,13 @@ button {
   filter: brightness(.9);
 }
 
+@media(min-width: 800px) {
+  .seeMore {
+    display: none;
+  }
+}
+
+
 @media (max-width:800px) {
   #discover .songContainer {
     position: relative;
@@ -1966,7 +1973,7 @@ span {
       margin-left: 2px;
       transform: translateY(2px);
       position: absolute;
-      bottom: -3px;
+      bottom: -4px;
       right: 0;
     }
   }
@@ -3843,9 +3850,6 @@ width: 800px;
 .footer-player {
       padding-bottom: 5px !important;
 
-      .songSourceContainer {
-        top: 10px !important;
-    }
 }
 
 .discovery-section .songList .songContainer .postContent p.songDescription {

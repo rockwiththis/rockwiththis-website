@@ -1,4 +1,4 @@
-@media (min-width: 480px) and (max-width: 600px) {
+@media (max-width: 600px) {
   .footer-player .artist-info {
     float: left;
     margin-left: 0px;
@@ -382,7 +382,7 @@ footer .songSourceContainer {
   position: absolute;
   right: 0; }
 
-@media (min-width: 480px) and (min-width: 650px) {
+@media (min-width: 650px) {
   footer .songSourceContainer {
     top: 50%;
     transform: translateY(-50%);
@@ -415,7 +415,7 @@ footer .songSourceContainer .source.youtube :hover {
   .player-controls-wrapper {
     margin-right: 150px !important; } }
 
-@media (min-width: 480px) and (max-width: 650px) {
+@media (max-width: 650px) {
   .player-info {
     -webkit-box-flex: 1 !important;
     -ms-flex: 1 !important;
@@ -450,193 +450,51 @@ footer .songSourceContainer .source.youtube :hover {
 
 @media (max-width: 480px) {
   .footer-player {
-    position: relative;
-    height: 40px !important; }
-    .footer-player .tappable-section {
-      width: calc(100% - 80px);
-      display: inline-block;
-      position: absolute;
-      top: 0;
+    height: 50px !important; }
+    .footer-player .player-info-image-wrapper {
+      width: 40px;
+      float: left;
+      background: transparent !important;
       height: 40px;
-      left: 0; }
-      .footer-player .tappable-section .artist-info {
-        height: 40px !important;
-        float: none;
-        position: absolute;
-        left: 40px;
-        top: 0;
-        max-width: none;
-        width: calc(100% - 40px);
-        text-align: center;
-        padding-top: 10px; }
-        .footer-player .tappable-section .artist-info i.fas.fa-circle {
-          font-size: 5px;
-          margin: 4px;
-          transform: translateY(-2.5px); }
-        .footer-player .tappable-section .artist-info br {
-          display: none; }
-        .footer-player .tappable-section .artist-info span.song-title, .footer-player .tappable-section .artist-info .artist-title {
-          font-size: 14px;
-          line-height: 14px; }
-      .footer-player .tappable-section .expand-arrow {
-        fill: #fff;
+      border-radius: 0 !important; }
+      .footer-player .player-info-image-wrapper .player-image img {
         height: 40px;
         width: 40px;
-        position: absolute;
-        padding-top: 3px;
-        padding-left: 5px; }
-    .footer-player .player-controls-wrapper {
-      display: block;
-      position: absolute;
-      right: 0;
-      width: 40px;
-      top: 0;
-      height: 40px;
-      margin-right: 10px; }
-      .footer-player .player-controls-wrapper #player-control-button-play {
-        display: block;
-        margin: 0; }
-    .footer-player .player-info-image-wrapper img {
-      height: 40px !important;
-      width: 40px !important;
-      margin-top: 12.5px !important;
-      border: 0px solid #fff !important; }
-    .footer-player .artist-info {
-      height: 40px !important;
-      max-width: none !important; }
-      .footer-player .artist-info a.songImageLink {
-        margin-bottom: 0 !important; }
-        .footer-player .artist-info a.songImageLink span {
-          display: inline-block;
-          font-size: 16px !important;
-          line-height: 20px !important; }
-      .footer-player .artist-info span.artist-title {
-        font-size: 16px;
-        line-height: 20px !important;
-        display: inline-block;
         margin: 0 !important;
-        font-weight: 100px !important;
-        color: #fafafa !important; }
-    .footer-player .player-control-button svg, .footer-player .player-control-button img {
-      margin-top: 6px !important;
-      height: 30px !important;
-      width: 30px !important; }
-    .footer-player .songSourceContainer {
-      padding-top: 0 !important; }
-      .footer-player .songSourceContainer svg {
-        fill: #b0b0b0 !important; }
-  .footer-player .songSourceContainer {
-    display: none; }
-  .rc-slider .rc-slider-handle {
-    display: block !important;
-    z-index: 500; }
-  .player-controls-wrapper {
-    display: block; }
-    .player-controls-wrapper .player-controls {
-      display: block; }
-      .player-controls-wrapper .player-controls .player-controls-buttons {
-        display: block; }
-        .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play {
-          display: block; }
-  .player-info-mobile {
-    display: block !important;
-    height: 40px; }
-  .player-info-desktop {
-    display: none !important; } }
-
-@media (min-width: 480px) {
-  .tappable-section {
-    display: none !important; } }
-
-.fullMobilePlayerImage, .collapse-arrow {
-  display: none; }
-
-.footer-player .collapse-arrow {
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  z-index: 9000; }
-
-.footer-player.fullMobilePlayer {
-  height: 100% !important;
-  transition: all .5s ease; }
-  .footer-player.fullMobilePlayer .expand-arrow {
-    display: none; }
-  .footer-player.fullMobilePlayer .collapse-arrow {
-    display: block;
-    position: absolute; }
-    .footer-player.fullMobilePlayer .collapse-arrow svg {
-      fill: #fff;
-      transform: rotate(180deg); }
-  .footer-player.fullMobilePlayer .artist-info br {
-    display: block; }
-  .footer-player.fullMobilePlayer .fa-circle {
-    display: none; }
-  .footer-player.fullMobilePlayer .player-info {
-    font-size: 18px;
-    align-items: center;
-    display: block;
-    flex: none; }
-  .footer-player.fullMobilePlayer .tappable-section {
-    width: 100vw; }
-    .footer-player.fullMobilePlayer .tappable-section .artist-info {
-      height: auto !important;
-      float: none;
-      position: absolute;
-      left: auto;
-      top: 95vw;
-      max-width: none;
-      width: auto;
-      text-align: center;
-      padding-top: 0;
-      margin: 0 auto;
-      width: 100vw; }
-      .footer-player.fullMobilePlayer .tappable-section .artist-info .artist-title, .footer-player.fullMobilePlayer .tappable-section .artist-info .song-title {
-        font-size: 22px;
-        line-height: 30px !important; }
-  .footer-player.fullMobilePlayer .player-duration-bar-wrapper {
-    transform: translateY(-50px); }
-  .footer-player.fullMobilePlayer .player-controls-wrapper {
-    display: block;
-    position: absolute;
-    right: 0;
-    width: 100%;
-    bottom: 50px;
-    margin-right: 0px !important;
-    top: auto !important;
-    height: auto !important;
-    z-index: 90;
-    transition: all .5s ease; }
-    .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-next, .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-back {
-      display: inline-block; }
-    .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-play {
-      display: inline-block; }
-    .footer-player.fullMobilePlayer .player-controls-wrapper .player-controls-buttons {
+        border: 0px solid #fff !important; }
+    .footer-player .player-info {
       display: block;
-      transform: translateY(40px);
-      width: 120px;
-      margin: 0 auto; }
-    .footer-player.fullMobilePlayer .player-controls-wrapper .player-control-button svg, .footer-player.fullMobilePlayer .player-controls-wrapper .player-control-button img {
-      margin-top: 6px !important;
-      height: 50px !important;
-      width: 50px !important;
-      margin: 6px 15px 0; }
-    .footer-player.fullMobilePlayer .player-controls-wrapper .im {
-      display: inline-block;
-      font: normal normal normal 20px/1 'iconmonstr-iconic-font' !important;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale; }
-    .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-back, .footer-player.fullMobilePlayer .player-controls-wrapper #player-control-button-next {
-      vertical-align: top;
-      margin-top: 23px !important; }
-  .footer-player.fullMobilePlayer .fullMobilePlayerImage {
-    display: inline-block;
-    position: absolute;
-    top: 50px;
-    width: 100vw;
-    z-index: 100; }
-    .footer-player.fullMobilePlayer .fullMobilePlayerImage img {
-      width: 80vw;
-      height: 80vw !important;
-      margin: 0 10vw; }
+      padding: 0;
+      flex: none !important;
+      width: 65%; }
+      .footer-player .player-info .artist-info a.songImageLink {
+        margin-bottom: 0px !important; }
+        .footer-player .player-info .artist-info a.songImageLink span.song-title {
+          display: block;
+          margin-top: 0px;
+          line-height: 20px;
+          margin-bottom: 0px;
+          font-size: 16px; }
+      .footer-player .player-info span.artist-title {
+        font-size: 16px;
+        line-height: 20px; }
+    .footer-player #player-control-button-play {
+      flex: 0 0 40px;
+      margin: 0px;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0px;
+      text-align: center; }
+    .footer-player .songSourceContainer {
+      top: 0px !important;
+      margin-right: 10px;
+      position: absolute;
+      padding: 5px;
+      padding-top: 5px; }
+    .footer-player .songSourceContainer .source.soundcloud svg {
+      fill: #ff4e04;
+      fill: #f5f3f3;
+      width: 40px !important;
+      height: 40px !important; }
+    .footer-player .player-duration-bar-wrapper {
+      display: none !important; } }

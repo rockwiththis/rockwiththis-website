@@ -78,6 +78,7 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
 
 
   fetch(fullURL).then(res => res.json()).then((res) => {
+
     if (res.length > 0) {
       dispatch(LOAD_MORE_SONGS(res))
       if (callback) callback()

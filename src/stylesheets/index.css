@@ -1199,6 +1199,10 @@ button {
   cursor: pointer;
   filter: brightness(0.9); }
 
+@media (min-width: 800px) {
+  .seeMore {
+    display: none; } }
+
 @media (max-width: 800px) {
   #discover .songContainer {
     position: relative; }
@@ -1221,7 +1225,7 @@ button {
       margin-left: 2px;
       transform: translateY(2px);
       position: absolute;
-      bottom: -3px;
+      bottom: -4px;
       right: 0; } }
 
 .previewScrollLayout .seeMore, .fullGridLayout .seeMore {
@@ -2273,8 +2277,6 @@ form.rwt-email-form button {
     box-shadow: none !important; }
   .footer-player {
     padding-bottom: 5px !important; }
-    .footer-player .songSourceContainer {
-      top: 10px !important; }
   .discovery-section .songList .songContainer .postContent p.songDescription {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;

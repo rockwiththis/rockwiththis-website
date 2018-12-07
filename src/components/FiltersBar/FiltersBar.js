@@ -90,7 +90,6 @@ class FiltersBar extends Component {
 
       if (location.pathname == "/") {
         const scrollHeight = (document.getElementById('hero-post').clientHeight + document.getElementById('header').clientHeight - 12)
-        console.log(document.getElementById('header').clientHeight)
         const fixedFilterBar = window.scrollY > scrollHeight
         this.setState({ fixedFilterBar })
       }

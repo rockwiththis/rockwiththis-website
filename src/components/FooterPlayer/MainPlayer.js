@@ -98,8 +98,7 @@ class MainPlayer extends Component {
         const { activeSong } = this.props
 
         return (
-          <React.Fragment>
-            <div className="player-info player-info-desktop">
+            <div className="player-info ">
                 <div className="player-info-image-wrapper">
                     <div className="player-image">
                         <Link className="songImageLink" to={`/songs/${activeSong.id}`}>
@@ -114,29 +113,6 @@ class MainPlayer extends Component {
                   <span className="artist-title">{activeSong.artist_name}</span>
                 </p>
             </div>
-
-            <Tappable onTap={this.collapseMobilePlayer} className="collapse-arrow">
-                <svg className="collapse-arrow" width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
-            </Tappable>
-
-              <Tappable onTap={this.expandMobilePlayer} className="tappable-section">
-                  <div className="player-info player-info-mobile">
-                      <div className="expand-arrow">
-                          <svg className="expand-arrow" width="35" height="35" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M23.245 20l-11.245-14.374-11.219 14.374-.781-.619 12-15.381 12 15.391-.755.609z"/></svg>
-                      </div>
-
-                      <Link className="fullMobilePlayerImage" to={`/songs/${activeSong.id}`}>
-                          <img className="songImage" src={activeSong.image_url} alt="" />
-                      </Link>
-                      <p className="artist-info">
-                          <span className="song-title">{activeSong.name}</span>
-                   <br />
-                   <i className="fas fa-circle"></i>
-                    <span className="artist-title">{activeSong.artist_name}</span>
-                  </p>
-                </div>
-            </Tappable>
-        </React.Fragment>
         )
     }
 
