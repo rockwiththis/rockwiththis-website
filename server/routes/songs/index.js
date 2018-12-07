@@ -2,9 +2,11 @@ const express = require('express');
 const router = express.Router();
 const database = require('../../db');
 const {
+  querySongs,
+  querySongSubgenres,
+  nestSongsWithSubgenres,
   nestSingleSongWithGenres,
-  nestResultingSongsWithGenres,
-} = require('./utils');
+} = require('./util/get.js');
 
 // TODO define this in some shared place
 const DEFAULT_SONG_LIMIT = 16;
@@ -34,7 +36,7 @@ router.get('/', (req, res) => {
     });
 });
 
-
+// TODO use same nesting code as batch get
 router.get('/:id', (req, res) => {
   var singleSongId = parseInt(req.params.id);
   const query = {
@@ -51,59 +53,12 @@ router.get('/:id', (req, res) => {
   })
 })
 
-const querySongs = (limit, offset, subgenreIds) => {
+router.post('/', (req, res) => {
+  console.log(req.params);
+};
 
-  const subgenreIdFilter = (
-    subgenreIds.length > 0  ? `WHERE subgenres.id IN (${subgenreIds})` : ''
-  );
-  const offsetStatement = `OFFSET ${Number(offset)}`;
-  const limitStatement = `LIMIT ${Number(limit)}`;
-
-  const queryText = (`
-    SELECT DISTINCT songs.*
-    FROM songs
-    JOIN subgenre_songs
-    ON songs.id = subgenre_songs.song_id
-    JOIN subgenres
-    ON subgenres.id = subgenre_songs.subgenre_id
-    ${subgenreIdFilter}
-    ORDER BY songs.created_at DESC, songs.id
-    ${limitStatement}
-    ${offsetStatement}
-  `);
-
-  return database.query({ text: queryText });
-}
-
-const querySongSubgenres = (songIds) => {
-
-  const queryText = (`
-    SELECT songs.id as song_id, subgenres.*
-    FROM songs
-    JOIN subgenre_songs
-    ON songs.id = subgenre_songs.song_id
-    JOIN subgenres
-    ON subgenres.id = subgenre_songs.subgenre_id
-    WHERE songs.id IN (${songIds})
-    ORDER BY songs.id
-  `);
-
-  return database.query({ text: queryText });
-}
-
-const nestSongsWithSubgenres = (songs, subgenres) => {
-  const keyedSubgenres = getSubgenresBySongId(subgenres);
-  return songs.map(song => ({
-    ...song,
-    sub_genres: keyedSubgenres[song.id]
-  }));
-}
-
-const getSubgenresBySongId = subgenreRows => (
-  subgenreRows.reduce((keyedSubgenres, nextSubgenreRow) => ({
-    ...keyedSubgenres,
-    [nextSubgenreRow.song_id]: (keyedSubgenres[nextSubgenreRow.song_id] || []).concat([nextSubgenreRow])
-  }), {})
-);
+router.patch('/', (req, res) => {
+  console.log(req.params);
+};
 
 module.exports = router;
