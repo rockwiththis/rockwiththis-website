@@ -56,7 +56,6 @@ const getMissingRequiredFields = (params, schema) => (
       .map( ([ fieldName, fieldData ]) => (
           [ fieldName, requiredFieldNameIfMissing(fieldName, fieldData, params) ]
       ))
-      //.map( data => { console.log(data); return data })
       .filter( ([fieldName, fieldData ]) => fieldData != null && Object.keys(fieldData).length > 0 )
       .reduce( (allMissingFields, [ fieldName, missingData ]) => ({
         ...allMissingFields,
@@ -64,24 +63,33 @@ const getMissingRequiredFields = (params, schema) => (
       }), {})
 );
 
-const getDbFieldValues = (params, schema) => (
-    Object.entries(schema).flatMap ( ([fieldName, fieldData]) => (
-        fieldData.type == 'nested' ?
-          getDbFieldNames(params[fieldName], fieldData).join :
-          [ [fieldData.db, params[fieldName]] ]
-    ))
+const getDbFieldValues = (params, schema, dbNamePrefix = '') => (
+    Object.entries(schema)
+      .reduce ( (currPairs, [fieldName, fieldData]) => {
+        const nextPairs = (!!fieldData.fields && !!params[fieldName]) ?
+          getDbFieldValues(params[fieldName], fieldData.fields, fieldName + '_') :
+          [ [dbNamePrefix + (fieldData.db ? fieldData.db : fieldName), params[fieldName]] ];
+        console.log(nextPairs);
+        return [ ...currPairs, ...nextPairs ];
+      }, [] )
+      .filter( ([fieldName, fieldData ]) => !!fieldData )
 );
 
 const getInsertSongQuery = params => {
 
   const missingFields = getMissingRequiredFields(params, songsWriteSchema);
-  if (missingFields != {}) {
+  if (Object.keys(missingFields).length > 0) {
     console.log('Missing fields:');
     console.log(missingFields);
     return;
   }
 
-  const dbFieldValues = getDbFieldValues(params, songsWriteSchema);
+  const dbFieldValues = [
+    ...getDbFieldValues(params, songsWriteSchema),
+    ['created_at', (new Date()).toJSON()]
+  ];
+
+  console.log(dbFieldValues);
   const queryText =
     'INSERT INTO songs (' +
       dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldName ).join(',') +
@@ -99,7 +107,7 @@ const getUpdateSongQuery = params => {
 
   if (!params.id) {
     console.log("id required, not provided");
-    return;
+    throw 400
   }
 
   const dbFieldValues = getDbFieldValues(params, songsWriteSchema);
@@ -113,7 +121,7 @@ const getUpdateSongQuery = params => {
     text: queryText,
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
   }
-}
+};
 
 module.exports = {
   getInsertSongQuery,

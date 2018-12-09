@@ -11,15 +11,11 @@ const {
 
 const {
   getInsertSongQuery,
-  getUpdateSongQuery,
-} = require('./util/read.js');
+  getUpdateSongQuery
+} = require('./util/write.js');
 
 // TODO define this in some shared place
 const DEFAULT_SONG_LIMIT = 16;
-
-router.get('/', (req, res) => {
-  console.log("fetching songs");
-});
 
 router.get('/', (req, res) => {
   console.log("fetching songs");
@@ -64,11 +60,29 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  console.log(getInsertSongQuery(req.params));
+
+  const execute = new Promise((resolve, reject) => (
+    resolve(database.query(getInsertSongQuery(req.body)))
+  ), 300);
+
+  return execute
+    .then(() => {
+      console.log("insert successful!");
+      return res.sendStatus(200);
+    })
+    .catch(e => {
+      if (e == 400) {
+        return res.sendStatus(400);
+      } else {
+        console.log(`Unexpected error: ${e}`);
+        return res.sendStatus(500);
+      }
+    });
 });
 
 router.patch('/:id', (req, res) => {
   console.log(getUpdateSongQuery(req.params));
+  return;
 });
 
 module.exports = router;
