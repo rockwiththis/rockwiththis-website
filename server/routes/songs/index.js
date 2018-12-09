@@ -61,28 +61,38 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
 
-  const execute = new Promise((resolve, reject) => (
+  const executeInsert = new Promise((resolve, reject) => (
     resolve(database.query(getInsertSongQuery(req.body)))
   ), 300);
 
-  return execute
-    .then(() => {
-      console.log("insert successful!");
-      return res.sendStatus(200);
-    })
-    .catch(e => {
-      if (e == 400) {
-        return res.sendStatus(400);
-      } else {
-        console.log(`Unexpected error: ${e}`);
-        return res.sendStatus(500);
-      }
-    });
+  return executeInsert
+    .then(() => handleSuccess(res, 'insert'))
+    .catch(e => handleError(res, e));
 });
 
 router.patch('/:id', (req, res) => {
-  console.log(getUpdateSongQuery(req.params));
-  return;
+
+  const executeUpdate = new Promise((resolve, reject) => (
+    resolve(database.query(getUpdateSongQuery(req.params.id, req.body)))
+  ), 300);
+
+  return executeUpdate
+    .then(() => handleSuccess(res, 'update'))
+    .catch(e => handleError(res, e));
 });
+
+const handleSuccess = (res, opString) => {
+  console.log(`${opString} successful!`);
+  return res.sendStatus(200);
+} 
+
+const handleError = (res, error) => {
+  if (error == 400) {
+    return res.sendStatus(400);
+  } else {
+    console.log(`Unexpected error: ${error}`);
+    return res.sendStatus(500);
+  }
+}
 
 module.exports = router;

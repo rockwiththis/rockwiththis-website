@@ -69,7 +69,6 @@ const getDbFieldValues = (params, schema, dbNamePrefix = '') => (
         const nextPairs = (!!fieldData.fields && !!params[fieldName]) ?
           getDbFieldValues(params[fieldName], fieldData.fields, fieldName + '_') :
           [ [dbNamePrefix + (fieldData.db ? fieldData.db : fieldName), params[fieldName]] ];
-        console.log(nextPairs);
         return [ ...currPairs, ...nextPairs ];
       }, [] )
       .filter( ([fieldName, fieldData ]) => !!fieldData )
@@ -103,9 +102,9 @@ const getInsertSongQuery = params => {
   }
 };
 
-const getUpdateSongQuery = params => {
+const getUpdateSongQuery = (songId, params) => {
 
-  if (!params.id) {
+  if (!songId) {
     console.log("id required, not provided");
     throw 400
   }
@@ -114,13 +113,16 @@ const getUpdateSongQuery = params => {
   const queryText =
     'UPDATE songs SET ' +
     dbFieldValues.map( ([ dbFieldName, dbFieldValue ], i) => dbFieldName + ' = $' + (i+1) ).join(',') +
-    ' WHERE id = ' + params.id
+    ' WHERE id = $' + (dbFieldValues.length + 1)
   ');';
 
   return {
     text: queryText,
-    values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
-  }
+    values: [
+      ...dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue ),
+      songId
+    ]
+  };
 };
 
 module.exports = {
