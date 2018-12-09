@@ -84,6 +84,6 @@ const nestSingleSongWithGenres = (songs) => {
 module.exports = {
   querySongs,
   querySongSubgenres,
-  nestSingleSongWithGenres,
-  nestResultingSongsWithGenres,
+  nestSongsWithSubgenres,
+  nestSingleSongWithGenres
 };

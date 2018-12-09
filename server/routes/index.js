@@ -10,6 +10,6 @@ router.use('/songs', songs);
 router.use('/subgenres', subgenres);
 router.use('/curators', curators);
 
-router.use('/admin', admin);
+// router.use('/admin', admin);
 
 module.exports = router;

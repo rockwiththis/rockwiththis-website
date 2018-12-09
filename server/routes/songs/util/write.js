@@ -95,4 +95,27 @@ const getInsertSongQuery = params => {
   }
 };
 
-module.exports = { getInsertSongQuery };
+const getUpdateSongQuery = params => {
+
+  if (!params.id) {
+    console.log("id required, not provided");
+    return;
+  }
+
+  const dbFieldValues = getDbFieldValues(params, songsWriteSchema);
+  const queryText =
+    'UPDATE songs SET ' +
+    dbFieldValues.map( ([ dbFieldName, dbFieldValue ], i) => dbFieldName + ' = $' + (i+1) ).join(',') +
+    ' WHERE id = ' + params.id
+  ');';
+
+  return {
+    text: queryText,
+    values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
+  }
+}
+
+module.exports = {
+  getInsertSongQuery,
+  getUpdateSongQuery
+};

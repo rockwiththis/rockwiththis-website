@@ -1,0 +1,12 @@
+{
+  "name": "Raspberry",
+  "description": "A really good song",
+  "imageUrl": "https://goo.gl/images/xERd4s",
+  "curatorId": 1234,
+  "artistName": "Saje",
+  "spotify": {
+    "link": "https://open.spotify.com/track/163CIHsH9SkYxcCjPINqHv?si=F7ZDYPmoSICsVQFflDiTNg"
+  },
+  "bpm": 130,
+  "artistLocation": "Paris, FR"
+}

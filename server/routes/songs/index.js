@@ -1,15 +1,25 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../../db');
+
 const {
   querySongs,
   querySongSubgenres,
   nestSongsWithSubgenres,
   nestSingleSongWithGenres,
-} = require('./util/get.js');
+} = require('./util/read.js');
+
+const {
+  getInsertSongQuery,
+  getUpdateSongQuery,
+} = require('./util/read.js');
 
 // TODO define this in some shared place
 const DEFAULT_SONG_LIMIT = 16;
+
+router.get('/', (req, res) => {
+  console.log("fetching songs");
+});
 
 router.get('/', (req, res) => {
   console.log("fetching songs");
@@ -51,14 +61,14 @@ router.get('/:id', (req, res) => {
 
     return res.json(singleSongWithSubGenres[0]);
   })
-})
+});
 
 router.post('/', (req, res) => {
-  console.log(req.params);
-};
+  console.log(getInsertSongQuery(req.params));
+});
 
-router.patch('/', (req, res) => {
-  console.log(req.params);
-};
+router.patch('/:id', (req, res) => {
+  console.log(getUpdateSongQuery(req.params));
+});
 
 module.exports = router;
