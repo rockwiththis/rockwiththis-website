@@ -11,7 +11,8 @@ const {
 
 const {
   getInsertSongQuery,
-  getUpdateSongQuery
+  getUpdateSongQuery,
+  getDeleteSongQuery
 } = require('./util/write.js');
 
 // TODO define this in some shared place
@@ -78,6 +79,17 @@ router.patch('/:id', (req, res) => {
 
   return executeUpdate
     .then(() => handleSuccess(res, 'update'))
+    .catch(e => handleError(res, e));
+});
+
+router.delete('/:id', (req, res) => {
+
+  const executeUpdate = new Promise((resolve, reject) => (
+    resolve(database.query(getDeleteSongQuery(req.params.id)))
+  ), 300);
+
+  return executeUpdate
+    .then(() => handleSuccess(res, 'delete'))
     .catch(e => handleError(res, e));
 });
 

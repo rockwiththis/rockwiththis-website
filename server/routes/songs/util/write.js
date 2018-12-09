@@ -99,7 +99,7 @@ const getInsertSongQuery = params => {
   return {
     text: queryText,
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
-  }
+  };
 };
 
 const getUpdateSongQuery = (songId, params) => {
@@ -125,7 +125,21 @@ const getUpdateSongQuery = (songId, params) => {
   };
 };
 
+const getDeleteSongQuery = songId => {
+
+  if (!songId) {
+    console.log("id required, not provided");
+    throw 400
+  }
+  return {
+    text: 'DELETE FROM songs WHERE id = $1',
+    values: [songId]
+  };
+}
+
+
 module.exports = {
   getInsertSongQuery,
-  getUpdateSongQuery
+  getUpdateSongQuery,
+  getDeleteSongQuery
 };
