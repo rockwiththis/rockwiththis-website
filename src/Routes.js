@@ -6,6 +6,8 @@ import Homepage from 'pages/Homepage'
 import ConnectPage from 'pages/ConnectPage'
 import SingleSongPage from 'pages/SingleSongPage'
 import SubmitSongPage from 'pages/SubmitSongPage'
+import SignInPage from 'pages/SignInPage'
+import AdminPage from 'pages/AdminPage'
 import createHistory from 'history/createBrowserHistory'
 
 
@@ -16,6 +18,8 @@ const Routes = (props) => {
                 <Route exact path='/submit' render={() => <SubmitSongPage {...props} />} />
                 <Route exact path='/connect' render={() => <ConnectPage {...props} />} />
                 <Route path='/songs/:id' render={(p) => <SingleSongPage {...props} {...p} />} />
+                <Route path='/signin' render={() => <SignInPage {...props} />} />
+                <Route path='/admin' render={() => <AdminPage {...props} />} />
             </Switch>
     )
 }

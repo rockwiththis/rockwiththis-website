@@ -26,7 +26,6 @@ router.get('/', (req, res) => {
   const songsOffset = (isQuery && req.query.offset) || 0;
   const subgenreIdFilter = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
 
-  // TODO use promises to avoid ugly nesting
   querySongs(songsLimit, songsOffset, subgenreIdFilter)
     .then(songsResult => {
       querySongSubgenres(songsResult.rows.map(song => song.id))

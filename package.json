@@ -27,6 +27,7 @@
     "react": "^16.3.0",
     "react-addons-update": "^15.6.2",
     "react-animate-height": "^0.10.9",
+    "react-cookie": "^3.0.8",
     "react-dom": "^16.2.0",
     "react-fa": "^5.0.0",
     "react-helmet": "^5.2.0",

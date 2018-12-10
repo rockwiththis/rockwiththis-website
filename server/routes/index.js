@@ -4,12 +4,14 @@ const router = express.Router();
 const songs = require('./songs');
 const subgenres = require('./subgenres');
 const curators = require('./curators');
-const admin = require('./admin');
+const user = require('./user');
+
+const cookieParser = require('cookie-parser')
+router.use(cookieParser());
 
 router.use('/songs', songs);
 router.use('/subgenres', subgenres);
 router.use('/curators', curators);
-
-// router.use('/admin', admin);
+router.use('/user', user);
 
 module.exports = router;
