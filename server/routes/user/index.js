@@ -4,6 +4,28 @@ const database = require('../../db');
 
 router.post('/signin', (req, res) => {
   console.log('signing in');
+
+  const { username, password } = req.body;
+  if (!username || !password) return { error: "Invalid Input" };
+
+  database.query({
+    text: 'SELECT * FROM superadmins WHERE username = $1',
+    values: [username]
+  })
+  .then(results => {
+    if (results.rows.length = 1) {
+      return bcrypt.compare(password, results.rows[0].password)
+        .then(doesPasswordMatch => (
+            doesPasswordMatch ?
+            getNewSessionId(username) :
+            credentialsInvalidResponse()
+        ))
+    } else {
+      return credentialsInvalidResponse()
+    }
+  });
+          
+
   res.json({
     error: "not implemented yet"
   });
