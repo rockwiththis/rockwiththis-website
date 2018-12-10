@@ -1,9 +1,11 @@
 const { Pool } = require('pg');
 
-const { DB_CONFIG_FILE } = process.env;
+const dbConfigFilepath = process.env.DB_CONFIG_FILE ?
+  process.env.DB_CONFIG_FILE : './config-prod.js';
+
 const {
   db: { user, host, name, password, port }
-} = require(DB_CONFIG_FILE);
+} = require(dbConfigFilepath);
 
 if (
   !user ||

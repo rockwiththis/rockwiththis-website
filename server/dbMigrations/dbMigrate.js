@@ -8,6 +8,7 @@ const DB_DATABASE = 'rockwiththis_prod';
 const DB_PASSWORD = 'RWT1234!';
 const DB_PORT = 5432;
 
+// TODO get these using creds like `server/db/index.js`
 if (
   !DB_USER ||
   !DB_HOST ||
