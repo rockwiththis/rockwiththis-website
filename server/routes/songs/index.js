@@ -1,10 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const database = require('../../db');
+
 const {
+  getSongsQuery,
+  getSongsSubgenresQuery,
+  nestSongsWithSubgenres,
   nestSingleSongWithGenres,
-  nestResultingSongsWithGenres,
-} = require('./utils');
+} = require('./util/read.js');
+
+const {
+  getInsertSongQuery,
+  getUpdateSongQuery,
+  getDeleteSongQuery
+} = require('./util/write.js');
 
 // TODO define this in some shared place
 const DEFAULT_SONG_LIMIT = 16;
@@ -17,10 +26,9 @@ router.get('/', (req, res) => {
   const songsOffset = (isQuery && req.query.offset) || 0;
   const subgenreIdFilter = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
 
-  // TODO use promises to avoid ugly nesting
-  querySongs(songsLimit, songsOffset, subgenreIdFilter)
+  database.query(getSongsQuery(songsLimit, songsOffset, subgenreIdFilter))
     .then(songsResult => {
-      querySongSubgenres(songsResult.rows.map(song => song.id))
+      database.query(getSongsSubgenresQuery(songsResult.rows.map(song => song.id)))
         .then(subgenresResult => {
           console.log(`successfully fetched ${songsResult.rows.length} songs`);
           res.json(nestSongsWithSubgenres(songsResult.rows, subgenresResult.rows))
@@ -34,7 +42,7 @@ router.get('/', (req, res) => {
     });
 });
 
-
+// TODO use same nesting code as batch get
 router.get('/:id', (req, res) => {
   var singleSongId = parseInt(req.params.id);
   const query = {
@@ -49,61 +57,53 @@ router.get('/:id', (req, res) => {
 
     return res.json(singleSongWithSubGenres[0]);
   })
-})
+});
 
-const querySongs = (limit, offset, subgenreIds) => {
+router.post('/', (req, res) => {
 
-  const subgenreIdFilter = (
-    subgenreIds.length > 0  ? `WHERE subgenres.id IN (${subgenreIds})` : ''
-  );
-  const offsetStatement = `OFFSET ${Number(offset)}`;
-  const limitStatement = `LIMIT ${Number(limit)}`;
+  const executeInsert = new Promise((resolve, reject) => (
+    resolve(database.query(getInsertSongQuery(req.body)))
+  ), 300);
 
-  const queryText = (`
-    SELECT DISTINCT songs.*
-    FROM songs
-    JOIN subgenre_songs
-    ON songs.id = subgenre_songs.song_id
-    JOIN subgenres
-    ON subgenres.id = subgenre_songs.subgenre_id
-    ${subgenreIdFilter}
-    ORDER BY songs.created_at DESC, songs.id
-    ${limitStatement}
-    ${offsetStatement}
-  `);
+  return executeInsert
+    .then(() => handleSuccess(res, 'insert'))
+    .catch(e => handleError(res, e));
+});
 
-  return database.query({ text: queryText });
+router.patch('/:id', (req, res) => {
+
+  const executeUpdate = new Promise((resolve, reject) => (
+    resolve(database.query(getUpdateSongQuery(req.params.id, req.body)))
+  ), 300);
+
+  return executeUpdate
+    .then(() => handleSuccess(res, 'update'))
+    .catch(e => handleError(res, e));
+});
+
+router.delete('/:id', (req, res) => {
+
+  const executeUpdate = new Promise((resolve, reject) => (
+    resolve(database.query(getDeleteSongQuery(req.params.id)))
+  ), 300);
+
+  return executeUpdate
+    .then(() => handleSuccess(res, 'delete'))
+    .catch(e => handleError(res, e));
+});
+
+const handleSuccess = (res, opString) => {
+  console.log(`${opString} successful!`);
+  return res.sendStatus(200);
+} 
+
+const handleError = (res, error) => {
+  if (error == 400) {
+    return res.sendStatus(400);
+  } else {
+    console.log(`Unexpected error: ${error}`);
+    return res.sendStatus(500);
+  }
 }
-
-const querySongSubgenres = (songIds) => {
-
-  const queryText = (`
-    SELECT songs.id as song_id, subgenres.*
-    FROM songs
-    JOIN subgenre_songs
-    ON songs.id = subgenre_songs.song_id
-    JOIN subgenres
-    ON subgenres.id = subgenre_songs.subgenre_id
-    WHERE songs.id IN (${songIds})
-    ORDER BY songs.id
-  `);
-
-  return database.query({ text: queryText });
-}
-
-const nestSongsWithSubgenres = (songs, subgenres) => {
-  const keyedSubgenres = getSubgenresBySongId(subgenres);
-  return songs.map(song => ({
-    ...song,
-    sub_genres: keyedSubgenres[song.id]
-  }));
-}
-
-const getSubgenresBySongId = subgenreRows => (
-  subgenreRows.reduce((keyedSubgenres, nextSubgenreRow) => ({
-    ...keyedSubgenres,
-    [nextSubgenreRow.song_id]: (keyedSubgenres[nextSubgenreRow.song_id] || []).concat([nextSubgenreRow])
-  }), {})
-);
 
 module.exports = router;
