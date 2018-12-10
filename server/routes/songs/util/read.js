@@ -1,4 +1,4 @@
-const querySongs = (limit, offset, subgenreIds) => {
+const getSongsQuery = (limit, offset, subgenreIds) => {
 
   const subgenreIdFilter = (
     subgenreIds.length > 0  ? `WHERE subgenres.id IN (${subgenreIds})` : ''
@@ -19,10 +19,10 @@ const querySongs = (limit, offset, subgenreIds) => {
     ${offsetStatement}
   `);
 
-  return database.query({ text: queryText });
+  return { text: queryText };
 }
 
-const querySongSubgenres = (songIds) => {
+const getSongsSubgenresQuery = (songIds) => {
 
   const queryText = (`
     SELECT songs.id as song_id, subgenres.*
@@ -35,7 +35,7 @@ const querySongSubgenres = (songIds) => {
     ORDER BY songs.id
   `);
 
-  return database.query({ text: queryText });
+  return { text: queryText };
 }
 
 const nestSongsWithSubgenres = (songs, subgenres) => {
@@ -82,8 +82,8 @@ const nestSingleSongWithGenres = (songs) => {
 }
 
 module.exports = {
-  querySongs,
-  querySongSubgenres,
+  getSongsQuery,
+  getSongsSubgenresQuery,
   nestSongsWithSubgenres,
   nestSingleSongWithGenres
 };
