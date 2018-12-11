@@ -46,7 +46,7 @@ const keyValueArrayToObject = keyValueArray => (
 const requiredFieldNameIfMissing = (fieldName, fieldData, params) => (
   (!params[fieldName] && fieldData.required) ?
     fieldName :
-    (!!fieldData.fields && !!params[fieldName]) ?
+    (!!fieldData.fields && !!params[fieldName] && fieldData.isRequired) ?
       getMissingRequiredFields(params[fieldName], fieldData.fields) :
       null
 );
