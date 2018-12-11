@@ -3,8 +3,8 @@ const router = express.Router();
 const database = require('../../db');
 
 const {
-  querySongs,
-  querySongSubgenres,
+  getSongsQuery,
+  getSongsSubgenresQuery,
   nestSongsWithSubgenres,
   nestSingleSongWithGenres,
 } = require('./util/read.js');
@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
   const songsOffset = (isQuery && req.query.offset) || 0;
   const subgenreIdFilter = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
 
-  querySongs(songsLimit, songsOffset, subgenreIdFilter)
+  database.query(getSongsQuery(songsLimit, songsOffset, subgenreIdFilter))
     .then(songsResult => {
-      querySongSubgenres(songsResult.rows.map(song => song.id))
+      database.query(getSongsSubgenresQuery(songsResult.rows.map(song => song.id)))
         .then(subgenresResult => {
           console.log(`successfully fetched ${songsResult.rows.length} songs`);
           res.json(nestSongsWithSubgenres(songsResult.rows, subgenresResult.rows))

@@ -80,7 +80,7 @@ const getInsertSongQuery = params => {
   if (Object.keys(missingFields).length > 0) {
     console.log('Missing fields:');
     console.log(missingFields);
-    return;
+    throw 400;
   }
 
   const dbFieldValues = [

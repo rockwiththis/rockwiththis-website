@@ -64,7 +64,7 @@ class Header extends Component {
     render() {
 
         return (
-            <div className={`headerContainer shrunk ${location.pathname == "/submit" ? 'submit' : ''}`}>
+            <div id="header" className={`headerContainer shrunk ${location.pathname == "/submit" ? 'submit' : ''}`}>
               <div className="content-wrapper">
                   {   location.pathname == "/" ?
                   <div className="nav-left">

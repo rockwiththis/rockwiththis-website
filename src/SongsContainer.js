@@ -41,6 +41,7 @@ class SongsContainer extends Component {
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
         this.navGrid = this.navGrid.bind(this)
         this.handleCarousel = this.handleCarousel.bind(this)
+        this.mobileLoadMore = this.mobileLoadMore.bind(this)
     }
 
     componentWillMount() {
@@ -49,13 +50,48 @@ class SongsContainer extends Component {
       })
     }
 
+
     componentDidMount() {
 
         window.addEventListener('scroll', this.fixedFiltersBar)
         window.addEventListener('scroll', this.fixedFiltersBar)
 
+        window.addEventListener('scroll', this.mobileLoadMore)
         window.addEventListener('scroll', this.enableDiscoverScroll)
         window.addEventListener('resize', this.enableDiscoverScroll);
+
+    }
+
+    componentWillUnmount() {
+      window.addEventListener('scroll', this.fixedFiltersBar)
+      window.addEventListener('scroll', this.fixedFiltersBar)
+
+      window.addEventListener('scroll', this.mobileLoadMore)
+      window.addEventListener('scroll', this.enableDiscoverScroll)
+      window.addEventListener('resize', this.enableDiscoverScroll);    }
+
+    mobileLoadMore() {
+
+      // console.log(document.getElementById('songList').clientHeight);
+      // console.log(window.scrollY);
+
+      // if ((window.innerWidth < 800) && (location.pathname == "/"))  {
+      //
+      //   if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
+      //    console.log("Here's some more songs buddy!");
+      //
+      //          this.setState({ loadingMoreSongs: true })
+      //          const callback = (noMorePosts) => {
+      //            this.setState({
+      //              loadingMoreSongs: false,
+      //              noMorePosts,
+      //              totalCarouselPages: this.state.totalCarouselPages + 1
+      //            })
+      //          }
+      //            this.props.actions.loadMoreSongs(callback)
+      //
+      //  }
+      // }
 
     }
 
@@ -69,13 +105,14 @@ class SongsContainer extends Component {
     fixedFiltersBar() {
 
       if (location.pathname == "/") {
-        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+        const scrollHeight = (document.getElementById('hero-post').clientHeight + document.getElementById('header').clientHeight - 12)
         const fixedFilterBar = window.scrollY > scrollHeight
         this.setState({ fixedFilterBar })
       }
     }
 
     loadMoreSongs(altCallback) {
+
       this.setState({ loadingMoreSongs: true })
       const callback = (noMorePosts) => {
         this.setState({
@@ -85,6 +122,7 @@ class SongsContainer extends Component {
         }, altCallback)
       }
       if (!this.state.loadingMoreSongs) {
+
         this.props.actions.loadMoreSongs(callback)
       }
     }
@@ -121,16 +159,17 @@ class SongsContainer extends Component {
     }
 
     handleScroll(e) {
-      console.log("SCROLL");
 
         if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 ) {
           return;
         }
 
         if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100)) {
-          console.log("scrollscroll");
             this.loadMoreSongs()
         }
+
+
+
         // console.log("e.target", e.target);
         console.log("e.target.scrollTop", e.target.scrollTop);
         console.log("e.target.scrollHeight", e.target.scrollHeight);
@@ -229,6 +268,9 @@ class SongsContainer extends Component {
     }
 
     render() {
+
+
+
         const { discoverFullSongIndex } = this.state
         const heroPosts = this.props.posts.slice(0,7)
         const songGrids = []
@@ -257,6 +299,7 @@ class SongsContainer extends Component {
                 isPlaying={true}
                 key={`${song.id}`}
                 song={song}
+                layout={this.props.discoverLayout}
             />
           )
         })
@@ -321,7 +364,7 @@ class SongsContainer extends Component {
 
 
                     }
-                    <div className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
+                    <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
                     <div  className="discoverySectionScroll" name='discoverySectionScroll' />
                       {songList}
                     </div>

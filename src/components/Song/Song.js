@@ -42,6 +42,7 @@ class Song extends Component {
         })
     }
 
+
     renderTags() {
         const {
             song,
@@ -77,6 +78,7 @@ class Song extends Component {
             song,
             activeSong,
             isPlaying,
+            layout,
         } = this.props
 
         const playPauseButton = song.id === activeSong.id && isPlaying ? (
@@ -101,10 +103,19 @@ class Song extends Component {
 
                 </div>
 
+                {this.props.layout == 'snapshot'
+                  ?
                 <div className="marquee songInfo mobile" onClick={ () => this.onPressPlay(song)}>
                     <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
                       <span className="artistName">{song.artist_name}</span>
                 </div>
+                :
+                <div className="marquee songInfo mobile">
+                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
+                      <span className="artistName">{song.artist_name}</span>
+                </div>
+              }
+
                 <div className="marquee songInfo desktop">
                   <div id="checkOverFlowSong" className="marquee-inner songtitle">
                   <Link className="songName postTitleLink" to={`/songs/${song.id}`}>{song.name}</Link>
@@ -156,10 +167,7 @@ class Song extends Component {
             <div className="wrapper"  >
                 <div className="postContent" >
 
-                    <div className="imageContainer"
-                    onClick={
-                      () => this.onPressPlay(song)
-                    }>
+                    <div className="imageContainer">
                             <Link className="song-hover-link" to={`/songs/${song.id}`}>
                               <div className="hover-content">
                                   <div className="tagWrapper">

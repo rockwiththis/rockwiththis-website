@@ -69,10 +69,6 @@ class FiltersBar extends Component {
         document.removeEventListener('click', this.closeSubGenreFilters)
       }
 
-      console.log("this.state");
-      console.log(this.state.filtersToShow);
-
-
       this.state.filtersToShow.map((filter, i) => {
         filter.selected = false;
 
@@ -93,7 +89,7 @@ class FiltersBar extends Component {
     fixedFiltersBar() {
 
       if (location.pathname == "/") {
-        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+        const scrollHeight = (document.getElementById('hero-post').clientHeight + document.getElementById('header').clientHeight - 12)
         const fixedFilterBar = window.scrollY > scrollHeight
         this.setState({ fixedFilterBar })
       }
@@ -102,7 +98,7 @@ class FiltersBar extends Component {
     showSubGenreFilters(event) {
 
 
-      const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+      const scrollHeight = document.getElementById('hero-post').clientHeight + document.getElementById('hero-post').clientHeight
 
 
 
@@ -172,9 +168,11 @@ class FiltersBar extends Component {
         const selectedFilters = this.state.filtersToShow.map((filter, i) => {
           return (
             <button
-              className="tag"
+              className={`tag selected-filter ${filter.selected ? 'selected' : ''}`}
             >
-             #{filter.name}
+             <span className="filter-name">#{filter.name}</span>
+             {/* <span className="remove-x">X</span> */}
+
             </button>
           )
         })
@@ -215,9 +213,6 @@ class FiltersBar extends Component {
               <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
 
               </div>
-
-
-
           </div>
 
           <div className={`SubgenreFiltersDropDown ${this.state.showSubGenreFilters ? 'expand' : ''}`}>
