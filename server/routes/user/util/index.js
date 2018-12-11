@@ -10,7 +10,7 @@ const checkFoundUser = (username, inputPassword, passwordHash) => (
 );
 
 function InvalidCredentialException() {
-  this.message = "invalid credentials;
+  this.message = "invalid credentials";
   this.stack = (new Error()).stack;
 }
 InvalidCredentialException.prototype = Object.create(Error.prototype);

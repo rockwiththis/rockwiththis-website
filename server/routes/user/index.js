@@ -26,29 +26,32 @@ router.post('/signin', (req, res) => {
     text: 'SELECT * FROM users WHERE username = $1',
     values: [username]
   })
-  .then(results => (
-      results.rows.length = 1 ?
-        checkFoundUser(result.rows[0].username, result.rows[0].password)
+  .then(result => (
+      result.rows.length == 1 ?
+        checkFoundUser(result.rows[0].username, result.rows[0].password) :
         Promise.reject(new InvalidCredentialException())
   ))
-  .then((username, newSessionId) => (
+  .then((username, newSessionKey) => (
       database.query({
         text: 'UPDATE users SET active_session_key = $1 where username = $2',
         values: [newSessionId, username]
       })
       .then(() => newSessionId)
   ))
-  .then(sessionId => bcrypt.hash(sessionId, SALT_ROUNDS))
-  .then(hashedSessionId => (
-  .catch(e => (
-      e instanceof InvalidCredentialException ?
-        res.status(400).json({
-          error: "Invalid credentials"
-        }) :
-        res.status(500).json({
-          error: "Unexpected server error"
-        });
-  ))
+  .then(sessionKey => bcrypt.hash(sessionKey, SALT_ROUNDS))
+  .then(hashedSessionKey => res.json({ sessionKey: hashedSessionKey }))
+  .catch(e => {
+    if (e instanceof InvalidCredentialException) {
+      return res.status(400).json({ 
+        error: "Invalid credentials"
+      });
+    } else {
+      console.log(e);
+      return res.status(500).json({
+        error: "Unexpected server error"
+      });
+    }
+  });
 });
 
 router.post('/', (req, res) => {
