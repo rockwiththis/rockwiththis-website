@@ -60,6 +60,8 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
+  console.log('Request Body:');
+  console.log(req.body);
 
   const executeInsert = new Promise((resolve, reject) => (
     resolve(database.query(getInsertSongQuery(req.body)))
