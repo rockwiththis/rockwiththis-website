@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "start-dev": "DB_CONFIG_FILE='./config-prod.js' npm start"
   },
   "dependencies": {
@@ -14,5 +14,8 @@
     "path": "^0.12.7",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.8"
   }
 }
