@@ -90,6 +90,7 @@ router.delete('/:id', (req, res) => (
   database.query('BEGIN')
   .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
   .then(() => database.query(getDeleteSongQuery(req.params.id)))
+  .then(() => database.query('COMMIT'))
   .then(() => handleSuccess(res, 'delete'))
   .catch(e => handleError(res, e))
 ));
