@@ -115,7 +115,7 @@ const getInsertSubgenreSongQuery = (songId, params) => {
   } else if (!params.subgenreIds) {
     return null;
   }
-  
+
   const queryText =
     'INSERT INTO subgenre_songs (song_id, subgenre_id) VALUES ' +
     params.subgenreIds.map((id, i) => '($1,$' + (i+2) + ')').join(',');
@@ -156,15 +156,31 @@ const getDeleteSongQuery = songId => {
     throw 400
   }
   return {
-    text: 'DELETE FROM songs WHERE id = $1',
+    text: 'DELETE FROM songs WHERE songs.id = $1',
     values: [songId]
   };
 }
+const getDeleteSubgenreSongQuery = (songId) => {
+
+  if (!songId) {
+    console.log("id required, not provided");
+    throw 400
+  }
+
+  const queryText =
+    'DELETE FROM subgenre_songs WHERE subgenre_songs.song_id = $1'
+
+  return {
+    text: queryText,
+    values: [ songId ]
+  };
+};
 
 
 module.exports = {
   getInsertSongQuery,
   getInsertSubgenreSongQuery,
   getUpdateSongQuery,
-  getDeleteSongQuery
+  getDeleteSongQuery,
+  getDeleteSubgenreSongQuery
 };
