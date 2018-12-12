@@ -8,5 +8,6 @@
     "link": "https://open.spotify.com/track/163CIHsH9SkYxcCjPINqHv?si=F7ZDYPmoSICsVQFflDiTNg"
   },
   "bpm": 130,
-  "artistLocation": "Paris, FR"
+  "artistLocation": "Paris, FR",
+  "subgenreIds": [103, 110]
 }

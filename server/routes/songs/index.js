@@ -11,6 +11,7 @@ const {
 
 const {
   getInsertSongQuery,
+  getInsertSubgenreSongQuery,
   getUpdateSongQuery,
   getDeleteSongQuery
 } = require('./util/write.js');
@@ -59,53 +60,50 @@ router.get('/:id', (req, res) => {
   })
 });
 
-router.post('/', (req, res) => {
-  console.log('Request Body:');
-  console.log(req.body);
-
-  const executeInsert = new Promise((resolve, reject) => (
-    resolve(database.query(getInsertSongQuery(req.body)))
-  ), 300);
-
-  return executeInsert
+router.post('/', (req, res) => (
+  database.query('BEGIN')
+    .then(() => database.query(getInsertSongQuery(req.body)))
+    .then(insertSongResponse => insertSongSubgenres(insertSongResponse, req.body))
+    .then(() => database.query('COMMIT'))
     .then(() => handleSuccess(res, 'insert'))
-    .catch(e => handleError(res, e));
-});
+    .catch(e => database.query('ROLLBACK').then(() => handleError(res, e)))
+));
 
-router.patch('/:id', (req, res) => {
+const insertSongSubgenres = (songDbResponse, params) => {
+  const insertedSongIds = songDbResponse.rows.map(r => r.id);
+  if (insertedSongIds.length != 1) return Promise.reject("bad db insert response: " + songDbResponse)
 
-  const executeUpdate = new Promise((resolve, reject) => (
-    resolve(database.query(getUpdateSongQuery(req.params.id, req.body)))
-  ), 300);
+  const subgenreQuery = getInsertSubgenreSongQuery(insertedSongIds[0], params);
+  return !!subgenreQuery ?
+    database.query(subgenreQuery) :
+    Promise.resolve()
+}
 
-  return executeUpdate
-    .then(() => handleSuccess(res, 'update'))
-    .catch(e => handleError(res, e));
-});
+router.patch('/:id', (req, res) => (
+    database.query(getUpdateSongQuery(req.params.id, req.body))
+      .then(() => handleSuccess(res, 'update'))
+      .catch(e => handleError(res, e))
+));
 
-router.delete('/:id', (req, res) => {
-
-  const executeUpdate = new Promise((resolve, reject) => (
-    resolve(database.query(getDeleteSongQuery(req.params.id)))
-  ), 300);
-
-  return executeUpdate
-    .then(() => handleSuccess(res, 'delete'))
-    .catch(e => handleError(res, e));
-});
+router.delete('/:id', (req, res) => (
+    database.query(getDeleteSongQuery(req.params.id))
+      .then(() => handleSuccess(res, 'delete'))
+      .catch(e => handleError(res, e))
+));
 
 const handleSuccess = (res, opString) => {
   console.log(`${opString} successful!`);
   return res.sendStatus(200);
-} 
+};
 
 const handleError = (res, error) => {
   if (error == 400) {
     return res.sendStatus(400);
   } else {
-    console.log(`Unexpected error: ${error}`);
+    console.log('Unexpected error:');
+    console.log(error);
     return res.sendStatus(500);
   }
-}
+};
 
 module.exports = router;
