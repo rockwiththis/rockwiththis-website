@@ -112,7 +112,7 @@ const getInsertSubgenreSongQuery = (songId, params) => {
 
   if (!songId) {
     throw "Cannot generate subgenre song query w/o song id"
-  } else if (!params.subgenreIds) {
+  } else if (!params.subgenreIds || params.subgenreIds.length == 0) {
     return null;
   }
 
