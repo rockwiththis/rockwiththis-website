@@ -13,20 +13,20 @@ const parseFormRequestFiles = request => {
   new Promise(resolve => {
     formidable.IncomingForm().parse(req, (err, fields, files) => {
       resolve(files)
-    }
-  }
+    })
+  })
 }
 
-const uploadFile = (buffer, name, type) => (
+const uploadFile = (buffer, name, type) => {
   console.log({
     ACL: 'publlic-read',
     Body: buffer,
     Bucket: 'rockwiththis',
     ContentType: type.mime,
     Key: `${name}.${type.ext}`
-  })
+  });
   return Promise.resolve("fakepath.jpg");
-);
+};
 
 router.post('/upload', (req, res) => {
   console.log("received request");
@@ -53,4 +53,6 @@ router.post('/upload', (req, res) => {
       console.log(data);
       return res.status(200).send(data)
     })
-};
+});
+
+module.exports = router;
