@@ -19,3 +19,4 @@ yarn.lock
 *.swp
 server/db/config-prod.js
 deploy/config.sh
+.env
