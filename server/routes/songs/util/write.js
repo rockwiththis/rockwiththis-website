@@ -25,7 +25,9 @@ const songsWriteSchema = {
   },
   // Should these really be required?
   bpm: { required: true },
-  artistLocation: { db: 'artist_location', required: true }
+  artistLocation: { db: 'artist_location', required: true },
+  createdAt: { db: 'created_at', default: () => (new Date()).toJSON() }
+  // subgenreIds (parsed separately so not in schema)
 }
 
 // This doesn't work, but would be nice for debugging single-statement functions
@@ -46,7 +48,7 @@ const keyValueArrayToObject = keyValueArray => (
 const requiredFieldNameIfMissing = (fieldName, fieldData, params) => (
   (!params[fieldName] && fieldData.required) ?
     fieldName :
-    (!!fieldData.fields && !!params[fieldName]) ?
+    (!!fieldData.fields && !!params[fieldName] && fieldData.isRequired) ?
       getMissingRequiredFields(params[fieldName], fieldData.fields) :
       null
 );
@@ -66,9 +68,17 @@ const getMissingRequiredFields = (params, schema) => (
 const getDbFieldValues = (params, schema, dbNamePrefix = '') => (
     Object.entries(schema)
       .reduce ( (currPairs, [fieldName, fieldData]) => {
-        const nextPairs = (!!fieldData.fields && !!params[fieldName]) ?
+
+        const paramValue = (!params[fieldName] && !!fieldData.default) ?
+          fieldData.default() :
+          params[fieldName];
+
+        const dbFieldName = dbNamePrefix + (fieldData.db ? fieldData.db : fieldName);
+
+        const nextPairs = (!!fieldData.fields && !!paramValue) ?
           getDbFieldValues(params[fieldName], fieldData.fields, fieldName + '_') :
-          [ [dbNamePrefix + (fieldData.db ? fieldData.db : fieldName), params[fieldName]] ];
+          [ [dbFieldName, paramValue] ];
+
         return [ ...currPairs, ...nextPairs ];
       }, [] )
       .filter( ([fieldName, fieldData ]) => !!fieldData )
@@ -83,22 +93,36 @@ const getInsertSongQuery = params => {
     throw 400;
   }
 
-  const dbFieldValues = [
-    ...getDbFieldValues(params, songsWriteSchema),
-    ['created_at', (new Date()).toJSON()]
-  ];
+  const dbFieldValues = getDbFieldValues(params, songsWriteSchema)
 
-  console.log(dbFieldValues);
   const queryText =
     'INSERT INTO songs (' +
-      dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldName ).join(',') +
+      dbFieldValues.map(([ dbFieldName, dbFieldValue ]) => dbFieldName).join(',') +
     ') VALUES (' +
     dbFieldValues.map((fields, i)  => '$' + (i+1)).join(',') +
-  ');';
+  ') RETURNING id';
 
   return {
     text: queryText,
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
+  };
+};
+
+const getInsertSubgenreSongQuery = (songId, params) => {
+
+  if (!songId) {
+    throw "Cannot generate subgenre song query w/o song id"
+  } else if (!params.subgenreIds || params.subgenreIds.length == 0) {
+    return null;
+  }
+
+  const queryText =
+    'INSERT INTO subgenre_songs (song_id, subgenre_id) VALUES ' +
+    params.subgenreIds.map((id, i) => '($1,$' + (i+2) + ')').join(',');
+
+  return {
+    text: queryText,
+    values: [ songId, ...params.subgenreIds ]
   };
 };
 
@@ -132,14 +156,31 @@ const getDeleteSongQuery = songId => {
     throw 400
   }
   return {
-    text: 'DELETE FROM songs WHERE id = $1',
+    text: 'DELETE FROM songs WHERE songs.id = $1',
     values: [songId]
   };
 }
+const getDeleteSubgenreSongQuery = (songId) => {
+
+  if (!songId) {
+    console.log("id required, not provided");
+    throw 400
+  }
+
+  const queryText =
+    'DELETE FROM subgenre_songs WHERE subgenre_songs.song_id = $1'
+
+  return {
+    text: queryText,
+    values: [ songId ]
+  };
+};
 
 
 module.exports = {
   getInsertSongQuery,
+  getInsertSubgenreSongQuery,
   getUpdateSongQuery,
-  getDeleteSongQuery
+  getDeleteSongQuery,
+  getDeleteSubgenreSongQuery
 };

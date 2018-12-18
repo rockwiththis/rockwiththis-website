@@ -9,9 +9,9 @@ const getSongsQuery = (limit, offset, subgenreIds) => {
   const queryText = (`
     SELECT DISTINCT songs.*
     FROM songs
-    JOIN subgenre_songs
+    LEFT JOIN subgenre_songs
     ON songs.id = subgenre_songs.song_id
-    JOIN subgenres
+    LEFT JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
     ${subgenreIdFilter}
     ORDER BY songs.created_at DESC, songs.id
@@ -42,7 +42,7 @@ const nestSongsWithSubgenres = (songs, subgenres) => {
   const keyedSubgenres = getSubgenresBySongId(subgenres);
   return songs.map(song => ({
     ...song,
-    sub_genres: keyedSubgenres[song.id]
+    sub_genres: !!keyedSubgenres[song.id] ? keyedSubgenres[song.id] : []
   }));
 }
 
