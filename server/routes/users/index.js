@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const uuid = require('uuid/v4');
-
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
@@ -28,18 +26,24 @@ router.post('/signin', (req, res) => {
   })
   .then(result => (
       result.rows.length == 1 ?
-        checkFoundUser(result.rows[0].username, result.rows[0].password) :
+        checkFoundUser(result.rows[0].password, password) :
         Promise.reject(new InvalidCredentialException())
   ))
-  .then((username, newSessionKey) => (
+  .then(newSessionKey => (
       database.query({
         text: 'UPDATE users SET active_session_key = $1 where username = $2',
-        values: [newSessionId, username]
+        values: [newSessionKey, username]
       })
-      .then(() => newSessionId)
+      .then(() => newSessionKey)
   ))
-  .then(sessionKey => bcrypt.hash(sessionKey, SALT_ROUNDS))
-  .then(hashedSessionKey => res.json({ sessionKey: hashedSessionKey }))
+  .then(sessionKey => (
+    bcrypt.hash(sessionKey, SALT_ROUNDS)
+  ))
+  .then(hashedSessionKey => (
+      res
+        .cookie('rwt-session-key', hashedSessionKey)
+        .json({ sessionKey: hashedSessionKey })
+  ))
   .catch(e => {
     if (e instanceof InvalidCredentialException) {
       return res.status(400).json({ 

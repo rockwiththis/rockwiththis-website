@@ -1,11 +1,12 @@
 const bcrypt = require('bcrypt');
+const uuid = require('uuid/v4');
 
-const checkFoundUser = (username, inputPassword, passwordHash) => (
-    bcrypt.compare(passwordHash, inputPassword)
+const checkFoundUser = (passwordHash, inputPassword) => (
+    bcrypt.compare(inputPassword, passwordHash)
     .then(doesPasswordMatch => (
         doesPasswordMatch ?
-          (userename, uuid()) :
-          Promise.reject(new InvalidCredentialError())
+          uuid() :
+          Promise.reject(new InvalidCredentialException())
     ))
 );
 
