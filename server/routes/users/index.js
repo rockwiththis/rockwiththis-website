@@ -6,9 +6,9 @@ const SALT_ROUNDS = 10;
 
 const database = require('../../db');
 const {
-  checkFoundUser,
+  isSessionValid,
   InvalidCredentialException
-} = require('./util');
+} = require('../../auth/util');
 
 router.post('/signin', (req, res) => {
   console.log('signing in');
@@ -26,23 +26,29 @@ router.post('/signin', (req, res) => {
   })
   .then(result => (
       result.rows.length == 1 ?
-        checkFoundUser(result.rows[0].password, password) :
+        result.rows[0] :
+        Promise.reject(new InvalidCredentialException())
+  ))
+  .then(userRecord => bcrypt.compare(password, userRecord.password))
+  .then(doesPasswordMatch => (
+      doesPasswordMatch ? 
+        uuid() :
         Promise.reject(new InvalidCredentialException())
   ))
   .then(newSessionKey => (
-      database.query({
-        text: 'UPDATE users SET active_session_key = $1 where username = $2',
-        values: [newSessionKey, username]
-      })
-      .then(() => newSessionKey)
-  ))
-  .then(sessionKey => (
-    bcrypt.hash(sessionKey, SALT_ROUNDS)
-  ))
-  .then(hashedSessionKey => (
-      res
-        .cookie('rwt-session-key', hashedSessionKey)
-        .json({ sessionKey: hashedSessionKey })
+      bcrypt.hash(newSessionKey, SALT_ROUNDS)
+        .then(hashedKey => (
+            database.query({
+              text: 'UPDATE users SET active_session_key = $1 where username = $2',
+              values: [newSessionKey, username]
+            })
+        ))
+        .then(() => (
+            res.json({
+              sessionKey: newSessionKey,
+              username: username
+            })
+        ))
   ))
   .catch(e => {
     if (e instanceof InvalidCredentialException) {
@@ -56,6 +62,18 @@ router.post('/signin', (req, res) => {
       });
     }
   });
+});
+
+router.post('/authenticate', (req, res) => {
+  const sessionKey = req.body.sessionKey;
+  if (!sessionKey) return res.json({ isAuthenticated: false });
+
+  return isSessionValid(sessionKey)
+    .then(isValid => { isAuthenticated: isValid })
+    .catch(e => {
+      console.log(e);
+      return res.json({ isAuthenticated: false });
+    });
 });
 
 router.post('/', (req, res) => {
