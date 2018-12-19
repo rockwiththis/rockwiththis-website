@@ -26,7 +26,7 @@ const songsWriteSchema = {
   // Should these really be required?
   bpm: { required: true },
   artistLocation: { db: 'artist_location', required: true },
-  createdAt: { db: 'created_at', default: () => (new Date()).toJSON() }
+  createdAt: { db: 'created_at', required: true }
   // subgenreIds (parsed separately so not in schema)
 }
 

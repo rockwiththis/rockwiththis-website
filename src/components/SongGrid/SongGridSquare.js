@@ -67,7 +67,7 @@ class SongGrid extends Component {
                     </div>
 
                   </div>
-                    <img className="songImage" src={song.image_url} />
+                    <img className="carousel-song-image songImage" src={song.image_url} />
                 </div>
             </div>
         )
