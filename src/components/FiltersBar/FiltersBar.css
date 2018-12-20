@@ -475,7 +475,7 @@ button.clearButton:hover {
       position: absolute;
       bottom: 15px; } }
 
-@media (min-width: 800px) and (max-width: 1415px) {
+@media (min-width: 800px) {
   .discovery-section .filters-bar .SubgenreFiltersDropDown .tag {
     font-size: 14px !important;
     margin: 6px;

@@ -166,6 +166,7 @@ class SongsContainer extends Component {
 
         if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100)) {
             this.loadMoreSongs()
+
         }
 
 
