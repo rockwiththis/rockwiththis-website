@@ -16,7 +16,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
-*.swp
+*.sw*
 server/db/config-prod.js
 deploy/config.sh
 .env
+
+server/request/users/signin.json
