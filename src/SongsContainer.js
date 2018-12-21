@@ -71,26 +71,25 @@ class SongsContainer extends Component {
 
     mobileLoadMore() {
 
-      // console.log($(window).scrollTop());
-      // console.log($("#songList").height());
-      //
-      // if ((window.innerWidth < 800) && (location.pathname == "/"))  {
-      //
-      //   if ($(window).scrollTop() > $("#songList").height() - 300) {
-      //    console.log("Here's some more songs buddy!");
-      //
-      //
-      //          this.setState({ loadingMoreSongs: true })
-      //          const callback = (noMorePosts) => {
-      //            this.setState({
-      //              loadingMoreSongs: false,
-      //              noMorePosts,
-      //              totalCarouselPages: this.state.totalCarouselPages + 1
-      //            })
-      //          }
-      //            this.props.actions.loadMoreSongs(callback)
-      //  }
-      // }
+      console.log($(window).scrollTop());
+      console.log($("#songList").height());
+
+      if ((window.innerWidth < 800) && (location.pathname == "/"))  {
+
+        if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
+         console.log("Here's some more songs buddy!");
+
+               this.setState({ loadingMoreSongs: true })
+               const callback = (noMorePosts) => {
+                 this.setState({
+                   loadingMoreSongs: false,
+                   noMorePosts,
+                 })
+               }
+                 this.props.actions.loadMoreSongs(callback)
+
+       }
+      }
 
     }
 

@@ -2336,10 +2336,3 @@ form.rwt-email-form button {
     pointer-events: auto; }
   .fullGridLayout .song-hover-link, .previewScrollLayout .song-hover-link {
     display: none !important; } }
-
-div#discovery-container {
-  overflow: scroll !important; }
-
-@media (max-width: 480px) {
-  body {
-    background: #282828; } }
