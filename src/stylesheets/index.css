@@ -2315,7 +2315,6 @@ form.rwt-email-form button {
   div#discovery-container {
     height: calc(100vh - 50px); }
   div#discovery-container.disableScroll {
-    height: calc(100vh - 0px);
     overflow: visible !important; } }
 
 @media (min-width: 800px) and (max-width: 1200px) {
@@ -2337,3 +2336,10 @@ form.rwt-email-form button {
     pointer-events: auto; }
   .fullGridLayout .song-hover-link, .previewScrollLayout .song-hover-link {
     display: none !important; } }
+
+div#discovery-container {
+  overflow: scroll !important; }
+
+@media (max-width: 480px) {
+  body {
+    background: #282828; } }

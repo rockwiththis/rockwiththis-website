@@ -5,9 +5,8 @@ import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
 import { Carousel } from 'react-responsive-carousel';
 import { chunk } from 'lodash';
-
+import $ from "jquery";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-
 import HeroPosts from 'components/HeroGrid/HeroPosts'
 import SongGridSquare from 'components/SongGrid/SongGridSquare'
 import Song from 'components/Song/Song'
@@ -72,13 +71,14 @@ class SongsContainer extends Component {
 
     mobileLoadMore() {
 
-      // console.log(document.getElementById('songList').clientHeight);
-      // console.log(window.scrollY);
-
+      // console.log($(window).scrollTop());
+      // console.log($("#songList").height());
+      //
       // if ((window.innerWidth < 800) && (location.pathname == "/"))  {
       //
-      //   if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
+      //   if ($(window).scrollTop() > $("#songList").height() - 300) {
       //    console.log("Here's some more songs buddy!");
+      //
       //
       //          this.setState({ loadingMoreSongs: true })
       //          const callback = (noMorePosts) => {
@@ -89,7 +89,6 @@ class SongsContainer extends Component {
       //            })
       //          }
       //            this.props.actions.loadMoreSongs(callback)
-      //
       //  }
       // }
 

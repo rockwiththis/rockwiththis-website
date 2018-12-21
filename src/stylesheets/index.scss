@@ -3910,7 +3910,7 @@ width: 800px;
       // overflow: scroll;
   }
    div#discovery-container.disableScroll {
-      height: calc(100vh - 0px );
+      // height: calc(100vh - 0px );
       overflow: visible !important;
   }
 }
@@ -3952,5 +3952,16 @@ width: 800px;
 }
 .fullGridLayout .song-hover-link, .previewScrollLayout .song-hover-link {
     display: none !important;
+}
+}
+
+
+div#discovery-container {
+    overflow: scroll !important;
+}
+
+@media (max-width: 480px) {
+  body {
+    background: #282828;
 }
 }

@@ -169,8 +169,11 @@ class SingleSong extends Component {
                             <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                         </p>
                         <span className="ss-sharebox-desktop">
+                        {
+                          song ? <ShareBox song={song.id} /> : <div></div>
+                        }
 
-                          <ShareBox {...this.props} />
+
 
                         </span>
 
