@@ -62,13 +62,12 @@ class ShareBox extends Component {
           {
             this.state.showSharePopup
               ? (
-                <div
+                  <div
                   className="sharePopup"
                   ref={(element) => {
                     this.sharePopup = element;
                   }}
                 >
-                    <p>Share </p>
                     <FacebookShareButton url={url}>
                       <FacebookIcon size={40} round={true} />
                     </FacebookShareButton>
