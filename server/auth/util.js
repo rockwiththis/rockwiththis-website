@@ -1,24 +1,26 @@
+const database = require('../db');
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
 // Assumes `sessionKey` is defined
-const checkSession = sessionKey => (
-  !sessionKey ? Promise.reject("sessionKey is undefined") :
-  bcrypt.hash(sessionKey, SALT_ROUNDS)
-    .then(hashedKey => (
-        database.query({
-          text: 'SELECT * FROM users WHERE active_session_key = $1',
-          values: [hashedSessionKey]
-        })
-    ))
-    .then(result => {
-      if (result.rows.length > 1) {
-        console.log("Found multiple matching users. Shit is weird. Returning false.")
-      }
-      return result.rows.length == 1 ?
-        Promise.resolve(result.rows[0]) :
-        Promise.reject("Invalid sessionKey");
-    })
+const checkSession = requestBody => (
+  database.query({
+    text: 'SELECT * FROM users WHERE username = $1',
+    values: [requestBody.username]
+  })
+  .then(result => (
+      result.rows.length == 1 ?
+        result.rows[0] :
+        Promise.reject(new InvalidCredentialException())
+  ))
+  .then(userRecord => (
+      bcrypt.compare(requestBody.sessionKey, userRecord.active_session_key)
+        .then(doesKeyMatch => (
+            doesKeyMatch ?
+              Promise.resolve(userRecord) :
+              Promise.reject(new InvalidCredentialException())
+        ))
+  ))
 );
 
 function InvalidCredentialException() {

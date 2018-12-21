@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const bcrypt = require('bcrypt');
+const uuid = require('uuid/v4');
 const SALT_ROUNDS = 10;
 
 const database = require('../../db');
@@ -9,6 +10,8 @@ const {
   checkSession,
   InvalidCredentialException
 } = require('../../auth/util');
+
+const keyHash = key => bcrypt.hash(key, SALT_ROUNDS);
 
 router.post('/signin', (req, res) => {
   console.log('signing in');
@@ -35,21 +38,23 @@ router.post('/signin', (req, res) => {
         uuid() :
         Promise.reject(new InvalidCredentialException())
   ))
-  .then(newSessionKey => (
-      bcrypt.hash(newSessionKey, SALT_ROUNDS)
-        .then(hashedKey => (
-            database.query({
+  .then(newSessionKey => {
+    console.log(newSessionKey);
+      return bcrypt.hash(newSessionKey, SALT_ROUNDS)
+        .then(hashedSessionKey => {
+          console.log(hashedSessionKey);
+            return database.query({
               text: 'UPDATE users SET active_session_key = $1 where username = $2',
-              values: [newSessionKey, username]
+              values: [hashedSessionKey, username]
             })
-        ))
+        })
         .then(() => (
             res.json({
               sessionKey: newSessionKey,
               username: username
             })
         ))
-  ))
+  })
   .catch(e => {
     if (e instanceof InvalidCredentialException) {
       return res.status(400).json({
@@ -65,8 +70,8 @@ router.post('/signin', (req, res) => {
 });
 
 router.post('/authenticate', (req, res) => (
-    checkSession(req.body.sessionKey)
-      .then(() => { isAuthenticated: true })
+    checkSession(req.body)
+      .then(() => res.json({ isAuthenticated: true }))
       .catch(e => {
         console.log(e);
         return res.json({ isAuthenticated: false });
@@ -74,7 +79,7 @@ router.post('/authenticate', (req, res) => (
 ));
 
 router.post('/logout', (req, res) => (
-    checkSession(req.body.sessionKey)
+    checkSession(req.body)
       .then(result => (
           database.query({
             text: 'UPDATE users set active_session_key = null where username = $1',
