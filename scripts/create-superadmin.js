@@ -54,9 +54,9 @@ const logErrorAndContinue = msg => {
 const logUnexpectedError = () =>
   console.log("\nUnexpected error. Did not create new superuser.\n");
 
-const queryDoesUsernameExist = username => (
+const queryDoesSuperuserExist = username => (
     database.query({
-      text: 'SELECT * FROM superadmins WHERE username = $1',
+      text: 'SELECT * FROM users WHERE username = $1 AND is_superadmin = true',
       values: [username]
     })
     .then(results => results.rows.length > 0)
@@ -66,7 +66,7 @@ const saveNewUser = (username, password) => (
     bcrypt.hash(password, saltRounds)
       .then(hashedPassword => (
           database.query({
-            text: 'INSERT INTO superadmins (username, password) VALUES ($1, $2)',
+            text: 'INSERT INTO users (username, password, is_superadmin) VALUES ($1, $2, true)',
             values: [username, hashedPassword]
           })
           .then(() => console.log('\nSuccessfully added new superadmin!\n'))
@@ -75,9 +75,9 @@ const saveNewUser = (username, password) => (
 )
 
 const processNewUser = ({ username, password }) => (
-    queryDoesUsernameExist(username)
-      .then(doesUsernameExist => {
-        if (doesUsernameExist)
+    queryDoesSuperuserExist(username)
+      .then(doesSuperuserExist => {
+        if (doesSuperuserExist)
           return logErrorAndContinue("\nSorry, That superuser username already exists.\n");
         else
           return saveNewUser(username, password);
@@ -86,7 +86,7 @@ const processNewUser = ({ username, password }) => (
 
 const processSignIn = ({ username, password }) => (
     database.query({
-      text: 'SELECT * FROM superadmins WHERE username = $1',
+      text: 'SELECT * FROM users WHERE username = $1',
       values: [username]
     })
     .then(results => {

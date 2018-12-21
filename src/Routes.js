@@ -6,6 +6,8 @@ import Homepage from 'pages/Homepage'
 import ConnectPage from 'pages/ConnectPage'
 import SingleSongPage from 'pages/SingleSongPage'
 import SubmitSongPage from 'pages/SubmitSongPage'
+import SignInPage from 'pages/SignInPage'
+import AdminPage from 'pages/AdminPage'
 import createHistory from 'history/createBrowserHistory'
 
 

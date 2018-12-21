@@ -10,6 +10,7 @@ if (process.env.NODE_ENV === 'development') {
   window.store = store
 }
 
+// TODO we should really split up the stores by route
 ReactDOM.render((
     <Root store={store} />
 ), document.getElementById('root'),

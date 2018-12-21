@@ -17,6 +17,8 @@ const {
   getDeleteSubgenreSongQuery
 } = require('./util/write.js');
 
+const { checkSession } = require('../../auth/util');
+
 // TODO define this in some shared place
 const DEFAULT_SONG_LIMIT = 16;
 
@@ -63,6 +65,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => (
   database.query('BEGIN')
+    .then(() => checkSession(req.body))
     .then(() => database.query(getInsertSongQuery(req.body)))
     .then(insertSongResponse => insertSongSubgenres(insertSongResponse, req.body))
     .then(() => database.query('COMMIT'))
@@ -81,18 +84,20 @@ const insertSongSubgenres = (songDbResponse, params) => {
 }
 
 router.patch('/:id', (req, res) => (
-    database.query(getUpdateSongQuery(req.params.id, req.body))
+    checkSession(req.body)
+      .then(() => database.query(getUpdateSongQuery(req.params.id, req.body)))
       .then(() => handleSuccess(res, 'update'))
       .catch(e => handleError(res, e))
 ));
 
 router.delete('/:id', (req, res) => (
   database.query('BEGIN')
-  .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
-  .then(() => database.query(getDeleteSongQuery(req.params.id)))
-  .then(() => database.query('COMMIT'))
-  .then(() => handleSuccess(res, 'delete'))
-  .catch(e => handleError(res, e))
+    .then(() => checkSession(req.body))
+    .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
+    .then(() => database.query(getDeleteSongQuery(req.params.id)))
+    .then(() => database.query('COMMIT'))
+    .then(() => handleSuccess(res, 'delete'))
+    .catch(e => handleError(res, e))
 ));
 
 const handleSuccess = (res, opString) => {
