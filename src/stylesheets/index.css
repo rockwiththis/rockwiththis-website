@@ -392,7 +392,7 @@ p.leftInfo {
   display: inline-block;
   margin: 0;
   margin-bottom: 5px;
-  margin-right: 6px; }
+  margin-right: 4px; }
 
 .tag {
   margin: 0 2px;
@@ -1202,15 +1202,13 @@ button {
   display: none; }
 
 .discover-full-song .songContainer .spotify {
-  position: absolute;
   color: #65d36e;
   font-size: 26px;
   z-index: 1;
   display: inline-block;
-  margin-left: 5px;
+  margin-left: 0px;
   width: 30px;
-  right: 0px;
-  top: 35px; }
+  padding: 3px; }
 
 .discover-full-song .songContainer .spotify:hover {
   cursor: pointer;
@@ -2337,3 +2335,7 @@ form.rwt-email-form button {
     pointer-events: auto; }
   .fullGridLayout .song-hover-link, .previewScrollLayout .song-hover-link {
     display: none !important; } }
+
+@media (min-width: 800px) {
+  .discover-full-song .carousel .songContainer .topContentContainer .metaInfo .postTags {
+    transform: translateY(-2px); } }
