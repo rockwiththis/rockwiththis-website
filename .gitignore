@@ -20,3 +20,5 @@ yarn.lock
 server/db/config-prod.js
 deploy/config.sh
 .env
+
+server/request/users/signin.json

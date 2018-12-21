@@ -18,8 +18,6 @@ const Routes = (props) => {
                 <Route exact path='/submit' render={() => <SubmitSongPage {...props} />} />
                 <Route exact path='/connect' render={() => <ConnectPage {...props} />} />
                 <Route path='/songs/:id' render={(p) => <SingleSongPage {...props} {...p} />} />
-                <Route path='/signin' render={() => <SignInPage {...props} />} />
-                <Route path='/admin' render={() => <AdminPage {...props} />} />
             </Switch>
     )
 }
