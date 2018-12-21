@@ -163,14 +163,14 @@ class SingleSong extends Component {
                         <span className="postDate "><Moment format="ll" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                         </p>
                         <p className="leftInfo mobile">
-                        <span className="postDate "><Moment format="d/M/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                        <span className="postDate "><Moment format="M/d/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                         </p>
                             {songTags}
                             <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                         </p>
                         <span className="ss-sharebox-desktop">
                         {
-                          song ? <ShareBox song={song.id} /> : <div></div>
+                          song ? <ShareBox song={song} /> : <div></div>
                         }
 
 

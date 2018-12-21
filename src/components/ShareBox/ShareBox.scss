@@ -19,7 +19,7 @@
 }
 .SocialMediaShareButton {
 display: inline-block;
-margin: 10px;
+margin-right: 10px;
 }
 .SocialMediaShareButton:hover {
   cursor: pointer;
@@ -53,39 +53,24 @@ a.smsLink, .smsLink img {
 
 
 
-@media (max-width: 800px) {
-  .singleSongPage .ShareBox {
-    display: block;
-    text-align: center;
-}
-}
-
-
 
 
 .sharePopup {
   width: auto;
   box-shadow: 0 3px 2px -2px #C9C6CB;
-  position: fixed;
+  position: absolute;
   border: 1px solid #C9C6CB;
   padding: 15px;
   background: #fff;
   z-index: 2;
 
   letter-spacing: .5px;
-  top: 30%;
-  left: 50%;
+  top: 200px;
+  right: 200px;
   transform: translate(-50%, -50%);
 
-  width: 300px;
-text-align: center;
-
-    p {
-      margin-bottom: 5px;
-      text-align: center;
-      font-weight: 700;
-      font-size: 14px;
-    }
+  min-width: 400px;
+// text-align: center;
 
     .SocialMediaShareButton {
       transition: ALL .3S ease;
@@ -110,4 +95,45 @@ text-align: center;
     z-index: 7 !important;
     position: absolute;
     cursor: pointer;
+}
+
+
+
+
+.sharePopup {
+
+  .shareInfoTop {
+    img.sharePreviewImg {
+        height: 120px;
+        width: 120px;
+            display: inline-block;
+    }
+
+    .song-info {
+        display: inline-block;
+        width: calc(100% - 150px);
+        height: 120px;
+        vertical-align: top;
+        text-align: left;
+        padding: 0 15px;
+
+        p {
+          text-align: left;
+        }
+
+        p.song-name, p.artist-name {
+            font-size: 25px;
+        }
+         p.artist-name {
+            color: #545151
+        }
+         p.song-name {
+            font-weight: 700;
+        }
+    }
+  }
+
+  .shareInfoBottom {
+    padding-top: 15px;
+}
 }

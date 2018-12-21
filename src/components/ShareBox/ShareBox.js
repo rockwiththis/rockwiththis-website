@@ -4,10 +4,18 @@ import {
   TwitterShareButton,
   EmailShareButton,
   WhatsappShareButton,
+  GooglePlusShareButton,
+  RedditShareButton,
+  TumblrShareButton,
+  PinterestShareButton,
+  GooglePlusIcon,
   FacebookIcon,
   TwitterIcon,
   EmailIcon,
-  WhatsappIcon
+  WhatsappIcon,
+  RedditIcon,
+  TumblrIcon,
+  PinterestIcon
 } from 'react-share';
 
 import './ShareBox.scss'
@@ -68,16 +76,37 @@ class ShareBox extends Component {
                     this.sharePopup = element;
                   }}
                 >
-                    <FacebookShareButton url={url}>
-                      <FacebookIcon size={40} round={true} />
-                    </FacebookShareButton>
-                    <TwitterShareButton url={url}>
-                      <TwitterIcon size={40} round={true} />
-                    </TwitterShareButton>
-                    <EmailShareButton url={url}>
-                      <EmailIcon size={40} round={true} />
-                    </EmailShareButton>
-                    <a className="smsLink" href="sms:?body=Rock with this song"><img src="http://www.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-sms-1-240.png" /></a>
+                <div className="shareInfoTop">
+                  <img className="sharePreviewImg" src={song.image_url} />
+                  <div className="song-info">
+                    <p className="song-name">{song.name}</p>
+                    <p className="artist-name">{song.artist_name}</p>
+                  </div>
+
+                </div>
+                <div className="shareInfoBottom">
+                <p className="share-title">Share this post!</p>
+
+
+                  <FacebookShareButton url={url}>
+                    <FacebookIcon size={40} round={false} />
+                  </FacebookShareButton>
+                  <TwitterShareButton url={url}>
+                    <TwitterIcon size={40} round={false} />
+                  </TwitterShareButton>
+                  <GooglePlusShareButton url={url}>
+                    <GooglePlusIcon size={40} round={false} />
+                  </GooglePlusShareButton>
+                  <RedditShareButton url={url}>
+                    <RedditIcon size={40} round={false} />
+                  </RedditShareButton>
+
+                  <EmailShareButton url={url}>
+                    <EmailIcon size={40} round={false} />
+                  </EmailShareButton>
+                  <a className="smsLink" href="sms:?body=Rock with this song"><img src="http://www.rockwiththis.com/wp-content/uploads/2018/06/iconmonstr-sms-1-240.png" /></a>
+                  <form><input value={url} readonly /> </form>
+                </div>
                 </div>
               )
               : (

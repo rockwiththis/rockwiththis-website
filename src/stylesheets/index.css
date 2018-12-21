@@ -564,7 +564,7 @@ a.spotifyLink {
           font-weight: 100 !important;
           display: block;
           text-align: left;
-          margin-top: 10px;
+          margin-top: 0px;
           padding: 0 5px; }
       .discovery-container .discover-full-song .pauseButton {
         width: 50px !important; }
@@ -644,7 +644,8 @@ a.spotifyLink {
             border-radius: 4px; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .singlePostPlayer {
           display: inline-block;
-          padding-right: 5px; }
+          padding: 5px;
+          padding-left: 0px; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .songInfo {
           display: inline-block;
           vertical-align: top;
@@ -769,7 +770,7 @@ button {
           display: inline-block;
           margin: 0;
           margin-bottom: 5px;
-          margin-right: 6px; }
+          margin-right: 4px; }
           .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent p.metaInfo p.leftInfo .postDate {
             font-size: 14px;
             line-height: 20px; }
