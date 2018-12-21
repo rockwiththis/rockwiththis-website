@@ -6,7 +6,7 @@ const SALT_ROUNDS = 10;
 
 const database = require('../../db');
 const {
-  isSessionValid,
+  checkSession,
   InvalidCredentialException
 } = require('../../auth/util');
 
@@ -31,7 +31,7 @@ router.post('/signin', (req, res) => {
   ))
   .then(userRecord => bcrypt.compare(password, userRecord.password))
   .then(doesPasswordMatch => (
-      doesPasswordMatch ? 
+      doesPasswordMatch ?
         uuid() :
         Promise.reject(new InvalidCredentialException())
   ))
@@ -52,7 +52,7 @@ router.post('/signin', (req, res) => {
   ))
   .catch(e => {
     if (e instanceof InvalidCredentialException) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         error: "Invalid credentials"
       });
     } else {
@@ -68,8 +68,8 @@ router.post('/authenticate', (req, res) => {
   const sessionKey = req.body.sessionKey;
   if (!sessionKey) return res.json({ isAuthenticated: false });
 
-  return isSessionValid(sessionKey)
-    .then(isValid => { isAuthenticated: isValid })
+  return checkSession(sessionKey)
+    .then(() => { isAuthenticated: true })
     .catch(e => {
       console.log(e);
       return res.json({ isAuthenticated: false });
