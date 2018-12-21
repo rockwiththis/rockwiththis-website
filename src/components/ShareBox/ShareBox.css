@@ -132,7 +132,9 @@ form.url-clipboard {
   .sharePopup {
     width: calc(100vw - 30px) !important;
     max-width: 100vw;
-    min-width: 0; }
+    min-width: 0;
+    position: fixed !important;
+    top: 50px !important; }
     .sharePopup .shareInfoTop img.sharePreviewImg {
       height: 100px !important;
       width: 100px !important;
