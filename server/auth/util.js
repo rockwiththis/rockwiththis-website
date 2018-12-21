@@ -2,7 +2,6 @@ const database = require('../db');
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
-// Assumes `sessionKey` is defined
 const checkSession = requestBody => (
   database.query({
     text: 'SELECT * FROM users WHERE username = $1',

@@ -65,7 +65,7 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => (
   database.query('BEGIN')
-    .then(() => checkSession(req.body.sessionKey))
+    .then(() => checkSession(req.body))
     .then(() => database.query(getInsertSongQuery(req.body)))
     .then(insertSongResponse => insertSongSubgenres(insertSongResponse, req.body))
     .then(() => database.query('COMMIT'))
@@ -84,7 +84,7 @@ const insertSongSubgenres = (songDbResponse, params) => {
 }
 
 router.patch('/:id', (req, res) => (
-    checkSession(req.body.sessionKey)
+    checkSession(req.body)
       .then(() => database.query(getUpdateSongQuery(req.params.id, req.body)))
       .then(() => handleSuccess(res, 'update'))
       .catch(e => handleError(res, e))
@@ -92,7 +92,7 @@ router.patch('/:id', (req, res) => (
 
 router.delete('/:id', (req, res) => (
   database.query('BEGIN')
-    .then(() => checkSession(req.body.sessionKey))
+    .then(() => checkSession(req.body))
     .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
     .then(() => database.query(getDeleteSongQuery(req.params.id)))
     .then(() => database.query('COMMIT'))
