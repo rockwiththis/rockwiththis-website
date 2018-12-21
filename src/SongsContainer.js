@@ -51,46 +51,47 @@ class SongsContainer extends Component {
 
 
     componentDidMount() {
+      window.addEventListener('scroll', this.fixedFiltersBar);
+      window.addEventListener('scroll', this.fixedFiltersBar);
 
-        window.addEventListener('scroll', this.fixedFiltersBar)
-        window.addEventListener('scroll', this.fixedFiltersBar)
-
-        window.addEventListener('scroll', this.mobileLoadMore)
-        window.addEventListener('scroll', this.enableDiscoverScroll)
-        window.addEventListener('resize', this.enableDiscoverScroll);
-
+      window.addEventListener('scroll', this.mobileLoadMore)
+      window.addEventListener('scroll', this.enableDiscoverScroll);
+      window.addEventListener('resize', this.enableDiscoverScroll);
     }
 
     componentWillUnmount() {
-      window.addEventListener('scroll', this.fixedFiltersBar)
-      window.addEventListener('scroll', this.fixedFiltersBar)
+      window.addEventListener('scroll', this.fixedFiltersBar);
+      window.addEventListener('scroll', this.fixedFiltersBar);
 
-      window.addEventListener('scroll', this.mobileLoadMore)
-      window.addEventListener('scroll', this.enableDiscoverScroll)
-      window.addEventListener('resize', this.enableDiscoverScroll);    }
+      //window.addEventListener('scroll', this.mobileLoadMore)
+      window.addEventListener('scroll', this.enableDiscoverScroll);
+      window.addEventListener('resize', this.enableDiscoverScroll);
+    }
 
-    mobileLoadMore() {
+    handleMainContainerScroll(event) {
+      console.log(event)
+    }
 
+    mobileLoadMore(event) {
+
+      console.log(event)
       console.log($(window).scrollTop());
       console.log($("#songList").height());
 
       if ((window.innerWidth < 800) && (location.pathname == "/"))  {
 
         if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
-         console.log("Here's some more songs buddy!");
 
-               this.setState({ loadingMoreSongs: true })
-               const callback = (noMorePosts) => {
-                 this.setState({
-                   loadingMoreSongs: false,
-                   noMorePosts,
-                 })
-               }
-                 this.props.actions.loadMoreSongs(callback)
+          if (this.state.loadingMoreSongs) {
+            console.log("Cool your jets turbo");
+          } else {
+            console.log("Here's some more songs buddy!");
 
-       }
+            this.setState({ loadingMoreSongs: true })
+            this.props.actions.loadMoreSongs(() => this.setState({ loadingMoreSongs: false }))
+          }
+        }
       }
-
     }
 
     componentWillReceiveProps(nextProps) {
