@@ -3,6 +3,7 @@
   width: 100%;
     margin: 0 auto;
     text-align: left;
+    cursor: pointer;
 
     i.im.im-paperplane {
     color: #f85f27;
@@ -15,6 +16,8 @@
  a:nth-of-type(1) {
     margin: 0px;
 }
+
+
 
 }
 .SocialMediaShareButton {
@@ -65,12 +68,19 @@ a.smsLink, .smsLink img {
   z-index: 2;
 
   letter-spacing: .5px;
-  top: 200px;
-  right: 200px;
-  transform: translate(-50%, -50%);
+  top: 0px;
+  right: 0px;
+  transform: translate(0%, 0%);
 
-  min-width: 400px;
+  min-width: 500px;
 // text-align: center;
+
+.closeSharePopup {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
+}
 
     .SocialMediaShareButton {
       transition: ALL .3S ease;
@@ -92,7 +102,7 @@ a.smsLink, .smsLink img {
   cursor: pointer;
 }
 .spotify {
-    z-index: 7 !important;
+    // z-index: 7 !important;
     position: absolute;
     cursor: pointer;
 }
@@ -100,7 +110,6 @@ a.smsLink, .smsLink img {
 
 
 
-.sharePopup {
 
   .shareInfoTop {
     img.sharePreviewImg {
@@ -135,5 +144,107 @@ a.smsLink, .smsLink img {
 
   .shareInfoBottom {
     padding-top: 15px;
+}
+p.share-title {
+  margin: 10px 0;
+    margin-top: 0;
+    font-style: italic;
+    font-size: 20px;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    width: auto;
+}
+form.url-clipboard {
+    padding-top: 10px;
+
+    input {
+      width: calc(100% - 50px);
+      font-size: 14px;
+      padding: 5px;
+    }
+
+
+.clipboard-icon-container {
+    width: 30px;
+    display: inline-block;
+    background: black;
+    height: 31px;
+    vertical-align: top;
+    i.fas.fa-clipboard {
+    font-size: 20px;
+    color: white;
+    padding: 5px;
+}
+}
+
+.tooltip {
+  color: green;
+position: absolute;
+right: 0;
+top: -20px;
+}
+}
+
+
+form.url-clipboard {
+    position: relative;
+}
+
+
+
+
+@media (max-width: 800px) {
+.sharePopup {
+    width: calc(100vw - 30px) !important;
+    max-width: 100vw;
+    min-width: 0;
+
+    .shareInfoTop img.sharePreviewImg {
+        height: 100px !important;
+        width: 100px !important;
+        display: inline-block;
+    }
+
+    .shareInfoTop .song-info {
+    display: inline-block;
+    width: calc(100% - 130px) !important;
+    // height: 120px;
+    vertical-align: top;
+    text-align: left;
+    padding: 0 15px !important;
+}
+
+.song-info {
+    display: inline-block;
+    width: calc(100% - 150px);
+    height: 120px;
+    vertical-align: top;
+    text-align: left;
+    padding: 0 15px;
+
+    p {
+      text-align: left;
+    }
+
+    p.song-name, p.artist-name {
+        font-size: 16px;
+    }
+     p.artist-name {
+        color: #545151
+    }
+     p.song-name {
+        font-weight: 700;
+    }
+}
+p.share-title {
+  margin: 10px 0;
+    margin-top: 0;
+    font-style: italic;
+    font-size: 16px;
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+    width: auto;
+}
+
 }
 }

@@ -325,7 +325,6 @@
     display: inline-block;
     vertical-align: top;
     padding: 15px;
-    z-index: 80;
     position: relative;
     background: #fff;
     margin-top: -5px;
@@ -429,7 +428,6 @@
         display: inline-block;
         max-width: 80%;
         width: 80%;
-        padding-left: 15px;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden; }

@@ -2,7 +2,8 @@
   pointer-events: all;
   width: 100%;
   margin: 0 auto;
-  text-align: left; }
+  text-align: left;
+  cursor: pointer; }
   .ShareBox i.im.im-paperplane {
     color: #f85f27;
     font-size: 22px; }
@@ -42,10 +43,15 @@ a.smsLink, .smsLink img {
   background: #fff;
   z-index: 2;
   letter-spacing: .5px;
-  top: 200px;
-  right: 200px;
-  transform: translate(-50%, -50%);
-  min-width: 400px; }
+  top: 0px;
+  right: 0px;
+  transform: translate(0%, 0%);
+  min-width: 500px; }
+  .sharePopup .closeSharePopup {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px; }
   .sharePopup .SocialMediaShareButton {
     transition: ALL .3S ease; }
   .sharePopup .SocialMediaShareButton:hover {
@@ -61,30 +67,102 @@ a.smsLink, .smsLink img {
   cursor: pointer; }
 
 .spotify {
-  z-index: 7 !important;
   position: absolute;
   cursor: pointer; }
 
-.sharePopup .shareInfoTop img.sharePreviewImg {
+.shareInfoTop img.sharePreviewImg {
   height: 120px;
   width: 120px;
   display: inline-block; }
 
-.sharePopup .shareInfoTop .song-info {
+.shareInfoTop .song-info {
   display: inline-block;
   width: calc(100% - 150px);
   height: 120px;
   vertical-align: top;
   text-align: left;
   padding: 0 15px; }
-  .sharePopup .shareInfoTop .song-info p {
+  .shareInfoTop .song-info p {
     text-align: left; }
-  .sharePopup .shareInfoTop .song-info p.song-name, .sharePopup .shareInfoTop .song-info p.artist-name {
+  .shareInfoTop .song-info p.song-name, .shareInfoTop .song-info p.artist-name {
     font-size: 25px; }
-  .sharePopup .shareInfoTop .song-info p.artist-name {
+  .shareInfoTop .song-info p.artist-name {
     color: #545151; }
-  .sharePopup .shareInfoTop .song-info p.song-name {
+  .shareInfoTop .song-info p.song-name {
     font-weight: 700; }
 
-.sharePopup .shareInfoBottom {
+.shareInfoBottom {
   padding-top: 15px; }
+
+p.share-title {
+  margin: 10px 0;
+  margin-top: 0;
+  font-style: italic;
+  font-size: 20px;
+  border-bottom: 1px solid;
+  padding-bottom: 5px;
+  width: auto; }
+
+form.url-clipboard {
+  padding-top: 10px; }
+  form.url-clipboard input {
+    width: calc(100% - 50px);
+    font-size: 14px;
+    padding: 5px; }
+  form.url-clipboard .clipboard-icon-container {
+    width: 30px;
+    display: inline-block;
+    background: black;
+    height: 31px;
+    vertical-align: top; }
+    form.url-clipboard .clipboard-icon-container i.fas.fa-clipboard {
+      font-size: 20px;
+      color: white;
+      padding: 5px; }
+  form.url-clipboard .tooltip {
+    color: green;
+    position: absolute;
+    right: 0;
+    top: -20px; }
+
+form.url-clipboard {
+  position: relative; }
+
+@media (max-width: 800px) {
+  .sharePopup {
+    width: calc(100vw - 30px) !important;
+    max-width: 100vw;
+    min-width: 0; }
+    .sharePopup .shareInfoTop img.sharePreviewImg {
+      height: 100px !important;
+      width: 100px !important;
+      display: inline-block; }
+    .sharePopup .shareInfoTop .song-info {
+      display: inline-block;
+      width: calc(100% - 130px) !important;
+      vertical-align: top;
+      text-align: left;
+      padding: 0 15px !important; }
+    .sharePopup .song-info {
+      display: inline-block;
+      width: calc(100% - 150px);
+      height: 120px;
+      vertical-align: top;
+      text-align: left;
+      padding: 0 15px; }
+      .sharePopup .song-info p {
+        text-align: left; }
+      .sharePopup .song-info p.song-name, .sharePopup .song-info p.artist-name {
+        font-size: 16px; }
+      .sharePopup .song-info p.artist-name {
+        color: #545151; }
+      .sharePopup .song-info p.song-name {
+        font-weight: 700; }
+    .sharePopup p.share-title {
+      margin: 10px 0;
+      margin-top: 0;
+      font-style: italic;
+      font-size: 16px;
+      border-bottom: 1px solid;
+      padding-bottom: 5px;
+      width: auto; } }
