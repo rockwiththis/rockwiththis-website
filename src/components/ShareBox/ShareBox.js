@@ -19,48 +19,53 @@ class ShareBox extends Component {
 
 
       this.state = {
-        showShareDropdown: false
+        showSharePopup: false
       }
 
-      this.showShareDropdown = this.showShareDropdown.bind(this);
-      this.closeShareDropdown = this.closeShareDropdown.bind(this);
+      this.showsharePopup = this.showsharePopup.bind(this);
+      this.closesharePopup = this.closesharePopup.bind(this);
   }
 
 
-  showShareDropdown(event) {
+  showsharePopup(event) {
     event.preventDefault();
 
     this.setState({
-      showShareDropdown: true,
+      showSharePopup: true,
     });
 
-    document.addEventListener('click', this.closeShareDropdown);
+    document.addEventListener('click', this.closesharePopup);
   }
 
-  closeShareDropdown() {
-      this.setState({ showShareDropdown: false }, () => {
-        document.removeEventListener('click', this.closeShareDropdown);
+  closesharePopup() {
+      this.setState({ showSharePopUp: false }, () => {
+        document.removeEventListener('click', this.closesharePopup);
       });
 
 }
 
     render() {
-        const url = `https://rockwiththis.com/songs/${this.props.song.id}`
+
+      const {
+          song
+      } = this.props
+
+        const url = 'https://rockwiththis.com'
 
 
         return (
 
           <div className="ShareBox">
-          <button onClick={this.showShareDropdown} className="shareshareButton"><i className="im im-paperplane"></i></button>
+          <button onClick={this.showsharePopup} className="shareshareButton"><i className="im im-paperplane"></i></button>
 
 
           {
-            this.state.showShareDropdown
+            this.state.showSharePopup
               ? (
                 <div
-                  className="shareDropdown"
+                  className="sharePopup"
                   ref={(element) => {
-                    this.shareDropdown = element;
+                    this.sharePopup = element;
                   }}
                 >
                     <p>Share </p>
@@ -70,9 +75,6 @@ class ShareBox extends Component {
                     <TwitterShareButton url={url}>
                       <TwitterIcon size={40} round={true} />
                     </TwitterShareButton>
-                    <WhatsappShareButton url={url}>
-                      <WhatsappIcon size={40} round={true} />
-                    </WhatsappShareButton>
                     <EmailShareButton url={url}>
                       <EmailIcon size={40} round={true} />
                     </EmailShareButton>

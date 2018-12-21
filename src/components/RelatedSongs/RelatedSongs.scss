@@ -60,7 +60,6 @@
         width: 100%;
         display: inline-block;
         vertical-align: top;
-        // padding-top: 15px;
         float: none;
         padding-top: 40px;
         max-width: 674px;
@@ -89,4 +88,12 @@
       cursor: pointer;
     filter: brightness(.8);
 }
+  }
+
+
+  @media (min-width: 800px) {
+    .singleSongPage .relatedSongs .relatedSongsContainer {
+      padding-top: 25px;
+
+    }
   }

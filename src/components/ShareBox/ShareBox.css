@@ -18,7 +18,7 @@
 .SocialMediaShareButton:hover {
   cursor: pointer; }
 
-.shareDropdown {
+.sharePopup {
   opacity: 1 !important; }
 
 .ShareBox {
@@ -38,27 +38,28 @@ a.smsLink, .smsLink img {
     display: block;
     text-align: center; } }
 
-.shareDropdown {
+.sharePopup {
   width: auto;
   box-shadow: 0 3px 2px -2px #C9C6CB;
-  position: absolute;
-  right: 15px;
+  position: fixed;
   border: 1px solid #C9C6CB;
   padding: 15px;
   background: #fff;
   z-index: 2;
   letter-spacing: .5px;
-  top: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 300px;
   text-align: center; }
-  .shareDropdown p {
+  .sharePopup p {
     margin-bottom: 5px;
     text-align: center;
     font-weight: 700;
     font-size: 14px; }
-  .shareDropdown .SocialMediaShareButton {
+  .sharePopup .SocialMediaShareButton {
     transition: ALL .3S ease; }
-  .shareDropdown .SocialMediaShareButton:hover {
+  .sharePopup .SocialMediaShareButton:hover {
     filter: brightness(0.9); }
 
 .ShareBox {
