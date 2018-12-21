@@ -38,18 +38,21 @@ margin-right: 10px;
 }
 
 
-a.smsLink, .smsLink img {
+a.smsLink {
   display: none;
 }
 
 
-@media only screen and (max-width: 480px) {
-  a.smsLink, .smsLink img {
-    display: inline-block;
+@media (max-width: 480px) {
+  .smsLink  {
+    display: inline-block !important;
+        width: 40px;
   }
-  a.smsLink img {
-    width: 45px;
+  .smsLink img {
+    display: inline-block !important;
+        width: 40px;
   }
+
 
 
 }

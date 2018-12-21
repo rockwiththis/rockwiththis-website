@@ -25,14 +25,16 @@
 .ShareBox {
   display: none; }
 
-a.smsLink, .smsLink img {
+a.smsLink {
   display: none; }
 
-@media only screen and (max-width: 480px) {
-  a.smsLink, .smsLink img {
-    display: inline-block; }
-  a.smsLink img {
-    width: 45px; } }
+@media (max-width: 480px) {
+  .smsLink {
+    display: inline-block !important;
+    width: 40px; }
+  .smsLink img {
+    display: inline-block !important;
+    width: 40px; } }
 
 .sharePopup {
   width: auto;

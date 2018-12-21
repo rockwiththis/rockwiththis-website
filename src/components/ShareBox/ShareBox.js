@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ReactTooltip from 'react-tooltip'
+import sms from 'images/sms.png'
+
 
 import {
   FacebookShareButton,
@@ -75,7 +77,7 @@ onCopyUrl() {
           song
       } = this.props
 
-      const textMessage = `sms:?&body=Rock With This Song <br/>http://rockwiththis-staging.com/songs/${this.props.song.id}`
+      const textMessage = `sms:?&body=Rock With This Song %0a http://rockwiththis-staging.com/songs/${this.props.song.id}`
 
 
         return (
@@ -123,8 +125,7 @@ onCopyUrl() {
                   <EmailShareButton url={this.state.value}>
                     <EmailIcon size={40} round={false} />
                   </EmailShareButton>
-                  <a className="smsLink" href="sms:?body=Rock with this song"><i class="fas fa-sms"></i></a>
-                  <a href={textMessage}>Text</a>
+                  <a className="smsLink" href={textMessage}><img src={sms} /></a>
 
 
                   <form className="url-clipboard">
