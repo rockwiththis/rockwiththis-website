@@ -74,10 +74,6 @@ class SongsContainer extends Component {
 
     mobileLoadMore(event) {
 
-      console.log(event)
-      console.log($(window).scrollTop());
-      console.log($("#songList").height());
-
       if ((window.innerWidth < 800) && (location.pathname == "/"))  {
 
         if (window.scrollY > (document.getElementById('songList').clientHeight - 400)) {
