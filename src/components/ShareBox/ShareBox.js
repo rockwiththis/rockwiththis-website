@@ -75,6 +75,7 @@ onCopyUrl() {
           song
       } = this.props
 
+      const textMessage = `sms:?&body=Rock With This Song <br/>http://rockwiththis-staging.com/songs/${this.props.song.id}`
 
 
         return (
@@ -123,6 +124,9 @@ onCopyUrl() {
                     <EmailIcon size={40} round={false} />
                   </EmailShareButton>
                   <a className="smsLink" href="sms:?body=Rock with this song"><i class="fas fa-sms"></i></a>
+                  <a href={textMessage}>Text</a>
+
+
                   <form className="url-clipboard">
                   <CopyToClipboard text={this.state.value}
                     onCopy={() => this.onCopyUrl()}>
