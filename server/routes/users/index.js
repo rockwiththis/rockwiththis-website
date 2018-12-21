@@ -64,17 +64,29 @@ router.post('/signin', (req, res) => {
   });
 });
 
-router.post('/authenticate', (req, res) => {
-  const sessionKey = req.body.sessionKey;
-  if (!sessionKey) return res.json({ isAuthenticated: false });
+router.post('/authenticate', (req, res) => (
+    checkSession(req.body.sessionKey)
+      .then(() => { isAuthenticated: true })
+      .catch(e => {
+        console.log(e);
+        return res.json({ isAuthenticated: false });
+      })
+));
 
-  return checkSession(sessionKey)
-    .then(() => { isAuthenticated: true })
-    .catch(e => {
-      console.log(e);
-      return res.json({ isAuthenticated: false });
-    });
-});
+router.post('/logout', (req, res) => (
+    checkSession(req.body.sessionKey)
+      .then(result => (
+          database.query({
+            text: 'UPDATE users set active_session_key = null where username = $1',
+            values: [result.username]
+          })
+      ))
+      .then(() => res.status(200))
+      .catch(e => {
+        console.log(e);
+        return res.status(500)
+      })
+));
 
 router.post('/', (req, res) => {
 

@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');
 const SALT_ROUNDS = 10;
 
 // Assumes `sessionKey` is defined
-const isSessionValid = sessionKey => (
+const checkSession = sessionKey => (
+  !sessionKey ? Promise.reject("sessionKey is undefined") :
   bcrypt.hash(sessionKey, SALT_ROUNDS)
     .then(hashedKey => (
         database.query({
@@ -14,7 +15,9 @@ const isSessionValid = sessionKey => (
       if (result.rows.length > 1) {
         console.log("Found multiple matching users. Shit is weird. Returning false.")
       }
-      return result.rows.length == 1;
+      return result.rows.length == 1 ?
+        Promise.resolve(result.rows[0]) :
+        Promise.reject("Invalid sessionKey");
     })
 );
 
@@ -27,6 +30,6 @@ InvalidCredentialException.prototype.name = "InvalidCredentialException";
 InvalidCredentialException.prototype.constructor = InvalidCredentialException;
 
 module.exports = {
-  isSessionValid,
+  checkSession,
   InvalidCredentialException
 }
