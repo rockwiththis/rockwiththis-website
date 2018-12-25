@@ -118,7 +118,7 @@ class Song extends Component {
 
                 <div className="marquee songInfo desktop">
                   <div id="checkOverFlowSong" className="marquee-inner songtitle">
-                  <Link className="songName postTitleLink" to={`/songs/${song.id}`}>{song.name}</Link>
+                  <Link className="songName postTitleLink" to={`/songs/${song.id}`}>{song.name}</Link><a target="_blank" href={song.spotify_link}  className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                   </div>
                     <br />
                   <div id="checkOverFlowArtist" className="marquee-inner artist">
@@ -134,7 +134,7 @@ class Song extends Component {
                     <span className="postDate "><Moment format="M/d/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
                     </p>
                     {this.renderTags(song)}
-                    <a target="_blank" href={song.spotify_link}  className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
+
                     <ShareBox song={song} />
 
                 </p>

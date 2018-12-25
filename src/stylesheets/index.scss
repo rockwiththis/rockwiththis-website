@@ -646,11 +646,13 @@ body {
 
 }
 
+
+
 p.leftInfo {
   display: inline-block;
   margin: 0;
   margin-bottom: 5px;
-  margin-right: 6px; }
+  margin-right: 4px; }
 
 .tag {
   margin: 0 2px;
@@ -932,74 +934,7 @@ a.spotifyLink {
         right: 0;
     }
 
-      .ShareBox {
-        display: block;
-        width: 70%;
-        margin: 0 auto;
-        text-align: left;
-        position: relative;
-        right: 0;
-        margin-left: 30%;
-
-
-        .shareButton:hover {
-          cursor: pointer;
-        }
-        .shareButton {
-          // display: none;
-          .im {
-              display: inline-block;
-              font: normal normal normal 24px/1 'iconmonstr-iconic-font';
-              text-rendering: auto;
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-              color: #000;
-          }
-
-
-
-          a.spotifyLink {
-              font-size: 45px;
-              color: #6AE368;
-              transition: all .3s ease;
-              font-size: 45px !important;
-              display: block;
-
-              i {
-                transform: translateY(-3px);
-                -webkit-transform: translateY(-3px);
-              }
-          }
-        }
-
-        .shareDropdown {
-          width: auto;
-          box-shadow: 0 3px 2px -2px #C9C6CB;
-          position: absolute;
-          left: -300px;
-          border: 1px solid #C9C6CB;
-          padding: 15px;
-          background: #fff;
-          z-index: 2;
-
-          letter-spacing: .5px;
-          top: 50px;
-
-            p {
-              margin-bottom: 5px;
-              text-align: center;
-              font-weight: 700;
-              font-size: 16px;
-            }
-
-            .SocialMediaShareButton {
-              transition: ALL .3S ease;
-            }
-            .SocialMediaShareButton:hover {
-              filter: brightness(0.9);
-            }
-        }
-      }
+  
 
     .songContainer {
       height: auto;
@@ -1929,12 +1864,7 @@ button {
 .discovery-container .discover-full-song .songContainer {
     position: relative;
 }
-.discovery-container .discover-full-song .songContainer .ShareBox {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    width: auto;
-}
+
 
 .songContainer .spotify {
    display: none;
@@ -1944,15 +1874,16 @@ button {
 
 .discover-full-song .songContainer .spotify {
 
-    position: absolute;
+    // position: absolute;
     color: #65d36e;
     font-size: 26px;
     z-index: 1;
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 0px;
     width: 30px;
-    right: 0px;
-    top: 35px;
+        padding: 3px;
+    // right: 0px;
+    // top: 35px;
 }
 
 .discover-full-song .songContainer .spotify:hover {
@@ -2207,20 +2138,7 @@ span.postTags:nth-of-type(3) {
 
 
 
-@media (max-width: 1275px) and (min-width: 800px) {
 
-
-  .discover-full-song .ShareBox {
-    position: absolute;
-    top: 10px;
-    // right: -35px !important;
-    width: auto;
-}
-
-.discover-full-song .songContainer .spotify {
-    // right: -35px !important;
-}
-}
 
 
 
@@ -2247,13 +2165,7 @@ span.postTags:nth-of-type(3) {
   }
 }
 
-// .discover-full-song .ShareBox {
-//     right: -25px !important;
-// }
-//
-// .discover-full-song .songContainer .spotify {
-//     right: -25px !important;
-// }
+
 }
 
 @media (max-width: 930px)  and (min-width: 800px){
@@ -3963,3 +3875,16 @@ width: 800px;
 //     background: #282828;
 // }
 // }
+
+
+@media (min-width: 800px) {
+
+.discover-full-song .carousel .songContainer .topContentContainer .metaInfo {
+  .postTags {
+    transform: translateY(-2px);
+  }
+}
+
+
+
+}
