@@ -55,7 +55,9 @@ class OffScreen extends React.Component {
                       this.player = e;
                     }}
                     config={{
-                      attributes: { autoPlay: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream }
+                      file: {
+                        attributes: { autoPlay: /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream }
+                      }
                     }}
                 />
             </div>
