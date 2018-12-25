@@ -587,52 +587,6 @@ a.spotifyLink {
         transform: rotate(180deg); }
       .discovery-container .discover-full-song button.toggle-song.next {
         right: 0; }
-      .discovery-container .discover-full-song .ShareBox {
-        display: block;
-        width: 70%;
-        margin: 0 auto;
-        text-align: left;
-        position: relative;
-        right: 0;
-        margin-left: 30%; }
-        .discovery-container .discover-full-song .ShareBox .shareButton:hover {
-          cursor: pointer; }
-        .discovery-container .discover-full-song .ShareBox .shareButton .im {
-          display: inline-block;
-          font: normal normal normal 24px/1 'iconmonstr-iconic-font';
-          text-rendering: auto;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-          color: #000; }
-        .discovery-container .discover-full-song .ShareBox .shareButton a.spotifyLink {
-          font-size: 45px;
-          color: #6AE368;
-          transition: all .3s ease;
-          font-size: 45px !important;
-          display: block; }
-          .discovery-container .discover-full-song .ShareBox .shareButton a.spotifyLink i {
-            transform: translateY(-3px);
-            -webkit-transform: translateY(-3px); }
-        .discovery-container .discover-full-song .ShareBox .shareDropdown {
-          width: auto;
-          box-shadow: 0 3px 2px -2px #C9C6CB;
-          position: absolute;
-          left: -300px;
-          border: 1px solid #C9C6CB;
-          padding: 15px;
-          background: #fff;
-          z-index: 2;
-          letter-spacing: .5px;
-          top: 50px; }
-          .discovery-container .discover-full-song .ShareBox .shareDropdown p {
-            margin-bottom: 5px;
-            text-align: center;
-            font-weight: 700;
-            font-size: 16px; }
-          .discovery-container .discover-full-song .ShareBox .shareDropdown .SocialMediaShareButton {
-            transition: ALL .3S ease; }
-          .discovery-container .discover-full-song .ShareBox .shareDropdown .SocialMediaShareButton:hover {
-            filter: brightness(0.9); }
       .discovery-container .discover-full-song .songContainer {
         height: auto; }
         .discovery-container .discover-full-song .songContainer .imageContainer {
@@ -1192,12 +1146,6 @@ button {
 .discovery-container .discover-full-song .songContainer {
   position: relative; }
 
-.discovery-container .discover-full-song .songContainer .ShareBox {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  width: auto; }
-
 .songContainer .spotify {
   display: none; }
 
@@ -1364,12 +1312,6 @@ button {
 
 span.postTags:nth-of-type(3) {
   display: none !important; }
-
-@media (max-width: 1275px) and (min-width: 800px) {
-  .discover-full-song .ShareBox {
-    position: absolute;
-    top: 10px;
-    width: auto; } }
 
 @media (max-width: 1200px) and (min-width: 1075px) {
   .songInfo.desktop {

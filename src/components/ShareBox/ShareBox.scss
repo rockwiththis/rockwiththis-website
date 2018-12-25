@@ -1,6 +1,76 @@
+.discovery-container .discover-full-song .songContainer  {
+  .ShareBox {
+    display: inline-block;
+    margin: 0 auto;
+    position: relative;
+    margin-left: 3px;
+transform: translateY(5px);
+
+
+    .shareButton:hover {
+      cursor: pointer;
+    }
+    .shareButton {
+      // display: none;
+      .im {
+          display: inline-block;
+          font: normal normal normal 24px/1 'iconmonstr-iconic-font';
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          color: #000;
+      }
+
+
+
+      a.spotifyLink {
+          font-size: 45px;
+          color: #6AE368;
+          transition: all .3s ease;
+          font-size: 45px !important;
+          display: block;
+
+          i {
+            transform: translateY(-3px);
+            -webkit-transform: translateY(-3px);
+          }
+      }
+    }
+
+    .shareDropdown {
+      width: auto;
+      box-shadow: 0 3px 2px -2px #C9C6CB;
+      position: absolute;
+      left: -300px;
+      border: 1px solid #C9C6CB;
+      padding: 15px;
+      background: #fff;
+      z-index: 2;
+
+      letter-spacing: .5px;
+      top: 50px;
+
+        p {
+          margin-bottom: 5px;
+          text-align: center;
+          font-weight: 700;
+          font-size: 16px;
+        }
+
+        .SocialMediaShareButton {
+          transition: ALL .3S ease;
+        }
+        .SocialMediaShareButton:hover {
+          filter: brightness(0.9);
+        }
+    }
+  }
+}
+
+
+
 .ShareBox {
   pointer-events: all;
-  width: 100%;
     margin: 0 auto;
     text-align: left;
     cursor: pointer;
@@ -96,7 +166,7 @@ a.smsLink {
 
 .ShareBox {
     z-index: 8 !important;
-    position: absolute;
+    position: relative;
     cursor: pointer;
     transition: all .3s ease;
 }
