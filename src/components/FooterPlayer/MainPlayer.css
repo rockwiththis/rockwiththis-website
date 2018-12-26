@@ -451,17 +451,6 @@ footer .songSourceContainer .source.youtube :hover {
 @media (max-width: 480px) {
   .footer-player {
     height: 50px !important; }
-    .footer-player .player-info-image-wrapper {
-      width: 40px;
-      float: left;
-      background: transparent !important;
-      height: 40px;
-      border-radius: 0 !important; }
-      .footer-player .player-info-image-wrapper .player-image img {
-        height: 40px;
-        width: 40px;
-        margin: 0 !important;
-        border: 0px solid #fff !important; }
     .footer-player .player-info {
       display: block;
       padding: 0;
@@ -498,3 +487,19 @@ footer .songSourceContainer .source.youtube :hover {
       height: 40px !important; }
     .footer-player .player-duration-bar-wrapper {
       display: none !important; } }
+
+@media (max-width: 480px) {
+  .footer-player .player-info {
+    width: 80%;
+    margin-right: 10px; }
+    .footer-player .player-info .artist-info {
+      margin-left: 50px;
+      width: 100%;
+      max-width: 285px !important; }
+  .footer-player .player-info-image-wrapper {
+    display: none; }
+  .footer-player .player-controls-wrapper {
+    position: absolute;
+    left: 5px; }
+  .player-control-button svg {
+    fill: #fff; } }

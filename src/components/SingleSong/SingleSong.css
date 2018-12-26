@@ -1,6 +1,8 @@
 @media (min-width: 800px) {
   .singleSongPage {
-    padding: 0 35px; }
+    padding: 0 35px;
+    max-height: calc(100vh - 180px);
+    overflow: hidden; }
     .singleSongPage .imageContainer {
       padding-top: 25px; } }
 
@@ -357,7 +359,7 @@
   position: relative;
   top: 7px;
   right: 0px;
-  padding: 5px;
+  padding: 0 5px;
   width: auto;
   display: inline-block; }
   .singleSongPage .singleSongContainer .ShareBox i {
@@ -392,7 +394,13 @@
 .singleSongPage .singleSongContainer .metaInfo .postTags .tag {
   color: #fff;
   background: #1a6ea9;
-  border: 1px solid #1a6ea9; }
+  border: 1px solid #1a6ea9;
+  font-family: 'Baloo', cursive;
+  padding: 4px; }
+
+@media (min-width: 800px) {
+  .singleSongContainer .bottomContentContainer .songDescription {
+    padding-bottom: 50px; } }
 
 @media (max-width: 800px) {
   .singleSongContainer {
@@ -471,7 +479,7 @@
   .singleSongContainer .songInfo {
     padding-bottom: 5px; }
   .singleSongContainer .bottomContentContainer {
-    max-height: 555px;
+    max-height: calc(100vh - 330px);
     overflow: scroll;
     padding-bottom: 0 !important; }
   .postContent {

@@ -50,6 +50,12 @@
   }
 }
 
+@media (min-width: 800px) {
+  .socalLinks {
+    transform: translateX(5px);
+  }
+}
+
 @media (max-width: 800px) {
   .socialLinks {
     ul {

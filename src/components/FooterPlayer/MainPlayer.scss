@@ -289,6 +289,7 @@ text-overflow: ellipsis;
 
   svg {
         fill: #b0b0b0;
+        // fill: #fff;
   }:hover {
     fill: #f5f3f3;
   }
@@ -589,84 +590,29 @@ footer .songSourceContainer .source.youtube {
 }
 
 
-// MOBILE PLAYER STYLES
-// @media (max-width: 480px) {
-//
-//
-//
-//   .footer-player {
-//     position: relative;
-//     height: 50px !important;
-//
-//
-//
-//       .player-info-image-wrapper img {
-//       height: 40px !important;
-//       width: 40px !important;
-//       margin-top: 12.5px !important;
-//       border: 0px solid #fff !important;
-//       }
-//
-//       .artist-info {
-//         height: 40px !important;
-//         max-width: none !important;
-//         a.songImageLink {
-//             margin-bottom: 0 !important;
-//             span {
-//               display: inline-block;
-//               font-size: 14px !important;
-//               line-height: 20px !important;
-//             }
-//         }
-//         span.artist-title {
-//             font-size: 14px;
-//             line-height: 20px !important;
-//             display: inline-block;
-//             margin: 0 !important;
-//             font-weight: 100px !important;
-//             color: #fafafa !important;
-//         }
-//       }
-//       .player-control-button svg, .player-control-button img {
-//       margin-top: 6px !important;
-//       height: 30px !important;
-//       width: 30px !important;
-//   }
-//
-//   .songSourceContainer {
-//
-//       padding-top: 0 !important;
-//
-//       svg {
-//         fill: #b0b0b0 !important;
-//       }
-//   }
-//   }
-// }
-
-
 
 @media (max-width: 480px) {
 
   .footer-player {
       height: 50px !important;
 
-       .player-info-image-wrapper {
-          width: 40px ;
-          float: left;
-          background: transparent !important;
-          height: 40px ;
-          border-radius: 0 !important;
+       // .player-info-image-wrapper {
+          // width: 40px ;
+          // float: left;
+          // background: transparent !important;
+          // height: 40px ;
+          // border-radius: 0 !important;
+          // display: none;
 
-          .player-image {
-            img {
-                height: 40px;
-                width: 40px;
-                margin: 0 !important;
-                border: 0px solid #fff !important;
-            }
-          }
-      }
+          // .player-image {
+          //   img {
+          //       height: 40px;
+          //       width: 40px;
+          //       margin: 0 !important;
+          //       border: 0px solid #fff !important;
+          //   }
+          // }
+      // }
 
       .player-info {
           display: block;
@@ -726,4 +672,37 @@ footer .songSourceContainer .source.youtube {
 
 
 
+}
+
+
+
+@media (max-width: 480px) {
+  .footer-player {
+    .player-info {
+        width: 80%;
+        margin-right: 10px;
+        .artist-info {
+          margin-left: 50px;
+              width: 100%;
+              max-width: 285px !important;
+        }
+    }
+
+    .player-info-image-wrapper {
+      display: none;
+    }
+
+    .player-controls-wrapper {
+      position: absolute;
+      left: 5px;
+    }
+  }
+
+
+  .player-control-button {
+
+    svg {
+          fill: #fff;
+    }
+  }
 }
