@@ -38,11 +38,13 @@
             .singleSongInfo {
 
               .songName {
-                font-size: 28px;
+                font-size: 26px;
                 display: inline-block;
-                margin-bottom: 5px;
+                margin-bottom: 0px;
                 pointer-events: all;
                 font-weight: 700 !important;
+                vertical-align: top;
+                line-height: 30px;
               }
               .artistName {
                 font-size: 25px;
@@ -64,7 +66,6 @@
           .songDescription {
             font-size: 17px;
             line-height: 28px;
-            margin-top: 10px;
 
             br {
               height: 1px !important;
@@ -77,6 +78,8 @@
           .player-button {
               width: auto;
               display: inline-block;
+              width: 60px;
+              height: 60px;
 
               img {
                 width: 60px;
@@ -93,10 +96,20 @@
               display: inline-block;
               max-width: 80%;
               width: 80%;
-              padding-left: 15px;
+              padding-left: 5px;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow-x: hidden;
+              height: 60px;
+
+              .songNameContainer, .artistNameContainer {
+                  display: inline-block;
+                  height: 30px;
+              }
+
+              .songNameContainer {
+
+              }
 
           }
 
@@ -475,7 +488,7 @@ position: relative;
 @media (max-width: 800px) {
 
 
-p.metaInfo {
+.metaInfo {
     text-align: left;
 }
 
@@ -491,30 +504,12 @@ p.metaInfo {
   background: rgba(255, 255, 255, 0.8);
   width: 100%;
   padding: 0px;
-  height: 70px;
-
-  .ShareBox {
-    height: 70px;
-    width: 50px !important;
-    position: relative;
-
-    button.shareshareButton {
-    position: absolute;
-    top: 50%;
-    right: 50%;
-    transform: translate(50%, -50%);
-
-     i.im.im-paperplane {
-    font-size: 30px;
-    padding-right: 5px;
-}
-}
-}
+  height: 60px;
 
   .player-button {
     display: inline-block;
 height: 100%;
-width: 70px;
+width: 60px;
 text-align: center;
 vertical-align: top;
 transition: .15s linear all;
@@ -522,16 +517,15 @@ transition: .15s linear all;
       button.singlePostPlayerButton {
           width: 50px;
           height: 50px;
-          margin-top: 10px;
+              margin-top: 5px;
       }
   }
 
   .song-info {
     display: inline-block;
-height: 100%;
-padding: 5px 0;
-    width: calc(100% - 130px) !important;
-
+height: 55px;
+width: calc(100% - 130px) !important;
+padding: 5px 0 0 0;
 
 .song-title {
     font-weight: 700 !important;
@@ -539,17 +533,37 @@ padding: 5px 0;
     white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 20px;
-    line-height: 30px;
+    line-height: 25px;
 }
 .song-artist {
   font-size: 18px;
-    line-height: 30px;
+    line-height: 25px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
   }
+
+  a.spotify-mobile {
+    display: inline-block;
+    position: relative;
+    color: #65d36e;
+    font-size: 35px;
+    z-index: 1;
+    vertical-align: top;
+    height: 60px;
+    padding: 0px;
+    width: 60px;
+    margin-left: 10px;
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+}
 }
 
 .singleSongPage.page .singleSongContainer .postContent {
@@ -561,7 +575,7 @@ padding: 5px 0;
     position: relative;
     background: #fff;
         margin-top: -5px;
-        padding-top: 15px;
+        padding-top: 0px;
 }
 
 .singleSongPage.page .singleSongContainer .postContent .metaInfo .postDate, .singleSongPage.page .singleSongContainer .postContent .metaInfo .postAuthor {
@@ -577,6 +591,10 @@ padding: 5px 0;
 .singleSongContainer .imageContainer img {
   z-index: 1;
 }
+
+.singleSongContainer .postTags {
+      transform: translateY(-2px) !important;
+}
 }
 
 
@@ -585,10 +603,16 @@ padding: 5px 0;
 }
 
 .singleSongPage .singleSongContainer .ShareBox {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    width: auto;
+  position: relative;
+  top: 7px;
+  right: 0px;
+  padding: 5px;
+  width: auto;
+  display: inline-block;
+
+  i {
+        font-size: 24px;
+  }
 }
 .singleSongPage .singleSongContainer .ShareBox button:hover .im {
     cursor: pointer;
@@ -596,13 +620,16 @@ padding: 5px 0;
 }
 .singleSongPage .singleSongContainer .spotify {
   display: inline-block;
-    position: absolute;
-    top: 50px;
-    right: 0px;
-    width: auto;
-    color: #65d36e;
-    font-size: 32px;
-    z-index: 1;
+  position: relative;
+  top: 0px;
+  right: 0px;
+  width: auto;
+  color: #65d36e;
+  font-size: 28px;
+  z-index: 1;
+  padding-left: 5px;
+  height: 30px;
+  width: 30px;
 }
 .singleSongPage .singleSongContainer .spotify:hover {
   cursor: pointer;
@@ -664,7 +691,7 @@ padding: 5px 0;
               .songName {
                 font-size: 28px;
                 display: inline-block;
-                margin-bottom: 5px;
+                margin-bottom: 0px;
                 pointer-events: all;
                 font-weight: 700 !important;
               }
@@ -688,7 +715,6 @@ padding: 5px 0;
           .songDescription {
             font-size: 17px;
             line-height: 28px;
-            margin-top: 10px;
 
             br {
               height: 1px !important;
@@ -744,16 +770,23 @@ padding: 5px 0;
 
 @media (min-width: 800px) {
   .singleSongContainer .metaInfo {
-    margin-top: 15px !important;
+    margin-top: 0px !important;
+        .postTags {
+        display: inline-block;
+        margin: 0;
+        pointer-events: none;
+        transform: translateY(-2px);
+    }
 }
 
 .singleSongContainer {
   .songInfo {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
   }
   .bottomContentContainer {
-    // max-height: calc(100vh - 355px);
-    max-height: none;
+    max-height: 555px;
+    overflow: scroll;
+    padding-bottom: 0 !important;
   }
 }
 
@@ -779,4 +812,12 @@ padding: 5px 0;
   p.metaInfo .postTags:nth-of-type(5) {
       display: none;
   }
+}
+
+
+
+@media (max-width: 480px) {
+  a.source.youtube {
+    padding-top: 5px;
+}
 }

@@ -2186,9 +2186,10 @@ form.rwt-email-form button {
   .headerContainer {
     height: 50px !important; }
     .headerContainer #headerLogoMobile {
-      width: 50px !important; }
+      width: 60px !important; }
       .headerContainer #headerLogoMobile img {
-        width: 50px !important; }
+        width: 60px !important;
+        padding-top: 4px; }
   .socialLinks {
     top: 50px; }
   .homeContainer .hero-posts {
@@ -2280,4 +2281,8 @@ form.rwt-email-form button {
 
 @media (min-width: 800px) {
   .discover-full-song .carousel .songContainer .topContentContainer .metaInfo .postTags {
-    transform: translateY(-2px); } }
+    transform: translateY(-2px); }
+  #discovery-container .songGrid {
+    max-width: 674px; }
+  #discovery-container .discover-full-song {
+    max-width: 905px; } }

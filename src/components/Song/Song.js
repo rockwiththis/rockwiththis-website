@@ -17,7 +17,6 @@ class Song extends Component {
     constructor(props) {
         super(props)
         this.ytPlayer = null
-        this.toggleDescription = this.toggleDescription.bind(this)
         this.state = {
             expanded: false
         }
@@ -32,14 +31,6 @@ class Song extends Component {
 
     updateStorePlayPause(newSong) {
         this.props.actions.togglePlayPause((newSong) ? true : !this.props.isPlaying)
-    }
-
-    toggleDescription() {
-        const { height } = this.state
-
-        this.setState({
-            expanded: !this.state.expanded
-        })
     }
 
 

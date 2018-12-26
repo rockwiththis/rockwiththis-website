@@ -934,7 +934,7 @@ a.spotifyLink {
         right: 0;
     }
 
-  
+
 
     .songContainer {
       height: auto;
@@ -3680,10 +3680,11 @@ width: 800px;
     height: 50px !important;
 
     #headerLogoMobile {
-      width: 50px !important;
+      width: 60px !important;
 
       img {
-        width: 50px !important;
+        width: 60px !important;
+            padding-top: 4px;
       }
     }
   }
@@ -3882,6 +3883,15 @@ width: 800px;
 .discover-full-song .carousel .songContainer .topContentContainer .metaInfo {
   .postTags {
     transform: translateY(-2px);
+  }
+}
+
+#discovery-container {
+  .songGrid {
+        max-width: 674px;
+  }
+  .discover-full-song {
+    max-width: 905px;
   }
 }
 
