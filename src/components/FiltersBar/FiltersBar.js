@@ -204,7 +204,7 @@ class FiltersBar extends Component {
               <svg className={`viewIcon ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/></svg>
 
               <a className="viewButton" name='snapshot' onClick={this.changeGridView}>
-              <span>Snap</span>
+              <span>List</span>
               </a>
               <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
               <a className="viewButton" name='fullGrid' onClick={this.changeGridView}>
@@ -252,9 +252,9 @@ class FiltersBar extends Component {
                     <span>Full</span>
                     </div>
                     <div className="fake-button">
-                    <button className={`mobile ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} name='snapshot' onClick={this.changeGridView}>Snap</button>
+                    <button className={`mobile ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} name='snapshot' onClick={this.changeGridView}>List</button>
                     <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
-                    <span>Snap</span>
+                    <span>List</span>
 
                     </div>
                     <div className="fake-button">

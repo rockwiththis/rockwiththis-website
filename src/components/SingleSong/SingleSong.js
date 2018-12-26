@@ -22,8 +22,6 @@ class SingleSong extends Component {
 
         this.ytPlayer = null
 
-        this.toggleDescription = this.toggleDescription.bind(this)
-
         this.state = {
             expanded: false
         }
@@ -38,30 +36,6 @@ class SingleSong extends Component {
     updateStorePlayPause(newSong) {
         this.props.actions.togglePlayPause(newSong ? true : !this.props.isPlaying)
     }
-
-    toggleDescription() {
-        const { height } = this.state
-
-        this.setState({
-            expanded: !this.state.expanded
-        })
-    }
-
-    renderTags() {
-        const {
-            song,
-        } = this.props
-
-        const tags = song.sub_genres.map(tag =>
-            <span key={tag.name} className="tag" dangerouslySetInnerHTML={{ __html: tag.name }} />)
-
-        return (
-            <span className="postTags">
-                {tags}
-            </span>
-        )
-    }
-
 
     renderPlayer() {
         const {
@@ -115,7 +89,7 @@ class SingleSong extends Component {
         })
         const songTags = song.sub_genres.map(tag => {
           return (
-              <span key={tag.id} className="tag">{tag.name}</span>
+              <span key={tag.id} className="tag">#{tag.name}</span>
           )
         })
         return (

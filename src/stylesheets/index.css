@@ -1,3 +1,6 @@
+span.song-of-day-tag {
+  font-weight: bold !important; }
+
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   html {
     transform: rotate(-90deg);
@@ -167,9 +170,10 @@ p {
   .discovery-section {
     position: relative;
     z-index: 1000;
-    margin-top: calc(100vw + 90px);
+    margin-top: calc(100vw + 89px);
     z-index: 1000 !important;
-    background: #fff; }
+    background: #fff;
+    border-top: 1px solid #C9C6CB; }
     .discovery-section .songList {
       overflow: visible !important; } }
 
@@ -259,6 +263,17 @@ p {
     border-radius: 4px; }
 
 @media (max-width: 800px) {
+  .discovery-section .previewScrollLayout .songInfo.mobile a.postTitleLink {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    font-size: 16px !important;
+    line-height: 20px;
+    max-height: 20px;
+    overflow-y: hidden; }
+  .discovery-section .previewScrollLayout .songInfo.mobile .artistName {
+    color: #545151;
+    font-size: 16px !important; }
   .SubgenreFiltersDropDown.expand {
     height: calc(100vh - 132px);
     z-index: 8500;
@@ -339,7 +354,7 @@ p {
               padding: 0px;
               transition: all .3s ease;
               background: #fff;
-              font-size: 12px;
+              font-size: 13px;
               border-radius: 6px !important;
               transition: all .3s ease;
               color: #1a6ea9 !important;
@@ -353,13 +368,13 @@ p {
         text-decoration: none;
         color: black;
         font-weight: 700;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 20px;
         max-height: 20px;
         overflow-y: hidden; }
       .discovery-section .songList .songContainer .postContent .artistName {
         color: #545151;
-        font-size: 14px; }
+        font-size: 16px; }
       .discovery-section .songList .songContainer .postContent p.songDescription {
         font-family: 'Open Sans', sans-serif;
         font-size: 10px;
@@ -388,6 +403,12 @@ body {
   margin: 0;
   pointer-events: none; }
 
+@media (min-width: 480px) {
+  .SubgenreFiltersDropDown .tag:hover, .SubgenreFiltersDropDown .tag.selected {
+    color: #fff; }
+  .SubgenreFiltersDropDown .tag:hover {
+    background: #1f84c7; } }
+
 p.leftInfo {
   display: inline-block;
   margin: 0;
@@ -408,12 +429,10 @@ p.leftInfo {
   padding: 6px; }
   .tag:active {
     box-shadow: none; }
-  .tag:hover {
-    background: #1f84c7; }
-  .tag:selected {
-    background: #1a6ea9; }
-  .tag:hover, .tag.selected {
-    color: #fff; }
+
+.tag.selected {
+  background: #1a6ea9;
+  color: #fff !important; }
 
 p.metaInfo {
   margin: 0 !important; }

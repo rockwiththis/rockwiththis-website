@@ -1,6 +1,10 @@
 $landing-height: calc(100vh - 220px);
 
 // LANDING PAGE STYLES
+span.song-of-day-tag {
+    font-weight: bold !important;
+}
+
 
 @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
   html {
@@ -224,7 +228,7 @@ p {
 
 // MOBILE PARALLAX
 
-$discovery-parallax-padding: calc(100vw + 90px);
+$discovery-parallax-padding: calc(100vw + 89px);
 
 @media screen and (max-width: 480px) {
 
@@ -285,6 +289,7 @@ $discovery-parallax-padding: calc(100vw + 90px);
     margin-top: $discovery-parallax-padding;
     z-index: 1000 !important;
     background: #fff;
+    border-top: 1px solid #C9C6CB;
     .songList {
       overflow: visible !important;
     }
@@ -455,6 +460,25 @@ $discovery-parallax-padding: calc(100vw + 90px);
 
 @media (max-width: 800px) {
 
+  .discovery-section .previewScrollLayout {
+    .songInfo.mobile {
+      a.postTitleLink {
+          text-decoration: none;
+          color: black;
+          font-weight: 700;
+          font-size: 16px !important;
+          line-height: 20px;
+          max-height: 20px;
+          overflow-y: hidden;
+      }
+
+      .artistName {
+        color: #545151;
+        font-size: 16px !important;
+      }
+    }
+  }
+
 .SubgenreFiltersDropDown.expand {
   height: calc(100vh - 132px);
   z-index: 8500;
@@ -563,7 +587,7 @@ $discovery-parallax-padding: calc(100vw + 90px);
                           padding: 0px;
                           transition: all .3s ease;
                           background: #fff;
-                          font-size: 12px;
+                          font-size: 13px;
                           border-radius: 6px !important;
                           transition: all .3s ease;
                           color: #1a6ea9 !important;
@@ -582,7 +606,7 @@ $discovery-parallax-padding: calc(100vw + 90px);
                   text-decoration: none;
                   color: black;
                   font-weight: 700;
-                  font-size: 14px;
+                  font-size: 16px;
                   line-height: 20px;
                   max-height: 20px;
                   overflow-y: hidden;
@@ -590,7 +614,7 @@ $discovery-parallax-padding: calc(100vw + 90px);
 
               .artistName {
                 color: #545151;
-                font-size: 14px;
+                font-size: 16px;
               }
 
               p.songDescription {
@@ -646,7 +670,18 @@ body {
 
 }
 
+@media (min-width: 480px) {
+.SubgenreFiltersDropDown {
+  .tag:hover, .tag.selected {
+    color: #fff;
+  }
+  .tag:hover {
+    background: #1f84c7;
+  }
+}
 
+
+}
 
 p.leftInfo {
   display: inline-block;
@@ -669,15 +704,11 @@ p.leftInfo {
   &:active {
     box-shadow: none;
   }
-  &:hover {
-    background: #1f84c7;
-  }
-  &:selected {
-    background: #1a6ea9;
-  }
-  &:hover, &.selected {
-    color: #fff;
-  }
+
+}
+.tag.selected {
+  background: #1a6ea9;
+  color: #fff !important;
 }
 
 p.metaInfo {
