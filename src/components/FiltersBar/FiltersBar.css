@@ -114,12 +114,9 @@ button.large-bottom.tag {
   font-weight: 400;
   padding: 10px; }
   button.large-bottom.tag:hover {
-    font-weight: 400;
     background: #1a6ea9;
     font-weight: 400;
-    /* padding: 10px!important; */
-    color: #fff;
-  }
+    padding: 10px !important; }
 
 @media (max-width: 800px) {
   .SubgenreFiltersDropDown {

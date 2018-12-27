@@ -2,7 +2,7 @@
   .footer-player .artist-info {
     float: left;
     margin-left: 0px;
-    margin-bottom: 8px !important;
+    margin-bottom: 4px !important;
     max-width: 250px !important;
     overflow: hidden;
     overflow: hidden !important;
@@ -327,7 +327,7 @@
 .artist-info {
   float: left;
   margin-left: 15px;
-  margin-bottom: 8px !important;
+  margin-bottom: 4px !important;
   max-width: 250px !important;
   overflow: hidden;
   white-space: nowrap;
@@ -501,6 +501,6 @@ footer .songSourceContainer .source.youtube :hover {
     display: none; }
   .footer-player .player-controls-wrapper {
     position: absolute;
-    left: 5px; }
+    left: 7px; }
   .player-control-button svg {
     fill: #fff; } }
