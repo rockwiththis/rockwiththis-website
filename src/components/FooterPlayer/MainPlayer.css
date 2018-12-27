@@ -495,7 +495,8 @@ footer .songSourceContainer .source.youtube :hover {
     .footer-player .player-info .artist-info {
       margin-left: 50px;
       width: 100%;
-      max-width: 285px !important; }
+      max-width: 285px !important;
+      transform: translateY(-1px); }
   .footer-player .player-info-image-wrapper {
     display: none; }
   .footer-player .player-controls-wrapper {
