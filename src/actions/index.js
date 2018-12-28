@@ -160,8 +160,6 @@ export const FETCH_RELATED_SONGS = {
     FAILURE: 'FETCH_RELATED_SONGS_FAILURE',
 }
 
-
-
 export const playNextSong = () => (dispatch, getState) => {
   const nextSong = getState().queue.queue[0]
   dispatch(toggleSong(nextSong))
