@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Slider from 'rc-slider'
 import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css'
-import { toggleSong, togglePlayPause } from 'actions/queue'
+import { togglePlayPause } from 'actions/queue'
 import OffScreen from 'components/OffScreenPlayer/OffScreen'
 
 import  playButton  from 'images/main-player-play-button.svg'
