@@ -39,7 +39,7 @@
     "react-moment": "^0.6.8",
     "react-motion": "^0.5.2",
     "react-placeholder": "^3.0.1",
-    "react-player": "^1.6.4",
+    "react-player": "github:ecook10/react-player",
     "react-player-controls": "^0.5.17",
     "react-redux": "^5.0.6",
     "react-responsive-carousel": "^3.1.41",
