@@ -36,7 +36,7 @@ const appReducers = handleActions({
     return update(state, {
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
-      activeSong: { $set: action.payload[0] },
+      activeSong: { $set: action.payload[0] }
     })
   },
   'app/SET_REMAINING_POSTS': (state, action) => {
