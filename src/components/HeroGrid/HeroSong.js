@@ -16,7 +16,6 @@ class HeroSong extends Component {
 
     // TODO this is duplicated in src/components/Song/Song.js
     onPressPlay = song => event => {
-        event.preventDefault()
         // TODO this should be determined by caller
         // to guarantee that appearance of button aligns w/ its behavior
         const isPlayButton = (
@@ -24,13 +23,7 @@ class HeroSong extends Component {
             song.id !== this.props.activeSong.id
         );
         this.props.actions.togglePlayPause(false);
-        if (isPlayButton) {
-          this.props.actions.toggleSong(song);
-          setTimeout(() => {
-            console.log("manually retriggering song play");
-            this.props.actions.togglePlayPause(true);
-          }, 5000);
-        }
+        if (isPlayButton) this.props.actions.toggleSong(song);
     }
 
     render() {

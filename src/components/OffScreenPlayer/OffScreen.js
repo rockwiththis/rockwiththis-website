@@ -11,9 +11,9 @@ class OffScreen extends React.Component {
     songLoaded = ref => {
       // There may be a day in the future where we want to load a song and not play it
       // ... but that day is not today
-      // this.props.actions.togglePlayPause(true);
       console.log("song loaded");
       this.setSongDuration(ref);
+      this.props.actions.togglePlayPause(true);
     }
 
     render() {
