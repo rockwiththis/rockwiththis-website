@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux'
 import { fetchFilters } from 'actions/filters'
 import * as Actions from 'actions/index'
 
-import OffScreen from 'components/OffScreenPlayer/OffScreen'
 import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 import Header from 'components/Header/Header.js'
 import MainPlayer from 'components/FooterPlayer/MainPlayer'

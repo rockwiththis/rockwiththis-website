@@ -5,7 +5,7 @@ import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
 import { Carousel } from 'react-responsive-carousel';
 import { chunk } from 'lodash';
-import $ from "jquery";
+import ReactPlayer from 'react-player'
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import HeroPosts from 'components/HeroGrid/HeroPosts'
 import SongGridSquare from 'components/SongGrid/SongGridSquare'
@@ -263,6 +263,23 @@ class SongsContainer extends Component {
       this.setState({ gridPage: 0 })
     }
 
+    setSongDuration = ref => {
+      this.props.actions.setSongDuration(ref.getDuration());
+    }
+
+    isCurrentSong = song => song.id === this.props.activeSong.id
+
+    changeSongOnEnd = () => {
+      const nextIndex = this.props.filteredPosts.findIndex(this.isCurrentSong) + 1
+      const nextQueuePosition = nextIndex >= this.props.filteredPosts.length ? 0 : nextQueuePosition
+
+      this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
+    }
+
+    songPlayerReady = song => {
+      console.log(`Song ${song.id} ready to be played`);
+    }
+
     render() {
         const { discoverFullSongIndex } = this.state
         const heroPosts = this.props.posts.slice(0,7)
@@ -270,32 +287,37 @@ class SongsContainer extends Component {
         let individualGrid = []
 
         const indexTop = 0
-        const songGridsFull = this.props.filteredPosts.map((song, index) => {
-            return (
-                <SongGridSquare
-                    {...this.props}
-                    index={(indexTop == 0) ? index : index + (indexTop)*16}
-                    activeDiscoverFullSong={this.state.discoverFullSongIndex === ((indexTop == 0) ? index : index + (indexTop)*16)}
-                    updateDiscoverFullSongIndex={this.updateDiscoverFullSongIndex}
-                    key={song.id}
-                    song={song}
-                />
-            )
-        })
-
-
-        const songList = this.props.filteredPosts.map((song, index) => {
-          return(
-            <Song
-                {...this.props}
-                activeSong={this.props.activeSong}
-                isPlaying={true}
-                key={`${song.id}`}
-                song={song}
-                layout={this.props.discoverLayout}
+        const songGridsFull = this.props.filteredPosts.map((song, index) => (
+            <SongGridSquare
+              {...this.props}
+              index={(indexTop == 0) ? index : index + (indexTop)*16}
+              activeDiscoverFullSong={this.state.discoverFullSongIndex === ((indexTop == 0) ? index : index + (indexTop)*16)}
+              updateDiscoverFullSongIndex={this.updateDiscoverFullSongIndex}
+              key={song.id}
+              song={song}
             />
-          )
-        })
+        ))
+
+        const songList = this.props.filteredPosts.map((song, index) => (
+            <Song
+              {...this.props}
+              activeSong={this.props.activeSong}
+              isPlaying={true}
+              key={`${song.id}`}
+              song={song}
+              layout={this.props.discoverLayout}
+            />
+        ))
+
+        const playersList = this.props.filteredPosts.map(song => (
+            <ReactPlayer
+              playing={this.isCurrentSong(song)}
+              onReady={this.songPlayerReady(song)}
+              onProgress={this.props.actions.setSongProgress}
+              onEnded={this.changeSongOnEnd}
+              url={song.soundcloud_track_id ? `https%3A//api.soundcloud.com/tracks/${song.soundcloud_track_id}` : song.youtube_link}
+            />
+        ))
 
         const chunkLength = window.innerWidth > 1100 ? 16 : 8;
         const chunkedSongsGridsFull = chunk(songGridsFull, chunkLength);
@@ -431,6 +453,9 @@ class SongsContainer extends Component {
 
                 </div>
 
+                <div className="player-wrapper" style={{ display: 'none' }}>
+                    {playersList}
+                </div>
             </div>
         )
     }

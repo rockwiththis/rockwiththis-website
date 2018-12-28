@@ -4,7 +4,6 @@ import Slider from 'rc-slider'
 import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css'
 import { toggleSong, togglePlayPause } from 'actions/queue'
-import OffScreen from 'components/OffScreenPlayer/OffScreen'
 
 import  playButton  from 'images/main-player-play-button.svg'
 import  pauseButton  from 'images/pauseButton-main-player-new.png'
@@ -250,19 +249,13 @@ class MainPlayer extends Component {
 
         return (
             <footer>
-                  <div className={`footer-player ${this.state.fullMobilePlayer ? 'fullMobilePlayer' : ''}`}>
-                      {this.renderInfo()}
-                      <div className="player-controls-wrapper">
-                          {this.renderButtons()}
-                      </div>
-                      {this.renderSongSource()}
-                  </div>
-                  <OffScreen
-                    {...this.props}
-                    changeSongOnEnd={this.changeSongOnEnd}
-                    ref={(e) => {
-                      this.offScreen = e;
-                    }} />
+                <div className={`footer-player ${this.state.fullMobilePlayer ? 'fullMobilePlayer' : ''}`}>
+                    {this.renderInfo()}
+                    <div className="player-controls-wrapper">
+                        {this.renderButtons()}
+                    </div>
+                    {this.renderSongSource()}
+                </div>
             </footer>
         )
     }
