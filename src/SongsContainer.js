@@ -328,134 +328,134 @@ class SongsContainer extends Component {
         return (
             <div className="songsContainer clearfix">
 
-                <HeroPosts
-                    {...this.props}
-                    heroPosts={heroPosts}
-                />
+              <HeroPosts
+                {...this.props}
+                heroPosts={heroPosts}
+              />
 
-                <div id="discover" className="discovery-section">
-                    <img className="discover-cover" src={black} />
+              <div id="discover" className="discovery-section">
+                <img className="discover-cover" src={black} />
 
-                    <Element>
-                        <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
-                    </Element>
+                <Element>
+                  <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
+                </Element>
 
-                    <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
-                        <div id="discovery-container"
-                          onScroll={(e) => this.handleScroll(e)}
-                          className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
-                        >
+                <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
+                  <div id="discovery-container"
+                    onScroll={(e) => this.handleScroll(e)}
+                    className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
+                  >
 
-                            <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
-                                <div className="discoverySectionScroll" name='discoverySectionScroll'>
-                                    {songList}
-                                </div>
-                            </div>
-
-                            {this.props.discoverLayout !== 'snapshot' &&
-                                <div className="snapshotView">
-
-                                    <div className="songGrid">
-
-                                        {songGridsFull.length > 0 ?
-                                            <div className='grid-container-wrapper'>
-                                                <Carousel
-                                                  showThumbs={false}
-                                                  showStatus={false}
-                                                  showIndicators={false}
-                                                  selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
-                                                  useKeyboardArrows={true}
-                                                >
-                                                    { chunkedSongsGridsFull.map(grid => (
-                                                        <div className='grid-container'>
-                                                            {grid}
-                                                        </div>
-                                                    )) }
-                                                </Carousel>
-                                            </div>
-                                        :
-                                            <SongGridPlaceholder />
-                                        }
-
-                                        <div className='song-grid-footer'>
-                                            <button className='grid-arrow previous' onClick={() => this.navGrid(false)}>
-                                                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-                                            </button>
-                                            {this.renderPaginationDots()}
-                                            <button className='grid-arrow next' onClick={() => this.navGrid(true, songGridsFull.length)}>
-                                                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-                                            </button>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="discover-full-song">
-
-                                        {this.state.loading ?
-                                            <FullSongPlaceHolder />
-                                        :
-                                            <div>
-                                                <button
-                                                  className="toggle-song previous"
-                                                  onClick={() => this.changeDiscoverSong(false)}
-                                                >
-                                                    <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-                                                </button>
-
-                                                <div className='carousel-wrapper'>
-                                                    {this.props.filteredPosts[discoverFullSongIndex] &&
-                                                        <Carousel
-                                                          showThumbs={false}
-                                                          showStatus={false}
-                                                          showArrows={false}
-                                                          infiniteLoop
-                                                          selectedItem={discoverFullSongIndex}
-                                                          ref={(e) => this.carousel = e}
-                                                        >
-                                                            {this.props.filteredPosts.map(post => (
-                                                                <div>
-                                                                    <Song
-                                                                      {...this.props}
-                                                                      song={post}
-                                                                    />
-                                                                </div>
-                                                            ))}
-                                                        </Carousel>
-                                                    }
-                                                </div>
-
-                                                <button
-                                                  className="toggle-song next"
-                                                  onClick={() => this.changeDiscoverSong(true)}
-                                                >
-                                                    <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-                                                </button>
-                                            </div>
-                                        }
-                                    </div>
-                                </div>
-                            }
-
-
-                            {this.state.loadingMoreSongs && !this.state.noMorePosts &&
-                                <div className='loading-bottom'>
-                                    <LoadingComponent />
-                                </div>
-                            }
-                            {this.state.noMorePosts &&
-                                <div className='loading-bottom'>
-                                    <span>No more posts to load.</span>
-                                </div>
-                            }
-
-                        </div>
+                    <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
+                      <div className="discoverySectionScroll" name='discoverySectionScroll'>
+                        {songList}
+                      </div>
                     </div>
 
+                    {this.props.discoverLayout !== 'snapshot' &&
+                      <div className="snapshotView">
+
+                        <div className="songGrid">
+
+                          {songGridsFull.length > 0 ?
+                            <div className='grid-container-wrapper'>
+                              <Carousel
+                                showThumbs={false}
+                                showStatus={false}
+                                showIndicators={false}
+                                selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
+                                useKeyboardArrows={true}
+                              >
+                                { chunkedSongsGridsFull.map(grid => (
+                                  <div className='grid-container'>
+                                    {grid}
+                                  </div>
+                                )) }
+                              </Carousel>
+                            </div>
+                          :
+                            <SongGridPlaceholder />
+                          }
+
+                          <div className='song-grid-footer'>
+                            <button className='grid-arrow previous' onClick={() => this.navGrid(false)}>
+                              <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
+                            </button>
+                            {this.renderPaginationDots()}
+                            <button className='grid-arrow next' onClick={() => this.navGrid(true, songGridsFull.length)}>
+                              <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
+                            </button>
+                          </div>
+
+                        </div>
+
+                        <div className="discover-full-song">
+
+                          {this.state.loading ?
+                            <FullSongPlaceHolder />
+                          :
+                            <div>
+                              <button
+                                className="toggle-song previous"
+                                onClick={() => this.changeDiscoverSong(false)}
+                              >
+                                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
+                              </button>
+
+                              <div className='carousel-wrapper'>
+                                {this.props.filteredPosts[discoverFullSongIndex] &&
+                                  <Carousel
+                                    showThumbs={false}
+                                    showStatus={false}
+                                    showArrows={false}
+                                    infiniteLoop
+                                    selectedItem={discoverFullSongIndex}
+                                    ref={(e) => this.carousel = e}
+                                  >
+                                    {this.props.filteredPosts.map(post => (
+                                      <div>
+                                        <Song
+                                          {...this.props}
+                                          song={post}
+                                        />
+                                      </div>
+                                    ))}
+                                  </Carousel>
+                                }
+                              </div>
+
+                              <button
+                                className="toggle-song next"
+                                onClick={() => this.changeDiscoverSong(true)}
+                              >
+                                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
+                              </button>
+                            </div>
+                          }
+                        </div>
+                      </div>
+                    }
+
+
+                    {this.state.loadingMoreSongs && !this.state.noMorePosts &&
+                      <div className='loading-bottom'>
+                        <LoadingComponent />
+                      </div>
+                    }
+                    {this.state.noMorePosts &&
+                      <div className='loading-bottom'>
+                        <span>No more posts to load.</span>
+                      </div>
+                    }
+
+                  </div>
                 </div>
 
-                <div className="player-wrapper" style={{ display: 'none' }}>
-                    {playersList}
-                </div>
+              </div>
+
+              <div className="player-wrapper" style={{ display: 'none' }}>
+                  {playersList}
+              </div>
             </div>
         )
     }
