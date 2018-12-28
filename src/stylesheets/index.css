@@ -332,7 +332,8 @@ p {
           max-width: 250px !important;
           overflow: hidden;
           white-space: nowrap;
-          text-overflow: ellipsis; }
+          text-overflow: ellipsis;
+          padding-top: 2px; }
         .discovery-section .songList .songContainer .postContent .topContentContainer .metaInfo {
           width: 100%;
           display: inline-block;
@@ -778,7 +779,7 @@ button {
             height: 30px;
             overflow-x: hidden; }
             .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent .topContentContainer .songInfo a.postTitleLink .songName {
-              font-size: 16px;
+              font-size: 20px;
               line-height: 26px;
               height: 30px;
               max-height: 30px;
@@ -786,7 +787,7 @@ button {
               font-weight: 700 !important; }
           .discovery-section .discovery-container.previewScrollLayout .songList .songContainer .postContent .topContentContainer .songInfo .artistName {
             color: #545151;
-            font-size: 16px;
+            font-size: 20px;
             line-height: 26px;
             height: 30px;
             max-height: 30px; }
@@ -809,6 +810,13 @@ button {
         height: 100%;
         width: 100%;
         border-radius: 4px; } }
+
+@media (min-width: 800px) {
+  .previewScrollLayout .marquee-inner.artist {
+    position: absolute;
+    display: block;
+    height: 30px;
+    top: 25px; } }
 
 @media only screen and (min-width: 800px) and (max-width: 1000px) {
   .discovery-container.previewScrollLayout {
@@ -1223,7 +1231,8 @@ button {
     background: rgba(255, 255, 255, 0.7);
     width: 100%;
     position: absolute;
-    bottom: 0; }
+    bottom: 0;
+    left: 0; }
   .previewScrollLayout .seeMore {
     display: block;
     text-align: right;
