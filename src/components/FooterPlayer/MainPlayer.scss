@@ -4,7 +4,7 @@
   .artist-info {
     float: left;
     margin-left: 0px;
-    margin-bottom: 8px !important;
+    margin-bottom: 4px !important;
     max-width: 250px !important;
 overflow: hidden;
 overflow: hidden !important;
@@ -398,7 +398,7 @@ text-overflow: ellipsis;
 .artist-info {
   float: left;
   margin-left: 15px;
-  margin-bottom: 8px !important;
+  margin-bottom: 4px !important;
   max-width: 250px !important;
 overflow: hidden;
 white-space: nowrap;
@@ -685,6 +685,7 @@ footer .songSourceContainer .source.youtube {
           margin-left: 50px;
               width: 100%;
               max-width: 285px !important;
+                  transform: translateY(-1px);
         }
     }
 
@@ -694,7 +695,7 @@ footer .songSourceContainer .source.youtube {
 
     .player-controls-wrapper {
       position: absolute;
-      left: 5px;
+      left: 7px;
     }
   }
 

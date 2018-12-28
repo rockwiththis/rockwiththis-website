@@ -558,6 +558,7 @@ $discovery-parallax-padding: calc(100vw + 89px);
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
+                    padding-top: 2px;
                   }
 
                   .metaInfo {
@@ -1249,7 +1250,7 @@ button {
                   overflow-x: hidden;
 
                   .songName {
-                    font-size: 16px;
+                    font-size: 20px;
                     line-height: 26px;
                     height: 30px;
                     max-height: 30px;
@@ -1260,7 +1261,7 @@ button {
               }
               .artistName {
                 color: #545151;
-                font-size: 16px;
+                font-size: 20px;
                 line-height: 26px;
                 height: 30px;
                 max-height: 30px;
@@ -1305,7 +1306,16 @@ button {
 
 
 
+@media (min-width: 800px) {
 
+.previewScrollLayout  .marquee-inner.artist {
+      position: absolute;
+      display: block;
+      height: 30px;
+      top: 25px;
+  }
+
+}
 
 
 
@@ -1983,6 +1993,7 @@ span {
     width: 100%;
     position: absolute;
     bottom: 0;
+    left: 0;
 }
 
 
