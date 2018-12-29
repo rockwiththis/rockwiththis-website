@@ -19,7 +19,7 @@ class SongPlayerContainer extends React.Component {
 
   render() {
     return (
-        <div className="song-player-wrapper" style style={{ display: 'none' }}>
+        <div className="song-player-wrapper">
 
           {this.props.songPosts.map(song => (
               <PlayerWrapper

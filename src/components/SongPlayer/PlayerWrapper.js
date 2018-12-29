@@ -26,6 +26,7 @@ class PlayerWrapper extends React.Component {
   );
 
   render() {
+    console.log(`Rendering player for song ${this.props.songPost.id}`);
     const songUrl = (
         this.props.songPost.soundcloud_track_id ?
           `https%3A//api.soundcloud.com/tracks/${this.props.songPost.soundcloud_track_id}` :

@@ -332,7 +332,7 @@ class SongsContainer extends Component {
                   className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
                 >
 
-                  <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
+                  <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`} style={{ display: 'none' }}>
                     <div className="discoverySectionScroll" name='discoverySectionScroll'>
                       {songList}
                     </div>

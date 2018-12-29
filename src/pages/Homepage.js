@@ -19,6 +19,7 @@ class Homepage extends Component {
         return (
           <div>
           <Helmet>
+            <script src="http://localhost:8097"></script>
             <title>Rock With This - Your New Favorite Song</title>
           </Helmet>
              <div className="homeContainer">
