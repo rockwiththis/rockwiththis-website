@@ -314,18 +314,19 @@ class SongsContainer extends Component {
       return (
           <div className="songsContainer clearfix">
 
+            <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`} style={{ display: 'none' }}>
+              <div className="discoverySectionScroll" name='discoverySectionScroll'>
+                {songList[0]}
+                {songList[1]}
+              </div>
+            </div>
+
             <SongPlayerContainer
               songPosts={this.props.filteredPosts}
               currentSongId={this.props.activeSong.id}
               isPlaying={this.props.isPlaying}
               onSongProgress={this.props.actions.setSongProgress}
               onSongEnd={this.changeSongOnEnd}
-            />
-
-            <HeroPosts
-              {...this.props}
-              heroPosts={heroPosts}
-              style={{ display: 'none' }}
             />
 
             <div id="discover" className="discovery-section">
@@ -340,12 +341,6 @@ class SongsContainer extends Component {
                   onScroll={(e) => this.handleScroll(e)}
                   className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
                 >
-
-                  <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`} style={{ display: 'none' }}>
-                    <div className="discoverySectionScroll" name='discoverySectionScroll'>
-                      {songList}
-                    </div>
-                  </div>
 
                   {this.props.discoverLayout !== 'snapshot' &&
                     <div className="snapshotView">
