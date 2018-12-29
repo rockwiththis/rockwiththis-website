@@ -84,7 +84,7 @@ class SongsContainer extends Component {
             console.log("Here's some more songs buddy!");
 
             this.setState({ loadingMoreSongs: true })
-            this.props.actions.loadMoreSongs(() => this.setState({ loadingMoreSongs: false }))
+            // this.props.actions.loadMoreSongs(() => this.setState({ loadingMoreSongs: false }))
           }
         }
       }
