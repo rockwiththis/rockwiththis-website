@@ -3,41 +3,17 @@ import YouTube from 'react-youtube'
 import ReactPlayer from 'react-player'
 
 class OffScreen extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            autoplay: true
-        }
-        this.bindPlayNext = this.bindPlayNext.bind(this)
-        this.playNextSong = this.playNextSong.bind(this)
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const activeSong = this.props.activeSong
-        const nextActiveSong = nextProps.activeSong
-        if (this.props.isPlaying !== nextProps.isPlaying || activeSong !== nextActiveSong) {
-            // nextProps.isPlaying ? window.SC.Widget('sc-player').play() : window.SC.Widget('sc-player').pause()
-        }
-        if (activeSong && activeSong.id && activeSong !== nextActiveSong) {
-            this.setState({ autoplay: true })
-        }
-    }
-
-    bindPlayNext() {
-        // window.SC.Widget('sc-player').bind(window.SC.Widget.Events.FINISH, this.playNextSong)
-    }
-
-    playNextSong() {
-        const activeSong = this.props.activeSong
-        this.props.posts.find((post, i, arr) => {
-            if (post.id === activeSong.id) {
-                this.props.actions.toggleSong(arr[i + 1])
-            }
-        })
-    }
 
     setSongDuration = ref => {
       this.props.actions.setSongDuration(ref.getDuration());
+    }
+
+    songLoaded = ref => {
+      // There may be a day in the future where we want to load a song and not play it
+      // ... but that day is not today
+      console.log("song loaded");
+      this.setSongDuration(ref);
+      this.props.actions.togglePlayPause(true);
     }
 
     render() {
@@ -47,7 +23,7 @@ class OffScreen extends React.Component {
             <div className='iframe-and-youtube-wrapper'>
                 <ReactPlayer
                     playing={this.props.isPlaying}
-                    onReady={this.setSongDuration}
+                    onReady={this.songLoaded}
                     onProgress={this.props.actions.setSongProgress}
                     onEnded={this.props.changeSongOnEnd}
                     url={url}

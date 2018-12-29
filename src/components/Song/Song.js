@@ -20,19 +20,18 @@ class Song extends Component {
         this.state = {
             expanded: false
         }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
     }
 
     onPressPlay(song) {
-          this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-          this.props.actions.toggleSong(song)
-
+        // TODO this should be determined by caller
+        // to guarantee that appearance of button aligns w/ its behavior
+        const isPauseButton = (
+            this.props.isPlaying &&
+            song.id === this.props.activeSong.id
+        );
+        this.props.actions.togglePlayPause(!this.props.isPlaying);
+        if (!isPauseButton) this.props.actions.toggleSong(song);
     }
-
-    updateStorePlayPause(newSong) {
-        this.props.actions.togglePlayPause((newSong) ? true : !this.props.isPlaying)
-    }
-
 
     renderTags() {
         const {
@@ -205,7 +204,6 @@ class Song extends Component {
 
 Song.propTypes = {
     song: PropTypes.object.isRequired,
-    toggleSong: PropTypes.func.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     activeSong: PropTypes.object,
 }

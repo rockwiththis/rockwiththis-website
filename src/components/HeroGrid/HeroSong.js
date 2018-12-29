@@ -13,24 +13,17 @@ import  playButton  from 'images/playbutton.svg'
 import  pauseButton  from 'images/pauseButton.png'
 
 class HeroSong extends Component {
-    constructor(props) {
-        super(props)
 
-        this.ytPlayer = null
-
-        this.state = {
-            expanded: false
-        }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
-    }
-
-    onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.actions.toggleSong(song)
-    }
-
-    updateStorePlayPause(newSong) {
-        this.props.actions.togglePlayPause(newSong ? true : !this.props.isPlaying)
+    // TODO this is duplicated in src/components/Song/Song.js
+    onPressPlay = song => event => {
+        // TODO this should be determined by caller
+        // to guarantee that appearance of button aligns w/ its behavior
+        const isPlayButton = (
+            !this.props.isPlaying ||
+            song.id !== this.props.activeSong.id
+        );
+        this.props.actions.togglePlayPause(false);
+        if (isPlayButton) this.props.actions.toggleSong(song);
     }
 
     render() {
@@ -50,7 +43,7 @@ class HeroSong extends Component {
               <div className='post-square-wrapper play'>
                   <button
                       className="heroSongPlayerButton"
-                      onClick={() => this.onPressPlay(song)}
+                      onClick={this.onPressPlay(song)}
                   >
                       {playPauseButton}
                   </button>

@@ -88,10 +88,11 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   })
 }
 
+// TODO either split this into two actions or condition on current state
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
-export const togglePlayPause = playPause => (dispatch) => {
+export const togglePlayPause = isPlaying => (dispatch) => {
   console.log("toggling")
-  dispatch(TOGGLE_PLAY_PAUSE(playPause))
+  dispatch(TOGGLE_PLAY_PAUSE(isPlaying))
 }
 
 export const TOGGLE_SONG = createAction('app/TOGGLE_SONG')
@@ -158,8 +159,6 @@ export const FETCH_RELATED_SONGS = {
     SUCCESS: 'FETCH_RELATED_SONGS_SUCCESS',
     FAILURE: 'FETCH_RELATED_SONGS_FAILURE',
 }
-
-
 
 export const playNextSong = () => (dispatch, getState) => {
   const nextSong = getState().queue.queue[0]
