@@ -22,15 +22,16 @@ class Song extends Component {
         }
     }
 
-    onPressPlay(song) {
-        // TODO this should be determined by caller
-        // to guarantee that appearance of button aligns w/ its behavior
-        const isPlayButton = (
-            !this.props.isPlaying ||
-            song.id !== this.props.activeSong.id
-        );
-        this.props.actions.togglePlayPause(false);
-        if (isPlayButton) this.props.actions.toggleSong(song);
+    onPressPlay = song => event => {
+      // TODO this should be determined by caller
+      // to guarantee that appearance of button aligns w/ its behavior
+      console.log(event);
+      const isPlayButton = (
+          !this.props.isPlaying ||
+          song.id !== this.props.activeSong.id
+      );
+      this.props.actions.togglePlayPause(false);
+      if (isPlayButton) this.props.actions.toggleSong(song);
     }
 
     renderTags() {
@@ -86,7 +87,7 @@ class Song extends Component {
                 <div className="singlePostPlayer hideMobile">
                     <button
                         className="singlePostPlayerButton"
-                        onClick={() => this.onPressPlay(song)}
+                        onClick={this.onPressPlay(song)}
                     >
                         {playPauseButton}
                     </button>
@@ -95,7 +96,7 @@ class Song extends Component {
 
                 {this.props.layout == 'snapshot'
                   ?
-                <div className="marquee songInfo mobile" onClick={ () => this.onPressPlay(song)}>
+                <div className="marquee songInfo mobile" onClick={this.onPressPlay(song)}>
                     <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
                       <span className="artistName">{song.artist_name}</span>
                 </div>
@@ -174,7 +175,7 @@ class Song extends Component {
                             <div className="songImageInfoContainer grid">
                               <button
                                   className="singlePostPlayerButton"
-                                  onClick={() => this.onPressPlay(song)}
+                                  onClick={this.onPressPlay(song)}
                               >
                                   {playPauseButton}
                               </button>
