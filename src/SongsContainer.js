@@ -84,7 +84,7 @@ class SongsContainer extends Component {
             console.log("Here's some more songs buddy!");
 
             this.setState({ loadingMoreSongs: true })
-            this.props.actions.loadMoreSongs(() => this.setState({ loadingMoreSongs: false }))
+            //this.props.actions.loadMoreSongs(() => this.setState({ loadingMoreSongs: false }))
           }
         }
       }
@@ -314,9 +314,18 @@ class SongsContainer extends Component {
       return (
           <div className="songsContainer clearfix">
 
+            <SongPlayerContainer
+              songPosts={this.props.filteredPosts}
+              currentSongId={this.props.activeSong.id}
+              isPlaying={this.props.isPlaying}
+              onSongProgress={this.props.actions.setSongProgress}
+              onSongEnd={this.changeSongOnEnd}
+            />
+
             <HeroPosts
               {...this.props}
               heroPosts={heroPosts}
+              style={{ display: 'none' }}
             />
 
             <div id="discover" className="discovery-section">
@@ -438,14 +447,6 @@ class SongsContainer extends Component {
               </div>
 
             </div>
-
-            <SongPlayerContainer
-              songPosts={this.props.filteredPosts}
-              currentSongId={this.props.activeSong.id}
-              isPlaying={this.props.isPlaying}
-              onSongProgress={this.props.actions.setSongProgress}
-              onSongEnd={this.changeSongOnEnd}
-            />
           </div>
       )
     }
