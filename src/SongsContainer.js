@@ -440,7 +440,7 @@ class SongsContainer extends Component {
             </div>
 
             <SongPlayerContainer
-              songPosts={this.props.filteredPosts}
+              songPosts={this.props.activePosts}
               currentSongId={this.props.activeSong.id}
               isPlaying={this.props.isPlaying}
               onSongProgress={this.props.actions.setSongProgress}

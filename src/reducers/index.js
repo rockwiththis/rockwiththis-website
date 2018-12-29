@@ -24,11 +24,13 @@ export const INITIAL_STATE = {
   },
   posts: [],
   filteredPosts: [],
+  activePosts: [],
   queue: [],
   relatedSongs: [],
   filters: [],
   selectedFilters: [],
-  currentlyFetchedPageNumber: 0
+  currentPostPageIndex: 0,
+  postPageSize: 16
 }
 
 const appReducers = handleActions({
@@ -36,6 +38,7 @@ const appReducers = handleActions({
     return update(state, {
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
+      activePosts: { $set: action.payload },
       activeSong: { $set: action.payload[0] }
     })
   },
@@ -57,7 +60,18 @@ const appReducers = handleActions({
   },
   'app/LOAD_MORE_SONGS': (state, action) => {
     return update(state, {
-      filteredPosts: { $set: [...state.filteredPosts, ...action.payload]}
+      filteredPosts: { $set: [...state.filteredPosts, ...action.payload]},
+      activePosts: { $set: action.payload },
+      currentPostPageIndex: { $set: state.currentPostPageIndex + 1 }
+    })
+  },
+  'app/LOAD_PREVIOUS_SONGS': (state, action) => {
+    const newPageIndex = state.currentPostPageIndex - 1;
+    const startPostIndex = newPageIndex * state.postPageSize;
+    const endPostIndex = startPostIndex + state.postPageSize;
+    return update(state, {
+      activePosts: { $set: state.filteredPosts.slice(newPageIndex, endPostIndex) },
+      currentPostPageIndex: { $set: newPageIndex }
     })
   },
   'app/FETCH_SINGLE_SONG': (state, action) => {
@@ -138,24 +152,4 @@ const appReducers = handleActions({
   }
 }, INITIAL_STATE)
 
-const currentlyFetchedPageNumber = (state = 0, action) => {
-    switch (action.type) {
-    case FETCH_POSTS.SUCCESS:
-        return action.pageNumber + 1
-    default:
-        return state
-    }
-}
-
 export default appReducers
-
-// export default combineReducers({
-//     appReducers,
-//     queue,
-//     featuredPosts,
-//     filters,
-//     singleSong,
-//     relatedSongs,
-//     currentlyFetchedPageNumber,
-//     discoverLayout
-// })

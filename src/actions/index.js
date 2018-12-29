@@ -1,6 +1,9 @@
 import { createAction } from 'redux-actions'
 import { FETCH_FILTERS } from './filters'
 
+// TODO i think we should not be exporting the actual actions
+// Look into redux-thunk for more control
+
 // const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
 const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
 
@@ -88,11 +91,15 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
   })
 }
 
-// TODO either split this into two actions or condition on current state
+const LOAD_PREVIOUS_SONGS = createAction('app/LOAD_PREVIOUS_SONGS');
+export const loadPreviousSongs = () => dispatch => {
+  dispatch(LOAD_PREVIOUS_SONGS())
+};
+
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
-export const togglePlayPause = isPlaying => (dispatch) => {
+export const togglePlayPause = playPause => (dispatch) => {
   console.log("toggling")
-  dispatch(TOGGLE_PLAY_PAUSE(isPlaying))
+  dispatch(TOGGLE_PLAY_PAUSE(playPause))
 }
 
 export const TOGGLE_SONG = createAction('app/TOGGLE_SONG')
@@ -159,6 +166,8 @@ export const FETCH_RELATED_SONGS = {
     SUCCESS: 'FETCH_RELATED_SONGS_SUCCESS',
     FAILURE: 'FETCH_RELATED_SONGS_FAILURE',
 }
+
+
 
 export const playNextSong = () => (dispatch, getState) => {
   const nextSong = getState().queue.queue[0]
