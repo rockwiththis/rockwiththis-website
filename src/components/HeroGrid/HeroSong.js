@@ -22,7 +22,7 @@ class HeroSong extends Component {
             !this.props.isPlaying ||
             song.id !== this.props.activeSong.id
         );
-        this.props.actions.togglePlayPause(false);
+        this.props.actions.togglePlayPause(isPlayButton);
         if (isPlayButton) this.props.actions.toggleSong(song);
     }
 

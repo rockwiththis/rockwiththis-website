@@ -25,12 +25,12 @@ class Song extends Component {
     onPressPlay(song) {
         // TODO this should be determined by caller
         // to guarantee that appearance of button aligns w/ its behavior
-        const isPauseButton = (
-            this.props.isPlaying &&
-            song.id === this.props.activeSong.id
+        const isPlayButton = (
+            !this.props.isPlaying ||
+            song.id !== this.props.activeSong.id
         );
-        this.props.actions.togglePlayPause(!this.props.isPlaying);
-        if (!isPauseButton) this.props.actions.toggleSong(song);
+        this.props.actions.togglePlayPause(isPlayButton);
+        if (isPlayButton) this.props.actions.toggleSong(song);
     }
 
     renderTags() {
