@@ -149,10 +149,6 @@ class SongsContainer extends Component {
     }
   }
 
-  setSongDuration = ref => {
-    this.props.actions.setSongDuration(ref.getDuration());
-  }
-
   isCurrentSong = song => song.id === this.props.activeSong.id
 
   changeSongOnEnd = () => {

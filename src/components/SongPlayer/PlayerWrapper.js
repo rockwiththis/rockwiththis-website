@@ -23,9 +23,10 @@ class PlayerWrapper extends React.Component {
     if (this.props.isPlaying) this.props.onSongProgress(ref);
   };
 
-  reactPlayerReady = () => (
-      console.log(`Song ${this.props.songPost.id} ready to be played`)
-  );
+  reactPlayerReady = ref => {
+    console.log(`Song ${this.props.songPost.id} ready to be played`);
+    console.log(ref);
+  };
 
   render() {
     console.log(`Rendering player for song ${this.props.songPost.id}`);

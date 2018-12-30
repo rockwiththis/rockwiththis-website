@@ -141,7 +141,8 @@ const appReducers = handleActions({
   'app/TOGGLE_SONG': (state, action) => {
     return update(state, {
       activeSong: { $set: action.payload },
-      isPlaying: { $set: true }
+      isPlaying: { $set: true },
+      //activeSongDuration: { $set: ??? }
     })
   },
   'app/CHANGE_GRID_VIEW': (state, action) => {
