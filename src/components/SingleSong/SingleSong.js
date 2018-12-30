@@ -18,23 +18,19 @@ import './SingleSong.scss'
 
 class SingleSong extends Component {
     constructor(props) {
-        super(props)
-
-        this.ytPlayer = null
-
-        this.state = {
-            expanded: false
-        }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
+      super(props);
+      this.state = { expanded: false };
+      props.actions.updateSnapshotSong(this.props.singleSong);
     }
 
+    // TODO This duplicate logic should be standardized
     onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.actions.toggleSong(song)
-    }
-
-    updateStorePlayPause(newSong) {
-        this.props.actions.togglePlayPause(newSong ? true : !this.props.isPlaying)
+      const isPlayButton = (
+          !this.props.isPlaying ||
+          song.id !== this.props.activeSong.id
+      );
+      if (isPlayButton) this.props.actions.toggleSong(song);
+      else this.props.actions.togglePlayPause(false);
     }
 
     renderPlayer() {
@@ -153,7 +149,7 @@ class SingleSong extends Component {
 }
 
 SingleSong.propTypes = {
-    song: PropTypes.object.isRequired,
+    singleSong: PropTypes.object.isRequired,
     toggleSong: PropTypes.func.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     activeSong: PropTypes.object,

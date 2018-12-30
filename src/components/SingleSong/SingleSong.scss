@@ -796,7 +796,7 @@ padding: 5px 0 0 0;
   }
   .bottomContentContainer {
     max-height: calc(100vh - 330px);
-    overflow: scroll;
+    overflow: auto;
     padding-bottom: 0 !important;
   }
 }

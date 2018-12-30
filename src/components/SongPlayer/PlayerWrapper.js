@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import './SongPlayer.scss'
 
-
 const propTypes = {
   songPost: PropTypes.object.isRequired,
   isPlaying: PropTypes.bool.isRequired,

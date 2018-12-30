@@ -110,6 +110,11 @@ export const updateSnapshotSong = newSnapshotSong => dispatch => {
   dispatch(UPDATE_SNAPSHOT_SONG(newSnapshotSong));
 }
 
+const UPDATE_SINGLE_PAGE_SONG = createAction('app/UPDATE_SINGLE_PAGE_SONG');
+export const updateSinglePageSong = newSinglePageSong => dispatch => {
+  dispatch(UPDATE_SINGLE_PAGE_SONG(newSinglePageSong));
+}
+
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
 export const togglePlayPause = playPause => (dispatch) => {
   console.log("toggling")

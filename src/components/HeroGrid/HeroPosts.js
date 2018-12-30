@@ -34,12 +34,12 @@ class HeroPosts extends React.Component {
     }
 
     checkToHideHeroSong = () => {
+      const songDiv = document.getElementById('hero-post');
+      if (!songDiv) return;
 
-        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
-        const hideSongOfDay = window.scrollY > scrollHeight
-        this.setState({ hideSongOfDay })
-
-
+      const scrollHeight = songDiv.clientHeight + 45
+      const hideSongOfDay = window.scrollY > scrollHeight
+      this.setState({ hideSongOfDay })
     }
 
 
