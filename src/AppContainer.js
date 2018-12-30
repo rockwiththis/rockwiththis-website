@@ -41,7 +41,6 @@ class AppContainer extends Component {
         this.props.activeSong,
         this.props.snapshotPost,
         ...this.props.songListPosts,
-        this.props.singlePageSongPost
       ]
       .filter(song => !!song.id)
   );

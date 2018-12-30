@@ -18,22 +18,19 @@ import './SingleSong.scss'
 
 class SingleSong extends Component {
     constructor(props) {
-      console.log("constructing single song page");
       super(props);
-
       this.state = { expanded: false };
-      this.updateStorePlayPause = this.updateStorePlayPause.bind(this);
-
-      //this.props.actions.updateSnapshotSong(this.props.singleSong);
+      props.actions.updateSnapshotSong(this.props.singleSong);
     }
 
+    // TODO This duplicate logic should be standardized
     onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.actions.toggleSong(song)
-    }
-
-    updateStorePlayPause(newSong) {
-        this.props.actions.togglePlayPause(newSong ? true : !this.props.isPlaying)
+      const isPlayButton = (
+          !this.props.isPlaying ||
+          song.id !== this.props.activeSong.id
+      );
+      if (isPlayButton) this.props.actions.toggleSong(song);
+      else this.props.actions.togglePlayPause(false);
     }
 
     renderPlayer() {
