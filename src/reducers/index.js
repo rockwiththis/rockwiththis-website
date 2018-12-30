@@ -27,6 +27,7 @@ export const INITIAL_STATE = {
   songListPosts: [],
   heroPosts: [],
   snapshotPost: {},
+  singlePageSongPost: {},
   queue: [],
   relatedSongs: [],
   filters: [],

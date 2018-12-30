@@ -18,14 +18,13 @@ import './SingleSong.scss'
 
 class SingleSong extends Component {
     constructor(props) {
-        super(props)
+      console.log("constructing single song page");
+      super(props);
 
-        this.ytPlayer = null
+      this.state = { expanded: false };
+      this.updateStorePlayPause = this.updateStorePlayPause.bind(this);
 
-        this.state = {
-            expanded: false
-        }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
+      //this.props.actions.updateSnapshotSong(this.props.singleSong);
     }
 
     onPressPlay(song) {
@@ -153,7 +152,7 @@ class SingleSong extends Component {
 }
 
 SingleSong.propTypes = {
-    song: PropTypes.object.isRequired,
+    singleSong: PropTypes.object.isRequired,
     toggleSong: PropTypes.func.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     activeSong: PropTypes.object,

@@ -480,7 +480,7 @@
     padding-bottom: 5px; }
   .singleSongContainer .bottomContentContainer {
     max-height: calc(100vh - 330px);
-    overflow: scroll;
+    overflow: auto;
     padding-bottom: 0 !important; }
   .postContent {
     padding-bottom: 0 !important; } }
