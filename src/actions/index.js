@@ -105,6 +105,11 @@ export const resetLoadedSongs = () => dispatch => {
   dispatch(RESET_LOADED_SONGS())
 };
 
+const UPDATE_SNAPSHOT_SONG = createAction('app/UPDATE_SNAPSHOT_SONG');
+export const updateSnapshotSong = newSnapshotSong => dispatch => {
+  dispatch(UPDATE_SNAPSHOT_SONG(newSnapshotSong));
+}
+
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
 export const togglePlayPause = playPause => (dispatch) => {
   console.log("toggling")

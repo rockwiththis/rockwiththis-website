@@ -35,7 +35,6 @@ class SongsContainer extends Component {
         //this.handleScroll = this.handleScroll.bind(this)
         this.loadMoreSongs = this.loadMoreSongs.bind(this)
         this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
-        this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
         this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
         this.mobileLoadMore = this.mobileLoadMore.bind(this)
@@ -129,6 +128,7 @@ class SongsContainer extends Component {
     }
     */
 
+    // This is currently not supported but it's cool b/c im pretty sure the arrows are hidden anyway
     changeDiscoverSong(increment) {
         let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
           this.state.discoverFullSongIndex - 1
@@ -140,13 +140,6 @@ class SongsContainer extends Component {
         }
         this.setState({ discoverFullSongIndex: newIndex })
     }
-
-    updateDiscoverFullSongIndex(e) {
-        this.setState({
-            discoverFullSongIndex: Number(e.currentTarget.dataset.index)
-        })
-    }
-
 
     enableDiscoverScroll() {
       if (location.pathname == "/") {
@@ -170,6 +163,12 @@ class SongsContainer extends Component {
       this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
     }
 
+    getSnapshotPostIndex = () => (
+        this.props.filteredPosts.findIndex(song => (
+            song.id === this.props.snapshotPost.id
+        ))
+    );
+
     getAllPlayableSongs = () => ([
       ...this.props.heroPosts,
       this.props.snapshotPost,
@@ -177,17 +176,15 @@ class SongsContainer extends Component {
     ]);
 
     render() {
-      const { discoverFullSongIndex } = this.state
       const songGrids = []
       let individualGrid = []
 
       const indexTop = 0
-      const songGridsFull = this.props.songListPosts.map((song, index) => (
+      const songGridsFull = this.props.filteredPosts.map((song, index) => (
           <SongGridSquare
             {...this.props}
-            index={(indexTop == 0) ? index : index + (indexTop)*16}
-            activeDiscoverFullSong={this.state.discoverFullSongIndex === ((indexTop == 0) ? index : index + (indexTop)*16)}
-            updateDiscoverFullSongIndex={this.updateDiscoverFullSongIndex}
+            index={index}
+            activeDiscoverFullSong={this.props.snapshotPost.id === song.id}
             key={song.id}
             song={song}
           />
@@ -298,13 +295,13 @@ class SongsContainer extends Component {
                             </button>
 
                             <div className='carousel-wrapper'>
-                              {this.props.filteredPosts[discoverFullSongIndex] &&
+                              {this.props.snapshotPost.id && this.props.filteredPosts[0] &&
                                 <Carousel
                                   showThumbs={false}
                                   showStatus={false}
                                   showArrows={false}
                                   infiniteLoop
-                                  selectedItem={discoverFullSongIndex}
+                                  selectedItem={this.getSnapshotPostIndex()}
                                   ref={(e) => this.carousel = e}
                                 >
                                   {this.props.filteredPosts.map(post => (

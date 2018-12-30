@@ -39,10 +39,13 @@ export const INITIAL_STATE = {
 
 const appReducers = handleActions({
   'app/FETCH_POSTS': (state, action) => {
+    console.log("Fetched posts!");
+    console.log(action.payload);
     return update(state, {
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
       songListPosts: { $set: action.payload },
+      snapshotPost: { $set: action.payload[0] },
       heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
       activeSong: { $set: action.payload[0] }
     })
@@ -97,6 +100,11 @@ const appReducers = handleActions({
     return update(state, {
       songListPosts: { $set: state.filteredPosts.slice(0, state.songListSize) },
       currentSongListPageIndex: { $set: 0 }
+    })
+  },
+  'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
+    return update(state, {
+      snapshotPost: { $set: action.payload }
     })
   },
   'app/FETCH_SINGLE_SONG': (state, action) => {
