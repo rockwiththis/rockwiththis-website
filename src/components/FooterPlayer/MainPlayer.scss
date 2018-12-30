@@ -90,7 +90,7 @@ text-overflow: ellipsis;
   }
 
 /*MainPlayer*/
-@media (min-width: 480px) and (max-width: 1000px) {
+@media  (max-width: 1000px) {
   .rc-slider .rc-slider-track {
     height: 5px !important;
     /* background-color: #975de8 !important; */
@@ -141,6 +141,62 @@ text-overflow: ellipsis;
     flex: 1 !important;
     padding-right: 0 !important;
     margin-right: 18px !important; } }
+
+
+    @media  (max-width: 480px) {
+      .rc-slider .rc-slider-track {
+        height: 5px !important;
+        /* background-color: #975de8 !important; */
+        // background-color: #30baf8 !important;
+        // background: linear-gradient(to right, #1e0c49, #0097d5) !important;
+        // background: #0097d5 !important;
+            background: #0097d5 !important;
+
+
+      }
+      .player-controls-wrapper {
+        flex: 0 0 100px !important;
+        flex: 0 0 75px !important;
+        margin-right: 10px !important; }
+      .rc-slider .rc-slider-handle {
+        -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11) !important;
+        -moz-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11) !important;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11) !important;
+        display: none !important;
+        border: 1px solid #E8E9EA !important;
+        z-index: 5 !important; }
+      .rc-slider .rc-slider-step {
+        // background-color: #E8E9EA !important;
+        background-color: #3f3f3f !important;
+
+      }
+      .rc-slider {
+        border-radius: 0 !important; }
+      .player-duration-bar {
+        margin-right: 0 !important; }
+      .player-duration-bar-current-time, .player-duration-bar-song-duration {
+        display: none !important; }
+      .player-duration-bar-wrapper {
+        position: absolute !important;
+        padding: 0 !important;
+        width: 100vw !important;
+        left: -7px !important;
+        top: -12px !important;
+        height: auto !important;
+        pointer-events: none;
+
+      }
+      .player-controls {
+        flex: 1 1 0 !important;
+        margin-right: 0px !important;
+        height: inherit !important; }
+      .player-controls-wrapper {
+        flex: 0 0 100px !important;
+        margin-right: 10px !important; }
+      .player-info {
+        flex: 1 !important;
+        padding-right: 0 !important;
+        margin-right: 18px !important; } }
 
 .player-info-image-wrapper {
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11);
@@ -665,9 +721,9 @@ footer .songSourceContainer .source.youtube {
 
 
 
-      .player-duration-bar-wrapper {
-        display: none !important;
-    }
+    //   .player-duration-bar-wrapper {
+    //     display: none !important;
+    // }
   }
 
 
