@@ -29,11 +29,10 @@ class SongsContainer extends Component {
           fixedFilterBar: false,
           disableScroll: true,
           loading: true,
-          gridPage: 0,
           totalCarouselPages: 1
         }
 
-        this.handleScroll = this.handleScroll.bind(this)
+        //this.handleScroll = this.handleScroll.bind(this)
         this.loadMoreSongs = this.loadMoreSongs.bind(this)
         this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
         this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
@@ -129,24 +128,14 @@ class SongsContainer extends Component {
       })
     }
 
+    /* Temporarily disabling in favor of pagination
     handleScroll(e) {
-
-        if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 ) {
-          return;
-        }
-
-        if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100)) {
-            this.loadMoreSongs()
-
-        }
-
-
-
-        // console.log("e.target", e.target);
-        console.log("e.target.scrollTop", e.target.scrollTop);
-        console.log("e.target.scrollHeight", e.target.scrollHeight);
-        console.log("e.target.offsetHeight", e.target.offsetHeight);
+      if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 )
+        return;
+      if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100))
+        this.loadMoreSongs();
     }
+    */
 
     changeDiscoverSong(increment) {
         let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
@@ -174,10 +163,6 @@ class SongsContainer extends Component {
         window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
         window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
       }
-    }
-
-    resetGridPage = () => {
-      this.setState({ gridPage: 0 })
     }
 
     setSongDuration = ref => {
@@ -245,13 +230,27 @@ class SongsContainer extends Component {
 
               <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
                 <div id="discovery-container"
-                  onScroll={(e) => this.handleScroll(e)}
+                  //onScroll={(e) => this.handleScroll(e)}
                   className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
                 >
 
                   <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
                     <div className="discoverySectionScroll" name='discoverySectionScroll'>
+
+                      <PaginationControls
+                        currPageIndex={this.props.currentPostPageIndex}
+                        onForward={() => this.props.actions.loadMoreSongs()}
+                        onBackward={this.props.actions.loadPreviousSongs}
+                      />
+
                       {songList}
+
+                      <PaginationControls
+                        currPageIndex={this.props.currentPostPageIndex}
+                        onForward={() => this.props.actions.loadMoreSongs()}
+                        onBackward={this.props.actions.loadPreviousSongs}
+                      />
+
                     </div>
                   </div>
 
@@ -267,7 +266,6 @@ class SongsContainer extends Component {
                               showStatus={false}
                               showIndicators={false}
                               selectedItem={this.props.currentPostPageIndex}
-                              //selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
                               useKeyboardArrows={true}
                             >
                               { chunkedSongsGridsFull.map(grid => (

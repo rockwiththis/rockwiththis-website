@@ -216,6 +216,9 @@ p {
         transform: translate(-50%, -50%);
         -weblkit-transform: translate(-50%, -50%); }
 
+.discovery-section .songList .pagination-controls {
+  padding: 20px 0; }
+
 .discovery-section .songList .songContainer .postContent {
   display: inline-block;
   width: 50%;
