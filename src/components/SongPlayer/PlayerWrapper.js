@@ -16,7 +16,8 @@ class PlayerWrapper extends React.Component {
 
   // only re-render an indivial player when `isPlaying` prop changes
   shouldComponentUpdate = nextProps => (
-      nextProps.isPlaying !== this.props.isPlaying
+      nextProps.isPlaying !== this.props.isPlaying ||
+      nextProps.songPost.id !== this.props.songPost.id
   );
 
   reportProgressIfPlaying = ref => {

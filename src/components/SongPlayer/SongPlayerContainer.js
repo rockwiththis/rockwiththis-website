@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PlayerWrapper from './PlayerWrapper'
+import { uniqBy } from 'lodash';
 
 const propTypes = {
   songPosts: PropTypes.array.isRequired,
@@ -17,12 +18,14 @@ class SongPlayerContainer extends React.Component {
       this.props.currentSongId === song.id
   );
 
+  getUniqueSongPosts = () => uniqBy(this.props.songPosts, 'id');
+
   render() {
     console.log("Rendering player container");
     return (
         <div className="song-player-wrapper">
 
-          {this.props.songPosts.map(song => (
+          {this.getUniqueSongPosts().map(song => (
               <PlayerWrapper
                 songPost={song}
                 isPlaying={this.isSongPlaying(song)}

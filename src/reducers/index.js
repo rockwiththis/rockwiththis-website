@@ -24,18 +24,29 @@ export const INITIAL_STATE = {
   },
   posts: [],
   filteredPosts: [],
+  songListPosts: [],
+  heroPosts: [],
+  snapshotPost: {},
   queue: [],
   relatedSongs: [],
   filters: [],
   selectedFilters: [],
-  currentlyFetchedPageNumber: 0
+  currentSongListPageIndex: 0,
+  maxSongListPageIndex: 0,
+  songListSize: 16,
+  heroSongCount: 7
 }
 
 const appReducers = handleActions({
   'app/FETCH_POSTS': (state, action) => {
+    console.log("Fetched posts!");
+    console.log(action.payload);
     return update(state, {
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
+      songListPosts: { $set: action.payload },
+      snapshotPost: { $set: action.payload[0] },
+      heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
       activeSong: { $set: action.payload[0] }
     })
   },
@@ -57,7 +68,43 @@ const appReducers = handleActions({
   },
   'app/LOAD_MORE_SONGS': (state, action) => {
     return update(state, {
-      filteredPosts: { $set: [...state.filteredPosts, ...action.payload]}
+      filteredPosts: { $set: [...state.filteredPosts, ...action.payload]},
+      songListPosts: { $set: action.payload },
+      currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
+      maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 }
+    })
+  },
+  'app/LOAD_NEXT_SONGS': (state, action) => {
+    const newPageIndex = state.currentSongListPageIndex + 1;
+    const startPostIndex = newPageIndex * state.songListSize;
+    const endPostIndex = startPostIndex + state.songListSize;
+    return update(state, {
+      songListPosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
+      currentSongListPageIndex: { $set: newPageIndex }
+    })
+  },
+  'app/LOAD_PREVIOUS_SONGS': (state, action) => {
+    const newPageIndex = state.currentSongListPageIndex - 1;
+    if (newPageIndex >= 0) {
+      const startPostIndex = newPageIndex * state.songListSize;
+      const endPostIndex = startPostIndex + state.songListSize;
+      return update(state, {
+        songListPosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
+        currentSongListPageIndex: { $set: newPageIndex }
+      })
+    } else {
+      return state
+    }
+  },
+  'app/RESET_LOADED_SONGS': (state, action) => {
+    return update(state, {
+      songListPosts: { $set: state.filteredPosts.slice(0, state.songListSize) },
+      currentSongListPageIndex: { $set: 0 }
+    })
+  },
+  'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
+    return update(state, {
+      snapshotPost: { $set: action.payload }
     })
   },
   'app/FETCH_SINGLE_SONG': (state, action) => {
@@ -138,24 +185,4 @@ const appReducers = handleActions({
   }
 }, INITIAL_STATE)
 
-const currentlyFetchedPageNumber = (state = 0, action) => {
-    switch (action.type) {
-    case FETCH_POSTS.SUCCESS:
-        return action.pageNumber + 1
-    default:
-        return state
-    }
-}
-
 export default appReducers
-
-// export default combineReducers({
-//     appReducers,
-//     queue,
-//     featuredPosts,
-//     filters,
-//     singleSong,
-//     relatedSongs,
-//     currentlyFetchedPageNumber,
-//     discoverLayout
-// })

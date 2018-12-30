@@ -37,7 +37,13 @@ class SongGrid extends Component {
         } = this.props
 
         return (
-            <div id={song.id} data-index={this.props.index} className={`songContainer ${this.props.activeDiscoverFullSong ? 'activeDiscoverFullSong' : ''}`} key={`${song.id}`} onClick={this.props.updateDiscoverFullSongIndex}>
+            <div
+              id={song.id}
+              data-index={this.props.index}
+              className={`songContainer ${this.props.activeDiscoverFullSong ? 'activeDiscoverFullSong' : ''}`}
+              key={`${song.id}`}
+              onClick={() => this.props.actions.updateSnapshotSong(song)}
+            >
                 <div className="imageContainer">
                   <div className="imageHover">
                     <img src={head} />
