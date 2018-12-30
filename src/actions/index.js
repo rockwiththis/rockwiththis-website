@@ -4,8 +4,8 @@ import { FETCH_FILTERS } from './filters'
 // TODO i think we should not be exporting the actual actions
 // Look into redux-thunk for more control
 
-// const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
-const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
+const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
+// const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
 
 export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
   dispatch({
@@ -73,7 +73,7 @@ export const LOAD_NEXT_SONGS = createAction('app/LOAD_NEXT_SONGS');
 export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const state = getState();
 
-  if (state.currentPostPageIndex < state.maxPostPageIndex) {
+  if (state.currentPostPageIndex < state.maxSongListPageIndex) {
     dispatch(LOAD_NEXT_SONGS());
 
   } else {

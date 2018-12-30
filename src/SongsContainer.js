@@ -38,7 +38,6 @@ class SongsContainer extends Component {
         this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
         this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
-        this.handleCarousel = this.handleCarousel.bind(this)
         this.mobileLoadMore = this.mobileLoadMore.bind(this)
     }
 
@@ -121,13 +120,6 @@ class SongsContainer extends Component {
       }
     }
 
-    handleCarousel() {
-
-      this.setState({
-        discoverFullSongIndex: this.carousel.state.selectedItem
-      })
-    }
-
     /* Temporarily disabling in favor of pagination
     handleScroll(e) {
       if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 )
@@ -178,14 +170,19 @@ class SongsContainer extends Component {
       this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
     }
 
+    getAllPlayableSongs = () => ([
+      ...this.props.heroPosts,
+      this.props.snapshotPost,
+      ...this.props.songListPosts
+    ]);
+
     render() {
       const { discoverFullSongIndex } = this.state
-      const heroPosts = this.props.posts.slice(0,7)
       const songGrids = []
       let individualGrid = []
 
       const indexTop = 0
-      const songGridsFull = this.props.activePosts.map((song, index) => (
+      const songGridsFull = this.props.songListPosts.map((song, index) => (
           <SongGridSquare
             {...this.props}
             index={(indexTop == 0) ? index : index + (indexTop)*16}
@@ -196,7 +193,7 @@ class SongsContainer extends Component {
           />
       ))
 
-      const songList = this.props.activePosts.map((song, index) => (
+      const songList = this.props.songListPosts.map((song, index) => (
           <Song
             {...this.props}
             activeSong={this.props.activeSong}
@@ -218,7 +215,7 @@ class SongsContainer extends Component {
 
             <HeroPosts
               {...this.props}
-              heroPosts={heroPosts}
+              heroPosts={this.props.heroPosts}
             />
 
             <div id="discover" className="discovery-section">
@@ -238,7 +235,7 @@ class SongsContainer extends Component {
                     <div className="discoverySectionScroll" name='discoverySectionScroll'>
 
                       <PaginationControls
-                        currPageIndex={this.props.currentPostPageIndex}
+                        currPageIndex={this.props.currentSongListPageIndex}
                         onForward={() => this.props.actions.loadMoreSongs()}
                         onBackward={this.props.actions.loadPreviousSongs}
                       />
@@ -246,7 +243,7 @@ class SongsContainer extends Component {
                       {songList}
 
                       <PaginationControls
-                        currPageIndex={this.props.currentPostPageIndex}
+                        currPageIndex={this.props.currentSongListPageIndex}
                         onForward={() => this.props.actions.loadMoreSongs()}
                         onBackward={this.props.actions.loadPreviousSongs}
                       />
@@ -265,7 +262,7 @@ class SongsContainer extends Component {
                               showThumbs={false}
                               showStatus={false}
                               showIndicators={false}
-                              selectedItem={this.props.currentPostPageIndex}
+                              selectedItem={this.props.currentSongListPageIndex}
                               useKeyboardArrows={true}
                             >
                               { chunkedSongsGridsFull.map(grid => (
@@ -280,7 +277,7 @@ class SongsContainer extends Component {
                         }
 
                         <PaginationControls
-                          currPageIndex={this.props.currentPostPageIndex}
+                          currPageIndex={this.props.currentSongListPageIndex}
                           onForward={() => this.props.actions.loadMoreSongs()}
                           onBackward={this.props.actions.loadPreviousSongs}
                         />
@@ -352,7 +349,7 @@ class SongsContainer extends Component {
             </div>
 
             <SongPlayerContainer
-              songPosts={this.props.activePosts}
+              songPosts={this.getAllPlayableSongs()}
               currentSongId={this.props.activeSong.id}
               isPlaying={this.props.isPlaying}
               onSongProgress={this.props.actions.setSongProgress}

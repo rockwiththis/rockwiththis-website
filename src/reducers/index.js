@@ -24,14 +24,17 @@ export const INITIAL_STATE = {
   },
   posts: [],
   filteredPosts: [],
-  activePosts: [],
+  songListPosts: [],
+  heroPosts: [],
+  snapshotPost: {},
   queue: [],
   relatedSongs: [],
   filters: [],
   selectedFilters: [],
-  currentPostPageIndex: 0,
-  maxPostPageIndex: 0,
-  postPageSize: 16
+  currentSongListPageIndex: 0,
+  maxSongListPageIndex: 0,
+  songListSize: 16,
+  heroSongCount: 7
 }
 
 const appReducers = handleActions({
@@ -39,7 +42,8 @@ const appReducers = handleActions({
     return update(state, {
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
-      activePosts: { $set: action.payload },
+      songListPosts: { $set: action.payload },
+      heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
       activeSong: { $set: action.payload[0] }
     })
   },
@@ -62,33 +66,37 @@ const appReducers = handleActions({
   'app/LOAD_MORE_SONGS': (state, action) => {
     return update(state, {
       filteredPosts: { $set: [...state.filteredPosts, ...action.payload]},
-      activePosts: { $set: action.payload },
-      currentPostPageIndex: { $set: state.currentPostPageIndex + 1 },
-      maxPostPageIndex: { $set: state.currentPostPageIndex + 1 }
+      songListPosts: { $set: action.payload },
+      currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
+      maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 }
     })
   },
   'app/LOAD_NEXT_SONGS': (state, action) => {
-    const newPageIndex = state.currentPostPageIndex + 1;
-    const startPostIndex = newPageIndex * state.postPageSize;
-    const endPostIndex = startPostIndex + state.postPageSize;
+    const newPageIndex = state.currentSongListPageIndex + 1;
+    const startPostIndex = newPageIndex * state.songListSize;
+    const endPostIndex = startPostIndex + state.songListSize;
     return update(state, {
-      activePosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
-      currentPostPageIndex: { $set: newPageIndex }
+      songListPosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
+      currentSongListPageIndex: { $set: newPageIndex }
     })
   },
   'app/LOAD_PREVIOUS_SONGS': (state, action) => {
-    const newPageIndex = state.currentPostPageIndex - 1;
-    const startPostIndex = newPageIndex * state.postPageSize;
-    const endPostIndex = startPostIndex + state.postPageSize;
-    return update(state, {
-      activePosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
-      currentPostPageIndex: { $set: newPageIndex }
-    })
+    const newPageIndex = state.currentSongListPageIndex - 1;
+    if (newPageIndex >= 0) {
+      const startPostIndex = newPageIndex * state.songListSize;
+      const endPostIndex = startPostIndex + state.songListSize;
+      return update(state, {
+        songListPosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
+        currentSongListPageIndex: { $set: newPageIndex }
+      })
+    } else {
+      return state
+    }
   },
   'app/RESET_LOADED_SONGS': (state, action) => {
     return update(state, {
-      activePosts: { $set: state.filteredPosts.slice(0, state.postPageSize) },
-      currentPostPageIndex: { $set: 0 }
+      songListPosts: { $set: state.filteredPosts.slice(0, state.songListSize) },
+      currentSongListPageIndex: { $set: 0 }
     })
   },
   'app/FETCH_SINGLE_SONG': (state, action) => {
