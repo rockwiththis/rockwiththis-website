@@ -105,12 +105,10 @@ class ConnectPage extends Component {
                           <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
                           <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
-                          </ul>
-                          <br/>
-                          <ul>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
                           </ul>
+                        
                         </div>
 
                     </div>
