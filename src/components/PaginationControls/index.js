@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PaginationDots from './PaginationDots';
 
+import './PaginationControls.scss'
+
 const propTypes = {
   currPageIndex: PropTypes.number.isRequired,
   onForward: PropTypes.func.isRequired,
