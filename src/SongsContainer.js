@@ -173,6 +173,7 @@ class SongsContainer extends Component {
 
     getAllPlayableSongs = () => ([
       ...this.props.heroPosts,
+      this.props.activeSong,
       this.props.snapshotPost,
       ...this.props.songListPosts
     ]);
