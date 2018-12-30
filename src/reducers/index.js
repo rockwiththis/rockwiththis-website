@@ -30,6 +30,7 @@ export const INITIAL_STATE = {
   filters: [],
   selectedFilters: [],
   currentPostPageIndex: 0,
+  maxPostPageIndex: 0,
   postPageSize: 16
 }
 
@@ -62,7 +63,17 @@ const appReducers = handleActions({
     return update(state, {
       filteredPosts: { $set: [...state.filteredPosts, ...action.payload]},
       activePosts: { $set: action.payload },
-      currentPostPageIndex: { $set: state.currentPostPageIndex + 1 }
+      currentPostPageIndex: { $set: state.currentPostPageIndex + 1 },
+      maxPostPageIndex: { $set: state.currentPostPageIndex + 1 }
+    })
+  },
+  'app/LOAD_NEXT_SONGS': (state, action) => {
+    const newPageIndex = state.currentPostPageIndex + 1;
+    const startPostIndex = newPageIndex * state.postPageSize;
+    const endPostIndex = startPostIndex + state.postPageSize;
+    return update(state, {
+      activePosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
+      currentPostPageIndex: { $set: newPageIndex }
     })
   },
   'app/LOAD_PREVIOUS_SONGS': (state, action) => {
@@ -70,8 +81,14 @@ const appReducers = handleActions({
     const startPostIndex = newPageIndex * state.postPageSize;
     const endPostIndex = startPostIndex + state.postPageSize;
     return update(state, {
-      activePosts: { $set: state.filteredPosts.slice(newPageIndex, endPostIndex) },
+      activePosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
       currentPostPageIndex: { $set: newPageIndex }
+    })
+  },
+  'app/RESET_LOADED_SONGS': (state, action) => {
+    return update(state, {
+      activePosts: { $set: state.filteredPosts.slice(0, state.postPageSize) },
+      currentPostPageIndex: { $set: 0 }
     })
   },
   'app/FETCH_SINGLE_SONG': (state, action) => {

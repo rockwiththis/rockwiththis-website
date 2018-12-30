@@ -39,7 +39,6 @@ class SongsContainer extends Component {
         this.updateDiscoverFullSongIndex = this.updateDiscoverFullSongIndex.bind(this)
         this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
-        this.navGrid = this.navGrid.bind(this)
         this.handleCarousel = this.handleCarousel.bind(this)
         this.mobileLoadMore = this.mobileLoadMore.bind(this)
     }
@@ -123,30 +122,6 @@ class SongsContainer extends Component {
       }
     }
 
-    navGrid(e) {
-      let num = 0
-      if (e){
-        num = this.state.gridPage + 1
-      } else if (!e && this.state.gridPage != 0){
-        console.log("backing")
-        this.setState({
-          gridPage: this.state.gridPage - 1,
-        })
-      }
-      const changePage = () => {
-        this.setState({
-          gridPage: num,
-        })
-      }
-      if (num + 1 > this.state.totalCarouselPages && num > this.state.gridPage) {
-        this.loadMoreSongs(changePage)
-      } else if (num > this.state.gridPage) {
-        changePage()
-      }
-      //const num = e ? this.state.gridPage + 1 : this.state.gridPage - 1
-
-    }
-
     handleCarousel() {
 
       this.setState({
@@ -225,7 +200,7 @@ class SongsContainer extends Component {
       let individualGrid = []
 
       const indexTop = 0
-      const songGridsFull = this.props.filteredPosts.map((song, index) => (
+      const songGridsFull = this.props.activePosts.map((song, index) => (
           <SongGridSquare
             {...this.props}
             index={(indexTop == 0) ? index : index + (indexTop)*16}
@@ -236,7 +211,7 @@ class SongsContainer extends Component {
           />
       ))
 
-      const songList = this.props.filteredPosts.map((song, index) => (
+      const songList = this.props.activePosts.map((song, index) => (
           <Song
             {...this.props}
             activeSong={this.props.activeSong}
@@ -265,7 +240,7 @@ class SongsContainer extends Component {
               <img className="discover-cover" src={black} />
 
               <Element>
-                <FiltersBar {...this.props} resetGridPage={this.resetGridPage}/>
+                <FiltersBar {...this.props} resetGridPage={this.props.actions.resetLoadedSongs}/>
               </Element>
 
               <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
@@ -291,7 +266,8 @@ class SongsContainer extends Component {
                               showThumbs={false}
                               showStatus={false}
                               showIndicators={false}
-                              selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
+                              selectedItem={this.props.currentPostPageIndex}
+                              //selectedItem={songGridsFull.length > 1 ? this.state.gridPage : null}
                               useKeyboardArrows={true}
                             >
                               { chunkedSongsGridsFull.map(grid => (
@@ -307,8 +283,8 @@ class SongsContainer extends Component {
 
                         <PaginationControls
                           currPageIndex={this.props.currentPostPageIndex}
-                          onForward={() => this.navGrid(false)}
-                          onBackward={() => this.navGrid(true)}
+                          onForward={() => this.props.actions.loadMoreSongs()}
+                          onBackward={this.props.actions.loadPreviousSongs}
                         />
 
                       </div>

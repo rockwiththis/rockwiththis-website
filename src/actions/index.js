@@ -68,32 +68,41 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
   })
 }
 
-export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS')
+export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS');
+export const LOAD_NEXT_SONGS = createAction('app/LOAD_NEXT_SONGS');
 export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const state = getState();
-  const filtersArray = []
-  const filterIds = getState().selectedFilters.map(filter => filter.id)
-  filtersArray.push(filterIds)
-  console.log("state.filteredPosts");
-  console.log(state.filteredPosts);
 
-  const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+  if (state.currentPostPageIndex < state.maxPostPageIndex) {
+    dispatch(LOAD_NEXT_SONGS());
 
+  } else {
+    // TODO try just setting this at once
+    const filtersArray = []
+    const filterIds = getState().selectedFilters.map(filter => filter.id)
+    filtersArray.push(filterIds)
 
-  fetch(fullURL).then(res => res.json()).then((res) => {
+    const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+    fetch(fullURL).then(res => res.json()).then((res) => {
 
-    if (res.length > 0) {
-      dispatch(LOAD_MORE_SONGS(res))
-      if (callback) callback()
-    } else {
-      return
-    }
-  })
+      if (res.length > 0) {
+        dispatch(LOAD_MORE_SONGS(res))
+        if (callback) callback()
+      } else {
+        return
+      }
+    })
+  }
 }
 
 const LOAD_PREVIOUS_SONGS = createAction('app/LOAD_PREVIOUS_SONGS');
 export const loadPreviousSongs = () => dispatch => {
   dispatch(LOAD_PREVIOUS_SONGS())
+};
+
+const RESET_LOADED_SONGS = createAction('app/RESET_LOADED_SONGS');
+export const resetLoadedSongs = () => dispatch => {
+  dispatch(RESET_LOADED_SONGS())
 };
 
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
