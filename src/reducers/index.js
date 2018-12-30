@@ -35,7 +35,8 @@ export const INITIAL_STATE = {
   currentSongListPageIndex: 0,
   maxSongListPageIndex: 0,
   songListSize: 16,
-  heroSongCount: 7
+  heroSongCount: 7,
+  songPlayerDurations: {}
 }
 
 const appReducers = handleActions({
@@ -108,6 +109,22 @@ const appReducers = handleActions({
       snapshotPost: { $set: action.payload }
     })
   },
+  'app/LOADING_PLAYER': (state, action) => {
+    return update(state, {
+      songPlayerDurations: { $set: {
+        ...state.songPlayerDurations,
+        [action.payload]: undefined
+      }}
+    })
+  },
+  'app/PLAYER_LOADED': (state, action) => {
+    return update(state, {
+      songPlayerDurations: { $set: {
+        ...state.songPlayerDurations,
+        [action.payload.songId]: action.payload.durationSeconds
+      }}
+    })
+  },
   'app/FETCH_SINGLE_SONG': (state, action) => {
     return update(state, {
       singleSong: { $set: action.payload }
@@ -121,11 +138,6 @@ const appReducers = handleActions({
   'app/SET_SONG_PROGRESS': (state, action) => {
     return update(state, {
       activeSongProgress: { $set: action.payload }
-    })
-  },
-  'app/SET_SONG_DURATION': (state, action) => {
-    return update(state, {
-      activeSongDuration: { $set: action.payload }
     })
   },
   'app/SET_RELATED_SONGS': (state, action) => {
@@ -142,7 +154,7 @@ const appReducers = handleActions({
     return update(state, {
       activeSong: { $set: action.payload },
       isPlaying: { $set: true },
-      //activeSongDuration: { $set: ??? }
+      activeSongDuration: { $set: state.songPlayerDurations[action.payload.id] }
     })
   },
   'app/CHANGE_GRID_VIEW': (state, action) => {

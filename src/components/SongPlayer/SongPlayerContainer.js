@@ -21,7 +21,6 @@ class SongPlayerContainer extends React.Component {
   getUniqueSongPosts = () => uniqBy(this.props.songPosts, 'id');
 
   render() {
-    console.log("Rendering player container");
     return (
         <div className="song-player-wrapper">
 

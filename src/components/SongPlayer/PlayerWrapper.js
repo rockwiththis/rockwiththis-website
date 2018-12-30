@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
+
+import { loadingPlayer, playerLoaded } from 'actions';
+
 import './SongPlayer.scss'
 
 const propTypes = {
@@ -23,13 +27,12 @@ class PlayerWrapper extends React.Component {
     if (this.props.isPlaying) this.props.onSongProgress(ref);
   };
 
-  reactPlayerReady = ref => {
-    console.log(`Song ${this.props.songPost.id} ready to be played`);
-    console.log(ref);
-  };
+  reactPlayerReady = ref => (
+      this.props.reportPlayerLoaded(this.props.songPost, ref.getDuration())
+  );
 
   render() {
-    console.log(`Rendering player for song ${this.props.songPost.id}`);
+    this.props.reportLoadingPlayer(this.props.songPost);
     const songUrl = (
         this.props.songPost.soundcloud_track_id ?
           `https%3A//api.soundcloud.com/tracks/${this.props.songPost.soundcloud_track_id}` :
@@ -49,4 +52,9 @@ class PlayerWrapper extends React.Component {
 
 PlayerWrapper.propTypes = propTypes;
 
-export default PlayerWrapper;
+const mapDispatchToProps = {
+  reportLoadingPlayer: loadingPlayer,
+  reportPlayerLoaded: playerLoaded
+}
+
+export default connect(null, mapDispatchToProps)(PlayerWrapper);
