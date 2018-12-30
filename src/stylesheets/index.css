@@ -1837,20 +1837,23 @@ form.rwt-email-form button {
       line-height: 46px; } }
 
 @media (max-width: 480px) {
-  .blue-content .blue-content-container {
-    padding: 200px 30px 100px 30px; }
-    .blue-content .blue-content-container p {
-      color: #fff;
-      font-size: 20px;
-      line-height: 40px;
-      max-width: 600px; }
-    .blue-content .blue-content-container h1.blue-title {
-      color: #fff;
-      font-size: 40px;
-      line-height: 54px;
-      width: 300px;
-      margin: 0 auto;
-      margin-bottom: 35px; } }
+  .blue-content {
+    height: 650px; }
+    .blue-content img.diagblue {
+      width: 1000px; }
+    .blue-content .blue-content-container {
+      padding: 100px 30px 100px 30px; }
+      .blue-content .blue-content-container p {
+        color: #fff;
+        font-size: 17px;
+        line-height: 30px;
+        max-width: 600px; }
+      .blue-content .blue-content-container h1.blue-title {
+        color: #fff;
+        font-size: 26px;
+        line-height: 36px;
+        margin: 0 auto;
+        margin-bottom: 20px; } }
 
 .connectPage .missionContainer .content {
   max-width: 500px; }
@@ -1999,7 +2002,7 @@ form.rwt-email-form button {
         .connectPage .middle-content .four-content .social-container ul {
           margin-bottom: 10px !important; }
           .connectPage .middle-content .four-content .social-container ul li {
-            width: 24% !important; }
+            width: 20% !important; }
   .connectPage img.color.bottomMiddle {
     position: absolute;
     top: -35px;
@@ -2084,7 +2087,7 @@ form.rwt-email-form button {
   .connectPage .middle-content .four-content form.form-input {
     max-width: 350px; }
     .connectPage .middle-content .four-content form.form-input input {
-      height: 50px;
+      height: 35px;
       width: 100%;
       border: 1px solid #0097d5;
       padding: 0px;
@@ -2094,19 +2097,32 @@ form.rwt-email-form button {
       border-bottom-left-radius: 0px;
       text-align: center; }
     .connectPage .middle-content .four-content form.form-input button.submit-btn {
-      height: 50px;
+      height: 35px;
       width: 100%;
       padding: 0 5px;
       border-bottom-left-radius: 6px;
       border-bottom-right-radius: 6px;
       border-top-right-radius: 0px;
-      margin-top: -1px; }
+      margin-top: -1px;
+      transform: translateX(1px); }
   .blue-content {
     z-index: 50; } }
 
 @media screen and (max-width: 480px) {
   .connectPage .middle-content .four-content .social-container ul li {
-    width: 28% !important; }
+    width: 17% !important; }
+  .connectPage .middle-content .social-container {
+    width: 100%;
+    margin-top: 10px;
+    max-width: 500px;
+    margin: 10px auto !important;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0px) !important; }
+    .connectPage .middle-content .social-container ul {
+      margin-bottom: 10px !important; }
+      .connectPage .middle-content .social-container ul li {
+        width: 20% !important; }
   .connectPage .main-content {
     background: #fafafa !important;
     padding-top: 35px; }
@@ -2114,9 +2130,9 @@ form.rwt-email-form button {
     padding-top: 0px; }
     .connectPage .middle-content .four-content h3 {
       margin-top: 0;
-      font-size: 36px !important;
-      line-height: 50px !important;
-      margin-bottom: 20px; }
+      font-size: 26px !important;
+      line-height: 36px !important;
+      margin-bottom: 10px; }
     .connectPage .middle-content .four-content p.mission-tagline {
       padding: 0 15px;
       font-size: 18px !important;
@@ -2126,24 +2142,24 @@ form.rwt-email-form button {
     .connectPage .middle-content .four-content p.email-text {
       max-width: 350px !important;
       padding: 0 15px;
-      font-size: 18px !important;
-      line-height: 28px !important; }
+      font-size: 16px !important;
+      line-height: 26px !important; }
     .connectPage .middle-content .four-content hr {
       max-width: 250px;
-      margin: 20px auto; }
+      margin: 10px auto; }
     .connectPage .middle-content form.form-input {
       margin-top: 20px !important; }
       .connectPage .middle-content form.form-input input {
         text-align: center;
-        font-size: 16px; }
+        font-size: 14px; }
       .connectPage .middle-content form.form-input button.submit-btn {
-        font-size: 16px; }
+        font-size: 14px; }
   .connectPage .middle-content .four-content {
     padding-top: 0; } }
 
 @media only screen and (max-width: 480px) {
   .connectPage .main-content {
-    padding-top: 75px !important; }
+    padding-top: 60px !important; }
   .connectPage .middle-content .four-content p.mission-tagline {
     font-size: 17px !important;
     line-height: 27px !important; }
@@ -2151,12 +2167,7 @@ form.rwt-email-form button {
     max-width: 330px !important; }
   .connectPage img.color.bottomMiddle {
     position: absolute;
-    top: 600px !important;
-    right: 0;
-    width: 500px; }
-  .connectPage img.color.bottomMiddle {
-    position: absolute;
-    top: 300px !important;
+    top: 200px !important;
     right: -145px !important;
     width: 370px !important;
     transform: rotate(99deg) !important; } }
@@ -2171,9 +2182,9 @@ form.rwt-email-form button {
   .headerContainer {
     height: 50px !important; }
     .headerContainer #headerLogoMobile {
-      width: 60px !important; }
+      width: 100px !important; }
       .headerContainer #headerLogoMobile img {
-        width: 60px !important;
+        width: 100px !important;
         padding-top: 4px; }
   .socialLinks {
     top: 50px; }

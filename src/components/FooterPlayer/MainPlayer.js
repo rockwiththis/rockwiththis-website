@@ -29,9 +29,6 @@ class MainPlayer extends Component {
         this.changeSongOnEnd = this.changeSongOnEnd.bind(this)
         this.onChangeSlider = this.onChangeSlider.bind(this)
         this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
-        this.expandMobilePlayer = this.expandMobilePlayer.bind(this)
-        this.collapseMobilePlayer = this.collapseMobilePlayer.bind(this)
-        this.checkIfStillMobile = this.checkIfStillMobile.bind(this)
     }
 
     componentDidMount() {
@@ -39,26 +36,7 @@ class MainPlayer extends Component {
         window.addEventListener('resize', this.checkIfStillMobile);
 
     }
-    checkIfStillMobile() {
 
-      if (window.innerWidth > 480 ) {
-        this.setState({
-            fullMobilePlayer: false
-        })
-      }
-    }
-
-    expandMobilePlayer() {
-      this.setState({
-          fullMobilePlayer: true
-      })
-
-    }
-    collapseMobilePlayer() {
-      this.setState({
-          fullMobilePlayer: false
-      })
-    }
 
     onChangeSlider(progress) {
       this.offScreen.player.seekTo(progress)

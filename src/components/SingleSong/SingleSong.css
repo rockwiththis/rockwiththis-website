@@ -320,7 +320,7 @@
     .songImageInfoContainer a.spotify-mobile {
       display: inline-block;
       position: relative;
-      color: #65d36e;
+      color: #1ed760;
       font-size: 35px;
       z-index: 1;
       vertical-align: top;
@@ -396,7 +396,7 @@
   background: #1a6ea9;
   border: 1px solid #1a6ea9;
   font-family: 'Baloo', cursive;
-  padding: 4px; }
+  padding: 2px 4px; }
 
 @media (min-width: 800px) {
   .singleSongContainer .bottomContentContainer .songDescription {

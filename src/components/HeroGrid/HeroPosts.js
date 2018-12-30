@@ -13,8 +13,17 @@ class HeroPosts extends React.Component {
         this.state = {
             scrollPercentage: 0,
             loading: true,
+            hideSongOfDay: false
         }
     }
+
+    componentDidMount() {
+        window.addEventListener('scroll', this.checkToHideHeroSong)
+        window.addEventListener('resize', this.checkToHideHeroSong)
+
+    }
+
+
 
     componentWillMount() {
       const callback = () => {
@@ -22,6 +31,15 @@ class HeroPosts extends React.Component {
           loading: false,
         })
       }
+    }
+
+    checkToHideHeroSong = () => {
+
+        const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+        const hideSongOfDay = window.scrollY > scrollHeight
+        this.setState({ hideSongOfDay })
+
+
     }
 
 
@@ -82,7 +100,7 @@ class HeroPosts extends React.Component {
 
         return (
             <div>
-                <div id="hero-post" className='hero-posts' ref={node => this.postsWrapper = node}>
+                <div id="hero-post" className={`hero-posts ${this.state.hideSongOfDay ? 'hideSongOfDay' : ''}`} ref={node => this.postsWrapper = node}>
                   {heroPosts.length > 0 ?
                     <Fragment>
                       {featuredPost}
