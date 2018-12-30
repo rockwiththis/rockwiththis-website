@@ -17,6 +17,7 @@ import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlacehol
 import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import SongPlayerContainer from 'components/SongPlayer/SongPlayerContainer';
+import PaginationControls from 'components/PaginationControls';
 
 /* eslint-disable */
 
@@ -197,65 +198,6 @@ class SongsContainer extends Component {
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
         window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
-    }
-    }
-
-    renderPaginationDots() {
-      if (this.state.gridPage == 0) {
-        return(
-          <div className="pagination-container">
-            <button className='pagination-dot pagination-dot-active'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot-small'/>
-          </div>
-        );
-      }
-      if (this.state.gridPage == 1) {
-        return(
-          <div className="pagination-container">
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot pagination-dot-active'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot-small'/>
-          </div>
-        );
-      }
-      if (this.state.gridPage == 2) {
-        return(
-          <div className="pagination-container">
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot pagination-dot-active'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot-small'/>
-          </div>
-        );
-      }
-      if (this.state.gridPage == 3) {
-        return(
-          <div className="pagination-container">
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot pagination-dot-active'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot-small'/>
-          </div>
-        );
-      }
-      if (this.state.gridPage > 3) {
-        return(
-          <div className="pagination-container">
-            <button className='pagination-dot-small'/>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot pagination-dot-active'><i className="fas fa-circle"></i></button>
-            <button className='pagination-dot-small'/>
-          </div>
-        );
       }
     }
 
@@ -363,15 +305,11 @@ class SongsContainer extends Component {
                           <SongGridPlaceholder />
                         }
 
-                        <div className='song-grid-footer'>
-                          <button className='grid-arrow previous' onClick={() => this.navGrid(false)}>
-                            <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-                          </button>
-                          {this.renderPaginationDots()}
-                          <button className='grid-arrow next' onClick={() => this.navGrid(true, songGridsFull.length)}>
-                            <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-                          </button>
-                        </div>
+                        <PaginationControls
+                          currPageIndex={this.props.currentPostPageIndex}
+                          onForward={() => this.navGrid(false)}
+                          onBackward={() => this.navGrid(true)}
+                        />
 
                       </div>
 
