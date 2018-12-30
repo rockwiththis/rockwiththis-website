@@ -37,7 +37,7 @@ class SongsContainer extends Component {
         this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
         this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
-        this.mobileLoadMore = this.mobileLoadMore.bind(this)
+        //this.mobileLoadMore = this.mobileLoadMore.bind(this)
     }
 
     componentWillMount() {
@@ -51,7 +51,7 @@ class SongsContainer extends Component {
       window.addEventListener('scroll', this.fixedFiltersBar);
       window.addEventListener('scroll', this.fixedFiltersBar);
 
-      window.addEventListener('scroll', this.mobileLoadMore)
+      //window.addEventListener('scroll', this.mobileLoadMore)
       window.addEventListener('scroll', this.enableDiscoverScroll);
       window.addEventListener('resize', this.enableDiscoverScroll);
     }
@@ -69,6 +69,7 @@ class SongsContainer extends Component {
       console.log(event)
     }
 
+    /* Temporarily disabling in favor of pagination
     mobileLoadMore(event) {
 
       if ((window.innerWidth < 800) && (location.pathname == "/"))  {
@@ -86,6 +87,7 @@ class SongsContainer extends Component {
         }
       }
     }
+    */
 
     componentWillReceiveProps(nextProps) {
         if (this.props.isPlaying !== nextProps.isPlaying ||
