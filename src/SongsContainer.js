@@ -227,11 +227,11 @@ class SongsContainer extends Component {
                 <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
                   <div className="discoverySectionScroll" name='discoverySectionScroll'>
 
-                    <PaginationControls
+                  {/*<PaginationControls
                       currPageIndex={this.props.currentSongListPageIndex}
                       onForward={() => this.props.actions.loadMoreSongs()}
                       onBackward={this.props.actions.loadPreviousSongs}
-                    />
+                    /> */}  
 
                     {songList}
 

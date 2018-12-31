@@ -288,8 +288,8 @@ p {
     display: inline-block;
     background: #fff;
     vertical-align: top;
-    padding-top: 0px;
-    padding-bottom: 15px; }
+    padding-top: 15px;
+    padding-bottom: 75px; }
   .discovery-section .songList .songContainer {
     display: inline-block;
     vertical-align: top;
