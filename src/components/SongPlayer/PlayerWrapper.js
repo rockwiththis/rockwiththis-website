@@ -10,12 +10,19 @@ import './SongPlayer.scss'
 const propTypes = {
   songPost: PropTypes.object.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  onSongLoading: PropTypes.func.isRequired,
+  onSongLoaded: PropTypes.func.isRequired,
   onSongProgress: PropTypes.func.isRequired,
   onSongEnd: PropTypes.func.isRequired
 };
 
 // Wrapper to give us greater control over when a player is re-rendered
 class PlayerWrapper extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.playerRef = React.createRef();
+  }
 
   // only re-render an indivial player when `isPlaying` prop changes
   shouldComponentUpdate = nextProps => (
@@ -28,11 +35,15 @@ class PlayerWrapper extends React.Component {
   };
 
   reactPlayerReady = ref => (
-      this.props.reportPlayerLoaded(this.props.songPost, ref.getDuration())
+      this.props.onSongLoaded(this.props.songPost, ref.getDuration())
+  );
+
+  updateSongProgress = progressRatio => (
+      this.playerRef.current.seekTo(progressRatio)
   );
 
   render() {
-    this.props.reportLoadingPlayer(this.props.songPost);
+    this.props.onSongLoading(this.props.songPost);
     const songUrl = (
         this.props.songPost.soundcloud_track_id ?
           `https%3A//api.soundcloud.com/tracks/${this.props.songPost.soundcloud_track_id}` :
@@ -45,6 +56,7 @@ class PlayerWrapper extends React.Component {
           onProgress={this.reportProgressIfPlaying}
           onEnded={this.props.onSongEnd}
           url={songUrl}
+          ref={this.playerRef}
         />
     );
   }
@@ -52,9 +64,5 @@ class PlayerWrapper extends React.Component {
 
 PlayerWrapper.propTypes = propTypes;
 
-const mapDispatchToProps = {
-  reportLoadingPlayer: loadingPlayer,
-  reportPlayerLoaded: playerLoaded
-}
-
-export default connect(null, mapDispatchToProps)(PlayerWrapper);
+// TODO get react-redux `connect` working with refs and use instead of passing actions as params
+export default PlayerWrapper;

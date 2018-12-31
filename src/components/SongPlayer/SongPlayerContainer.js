@@ -7,11 +7,18 @@ const propTypes = {
   songPosts: PropTypes.array.isRequired,
   currentSongId: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
+  onSongLoading: PropTypes.func.isRequired,
+  onSongLoaded: PropTypes.func.isRequired,
   onSongProgress: PropTypes.func.isRequired,
   onSongEnd: PropTypes.func.isRequired
 };
 
 class SongPlayerContainer extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.activePlayerRef = React.createRef();
+  }
 
   isSongPlaying = song => (
       this.props.isPlaying &&
@@ -19,6 +26,11 @@ class SongPlayerContainer extends React.Component {
   );
 
   getUniqueSongPosts = () => uniqBy(this.props.songPosts, 'id');
+
+  updateSongProgress = progressRatio => {
+      console.log(this.activePlayerRef.current)
+      this.activePlayerRef.current.updateSongProgress(progressRatio)
+  };
 
   render() {
     return (
@@ -28,8 +40,11 @@ class SongPlayerContainer extends React.Component {
               <PlayerWrapper
                 songPost={song}
                 isPlaying={this.isSongPlaying(song)}
+                onSongLoading={this.props.onSongLoading}
+                onSongLoaded={this.props.onSongLoaded}
                 onSongProgress={this.props.onSongProgress}
                 onSongEnd={this.props.onSongEnd}
+                ref={this.isSongPlaying(song) && this.activePlayerRef}
               />
           ))}
 
