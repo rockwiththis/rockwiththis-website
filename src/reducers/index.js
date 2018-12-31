@@ -60,7 +60,11 @@ const appReducers = handleActions({
   },
   'app/FETCH_CURRENT_REQUEST': (state, action) => {
     return update(state, {
-      filteredPosts: { $set: action.payload }
+      filteredPosts: { $set: action.payload },
+      songListPosts: { $set: action.payload.slice(0, state.songListSize) },
+      snapshotPost: { $set: action.payload[0] },
+      currentSongListPageIndex: { $set: 0 },
+      maxSongListPageIndex: { $set: 0 }
     })
   },
   'app/CURRENT_REQUEST_LOADING': (state, action) => {
@@ -106,7 +110,8 @@ const appReducers = handleActions({
   },
   'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
     return update(state, {
-      snapshotPost: { $set: action.payload }
+      snapshotPost: { $set: action.payload },
+      activeSong: { $set: !!state.activeSong.id ? state.activeSong : action.payload }
     })
   },
   'app/LOADING_PLAYER': (state, action) => {
