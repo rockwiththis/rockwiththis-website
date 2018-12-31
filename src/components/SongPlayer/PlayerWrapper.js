@@ -22,6 +22,7 @@ class PlayerWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.playerRef = React.createRef();
+    this.props.onSongLoading(this.props.songPost);
   }
 
   // only re-render an indivial player when `isPlaying` prop changes
@@ -29,6 +30,12 @@ class PlayerWrapper extends React.Component {
       nextProps.isPlaying !== this.props.isPlaying ||
       nextProps.songPost.id !== this.props.songPost.id
   );
+
+  componentDidUpdate = prevProps => {
+    if (prevProps.songPost.id !== this.props.songPost.id)
+      this.props.onSongLoading(this.props.songPost);
+  }
+
 
   reportProgressIfPlaying = ref => {
     if (this.props.isPlaying) this.props.onSongProgress(ref);
@@ -43,7 +50,6 @@ class PlayerWrapper extends React.Component {
   );
 
   render() {
-    this.props.onSongLoading(this.props.songPost);
     const songUrl = (
         this.props.songPost.soundcloud_track_id ?
           `https%3A//api.soundcloud.com/tracks/${this.props.songPost.soundcloud_track_id}` :
