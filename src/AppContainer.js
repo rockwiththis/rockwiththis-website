@@ -15,7 +15,8 @@ class AppContainer extends Component {
   constructor(props) {
     super(props)
     this.state = { shrinkHeader: false }
-    this.handleScroll = this.handleScroll.bind(this)
+    this.handleScroll = this.handleScroll.bind(this);
+    this.playerContainerRef = React.createRef();
   }
 
   componentWillMount() {
@@ -51,6 +52,11 @@ class AppContainer extends Component {
     this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
   }
 
+  handleProgressUpdate = progressRatio => {
+      console.log(this.playerContainerRef.current)
+      this.playerContainerRef.current.updateSongProgress(progressRatio)
+  };
+
   render() {
     return (
         <div>
@@ -59,13 +65,16 @@ class AppContainer extends Component {
 
           {React.cloneElement(this.props.children, { ...this.props })}
 
-          <MainPlayer {...this.props} />
+          <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
           <SongPlayerContainer
             songPosts={this.getAllPlayableSongs()}
             currentSongId={this.props.activeSong.id}
             isPlaying={this.props.isPlaying}
+            onSongLoading={this.props.actions.loadingPlayer}
+            onSongLoaded={this.props.actions.playerLoaded}
             onSongProgress={this.props.actions.setSongProgress}
             onSongEnd={this.changeSongOnEnd}
+            ref={this.playerContainerRef}
           />
         </div>
     )

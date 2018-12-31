@@ -112,16 +112,16 @@ export const updateSnapshotSong = newSnapshotSong => dispatch => {
 
 // TODO use connect and remove `dispatch` arg like this for the rest of these
 const LOADING_PLAYER = createAction('app/LOADING_PLAYER');
-export const loadingPlayer = loadingSong => (
-  LOADING_PLAYER(loadingSong.id)
+export const loadingPlayer = loadingSong => dispatch => (
+  dispatch(LOADING_PLAYER(loadingSong.id))
 );
 
 const PLAYER_LOADED = createAction('app/PLAYER_LOADED');
-export const playerLoaded = (loadedSong, durationSeconds) => (
-  PLAYER_LOADED({
+export const playerLoaded = (loadedSong, durationSeconds) => dispatch => (
+  dispatch(PLAYER_LOADED({
     songId: loadedSong.id,
     durationSeconds: durationSeconds
-  })
+  }))
 );
 
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
