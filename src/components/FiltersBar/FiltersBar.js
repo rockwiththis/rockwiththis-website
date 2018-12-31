@@ -38,6 +38,8 @@ class FiltersBar extends Component {
 
     fetchCurrentRequest() {
       this.setState({ loading: true })
+
+
       const callback = () => {
         document.removeEventListener('click', this.closeSubGenreFilters)
         this.setState({
@@ -51,11 +53,7 @@ class FiltersBar extends Component {
             duration: 500,
             smooth: true
           })
-          Scroll.scroller.scrollTo('scrollToDiscoveryTop', {
-            containerId: 'discoverSongsWrapper',
-            duration: 500,
-            smooth: true
-          })
+
         })
       }
       this.props.actions.fetchCurrentRequest(callback)

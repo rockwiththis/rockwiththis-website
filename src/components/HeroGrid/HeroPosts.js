@@ -6,6 +6,8 @@ import HeroPostsPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceho
 import hoverGradient from 'images/rwt-hover-gradient.png'
 import './HeroGrid.scss'
 
+/* eslint-disable */
+
 
 class HeroPosts extends React.Component {
     constructor(props) {
@@ -34,11 +36,12 @@ class HeroPosts extends React.Component {
     }
 
     checkToHideHeroSong = () => {
+      if (location.pathname == "/") {
 
         const scrollHeight = document.getElementById('hero-post').clientHeight + 45
         const hideSongOfDay = window.scrollY > scrollHeight
         this.setState({ hideSongOfDay })
-
+      }
 
     }
 
