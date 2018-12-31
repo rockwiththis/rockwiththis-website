@@ -1,5 +1,7 @@
 import { createAction } from 'redux-actions'
 import { FETCH_FILTERS } from './filters'
+import * as Scroll from 'react-scroll'
+
 
 // TODO i think we should not be exporting the actual actions
 // Look into redux-thunk for more control
@@ -86,7 +88,12 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
     fetch(fullURL).then(res => res.json()).then((res) => {
 
       if (res.length > 0) {
+        Scroll.scroller.scrollTo('discoverySectionTop', {
+          duration: 500,
+          smooth: true
+        })
         dispatch(LOAD_MORE_SONGS(res));
+
         if (callback) callback(res);
       } else {
         return;

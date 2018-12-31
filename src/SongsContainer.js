@@ -17,6 +17,8 @@ import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlacehol
 import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import PaginationControls from 'components/PaginationControls';
+import * as Scroll from 'react-scroll'
+
 
 /* eslint-disable */
 
@@ -101,6 +103,11 @@ class SongsContainer extends Component {
       const fixedFilterBar = window.scrollY > scrollHeight
       this.setState({ fixedFilterBar })
     }
+  }
+  scrollToTop() {
+    console.log("LETS SCROLL");
+
+
   }
 
   loadMoreSongs(altCallback) {
@@ -219,19 +226,19 @@ class SongsContainer extends Component {
             </Element>
 
             <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
-              <div id="discovery-container"
+              <div id="discovery-container" name='discoverySectionTop'
                 //onScroll={(e) => this.handleScroll(e)}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
 
-                <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
+                <div id="songList"  className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
                   <div className="discoverySectionScroll" name='discoverySectionScroll'>
 
                   {/*<PaginationControls
                       currPageIndex={this.props.currentSongListPageIndex}
                       onForward={() => this.props.actions.loadMoreSongs()}
                       onBackward={this.props.actions.loadPreviousSongs}
-                    /> */}  
+                    /> */}
 
                     {songList}
 
