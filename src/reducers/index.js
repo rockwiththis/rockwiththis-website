@@ -110,7 +110,8 @@ const appReducers = handleActions({
   },
   'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
     return update(state, {
-      snapshotPost: { $set: action.payload }
+      snapshotPost: { $set: action.payload },
+      activeSong: { $set: !!state.activeSong.id ? state.activeSong : action.payload }
     })
   },
   'app/LOADING_PLAYER': (state, action) => {
