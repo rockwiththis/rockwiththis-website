@@ -18,6 +18,8 @@ import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlacehol
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import PaginationControls from 'components/PaginationControls';
 import * as Scroll from 'react-scroll'
+import $ from "jquery";
+
 
 
 /* eslint-disable */
@@ -226,7 +228,7 @@ class SongsContainer extends Component {
             </Element>
 
             <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
-              <div id="discovery-container" name='discoverySectionTop'
+              <div id="discovery-container"
                 //onScroll={(e) => this.handleScroll(e)}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
