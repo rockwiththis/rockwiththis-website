@@ -40,9 +40,9 @@ class AppContainer extends Component {
   getAllPlayableSongs = () => (
       [
         ...this.props.heroPosts,
-        this.props.activeSong,
-        this.props.snapshotPost,
         ...this.props.songListPosts,
+        this.props.activeSong,
+        this.props.snapshotPost
       ]
       .filter(song => !!song.id)
   );
