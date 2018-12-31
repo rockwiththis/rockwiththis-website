@@ -47,10 +47,21 @@ class AppContainer extends Component {
       .filter(song => !!song.id)
   );
 
+  // TODO this won't work on some browsers b/c of video autoplay constraints. Handle this case.
   changeSongOnEnd = () => {
-    const nextIndex = this.props.filteredPosts.findIndex(this.isCurrentSong) + 1
-    const nextQueuePosition = nextIndex >= this.props.filteredPosts.length ? 0 : nextIndex
-    this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
+    const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
+
+    if (nextIndex >= this.props.filteredPosts.length) {
+      console.log("loading more songs");
+      this.props.actions.loadMoreSongs(nextSongs => {
+        console.log("in callback");
+        console.log(nextSongs);
+          this.props.actions.toggleSong(nextSongs[0])
+      });
+
+    } else {
+      this.props.actions.toggleSong(this.props.filteredPosts[nextIndex]);
+    }
   }
 
   handleProgressUpdate = progressRatio => {
