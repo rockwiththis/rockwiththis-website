@@ -154,7 +154,8 @@ const appReducers = handleActions({
     return update(state, {
       activeSong: { $set: action.payload },
       isPlaying: { $set: true },
-      activeSongDuration: { $set: state.songPlayerDurations[action.payload.id] }
+      activeSongDuration: { $set: state.songPlayerDurations[action.payload.id] },
+      activeSongProgress: { $set: 0 }
     })
   },
   'app/CHANGE_GRID_VIEW': (state, action) => {

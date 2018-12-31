@@ -17,12 +17,7 @@ class AppContainer extends Component {
     this.state = { shrinkHeader: false }
     this.handleScroll = this.handleScroll.bind(this);
     this.playerContainerRef = React.createRef();
-  }
-
-  componentWillMount() {
     this.props.actions.fetchFilters()
-    console.log("this.props.actions.fetchFilters()");
-    console.log(this.props.actions.fetchFilters());
   }
 
   componentDidMount() {
@@ -35,6 +30,12 @@ class AppContainer extends Component {
     const shrinkHeader = window.scrollY > 70
     this.setState({ shrinkHeader })
   }
+
+  componentDidUpdate(prevProps) {
+      if (prevProps.activeSong.id !== this.props.activeSong.id &&
+          this.props.isPlaying)
+        this.playerContainerRef.current.updateSongProgress(0)
+  };
 
   getAllPlayableSongs = () => (
       [
@@ -53,7 +54,6 @@ class AppContainer extends Component {
   }
 
   handleProgressUpdate = progressRatio => {
-      console.log(this.playerContainerRef.current)
       this.playerContainerRef.current.updateSongProgress(progressRatio)
   };
 
