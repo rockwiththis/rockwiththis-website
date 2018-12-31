@@ -106,11 +106,6 @@ class SongsContainer extends Component {
       this.setState({ fixedFilterBar })
     }
   }
-  scrollToTop() {
-    console.log("LETS SCROLL");
-
-
-  }
 
   loadMoreSongs(altCallback) {
 

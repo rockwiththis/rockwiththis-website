@@ -89,11 +89,15 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
     fetch(fullURL).then(res => res.json()).then((res) => {
 
       if (res.length > 0) {
+
         if (window.innerWidth > 800) {
             $('#discovery-container').animate({scrollTop: 0}, 100);
+        } else {
+          Scroll.scroller.scrollTo('discoverySectionScroll', {
+            duration: 500,
+            smooth: true
+          })
         }
-
-
         dispatch(LOAD_MORE_SONGS(res));
 
         if (callback) callback(res);
@@ -108,6 +112,11 @@ const LOAD_PREVIOUS_SONGS = createAction('app/LOAD_PREVIOUS_SONGS');
 export const loadPreviousSongs = () => dispatch => {
   if (window.innerWidth > 800) {
       $('#discovery-container').animate({scrollTop: 0}, 100);
+  } else {
+    Scroll.scroller.scrollTo('discoverySectionScroll', {
+      duration: 500,
+      smooth: true
+    })
   }
   dispatch(LOAD_PREVIOUS_SONGS())
 };
