@@ -27,23 +27,15 @@ class MainPlayer extends Component {
         this.renderButtons = this.renderButtons.bind(this)
         this.changeSong = this.changeSong.bind(this)
         this.changeSongOnEnd = this.changeSongOnEnd.bind(this)
-        this.onChangeSlider = this.onChangeSlider.bind(this)
         this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
     }
 
     componentDidMount() {
-
-        window.addEventListener('resize', this.checkIfStillMobile);
-
-    }
-
-
-    onChangeSlider(progress) {
-      this.offScreen.player.seekTo(progress)
+      window.addEventListener('resize', this.checkIfStillMobile);
     }
 
     updateStorePlayPause() {
-        this.props.actions.togglePlayPause(!this.props.isPlaying)
+      this.props.actions.togglePlayPause(!this.props.isPlaying)
     }
 
     changeSong(next) {
@@ -145,7 +137,7 @@ class MainPlayer extends Component {
                             max={1}
                             step={0.001}
                             value={this.props.activeSongProgress.played}
-                            onChange={this.onChangeSlider}
+                            onChange={this.props.onProgressUpdate}
                         />
                     </div>
                     <div className="player-duration-bar-song-duration">

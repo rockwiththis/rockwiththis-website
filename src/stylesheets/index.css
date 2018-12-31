@@ -216,6 +216,9 @@ p {
         transform: translate(-50%, -50%);
         -weblkit-transform: translate(-50%, -50%); }
 
+.discovery-section .songList .pagination-controls {
+  padding: 20px 0; }
+
 .discovery-section .songList .songContainer .postContent {
   display: inline-block;
   width: 50%;
@@ -285,8 +288,8 @@ p {
     display: inline-block;
     background: #fff;
     vertical-align: top;
-    padding-top: 15px;
-    padding-bottom: 75px; }
+    padding-top: 0px;
+    padding-bottom: 15px; }
   .discovery-section .songList .songContainer {
     display: inline-block;
     vertical-align: top;
@@ -512,53 +515,6 @@ a.spotifyLink {
         cursor: pointer;
         border: 1px solid #fff !important;
         float: left; }
-      .discovery-container .songGrid .pagination-container {
-        width: 125px;
-        flex-direction: row;
-        margin: 0;
-        margin-right: 0;
-        margin-left: 0;
-        padding-right: 0;
-        text-align: center; }
-      .discovery-container .songGrid .pagination-dot-small {
-        margin-left: 2.5px;
-        margin-right: 2.5px;
-        height: 8px;
-        width: 8px;
-        background-color: #282828;
-        border-radius: 50%; }
-        .discovery-container .songGrid .pagination-dot-small i {
-          color: #282828; }
-      .discovery-container .songGrid .pagination-dot {
-        right: 0;
-        top: 0;
-        margin-left: 5px;
-        margin-right: 5px; }
-        .discovery-container .songGrid .pagination-dot i {
-          color: #282828; }
-        .discovery-container .songGrid .pagination-dot i.active {
-          color: #4A90E2; }
-      .discovery-container .songGrid .pagination-dot-active i {
-        color: #4A90E2; }
-      .discovery-container .songGrid .song-grid-footer {
-        text-align: center;
-        flex-direction: row;
-        height: 20px;
-        display: flex;
-        justify-content: center; }
-        .discovery-container .songGrid .song-grid-footer .grid-arrow {
-          height: 20px;
-          opacity: .5;
-          transition: .2s ease all; }
-          .discovery-container .songGrid .song-grid-footer .grid-arrow img {
-            height: 100%; }
-          .discovery-container .songGrid .song-grid-footer .grid-arrow.next {
-            right: 0; }
-          .discovery-container .songGrid .song-grid-footer .grid-arrow.previous {
-            transform: rotate(180deg); }
-          .discovery-container .songGrid .song-grid-footer .grid-arrow:hover {
-            opacity: 1;
-            cursor: pointer; }
     .discovery-container .discover-full-song {
       width: calc(57% - 0px);
       display: inline-block;
@@ -2326,3 +2282,6 @@ form.rwt-email-form button {
     max-width: 674px; }
   #discovery-container .discover-full-song {
     max-width: 905px; } }
+
+.fullGridLayout .songList .songContainer:nth-of-type(16) {
+  display: none !important; }
