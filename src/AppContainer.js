@@ -10,6 +10,7 @@ import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 import Header from 'components/Header/Header.js'
 import SongPlayerContainer from 'components/SongPlayer/SongPlayerContainer';
 import MainPlayer from 'components/FooterPlayer/MainPlayer'
+import SongPlayerBank from 'components/SongPlayer/SongPlayerBank';
 
 class AppContainer extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class AppContainer extends Component {
     this.state = { shrinkHeader: false }
     this.handleScroll = this.handleScroll.bind(this);
     this.playerContainerRef = React.createRef();
+    this.playerBankRef = React.createRef();
     this.props.actions.fetchFilters()
   }
 
@@ -32,9 +34,24 @@ class AppContainer extends Component {
   }
 
   componentDidUpdate(prevProps) {
-      if (prevProps.activeSong.id !== this.props.activeSong.id &&
-          this.props.isPlaying)
-        this.playerContainerRef.current.updateSongProgress(0)
+
+    if (!this.props.isPlaying && prevProps.isPlaying) {
+      this.playerBankRef.current.pauseActiveSong();
+    }
+
+    if (prevProps.activeSong.id !== this.props.activeSong.id &&
+        this.props.isPlaying) {
+      this.playerBankRef.current.playSongListSong(this.props.activeSong)
+
+    } else if (this.props.isPlaying && !prevProps.isPlaying) {
+      this.playerBankRef.current.playActiveSong();
+    }
+    /*
+    if (prevProps.activeSong.id !== this.props.activeSong.id &&
+        this.props.isPlaying) {
+      this.playerContainerRef.current.updateSongProgress(0)
+    }
+    */
   };
 
   getAllPlayableSongs = () => (
@@ -77,16 +94,27 @@ class AppContainer extends Component {
           {React.cloneElement(this.props.children, { ...this.props })}
 
           <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
-          <SongPlayerContainer
-            songPosts={this.getAllPlayableSongs()}
-            currentSongId={this.props.activeSong.id}
-            isPlaying={this.props.isPlaying}
-            onSongLoading={this.props.actions.loadingPlayer}
-            onSongLoaded={this.props.actions.playerLoaded}
-            onSongProgress={this.props.actions.setSongProgress}
-            onSongEnd={this.changeSongOnEnd}
-            ref={this.playerContainerRef}
-          />
+          {
+            false &&
+            <SongPlayerContainer
+              songPosts={this.getAllPlayableSongs()}
+              currentSongId={this.props.activeSong.id}
+              isPlaying={this.props.isPlaying}
+              onSongLoading={this.props.actions.loadingPlayer}
+              onSongLoaded={this.props.actions.playerLoaded}
+              onSongProgress={this.props.actions.setSongProgress}
+              onSongEnd={this.changeSongOnEnd}
+              ref={this.playerContainerRef}
+            />
+          }
+          {
+            this.props.songListPosts.length > 0 &&
+            <SongPlayerBank
+              initialSongList={this.props.songListPosts}
+              initialActiveSong={this.props.activeSong}
+              ref={this.playerBankRef}
+            />
+          }
         </div>
     )
   }
