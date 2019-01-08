@@ -172,8 +172,7 @@ p {
     z-index: 1000;
     margin-top: calc(100vw + 89px);
     z-index: 1000 !important;
-    background: #fff;
-    border-top: 1px solid #C9C6CB; }
+    background: #fff; }
     .discovery-section .songList {
       overflow: visible !important; } }
 
@@ -280,6 +279,8 @@ p {
   .SubgenreFiltersDropDown.expand {
     height: calc(100vh - 132px);
     z-index: 8500;
+    max-height: none !important; }
+  .discovery-section .fullGridLayout .songContainer .imageContainer img {
     max-height: none !important; }
   .discovery-section .songGrid {
     display: none; }
@@ -575,7 +576,8 @@ a.spotifyLink {
             border-radius: 4px; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .singlePostPlayer {
           display: inline-block;
-          padding: 5px;
+          padding: 0 5px;
+          padding-top: 0;
           padding-left: 0px; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .songInfo {
           display: inline-block;
@@ -583,7 +585,7 @@ a.spotifyLink {
           pointer-events: all; }
           .discovery-container .discover-full-song .songContainer .topContentContainer .songInfo a.postTitleLink {
             font-size: 24px;
-            line-height: 34px;
+            line-height: 24px;
             text-decoration: none;
             color: black;
             font-weight: 700; }
@@ -1138,9 +1140,10 @@ button {
   font-size: 26px;
   z-index: 1;
   display: inline-block;
-  margin-left: 0px;
+  margin-left: 3px;
   width: 30px;
-  padding: 3px; }
+  padding: 0 3px;
+  transform: translateY(-2px); }
 
 .discover-full-song .songContainer .spotify:hover {
   cursor: pointer;
@@ -1375,8 +1378,8 @@ span.postTags:nth-of-type(3) {
   .marquee-inner.artist {
     position: absolute;
     display: block;
-    height: 30px;
-    top: 30px; }
+    height: 25px;
+    top: 25px; }
   .discover-full-song .songInfo.desktop {
     width: 50%;
     height: 60px; } }

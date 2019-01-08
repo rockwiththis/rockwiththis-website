@@ -289,7 +289,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
     margin-top: $discovery-parallax-padding;
     z-index: 1000 !important;
     background: #fff;
-    border-top: 1px solid #C9C6CB;
     .songList {
       overflow: visible !important;
     }
@@ -471,6 +470,16 @@ $discovery-parallax-padding: calc(100vw + 89px);
 
   .discovery-section {
 
+    .fullGridLayout {
+      .songContainer {
+        .imageContainer {
+          img {
+            max-height: none !important;
+          }
+        }
+      }
+    }
+
     .songGrid {
       display: none;
     }
@@ -482,6 +491,8 @@ $discovery-parallax-padding: calc(100vw + 89px);
       padding-top: 15px;
       padding-bottom: 75px;
     }
+
+
 
     .songList .songContainer {
       display: inline-block;
@@ -894,7 +905,8 @@ a.spotifyLink {
 
           .singlePostPlayer {
             display: inline-block;
-            padding: 5px;
+            padding: 0 5px;
+            padding-top: 0;
             padding-left: 0px;
           }
 
@@ -906,7 +918,7 @@ a.spotifyLink {
 
             a.postTitleLink {
                 font-size: 24px;
-                line-height: 34px;
+                line-height: 24px;
                 text-decoration: none;
                 color: black;
                 font-weight: 700;
@@ -1824,9 +1836,10 @@ button {
     font-size: 26px;
     z-index: 1;
     display: inline-block;
-    margin-left: 0px;
+    margin-left: 3px;
     width: 30px;
-        padding: 3px;
+        padding: 0 3px;
+        transform: translateY(-2px);
     // right: 0px;
     // top: 35px;
 }
@@ -2248,9 +2261,9 @@ span.postTags:nth-of-type(3) {
       position: absolute;
       // width: 150%;
       display: block;
-      height: 30px;
+      height: 25px;
       // animation: marquee 15s linear infinite;
-          top: 30px;
+          top: 25px;
   }
 
   .discover-full-song .songInfo.desktop {

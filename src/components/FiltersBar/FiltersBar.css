@@ -350,6 +350,7 @@ button.clearButton:hover {
   border-bottom: 1px solid #C9C6CB;
   border-left: 1px solid #C9C6CB;
   border-right: 1px solid #C9C6CB;
+  border-top: 1px solid #C9C6CB;
   z-index: 100; }
   .filters-bar .filters-bar-content {
     padding: 0 35px;
