@@ -435,7 +435,11 @@
               display: none;
             }
         }
-
+      }
+      .feature-track:hover {
+          img.heroHoverGradient, .hover-content {
+            opacity: 1;
+          }
       }
   }
 
@@ -740,6 +744,11 @@
                 display: inline-block;
                 font-size: 14px!important;
             }
+          }
+      }
+      .feature-track:hover {
+          img.heroHoverGradient, .hover-content {
+            opacity: 1;
           }
       }
     }
