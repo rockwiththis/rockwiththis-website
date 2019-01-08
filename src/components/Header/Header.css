@@ -53,9 +53,9 @@
     display: none; }
   #headerLogoMobile {
     display: inline-block !important;
-    max-width: 100px;
+    max-width: 150px;
     margin: 0 auto;
-    width: 100px;
+    width: 150px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -63,9 +63,9 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
     #headerLogoMobile img {
-      max-width: 100px;
+      max-width: 150px;
       margin: 0 auto;
-      width: 100px; } }
+      width: 150px; } }
 
 @media screen and (max-width: 600px) {
   .headerContainer #headerLogo img {
