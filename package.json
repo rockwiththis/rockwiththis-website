@@ -63,6 +63,7 @@
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.77.2",
+    "soundcloud-widget": "^0.2.1",
     "velocity-react": "^1.4.1"
   },
   "devDependencies": {
