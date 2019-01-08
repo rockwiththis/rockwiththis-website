@@ -14,9 +14,9 @@
     .hero-posts {
       max-height: 650px !important;
       max-width: 650px !important;
-      height: auto !important;
       height: 100vw !important;
-      overflow: visible !important; } }
+      overflow: visible !important;
+      position: relative; } }
   @media screen and (max-width: 480px) {
     .hero-posts {
       width: 100vw;
@@ -33,17 +33,18 @@
     height: 40vw;
     display: inline-block;
     max-height: 674px;
-    max-width: 674px; }
+    max-width: 674px;
+    z-index: 100; }
     @media screen and (max-width: 1200px) {
       .hero-posts .featured-track-wrapper {
         width: 50vw;
         height: 50vw; } }
     @media screen and (max-width: 800px) {
       .hero-posts .featured-track-wrapper {
-        width: 100vw;
-        height: 100vw;
-        max-height: 650px !important;
-        max-width: 650px !important; } }
+        width: 66.666%;
+        height: 66.666%;
+        position: absolute;
+        left: 0; } }
     .hero-posts .featured-track-wrapper .feature-track {
       position: relative;
       width: calc(100% - 1px);
@@ -62,73 +63,99 @@
         background: rgba(255, 255, 255, 0.7);
         transition: all 0s linear;
         z-index: 102; }
-        @media screen and (max-width: 1000px) {
+        @media screen and (max-width: 1400px) and (min-width: 800px) {
           .hero-posts .featured-track-wrapper .feature-track .post-info {
             height: 80px; } }
+        @media screen and (max-width: 800px) {
+          .hero-posts .featured-track-wrapper .feature-track .post-info {
+            height: 70px; } }
+        @media screen and (max-width: 650px) {
+          .hero-posts .featured-track-wrapper .feature-track .post-info {
+            height: 56px; } }
         @media screen and (max-width: 480px) {
           .hero-posts .featured-track-wrapper .feature-track .post-info {
-            height: 60px; } }
+            height: 40px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
-          width: calc(100% - 200px) !important;
-          margin-left: 100px !important;
-          padding: 18px 0 0;
+          width: calc(100% - 200px);
+          margin-left: 100px;
           line-height: 28px;
-          display: inline-block; }
+          display: inline-block;
+          padding: 5px 0; }
+          @media screen and (max-width: 1400px) and (min-width: 800px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
+              margin-left: 80px;
+              width: calc(100% - 160px); } }
+          @media (max-width: 800px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
+              padding: 5px;
+              margin-left: 70px;
+              width: calc(100% - 150px); } }
+          @media screen and (max-width: 650px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
+              width: calc(100% - 116px);
+              margin-left: 60px;
+              padding: 3px 0; } }
           @media (max-width: 480px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
-              width: calc(100% - 150px) !important;
-              margin-left: 65px !important;
-              padding: 5px 0; } }
+              width: calc(100% - 80px);
+              margin-left: 40px;
+              padding: 3px 0; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-            font-size: 32px;
-            line-height: 32px;
-            font-weight: 700 !important;
+            font-size: 40px;
+            line-height: 40px;
+            margin-top: 5px;
+            font-weight: 700;
             color: #000;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis; }
-            @media screen and (max-width: 1250px) and (min-width: 1000px) {
+            @media screen and (max-width: 1400px) and (min-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-                font-size: 24px;
-                line-height: 40px; } }
-            @media screen and (max-width: 1000px) and (min-width: 800px) {
+                font-size: 30px;
+                line-height: 30px; } }
+            @media screen and (max-width: 800px) {
+              .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
+                font-size: 25px;
+                line-height: 25px;
+                margin-top: 5px; } }
+            @media screen and (max-width: 650px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 20px;
-                line-height: 30px; } }
-            @media screen and (max-width: 600px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-                font-size: 20px;
-                line-height: 30px; } }
+                line-height: 20px; } }
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-                font-size: 22px;
-                line-height: 25px; } }
+                font-size: 15px;
+                line-height: 15px;
+                margin-top: 2px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-            font-size: 28px;
-            line-height: 32px;
+            font-size: 40px;
+            line-height: 40px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
             max-height: 40px;
             overflow-x: hidden;
             font-weight: 400;
-            color: #000; }
-            @media screen and (max-width: 1250px) and (min-width: 1000px) {
+            color: #000;
+            margin-top: 5px; }
+            @media screen and (max-width: 1400px) and (min-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-                font-size: 22px;
-                line-height: 40px; } }
-            @media screen and (max-width: 1000px) and (min-width: 800px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-                font-size: 18px;
+                font-size: 30px;
                 line-height: 30px; } }
-            @media screen and (max-width: 600px) {
+            @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-                font-size: 18px;
-                line-height: 30px; } }
+                font-size: 25px;
+                line-height: 25px;
+                margin-top: 5px; } }
+            @media screen and (max-width: 650px) {
+              .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
+                font-size: 20px;
+                line-height: 20px; } }
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-                font-size: 22px;
-                line-height: 25px; } }
+                font-size: 15px;
+                line-height: 15px;
+                margin-top: 2px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
           position: absolute;
           top: -43px;
@@ -144,12 +171,18 @@
           font-weight: 700; }
           @media screen and (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-              top: -39px;
-              font-size: 16px; } }
-          @media screen and (max-width: 600px) {
+              top: -28px;
+              font-size: 14px;
+              padding: 6px; } }
+          @media screen and (max-width: 650px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-              top: -36px;
+              top: -28px;
               font-size: 14px; } }
+          @media screen and (max-width: 480px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
+              top: -21px;
+              font-size: 10px;
+              padding: 5px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper {
           display: inline-block;
           color: #fff;
@@ -164,21 +197,32 @@
           -webkit-transform: translateY(-50%);
           width: 100px;
           height: 100px; }
-          @media screen and (max-width: 1000px) and (min-width: 800px) {
+          @media screen and (max-width: 1400px) and (min-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
               width: 80px;
               height: 80px; } }
+          @media screen and (max-width: 800px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
+              width: 70px;
+              height: 70px; } }
+          @media screen and (max-width: 650px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
+              width: 56px;
+              height: 56px; } }
           @media screen and (max-width: 480px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
-              width: 60px;
-              height: 60px; } }
+              width: 40px;
+              height: 40px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
             width: 100%;
             height: 100%;
-            padding: 16px; }
+            padding: 12px; }
+            @media screen and (max-width: 1400px) and (min-width: 800px) {
+              .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
+                padding: 10px; } }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
-                padding: 16px; } }
+                padding: 6px; } }
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
                 padding: 5px; } }
@@ -188,61 +232,100 @@
               max-width: none !important;
               max-height: none !important; }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-          height: 100px !important;
-          width: 100px !important;
+          height: 100px;
+          width: 100px;
           margin: 0;
           background: #000;
           font-weight: 700;
           float: right;
-          color: #fff !important; }
-          @media screen and (max-width: 1000px) and (min-width: 800px) {
+          color: #fff !important;
+          position: relative; }
+          @media screen and (max-width: 1400px) and (min-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-              height: 80px !important;
-              width: 80px !important; } }
+              height: 80px;
+              width: 80px; } }
+          @media screen and (max-width: 800px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
+              height: 70px;
+              width: 70px; } }
+          @media screen and (max-width: 650px) {
+            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
+              height: 56px;
+              width: 56px; } }
           @media screen and (max-width: 480px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-              height: 60px !important;
-              width: 60px !important; } }
+              height: 40px;
+              width: 40px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
-            margin: 0;
-            padding: 16px;
+            padding: 0;
             color: #fff;
-            font-weight: 400 !important; }
+            font-weight: 400;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); }
             @media screen and (max-width: 1000px) and (min-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
                 padding: 14px; } }
-            @media screen and (max-width: 600px) {
+            @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
-                padding: 14px; } }
+                padding: 0;
+                height: 100%; } }
+            @media screen and (max-width: 650px) {
+              .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
+                padding: 5px; } }
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
-                padding: 3px; } }
+                padding: 0;
+                height: 100%;
+                width: 100%; } }
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
-              font-size: 20px !important;
+              font-size: 20px;
               font-weight: 400;
-              line-height: 28px !important;
+              line-height: 28px;
               margin: 0; }
-              @media screen and (max-width: 1250px) and (min-width: 1000px) {
+              @media screen and (max-width: 1200px) and (min-width: 1000px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
-                  font-size: 18px !important; } }
+                  font-size: 18px; } }
               @media screen and (max-width: 1000px) and (min-width: 800px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
-                  font-size: 16px !important; } }
+                  font-size: 16px; } }
+              @media screen and (max-width: 800px) {
+                .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
+                  font-size: 16px; } }
+              @media screen and (max-width: 800px) {
+                .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
+                  font-size: 22px;
+                  line-height: 20px;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%); } }
               @media screen and (max-width: 480px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
-                  font-size: 14px !important; } }
+                  font-size: 15px;
+                  line-height: 15px; } }
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
-              font-size: 32px !important;
+              font-size: 32px;
               font-weight: 700; }
-              @media screen and (max-width: 1250px) and (min-width: 1000px) {
+              @media screen and (max-width: 1200px) and (min-width: 1000px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
-                  font-size: 28px !important; } }
+                  font-size: 28px; } }
               @media screen and (max-width: 1000px) and (min-width: 800px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
-                  font-size: 22px !important; } }
+                  font-size: 22px; } }
+              @media screen and (max-width: 800px) {
+                .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
+                  font-size: 26px;
+                  display: none; } }
+              @media screen and (max-width: 650px) {
+                .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
+                  font-size: 24px;
+                  line-height: 26px; } }
               @media screen and (max-width: 480px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
-                  font-size: 20px !important; } }
+                  font-size: 16px;
+                  display: none; } }
       .hero-posts .featured-track-wrapper .feature-track .hover-content {
         opacity: 0;
         position: absolute;
@@ -302,7 +385,10 @@
         width: 50%; } }
     @media screen and (max-width: 800px) {
       .hero-posts .previous-week {
-        display: none; } }
+        display: inline-block;
+        position: absolute;
+        width: 100%;
+        height: 100%; } }
     .hero-posts .previous-week .less-featured-track-wrapper {
       max-height: 337px;
       max-width: 337px;
@@ -314,6 +400,10 @@
         .hero-posts .previous-week .less-featured-track-wrapper {
           width: 25vw;
           height: 25vw; } }
+      @media screen and (max-width: 800px) {
+        .hero-posts .previous-week .less-featured-track-wrapper {
+          width: 33.333%;
+          height: 33.333%; } }
       .hero-posts .previous-week .less-featured-track-wrapper .feature-track {
         width: calc(100% - 2px);
         height: calc(100% - 2px);
@@ -332,6 +422,13 @@
           height: auto;
           background: rgba(255, 255, 255, 0.7);
           z-index: 102; }
+          @media (max-width: 800px) {
+            .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info {
+              height: 40px; } }
+          @media (max-width: 480px) {
+            .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info {
+              height: auto;
+              background: rgba(0, 0, 0, 0); } }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper {
             display: inline-block;
             height: 100%;
@@ -348,32 +445,50 @@
             width: 50px;
             height: 50px;
             left: 0; }
+            @media (max-width: 800px) {
+              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
+                display: none; } }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
               width: 100%;
               height: 100%;
-              padding: 8px; }
+              padding: 6px; }
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton img {
                 width: 100%;
                 height: 100%; }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
-            font-size: .8em;
             line-height: 20px;
-            width: calc(100% - 100px) !important;
-            height: auto !important;
-            margin-right: 0 !important;
-            margin-left: 50px !important;
-            padding: 7px 0 5px;
-            margin-bottom: 0 !important;
-            display: inline-block; }
+            width: calc(100% - 100px);
+            height: auto;
+            margin-right: 0;
+            margin-left: 50px;
+            padding: 5px;
+            margin-bottom: 0;
+            display: inline-block;
+            padding: 2.5px 0; }
+            @media (max-width: 800px) {
+              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
+                margin-left: 2.5px;
+                padding: 2.5px;
+                width: calc(100% - 50px); } }
+            @media (max-width: 480px) {
+              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
+                display: none; } }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title {
-              font-weight: 700 !important;
-              font-size: 16px !important;
-              color: #000 !important;
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 20px;
+              color: #000;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
               max-height: 20px;
-              overflow-x: hidden; }
+              overflow-x: hidden;
+              margin-top: 2.5px; }
+              @media (max-width: 800px) {
+                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title {
+                  font-size: 15px;
+                  line-height: 15px;
+                  margin-top: 2.5px; } }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist {
               font-weight: 400;
               color: #000;
@@ -381,12 +496,18 @@
               white-space: nowrap;
               text-overflow: ellipsis;
               max-height: 20px;
-              line-height: 16px;
+              font-size: 20px;
+              line-height: 20px;
               overflow-x: hidden;
-              font-size: 14px !important; }
+              margin-top: 2.5px; }
+              @media (max-width: 800px) {
+                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist {
+                  font-size: 15px;
+                  line-height: 15px;
+                  margin-top: 2.5px; } }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-            height: 50px !important;
-            width: 50px !important;
+            height: 50px;
+            width: 50px;
             background: #000;
             color: #fff;
             text-align: center;
@@ -394,21 +515,60 @@
             display: inline-block;
             transition: all 0s linear;
             float: right;
-            background: #000; }
+            background: #000;
+            position: relative; }
+            @media (max-width: 800px) {
+              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
+                height: 40px;
+                width: 40px; } }
+            @media (max-width: 480px) {
+              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
+                height: auto !important;
+                width: auto !important;
+                float: right; } }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
               background: #000;
-              margin: 10px 12.5% 12.5%;
               color: #fff;
               font-weight: 400 !important; }
+              @media screen and (min-width: 800px) {
+                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  margin: 0; } }
+              @media screen and (max-width: 800px) {
+                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
+                  margin: 0;
+                  height: 100%; } }
+              @media screen and (max-width: 480px) {
+                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
+                  padding: 10px 15px;
+                  margin: 0; } }
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
-                font-size: .8em;
+                font-size: 14px;
+                line-height: 14px;
+                font-weight: 400;
+                margin: 0;
+                margin-bottom: 5px; }
+                @media (max-width: 800px) {
+                  .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%); } }
+                @media screen and (max-width: 480px) {
+                  .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
+                    font-size: 12px;
+                    line-height: 12px; } }
+              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
+                font-size: 16px;
                 line-height: 16px;
                 font-weight: 400;
                 margin: 0; }
-              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
-                font-size: .9em;
-                font-weight: 400;
-                margin: 0; }
+                @media screen and (max-width: 800px) {
+                  .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
+                    display: none; } }
         .hero-posts .previous-week .less-featured-track-wrapper .feature-track img.heroHoverGradient {
           position: absolute !important;
           top: 0;
@@ -450,3 +610,28 @@
             margin: 10px auto;
             display: inline-block;
             font-size: 14px !important; }
+    @media screen and (max-width: 1200px) and (min-width: 800px) {
+      .hero-posts .previous-week .less-featured-track-wrapper.index-4 {
+        display: none; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-5 {
+        display: none; } }
+    @media (max-width: 800px) {
+      .hero-posts .previous-week .less-featured-track-wrapper {
+        position: absolute; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-0 {
+        top: 0;
+        right: 0; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-1 {
+        top: 33.333%;
+        right: 0; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-2 {
+        top: 66.666%;
+        right: 0; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-3 {
+        top: 66.666%;
+        left: 33.333%; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-4 {
+        top: 66.666%;
+        left: 0; }
+      .hero-posts .previous-week .less-featured-track-wrapper.index-5 {
+        display: none; } }

@@ -93,11 +93,6 @@ max-height: calc(100vh - 135px);
   display: none !important;
 }
 
-// EXPERIMENT *****
-.hero-posts {
-  padding-bottom: 0px;
-background: #fff;
-}
 
 @media (min-width: 480px) and (max-width: 800px) {
   .fixedFiltersBarPadding {
@@ -185,27 +180,6 @@ p {
 
 
 
-
-
-
-
-
-// DESKTOP HOME HERO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width:800px) {
 
     .discovery-section {
@@ -260,20 +234,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
       z-index: 2000;
   }
 
-
-  .homeContainer .hero-posts {
-      width: 100vw;
-      white-space: nowrap;
-      max-height: 650px !important;
-      max-width: 650px !important;
-      height: auto !important;
-      position: fixed;
-      margin: 0 auto;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 115px;
-      z-index: 3 !important;
-  }
 
   .socialLinks {
     position: fixed !important;
@@ -2477,7 +2437,7 @@ transform: translateX(-50%);
 
 
 @media (max-width: 800px) {
-  p.goToPage, .ToggleViewsWrapper, .heroHoverGradient {
+  p.goToPage, .ToggleViewsWrapper {
     display: none;
   }
 
@@ -2488,7 +2448,7 @@ transform: translateX(-50%);
 
 // CONNECT PAGE MOBILE STYLES
 @media (max-width: 800px) {
-  p.goToPage, .ToggleViewsWrapper, .heroHoverGradient, .hover-content {
+  p.goToPage, .ToggleViewsWrapper, .hover-content {
     display: none;
   }
 
@@ -3669,11 +3629,6 @@ width: 800px;
       top: 50px;
   }
 
-
-
-  .homeContainer .hero-posts {
-      top: 90px;
-  }
 
   .discovery-section {
       // margin-top: calc(100vw + 90px);
