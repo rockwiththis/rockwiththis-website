@@ -120,7 +120,7 @@ class SingleSong extends Component {
                     <div className="topSection">
                     {this.renderPlayer()}
                     <div className="singleSongInfo">
-                      <div className="songNameContainer">  <span className="songName">{song.name}</span><a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a></div>
+                      <div className="songNameContainer">  <span className="songName">{song.name} <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a></span></div>
                       <div className="artistNameContainer">  <span className="artistName">{song.artist_name}</span> </div>
                     </div>
                     </div>
