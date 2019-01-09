@@ -48,17 +48,19 @@ class SongPlayerBank extends React.Component {
   createYoutubePlayer = (YT, song, index) => {
     const player = new YT.Player(getYoutubeSongListPlayerId(index), {
       videoId: song.youtube_link.match(youtubeUrlPattern)[1],
-      events: { 'onReady': this.onPlayerReady }
+      events: { 'onReady': this.onPlayerReady(song.id) }
     });
     return {
       play: () => player.playVideo(),
       pause: () => player.pauseVideo(),
       reportProgress: () => (
           this.props.setActiveSongProgress({
-            playedRatio: player.getVideoLoadedFraction(),
+            playedRatio: player.getCurrentTime() / player.getDuration(),
             playedSeconds: player.getCurrentTime()
           })
-      )
+      ),
+      getDuration: () => Promise.resolve(player.getDuration()),
+      seekTo: ratio => player.seekTo(ratio * player.getDuration(), true)
     };
   }
 
@@ -68,6 +70,7 @@ class SongPlayerBank extends React.Component {
       .setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
 
     const player = new SoundCloudWidget(playerId);
+    player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
     return {
       play: () => player.play(),
       pause: () => player.pause(),
@@ -82,24 +85,31 @@ class SongPlayerBank extends React.Component {
                 })
             ))
         ))
-      )
+      ),
+      getDuration: () => player.getDuration().then(milis => milis / 1000),
+      seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis))
     };
   }
 
-  onPlayerReady = ref => {
+  onPlayerReady = songId => ref => {
     console.log('Player Ready!');
-    console.log(ref);
+    console.log(songId);
+
+    this.songListPlayers[songId].getDuration()
+    .then(seconds => this.props.setSongDuration(songId, seconds))
   }
 
   playSongListSong = songToPlay => {
-    if (!!this.activePlayer) {
-      this.activePlayer.pause();
-      //this.activePlayer.seekTo(0);
-    }
     const newActivePlayer = this.songListPlayers[songToPlay.id];
     if (!!newActivePlayer) {
       console.log("PLAYING NEW SONG");
       newActivePlayer.play();
+
+      if (!!this.activePlayer) {
+        clearInterval(this.durationInterval);
+        this.activePlayer.pause();
+        this.activePlayer.seekTo(0);
+      }
       this.activePlayer = newActivePlayer;
       this.durationInterval = setInterval(this.activePlayer.reportProgress, REPORT_DURATION_INTERVAL);
     }

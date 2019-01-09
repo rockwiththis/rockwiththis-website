@@ -91,7 +91,7 @@ class AppContainer extends Component {
           <Header {...this.props} shrinkHeader={this.state.shrinkHeader} />
           <SocialLinks />
 
-          {React.cloneElement(this.props.children, { ...this.props })}
+          { React.cloneElement(this.props.children, { ...this.props }) }
 
           <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
           {
@@ -112,6 +112,7 @@ class AppContainer extends Component {
             <SongPlayerBank
               initialSongList={this.props.songListPosts}
               initialActiveSong={this.props.activeSong}
+              setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
               ref={this.playerBankRef}
             />

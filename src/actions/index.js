@@ -117,9 +117,9 @@ export const loadingPlayer = loadingSong => dispatch => (
 );
 
 const PLAYER_LOADED = createAction('app/PLAYER_LOADED');
-export const playerLoaded = (loadedSong, durationSeconds) => dispatch => (
+export const playerLoaded = (loadedSongId, durationSeconds) => dispatch => (
   dispatch(PLAYER_LOADED({
-    songId: loadedSong.id,
+    songId: loadedSongId,
     durationSeconds: durationSeconds
   }))
 );

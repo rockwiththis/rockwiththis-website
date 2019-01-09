@@ -30,8 +30,8 @@ class Song extends Component {
           !this.props.isPlaying ||
           song.id !== this.props.activeSong.id
       );
-      this.props.actions.togglePlayPause(false);
       if (isPlayButton) this.props.actions.toggleSong(song);
+      else this.props.actions.togglePlayPause(false);
     }
 
     renderTags() {

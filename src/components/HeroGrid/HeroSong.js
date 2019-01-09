@@ -16,14 +16,18 @@ class HeroSong extends Component {
 
     // TODO this is duplicated in src/components/Song/Song.js
     onPressPlay = song => event => {
-        // TODO this should be determined by caller
-        // to guarantee that appearance of button aligns w/ its behavior
-        const isPlayButton = (
-            !this.props.isPlaying ||
-            song.id !== this.props.activeSong.id
-        );
-        if (isPlayButton) this.props.actions.toggleSong(song);
-        else this.props.actions.togglePlayPause(false);
+      // TODO this should be determined by caller
+      // to guarantee that appearance of button aligns w/ its behavior
+      const isPlayButton = (
+          !this.props.isPlaying ||
+          song.id !== this.props.activeSong.id
+      );
+      if (isPlayButton) {
+        //this.props.playSong(song);
+        this.props.actions.toggleSong(song);
+      } else {
+        this.props.actions.togglePlayPause(false);
+      }
     }
 
     render() {
