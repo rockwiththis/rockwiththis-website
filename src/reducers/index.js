@@ -19,7 +19,7 @@ export const INITIAL_STATE = {
     acf: {}
   },
   activeSongProgress: {
-    played: 0,
+    playedRatio: 0,
     secondsPlayed: 0,
   },
   posts: [],

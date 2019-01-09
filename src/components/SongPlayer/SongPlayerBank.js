@@ -10,15 +10,14 @@ const getSoundCloudUrl = scid => {
   return `https://w.soundcloud.com/player/?url=${url}`;
 }
 
+const REPORT_DURATION_INTERVAL = 1000;
+
 class SongPlayerBank extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      //heroSongs: props.heroSongs,
-      songListPlayers: undefined,
-      activePlayer: undefined,
-      //ytPlayerCreator: undefined
-    };
+    this.songListPlayers = undefined;
+    this.activePlayer = undefined;
+    this.durationInterval = undefined;
   }
 
   shouldComponentUpdate = () => false;
@@ -26,17 +25,13 @@ class SongPlayerBank extends React.Component {
   componentDidMount = () => {
     this.loadYoutubeIframeApi()
     .then(YT => {
-      const songListPlayers = this.props.initialSongList.reduce((currPlayers, song, i) => ({
+      this.songListPlayers = this.props.initialSongList.reduce((currPlayers, song, i) => ({
         ...currPlayers,
         [song.id]: !!song.soundcloud_track_id ?
           this.createSoundCloudPlayer(song, i) :
           this.createYoutubePlayer(YT, song, i)
       }), {});
-
-      this.setState({
-        songListPlayers: songListPlayers,
-        activePlayer: songListPlayers[this.props.initialActiveSong.id]
-      })
+      this.activePlayer = this.songListPlayers[this.props.initialActiveSong.id];
     })
   }
 
@@ -57,7 +52,13 @@ class SongPlayerBank extends React.Component {
     });
     return {
       play: () => player.playVideo(),
-      pause: () => player.pauseVideo()
+      pause: () => player.pauseVideo(),
+      reportProgress: () => (
+          this.props.setActiveSongProgress({
+            playedRatio: player.getVideoLoadedFraction(),
+            playedSeconds: player.getCurrentTime()
+          })
+      )
     };
   }
 
@@ -69,7 +70,19 @@ class SongPlayerBank extends React.Component {
     const player = new SoundCloudWidget(playerId);
     return {
       play: () => player.play(),
-      pause: () => player.pause()
+      pause: () => player.pause(),
+      reportProgress: () => (
+        player.getPosition()
+        .then(position => (
+            player.getDuration()
+            .then(duration => (
+                this.props.setActiveSongProgress({
+                  playedRatio: position / duration,
+                  playedSeconds: position / 1000
+                })
+            ))
+        ))
+      )
     };
   }
 
@@ -79,21 +92,31 @@ class SongPlayerBank extends React.Component {
   }
 
   playSongListSong = songToPlay => {
-    if (!!this.state.activePlayer) {
-      this.state.activePlayer.pause();
-      this.state.activePlayer.seekTo(0);
+    if (!!this.activePlayer) {
+      this.activePlayer.pause();
+      //this.activePlayer.seekTo(0);
     }
-    const newActivePlayer = this.state.songListPlayers[songToPlay.id];
+    const newActivePlayer = this.songListPlayers[songToPlay.id];
     if (!!newActivePlayer) {
+      console.log("PLAYING NEW SONG");
       newActivePlayer.play();
-      this.setState({ activePlayer: newActivePlayer });
+      this.activePlayer = newActivePlayer;
+      this.durationInterval = setInterval(this.activePlayer.reportProgress, REPORT_DURATION_INTERVAL);
     }
     // TODO handle undefined player data
   }
 
-  playActiveSong = () => this.state.activePlayer.play();
+  playActiveSong = () => {
+    console.log("PLAYING CURRENT SONG");
+    this.activePlayer.play();
+    this.durationInterval = setInterval(this.activePlayer.reportProgress, REPORT_DURATION_INTERVAL);
+  }
 
-  pauseActiveSong = () => this.state.activePlayer.pause();
+  pauseActiveSong = () => {
+    console.log("PAUSING ACTIVE SONG");
+    this.activePlayer.pause();
+    clearInterval(this.durationInterval);
+  }
 
   setSongList = newSongList => {
     // TODO

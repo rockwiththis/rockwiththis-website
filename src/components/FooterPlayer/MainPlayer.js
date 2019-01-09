@@ -136,7 +136,7 @@ class MainPlayer extends Component {
                             min={0}
                             max={1}
                             step={0.001}
-                            value={this.props.activeSongProgress.played}
+                            value={this.props.activeSongProgress.playedRatio}
                             onChange={this.props.onProgressUpdate}
                         />
                     </div>

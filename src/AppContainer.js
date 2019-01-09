@@ -112,6 +112,7 @@ class AppContainer extends Component {
             <SongPlayerBank
               initialSongList={this.props.songListPosts}
               initialActiveSong={this.props.activeSong}
+              setActiveSongProgress={this.props.actions.setSongProgress}
               ref={this.playerBankRef}
             />
           }
