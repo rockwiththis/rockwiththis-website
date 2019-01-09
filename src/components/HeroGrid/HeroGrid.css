@@ -56,16 +56,13 @@
         height: 100%;
         width: 100%; }
       .hero-posts .featured-track-wrapper .feature-track .post-info {
-        height: 100px;
+        height: 80px;
         position: absolute;
         bottom: 0;
         width: 100%;
         background: rgba(255, 255, 255, 0.7);
         transition: all 0s linear;
         z-index: 102; }
-        @media screen and (max-width: 1400px) and (min-width: 800px) {
-          .hero-posts .featured-track-wrapper .feature-track .post-info {
-            height: 80px; } }
         @media screen and (max-width: 800px) {
           .hero-posts .featured-track-wrapper .feature-track .post-info {
             height: 70px; } }
@@ -76,15 +73,11 @@
           .hero-posts .featured-track-wrapper .feature-track .post-info {
             height: 40px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
-          width: calc(100% - 200px);
-          margin-left: 100px;
+          width: calc(100% - 160px);
+          margin-left: 80px;
           line-height: 28px;
           display: inline-block;
           padding: 5px 0; }
-          @media screen and (max-width: 1400px) and (min-width: 800px) {
-            .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
-              margin-left: 80px;
-              width: calc(100% - 160px); } }
           @media (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
               padding: 5px;
@@ -101,18 +94,14 @@
               margin-left: 40px;
               padding: 3px 0; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-            font-size: 40px;
-            line-height: 40px;
+            font-size: 30px;
+            line-height: 30px;
             margin-top: 5px;
             font-weight: 700;
             color: #000;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis; }
-            @media screen and (max-width: 1400px) and (min-width: 800px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
-                font-size: 30px;
-                line-height: 30px; } }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 25px;
@@ -128,8 +117,8 @@
                 line-height: 15px;
                 margin-top: 2px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-            font-size: 40px;
-            line-height: 40px;
+            font-size: 30px;
+            line-height: 30px;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -138,10 +127,6 @@
             font-weight: 400;
             color: #000;
             margin-top: 5px; }
-            @media screen and (max-width: 1400px) and (min-width: 800px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-                font-size: 30px;
-                line-height: 30px; } }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
                 font-size: 25px;
@@ -195,12 +180,8 @@
           position: absolute;
           transform: translateY(-50%);
           -webkit-transform: translateY(-50%);
-          width: 100px;
-          height: 100px; }
-          @media screen and (max-width: 1400px) and (min-width: 800px) {
-            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
-              width: 80px;
-              height: 80px; } }
+          width: 80px;
+          height: 80px; }
           @media screen and (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
               width: 70px;
@@ -216,10 +197,7 @@
           .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
             width: 100%;
             height: 100%;
-            padding: 12px; }
-            @media screen and (max-width: 1400px) and (min-width: 800px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
-                padding: 10px; } }
+            padding: 10px; }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
                 padding: 6px; } }
@@ -232,18 +210,14 @@
               max-width: none !important;
               max-height: none !important; }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-          height: 100px;
-          width: 100px;
+          height: 80px;
+          width: 80px;
           margin: 0;
           background: #000;
           font-weight: 700;
           float: right;
           color: #fff !important;
           position: relative; }
-          @media screen and (max-width: 1400px) and (min-width: 800px) {
-            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-              height: 80px;
-              width: 80px; } }
           @media screen and (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
               height: 70px;
@@ -372,6 +346,8 @@
         @media screen and (max-width: 800px) {
           .hero-posts .featured-track-wrapper .feature-track img.heroHoverGradient {
             display: none; } }
+    .hero-posts .featured-track-wrapper .feature-track:hover img.heroHoverGradient, .hero-posts .featured-track-wrapper .feature-track:hover .hover-content {
+      opacity: 1; }
   .hero-posts .previous-week {
     max-height: 674px;
     width: 60%;
@@ -442,8 +418,8 @@
             position: absolute;
             transform: translateY(-50%);
             -webkit-transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             left: 0; }
             @media (max-width: 800px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
@@ -451,7 +427,7 @@
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
               width: 100%;
               height: 100%;
-              padding: 6px; }
+              padding: 4px; }
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton img {
                 width: 100%;
                 height: 100%; }
@@ -460,7 +436,7 @@
             width: calc(100% - 100px);
             height: auto;
             margin-right: 0;
-            margin-left: 50px;
+            margin-left: 40px;
             padding: 5px;
             margin-bottom: 0;
             display: inline-block;
@@ -475,8 +451,8 @@
                 display: none; } }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title {
               font-weight: 700;
-              font-size: 20px;
-              line-height: 20px;
+              font-size: 15px;
+              line-height: 15px;
               color: #000;
               overflow: hidden;
               white-space: nowrap;
@@ -495,9 +471,9 @@
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
-              max-height: 20px;
-              font-size: 20px;
-              line-height: 20px;
+              max-height: 15px;
+              font-size: 15px;
+              line-height: 15px;
               overflow-x: hidden;
               margin-top: 2.5px; }
               @media (max-width: 800px) {
@@ -506,8 +482,8 @@
                   line-height: 15px;
                   margin-top: 2.5px; } }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-            height: 50px;
-            width: 50px;
+            height: 40px;
+            width: 40px;
             background: #000;
             color: #fff;
             text-align: center;
@@ -546,11 +522,11 @@
                   padding: 10px 15px;
                   margin: 0; } }
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
-                font-size: 14px;
-                line-height: 14px;
+                font-size: 12px;
+                line-height: 12px;
                 font-weight: 400;
                 margin: 0;
-                margin-bottom: 5px; }
+                margin-bottom: 3px; }
                 @media (max-width: 800px) {
                   .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
                     position: absolute;
@@ -562,8 +538,8 @@
                     font-size: 12px;
                     line-height: 12px; } }
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
-                font-size: 16px;
-                line-height: 16px;
+                font-size: 14px;
+                line-height: 14px;
                 font-weight: 400;
                 margin: 0; }
                 @media screen and (max-width: 800px) {
@@ -610,6 +586,8 @@
             margin: 10px auto;
             display: inline-block;
             font-size: 14px !important; }
+      .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover img.heroHoverGradient, .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover .hover-content {
+        opacity: 1; }
     @media screen and (max-width: 1200px) and (min-width: 800px) {
       .hero-posts .previous-week .less-featured-track-wrapper.index-4 {
         display: none; }

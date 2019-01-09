@@ -5,7 +5,7 @@ import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from '
 
 import desktopLogo from 'images/logo-desktop.png'
 // import mobileLogo from 'images/logo-mobile.png'
-import mobileLogo from 'images/RWT-STACKED.png'
+import mobileLogo from 'images/Stacked-Logo.png'
 import NavLeftNotHome from './NavLeftNotHome.js'
 
 import './Header.scss'
