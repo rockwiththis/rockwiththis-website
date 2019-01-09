@@ -119,10 +119,10 @@ class Song extends Component {
 
                 <p className="metaInfo">
                     <p className="leftInfo desktop">
-                    <span className="postDate "><Moment format="ll" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                    <span className="postDate "><span className="postAuthor">Jared Paul</span> | <Moment format="ll" date={song.created_at} /> | </span>
                     </p>
                     <p className="leftInfo mobile">
-                    <span className="postDate "><Moment format="M/d/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                    <span className="postDate "><span className="postAuthor">Jared Paul</span> | <Moment format="M/d/YY" date={song.created_at} /> | </span>
                     </p>
                     {this.renderTags(song)}
 
