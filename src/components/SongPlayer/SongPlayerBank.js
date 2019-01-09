@@ -1,6 +1,8 @@
 import React from 'react';
 import SoundCloudWidget from 'soundcloud-widget';
 
+import './SongPlayerBank.scss';
+
 const getYoutubeSongListPlayerId = i => `song-list-yt-player-${i}`;
 const getSoundcloudSongListPlayerId = i => `song-list-sc-player-${i}`;
 
