@@ -55,6 +55,9 @@
           width: 100%;
           padding: 0;
           height: 60px; } }
+      @media (max-width: 670px) {
+        .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer {
+          bottom: 4px; } }
       .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer .player-button {
         display: inline-block;
         height: 100%;
@@ -71,11 +74,15 @@
           height: 50px; }
       .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer .song-info {
         display: inline-block;
-        height: 55px;
-        width: calc(100% - 130px) !important;
-        padding: 5px 0 0; }
+        width: calc(100% - 130px);
+        padding-top: 6px;
+        padding-bottom: 4px; }
+        @media (max-width: 480px) {
+          .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer .song-info {
+            padding-top: 5px;
+            padding-bottom: 5px; } }
         .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer .song-info .song-title {
-          font-weight: 700 !important;
+          font-weight: 700;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -128,86 +135,96 @@
         width: 48%; } }
     @media (max-width: 800px) {
       .singleSongPage .singleSongContainer .songContainer .wrapper .postContent {
-        width: calc(100%);
+        width: 100% !important;
+        display: inline-block;
         vertical-align: top;
-        padding: 15px;
         position: relative;
         background: #fff;
-        margin-top: -5px;
-        padding-top: 0px;
-        max-width: 674px;
-        display: block;
+        padding: 0 15px 15px;
+        max-width: 92vw;
+        display: block; } }
+    @media (min-width: 480px) and (max-width: 800px) {
+      .singleSongPage .singleSongContainer .songContainer .wrapper .postContent {
+        max-width: 674px !important;
         margin: 0 auto; } }
     .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo {
       position: relative; }
       @media (min-width: 800px) {
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo {
           padding-bottom: 5px; } }
-      @media (max-width: 800px) {
-        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection {
-          display: none; } }
-      .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button {
-        display: inline-block;
-        width: 60px;
+      .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection {
         height: 60px; }
         @media (max-width: 800px) {
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button {
-            width: 50px;
-            height: 50px;
-            display: inline-block;
-            vertical-align: top;
-            margin-right: 5px; } }
-        @media (max-width: 800px) {
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button button.singlePostPlayerButton {
-            width: 50px;
-            height: 50px;
-            text-align: center; } }
-        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button button.singlePostPlayerButton svg, .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button button.singlePostPlayerButton img {
-          width: 60px !important;
-          height: 60px !important; }
-      .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo {
-        display: inline-block;
-        max-width: 80%;
-        width: 80%;
-        padding-left: 5px;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow-x: hidden;
-        height: 60px; }
-        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer {
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection {
+            display: none; } }
+        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button {
           display: inline-block;
-          height: 30px; }
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer .songName {
-            font-size: 26px;
-            display: inline-block;
-            margin-bottom: 0px;
-            pointer-events: all;
-            font-weight: 700 !important;
-            vertical-align: top;
-            line-height: 30px; }
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer a.spotify {
-            display: inline-block;
-            position: relative;
-            top: 0px;
-            right: 0px;
-            color: #65d36e;
-            font-size: 28px;
-            z-index: 1;
-            padding-left: 5px;
-            height: 30px;
-            width: 30px; }
-        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .artistNameContainer {
+          width: 60px;
+          height: 60px; }
+          @media (max-width: 800px) {
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button {
+              width: 50px;
+              height: 50px;
+              display: inline-block;
+              vertical-align: top;
+              margin-right: 5px; } }
+          @media (max-width: 800px) {
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button button.singlePostPlayerButton {
+              width: 50px;
+              height: 50px;
+              text-align: center; } }
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button button.singlePostPlayerButton svg, .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .player-button button.singlePostPlayerButton img {
+            width: 60px !important;
+            height: 60px !important; }
+        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo {
           display: inline-block;
-          height: 30px; }
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .artistNameContainer .artistName {
-            font-size: 25px;
-            display: inline-block;
-            color: #000; }
+          max-width: 80%;
+          width: 80%;
+          padding: 3px 0;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow-x: hidden;
+          padding-left: 7px; }
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer {
+            display: block; }
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer .songName {
+              font-size: 25px;
+              display: inline-block;
+              margin-bottom: 0px;
+              pointer-events: all;
+              font-weight: 700 !important;
+              vertical-align: top;
+              line-height: 25px; }
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer a.spotify {
+              display: inline-block;
+              position: relative;
+              top: 0px;
+              right: 0px;
+              color: #65d36e;
+              font-size: 28px;
+              z-index: 1;
+              padding-left: 6px;
+              height: 25px;
+              width: 25px; }
+              .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer a.spotify i {
+                position: absolute;
+                top: -2px; }
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .artistNameContainer {
+            display: inline-block; }
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .artistNameContainer .artistName {
+              font-size: 25px;
+              line-height: 25px;
+              display: inline-block;
+              color: #000; }
       .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo {
-        margin-top: 0px; }
+        margin-top: 4px;
+        height: 20px; }
         @media (max-width: 800px) {
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo {
             pointer-events: all; } }
+        @media (min-width: 674px) and (max-width: 800px) {
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo {
+            margin-top: 10px; } }
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo p.leftInfo {
           display: inline-block;
           margin: 0;
@@ -228,45 +245,51 @@
           @media (max-width: 800px) {
             .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .leftInfo.mobile {
               display: inline-block; } }
-        @media (min-width: 800px) {
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags {
-            display: inline-block;
-            margin: 0;
-            pointer-events: none;
-            transform: translateY(-2px); } }
-        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag {
-          color: #fff;
-          background: #1a6ea9;
-          border: 1px solid #1a6ea9;
-          font-family: 'Baloo', cursive;
-          padding: 2px 4px;
-          margin: 0 2px;
-          font-size: 12px;
-          border-radius: 6px;
-          transition: all .2s ease;
-          cursor: pointer;
-          letter-spacing: .7px;
-          box-shadow: 0 3px 2px -2px #C9C6CB; }
-        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag:nth-of-type(3), .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag:nth-of-type(4) {
-          display: none; }
-        @media (max-width: 800px) {
-          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag:nth-of-type(2) {
-            display: none; } }
+        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags {
+          transform: translateY(-2px); }
+          @media (min-width: 800px) {
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags {
+              display: inline-block;
+              margin: 0;
+              pointer-events: none;
+              transform: translateY(-3px); } }
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag {
+            color: #fff;
+            background: #1a6ea9;
+            border: 1px solid #1a6ea9;
+            font-family: 'Baloo', cursive;
+            transition: all .2s ease;
+            cursor: pointer;
+            letter-spacing: .7px;
+            box-shadow: 0 3px 2px -2px #C9C6CB;
+            padding: 0px 4px;
+            margin: 0 2px;
+            font-size: 12px;
+            border-radius: 4px;
+            line-height: 20px; }
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag:nth-of-type(3), .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag:nth-of-type(4) {
+            display: none; }
+          @media (max-width: 800px) {
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag:nth-of-type(2) {
+              display: none; } }
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox {
           position: relative;
-          top: 7px;
-          right: 0px;
           padding: 0 5px;
-          width: auto;
           display: inline-block;
-          z-index: 8;
           transition: all .3s ease;
           pointer-events: all;
           margin: 0 auto;
-          text-align: left; }
+          text-align: left;
+          z-index: 8;
+          height: 20px; }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox i {
-            font-size: 24px;
-            color: #f85f27; }
+            font-size: 22px;
+            color: #f85f27;
+            position: absolute;
+            top: 0; }
+            @media (max-width: 800px) {
+              .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox i {
+                top: 2px; } }
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo :hover {
           cursor: pointer; }
     @media (min-width: 800px) {
@@ -288,7 +311,11 @@
           font-family: 'Open Sans', sans-serif;
           font-size: 14px;
           line-height: 26px;
-          margin-top: 0; } }
+          margin-top: 0;
+          padding-top: 5px; } }
+      @media (min-width: 674px) and (max-width: 800px) {
+        .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription {
+          max-width: 674px; } }
       .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription br {
         height: 1px !important;
         display: block;

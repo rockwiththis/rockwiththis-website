@@ -68,6 +68,10 @@
                   height: 60px;
                 }
 
+                @media (max-width: 670px) {
+                  bottom: 4px;
+                }
+
                 .player-button {
                   display: inline-block;
                   height: 100%;
@@ -87,12 +91,18 @@
                 }
                 .song-info {
                   display: inline-block;
-                  height: 55px;
-                  width: calc(100% - 130px)!important;
-                  padding: 5px 0 0;
+                  width: calc(100% - 130px);
+                  // padding: 5px 0;
+                  padding-top: 6px;
+                  padding-bottom: 4px;
+
+                  @media (max-width: 480px) {
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                  }
 
                   .song-title {
-                    font-weight: 700!important;
+                    font-weight: 700;
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
@@ -153,15 +163,18 @@
               width: 48%;
             }
             @media (max-width: 800px) {
-              width: calc(100%);
+              width: 100%!important;
+              display: inline-block;
               vertical-align: top;
-              padding: 15px;
               position: relative;
               background: #fff;
-              margin-top: -5px;
-              padding-top: 0px;
-              max-width: 674px;
+              padding: 0 15px 15px;
+              max-width: 92vw;
               display: block;
+            }
+
+            @media (min-width: 480px) and (max-width: 800px) {
+              max-width: 674px !important;
               margin: 0 auto;
             }
 
@@ -173,6 +186,7 @@
                 }
 
                 .topSection {
+                  height: 60px;
 
                   @media (max-width: 800px) {
                     display: none;
@@ -210,24 +224,23 @@
                     display: inline-block;
                     max-width: 80%;
                     width: 80%;
-                    padding-left: 5px;
+                    padding: 3px 0;
                     white-space: nowrap;
                     text-overflow: ellipsis;
                     overflow-x: hidden;
-                    height: 60px;
+                    padding-left: 7px;
 
                     .songNameContainer {
-                      display: inline-block;
-                      height: 30px;
+                      display: block;
 
                       .songName {
-                        font-size: 26px;
+                        font-size: 25px;
                         display: inline-block;
                         margin-bottom: 0px;
                         pointer-events: all;
                         font-weight: 700 !important;
                         vertical-align: top;
-                        line-height: 30px;
+                        line-height: 25px;
                       }
 
                       a.spotify {
@@ -238,18 +251,23 @@
                         color: #65d36e;
                         font-size: 28px;
                         z-index: 1;
-                        padding-left: 5px;
-                        height: 30px;
-                        width: 30px;
+                        padding-left: 6px;
+                        height: 25px;
+                        width: 25px;
+
+                        i {
+                          position: absolute;
+                          top: -2px;
+                        }
                       }
                     }
 
                     .artistNameContainer {
                         display: inline-block;
-                        height: 30px;
 
                         .artistName {
                             font-size: 25px;
+                            line-height: 25px;
                             display: inline-block;
                             color: #000;
                         }
@@ -260,10 +278,14 @@
                 }
                 .metaInfo {
 
-                  margin-top: 0px;
+                  margin-top: 4px;
+                  height: 20px;
 
                   @media (max-width: 800px) {
                     pointer-events: all;
+                  }
+                  @media (min-width: 674px) and (max-width: 800px) {
+                    margin-top: 10px;
                   }
 
                   p.leftInfo {
@@ -299,11 +321,13 @@
 
                   .postTags {
 
+                    transform: translateY(-2px);
+
                     @media (min-width: 800px) {
                       display: inline-block;
                       margin: 0;
                       pointer-events: none;
-                      transform: translateY(-2px);
+                      transform: translateY(-3px);
                     }
 
                     .tag {
@@ -311,14 +335,15 @@
                       background: #1a6ea9;
                       border: 1px solid #1a6ea9;
                       font-family: 'Baloo', cursive;
-                      padding: 2px 4px;
-                      margin: 0 2px;
-                      font-size: 12px;
-                      border-radius: 6px;
                       transition: all .2s ease;
                       cursor: pointer;
                       letter-spacing: .7px;
                       box-shadow: 0 3px 2px -2px #C9C6CB;
+                      padding: 0px 4px;
+                      margin: 0 2px;
+                      font-size: 12px;
+                      border-radius: 4px;
+                      line-height: 20px;
                     }
                     .tag:nth-of-type(3), .tag:nth-of-type(4) {
                         display: none;
@@ -333,20 +358,24 @@
 
                   .ShareBox {
                     position: relative;
-                    top: 7px;
-                    right: 0px;
                     padding: 0 5px;
-                    width: auto;
                     display: inline-block;
-                    z-index: 8;
                     transition: all .3s ease;
                     pointer-events: all;
                     margin: 0 auto;
                     text-align: left;
+                    z-index: 8;
+                    height: 20px;
 
                     i {
-                        font-size: 24px;
+                        font-size: 22px;
                         color: #f85f27;
+                        position: absolute;
+                        top: 0;
+
+                        @media (max-width: 800px) {
+                          top: 2px;
+                        }
                     }
 
                   }:hover {
@@ -378,6 +407,10 @@
                       font-size: 14px;
                       line-height: 26px;
                       margin-top: 0;
+                      padding-top: 5px;
+                    }
+                    @media (min-width: 674px) and (max-width: 800px) {
+                      max-width: 674px;
                     }
 
                     br {

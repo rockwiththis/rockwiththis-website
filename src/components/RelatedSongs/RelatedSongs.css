@@ -1,67 +1,59 @@
 .relatedSongs {
   width: 14%;
   display: inline-block;
-  vertical-align: top; }
-  .relatedSongs .songImageLink img.songImage {
-    max-width: 75px;
-    margin: 0 !important;
-    border-radius: 6px; }
-
-.singleSongPage .relatedSongs {
-  width: 14%;
-  display: inline-block;
   vertical-align: top;
   float: right; }
-  .singleSongPage .relatedSongs .songContainer:nth-of-type(11) {
-    display: none !important; }
-
-.relatedSongsContainer .stack {
-  width: 100%;
-  display: inline-block; }
-
-.relatedSongsContainer .stack .songContainer {
-  width: calc(50% - 2px);
-  display: inline-block;
-  margin: 1px; }
-
-.singleSongPage .relatedSongs .songImageLink img.songImage {
-  max-width: 100%;
-  margin: 0 !important;
-  border-radius: 0; }
-
-@media (max-width: 1200px) {
-  .singleSongPage .relatedSongs {
+  @media (max-width: 800px) {
+    .relatedSongs {
+      width: 100%;
+      display: inline-block;
+      vertical-align: top;
+      float: none;
+      padding-top: 10px;
+      padding-bottom: 12px;
+      max-width: 674px;
+      margin: 0 auto;
+      display: block; } }
+  .relatedSongs .relatedSongsContainer p.related-songs-title {
+    font-size: 14px;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 1px;
+    color: #fff;
+    background: #1a6ea9; }
+    @media (max-width: 1200px) {
+      .relatedSongs .relatedSongsContainer p.related-songs-title {
+        margin-bottom: 2px;
+        font-size: 18px;
+        letter-spacing: .7px; } }
+  .relatedSongs .stack {
     width: 100%;
-    display: block;
-    vertical-align: top;
-    float: none; } }
-
-@media (max-width: 800px) {
-  .singleSongPage .relatedSongs {
-    width: 100%;
-    display: inline-block;
-    vertical-align: top;
-    float: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    max-width: 674px;
-    margin: 0 auto !important;
-    display: block !important; }
-  .singleSongPage .relatedSongs .stack:nth-of-type(2) {
-    display: none; }
-  .relatedSongsContainer .stack {
-    width: calc(100% - 2px);
-    display: inline-block;
-    margin: 0 auto;
-    margin-left: 2px; }
-    .relatedSongsContainer .stack .songContainer:nth-of-type(10) {
-      display: none !important; } }
-
-@media (min-width: 800px) {
-  .relatedSongs img.songImage:hover {
-    cursor: pointer;
-    filter: brightness(0.8); } }
-
-@media (min-width: 800px) {
-  .singleSongPage .relatedSongs .relatedSongsContainer {
-    padding-top: 25px; } }
+    display: inline-block; }
+    @media (max-width: 800px) {
+      .relatedSongs .stack {
+        width: calc(100% - 2px);
+        display: inline-block;
+        margin: 0 auto 0 2px; } }
+    .relatedSongs .stack .songContainer {
+      width: calc(50% - 2px);
+      display: inline-block;
+      margin: 1px; }
+      @media (max-width: 1200px) and (min-width: 800px) {
+        .relatedSongs .stack .songContainer {
+          max-width: calc(20% - 2px); } }
+      @media (max-width: 800px) {
+        .relatedSongs .stack .songContainer {
+          max-width: calc(33.3% - 2px); } }
+      .relatedSongs .stack .songContainer img.songImage {
+        max-width: 100%;
+        margin: 0 !important;
+        border-radius: 0; }
+    .relatedSongs .stack .songContainer:nth-of-type(11) {
+      display: none; }
+    @media (max-width: 800px) {
+      .relatedSongs .stack .songContainer:nth-of-type(10) {
+        display: none; } }
