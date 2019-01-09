@@ -82,7 +82,7 @@ class AppContainer extends Component {
   }
 
   handleProgressUpdate = progressRatio => {
-      this.playerContainerRef.current.updateSongProgress(progressRatio)
+      this.playerBankRef.current.updateSongProgress(progressRatio)
   };
 
   render() {

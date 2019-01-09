@@ -99,6 +99,8 @@ class SongPlayerBank extends React.Component {
     .then(seconds => this.props.setSongDuration(songId, seconds))
   }
 
+  updateSongProgress = progressRatio => this.activePlayer.seekTo(progressRatio);
+
   playSongListSong = songToPlay => {
     const newActivePlayer = this.songListPlayers[songToPlay.id];
     if (!!newActivePlayer) {
