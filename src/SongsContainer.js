@@ -218,11 +218,8 @@ class SongsContainer extends Component {
           <div id="discover" className="discovery-section">
             <img className="discover-cover" src={black} />
 
-            <Element>
               <FiltersBar {...this.props} resetGridPage={this.props.actions.resetLoadedSongs}/>
-            </Element>
 
-            <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
               <div id="discovery-container"
                 //onScroll={(e) => this.handleScroll(e)}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
@@ -341,7 +338,6 @@ class SongsContainer extends Component {
                 }
 
               </div>
-            </div>
 
           </div>
         </div>

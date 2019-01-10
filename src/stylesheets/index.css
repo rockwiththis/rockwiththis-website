@@ -127,20 +127,6 @@ p {
     transition: all .3s ease; } }
 
 @media screen and (max-width: 480px) {
-  .filters-bar .toggle-view {
-    display: inline-block;
-    width: 50px;
-    color: #4A4A4A; }
-    .filters-bar .toggle-view img {
-      max-width: 30px; }
-  .filters-bar button.filters-button {
-    display: inline-block;
-    font-size: 14px;
-    border: 1px solid #4A4A4A !important;
-    border-width: 1px !important;
-    border-radius: 3px;
-    padding: 5px 8px;
-    color: #4A4A4A; }
   .headerContainer {
     height: 70px;
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
@@ -260,10 +246,6 @@ p {
   .discovery-section .previewScrollLayout .songInfo.mobile .artistName {
     color: #545151;
     font-size: 16px !important; }
-  .SubgenreFiltersDropDown.expand {
-    height: calc(100vh - 132px);
-    z-index: 8500;
-    max-height: none !important; }
   .discovery-section .fullGridLayout .songContainer .imageContainer img {
     max-height: none !important; }
   .discovery-section .songGrid {
@@ -392,12 +374,6 @@ body {
   display: inline-block;
   margin: 0;
   pointer-events: none; }
-
-@media (min-width: 480px) {
-  .SubgenreFiltersDropDown .tag:hover, .SubgenreFiltersDropDown .tag.selected {
-    color: #fff; }
-  .SubgenreFiltersDropDown .tag:hover {
-    background: #1f84c7; } }
 
 p.leftInfo {
   display: inline-block;
@@ -639,10 +615,6 @@ button {
 
 .songContainer .tag:nth-of-type(3) {
   display: none; }
-
-@media (max-width: 480px) {
-  .fixedFiltersBar + .discovery-container {
-    padding-top: 75px; } }
 
 @media (max-width: 800px) {
   .discover-full-song {
@@ -1251,9 +1223,6 @@ button {
     margin: 2px; } }
 
 @media (max-width: 800px) {
-  .discovery-section .filters-bar .search-wrapper input {
-    height: 25px;
-    width: 150px; }
   .songImageInfoContainer.grid {
     display: none !important; }
   .fullGridLayout .songList {
@@ -2175,43 +2144,6 @@ form.rwt-email-form button {
         padding-top: 4px; }
   .socialLinks {
     top: 50px; }
-  .discovery-section .filters-bar {
-    height: 50px !important;
-    background: #fff !important; }
-    .discovery-section .filters-bar .toggle-views-button {
-      margin-top: 6px !important;
-      font-size: 14px !important;
-      padding: 10px !important;
-      border-radius: 6px !important; }
-    .discovery-section .filters-bar .filters-button {
-      margin-top: 6px !important;
-      font-size: 14px !important;
-      padding: 10px !important;
-      border-radius: 6px !important; }
-    .discovery-section .filters-bar .filters-button .toggle-views-button:hover {
-      background: #1a6ea9 !important; }
-    .discovery-section .filters-bar .SubgenreFiltersDropDown {
-      position: absolute;
-      border: 1px solid #C9C6CB;
-      border-top: 0;
-      left: 15px;
-      background: #fff;
-      z-index: 1000;
-      top: 50px;
-      border-radius: 4px;
-      border-top-right-radius: 0px;
-      border-top-left-radius: 0px;
-      box-shadow: 0 3px 2px -2px #C9C6CB;
-      max-height: 0;
-      overflow: hidden;
-      transition: .2s ease all; }
-    .discovery-section .filters-bar .ToggleViewsDropDown {
-      border-left-width: 1px !important;
-      top: 50px !important;
-      padding: 10px !important;
-      background: #fff !important;
-      max-width: 100% !important;
-      border-radius: 0px !important; }
   .headerContainer {
     box-shadow: none !important; }
   .discovery-section .songList .songContainer .postContent p.songDescription {

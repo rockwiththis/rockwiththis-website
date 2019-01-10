@@ -206,28 +206,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
 
 @media screen and (max-width: 480px) {
 
-  .filters-bar {
-    .toggle-view {
-      display: inline-block;
-    width: 50px;
-    // padding: 15px;
-    color: #4A4A4A;
-    img {
-      max-width: 30px;
-    }
-  }
-  button.filters-button {
-    display: inline-block;
-    font-size: 14px;
-    border: 1px solid #4A4A4A !important;
-    border-width: 1px !important;
-
-    border-radius: 3px;
-    padding: 5px 8px;
-    color: #4A4A4A;
-  }
-  }
-
   .headerContainer{
       height: 70px;
       box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
@@ -422,11 +400,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
     }
   }
 
-  .SubgenreFiltersDropDown.expand {
-    height: calc(100vh - 132px);
-    z-index: 8500;
-    max-height: none !important;
-  }
 
   .discovery-section {
 
@@ -610,19 +583,6 @@ body {
   margin: 0;
   // margin-left: 5px;
   pointer-events: none;
-
-}
-
-@media (min-width: 480px) {
-.SubgenreFiltersDropDown {
-  .tag:hover, .tag.selected {
-    color: #fff;
-  }
-  .tag:hover {
-    background: #1f84c7;
-  }
-}
-
 
 }
 
@@ -999,15 +959,6 @@ button {
 .songContainer {
   .tag:nth-of-type(3) {
     display: none;
-  }
-}
-
-
-
-@media(max-width: 480px) {
-
-  .fixedFiltersBar + .discovery-container {
-        padding-top: 75px;
   }
 }
 
@@ -1987,10 +1938,7 @@ span {
 
 
 @media(max-width: 800px) {
-  .discovery-section .filters-bar .search-wrapper input {
-    height: 25px;
-    width: 150px;
-}
+
 
   .songImageInfoContainer.grid {
     display: none !important;
@@ -3633,80 +3581,6 @@ width: 800px;
   .discovery-section {
       // margin-top: calc(100vw + 90px);
   }
-
-
-
-  .discovery-section .filters-bar {
-    height: 50px !important;
-    background: #fff !important;
-
-
-     .toggle-views-button   {
-      margin-top: 6px !important;
-      font-size: 14px !important;
-      padding: 10px !important;
-    border-radius: 6px !important;
-
-    }
-    .filters-button   {
-      margin-top: 6px !important;
-      font-size: 14px !important;
-      padding: 10px !important;
-
-    border-radius: 6px !important;
-
-    }
-
-    .filters-button .toggle-views-button:hover {
-        background: #1a6ea9 !important;
-    }
-
-     .SubgenreFiltersDropDown {
-    position: absolute;
-    border: 1px solid #C9C6CB;
-    border-top: 0;
-    left: 15px;
-    background: #fff;
-    z-index: 1000;
-    // max-width: 300px;
-    top: 50px;
-    border-radius: 4px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    max-height: 0;
-    overflow: hidden;
-    transition: .2s ease all;
-}
-
-
-
-    .ToggleViewsDropDown {
-        border-left-width: 1px !important;
-        top: 50px !important;
-        padding: 10px !important;
-        background: #fff !important;
-        max-width: 100% !important;
-            border-radius: 0px !important;
-
-      //   button.mobile {
-      //     display: inline-block;
-      //     // width: 23% !important;
-      //     text-align: center !important;
-      //     margin-right: 5%;
-      //     margin-left: 5%;
-      //     margin-bottom: 0 !important;
-      //     background: #fff;
-      //
-      //     font-size: 12px;
-      // }
-      // button.mobile:hover {
-      //   background: #1a6ea9;
-      // }
-
-    }
-
-}
 
 .headerContainer {
   box-shadow: none !important;
