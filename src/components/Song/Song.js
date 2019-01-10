@@ -96,23 +96,22 @@ class Song extends Component {
 
                 {this.props.layout == 'snapshot'
                   ?
-                <div className="marquee songInfo mobile" onClick={this.onPressPlay(song)}>
-                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
+                <div className="songInfo mobile" onClick={this.onPressPlay(song)}>
+                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link>
                       <span className="artistName">{song.artist_name}</span>
                 </div>
                 :
-                <div className="marquee songInfo mobile">
-                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
+                <div className="songInfo mobile">
+                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link>
                       <span className="artistName">{song.artist_name}</span>
                 </div>
               }
 
-                <div className="marquee songInfo desktop">
-                  <div id="checkOverFlowSong" className="marquee-inner songtitle">
+                <div className="songInfo desktop">
+                  <div className="songtitle">
                   <Link className="songName postTitleLink" to={`/songs/${song.id}`}>{song.name}</Link><a target="_blank" href={song.spotify_link}  className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                   </div>
-                    <br />
-                  <div id="checkOverFlowArtist" className="marquee-inner artist">
+                  <div className="artist">
                     <span className="artistName">{song.artist_name}</span>
                   </div>
                 </div>

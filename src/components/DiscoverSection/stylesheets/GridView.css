@@ -1,0 +1,165 @@
+@media (min-width: 800px) {
+  .fullGridLayout .songList {
+    display: block;
+    text-align: center; } }
+
+.fullGridLayout .songList .songContainer {
+  margin: 2px;
+  width: calc(20vw - 4px);
+  height: calc(20vw - 4px);
+  padding: 0;
+  display: inline-block;
+  max-width: none;
+  position: relative; }
+  @media (max-width: 1200px) and (min-width: 800px) {
+    .fullGridLayout .songList .songContainer {
+      width: calc(25vw - 4px);
+      height: calc(25vw - 4px); } }
+  @media (max-width: 800px) {
+    .fullGridLayout .songList .songContainer {
+      display: inline-block;
+      vertical-align: top;
+      padding: 0 0;
+      margin: 1px;
+      width: calc(33vw - 2px);
+      height: calc(33vw - 2px); } }
+  @media (min-width: 800px) {
+    .fullGridLayout .songList .songContainer .wrapper .postContent {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      padding-bottom: 0; } }
+  @media (max-width: 800px) {
+    .fullGridLayout .songList .songContainer .wrapper .postContent {
+      display: inline-block;
+      width: calc(100%);
+      height: auto; } }
+  .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer {
+    position: relative;
+    z-index: 1; }
+    @media (min-width: 800px) {
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer {
+        width: calc(20vw - 4px);
+        height: calc(20vw - 4px);
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 0px;
+        max-height: none; } }
+    @media (max-width: 1200px) and (min-width: 800px) {
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer {
+        width: calc(25vw - 4px);
+        height: calc(25vw - 4px); } }
+    @media (max-width: 800px) {
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer {
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 5px; } }
+    .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer img.songImage {
+      max-height: 100%;
+      border-radius: 0; }
+      @media (max-width: 1200px) and (min-width: 800px) {
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer img.songImage {
+          width: 100%;
+          height: 100%; } }
+      @media (max-width: 800px) {
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer img.songImage {
+          max-height: 100px; } }
+    .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      display: inline-block;
+      pointer-events: all; }
+      @media (max-width: 800px) {
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link {
+          display: none; } }
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link .hover-content {
+        display: inline-block;
+        opacity: 0; }
+        @media (max-width: 800px) {
+          .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link .hover-content {
+            display: none; } }
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link .hover-content .tagWrapper .postTags .hover-tag {
+          color: #fff;
+          margin: 0;
+          padding: 0;
+          border-radius: 6px;
+          letter-spacing: .5px;
+          font-family: Baloo,cursive;
+          display: block;
+          font-size: 20px;
+          line-height: 20px;
+          border: none;
+          background: none; }
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link .hover-content .goToPage {
+          z-index: 107;
+          text-decoration: none;
+          background: #1a6ea9;
+          color: #fff;
+          padding: 15px;
+          border-radius: 0;
+          max-width: 40%;
+          margin: 10px auto;
+          display: inline-block; }
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link img.heroHoverGradient {
+        display: inline-block;
+        opacity: 0; }
+        @media (max-width: 800px) {
+          .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link img.heroHoverGradient {
+            display: none; } }
+    .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid {
+      display: inline-block;
+      z-index: 103;
+      left: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.7);
+      width: 100%;
+      padding: 3px 5px;
+      position: absolute; }
+      @media (max-width: 800px) {
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid {
+          display: none; } }
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton {
+        pointer-events: all;
+        cursor: pointer;
+        display: inline-block;
+        float: left;
+        height: 100%;
+        padding: 5px; }
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton img {
+          width: 35px;
+          height: 35px;
+          border-radius: 0; }
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton .song-info {
+          float: left;
+          width: calc(100% - 50px);
+          text-align: left;
+          margin-left: 5px;
+          padding: 5px 0; }
+          .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton .song-info p.song-title {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 20px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis; }
+          .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton .song-info p.song-artist {
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px; }
+
+.fullGridLayout .songList .songContainer:hover .hover-content {
+  display: inline-block;
+  opacity: 1;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease; }
+
+.fullGridLayout .songList .songContainer:hover .heroHoverGradient {
+  opacity: 1; }

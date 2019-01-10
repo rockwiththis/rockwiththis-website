@@ -20,11 +20,14 @@ import PaginationControls from 'components/PaginationControls';
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
 
+import './stylesheets/DiscoverSection.scss'
+import './stylesheets/GridView.scss'
+import './stylesheets/SnapListView.scss'
 
 
 /* eslint-disable */
 
-class SongsContainer extends Component {
+class DiscoverSection extends Component {
   constructor(props) {
       super(props)
       this.state = {
@@ -209,12 +212,6 @@ class SongsContainer extends Component {
     // when the filters are searched for.
     return (
         <div className="songsContainer clearfix">
-
-          <HeroPosts
-            {...this.props}
-            heroPosts={this.props.heroPosts}
-          />
-
           <div id="discover" className="discovery-section">
             <img className="discover-cover" src={black} />
 
@@ -225,28 +222,10 @@ class SongsContainer extends Component {
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
 
-                <div id="songList"  className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
-                  <div className="discoverySectionScroll" name='discoverySectionScroll'>
-
-                  {/*<PaginationControls
-                      currPageIndex={this.props.currentSongListPageIndex}
-                      onForward={() => this.props.actions.loadMoreSongs()}
-                      onBackward={this.props.actions.loadPreviousSongs}
-                    /> */}
-
-                    {songList}
-
-                    <PaginationControls
-                      currPageIndex={this.props.currentSongListPageIndex}
-                      onForward={() => this.props.actions.loadMoreSongs()}
-                      onBackward={this.props.actions.loadPreviousSongs}
-                    />
-
-                  </div>
-                </div>
+              {/*  FULL VIEW - we should take this out as it's own component.  This is the default view that consists the carousel IMAGE GRID on the left and the FULL SONG preview on the right.  */}
 
                 {this.props.discoverLayout !== 'snapshot' &&
-                  <div className="snapshotView">
+                  <div className="fullView">
 
                     <div className="songGrid">
 
@@ -325,6 +304,30 @@ class SongsContainer extends Component {
                   </div>
                 }
 
+              {/*  FULL VIEW  */}
+
+
+
+
+              {/*  SONG LIST - we should break this down into it's own component. The SONG LIST is a list of songs that can change between SNAP VIEW and FULL GRID view all with CSS. */}
+
+                <div id="songList"  className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
+                  <div className="discoverySectionScroll" name='discoverySectionScroll'>
+
+                    {songList}
+
+                    <PaginationControls
+                      currPageIndex={this.props.currentSongListPageIndex}
+                      onForward={() => this.props.actions.loadMoreSongs()}
+                      onBackward={this.props.actions.loadPreviousSongs}
+                    />
+
+                  </div>
+                </div>
+
+              {/*  SONGS LIST  */}
+
+
 
                 {this.state.loadingMoreSongs && !this.state.noMorePosts &&
                   <div className='loading-bottom'>
@@ -345,4 +348,4 @@ class SongsContainer extends Component {
   }
 }
 
-export default SongsContainer
+export default DiscoverSection
