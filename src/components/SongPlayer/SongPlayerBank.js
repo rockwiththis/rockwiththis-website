@@ -17,7 +17,10 @@ const REPORT_DURATION_INTERVAL = 1000;
 class SongPlayerBank extends React.Component {
   constructor(props) {
     super(props);
+    this.YT = undefined;
     this.songListPlayers = undefined;
+    this.heroPlayers = undefined;
+    this.allPlayers = undefined;
     this.activePlayer = undefined;
     this.durationInterval = undefined;
   }
@@ -27,13 +30,13 @@ class SongPlayerBank extends React.Component {
   componentDidMount = () => {
     this.loadYoutubeIframeApi()
     .then(YT => {
-      this.songListPlayers = this.props.initialSongList.reduce((currPlayers, song, i) => ({
+      this.YT = YT;
+      this.heroPlayers = this.props.heroSongs.reduce((currPlayers, song, i) => ({
         ...currPlayers,
-        [song.id]: !!song.soundcloud_track_id ?
-          this.createSoundCloudPlayer(song, i) :
-          this.createYoutubePlayer(YT, song, i)
-      }), {});
-      this.activePlayer = this.songListPlayers[this.props.initialActiveSong.id];
+        [song.id]: this.createPlayer(song, i)
+      }), {})
+      this.setSongListPlayers(this.props.initialSongList);
+      this.activePlayer = this.songListPlayers[this.props.initialActiveSong.id]
     })
   }
 
@@ -45,14 +48,51 @@ class SongPlayerBank extends React.Component {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
         window.onYouTubeIframeAPIReady = () => resolve(window.YT)
       })
-  );
+  )
 
-  createYoutubePlayer = (YT, song, index) => {
-    const player = new YT.Player(getYoutubeSongListPlayerId(index), {
+  setSongListPlayers = songList => {
+    const activeIndex = !!this.activePlayer ? this.activePlayer.index : null;
+    var indexOffset = this.props.heroSongs.length;
+
+    this.songListPlayers = songList.reduce((currPlayers, song, i) => {
+      const listIndex = i + indexOffset;
+
+      if (!!this.heroPlayers[song.id]) {
+        return currPlayers
+
+      } else if (i + indexOffset === activeIndex) {
+        indexOffset += 1;
+        return {
+          ...currPlayers,
+          [this.activePlayer.songId]: this.activePlayer,
+          [song.id]: this.createPlayer(i + indexOffset)
+        }
+
+      } else {
+        return {
+          ...currPlayers,
+          [song.id]: this.createPlayer(song, listIndex)
+        }
+      }
+    }, {});
+    this.allPlayers = { ...this.heroPlayers, ...this.songListPlayers }
+  }
+
+  createPlayer = (song, index) => (
+      !!song.soundcloud_track_id ?
+        this.createSoundCloudPlayer(song, index) :
+        this.createYoutubePlayer(song, index)
+  )
+
+
+  createYoutubePlayer = (song, index) => {
+    const player = new this.YT.Player(getYoutubeSongListPlayerId(index), {
       videoId: song.youtube_link.match(youtubeUrlPattern)[1],
       events: { 'onReady': this.onPlayerReady(song.id) }
     });
     return {
+      index: index,
+      songId: song.id,
       play: () => player.playVideo(),
       pause: () => player.pauseVideo(),
       reportProgress: () => (
@@ -74,6 +114,8 @@ class SongPlayerBank extends React.Component {
     const player = new SoundCloudWidget(playerId);
     player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
     return {
+      index: index,
+      songId: song.id,
       play: () => player.play(),
       pause: () => player.pause(),
       reportProgress: () => (
@@ -94,17 +136,17 @@ class SongPlayerBank extends React.Component {
   }
 
   onPlayerReady = songId => ref => {
-    console.log('Player Ready!');
-    console.log(songId);
+    console.log('Player Ready!', songId, this.allPlayers);
 
-    this.songListPlayers[songId].getDuration()
+    this.allPlayers[songId].getDuration()
     .then(seconds => this.props.setSongDuration(songId, seconds))
   }
 
   updateSongProgress = progressRatio => this.activePlayer.seekTo(progressRatio);
 
   playSongListSong = songToPlay => {
-    const newActivePlayer = this.songListPlayers[songToPlay.id];
+    // TODO get from `allPlayers`
+    const newActivePlayer = this.allPlayers[songToPlay.id]
     if (!!newActivePlayer) {
       console.log("PLAYING NEW SONG");
       newActivePlayer.play();
@@ -121,25 +163,21 @@ class SongPlayerBank extends React.Component {
   }
 
   playActiveSong = () => {
-    console.log("PLAYING CURRENT SONG");
     this.activePlayer.play();
     this.durationInterval = setInterval(this.activePlayer.reportProgress, REPORT_DURATION_INTERVAL);
   }
 
   pauseActiveSong = () => {
-    console.log("PAUSING ACTIVE SONG");
     this.activePlayer.pause();
     clearInterval(this.durationInterval);
   }
 
-  setSongList = newSongList => {
-    // TODO
-  }
-
   render = () => {
+    console.log(this.sprops);
+    const songCount = this.props.initialSongList.length + this.props.heroSongs.length + 1
     return (
       <div className="song-player-bank">
-        {this.props.initialSongList.map((_, i) => (
+        {Array.apply(null, Array(songCount)).map((_, i) => (
             <div className="song-player-song">
               <div id={`song-list-yt-player-${i}`}></div>
               <iframe id={`song-list-sc-player-${i}`}></iframe>

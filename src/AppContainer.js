@@ -8,7 +8,6 @@ import * as Actions from 'actions/index'
 
 import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 import Header from 'components/Header/Header.js'
-import SongPlayerContainer from 'components/SongPlayer/SongPlayerContainer';
 import MainPlayer from 'components/FooterPlayer/MainPlayer'
 import SongPlayerBank from 'components/SongPlayer/SongPlayerBank';
 
@@ -33,6 +32,9 @@ class AppContainer extends Component {
     this.setState({ shrinkHeader })
   }
 
+  // TODO there *has* to be a better way of calling player bank functions
+  // Maybe putting the bank ref in the app store?
+  // Calling these *before* re-rendering would probably cause significant performance improvement
   componentDidUpdate(prevProps) {
 
     if (!this.props.isPlaying && prevProps.isPlaying) {
@@ -41,11 +43,21 @@ class AppContainer extends Component {
 
     if (prevProps.activeSong.id !== this.props.activeSong.id &&
         this.props.isPlaying) {
-      this.playerBankRef.current.playSongListSong(this.props.activeSong)
+      this.playerBankRef.current.playSongListSong(this.props.activeSong);
 
     } else if (this.props.isPlaying && !prevProps.isPlaying) {
       this.playerBankRef.current.playActiveSong();
     }
+
+    // This logic sucks ...
+    if (this.props.songListPosts.length > 0 && 
+        prevProps.songListPosts.length > 0 &&
+        prevProps.songListPosts[0].id !== this.props.songListPosts[0].id) {
+
+      console.log("SET SONG LIST")
+      this.playerBankRef.current.setSongListPlayers(this.props.songListPosts);
+    }
+
     /*
     if (prevProps.activeSong.id !== this.props.activeSong.id &&
         this.props.isPlaying) {
@@ -53,16 +65,6 @@ class AppContainer extends Component {
     }
     */
   };
-
-  getAllPlayableSongs = () => (
-      [
-        ...this.props.heroPosts,
-        this.props.activeSong,
-        ...this.props.songListPosts,
-        this.props.snapshotPost
-      ]
-      .filter(song => !!song.id)
-  );
 
   // TODO this won't work on some browsers b/c of video autoplay constraints. Handle this case.
   changeSongOnEnd = () => {
@@ -95,25 +97,14 @@ class AppContainer extends Component {
 
           <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
           {
-            false &&
-            <SongPlayerContainer
-              songPosts={this.getAllPlayableSongs()}
-              currentSongId={this.props.activeSong.id}
-              isPlaying={this.props.isPlaying}
-              onSongLoading={this.props.actions.loadingPlayer}
-              onSongLoaded={this.props.actions.playerLoaded}
-              onSongProgress={this.props.actions.setSongProgress}
-              onSongEnd={this.changeSongOnEnd}
-              ref={this.playerContainerRef}
-            />
-          }
-          {
-            this.props.songListPosts.length > 0 &&
+            this.props.songListPosts.length > 0 && this.props.heroPosts.length > 0 &&
             <SongPlayerBank
+              heroSongs={this.props.heroPosts}
               initialSongList={this.props.songListPosts}
               initialActiveSong={this.props.activeSong}
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
+              //onSongEnd={this.changeSongOnEnd}
               ref={this.playerBankRef}
             />
           }
