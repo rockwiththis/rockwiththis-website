@@ -11,9 +11,9 @@
       .songContainer {
         position: relative;
 
-        @media (min-width: 1000) {
+        @media (min-width: 1000px) {
           width: calc(50% - 30px);
-          padding: 15px 15px;
+          padding: 15px;
           display: inline-block;
           max-width: 700px;
           margin: 0 auto;
@@ -44,9 +44,10 @@
             @media (min-width: 1000px) {
               display: inline-block;
               width: 100%;
+              height: 200px;
               overflow: hidden;
               max-height: 200px;
-              min-height: 200px;
+              min-height: 200px!important;
               height: 12vw;
             }
             @media (max-width: 1000px) and (min-width: 800px) {
@@ -108,250 +109,253 @@
               .songImageInfoContainer {
                 display: none;
               }
-              .topContentContainer {
+            }
 
-                @media (min-width: 1000) {
-                  display: inline-block;
-                  width: calc(100% - 12vw - 45px);
-                  vertical-align: top;
-                  height: auto;
-                  padding-left: 10px;
-                }
-                @media (max-width: 800px) {
-                  width: 80%;
-                }
+            .topContentContainer {
 
-                .postInfoContainer {
+              @media (min-width: 1000px) {
+                display: inline-block;
+                width: calc(100% - 12vw - 45px);
+                vertical-align: top;
+                height: auto;
+                padding-left: 10px;
+              }
+              @media (max-width: 800px) {
+                width: 80%;
+              }
 
-                  .singlePostPlayer {
+              .postInfoContainer {
 
-                    @media (min-width:1000px) {
-                      width: 50px;
-                      height: 50px;
-                      display: inline-block;
-                      text-align: left;
-                      vertical-align: top;
-                    }
-                    @media (max-width: 1000px) and (min-width: 800px) {
-                      width: 40px ;
-                    }
-                    .singlePostPlayerButton {
+                .singlePostPlayer {
 
-                      svg, img {
-                        width: 50px;
-                        height: 50px;
-                      }
-                    }
-                  }
-                  .hideMobile {
-                      display: none;
-                  }
-
-                  .songInfo {
-
-                    @media (min-width: 1000px) {
-                      display: inline-block;
-                      width: calc(100% - 75px);
-                      padding-left: 5px;
-                      height: 50px;
-                      overflow: hidden;
-                      pointer-events: all;
-                    }
-                  }
-                  .songInfo.desktop {
-
-                    @media (min-width: 800px) {
-                      display: inline-block;
-                      white-space: nowrap;
-                      text-overflow: ellipsis;
-                      max-width: 350px;
-                      position: relative;
-                    }
-                    @media (max-width: 1200px) and (min-width: 1075px) {
-                      max-width: 300px;
-                    }
-                    @media (max-width: 1075px) and (min-width: 800px) {
-                      max-width: 250px;
-                      height: 50px;
-                    }
-                    @media (max-width: 930px) and (min-width: 800px) {
-                      max-width: 220px;
-                    }
-                    @media (max-width: 800px) {
-                      display: none;
-                    }
-
-                    .songtitle {
-
-                      .postTitleLink {
-
-                        @media (max-width: 1000px) and (min-width: 800px) {
-                          text-decoration: none;
-                            color: black;
-                            font-weight: 700;
-                            font-size: 16px;
-                            line-height: 20px;
-                            height: 20px;
-                            overflow-x: hidden;
-                        }
-                        @media (max-width: 1075px) and (min-width: 800px) {
-                            font-size: 20px;
-                        }
-                        @media (min-width: 1000px) {
-
-                        }
-                      }
-
-                      .spotify {
-                          display: none;
-                      }
-                    }
-
-                    .artist {
-
-                      .artistName {
-
-                        @media (min-width: 1000px) {
-                          color: #000;
-                          font-size: 20px;
-                          line-height: 26px;
-                          height: 30px;
-                          max-height: 30px;
-                        }
-                        @media (max-width: 1000px) and (min-width: 800px) {
-                          font-size: 16px;
-                        }
-                      }
-                    }
-                  }
-
-                  .songInfo.mobile {
-                    @media (min-width: 800px) {
-                      display: none;
-                    }
-                    display:  inline-block;
+                  @media (min-width:800px) {
+                    display: inline-block;
+                    text-align: left;
                     vertical-align: top;
-                    padding-left: 5px;
-                    pointer-events: all;
+                  }
+
+                  .singlePostPlayerButton {
+                    padding: 2.5px;
+                    padding-left: 0;
+
+                    svg, img {
+                      width: 45px;
+                      height: 45px;
+                    }
+                  }
+                }
+                .hideMobile {
+                  @media (max-width: 800px) {
+                    display: none;
+                  }
+                }
+
+                .songInfo {
+
+                  @media (max-width: 1000px) {
+                    display: inline-block;
+                    width: calc(100% - 75px);
                     overflow: hidden;
+                    pointer-events: all;
+                  }
+                }
+                .songInfo.desktop {
+
+
+                  @media (min-width: 800px) {
+                    display: inline-block !important;
                     white-space: nowrap;
                     text-overflow: ellipsis;
-                    padding-top: 2px;
-                    padding-bottom: 5px;
-                    width: 100%;
+                    overflow-x: hidden;
+                    width: calc(100% - 50px);
+                    position: relative;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    padding: 4px 0;
+                  }
+                  @media (max-width: 1200px) and (min-width: 1075px) {
+                    max-width: 300px;
+                  }
+                  @media (max-width: 1075px) and (min-width: 800px) {
+                    max-width: 250px;
+                    height: 50px;
+                  }
+                  @media (max-width: 930px) and (min-width: 800px) {
+                    max-width: 220px;
+                  }
+                  @media (max-width: 800px) {
+                    display: none;
+                  }
+
+                  .songtitle {
+                    height: 20px;
+                    margin-bottom: 2px;
 
                     .postTitleLink {
-                      display: block;
-                      text-decoration: none;
-                      color: black;
-                      font-weight: 700;
-                      font-size: 16px;
-                      line-height: 20px;
-                      max-height: 20px;
-                      overflow-y: hidden;
+
+                      @media (min-width: 800px) {
+                        text-decoration: none;
+                          color: black;
+                          font-weight: 700;
+                          font-size: 20px;
+                          line-height: 20px;
+                          overflow-x: hidden;
+                          margin-bottom: 2px;
+                          display: inline-block;
+                      }
+
                     }
-                    .artistName {
-                      line-height: 20px;
-                      max-height: 20px;
-                      overflow-y: hidden;
-                      color: #000;
-                      font-size: 16px;
+
+                    .spotify {
+                        display: none;
                     }
                   }
 
-                  .metaInfo {
+                  .artist {
+                    height: 20px;
 
-                    @media (min-width: 1000px) {
-                      margin-top: 5px;
-                      height: 25px;
-                      overflow-y: hidden;
-                      margin-bottom: 5px;
-                      pointer-events: all;
-                    }
+                    .artistName {
 
-                    @media (max-width: 1000px) and (min-width: 800px) {
-                      margin-top: 0px;
-                      height: 60px;
-                      overflow-y: hidden;
-                      margin-bottom: 5px;
-                      pointer-events: all;
-                    }
-
-                    @media (max-width: 800px) {
-                      display: none;
-                    }
-
-                    .leftInfo {
-
-                      @media (min-width: 1000px) {
-                        display: inline-block;
-                        margin: 0;
-                        margin-bottom: 5px;
-                        margin-right: 4px;
+                      @media (min-width: 800px) {
+                        color: #000;
+                        font-size: 20px;
+                        line-height: 20px;
                       }
-
-                      .postDate {
-                          font-size: 14px;
-                          line-height: 20px;
-                      }
-                    }
-                    .leftInfo.mobile {
-                        display: none;
-                    }
-
-                    .postTags {
-                      display: inline-block;
-                      margin: 0;
-                      pointer-events: none;
-
-                      .tag {
-                        margin: 0 2px;
-                        font-size: 10px;
-                        border-radius: 6px;
-                        -webkit-transition: all .2s ease;
-                        transition: all .2s ease;
-                        color: #fff;
-                        background: #1a6ea9;
-                        border: 1px solid #1a6ea9;
-                        cursor: pointer;
-                        letter-spacing: .7px;
-                        box-shadow: 0 3px 2px -2px #C9C6CB;
-                        padding: 5px;
-                        font-family: 'Baloo', cursive;
-                      }
-
-                      @media (max-width: 800px) {
-                        display: none;
-                      }
-                    }
-
-                    .ShareBox {
-                        display: none;
                     }
                   }
                 }
 
-                .bottomContentContainer  {
+                .songInfo.mobile {
+                  @media (min-width: 800px) {
+                    display: none;
+                  }
+                  display:  inline-block;
+                  vertical-align: top;
+                  pointer-events: all;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                  width: 100%;
+
+                  .postTitleLink {
+                    display: block;
+                    text-decoration: none;
+                    color: black;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 20px;
+                    max-height: 20px;
+                    overflow-y: hidden;
+                  }
+                  .artistName {
+                    line-height: 20px;
+                    max-height: 20px;
+                    overflow-y: hidden;
+                    color: #000;
+                    font-size: 16px;
+                  }
+                }
+
+                .metaInfo {
+
+                  @media (min-width: 1000px) {
+                    height: 25px;
+                    overflow-y: hidden;
+                    margin-bottom: 5px;
+                    pointer-events: all;
+                  }
+
+                  @media (max-width: 1000px) and (min-width: 800px) {
+                    margin-top: 0px;
+                    height: 60px;
+                    overflow-y: hidden;
+                    margin-bottom: 5px;
+                    pointer-events: all;
+                  }
 
                   @media (max-width: 800px) {
                     display: none;
                   }
 
-                  .songDescription {
-                      position: relative;
+                  .leftInfo {
 
-                      @media (min-width: 800px) {
-                        padding-bottom: 25px;
-                      }
-                      @media (min-width: 1000px) {
-                        font-family: 'Open Sans', sans-serif;
+                    @media (min-width: 1000px) {
+                      display: inline-block;
+                      margin: 0;
+                      margin-bottom: 5px;
+                      margin-right: 4px;
+                    }
+
+                    .postDate {
                         font-size: 14px;
-                        line-height: 24px;
-                        height: 100px;
-                        overflow: hidden;
-                      }
+                        line-height: 20px;
+                    }
+                  }
+                  .leftInfo.mobile {
+                      display: none;
+                  }
+
+                  .postTags {
+                    display: inline-block;
+                    margin: 0;
+                    pointer-events: none;
+
+                    .tag {
+                      margin: 0 2px;
+                      font-size: 10px;
+                      border-radius: 6px;
+                      -webkit-transition: all .2s ease;
+                      transition: all .2s ease;
+                      color: #fff;
+                      background: #1a6ea9;
+                      border: 1px solid #1a6ea9;
+                      cursor: pointer;
+                      letter-spacing: .7px;
+                      box-shadow: 0 3px 2px -2px #C9C6CB;
+                      padding: 5px;
+                      font-family: 'Baloo', cursive;
+                    }
+
+                    @media (max-width: 800px) {
+                      display: none;
+                    }
+                  }
+
+                  .ShareBox {
+                      display: none;
                   }
                 }
+              }
+
+              .bottomContentContainer  {
+
+                @media (max-width: 800px) {
+                  display: none;
+                }
+
+                .songDescription {
+                    position: relative;
+
+                    @media (min-width: 800px) {
+                      padding-bottom: 25px;
+                    }
+                    @media (min-width: 1000px) {
+                      font-family: 'Open Sans', sans-serif;
+                      font-size: 14px;
+                      line-height: 24px;
+                      height: 100px;
+                      overflow: hidden;
+                    }
+                }
+                p.songDescription::after {
+                  content: ' ';
+                  height: 22px;
+                  background: rgba(255,255,255,.7);
+                  width: 100%;
+                  position: absolute;
+                  bottom: 0;
+                  left: 0;
+              }
               }
             }
           }
@@ -394,6 +398,12 @@
 
           @media (max-width: 800px) {
             display: none;
+          }
+
+          i {
+            font-size: 12px;
+            vertical-align: bottom;
+            margin-left: 2px;
           }
         }
 

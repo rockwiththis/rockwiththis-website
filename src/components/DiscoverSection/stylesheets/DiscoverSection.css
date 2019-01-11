@@ -1,3 +1,9 @@
+div#discovery-container.fullGridLayout .songGrid {
+  display: none; }
+
+div#discovery-container.fullGridLayout .discover-full-song {
+  display: none; }
+
 .discover-section {
   position: relative; }
   @media (min-width: 800px) {

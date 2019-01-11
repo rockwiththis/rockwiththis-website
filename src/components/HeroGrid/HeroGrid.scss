@@ -69,7 +69,7 @@
             position: absolute;
             bottom: 0;
             width: 100%;
-            background: hsla(0,0%,100%,.7);
+            background: hsla(0,0%,100%,.8);
             transition: all 0s linear;
             z-index: 102;
 
@@ -86,14 +86,12 @@
             .song-info {
               width: calc(100% - 160px);
               margin-left: 80px;
-              // padding: 18px 0 0;
-              line-height: 28px;
               display: inline-block;
-              padding: 5px 0;
+              padding: 8px 0 8px;
+              transform: translateX(-1.6px);
+
 
               @media (max-width: 800px) {
-                padding: 5px;
-                margin-left: 70px;
                 width: calc(100% - 150px);
               }
 
@@ -112,17 +110,16 @@
               .song-title {
                 font-size: 30px;
                 line-height: 30px;
-                margin-top: 5px;
                 font-weight: 700;
                 color: #000;
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
+                margin-bottom: 4px;
 
                 @media screen and (max-width: 800px) {
                   font-size: 25px;
                   line-height: 25px;
-                  margin-top: 5px;
                 }
                 @media screen and (max-width: 650px) {
                   font-size: 20px;
@@ -131,7 +128,6 @@
                 @media screen and (max-width: 480px) {
                   font-size: 15px;
                   line-height: 15px;
-                  margin-top: 2px;
                 }
               }
 
@@ -145,7 +141,6 @@
                 overflow-x: hidden;
                 font-weight: 400;
                 color: #000;
-                margin-top: 5px;
 
                 @media screen and (max-width: 800px) {
                   font-size: 25px;
@@ -470,7 +465,7 @@
             bottom: 0;
             width: 100%;
             height: auto;
-            background: hsla(0,0%,100%,.7);
+            background: hsla(0,0%,100%,.8);
             z-index: 102;
 
             @media (max-width: 800px) {
@@ -524,12 +519,12 @@
               padding: 5px;
               margin-bottom: 0;
               display: inline-block;
-              padding: 2.5px 0;
+              padding: 5px 0 4px;
+              transform: translateX(-.8px);
 
               @media (max-width: 800px) {
-                margin-left: 2.5px ;
-                padding: 2.5px;
-                width: calc(100% - 50px);
+                width: calc(100% - 45px);
+                margin-left: 5px;
               }
               @media (max-width: 480px) {
                 display: none;
@@ -538,20 +533,18 @@
 
               .song-title {
                   font-weight: 700;
-                  font-size: 15px;
+                  font-size: 14.5px;
                   line-height: 15px;
                   color: #000;
                   overflow: hidden;
                   white-space: nowrap;
                   text-overflow: ellipsis;
-                  max-height: 20px;
                   overflow-x: hidden;
-                  margin-top: 2.5px;
+                  margin-bottom: 1px;
 
                   @media (max-width: 800px) {
-                    font-size: 15px;
-                    line-height: 15px;
-                    margin-top: 2.5px;
+                    // font-size: 15px;
+                    // line-height: 15px;
                   }
                   @media (max-width: 480px) {
 
@@ -564,16 +557,14 @@
                   overflow: hidden;
                   white-space: nowrap;
                   text-overflow: ellipsis;
-                  max-height: 15px;
-                  font-size: 15px;
+                  font-size: 14.5px;
                   line-height: 15px;
                   overflow-x: hidden;
-                  margin-top: 2.5px;
 
                   @media (max-width: 800px) {
-                    font-size: 15px;
-                    line-height: 15px;
-                    margin-top: 2.5px;
+                    // font-size: 15px;
+                    // line-height: 15px;
+                    // margin-top: 2.5px;
                   }
               }
             }
@@ -699,12 +690,12 @@
                 text-decoration: none;
                 background: #1a6ea9;
                 color: #fff;
-                padding: 15px;
-                border-radius: 0;
                 max-width: 40%;
                 margin: 10px auto;
                 display: inline-block;
-                font-size: 14px!important;
+                font-size: 14px;
+                border-radius: 6px;
+                padding: 10px;
             }
           }
       }
