@@ -88,6 +88,9 @@ class SongPlayerBank extends React.Component {
   createYoutubePlayer = (song, index) => {
     const player = new this.YT.Player(getYoutubeSongListPlayerId(index), {
       videoId: song.youtube_link.match(youtubeUrlPattern)[1],
+      playerVars: {
+        playsinline: 1
+      },
       events: { 'onReady': this.onPlayerReady(song.id) }
     });
     return {
