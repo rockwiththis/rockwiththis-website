@@ -4,7 +4,6 @@ import Slider from 'rc-slider'
 import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css'
 import { toggleSong, togglePlayPause } from 'actions/queue'
-import OffScreen from 'components/OffScreenPlayer/OffScreen'
 
 import  playButton  from 'images/main-player-play-button.svg'
 import  pauseButton  from 'images/pauseButton-main-player-new.png'
@@ -28,45 +27,15 @@ class MainPlayer extends Component {
         this.renderButtons = this.renderButtons.bind(this)
         this.changeSong = this.changeSong.bind(this)
         this.changeSongOnEnd = this.changeSongOnEnd.bind(this)
-        this.onChangeSlider = this.onChangeSlider.bind(this)
         this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
-        this.expandMobilePlayer = this.expandMobilePlayer.bind(this)
-        this.collapseMobilePlayer = this.collapseMobilePlayer.bind(this)
-        this.checkIfStillMobile = this.checkIfStillMobile.bind(this)
     }
 
     componentDidMount() {
-
-        window.addEventListener('resize', this.checkIfStillMobile);
-
-    }
-    checkIfStillMobile() {
-
-      if (window.innerWidth > 480 ) {
-        this.setState({
-            fullMobilePlayer: false
-        })
-      }
-    }
-
-    expandMobilePlayer() {
-      this.setState({
-          fullMobilePlayer: true
-      })
-
-    }
-    collapseMobilePlayer() {
-      this.setState({
-          fullMobilePlayer: false
-      })
-    }
-
-    onChangeSlider(progress) {
-      this.offScreen.player.seekTo(progress)
+      window.addEventListener('resize', this.checkIfStillMobile);
     }
 
     updateStorePlayPause() {
-        this.props.actions.togglePlayPause(!this.props.isPlaying)
+      this.props.actions.togglePlayPause(!this.props.isPlaying)
     }
 
     changeSong(next) {
@@ -109,7 +78,7 @@ class MainPlayer extends Component {
                 <p className="artist-info">
                     <Link className="songImageLink" to={`/songs/${activeSong.id}`}>
                         <span className="song-title">{activeSong.name}</span>
-                    </Link> <br />
+                    </Link> 
                   <span className="artist-title">{activeSong.artist_name}</span>
                 </p>
             </div>
@@ -167,8 +136,8 @@ class MainPlayer extends Component {
                             min={0}
                             max={1}
                             step={0.001}
-                            value={this.props.activeSongProgress.played}
-                            onChange={this.onChangeSlider}
+                            value={this.props.activeSongProgress.playedRatio}
+                            onChange={this.props.onProgressUpdate}
                         />
                     </div>
                     <div className="player-duration-bar-song-duration">
@@ -250,19 +219,13 @@ class MainPlayer extends Component {
 
         return (
             <footer>
-                  <div className={`footer-player ${this.state.fullMobilePlayer ? 'fullMobilePlayer' : ''}`}>
-                      {this.renderInfo()}
-                      <div className="player-controls-wrapper">
-                          {this.renderButtons()}
-                      </div>
-                      {this.renderSongSource()}
-                  </div>
-                  <OffScreen
-                    {...this.props}
-                    changeSongOnEnd={this.changeSongOnEnd}
-                    ref={(e) => {
-                      this.offScreen = e;
-                    }} />
+                <div className={`footer-player ${this.state.fullMobilePlayer ? 'fullMobilePlayer' : ''}`}>
+                    {this.renderInfo()}
+                    <div className="player-controls-wrapper">
+                        {this.renderButtons()}
+                    </div>
+                    {this.renderSongSource()}
+                </div>
             </footer>
         )
     }

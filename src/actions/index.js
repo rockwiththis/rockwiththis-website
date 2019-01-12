@@ -1,8 +1,14 @@
 import { createAction } from 'redux-actions'
 import { FETCH_FILTERS } from './filters'
+import * as Scroll from 'react-scroll'
+import $ from "jquery";
 
-// const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
-const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
+
+// TODO i think we should not be exporting the actual actions
+// Look into redux-thunk for more control
+
+const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
+// const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
 
 export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
   dispatch({
@@ -65,28 +71,78 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
   })
 }
 
-export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS')
+export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS');
+export const LOAD_NEXT_SONGS = createAction('app/LOAD_NEXT_SONGS');
 export const loadMoreSongs = (callback) => (dispatch, getState) => {
   const state = getState();
-  const filtersArray = []
-  const filterIds = getState().selectedFilters.map(filter => filter.id)
-  filtersArray.push(filterIds)
-  console.log("state.filteredPosts");
-  console.log(state.filteredPosts);
 
-  const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+  if (state.currentPostPageIndex < state.maxSongListPageIndex) {
+    dispatch(LOAD_NEXT_SONGS());
 
+  } else {
+    // TODO try just setting this at once
+    const filtersArray = []
+    const filterIds = getState().selectedFilters.map(filter => filter.id)
+    filtersArray.push(filterIds)
 
-  fetch(fullURL).then(res => res.json()).then((res) => {
+    const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
+    fetch(fullURL).then(res => res.json()).then((res) => {
 
-    if (res.length > 0) {
-      dispatch(LOAD_MORE_SONGS(res))
-      if (callback) callback()
-    } else {
-      return
-    }
-  })
+      if (res.length > 0) {
+
+        if (window.innerWidth > 800) {
+            $('#discovery-container').animate({scrollTop: 0}, 100);
+        } else {
+          Scroll.scroller.scrollTo('discoverySectionScroll', {
+            duration: 500,
+            smooth: true
+          })
+        }
+        dispatch(LOAD_MORE_SONGS(res));
+
+        if (callback) callback(res);
+      } else {
+        return;
+      }
+    })
+  }
 }
+
+const LOAD_PREVIOUS_SONGS = createAction('app/LOAD_PREVIOUS_SONGS');
+export const loadPreviousSongs = () => dispatch => {
+  if (window.innerWidth > 800) {
+      $('#discovery-container').animate({scrollTop: 0}, 100);
+  } else {
+    Scroll.scroller.scrollTo('discoverySectionScroll', {
+      duration: 500,
+      smooth: true
+    })
+  }
+  dispatch(LOAD_PREVIOUS_SONGS())
+};
+
+const RESET_LOADED_SONGS = createAction('app/RESET_LOADED_SONGS');
+export const resetLoadedSongs = () => dispatch => {
+  dispatch(RESET_LOADED_SONGS())
+};
+
+const UPDATE_SNAPSHOT_SONG = createAction('app/UPDATE_SNAPSHOT_SONG');
+export const updateSnapshotSong = newSnapshotSong => dispatch => {
+  dispatch(UPDATE_SNAPSHOT_SONG(newSnapshotSong));
+}
+
+const PLAYER_BANK_UPDATED = createAction('app/PLAYER_BANK_UPDATED');
+export const playerBankUpdated = () => dispatch => {
+  dispatch(PLAYER_BANK_UPDATED());
+}
+
+const PLAYER_LOADED = createAction('app/PLAYER_LOADED');
+export const playerLoaded = (loadedSongId, durationSeconds) => dispatch => (
+  dispatch(PLAYER_LOADED({
+    songId: loadedSongId,
+    durationSeconds: durationSeconds
+  }))
+);
 
 export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
 export const togglePlayPause = playPause => (dispatch) => {

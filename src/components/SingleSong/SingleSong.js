@@ -18,23 +18,19 @@ import './SingleSong.scss'
 
 class SingleSong extends Component {
     constructor(props) {
-        super(props)
-
-        this.ytPlayer = null
-
-        this.state = {
-            expanded: false
-        }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
+      super(props);
+      this.state = { expanded: false };
+      props.actions.updateSnapshotSong(this.props.singleSong);
     }
 
+    // TODO This duplicate logic should be standardized
     onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.actions.toggleSong(song)
-    }
-
-    updateStorePlayPause(newSong) {
-        this.props.actions.togglePlayPause(newSong ? true : !this.props.isPlaying)
+      const isPlayButton = (
+          !this.props.isPlaying ||
+          song.id !== this.props.activeSong.id
+      );
+      if (isPlayButton) this.props.actions.toggleSong(song);
+      else this.props.actions.togglePlayPause(false);
     }
 
     renderPlayer() {
@@ -124,13 +120,13 @@ class SingleSong extends Component {
                     <div className="topSection">
                     {this.renderPlayer()}
                     <div className="singleSongInfo">
-                      <div className="songNameContainer">  <span className="songName">{song.name}</span><a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a></div> <br />
+                      <div className="songNameContainer">  <span className="songName">{song.name} <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a></span></div>
                       <div className="artistNameContainer">  <span className="artistName">{song.artist_name}</span> </div>
                     </div>
                     </div>
                         <div className="metaInfo">
                         <p className="leftInfo desktop">
-                        <span className="postDate "><Moment format="ll" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
+                        <span className="postDate "><span className="postAuthor">Jared Paul</span> | <Moment format="ll" date={song.created_at} /> | </span>
                         </p>
                         <p className="leftInfo mobile">
                         <span className="postDate "><Moment format="M/d/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
@@ -153,7 +149,7 @@ class SingleSong extends Component {
 }
 
 SingleSong.propTypes = {
-    song: PropTypes.object.isRequired,
+    singleSong: PropTypes.object.isRequired,
     toggleSong: PropTypes.func.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     activeSong: PropTypes.object,

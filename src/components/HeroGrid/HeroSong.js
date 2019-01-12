@@ -9,28 +9,26 @@ import YouTube from 'react-youtube'
 
 import { toggleSong, togglePlayPause } from 'actions/queue'
 
-import  playButton  from 'images/playbutton.svg'
-import  pauseButton  from 'images/pauseButton.png'
+import playButton from 'images/playbutton.svg'
+import pauseButton from 'images/pauseButton.png'
+import loadingButton from 'images/loading.gif'
 
 class HeroSong extends Component {
-    constructor(props) {
-        super(props)
 
-        this.ytPlayer = null
-
-        this.state = {
-            expanded: false
-        }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
-    }
-
-    onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.actions.toggleSong(song)
-    }
-
-    updateStorePlayPause(newSong) {
-        this.props.actions.togglePlayPause(newSong ? true : !this.props.isPlaying)
+    // TODO this is duplicated in src/components/Song/Song.js
+    onPressPlay = song => event => {
+      // TODO this should be determined by caller
+      // to guarantee that appearance of button aligns w/ its behavior
+      const isPlayButton = (
+          !this.props.isPlaying ||
+          song.id !== this.props.activeSong.id
+      );
+      if (isPlayButton) {
+        //this.props.playSong(song);
+        this.props.actions.toggleSong(song);
+      } else {
+        this.props.actions.togglePlayPause(false);
+      }
     }
 
     render() {
@@ -40,17 +38,18 @@ class HeroSong extends Component {
             isPlaying,
         } = this.props
 
-        const playPauseButton = song.id === activeSong.id && isPlaying ? (
-            <img src={pauseButton} className="pauseButton" />
-        ) : (
+        const readyToPlay = !!this.props.songPlayerDurations[song.id];
+        const playPauseButton = !readyToPlay ?
+          <img src={loadingButton} className="loadingButton" /> :
+          song.id === activeSong.id && isPlaying ?
+            <img src={pauseButton} className="pauseButton" /> :
             <img src={playButton} className="playButton" />
-        )
 
           return (
               <div className='post-square-wrapper play'>
                   <button
                       className="heroSongPlayerButton"
-                      onClick={() => this.onPressPlay(song)}
+                      onClick={readyToPlay && this.onPressPlay(song)}
                   >
                       {playPauseButton}
                   </button>

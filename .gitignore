@@ -22,3 +22,5 @@ deploy/config.sh
 .env
 
 server/request/users/signin.json
+
+src/components/FooterPlayer/MainPlayer.css

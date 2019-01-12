@@ -12,26 +12,6 @@ import './SongGridSquare.scss'
 
 
 class SongGrid extends Component {
-    constructor(props) {
-        super(props)
-
-        this.ytPlayer = null
-
-        this.state = {
-            expanded: false
-        }
-        this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
-    }
-
-    onPressPlay(song) {
-        this.updateStorePlayPause(song.id !== this.props.activeSong.id)
-        this.props.toggleSong(song)
-    }
-
-    updateStorePlayPause(newSong) {
-        this.props.togglePlayPause(newSong ? true : !this.props.isPlaying)
-    }
-
 
     renderTags() {
         const {
@@ -56,9 +36,14 @@ class SongGrid extends Component {
             isPlaying,
         } = this.props
 
-        const { height } = this.state
         return (
-            <div id={song.id} data-index={this.props.index} className={`songContainer ${this.props.activeDiscoverFullSong ? 'activeDiscoverFullSong' : ''}`} key={`${song.id}`} onClick={this.props.updateDiscoverFullSongIndex}>
+            <div
+              id={song.id}
+              data-index={this.props.index}
+              className={`songContainer ${this.props.activeDiscoverFullSong ? 'activeDiscoverFullSong' : ''}`}
+              key={`${song.id}`}
+              onClick={() => this.props.actions.updateSnapshotSong(song)}
+            >
                 <div className="imageContainer">
                   <div className="imageHover">
                     <img src={head} />
