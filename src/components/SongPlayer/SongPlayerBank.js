@@ -57,6 +57,9 @@ class SongPlayerBank extends React.Component {
     const activeIndex = !!this.activePlayer ? this.activePlayer.index : null;
     const snapshotIndex = !!snapshotSong && this.allPlayers[snapshotSong.id] && this.allPlayers[snapshotSong.id].index
     var indexOffset = this.props.heroSongs.length;
+    console.log("set new song list", songList);
+    console.log(activeIndex);
+    console.log(snapshotIndex);
 
     this.songListPlayers = songList.reduce((currPlayers, song, i) => {
       const currIndex = i + indexOffset;
@@ -70,7 +73,7 @@ class SongPlayerBank extends React.Component {
         return {
           ...currPlayers,
           [this.activePlayer.songId]: this.activePlayer,
-          [song.id]: this.createPlayer(song, currIndex)
+          [song.id]: this.createPlayer(song, currIndex + 1)
         }
 
       } else if (currIndex === snapshotIndex) {
@@ -78,7 +81,7 @@ class SongPlayerBank extends React.Component {
         return {
           ...currPlayers,
           [snapshotSong.id]: this.allPlayers[snapshotSong.id],
-          [song.id]: this.createPlayer(song, currIndex)
+          [song.id]: this.createPlayer(song, currIndex + 1)
         }
 
       } else {

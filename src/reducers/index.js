@@ -66,7 +66,8 @@ const appReducers = handleActions({
       songListPosts: { $set: action.payload.slice(0, state.songListSize) },
       snapshotPost: { $set: action.payload[0] },
       currentSongListPageIndex: { $set: 0 },
-      maxSongListPageIndex: { $set: 0 }
+      maxSongListPageIndex: { $set: 0 },
+      shouldLoadPlayers: { $set: true }
     })
   },
   'app/CURRENT_REQUEST_LOADING': (state, action) => {
@@ -108,15 +109,6 @@ const appReducers = handleActions({
     } else {
       return state
     }
-  },
-  'app/RESET_LOADED_SONGS': (state, action) => {
-    const newSongList = state.filteredPosts.slice(0, state.songListSize);
-    return update(state, {
-      songListPosts: { $set: newSongList },
-      currentSongListPageIndex: { $set: 0 },
-      maxSongListPageIndex: { $set: 0 },
-      shouldLoadPlayers: { $set: true }
-    })
   },
   'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
     return update(state, {
