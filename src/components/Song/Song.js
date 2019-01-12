@@ -87,7 +87,7 @@ class Song extends Component {
                 <div className="singlePostPlayer hideMobile">
                     <button
                         className="singlePostPlayerButton"
-                        onClick={readyToPlay && this.onPressPlay(song)}
+                        onClick={readyToPlay ? this.onPressPlay(song) : undefined}
                     >
                         {playPauseButton}
                     </button>
