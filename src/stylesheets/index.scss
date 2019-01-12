@@ -93,11 +93,6 @@ max-height: calc(100vh - 135px);
   display: none !important;
 }
 
-// EXPERIMENT *****
-.hero-posts {
-  padding-bottom: 0px;
-background: #fff;
-}
 
 @media (min-width: 480px) and (max-width: 800px) {
   .fixedFiltersBarPadding {
@@ -185,27 +180,6 @@ p {
 
 
 
-
-
-
-
-
-// DESKTOP HOME HERO
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width:800px) {
 
     .discovery-section {
@@ -261,20 +235,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
   }
 
 
-  .homeContainer .hero-posts {
-      width: 100vw;
-      white-space: nowrap;
-      max-height: 650px !important;
-      max-width: 650px !important;
-      height: auto !important;
-      position: fixed;
-      margin: 0 auto;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 115px;
-      z-index: 3 !important;
-  }
-
   .socialLinks {
     position: fixed !important;
     width: 100%;
@@ -289,7 +249,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
     margin-top: $discovery-parallax-padding;
     z-index: 1000 !important;
     background: #fff;
-    border-top: 1px solid #C9C6CB;
     .songList {
       overflow: visible !important;
     }
@@ -471,6 +430,16 @@ $discovery-parallax-padding: calc(100vw + 89px);
 
   .discovery-section {
 
+    .fullGridLayout {
+      .songContainer {
+        .imageContainer {
+          img {
+            max-height: none !important;
+          }
+        }
+      }
+    }
+
     .songGrid {
       display: none;
     }
@@ -479,9 +448,11 @@ $discovery-parallax-padding: calc(100vw + 89px);
       display: inline-block;
       background: #fff;
       vertical-align: top;
-      padding-top: 0px;
-      padding-bottom: 15px;
+      padding-top: 15px;
+      padding-bottom: 75px;
     }
+
+
 
     .songList .songContainer {
       display: inline-block;
@@ -894,7 +865,8 @@ a.spotifyLink {
 
           .singlePostPlayer {
             display: inline-block;
-            padding: 5px;
+            padding: 0 5px;
+            padding-top: 0;
             padding-left: 0px;
           }
 
@@ -906,7 +878,7 @@ a.spotifyLink {
 
             a.postTitleLink {
                 font-size: 24px;
-                line-height: 34px;
+                line-height: 24px;
                 text-decoration: none;
                 color: black;
                 font-weight: 700;
@@ -1824,9 +1796,10 @@ button {
     font-size: 26px;
     z-index: 1;
     display: inline-block;
-    margin-left: 0px;
+    margin-left: 3px;
     width: 30px;
-        padding: 3px;
+        padding: 0 3px;
+        transform: translateY(-2px);
     // right: 0px;
     // top: 35px;
 }
@@ -2248,9 +2221,9 @@ span.postTags:nth-of-type(3) {
       position: absolute;
       // width: 150%;
       display: block;
-      height: 30px;
+      height: 25px;
       // animation: marquee 15s linear infinite;
-          top: 30px;
+          top: 25px;
   }
 
   .discover-full-song .songInfo.desktop {
@@ -2469,7 +2442,7 @@ transform: translateX(-50%);
 
 
 @media (max-width: 800px) {
-  p.goToPage, .ToggleViewsWrapper, .heroHoverGradient {
+  p.goToPage, .ToggleViewsWrapper {
     display: none;
   }
 
@@ -2480,7 +2453,7 @@ transform: translateX(-50%);
 
 // CONNECT PAGE MOBILE STYLES
 @media (max-width: 800px) {
-  p.goToPage, .ToggleViewsWrapper, .heroHoverGradient, .hover-content {
+  p.goToPage, .ToggleViewsWrapper, .hover-content {
     display: none;
   }
 
@@ -3662,11 +3635,6 @@ width: 800px;
   }
 
 
-
-  .homeContainer .hero-posts {
-      top: 90px;
-  }
-
   .discovery-section {
       // margin-top: calc(100vw + 90px);
   }
@@ -3749,11 +3717,6 @@ width: 800px;
   box-shadow: none !important;
 }
 
-
-.footer-player {
-      padding-bottom: 5px !important;
-
-}
 
 .discovery-section .songList .songContainer .postContent p.songDescription {
     font-family: 'Open Sans', sans-serif;
@@ -3866,4 +3829,12 @@ width: 800px;
 
 
 
+}
+
+
+
+
+// TO BE DELETED - HIDE 16TH SONG
+  .fullGridLayout .songList .songContainer:nth-of-type(16) {
+    display: none !important;
 }

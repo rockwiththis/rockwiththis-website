@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Scroll from 'react-scroll'
+import $ from "jquery";
+
 
 import LoadingComponent from 'components/Loading/LoadingComponent'
 
@@ -38,6 +40,8 @@ class FiltersBar extends Component {
 
     fetchCurrentRequest() {
       this.setState({ loading: true })
+
+
       const callback = () => {
         document.removeEventListener('click', this.closeSubGenreFilters)
         this.setState({
@@ -47,15 +51,17 @@ class FiltersBar extends Component {
           filtersToShow: this.props.selectedFilters,
           loading: false,
         }, () => {
-          Scroll.scroller.scrollTo('discoverySectionScroll', {
-            duration: 500,
-            smooth: true
-          })
-          Scroll.scroller.scrollTo('scrollToDiscoveryTop', {
-            containerId: 'discoverSongsWrapper',
-            duration: 500,
-            smooth: true
-          })
+          if (window.innerWidth > 800) {
+              $('#discovery-container').animate({scrollTop: 0}, 100);
+          } else {
+            Scroll.scroller.scrollTo('discoverySectionScroll', {
+              duration: 500,
+              smooth: true
+            })
+          }
+
+
+
         })
       }
       this.props.actions.fetchCurrentRequest(callback)
@@ -84,6 +90,15 @@ class FiltersBar extends Component {
       })
 
       this.props.resetGridPage()
+
+      if (window.innerWidth > 800) {
+          $('#discovery-container').animate({scrollTop: 0}, 100);
+      } else {
+        Scroll.scroller.scrollTo('discoverySectionScroll', {
+          duration: 500,
+          smooth: true
+        })
+      }
     }
 
     fixedFiltersBar() {

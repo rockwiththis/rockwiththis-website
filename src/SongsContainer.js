@@ -17,6 +17,10 @@ import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlacehol
 import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import PaginationControls from 'components/PaginationControls';
+import * as Scroll from 'react-scroll'
+import $ from "jquery";
+
+
 
 /* eslint-disable */
 
@@ -224,14 +228,14 @@ class SongsContainer extends Component {
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
 
-                <div id="songList" className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
+                <div id="songList"  className={`songList ${this.state.fixedFilterBar ? 'fixedFiltersBarPadding' : ''}`}>
                   <div className="discoverySectionScroll" name='discoverySectionScroll'>
 
-                    <PaginationControls
+                  {/*<PaginationControls
                       currPageIndex={this.props.currentSongListPageIndex}
                       onForward={() => this.props.actions.loadMoreSongs()}
                       onBackward={this.props.actions.loadPreviousSongs}
-                    />
+                    /> */}
 
                     {songList}
 

@@ -72,10 +72,6 @@ img.discover-cover {
 .discover-full-song .toggle-song {
   display: none !important; }
 
-.hero-posts {
-  padding-bottom: 0px;
-  background: #fff; }
-
 @media (min-width: 480px) and (max-width: 800px) {
   .fixedFiltersBarPadding {
     padding-top: 110px !important; } }
@@ -149,18 +145,6 @@ p {
     height: 70px;
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     z-index: 2000; }
-  .homeContainer .hero-posts {
-    width: 100vw;
-    white-space: nowrap;
-    max-height: 650px !important;
-    max-width: 650px !important;
-    height: auto !important;
-    position: fixed;
-    margin: 0 auto;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 115px;
-    z-index: 3 !important; }
   .socialLinks {
     position: fixed !important;
     width: 100%;
@@ -172,8 +156,7 @@ p {
     z-index: 1000;
     margin-top: calc(100vw + 89px);
     z-index: 1000 !important;
-    background: #fff;
-    border-top: 1px solid #C9C6CB; }
+    background: #fff; }
     .discovery-section .songList {
       overflow: visible !important; } }
 
@@ -281,6 +264,8 @@ p {
     height: calc(100vh - 132px);
     z-index: 8500;
     max-height: none !important; }
+  .discovery-section .fullGridLayout .songContainer .imageContainer img {
+    max-height: none !important; }
   .discovery-section .songGrid {
     display: none; }
   .discovery-section .songList {
@@ -288,8 +273,8 @@ p {
     display: inline-block;
     background: #fff;
     vertical-align: top;
-    padding-top: 0px;
-    padding-bottom: 15px; }
+    padding-top: 15px;
+    padding-bottom: 75px; }
   .discovery-section .songList .songContainer {
     display: inline-block;
     vertical-align: top;
@@ -575,7 +560,8 @@ a.spotifyLink {
             border-radius: 4px; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .singlePostPlayer {
           display: inline-block;
-          padding: 5px;
+          padding: 0 5px;
+          padding-top: 0;
           padding-left: 0px; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .songInfo {
           display: inline-block;
@@ -583,7 +569,7 @@ a.spotifyLink {
           pointer-events: all; }
           .discovery-container .discover-full-song .songContainer .topContentContainer .songInfo a.postTitleLink {
             font-size: 24px;
-            line-height: 34px;
+            line-height: 24px;
             text-decoration: none;
             color: black;
             font-weight: 700; }
@@ -1138,9 +1124,10 @@ button {
   font-size: 26px;
   z-index: 1;
   display: inline-block;
-  margin-left: 0px;
+  margin-left: 3px;
   width: 30px;
-  padding: 3px; }
+  padding: 0 3px;
+  transform: translateY(-2px); }
 
 .discover-full-song .songContainer .spotify:hover {
   cursor: pointer;
@@ -1375,8 +1362,8 @@ span.postTags:nth-of-type(3) {
   .marquee-inner.artist {
     position: absolute;
     display: block;
-    height: 30px;
-    top: 30px; }
+    height: 25px;
+    top: 25px; }
   .discover-full-song .songInfo.desktop {
     width: 50%;
     height: 60px; } }
@@ -1464,11 +1451,11 @@ ul.control-dots {
   text-align: left; }
 
 @media (max-width: 800px) {
-  p.goToPage, .ToggleViewsWrapper, .heroHoverGradient {
+  p.goToPage, .ToggleViewsWrapper {
     display: none; } }
 
 @media (max-width: 800px) {
-  p.goToPage, .ToggleViewsWrapper, .heroHoverGradient, .hover-content {
+  p.goToPage, .ToggleViewsWrapper, .hover-content {
     display: none; } }
 
 .submitSongPage.page {
@@ -2192,8 +2179,6 @@ form.rwt-email-form button {
         padding-top: 4px; }
   .socialLinks {
     top: 50px; }
-  .homeContainer .hero-posts {
-    top: 90px; }
   .discovery-section .filters-bar {
     height: 50px !important;
     background: #fff !important; }
@@ -2233,8 +2218,6 @@ form.rwt-email-form button {
       border-radius: 0px !important; }
   .headerContainer {
     box-shadow: none !important; }
-  .footer-player {
-    padding-bottom: 5px !important; }
   .discovery-section .songList .songContainer .postContent p.songDescription {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
@@ -2286,3 +2269,6 @@ form.rwt-email-form button {
     max-width: 674px; }
   #discovery-container .discover-full-song {
     max-width: 905px; } }
+
+.fullGridLayout .songList .songContainer:nth-of-type(16) {
+  display: none !important; }
