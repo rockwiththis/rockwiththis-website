@@ -712,6 +712,10 @@ ul.control-dots {
 .discover-full-song ul.control-dots {
   display: none; }
 
+.discover-full-song .loadingButton {
+  max-width: 35px !important;
+  max-height: 35px !important; }
+
 .postInfoContainer {
   text-align: left; }
 

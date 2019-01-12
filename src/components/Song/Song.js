@@ -7,8 +7,10 @@ import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 import ShareBox from 'components/ShareBox/ShareBox'
-import  playButton  from 'images/playbutton.svg'
-import  pauseButton  from 'images/pauseButton.png'
+
+import playButton from 'images/playbutton.svg'
+import pauseButton from 'images/pauseButton.png'
+import loadingButton from 'images/loading.gif'
 import pauseButtonWhite from 'images/PAUSE-BUTTON.png'
 import hoverGradient from 'images/rwt-hover-gradient.png'
 
@@ -30,8 +32,8 @@ class Song extends Component {
           !this.props.isPlaying ||
           song.id !== this.props.activeSong.id
       );
-      this.props.actions.togglePlayPause(false);
       if (isPlayButton) this.props.actions.toggleSong(song);
+      else this.props.actions.togglePlayPause(false);
     }
 
     renderTags() {
@@ -72,22 +74,20 @@ class Song extends Component {
             layout,
         } = this.props
 
-        const playPauseButton = song.id === activeSong.id && isPlaying ? (
-            <img src={pauseButtonWhite} className="pauseButton" />
-
-        ) : (
-          <svg className="playButton" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
-        )
-
+        const readyToPlay = !!this.props.songPlayerDurations[song.id];
+        const playPauseButton = !readyToPlay ?
+          <img src={loadingButton} className="loadingButton" height="60" width="60" /> :
+          song.id === activeSong.id && isPlaying ?
+            <img src={pauseButtonWhite} className="pauseButton" /> :
+            <svg className="playButton" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
 
         return (
-
             <div className="topContentContainer" >
               <div className="postInfoContainer" >
                 <div className="singlePostPlayer hideMobile">
                     <button
                         className="singlePostPlayerButton"
-                        onClick={this.onPressPlay(song)}
+                        onClick={readyToPlay ? this.onPressPlay(song) : undefined}
                     >
                         {playPauseButton}
                     </button>

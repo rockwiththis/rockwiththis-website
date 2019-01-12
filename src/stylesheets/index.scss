@@ -1414,6 +1414,11 @@ transform: translateX(-50%);
     display: none;
   }
 
+  // Override some img styles in `react-responsive-carousel`
+  .loadingButton {
+    max-width: 35px !important;
+    max-height: 35px !important;
+  }
 }
 
 
