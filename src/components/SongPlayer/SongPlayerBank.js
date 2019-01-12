@@ -36,7 +36,7 @@ class SongPlayerBank extends React.Component {
         [song.id]: this.createPlayer(song, i)
       }), {})
       this.setSongListPlayers(this.props.initialSongList);
-      this.activePlayer = this.songListPlayers[this.props.initialActiveSong.id]
+      this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
     })
   }
 
@@ -139,8 +139,6 @@ class SongPlayerBank extends React.Component {
   }
 
   onPlayerReady = songId => ref => {
-    console.log('Player Ready!', songId, this.allPlayers);
-
     this.allPlayers[songId].getDuration()
     .then(seconds => this.props.setSongDuration(songId, seconds))
   }
@@ -151,7 +149,6 @@ class SongPlayerBank extends React.Component {
     // TODO get from `allPlayers`
     const newActivePlayer = this.allPlayers[songToPlay.id]
     if (!!newActivePlayer) {
-      console.log("PLAYING NEW SONG");
       newActivePlayer.play();
 
       if (!!this.activePlayer) {
@@ -176,7 +173,6 @@ class SongPlayerBank extends React.Component {
   }
 
   render = () => {
-    console.log(this.sprops);
     const songCount = this.props.initialSongList.length + this.props.heroSongs.length + 1
     return (
       <div className="song-player-bank">
