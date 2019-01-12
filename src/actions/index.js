@@ -110,11 +110,10 @@ export const updateSnapshotSong = newSnapshotSong => dispatch => {
   dispatch(UPDATE_SNAPSHOT_SONG(newSnapshotSong));
 }
 
-// TODO use connect and remove `dispatch` arg like this for the rest of these
-const LOADING_PLAYER = createAction('app/LOADING_PLAYER');
-export const loadingPlayer = loadingSong => dispatch => (
-  dispatch(LOADING_PLAYER(loadingSong.id))
-);
+const PLAYER_BANK_UPDATED = createAction('app/PLAYER_BANK_UPDATED');
+export const playerBankUpdated = () => dispatch => {
+  dispatch(PLAYER_BANK_UPDATED());
+}
 
 const PLAYER_LOADED = createAction('app/PLAYER_LOADED');
 export const playerLoaded = (loadedSongId, durationSeconds) => dispatch => (

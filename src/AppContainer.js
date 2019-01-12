@@ -21,13 +21,13 @@ class AppContainer extends Component {
     this.props.actions.fetchFilters()
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     window.addEventListener('scroll', this.handleScroll)
     console.log("stste");
     console.log(this.props);
   }
 
-  handleScroll() {
+  handleScroll = () => {
     const shrinkHeader = window.scrollY > 70
     this.setState({ shrinkHeader })
   }
@@ -35,7 +35,7 @@ class AppContainer extends Component {
   // TODO there *has* to be a better way of calling player bank functions
   // Maybe putting the bank ref in the app store?
   // Calling these *before* re-rendering would probably cause significant performance improvement
-  componentDidUpdate(prevProps) {
+  componentDidUpdate = prevProps => {
 
     if (!this.props.isPlaying && prevProps.isPlaying) {
       this.playerBankRef.current.pauseActiveSong();
@@ -43,13 +43,21 @@ class AppContainer extends Component {
 
     if (prevProps.activeSong.id !== this.props.activeSong.id &&
         this.props.isPlaying) {
+      console.log("PLAYING FRESH SONG", this.props.activeSong);
       this.playerBankRef.current.playSongListSong(this.props.activeSong);
 
     } else if (this.props.isPlaying && !prevProps.isPlaying) {
+      console.log("PLAYING CURRENT SONG", this.props.activeSong);
       this.playerBankRef.current.playActiveSong();
     }
 
-    // This logic sucks ...
+    if (this.props.shouldLoadPlayers) {
+      this.playerBankRef.current.setSongListPlayers(this.props.songListPosts, this.props.snapshotPost);
+      this.props.actions.playerBankUpdated();
+    }
+
+    /*
+    // This logic sucks (and is causing problems)
     if (this.props.songListPosts.length > 0 && 
         prevProps.songListPosts.length > 0 &&
         prevProps.songListPosts[0].id !== this.props.songListPosts[0].id) {
@@ -57,6 +65,7 @@ class AppContainer extends Component {
       console.log("SET SONG LIST")
       this.playerBankRef.current.setSongListPlayers(this.props.songListPosts);
     }
+    */
 
     /*
     if (prevProps.activeSong.id !== this.props.activeSong.id &&

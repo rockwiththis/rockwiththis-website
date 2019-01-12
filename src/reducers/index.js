@@ -36,7 +36,8 @@ export const INITIAL_STATE = {
   maxSongListPageIndex: 0,
   songListSize: 16,
   heroSongCount: 7,
-  songPlayerDurations: {}
+  songPlayerDurations: {},
+  shouldLoadPlayers: false
 }
 
 const appReducers = handleActions({
@@ -53,6 +54,7 @@ const appReducers = handleActions({
     })
   },
   'app/SET_REMAINING_POSTS': (state, action) => {
+    // WTF??
     return state
     return update(state, {
       filteredPosts: { $set: [...state.posts, ...action.payload] }
@@ -77,16 +79,19 @@ const appReducers = handleActions({
       filteredPosts: { $set: [...state.filteredPosts, ...action.payload]},
       songListPosts: { $set: action.payload },
       currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
-      maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 }
+      maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
+      shouldLoadPlayers: { $set: true }
     })
   },
   'app/LOAD_NEXT_SONGS': (state, action) => {
     const newPageIndex = state.currentSongListPageIndex + 1;
     const startPostIndex = newPageIndex * state.songListSize;
     const endPostIndex = startPostIndex + state.songListSize;
+    const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
     return update(state, {
-      songListPosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
-      currentSongListPageIndex: { $set: newPageIndex }
+      songListPosts: { $set: newSongList },
+      currentSongListPageIndex: { $set: newPageIndex },
+      shouldLoadPlayers: { $set: true }
     })
   },
   'app/LOAD_PREVIOUS_SONGS': (state, action) => {
@@ -94,18 +99,23 @@ const appReducers = handleActions({
     if (newPageIndex >= 0) {
       const startPostIndex = newPageIndex * state.songListSize;
       const endPostIndex = startPostIndex + state.songListSize;
+      const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
       return update(state, {
-        songListPosts: { $set: state.filteredPosts.slice(startPostIndex, endPostIndex) },
-        currentSongListPageIndex: { $set: newPageIndex }
+        songListPosts: { $set: newSongList },
+        currentSongListPageIndex: { $set: newPageIndex },
+        shouldLoadPlayers: { $set: true }
       })
     } else {
       return state
     }
   },
   'app/RESET_LOADED_SONGS': (state, action) => {
+    const newSongList = state.filteredPosts.slice(0, state.songListSize);
     return update(state, {
-      songListPosts: { $set: state.filteredPosts.slice(0, state.songListSize) },
-      currentSongListPageIndex: { $set: 0 }
+      songListPosts: { $set: newSongList },
+      currentSongListPageIndex: { $set: 0 },
+      maxSongListPageIndex: { $set: 0 },
+      shouldLoadPlayers: { $set: true }
     })
   },
   'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
@@ -114,13 +124,8 @@ const appReducers = handleActions({
       activeSong: { $set: !!state.activeSong.id ? state.activeSong : action.payload }
     })
   },
-  'app/LOADING_PLAYER': (state, action) => {
-    return update(state, {
-      songPlayerDurations: { $set: {
-        ...state.songPlayerDurations,
-        [action.payload]: undefined
-      }}
-    })
+  'app/PLAYER_BANK_UPDATED': (state, action) => {
+    return update(state, { shouldLoadPlayers: { $set: false } });
   },
   'app/PLAYER_LOADED': (state, action) => {
     return update(state, {
@@ -152,7 +157,7 @@ const appReducers = handleActions({
   },
   'app/TOGGLE_PLAY_PAUSE': (state, action) => {
     return update(state, {
-      isPlaying: { $set: action.payload}
+      isPlaying: { $set: action.payload }
     })
   },
   'app/TOGGLE_SONG': (state, action) => {

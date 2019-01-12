@@ -1,10 +1,13 @@
+// react gods please forgive me for i have sinned...
+
 import React from 'react';
 import SoundCloudWidget from 'soundcloud-widget';
 
 import './SongPlayerBank.scss';
 
-const getYoutubeSongListPlayerId = i => `song-list-yt-player-${i}`;
-const getSoundcloudSongListPlayerId = i => `song-list-sc-player-${i}`;
+const getParentPlayerId = i => `song-player-song-${i}`;
+const getYoutubePlayerId = i => `song-list-yt-player-${i}`;
+const getSoundcloudPlayerId = i => `song-list-sc-player-${i}`;
 
 const youtubeUrlPattern = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/;
 const getSoundCloudUrl = scid => {
@@ -50,43 +53,66 @@ class SongPlayerBank extends React.Component {
       })
   )
 
-  setSongListPlayers = songList => {
+  setSongListPlayers = (songList, snapshotSong) => {
     const activeIndex = !!this.activePlayer ? this.activePlayer.index : null;
+    const snapshotIndex = !!snapshotSong && this.allPlayers[snapshotSong.id] && this.allPlayers[snapshotSong.id].index
     var indexOffset = this.props.heroSongs.length;
 
     this.songListPlayers = songList.reduce((currPlayers, song, i) => {
-      const listIndex = i + indexOffset;
+      const currIndex = i + indexOffset;
 
       if (!!this.heroPlayers[song.id]) {
+        indexOffset -= 1;
         return currPlayers
 
-      } else if (i + indexOffset === activeIndex) {
+      } else if (currIndex === activeIndex) {
         indexOffset += 1;
         return {
           ...currPlayers,
           [this.activePlayer.songId]: this.activePlayer,
-          [song.id]: this.createPlayer(i + indexOffset)
+          [song.id]: this.createPlayer(song, currIndex)
+        }
+
+      } else if (currIndex === snapshotIndex) {
+        indexOffset += 1;
+        return {
+          ...currPlayers,
+          [snapshotSong.id]: this.allPlayers[snapshotSong.id],
+          [song.id]: this.createPlayer(song, currIndex)
         }
 
       } else {
         return {
           ...currPlayers,
-          [song.id]: this.createPlayer(song, listIndex)
+          [song.id]: this.createPlayer(song, currIndex)
         }
       }
     }, {});
+
     this.allPlayers = { ...this.heroPlayers, ...this.songListPlayers }
   }
 
-  createPlayer = (song, index) => (
-      !!song.soundcloud_track_id ?
+  createPlayer = (song, index) => {
+    console.log(`Song ${song.id} @ index ${index}`);
+      return !!song.soundcloud_track_id ?
         this.createSoundCloudPlayer(song, index) :
         this.createYoutubePlayer(song, index)
-  )
+  }
 
+  getCleanPlayerElement = (index, elementType, getId) => {
+    const parentDiv = document.getElementById(getParentPlayerId(index));
+    parentDiv.innerHTML = '';
+
+    const playerDiv = document.createElement(elementType);
+    playerDiv.id = getId(index);
+    parentDiv.appendChild(playerDiv);
+
+    return playerDiv;
+  }
 
   createYoutubePlayer = (song, index) => {
-    const player = new this.YT.Player(getYoutubeSongListPlayerId(index), {
+    const playerDiv = this.getCleanPlayerElement(index, 'div', getYoutubePlayerId);
+    const player = new this.YT.Player(playerDiv.id, {
       videoId: song.youtube_link.match(youtubeUrlPattern)[1],
       playerVars: {
         playsinline: 1
@@ -110,11 +136,9 @@ class SongPlayerBank extends React.Component {
   }
 
   createSoundCloudPlayer = (song, index) => {
-    const playerId = getSoundcloudSongListPlayerId(index);
-    document.getElementById(playerId)
-      .setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
-
-    const player = new SoundCloudWidget(playerId);
+    const playerDiv = this.getCleanPlayerElement(index, 'iframe', getSoundcloudPlayerId);
+    playerDiv.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
+    const player = new SoundCloudWidget(playerDiv);
     player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
     return {
       index: index,
@@ -139,6 +163,7 @@ class SongPlayerBank extends React.Component {
   }
 
   onPlayerReady = songId => ref => {
+    console.log("loaded song", songId);
     this.allPlayers[songId].getDuration()
     .then(seconds => this.props.setSongDuration(songId, seconds))
   }
@@ -146,15 +171,15 @@ class SongPlayerBank extends React.Component {
   updateSongProgress = progressRatio => this.activePlayer.seekTo(progressRatio);
 
   playSongListSong = songToPlay => {
-    // TODO get from `allPlayers`
-    const newActivePlayer = this.allPlayers[songToPlay.id]
+    const newActivePlayer = this.allPlayers[songToPlay.id];
+    console.log("playing song", newActivePlayer);
     if (!!newActivePlayer) {
       newActivePlayer.play();
 
       if (!!this.activePlayer) {
         clearInterval(this.durationInterval);
-        this.activePlayer.pause();
         this.activePlayer.seekTo(0);
+        this.activePlayer.pause();
       }
       this.activePlayer = newActivePlayer;
       this.durationInterval = setInterval(this.activePlayer.reportProgress, REPORT_DURATION_INTERVAL);
@@ -173,14 +198,11 @@ class SongPlayerBank extends React.Component {
   }
 
   render = () => {
-    const songCount = this.props.initialSongList.length + this.props.heroSongs.length + 1
+    const songCount = this.props.initialSongList.length + this.props.heroSongs.length + 2;
     return (
       <div className="song-player-bank">
         {Array.apply(null, Array(songCount)).map((_, i) => (
-            <div className="song-player-song">
-              <div id={`song-list-yt-player-${i}`}></div>
-              <iframe id={`song-list-sc-player-${i}`}></iframe>
-            </div>
+            <div id={getParentPlayerId(i)}></div>
         ))}
       </div>
     )
