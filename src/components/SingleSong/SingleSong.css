@@ -4,7 +4,7 @@
 @media (min-width: 800px) {
   .singleSongPage {
     padding: 25px 35px 0;
-    max-height: calc(100vh - 180px);
+    padding-bottom: 75px;
     overflow: hidden; } }
 
 .singleSongPage .singleSongContainer {
@@ -298,7 +298,6 @@
           cursor: pointer; }
     @media (min-width: 800px) {
       .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer {
-        max-height: calc(100vh - 330px);
         overflow: auto;
         padding-bottom: 0 !important;
         pointer-events: all; } }

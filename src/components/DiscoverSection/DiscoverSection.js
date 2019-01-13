@@ -23,6 +23,8 @@ import $ from "jquery";
 import './stylesheets/DiscoverSection.scss'
 import './stylesheets/GridView.scss'
 import './stylesheets/SnapListView.scss'
+import './stylesheets/FullView.scss'
+import './stylesheets/FullViewMobile.scss'
 
 
 /* eslint-disable */

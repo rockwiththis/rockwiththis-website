@@ -4,24 +4,27 @@ div#discovery-container.fullGridLayout .songGrid {
 div#discovery-container.fullGridLayout .discover-full-song {
   display: none; }
 
-.discover-section {
+.discover-cover {
+  display: none; }
+
+.discovery-section {
   position: relative; }
   @media (min-width: 800px) {
-    .discover-section {
+    .discovery-section {
       padding-bottom: 35px;
       height: calc(100vh - 174px); } }
   @media (max-width: 480px) {
-    .discover-section {
+    .discovery-section {
       margin-top: calc(100vw + 89px);
       z-index: 1000;
       background: #fff; } }
-  .discover-section img.discover-cover {
+  .discovery-section img.discover-cover {
     display: none; }
   @media (min-width: 800px) {
-    .discover-section .disableScroll {
+    .discovery-section .disableScroll {
       overflow: hidden; } }
   @media (min-width: 800px) {
-    .discover-section .discovery-container {
+    .discovery-section .discovery-container {
       background: #fafafa;
       width: 100vw;
       max-height: calc(100vh - 135px);
@@ -30,15 +33,15 @@ div#discovery-container.fullGridLayout .discover-full-song {
       margin: 0 auto;
       overflow: auto; } }
   @media (min-width: 800px) {
-    .discover-section .discovery-container {
+    .discovery-section .discovery-container {
       height: calc(100vh - 50px); } }
-  .discover-section .songList {
+  .discovery-section .songList {
     padding-bottom: 75px; }
     @media (min-width: 800px) {
-      .discover-section .songList {
+      .discovery-section .songList {
         display: none; } }
     @media (max-width: 800px) {
-      .discover-section .songList {
+      .discovery-section .songList {
         width: 100%;
         display: inline-block;
         background: #fff;
@@ -46,8 +49,8 @@ div#discovery-container.fullGridLayout .discover-full-song {
         padding-top: 15px;
         padding-bottom: 75px; } }
   @media (max-width: 800px) and (min-width: 480px) {
-    .discover-section .songList.fixedFiltersBarPadding {
+    .discovery-section .songList.fixedFiltersBarPadding {
       padding-top: 110px; } }
   @media (max-width: 480px) {
-    .discover-section .songList.fixedFiltersBarPadding {
+    .discovery-section .songList.fixedFiltersBarPadding {
       padding-top: 65px; } }

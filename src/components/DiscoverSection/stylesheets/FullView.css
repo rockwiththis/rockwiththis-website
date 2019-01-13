@@ -1,0 +1,285 @@
+@media (max-width: 800px) {
+  .fullView {
+    display: none !important; } }
+
+.fullView .songGrid {
+  height: calc(38vw - 30px);
+  width: calc(38vw - 30px);
+  max-height: 674px;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 35px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 3;
+  max-width: 674px; }
+  @media (max-width: 1100px) and (min-width: 800px) {
+    .fullView .songGrid {
+      width: calc(30% - 35px);
+      max-height: none; } }
+  @media (max-width: 800px) {
+    .fullView .songGrid {
+      display: none !important; } }
+  .fullView .songGrid .grid-container-wrapper {
+    height: calc(38vw - 30px);
+    width: calc(38vw - 30px);
+    overflow: hidden;
+    white-space: nowrap; }
+    @media (max-width: 1100px) and (min-width: 800px) {
+      .fullView .songGrid .grid-container-wrapper {
+        height: auto;
+        width: 100% !important; } }
+    .fullView .songGrid .grid-container-wrapper .carousel .grid-container {
+      position: relative;
+      white-space: normal;
+      display: inline-block; }
+      .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer {
+        width: calc(25% - 2px);
+        display: inline-block;
+        margin: -3px 0 0;
+        cursor: pointer;
+        border: 1px solid #fff; }
+        @media (max-width: 1100px) and (min-width: 800px) {
+          .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer {
+            width: calc(50% - 2px); } }
+        .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer .imageContainer {
+          width: 100%;
+          position: relative; }
+          .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer .imageContainer .imageHover {
+            background-image: url("../../../images/rwt-hover-gradient.png");
+            position: absolute;
+            top: 0;
+            bottom: 3px;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            background-size: cover;
+            height: 100%;
+            border: 0 solid #fff; }
+            .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer .imageContainer .imageHover img {
+              display: block;
+              width: 100%;
+              position: absolute;
+              max-width: 50px;
+              top: 50%;
+              left: 50%;
+              -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%); }
+          .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer .imageContainer img.carousel-song-image {
+            vertical-align: top;
+            border: 0;
+            width: 100%; }
+      .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer:hover .imageHover {
+        opacity: 1; }
+        .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer:hover .imageHover img {
+          display: none; }
+      .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer.activeDiscoverFullSong .imageHover {
+        opacity: 1 !important; }
+        .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer.activeDiscoverFullSong .imageHover img {
+          display: block;
+          position: absolute;
+          max-width: 50px;
+          top: 50%;
+          left: 50%;
+          -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+  .fullView .songGrid .pagination-controls {
+    text-align: center;
+    flex-direction: row;
+    height: 20px;
+    display: flex;
+    justify-content: center; }
+    .fullView .songGrid .pagination-controls .grid-arrow {
+      height: 20px;
+      -webkit-transition: all .2s ease;
+      transition: all .2s ease; }
+      .fullView .songGrid .pagination-controls .grid-arrow img {
+        height: 100%; }
+    .fullView .songGrid .pagination-controls .grid-arrow.previous {
+      -webkit-transform: rotate(180deg);
+      transform: rotate(180deg); }
+    .fullView .songGrid .pagination-controls .pagination-container {
+      width: 125px;
+      flex-direction: row;
+      margin: 0;
+      padding-right: 0;
+      text-align: center; }
+      .fullView .songGrid .pagination-controls .pagination-container .pagination-dot {
+        right: 0;
+        top: 0;
+        margin-left: 5px;
+        margin-right: 5px; }
+        .fullView .songGrid .pagination-controls .pagination-container .pagination-dot i {
+          color: #282828; }
+      .fullView .songGrid .pagination-controls .pagination-container .pagination-dot-active i {
+        color: #4a90e2 !important; }
+      .fullView .songGrid .pagination-controls .pagination-container .pagination-dot-small {
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+        height: 8px;
+        width: 8px;
+        background-color: #282828;
+        border-radius: 50%; }
+    .fullView .songGrid .pagination-controls .grid-arrow.next {
+      right: 0; }
+
+@media (min-width: 905px) {
+  .fullView .discover-full-song {
+    max-width: 905px;
+    width: 57%;
+    display: inline-block;
+    height: auto;
+    position: relative;
+    margin: 20px 35px 0;
+    padding-bottom: 35px; } }
+
+@media (max-width: 1500px) and (min-width: 1250px) {
+  .fullView .discover-full-song {
+    width: 56%; } }
+
+@media (max-width: 1249px) and (min-width: 800px) {
+  .fullView .discover-full-song {
+    width: 55%; } }
+
+@media (max-width: 1100px) and (min-width: 800px) {
+  .fullView .discover-full-song {
+    width: 66%;
+    display: inline-block;
+    height: auto;
+    position: relative;
+    padding-bottom: 35px;
+    margin: 20px 2% 0; } }
+
+@media (max-width: 800px) {
+  .fullView .discover-full-song {
+    display: none !important; } }
+
+.fullView .discover-full-song button.toggle-song {
+  display: none;
+  cursor: pointer !important;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  max-height: 674px;
+  width: 30px;
+  background-size: contain;
+  opacity: .5; }
+  .fullView .discover-full-song button.toggle-song img {
+    top: 50%;
+    height: 30px; }
+
+.fullView .discover-full-song button.toggle-song.previous {
+  transform: rotate(180deg); }
+
+.fullView .discover-full-song button.toggle-song.next {
+  right: 0; }
+
+.fullView .discover-full-song .carousel-wrapper .carousel .songContainer {
+  position: relative;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  max-width: 750px; }
+  .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper {
+    pointer-events: none;
+    cursor: default; }
+    .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .imageContainer {
+      width: 37%;
+      float: left;
+      padding-right: 15px; }
+    .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
+      text-align: left; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
+        display: inline-block; }
+        .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton {
+          pointer-events: all;
+          cursor: pointer;
+          padding: 5px;
+          padding-left: 0;
+          height: 60px; }
+          .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
+            transition: all .3s ease;
+            width: 50px;
+            height: 50px;
+            vertical-align: baseline; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
+        width: 50%;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        max-width: 350px;
+        position: relative;
+        overflow-y: hidden;
+        padding: 5px 0 4px;
+        vertical-align: top;
+        transform: translateX(-1.5px); }
+        .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
+          margin-bottom: 3px;
+          pointer-events: all; }
+          .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle a.postTitleLink {
+            font-size: 24px;
+            line-height: 24px;
+            text-decoration: none;
+            color: #000;
+            font-weight: 700; }
+          .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle .spotify {
+            color: #65d36e;
+            font-size: 26px;
+            z-index: 1;
+            display: inline-block;
+            margin-left: 3px;
+            width: 30px;
+            padding: 0 3px;
+            -webkit-transform: translateY(-2px);
+            transform: translateY(-2px); }
+        .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist span.artistName {
+          font-size: 24px;
+          line-height: 24px; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile {
+        display: none; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo p.leftInfo {
+        display: inline-block;
+        margin: 0 4px 5px 0; }
+        .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo p.leftInfo .postDate {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 700;
+          display: inline-block; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
+        display: none; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {
+        display: inline-block;
+        margin: 0;
+        pointer-events: none;
+        -webkit-transform: translateY(-2px);
+        transform: translateY(-2px); }
+        .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag {
+          margin: 0 2px;
+          font-size: 11px;
+          border-radius: 4px;
+          -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+          color: #fff;
+          background: #1a6ea9;
+          border: 1px solid #1a6ea9;
+          cursor: pointer;
+          letter-spacing: .7px;
+          box-shadow: 0 3px 2px -2px #C9C6CB;
+          padding: 4px 4px; }
+    .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer {
+      max-height: none;
+      padding-bottom: 75px;
+      pointer-events: all; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer .songDescription {
+        font-family: Open-Sans,sans-serif;
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 100;
+        display: block;
+        text-align: left;
+        margin-top: 0;
+        padding: 0 5px; }
+  .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .goToSongPage, .fullView .discover-full-song .carousel-wrapper .carousel .songContainer hr, .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .seeMore {
+    display: none; }

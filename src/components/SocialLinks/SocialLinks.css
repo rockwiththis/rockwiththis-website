@@ -4,7 +4,9 @@
   margin-top: 90px;
   max-width: 1685px;
   margin: 90px auto 0;
-  border-radius: 4px; }
+  border-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; }
 
 .socialLinks {
   background: #f5f3f3;

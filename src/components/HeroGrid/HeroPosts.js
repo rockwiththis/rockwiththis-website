@@ -105,7 +105,7 @@ class HeroPosts extends React.Component {
         const otherPosts = heroPosts.slice(1).map((post, i) => trackDisplay(post, i, true))
 
         return (
-            <div>
+            <div className="hero-container">
                 <div id="hero-post" className={`hero-posts ${this.state.hideSongOfDay ? 'hideSongOfDay' : ''}`} ref={node => this.postsWrapper = node}>
                   {heroPosts.length > 0 ?
                     <Fragment>

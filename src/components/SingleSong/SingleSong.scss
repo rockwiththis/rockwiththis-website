@@ -6,7 +6,8 @@
 
   @media (min-width: 800px) {
     padding: 25px 35px 0;
-    max-height: calc(100vh - 180px);
+    padding-bottom: 75px;
+    // max-height: calc(100vh - 180px);
     overflow: hidden;
   }
 
@@ -393,7 +394,7 @@
             .bottomContentContainer {
 
                 @media (min-width: 800px) {
-                  max-height: calc(100vh - 330px);
+                  // max-height: calc(100vh - 330px);
                   overflow: auto;
                   padding-bottom: 0 !important;
                   pointer-events: all;

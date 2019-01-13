@@ -320,8 +320,9 @@
             bottom: 15px; } }
         .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
           width: 45%;
-          font-weight: 400;
-          padding: 10px; }
+          font-weight: 700;
+          padding: 10px;
+          font-family: Roboto,sans-serif; }
           @media (max-width: 800px) {
             .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
               font-size: 14px; } }

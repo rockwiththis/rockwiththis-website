@@ -8,11 +8,13 @@ div#discovery-container.fullGridLayout .discover-full-song {
 
 
 
+.discover-cover {
+  display: none;
+}
 
 
 
-
-.discover-section {
+.discovery-section {
   position: relative;
 
   @media (min-width: 800px) {
@@ -52,9 +54,6 @@ div#discovery-container.fullGridLayout .discover-full-song {
     }
   }
 
-
-
-  // FULL VIEW
 
 
 
