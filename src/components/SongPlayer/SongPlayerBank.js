@@ -108,6 +108,7 @@ class SongPlayerBank extends React.Component {
 
     const playerDiv = document.createElement(elementType);
     playerDiv.id = getId(index);
+    playerDiv.setAttribute('allow', 'autoplay');
     parentDiv.appendChild(playerDiv);
 
     return playerDiv;
