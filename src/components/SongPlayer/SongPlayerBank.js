@@ -120,7 +120,10 @@ class SongPlayerBank extends React.Component {
       playerVars: {
         playsinline: 1
       },
-      events: { 'onReady': this.onPlayerReady(song.id) }
+      events: {
+        'onReady': this.onPlayerReady(song.id),
+        'onStateChange': this.handleYoutubePlayerStateChange
+      }
     });
     return {
       index: index,
@@ -138,11 +141,18 @@ class SongPlayerBank extends React.Component {
     };
   }
 
+  handleYoutubePlayerStateChange = changeEvent => (
+      changeEvent.data === 0 && this.props.onSongEnd
+  )
+
   createSoundCloudPlayer = (song, index) => {
     const playerDiv = this.getCleanPlayerElement(index, 'iframe', getSoundcloudPlayerId);
     playerDiv.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
+
     const player = new SoundCloudWidget(playerDiv);
     player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
+    player.bind(SoundCloudWidget.events.FINISH, this.props.onSongEnd);
+
     return {
       index: index,
       songId: song.id,

@@ -113,7 +113,7 @@ class AppContainer extends Component {
               initialActiveSong={this.props.activeSong}
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
-              //onSongEnd={this.changeSongOnEnd}
+              onSongEnd={this.changeSongOnEnd}
               ref={this.playerBankRef}
             />
           }
