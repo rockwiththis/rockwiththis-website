@@ -1,3 +1,6 @@
+.songImageInfoContainer {
+  display: none; }
+
 .leftInfo.mobile {
   display: none; }
 
@@ -226,27 +229,9 @@ p.leftInfo {
   margin-bottom: 5px;
   margin-right: 4px; }
 
-.tag {
-  margin: 0 2px;
-  font-size: 12px;
-  border-radius: 6px;
-  transition: all .2s ease;
-  color: #1a6ea9;
-  background: #fff;
-  border: 1px solid #1a6ea9;
-  cursor: pointer;
-  letter-spacing: .7px;
-  box-shadow: 0 3px 2px -2px #C9C6CB;
-  padding: 6px; }
-  .tag:active {
-    box-shadow: none; }
-
 .tag.selected {
   background: #1a6ea9;
   color: #fff !important; }
-
-p.metaInfo {
-  margin: 0 !important; }
 
 a.shareButton img {
   transition: all .3s ease;
@@ -271,7 +256,6 @@ a.spotifyLink {
   display: table; }
 
 .playButton, .pauseButton {
-  display: flex !important;
   transition: all 0.3s ease;
   width: 50px;
   height: 50px; }
@@ -336,11 +320,6 @@ a.spotifyLink {
         margin: 0 auto;
         display: block;
         max-width: 750px; }
-        .discovery-container .discover-full-song .songContainer br {
-          height: 1px !important;
-          display: block;
-          margin: -4px 0 !important;
-          content: ''; }
         .discovery-container .discover-full-song .songContainer .songDescription {
           font-size: 16px;
           line-height: 28px;
@@ -406,21 +385,6 @@ a.spotifyLink {
           line-height: 24px;
           font-weight: 700;
           display: inline-block; }
-        .discovery-container .discover-full-song .songContainer .topContentContainer .metaInfo .tag {
-          margin: 0 2px;
-          padding: 2px 4px !important;
-          border-radius: 2px;
-          transition: all .3s ease;
-          font-size: 12px;
-          border-radius: 6px !important;
-          transition: all .3s ease;
-          color: #fff !important;
-          background: #1a6ea9 !important;
-          border: 1px solid #1a6ea9 !important;
-          cursor: pointer;
-          letter-spacing: .7px;
-          box-shadow: 0 3px 2px -2px #C9C6CB;
-          font-family: 'Baloo', cursive; }
         .discovery-container .discover-full-song .songContainer .topContentContainer .songDescription {
           font-size: 16px;
           line-height: 28px;
@@ -694,7 +658,6 @@ a.nav-link.is-active.submit {
 @media (min-width: 800px) {
   .bottomContentContainer {
     max-height: none;
-    padding-bottom: 75px !important;
     pointer-events: all; }
   .disableScroll .bottomContentContainer {
     pointer-events: none; } }

@@ -1,4 +1,8 @@
 
+.songImageInfoContainer {
+  display: none;
+}
+
 
 .leftInfo.mobile {
   display: none;
@@ -580,31 +584,29 @@ p.leftInfo {
   margin-bottom: 5px;
   margin-right: 4px; }
 
-.tag {
-  margin: 0 2px;
-  font-size: 12px;
-  border-radius: 6px;
-  transition: all .2s ease;
-  color: #1a6ea9;
-  background: #fff;
-  border: 1px solid #1a6ea9;
-  cursor: pointer;
-  letter-spacing: .7px;
-  box-shadow: 0 3px 2px -2px #C9C6CB;
-  padding: 6px;
-  &:active {
-    box-shadow: none;
-  }
-
-}
+// .tag {
+//   margin: 0 2px;
+//   font-size: 12px;
+//   border-radius: 6px;
+//   transition: all .2s ease;
+//   color: #1a6ea9;
+//   background: #fff;
+//   border: 1px solid #1a6ea9;
+//   cursor: pointer;
+//   letter-spacing: .7px;
+//   box-shadow: 0 3px 2px -2px #C9C6CB;
+//   padding: 6px;
+//   &:active {
+//     box-shadow: none;
+//   }
+//
+// }
 .tag.selected {
   background: #1a6ea9;
   color: #fff !important;
 }
 
-p.metaInfo {
-  // padding-left: 5px;
-  margin: 0 !important; }
+
 
 a.shareButton img {
   transition: all .3s ease;
@@ -634,7 +636,7 @@ a.spotifyLink {
 
 
   .playButton, .pauseButton {
-    display: flex !important;
+    // display: flex !important;
     transition: all 0.3s ease;
     width: 50px;
     height: 50px;
@@ -739,12 +741,12 @@ a.spotifyLink {
           margin: 0 auto;
           display: block;
           max-width: 750px;
-          br {
-            height: 1px !important;
-            display: block;
-            margin: -4px 0 !important;
-            content: '';
-        }
+        //   br {
+        //     height: 1px !important;
+        //     display: block;
+        //     margin: -4px 0 !important;
+        //     content: '';
+        // }
         .songDescription {
             font-size: 16px;
             line-height: 28px;
@@ -853,23 +855,23 @@ a.spotifyLink {
                 display: inline-block;
             }
 
-            .tag {
-                margin: 0 2px;
-                // padding: 6px 6px !important;
-                padding: 2px 4px !important;
-                border-radius: 2px;
-                transition: all .3s ease;
-                font-size: 12px;
-                border-radius: 6px !important;
-                transition: all .3s ease;
-                color: #fff !important;
-                background: #1a6ea9 !important;
-                border: 1px solid #1a6ea9 !important;
-                cursor: pointer;
-                letter-spacing: .7px;
-                box-shadow: 0 3px 2px -2px #C9C6CB;
-                    font-family: 'Baloo', cursive;
-            }
+            // .tag {
+            //     margin: 0 2px;
+            //     // padding: 6px 6px !important;
+            //     padding: 2px 4px !important;
+            //     border-radius: 2px;
+            //     transition: all .3s ease;
+            //     font-size: 12px;
+            //     border-radius: 6px !important;
+            //     transition: all .3s ease;
+            //     color: #fff !important;
+            //     background: #1a6ea9 !important;
+            //     border: 1px solid #1a6ea9 !important;
+            //     cursor: pointer;
+            //     letter-spacing: .7px;
+            //     box-shadow: 0 3px 2px -2px #C9C6CB;
+            //         font-family: 'Baloo', cursive;
+            // }
           }
 
         .songDescription {
@@ -1383,7 +1385,7 @@ a.nav-link.is-active.submit {
       // overflow-wrap: inherit;
       // text-overflow: ellipsis;
       // overflow-y: scroll;
-      padding-bottom: 75px !important;
+      // padding-bottom: 75px;
       pointer-events: all;
 
   }
