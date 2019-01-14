@@ -49,8 +49,18 @@ router.get('/', (req, res) => {
 // TODO use same nesting code as batch get
 router.get('/:id', (req, res) => {
   var singleSongId = parseInt(req.params.id);
+
+  const queryText = (`
+    SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*,
+    curator.first_name as curator_first_name, curator.last_name as curator_last_name
+    FROM songs
+    LEFT JOIN subgenre_songs ON songs.id = subgenre_songs.song_id
+    LEFT JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id
+    LEFT JOIN users AS curator ON curator.id = songs.curator_id
+    WHERE songs.id = $1
+  `);
   const query = {
-    text: 'SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.* FROM songs JOIN subgenre_songs ON songs.id = subgenre_songs.song_id JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id WHERE songs.id = $1',
+    text: queryText,
     values: [singleSongId],
   }
 
