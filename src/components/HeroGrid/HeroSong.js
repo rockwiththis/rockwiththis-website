@@ -11,7 +11,7 @@ import { toggleSong, togglePlayPause } from 'actions/queue'
 
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
-import loadingButton from 'images/Loading-Filled.gif'
+import loadingButton from 'images/Loading-Flash-Play.gif'
 
 
 class HeroSong extends Component {
