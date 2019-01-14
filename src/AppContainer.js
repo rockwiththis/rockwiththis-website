@@ -11,10 +11,14 @@ import Header from 'components/Header/Header.js'
 import MainPlayer from 'components/FooterPlayer/MainPlayer'
 import SongPlayerBank from 'components/SongPlayer/SongPlayerBank';
 
+// TODO proptypes
+
 class AppContainer extends Component {
   constructor(props) {
     super(props)
-    this.state = { shrinkHeader: false }
+    this.state = { shrinkHeader: false };
+    this.mainPageScroll = 0;
+    this.discoveryScroll = 0;
     this.handleScroll = this.handleScroll.bind(this);
     this.playerContainerRef = React.createRef();
     this.playerBankRef = React.createRef();
@@ -33,7 +37,7 @@ class AppContainer extends Component {
   }
 
   // TODO there *has* to be a better way of calling player bank functions
-  // Maybe putting the bank ref in the app store?
+  // Maybe putting the bank ref in the app store (like we did for song list)?
   // Calling these *before* re-rendering would probably cause significant performance improvement
   componentDidUpdate = prevProps => {
 
@@ -56,23 +60,10 @@ class AppContainer extends Component {
       this.props.actions.playerBankUpdated();
     }
 
-    /*
-    // This logic sucks (and is causing problems)
-    if (this.props.songListPosts.length > 0 && 
-        prevProps.songListPosts.length > 0 &&
-        prevProps.songListPosts[0].id !== this.props.songListPosts[0].id) {
-
-      console.log("SET SONG LIST")
-      this.playerBankRef.current.setSongListPlayers(this.props.songListPosts);
+    if (this.props.location.pathname === '/' && prevProps.location.pathname.match(/^\/songs\/\d+$/)) {
+      console.log("MAINTAINING SCROLL", this.mainPageScroll, this.discoveryScroll);
+      this.resetScroll();
     }
-    */
-
-    /*
-    if (prevProps.activeSong.id !== this.props.activeSong.id &&
-        this.props.isPlaying) {
-      this.playerContainerRef.current.updateSongProgress(0)
-    }
-    */
   };
 
   // TODO this won't work on some browsers b/c of video autoplay constraints. Handle this case.
@@ -96,13 +87,33 @@ class AppContainer extends Component {
       this.playerBankRef.current.updateSongProgress(progressRatio)
   };
 
+  resetScroll = () => {
+    window.scrollTo(0, this.mainPageScroll);
+
+    const discoveryContainer = document.getElementById('discovery-container');
+    if (!!discoveryContainer) discoveryContainer.scrollTop = this.discoveryScroll;
+  }
+
+  setMainPageScroll = newScrollPos => this.mainPageScroll = newScrollPos;
+
+  setDiscoveryScroll = newScrollPos => this.discoveryScroll = newScrollPos;
+
   render() {
     return (
         <div>
           <Header {...this.props} shrinkHeader={this.state.shrinkHeader} />
           <SocialLinks />
 
-          { React.cloneElement(this.props.children, { ...this.props }) }
+          {
+            React.cloneElement(
+                this.props.children,
+                {
+                  ...this.props,
+                  setMainPageScroll: this.setMainPageScroll,
+                  setDiscoveryScroll: this.setDiscoveryScroll
+                }
+            )
+          }
 
           <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
           {

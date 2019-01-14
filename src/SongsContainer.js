@@ -34,7 +34,6 @@ class SongsContainer extends Component {
         loading: true
       }
 
-      //this.handleScroll = this.handleScroll.bind(this)
       this.loadMoreSongs = this.loadMoreSongs.bind(this)
       this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
       this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
@@ -51,7 +50,7 @@ class SongsContainer extends Component {
 
   componentDidMount() {
     window.addEventListener('scroll', this.fixedFiltersBar);
-    window.addEventListener('scroll', this.fixedFiltersBar);
+    window.addEventListener('scroll', this.handleMainPageScroll);
 
     //window.addEventListener('scroll', this.mobileLoadMore)
     window.addEventListener('scroll', this.enableDiscoverScroll);
@@ -59,16 +58,12 @@ class SongsContainer extends Component {
   }
 
   componentWillUnmount() {
-    window.addEventListener('scroll', this.fixedFiltersBar);
-    window.addEventListener('scroll', this.fixedFiltersBar);
+    window.removeEventListener('scroll', this.fixedFiltersBar);
+    window.removeEventListener('scroll', this.handleMainPageScroll);
 
-    //window.addEventListener('scroll', this.mobileLoadMore)
-    window.addEventListener('scroll', this.enableDiscoverScroll);
-    window.addEventListener('resize', this.enableDiscoverScroll);
-  }
-
-  handleMainContainerScroll(event) {
-    console.log(event)
+    //window.removeEventListener('scroll', this.mobileLoadMore)
+    window.removeEventListener('scroll', this.enableDiscoverScroll);
+    window.removeEventListener('resize', this.enableDiscoverScroll);
   }
 
   /* Temporarily disabling in favor of pagination
@@ -123,13 +118,17 @@ class SongsContainer extends Component {
   }
 
   /* Temporarily disabling in favor of pagination
-  handleScroll(e) {
+  handleScroll = scrollEvent => {
     if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 )
       return;
     if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100))
       this.loadMoreSongs();
   }
   */
+
+  handleMainPageScroll = () => this.props.setMainPageScroll(window.scrollY);
+
+  handleDiscoveryScroll = scrollEvent => this.props.setDiscoveryScroll(scrollEvent.target.scrollTop);
 
   // This is currently not supported but it's cool b/c im pretty sure the arrows are hidden anyway
   changeDiscoverSong(increment) {
@@ -224,7 +223,7 @@ class SongsContainer extends Component {
 
             <div id='discoverSongsWrapper' className='discover-songs-wrapper'>
               <div id="discovery-container"
-                //onScroll={(e) => this.handleScroll(e)}
+                onScroll={this.handleDiscoveryScroll}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
 
