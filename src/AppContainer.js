@@ -60,10 +60,8 @@ class AppContainer extends Component {
       this.props.actions.playerBankUpdated();
     }
 
-    if (this.props.location.pathname === '/' && prevProps.location.pathname.match(/^\/songs\/\d+$/)) {
-      console.log("MAINTAINING SCROLL", this.mainPageScroll, this.discoveryScroll);
+    if (this.props.location.pathname === '/' && prevProps.location.pathname !== '/')
       this.resetScroll();
-    }
   };
 
   // TODO this won't work on some browsers b/c of video autoplay constraints. Handle this case.
