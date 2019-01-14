@@ -98,60 +98,71 @@ class SingleSong extends Component {
         })
         return (
             <div id={song.slug} className="songContainer" key={`${song.id}`}>
-            <Helmet>
-              <title>Rock With This - {song.name} by {song.name}</title>
-              <meta name="song" content={song.name} />
-              <meta name="artist" content={song.artist_name} />
-              <meta name="description" content={song.description} />
-              <meta name="og:image" content={song.image_url} />
-              <meta property="og:image:width"  content="300" />
-              <meta property="og:image:height" content="300" />
-              {songTagsMeta}
-              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            </Helmet>
-            <div className="wrapper">
+
+              <Helmet>
+                <title>Rock With This - {song.name} by {song.name}</title>
+                <meta name="song" content={song.name} />
+                <meta name="artist" content={song.artist_name} />
+                <meta name="description" content={song.description} />
+                <meta name="og:image" content={song.image_url} />
+                <meta property="og:image:width"  content="300" />
+                <meta property="og:image:height" content="300" />
+                {songTagsMeta}
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+              </Helmet>
+
+              <div className="wrapper">
                 <div className="imageContainer">
                   <img className="songImage" src={song.image_url} />
                   <div className="songImageInfoContainer">
-                  {this.renderPlayer()}
+                    {this.renderPlayer()}
                     <div className="song-info">
-                        <p className="song-title">{song.name}</p>
-                        <p className="song-artist">{song.artist_name}</p>
+                      <p className="song-title">{song.name}</p>
+                      <p className="song-artist">{song.artist_name}</p>
                     </div>
                     <a target="_blank" href={song.spotify_link} className="spotify-mobile"><i className="fa fa-spotify" aria-hidden="true" /></a>
                   </div>
                 </div>
+
                 <div className="postContent" >
-
-                <div>
+                  <div>
                     <div className="songInfo">
-                    <div className="topSection">
-                    {this.renderPlayer()}
-                    <div className="singleSongInfo">
-                      <div className="songNameContainer">  <span className="songName">{song.name} <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a></span></div>
-                      <div className="artistNameContainer">  <span className="artistName">{song.artist_name}</span> </div>
-                    </div>
-                    </div>
-                        <div className="metaInfo">
-                        <p className="leftInfo desktop">
-                        <span className="postDate "><span className="postAuthor">Jared Paul</span> | <Moment format="ll" date={song.created_at} /> | </span>
-                        </p>
-                        <p className="leftInfo mobile">
-                        <span className="postDate "><Moment format="M/d/YY" date={song.created_at} /> | <span className="postAuthor">Jared Paul</span> | </span>
-                        </p>
-                        <span className="postTags">{songTags}</span>
 
-                            {song ? <ShareBox song={song} /> : <div></div>  }
+                      <div className="topSection">
+                        {this.renderPlayer()}
+                        <div className="singleSongInfo">
+                          <div className="songNameContainer">  <span className="songName">{song.name} <a target="_blank" href={song.spotify_link} className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a></span></div>
+                          <div className="artistNameContainer">  <span className="artistName">{song.artist_name}</span> </div>
                         </div>
+                      </div>
 
+                      <div className="metaInfo">
 
+                        <p className="leftInfo desktop">
+                          <span className="postDate ">
+                            <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
+                            | <Moment format="ll" date={song.created_at} /> |&nbsp;
+                          </span>
+                        </p>
+
+                        <p className="leftInfo mobile">
+                          <span className="postDate ">
+                            <Moment format="M/d/YY" date={song.created_at} /> |&nbsp;
+                            <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span> |&nbsp;
+                          </span>
+                        </p>
+
+                        <span className="postTags">{songTags}</span>
+                        { song ? <ShareBox song={song} /> : <div></div>  }
+
+                      </div>
 
                     </div>
+                  </div>
+                  {this.renderDescription()}
                 </div>
-                    {this.renderDescription()}
-                </div>
+              </div>
             </div>
-          </div>
         )
     }
 }

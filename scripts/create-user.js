@@ -33,6 +33,30 @@ const createSchema = {
       hidden: true,
       required: true,
       warning: 'Must provide a password'
+    },
+    firstName: {
+      message: 'First Name',
+      validator: /^[a-zA-Z\-]+$/,
+      warning: 'What are you, a robot?',
+      required: true
+    },
+    lastName: {
+      message: 'Last Name',
+      validator: /^[a-zA-Z\-]+$/,
+      warning: 'What are you, a robot?',
+      required: true
+    },
+    isSuperadmin: {
+      message: 'Is Superadmin (t/f)?',
+      validator: /^[tf]$/,
+      warning: "Reply must be 't' or 'f'",
+      required: true
+    },
+    isCurator: {
+      message: 'Is Curator (t/f)?',
+      validator: /^[tf]$/,
+      warning: "Reply must be 't' or 'f'",
+      required: true
     }
   }
 };
@@ -62,25 +86,25 @@ const queryDoesSuperuserExist = username => (
     .then(results => results.rows.length > 0)
 )
 
-const saveNewUser = (username, password) => (
+const saveNewUser = (username, password, firstName, lastName, isSuperadmin, isCurator) => (
     bcrypt.hash(password, saltRounds)
       .then(hashedPassword => (
           database.query({
-            text: 'INSERT INTO users (username, password, is_superadmin) VALUES ($1, $2, true)',
-            values: [username, hashedPassword]
+            text: 'INSERT INTO users (username, password, first_name, last_name, is_superadmin, is_curator) VALUES ($1, $2, $3, $4, $5, $6)',
+            values: [username, hashedPassword, firstName, lastName, isSuperadmin, isCurator]
           })
-          .then(() => console.log('\nSuccessfully added new superadmin!\n'))
+          .then(() => console.log('\nSuccessfully added new user!\n'))
           .catch(e => console.log(e))
       ))
 )
 
-const processNewUser = ({ username, password }) => (
+const processNewUser = ({ username, password, firstName, lastName, isSuperadmin, isCurator }) => (
     queryDoesSuperuserExist(username)
       .then(doesSuperuserExist => {
         if (doesSuperuserExist)
           return logErrorAndContinue("\nSorry, That superuser username already exists.\n");
         else
-          return saveNewUser(username, password);
+          return saveNewUser(username, password, firstName, lastName, isSuperadmin, isCurator);
       })
 )
 
@@ -106,6 +130,7 @@ const processSignIn = ({ username, password }) => (
 
 prompt.start();
 
+// TODO make main method more functional
 getPromptAsync(authSchema)
   .then(processSignIn)
   .catch(e => {

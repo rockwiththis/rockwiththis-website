@@ -7,13 +7,14 @@ const getSongsQuery = (limit, offset, subgenreIds) => {
   const limitStatement = `LIMIT ${Number(limit)}`;
 
   const queryText = (`
-    SELECT DISTINCT songs.*
+    SELECT DISTINCT songs.*, curator.first_name as curator_first_name, curator.last_name as curator_last_name
     FROM songs
     LEFT JOIN subgenre_songs
     ON songs.id = subgenre_songs.song_id
     LEFT JOIN subgenres
     ON subgenres.id = subgenre_songs.subgenre_id
     ${subgenreIdFilter}
+    LEFT JOIN users AS curator ON curator.id = songs.curator_id
     ORDER BY songs.created_at DESC, songs.id
     ${limitStatement}
     ${offsetStatement}

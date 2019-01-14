@@ -3,7 +3,7 @@ const songsWriteSchema = {
   name: { required: true },
   description: { required: true },
   imageUrl: { db: 'image_url', required: true },
-  curatorId: { db: 'curator_id' },
+  curatorId: { db: 'curator_id', required: true },
   artistName: { db: 'artist_name', required: true},
   spotify: {
     required: true, // DB way ... shouldn't we actually at least one / exactly one link type?
