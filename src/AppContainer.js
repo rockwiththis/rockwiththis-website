@@ -19,21 +19,18 @@ class AppContainer extends Component {
     this.state = { shrinkHeader: false };
     this.mainPageScroll = 0;
     this.discoveryScroll = 0;
-    this.handleScroll = this.handleScroll.bind(this);
     this.playerContainerRef = React.createRef();
     this.playerBankRef = React.createRef();
     this.props.actions.fetchFilters()
   }
 
   componentDidMount = () => {
-    window.addEventListener('scroll', this.handleScroll)
-    console.log("stste");
-    console.log(this.props);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   handleScroll = () => {
-    const shrinkHeader = window.scrollY > 70
-    this.setState({ shrinkHeader })
+    const shrinkHeader = window.scrollY > 70;
+    this.setState({ shrinkHeader });
   }
 
   // TODO there *has* to be a better way of calling player bank functions
