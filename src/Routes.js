@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import Homepage from 'pages/Homepage'
 import ConnectPage from 'pages/ConnectPage'
@@ -10,14 +10,14 @@ import createHistory from 'history/createBrowserHistory'
 
 
 const Routes = (props) => {
-    return (
-            <Switch>
-                <Route exact path='/' render={() => <Homepage {...props} />} />
-                <Route exact path='/submit' render={() => <SubmitSongPage {...props} />} />
-                <Route exact path='/connect' render={() => <ConnectPage {...props} />} />
-                <Route path='/songs/:id' render={(p) => <SingleSongPage {...props} {...p} />} />
-            </Switch>
-    )
+  return (
+      <Switch>
+        <Route exact path='/' render={() => <Homepage {...props} />} />
+        <Route exact path='/submit' render={() => <SubmitSongPage {...props} />} />
+        <Route exact path='/connect' render={() => <ConnectPage {...props} />} />
+        <Route path='/songs/:id' render={(p) => <SingleSongPage {...props} {...p} />} />
+      </Switch>
+  )
 }
 
 export default Routes
