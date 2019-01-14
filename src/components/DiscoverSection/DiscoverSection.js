@@ -20,11 +20,11 @@ import PaginationControls from 'components/PaginationControls';
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
 
+import './stylesheets/FullViewMobile.scss'
 import './stylesheets/DiscoverSection.scss'
 import './stylesheets/GridView.scss'
 import './stylesheets/SnapListView.scss'
 import './stylesheets/FullView.scss'
-import './stylesheets/FullViewMobile.scss'
 
 
 /* eslint-disable */
@@ -221,7 +221,7 @@ class DiscoverSection extends Component {
 
               <div id="discovery-container"
                 //onScroll={(e) => this.handleScroll(e)}
-                className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : ''} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
+                className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
 
               {/*  FULL VIEW - we should take this out as it's own component.  This is the default view that consists the carousel IMAGE GRID on the left and the FULL SONG preview on the right.  */}

@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 500;
+  z-index: 999;
   display: block;
   align-items: center;
   transition: 0.3s ease all; }

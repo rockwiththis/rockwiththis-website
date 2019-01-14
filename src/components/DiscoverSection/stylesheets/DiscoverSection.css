@@ -16,7 +16,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
   @media (max-width: 480px) {
     .discovery-section {
       margin-top: calc(100vw + 89px);
-      z-index: 1000;
+      z-index: 900;
       background: #fff; } }
   .discovery-section img.discover-cover {
     display: none; }
@@ -36,6 +36,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
     .discovery-section .discovery-container {
       height: calc(100vh - 50px); } }
   .discovery-section .songList {
+    z-index: 890;
     padding-bottom: 75px; }
     @media (min-width: 800px) {
       .discovery-section .songList {

@@ -11,7 +11,8 @@
   border-left: 1px solid #C9C6CB;
   border-right: 1px solid #C9C6CB;
   border-top: 1px solid #C9C6CB;
-  z-index: 100;
+  z-index: 903;
+  margin: 0 auto;
 
   @media (max-width: 480px) {
     height: 50px;
@@ -37,6 +38,10 @@
 
         @media (min-width: 800px) {
           margin-left: 165px;
+        }
+
+        @media (max-width: 800px) {
+          margin-top: 15px;
         }
         @media (max-width: 480px) {
           margin-top: 6px;
@@ -77,6 +82,9 @@
 
         @media (min-width: 800px) {
           display: none;
+        }
+        @media (max-width: 800px) {
+          margin-top: 15px;
         }
         @media (max-width: 480px) {
           margin-top: 6px;
@@ -207,6 +215,11 @@
             font-family: Baloo,cursive;
             cursor: pointer;
             display: inline-block;
+
+            @media (max-width: 1000px) and (min-width: 800px) {
+              font-size: 16px;
+              margin: 8px !important;
+            }
         }
       }
   }
@@ -217,7 +230,7 @@
     border-top: 0;
     right: 35px;
     background: #fff;
-    z-index: 1000;
+    z-index: 902;
     max-width: 300px;
     top: 70px;
     border-radius: 4px;
@@ -291,7 +304,7 @@
       border: 1px solid #C9C6CB;
       border-top: 0;
       background: #fff;
-      z-index: 1000;
+      z-index: 902;
       top: 70px;
       border-radius: 4px;
       border-top-right-radius: 0px;
@@ -302,16 +315,15 @@
       transition: .2s ease all;
 
         @media (min-width: 800px) {
-          height: calc(100vh - 225px);
           width: calc(38vw - 30px);
           left: 30px;
         }
         @media (max-width: 1175px) and (min-width: 800px) {
-          height: calc(100vh - 225px);
+          // height: calc(100vh - 225px);
           width: calc(45vw - 30px);
         }
         @media (max-width: 1000px) and (min-width: 800px) {
-          height: calc(100vh - 225px);
+          // height: calc(100vh - 225px);
           width: 500px;
         }
         @media (max-width: 480px) {
@@ -322,7 +334,7 @@
         }
 
         .dropdown-internal {
-            padding: 30px 15px 15px 15px;
+            padding: 15px 15px 15px 15px;
 
             @media (max-width: 800px) {
               padding: 15px;
@@ -335,6 +347,17 @@
                 cursor: pointer;
                 -webkit-transition: all .3s ease;
                 transition: all .3s ease;
+
+                @media (max-width: 480px) {
+                  top: 10px;
+                }
+
+                i {
+                  color: #1a6ea9;
+                  @media (max-width: 480px) {
+                    font-size: 18px;
+                  }
+                }
             }
 
             .tag {
@@ -374,8 +397,11 @@
               }
             }
             .tag:hover {
+
+              @media (min-width: 800px) {
                 background: #1f84c7;
                 color: #fff;
+              }
             }
             .tag.selected {
                 background: #1a6ea9;
@@ -384,11 +410,16 @@
 
             .bottom-buttons {
               width: 100%;
+              margin-bottom: 15px;
 
-              @media (min-width: 800px) {
-                position: absolute;
-                bottom: 15px;
+              @media (max-width: 480px) {
+                margin-bottom: 10px;
               }
+
+              // @media (min-width: 800px) {
+              //   position: absolute;
+              //   bottom: 15px;
+              // }
 
               button.large-bottom {
                 width: 45%;
@@ -402,6 +433,8 @@
                 @media (max-width: 480px) {
                   padding: 6px;
                   font-size: 12px;
+                  width: 40%;
+                  margin: 4px 5%;
                 }
               }
               button.disabled {
@@ -413,10 +446,27 @@
 .SubgenreFiltersDropDown.expand {
     max-height: none;
 
+    @media (min-width: 800px) {
+      min-height: calc(38vw - 20px);
+    }
+
+    @media (max-width: 1000px) and (min-width: 800px) {
+      height: calc(100vh - 215px);
+      left: 0;
+      width: 100vw;
+    }
+
     @media (max-width: 800px) {
-      height: calc(100vh - 132px);
-      z-index: 8500;
+      height: calc(100vh - 155px);
+      // z-index: 8500;
       max-height: none;
+    }
+
+    @media (max-width: 480px) {
+      height: calc(100vh - 100px);
+      position: fixed;
+      overflow-y: scroll;
+
     }
 }
 
@@ -427,6 +477,9 @@
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     border-left: 0px;
     position: fixed;
+    top: 75px;
+  }
+  @media (max-width: 480px) {
     top: 50px;
   }
   @media (max-width: 480px) {

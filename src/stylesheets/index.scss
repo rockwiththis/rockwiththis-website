@@ -3,6 +3,13 @@
   display: none;
 }
 
+.discovery-container .discover-full-song .songContainer br {
+    height: 1px!important;
+    display: block;
+    margin: -4px 0!important;
+    content: "";
+}
+
 
 .leftInfo.mobile {
   display: none;
@@ -516,10 +523,10 @@ transform: translateX(-50%);
   }
 
   // Override some img styles in `react-responsive-carousel`
-  .loadingButton {
-    max-width: 35px !important;
-    max-height: 35px !important;
-  }
+  // .loadingButton {
+  //   max-width: 35px !important;
+  //   max-height: 35px !important;
+  // }
 }
 
 

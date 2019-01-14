@@ -23,7 +23,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
   }
   @media (max-width: 480px) {
     margin-top: calc(100vw + 89px);
-    z-index: 1000;
+    z-index: 900;
     background: #fff;
   }
 
@@ -58,6 +58,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
 
 
   .songList {
+    z-index: 890;
       padding-bottom: 75px;
 
       @media (min-width: 800px) {

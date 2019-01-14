@@ -240,11 +240,14 @@ class FiltersBar extends Component {
                   }}
                   >
                   <button onClick={this.closeSubGenreFiltersX} className="closeDropdown"><i class="im im-x-mark"></i></button>
-                  {filterTags}
+
                   <div className='bottom-buttons'>
                     <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.clearFilters}>Clear All</button>
                     <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.fetchCurrentRequest}>Search Filters {!disableClearAll && <i className='fa fa-arrow-right' />}</button>
                   </div>
+                  <div className="filter-tags-container">
+                    {filterTags}
+                  </div>              
                 </div>
             }
           </div>

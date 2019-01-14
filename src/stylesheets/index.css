@@ -1,6 +1,12 @@
 .songImageInfoContainer {
   display: none; }
 
+.discovery-container .discover-full-song .songContainer br {
+  height: 1px !important;
+  display: block;
+  margin: -4px 0 !important;
+  content: ""; }
+
 .leftInfo.mobile {
   display: none; }
 
@@ -305,10 +311,6 @@ ul.control-dots {
 
 .discover-full-song ul.control-dots {
   display: none; }
-
-.discover-full-song .loadingButton {
-  max-width: 35px !important;
-  max-height: 35px !important; }
 
 @media (max-width: 800px) {
   p.goToPage, .ToggleViewsWrapper {
