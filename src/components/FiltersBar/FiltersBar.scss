@@ -1,10 +1,236 @@
- .filters-bar .ToggleViewsDropDown {
+// FILTERS BAR
+
+.filters-bar {
+  width: 100%;
+  height: 70px;
+  background: #fff;
+  position: relative;
+  padding: 0px;
+  max-width: 1685px;
+  border-bottom: 1px solid #C9C6CB;
+  border-left: 1px solid #C9C6CB;
+  border-right: 1px solid #C9C6CB;
+  border-top: 1px solid #C9C6CB;
+  z-index: 903;
+  margin: 0 auto;
+
+  @media (max-width: 480px) {
+    height: 50px;
+    background: #fff;
+  }
+
+  .filters-bar-content {
+      padding: 0 35px;
+      position: relative;
+      height: 100%;
+
+      .filters-button {
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid #1a6ea9;
+        border-radius: 4px;
+        padding: 12px;
+        color: #1a6ea9;
+        transition: all .3s ease;
+        vertical-align: top;
+        margin-top: 20px;
+        background: #fff;
+
+        @media (min-width: 800px) {
+          margin-left: 165px;
+        }
+
+        @media (max-width: 800px) {
+          margin-top: 15px;
+        }
+        @media (max-width: 480px) {
+          margin-top: 6px;
+          font-size: 14px;
+          padding: 10px;
+          border-radius: 6px;
+        }
+
+        i.im.im-angle-down {
+            font-size: 12px;
+            margin-right: 10px;
+            -webkit-transform: translateY(2px);
+            transform: translateY(2px);
+        }
+      }
+      .filters-button:hover {
+          display: inline-block;
+          border: 1px solid #1a6ea9!important;
+          background: #1a6ea9;
+          border-radius: 4px;
+          color: #fff;
+          cursor: pointer;
+      }
+
+      .toggle-views-button  {
+        transition: all .3s ease;
+        vertical-align: top;
+        margin-top: 20px;
+        margin-left: 0px;
+        position: absolute;
+        right: 35px;
+        display: inline-block;
+        font-size: 12px;
+        border: 1px solid #1a6ea9 !important;
+        border-radius: 4px;
+        padding: 10px;
+        color: #1a6ea9;
+
+        @media (min-width: 800px) {
+          display: none;
+        }
+        @media (max-width: 800px) {
+          margin-top: 15px;
+        }
+        @media (max-width: 480px) {
+          margin-top: 6px;
+          font-size: 14px;
+          padding: 10px;
+          border-radius: 6px;
+        }
+
+        i {
+            font-size: 12px;
+            -webkit-transform: translateY(2px);
+            transform: translateY(2px);
+            margin-left: 10px;
+        }
+      }
+      .toggle-views-button:hover {
+          border: 1px solid #1a6ea9!important;
+          background: #1a6ea9!important;
+          color: #fff;
+          cursor: pointer;
+      }
+
+      .ToggleViewsWrapper {
+
+        @media (min-width: 800px) {
+          display: block;
+          position: absolute;
+          left: 40px;
+          vertical-align: top;
+          top: 30px;
+        }
+        @media (max-width: 800px) {
+          display: none;
+        }
+
+        a.viewButton {
+          @media (min-width: 800px) {
+            width: 30px;
+            height: 50px;
+            margin-left: 0px;
+            display: inline-block;
+            vertical-align: top;
+            -webkit-transform: translateY(-13px);
+            transform: translateY(-13px);
+            font-size: 10px;
+            position: relative;
+            z-index: 6;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+          }
+
+          span {
+            @media (min-width: 800px) {
+              transform: translateY(33px);
+              display: inline-block;
+              width: 100%;
+              text-align: center;
+            }
+          }
+        }
+
+        svg.viewIcon {
+
+          @media (min-width: 800px) {
+            transform: translate(-127%, -6px);
+            z-index: 5;
+            position: relative;
+          }
+
+          path {
+            fill: #282828;
+          }
+        }
+        svg.viewIcon.active {
+          path {
+            fill: #1a6ea9;
+          }
+        }
+      }
+
+      .search-wrapper {
+          display: none;
+      }
+
+      .selectedFilters {
+        display: inline-block;
+        margin-left: 15px;
+        vertical-align: top;
+        margin-top: 20px;
+        width: auto;
+        overflow: hidden;
+
+        @media (max-width: 800px) {
+          display: none;
+        }
+
+        button.clearButton {
+            border: 1px solid #1a6ea9 !important;
+            border-radius: 4px;
+            padding: 12px;
+            color: #1a6ea9;
+            margin-left: 0px;
+            margin-right: 10px;
+        }
+        .clearButton:hover {
+            border: 1px solid #1a6ea9 !important;
+            border-radius: 4px;
+            padding: 12px;
+            color: #fff !important;
+            background: #1a6ea9;
+            cursor: pointer;
+        }
+
+        .tag {
+            margin-top: 5px;
+            margin: 0 2px;
+            font-size: 14px;
+            border-radius: 6px;
+            transition: all .2s ease;
+            color: #fff;
+            background: #1a6ea9;
+            border: 1px solid #1a6ea9;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 2px -2px #C9C6CB;
+            padding: 6px;
+            font-family: Baloo,cursive;
+            cursor: pointer;
+            display: inline-block;
+
+            @media (max-width: 1000px) and (min-width: 800px) {
+              font-size: 16px;
+              margin: 8px !important;
+            }
+        }
+      }
+  }
+
+  .ToggleViewsDropDown {
     position: absolute;
     border: 1px solid #C9C6CB;
     border-top: 0;
     right: 35px;
     background: #fff;
-    z-index: 1000;
+    z-index: 902;
     max-width: 300px;
     top: 70px;
     border-radius: 4px;
@@ -13,779 +239,250 @@
     box-shadow: 0 3px 2px -2px #C9C6CB;
     padding: 15px;
 
-
-    button {
-      padding: 6px 15px;
-    width: 100%;
-    text-align: left;
-    border: 1px solid #1a6ea9;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    display: block;
-    color: #1a6ea9;
-
-          svg {
-            width: 12px;
-            fill: #1a6ea9;
-          }
-
-      span {
-        font-size: 12px;
-        color: #1a6ea9;
-        vertical-align: top;
-        padding-top: 5px;
-        // padding: 10px;
-            display: inline-block;
-                margin-left: 10px;
-      }
-
-    }button:hover {
-      // background: #1a6ea9;
-      text-decoration: none;
-      cursor: pointer;
-      color: #fff;
-
-      svg {
-        // width: 12px;
-        fill: #fff;
-      }
-
-      span {
-        font-size: 12px;
-        color: #fff;
-
-      }
-
+    @media (max-width: 800px) {
+      width: 100%;
+      left: 0;
+      right: 0;
+      max-width: calc(100vw - 30px);
+      height: 35px;
+    }
+    @media (max-width: 480px) {
+      border-left-width: 1px;
+      top: 50px;
+      padding: 10px 0;
+      background: #fff;
+      max-width: 100vw;
+      border-radius: 0px;
     }
 
-}
+    .fake-button {
+      @media (max-width: 800px) {
+        width: 33.3%;
+        display: inline-block;
+        text-align: center;
+        height: 100%;
+        z-index: 9;
+        position: relative;
+      }
 
-
-
-@media (min-width: 800px) {
-  .filters-bar {
-        max-width: 1685px;
-        margin: 0 auto;
-
-        .toggle-view {
-          height: 30px;
-          img {
-            height: 30px;
-          }
+      button {
+        @media (max-width: 800px) {
+          color: rgba(0,0,0,0);
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          max-width: none;
+          display: inline-block;
+          padding: 6px 15px 35px;
+          border: 0;
+          border-radius: 0;
+          margin: 0;
+          z-index: 10;
+          cursor: pointer;
         }
-  }
+      }
+      button ~ span {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 700;
+        display: block;
+      }
+
+      svg.viewIcon.active {
+        fill: #1a6ea9;
+        color: #1a6ea9;
+      }
+    }
+    }
+
+    .SubgenreFiltersDropDown {
+      position: absolute;
+      border: 1px solid #C9C6CB;
+      border-top: 0;
+      background: #fff;
+      z-index: 902;
+      top: 70px;
+      border-radius: 4px;
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+      box-shadow: 0 3px 2px -2px #C9C6CB;
+      max-height: 0;
+      overflow: hidden;
+      transition: .2s ease all;
+
+        @media (min-width: 800px) {
+          width: calc(38vw - 30px);
+          left: 30px;
+        }
+        @media (max-width: 1175px) and (min-width: 800px) {
+          // height: calc(100vh - 225px);
+          width: calc(45vw - 30px);
+        }
+        @media (max-width: 1000px) and (min-width: 800px) {
+          // height: calc(100vh - 225px);
+          width: 500px;
+        }
+        @media (max-width: 480px) {
+          left: 15px;
+          top: 50px;
+          max-width: 100%;
+          left: 0;
+        }
+
+        .dropdown-internal {
+            padding: 15px 15px 15px 15px;
+
+            @media (max-width: 800px) {
+              padding: 15px;
+            }
+
+            .closeDropdown {
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                cursor: pointer;
+                -webkit-transition: all .3s ease;
+                transition: all .3s ease;
+
+                @media (max-width: 480px) {
+                  top: 10px;
+                }
+
+                i {
+                  color: #1a6ea9;
+                  @media (max-width: 480px) {
+                    font-size: 18px;
+                  }
+                }
+            }
+
+            .tag {
+              cursor: pointer;
+              display: inline-block;
+              border-radius: 6px;
+              transition: all .2s ease;
+              color: #1a6ea9;
+              background: #fff;
+              border: 1px solid #1a6ea9;
+              cursor: pointer;
+              letter-spacing: .7px;
+              box-shadow: 0 3px 2px -2px #C9C6CB;
+              padding: 6px;
+              font-family: Baloo,cursive;
+              cursor: pointer;
+              display: inline-block;
+
+              @media (min-width: 800px) {
+                font-size: 14px;
+                margin: 6px;
+                letter-spacing: 1px;
+              }
+              @media (max-width: 1175px) and (min-width: 800px) {
+                font-size: 12px;
+              }
+              @media (max-width: 1000px) and (min-width: 800px) {
+                font-size: 14px;
+              }
+              @media (max-width: 800px) {
+                margin: 5px;
+              }
+              @media (max-width: 480px) {
+                font-size: 10px;
+                padding: 4px;
+                margin: 4px;
+              }
+            }
+            .tag:hover {
+
+              @media (min-width: 800px) {
+                background: #1f84c7;
+                color: #fff;
+              }
+            }
+            .tag.selected {
+                background: #1a6ea9;
+                color: #fff !important;
+            }
+
+            .bottom-buttons {
+              width: 100%;
+              margin-bottom: 15px;
+
+              @media (max-width: 480px) {
+                margin-bottom: 10px;
+              }
+
+              // @media (min-width: 800px) {
+              //   position: absolute;
+              //   bottom: 15px;
+              // }
+
+              button.large-bottom {
+                width: 45%;
+                font-weight: 700;
+                padding: 10px;
+                font-family: Roboto,sans-serif;
+
+                @media (max-width: 800px) {
+                  font-size: 14px;
+                }
+                @media (max-width: 480px) {
+                  padding: 6px;
+                  font-size: 12px;
+                  width: 40%;
+                  margin: 4px 5%;
+                }
+              }
+              button.disabled {
+                  pointer-events: none;
+              }
+            }
+        }
+}
+.SubgenreFiltersDropDown.expand {
+    max-height: none;
+
+    @media (min-width: 800px) {
+      min-height: calc(38vw - 20px);
+    }
+
+    @media (max-width: 1000px) and (min-width: 800px) {
+      height: calc(100vh - 215px);
+      left: 0;
+      width: 100vw;
+    }
+
+    @media (max-width: 800px) {
+      height: calc(100vh - 155px);
+      // z-index: 8500;
+      max-height: none;
+    }
+
+    @media (max-width: 480px) {
+      height: calc(100vh - 100px);
+      position: fixed;
+      overflow-y: scroll;
+
+    }
 }
 
+  }
 
-@media(max-width: 800px) {
   .fixedFiltersBar {
-    position: fixed !important;
+  @media (max-width: 800px) {
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    border-left: 0px;
+    position: fixed;
     top: 75px;
   }
-}
-@media(max-width: 480px) {
-  .fixedFiltersBar {
-    position: fixed !important;
+  @media (max-width: 480px) {
     top: 50px;
   }
-}
-
-
-
-@media (min-width: 800px) {
-  .ToggleViewsDropDown .desktop {
-    display: block;
-  }
-  .ToggleViewsDropDown .mobile {
-    display: none;
-  }
-}
-@media (max-width: 800px) {
-  .ToggleViewsDropDown .desktop {
-    display: none;
-  }
-  .ToggleViewsDropDown .mobile {
-    display: inline-block;
-  }
-}
-@media (max-width: 800px) {
-
-  .filters-bar .ToggleViewsDropDown .mobile {
-    display: inline-block;
-    padding: 6px 15px 35px;
-    border: 0 !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    width: 33.3% !important;
-    position: relative;
-    z-index: 10;
-
-      color: rgba(0,0,0,0) !important;
-  }
-
-  .filters-bar .ToggleViewsDropDown .mobile:nth-of-type(1).active + .svg-container .fake-button:nth-of-type(1) {
-   background: #1a6ea9;
-
-  }
-
-  .fake-button {
-    width: 33.3%;
-    display: inline-block;
-    text-align: center;
-    height: 100%;
-    z-index: 9;
-    position: relative;
-
-
-    span {
-      display: block;
-    }
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-// DROPDOWN FILTER TAG STYLES
-.SubgenreFiltersDropDown {
-  // max-width: 400px !important;
-  .tag {
-    font-family: 'Baloo', cursive;
-      margin: 5px;
-      cursor: pointer;
-      display: inline-block;
-      &.selected {
-        background: #1a6ea9;
-      }
-    }
-}
-
-.bottom-buttons {
-  width: 100%;
-}
-
-button.disabled {
-  // background: #fff !important;
-  // color: #1a6ea9 !important;
-  // border: 1px solid #1a6ea9 !important;
-  // opacity: .8;
-  // cursor: default !important;
-  pointer-events: none;
-}
-
-button.large-bottom.tag {
-    width: 45%;
-    font-weight: 400;
-    padding: 10px;
-    &:hover {
-      background: #1a6ea9;
-      font-weight: 400;
-      // padding: 10px !important;
-      color: #fff;
-    }
-}
-
-
-
-
-@media (max-width: 800px) {
-  .SubgenreFiltersDropDown {
-    max-width: 100% !important;
-    left: 0 !important;
-
-    button.large-bottom.tag {
-    font-size: 14px;
-}
-}
-
-
-}
-@media (max-width: 480px) {
-  .SubgenreFiltersDropDown {
-    max-width: 100% !important;
-    left: 0 !important;
-
-  .tag {
-    font-size: 10px !important;
-    padding: 4px !important;
-}
-// .tag:hover {
-//   background: #fff;
-//   color: #1a6ea9;
-// }
-.large-bottom.tag {
-  padding: 6px !important;
-  font-size: 12px !important;
-}
-}
-
-
-}
-
-
-
-// FILTERS BAR
-
-.toggle-view.mobile {
-  display: none;
-}
-
-ul.toggleContainer {
-    padding: 0;
-    display: inline-block;
-    list-style: none;
-    position: absolute;
-    right: 0;
-    margin-right: 35px;
-
-    li {
-      display: inline-block;
-    }
-
-        img {
-          display: inline-block;
-          margin: 0 15px;
-           cursor: pointer;
-           width: 30px;
-           margin-bottom: 2px;
-        }
-
-        span {
-          font-size: 10px;
-          display: block;
-          text-align: center;
-        }
-        .mobile {
-          display: none;
-
-
-        }
-}
-
-
-
-// FILTER BUTTON TEMPORARY STYLES
-
-.filters-button i.im.im-angle-down {
-    font-size: 12px;
-    margin-right: 10px;
-    transform: translateY(2px);
-}
-
-.discovery-section .filters-bar button.filters-button {
-  display: inline-block;
-  font-size: 12px;
-  border: 1px solid #1a6ea9 !important;
-  border-radius: 4px;
-  padding: 12px;
-  color: #1a6ea9;
-  transition: all .3s ease;
-  vertical-align: top;
-  margin-top: 20px;
-  margin-left: 0px;
-}
-
-.discovery-section .filters-bar button.filters-button:hover {
-  display: inline-block;
-  border: 1px solid #1a6ea9 !important;
-  background: #1a6ea9;
-  border-radius: 4px;
-  color: #fff;
-}
-.discovery-section .filters-bar button.filters-button.active {
-  display: inline-block;
-  border: 1px solid #1a6ea9 !important;
-  background: #1a6ea9 !important;
-  border-radius: 4px;
-  color: #fff;
-  transition: all .3s ease;
-  vertical-align: top;
-  margin-top: 20px;
-  margin-left: 0px;
-}
-
-
-
-// SELECTED FILTERS STYLING
-.selectedFilters button.disabled {
-display: none !important;
-}
-
-button.clearButton {
-border: 1px solid #1a6ea9 !important;
-border-radius: 4px;
-padding: 12px;
-color: #1a6ea9;
-margin-left: 15px;
-}
-button.clearButton:hover {
-border: 1px solid #1a6ea9 !important;
-border-radius: 4px;
-padding: 12px;
-color: #fff !important;
-background: #1a6ea9;
-cursor: pointer;
-}
-
-
-.ToggleViewsDropdown {
-  .svg-container {
-    display: none;
-}
-}
-
-@media (max-width: 800px) {
-
-   .discovery-section {
-     .ToggleViewsDropDown {
-         width: 100%;
-         left: 0;
-         right: 0;
-         max-width: calc(100vw - 30px) !important;
-         height: 35px;
-
-        button.mobile {
-          // background: #1a6ea9;
-       color: #fff !important;
-       height: 100%;
-       width: 100% !important;
-       position: absolute;
-       left: 0;
-       right: 0;
-       top: 0;
-       bottom: 0;
-       max-width: none;
-       width: 100%;
-   }
-
-       .svg-container {
-           position: absolute;
-           top: 0;
-           bottom: 0;
-           right: 0;
-           left: 0;
-       }
-     }
-   }
-
-
-  .discovery-section .selectedFilters {
-    display: none !important;
-  }
-
-
-  .discovery-section .filters-bar .SubgenreFiltersDropDown .dropdown-internal {
-    padding: 15px;
-
-}
-}
-
-.discovery-section .selectedFilters {
-    display: inline-block;
-    margin-left: 15px;
-    vertical-align: top;
-    margin-top: 18px;
-    // width: calc(100% - 300px);
-    width: auto;
-    overflow: hidden;
-    // height: 40px !important;
-
-    button.clearButton {
-      border: 1px solid #1a6ea9 !important;
-      border-radius: 4px;
-      padding: 12px;
-      color: #1a6ea9;
-      margin-left: 0px;
-      margin-right: 10px;
-    }
-    button.clearButton {
-      border: 1px solid #1a6ea9 !important;
-      border-radius: 4px;
-      padding: 12px;
-      color: #1a6ea9;
-      margin-left: 0px;
-      margin-right: 10px;
-    }
-
-    .tag {
-      margin-top: 5px;
-    }
-}
-
-.ToggleViewsWrapper {
-    display: none;
-}
-
-
-@media(min-width: 800px) {
-
-  .discovery-section .filters-bar button.filters-button {
-    margin-left: 165px !important;
-}
-
-
-  button.toggle-views-button {
-    display: none !important;
-}
-
-.ToggleViewsWrapper {
-  display: block;
-    position: absolute;
-    left: 40px;
-    vertical-align: top;
-    // top: 50%;
-    top: 30px;
-}
-
-a.viewButton {
-    width: 30px;
+  @media (max-width: 480px) {
     height: 50px;
-    margin-left: 0px;
-    display: inline-block;
-    vertical-align: top;
-    transform: translateY(-13px);
-    // border: 1px solid black;
-    // color: rgba(255,255,255,0) !important;
-    font-size: 10px;
-    position: relative;
-    z-index: 6;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-
-    span {
-      transform: translateY(33px);
-      display: inline-block;
-      width: 100%;
-      text-align: center;
   }
 }
-
-a.viewButton:hover + svg path {
-  fill: #1a6ea9;
-}
-
-a.viewButton svg path {
-  fill: #d1d1d1;
-}
-
-.ToggleViewsWrapper svg {
-    // transform: translateX(-135%);
-    transform: translate(-127%, -6px);
-    z-index: 5;
-    position: relative;
-}
-.ToggleViewsWrapper svg path {
-    fill: #282828;
-}
-.ToggleViewsWrapper svg.active path {
-    fill: #1a6ea9;
-}
-// .ToggleViewsWrapper svg.active + .viewButton span {
-//     color: #1a6ea9;
-// }
-
-}
-
-
-
-
-@media (max-width: 800px)  {
-  .discovery-section .fixedFiltersBar {
-      position: fixed;
-      // top: 50px !important;
-          // background: linear-gradient(to right, #1e0c49, #0097d5) !important;
-          box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-          border-left: 0px !important;
-
-          button.filters-button {
-            border: 1px solid #1a6ea9 !important;
-            color: #1a6ea9;
-          }
-          button.toggle-views-button  {
-            border: 1px solid #1a6ea9 !important;
-            color: #1a6ea9;
-          }
-  }
-}
-
-
-
-.ToggleViewsDropDown {
-  .mobile.active + svg, .mobile.active ~ span {
-    fill: #1a6ea9;
-    color: #1a6ea9 !important;
-  }
-}
-.ToggleViewsDropDown {
-  .mobile ~ span {
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: bold;
-  }
-}
-.ToggleViewsDropDown {
-  .mobile:hover + svg, .mobile:hover ~ span {
-    fill: #1a6ea9;
-    color: #1a6ea9 !important;
-  }
-}
-
-.filters-bar {
-  width: 100%;
-  height: 70px;
-  background: #fff !important;
-  position: relative;
-  padding: 0px;
-  max-width: 1685px;
-
-  border-bottom: 1px solid #C9C6CB;
-  border-left: 1px solid #C9C6CB;
-  border-right: 1px solid #C9C6CB;
-  border-top: 1px solid #C9C6CB;
-  // box-shadow: 0 3px 2px -2px #C9C6CB;
-  z-index: 100;
-
-  .filters-bar-content {
-    padding: 0 35px;
-    position: relative;
-    height: 100%;
-  }
-
-  .SubgenreFiltersDropDown {
-    position: absolute;
-    border: 1px solid #C9C6CB;
-    border-top: 0;
-    left: 30px;
-    background: #fff;
-    z-index: 1000;
-    // max-width: 300px;
-
-    top: 70px;
-    border-radius: 4px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    max-height: 0;
-    overflow: hidden;
-    transition: .2s ease all;
-
-    .closeDropdown {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      cursor: pointer;
-      transition: all .3s ease;
-
-      i.im.im-x-mark {
-          font-size: 20px;
-          color: #1a6ea9;
-      }
-    }
-
-      .closeDropdown:hover {
-        opacity: .8;
-      }
-    .dropdown-internal {
-      padding: 30px 15px 15px 15px;
-      // text-align: center;
-
-    }
-    &.expand {
-      max-height: none;
-
-    }
-  }
-
-
-
-  button.toggle-views-button {
-  display: inline-block;
-  font-size: 12px;
-  border: 1px solid #1a6ea9 !important;
-  border-radius: 4px;
-  padding: 10px;
-  color: #1a6ea9;
-  transition: all .3s ease;
-  vertical-align: top;
-  margin-top: 20px;
-  margin-left: 0px;
-  position: absolute;
-  right: 35px;
-
-      i.im.im-angle-down {
-      font-size: 12px;
-      -webkit-transform: translateY(2px);
-      -ms-transform: translateY(2px);
-      transform: translateY(2px);
-      margin-left: 10px;
-  }
-}
-  button.toggle-views-button:hover {
-  border: 1px solid #1a6ea9 !important;
-  background: #1a6ea9 !important;
-  color: #fff;
-  cursor: pointer;
-
-      i.im.im-angle-down {
-      font-size: 12px;
-      -webkit-transform: translateY(2px);
-      -ms-transform: translateY(2px);
-      transform: translateY(2px);
-      margin-left: 10px;
-  }
-}
-
-  button.filters-button {
-    display: inline-block;
-    font-size: 14px;
-    border: 1px solid #1a6ea9 !important;
-    border-radius: 4px;
-    padding: 8px;
-    color: #1a6ea9;
-    transition: all .3s ease;
-    vertical-align: top;
-    margin-top: 20px;
-    margin-left: 0px;
-    background: #fff;
-  }
-
-  button.filters-button:hover {
-  border: 1px solid #1a6ea9 !important;
-  background: #1a6ea9 !important;
-  color: #fff;
-  transition: all .3s ease;
-  cursor: pointer;
-  }
-
-  .search-wrapper {
-    float: none;
-      display: inline-block;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      left: 200px;
-      input {
-        height: 25px;
-        width: 200px;
-
-      }
-  }
-}
-
-
-.selectedFilters {
-  display: inline-block;
-  margin-left: 50px;
-  vertical-align: top;
-  margin-top: 20px;
-
-  .tag {
-    margin: 0 2px;
-font-size: 14px;
-border-radius: 6px;
-transition: all .2s ease;
-color: #fff;
-background: #1a6ea9;
-border: 1px solid #1a6ea9;
-cursor: pointer;
-letter-spacing: 1px;
-box-shadow: 0 3px 2px -2px #C9C6CB;
-padding: 6px;
-font-family: 'Baloo', cursive;
-}
-}
-
-
-
-
-
-// FILTER DROP DOWN RESPONSIVE
-
-@media (min-width: 800px) {
-  .discovery-section .filters-bar .SubgenreFiltersDropDown {
-      height: calc(100vh - 225px);
-      width: calc(38vw - 30px);
-
-      .tag {
-      font-size: 16px !important;
-      margin: 8px;
-      letter-spacing: 1px;
-  }
-
-      .bottom-buttons {
-        position: absolute;
-        bottom: 15px;
-      }
-  }
-}
-
-
-@media (min-width: 800px)  {
-  .discovery-section .filters-bar .SubgenreFiltersDropDown {
-      .tag {
-      font-size: 14px !important;
-      margin: 6px;
-      letter-spacing: 1px;
-  }
-
-  }
-}
-@media (min-width: 800px) and (max-width: 1175px) {
-  .discovery-section .filters-bar .SubgenreFiltersDropDown {
-
-    height: calc(100vh - 225px);
-    width: calc(45vw - 30px);
-      .tag {
-      font-size: 12px !important;
-      margin: 6px;
-      letter-spacing: 1px;
-  }
-
-  }
-}
-@media (min-width: 800px) and (max-width: 1000px) {
-  .discovery-section .filters-bar .SubgenreFiltersDropDown {
-
-    height: calc(100vh - 225px);
-    width: 500px;
-      .tag {
-      font-size: 14px !important;
-      margin: 6px;
-      letter-spacing: 1px;
-  }
-
-  }
-}
-
-
-
-
-// CLICK TO REMOVE SELCTED FILTER STYLES
-
-// .discovery-section .selectedFilters .tag {
-//     position: relative;
-// }
-//
-// button.tag.selected-filter:hover span.filter-name {
-//     opacity: 0;
-// }
-// button.tag.selected-filter:hover span.remove-x {
-//     opacity: 1;
-// }
-//
-// span.remove-x {
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     transform: translate(-50%, -50%);
-//     opacity: 0;
-// }

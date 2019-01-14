@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet';
-
-import SongsContainer from 'SongsContainer.js'
+import HeroPosts from 'components/HeroGrid/HeroPosts'
+import DiscoverSection from 'components/DiscoverSection/DiscoverSection.js'
 import { fetchPosts } from 'actions/index'
 import { fetchFilters } from 'actions/filters'
 
@@ -22,7 +22,11 @@ class Homepage extends Component {
             <title>Rock With This - Your New Favorite Song</title>
           </Helmet>
              <div className="homeContainer">
-                    <SongsContainer {...this.props} />
+                 <HeroPosts
+                   {...this.props}
+                   heroPosts={this.props.heroPosts}
+                 />
+               <DiscoverSection {...this.props} />
                  </div>
            </div>
         )

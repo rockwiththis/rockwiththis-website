@@ -60,7 +60,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.8);
         transition: all 0s linear;
         z-index: 102; }
         @media screen and (max-width: 800px) {
@@ -75,13 +75,11 @@
         .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
           width: calc(100% - 160px);
           margin-left: 80px;
-          line-height: 28px;
           display: inline-block;
-          padding: 5px 0; }
+          padding: 8px 0 8px;
+          transform: translateX(-1.6px); }
           @media (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
-              padding: 5px;
-              margin-left: 70px;
               width: calc(100% - 150px); } }
           @media screen and (max-width: 650px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
@@ -96,17 +94,16 @@
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
             font-size: 30px;
             line-height: 30px;
-            margin-top: 5px;
             font-weight: 700;
             color: #000;
             overflow: hidden;
             white-space: nowrap;
-            text-overflow: ellipsis; }
+            text-overflow: ellipsis;
+            margin-bottom: 4px; }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 25px;
-                line-height: 25px;
-                margin-top: 5px; } }
+                line-height: 25px; } }
             @media screen and (max-width: 650px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 20px;
@@ -114,8 +111,7 @@
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 15px;
-                line-height: 15px;
-                margin-top: 2px; } }
+                line-height: 15px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
             font-size: 30px;
             line-height: 30px;
@@ -125,8 +121,7 @@
             max-height: 40px;
             overflow-x: hidden;
             font-weight: 400;
-            color: #000;
-            margin-top: 5px; }
+            color: #000; }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
                 font-size: 25px;
@@ -396,7 +391,7 @@
           bottom: 0;
           width: 100%;
           height: auto;
-          background: rgba(255, 255, 255, 0.7);
+          background: rgba(255, 255, 255, 0.8);
           z-index: 102; }
           @media (max-width: 800px) {
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info {
@@ -440,47 +435,34 @@
             padding: 5px;
             margin-bottom: 0;
             display: inline-block;
-            padding: 2.5px 0; }
+            padding: 5px 0 4px;
+            transform: translateX(-0.8px); }
             @media (max-width: 800px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
-                margin-left: 2.5px;
-                padding: 2.5px;
-                width: calc(100% - 50px); } }
+                width: calc(100% - 45px);
+                margin-left: 5px; } }
             @media (max-width: 480px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
                 display: none; } }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title {
               font-weight: 700;
-              font-size: 15px;
+              font-size: 14.5px;
               line-height: 15px;
               color: #000;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
-              max-height: 20px;
               overflow-x: hidden;
-              margin-top: 2.5px; }
-              @media (max-width: 800px) {
-                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title {
-                  font-size: 15px;
-                  line-height: 15px;
-                  margin-top: 2.5px; } }
+              margin-bottom: 1px; }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist {
               font-weight: 400;
               color: #000;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
-              max-height: 15px;
-              font-size: 15px;
+              font-size: 14.5px;
               line-height: 15px;
-              overflow-x: hidden;
-              margin-top: 2.5px; }
-              @media (max-width: 800px) {
-                .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist {
-                  font-size: 15px;
-                  line-height: 15px;
-                  margin-top: 2.5px; } }
+              overflow-x: hidden; }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
             height: 40px;
             width: 40px;
@@ -580,12 +562,12 @@
             text-decoration: none;
             background: #1a6ea9;
             color: #fff;
-            padding: 15px;
-            border-radius: 0;
             max-width: 40%;
             margin: 10px auto;
             display: inline-block;
-            font-size: 14px !important; }
+            font-size: 14px;
+            border-radius: 6px;
+            padding: 10px; }
       .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover img.heroHoverGradient, .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover .hover-content {
         opacity: 1; }
     @media screen and (max-width: 1200px) and (min-width: 800px) {

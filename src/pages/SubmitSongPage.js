@@ -5,8 +5,6 @@ import { Helmet } from 'react-helmet';
 import Mailchimp from 'react-mailchimp-form'
 import { Link } from 'react-router-dom'
 
-import SongsContainer from 'SongsContainer.js'
-
 import hands1 from 'images/hands.svg'
 
 
