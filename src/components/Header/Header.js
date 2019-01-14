@@ -3,9 +3,8 @@ import { Link, NavLink, Nav } from 'react-router-dom'
 // import * as Scroll from 'react-scroll'
 import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
-import desktopLogo from 'images/logo-desktop.png'
-// import mobileLogo from 'images/logo-mobile.png'
-import mobileLogo from 'images/Stacked-Logo.png'
+import desktopLogo from 'images/Horizontal-Logo-Vector.svg'
+import mobileLogo from 'images/Stacked-Logo.svg'
 import NavLeftNotHome from './NavLeftNotHome.js'
 
 import './Header.scss'

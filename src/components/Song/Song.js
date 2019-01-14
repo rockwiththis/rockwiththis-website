@@ -10,7 +10,7 @@ import ShareBox from 'components/ShareBox/ShareBox'
 
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
-import loadingButton from 'images/loading.gif'
+import loadingButton from 'images/Loading Icon 2_5.gif'
 import pauseButtonWhite from 'images/PAUSE-BUTTON.png'
 import hoverGradient from 'images/rwt-hover-gradient.png'
 
@@ -76,7 +76,7 @@ class Song extends Component {
 
         const readyToPlay = !!this.props.songPlayerDurations[song.id];
         const playPauseButton = !readyToPlay ?
-          <img src={loadingButton} className="loadingButton" height="60" width="60" /> :
+          <img src={loadingButton} className="loadingButton" /> :
           song.id === activeSong.id && isPlaying ?
             <img src={pauseButtonWhite} className="pauseButton" /> :
             <svg className="playButton" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
@@ -96,23 +96,22 @@ class Song extends Component {
 
                 {this.props.layout == 'snapshot'
                   ?
-                <div className="marquee songInfo mobile" onClick={this.onPressPlay(song)}>
-                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
+                <div className="songInfo mobile" onClick={this.onPressPlay(song)}>
+                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link>
                       <span className="artistName">{song.artist_name}</span>
                 </div>
                 :
-                <div className="marquee songInfo mobile">
-                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link><br />
+                <div className="songInfo mobile">
+                    <Link className="postTitleLink" to={`/songs/${song.id}`}><span className="songName">{song.name}</span></Link>
                       <span className="artistName">{song.artist_name}</span>
                 </div>
               }
 
-                <div className="marquee songInfo desktop">
-                  <div id="checkOverFlowSong" className="marquee-inner songtitle">
+                <div className="songInfo desktop">
+                  <div className="songtitle">
                   <Link className="songName postTitleLink" to={`/songs/${song.id}`}>{song.name}</Link><a target="_blank" href={song.spotify_link}  className="spotify"><i className="fa fa-spotify" aria-hidden="true" /></a>
                   </div>
-                    <br />
-                  <div id="checkOverFlowArtist" className="marquee-inner artist">
+                  <div className="artist">
                     <span className="artistName">{song.artist_name}</span>
                   </div>
                 </div>

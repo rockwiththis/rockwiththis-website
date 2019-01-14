@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { Helmet } from "react-helmet";
 import Mailchimp from 'components/Newsletter/Mailchimp.js'
 import { Link } from 'react-router-dom'
-
-import SongsContainer from 'SongsContainer.js'
 import { fetchPosts } from 'actions/index'
 import { fetchFilters } from 'actions/filters'
 
@@ -108,7 +106,7 @@ class ConnectPage extends Component {
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
                           <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
                           </ul>
-                        
+
                         </div>
 
                     </div>

@@ -219,7 +219,7 @@ class FiltersBar extends Component {
               <svg className={`viewIcon ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/></svg>
 
               <a className="viewButton" name='snapshot' onClick={this.changeGridView}>
-              <span>List</span>
+              <span>Snap</span>
               </a>
               <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
               <a className="viewButton" name='fullGrid' onClick={this.changeGridView}>
@@ -240,11 +240,14 @@ class FiltersBar extends Component {
                   }}
                   >
                   <button onClick={this.closeSubGenreFiltersX} className="closeDropdown"><i class="im im-x-mark"></i></button>
-                  {filterTags}
+
                   <div className='bottom-buttons'>
                     <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.clearFilters}>Clear All</button>
                     <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.fetchCurrentRequest}>Search Filters {!disableClearAll && <i className='fa fa-arrow-right' />}</button>
                   </div>
+                  <div className="filter-tags-container">
+                    {filterTags}
+                  </div>              
                 </div>
             }
           </div>
