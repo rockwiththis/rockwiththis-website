@@ -33,6 +33,11 @@ class SingleSong extends Component {
       else this.props.actions.togglePlayPause(false);
     }
 
+    // TODO eliminate duplicate @ Song.js
+    parsedDescription = song => (
+        song.description.replace(/\n+/g, '<br />  ')
+    );
+
     renderPlayer() {
         const {
             activeSong,
@@ -66,7 +71,10 @@ class SingleSong extends Component {
         console.log(this.props.singleSong);
         return (
               <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
-                  <p className="songDescription" dangerouslySetInnerHTML={{ __html: this.props.singleSong.description }} />
+                  <p
+                    className="songDescription"
+                    dangerouslySetInnerHTML={{ __html: this.parsedDescription(this.props.singleSong) }}
+                  />
               </div>
         )
     }

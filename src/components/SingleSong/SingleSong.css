@@ -320,7 +320,6 @@
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription {
           max-width: 674px; } }
       .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription br {
-        height: 1px !important;
+        height: 18px !important;
         display: block;
-        margin: -4px 0 !important;
         content: ""; }
