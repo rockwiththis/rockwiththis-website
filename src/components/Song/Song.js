@@ -65,6 +65,11 @@ class Song extends Component {
         )
     }
 
+    // TODO eliminate duplicate @ SingleSong.js
+    parsedDescription = song => (
+        song.description.replace(/\n+/g, '<br />  ')
+    );
+
 
     renderTop() {
         const {
@@ -130,7 +135,10 @@ class Song extends Component {
                 </p>
               </div>
               <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
-                  <p className="songDescription" dangerouslySetInnerHTML={{ __html: song.description }} />
+                  <p
+                    className="songDescription"
+                    dangerouslySetInnerHTML={{ __html: this.parsedDescription(song) }}
+                  />
               </div>
             </div>
         )
