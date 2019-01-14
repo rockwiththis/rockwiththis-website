@@ -122,16 +122,21 @@ class Song extends Component {
                 </div>
 
                 <p className="metaInfo">
-                    <p className="leftInfo desktop">
-                    <span className="postDate "><span className="postAuthor">Jared Paul</span> | <Moment format="ll" date={song.created_at} /> | </span>
-                    </p>
-                    <p className="leftInfo mobile">
-                    <span className="postDate "><span className="postAuthor">Jared Paul</span> | <Moment format="M/d/YY" date={song.created_at} /> | </span>
-                    </p>
-                    {this.renderTags(song)}
+                  <p className="leftInfo desktop">
+                    <span className="postDate ">
+                      <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
+                      | <Moment format="ll" date={song.created_at} /> |&nbsp;
+                    </span>
+                  </p>
+                  <p className="leftInfo mobile">
+                    <span className="postDate ">
+                      <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
+                      | <Moment format="M/d/YY" date={song.created_at} /> |&nbsp;
+                    </span>
+                  </p>
 
-                    <ShareBox song={song} />
-
+                  {this.renderTags(song)}
+                  <ShareBox song={song} />
                 </p>
               </div>
               <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
