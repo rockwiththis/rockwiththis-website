@@ -137,15 +137,37 @@ class DiscoverSection extends Component {
 
   // This is currently not supported but it's cool b/c im pretty sure the arrows are hidden anyway
   changeDiscoverSong(increment) {
-      let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
-        this.state.discoverFullSongIndex - 1
-      if(newIndex == this.props.filteredPosts.length){
-        this.loadMoreSongs()
-      }
-      if(newIndex == -1){
-        newIndex = this.props.filteredPosts.length - 1
-      }
-      this.setState({ discoverFullSongIndex: newIndex })
+    let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
+      this.state.discoverFullSongIndex - 1
+    if(newIndex == this.props.filteredPosts.length){
+      this.loadMoreSongs()
+    }
+    if(newIndex == -1){
+      newIndex = this.props.filteredPosts.length - 1
+    }
+    this.setState({ discoverFullSongIndex: newIndex })
+  }
+
+  showPreviousDiscoverSong = () => {
+    const newIndex = this.getSnapshotPostIndex() - 1;
+
+    if (newIndex < 0)
+      this.props.actions.loadPreviousSongs(true);
+    else
+      this.props.actions.updateSnapshotSong(
+        this.props.filteredPosts[newIndex]
+      );
+  }
+
+  showNextDiscoverSong = () => {
+    const newIndex = this.getSnapshotPostIndex() + 1;
+
+    if (newIndex >= this.props.filteredPosts.length)
+      this.props.actions.loadMoreSongs(null, true);
+    else
+      this.props.actions.updateSnapshotSong(
+        this.props.filteredPosts[newIndex]
+      );
   }
 
   enableDiscoverScroll() {
@@ -171,13 +193,6 @@ class DiscoverSection extends Component {
           song.id === this.props.snapshotPost.id
       ))
   );
-
-  getAllPlayableSongs = () => ([
-    ...this.props.heroPosts,
-    this.props.activeSong,
-    this.props.snapshotPost,
-    ...this.props.songListPosts
-  ]);
 
   render() {
     const songGrids = []
@@ -266,7 +281,7 @@ class DiscoverSection extends Component {
                         <div>
                           <button
                             className="toggle-song previous"
-                            onClick={() => this.changeDiscoverSong(false)}
+                            onClick={this.showPreviousDiscoverSong}
                           >
                             <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
                           </button>
@@ -295,7 +310,7 @@ class DiscoverSection extends Component {
 
                           <button
                             className="toggle-song next"
-                            onClick={() => this.changeDiscoverSong(true)}
+                            onClick={this.showNextDiscoverSong}
                           >
                             <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
                           </button>

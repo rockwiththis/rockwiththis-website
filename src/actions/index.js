@@ -73,11 +73,11 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 
 export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS');
 export const LOAD_NEXT_SONGS = createAction('app/LOAD_NEXT_SONGS');
-export const loadMoreSongs = (callback) => (dispatch, getState) => {
+export const loadMoreSongs = (callback, updateSnapshot = false) => (dispatch, getState) => {
   const state = getState();
 
   if (state.currentPostPageIndex < state.maxSongListPageIndex) {
-    dispatch(LOAD_NEXT_SONGS());
+    dispatch(LOAD_NEXT_SONGS({ updateSnapshot }));
 
   } else {
     // TODO try just setting this at once
@@ -86,9 +86,11 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
     filtersArray.push(filterIds)
 
     const fullURL = apiBaseUrl + `/songs?offset=${state.filteredPosts.length}&tags=[${filtersArray}]`
-    fetch(fullURL).then(res => res.json()).then((res) => {
+    fetch(fullURL)
+    .then(res => res.json())
+    .then(newSongList => {
 
-      if (res.length > 0) {
+      if (newSongList.length > 0) {
 
         if (window.innerWidth > 800) {
             $('#discovery-container').animate({scrollTop: 0}, 100);
@@ -98,9 +100,9 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
             smooth: true
           })
         }
-        dispatch(LOAD_MORE_SONGS(res));
+        dispatch(LOAD_MORE_SONGS({ newSongList, updateSnapshot }));
 
-        if (callback) callback(res);
+        if (callback) callback(newSongList);
       } else {
         return;
       }
@@ -109,7 +111,7 @@ export const loadMoreSongs = (callback) => (dispatch, getState) => {
 }
 
 const LOAD_PREVIOUS_SONGS = createAction('app/LOAD_PREVIOUS_SONGS');
-export const loadPreviousSongs = () => dispatch => {
+export const loadPreviousSongs = (updateSnapshot = false) => dispatch => {
   if (window.innerWidth > 800) {
       $('#discovery-container').animate({scrollTop: 0}, 100);
   } else {
@@ -118,7 +120,7 @@ export const loadPreviousSongs = () => dispatch => {
       smooth: true
     })
   }
-  dispatch(LOAD_PREVIOUS_SONGS())
+  dispatch(LOAD_PREVIOUS_SONGS({ updateSnapshot }))
 };
 
 const RESET_LOADED_SONGS = createAction('app/RESET_LOADED_SONGS');

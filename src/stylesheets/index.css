@@ -241,9 +241,6 @@ button {
 span.postTags:nth-of-type(3) {
   display: none !important; }
 
-.toggle-song {
-  z-index: 2; }
-
 .discovery-container::-webkit-scrollbar {
   display: none; }
 
