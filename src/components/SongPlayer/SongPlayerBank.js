@@ -176,11 +176,11 @@ class SongPlayerBank extends React.Component {
     };
   }
 
-  onPlayerReady = songId => ref => {
-    console.log("loaded song", songId);
-    this.allPlayers[songId].getDuration()
-    .then(seconds => this.props.setSongDuration(songId, seconds))
-  }
+  onPlayerReady = songId => ref => (
+      this.allPlayers[songId] &&
+      this.allPlayers[songId].getDuration()
+        .then(seconds => this.props.setSongDuration(songId, seconds))
+  )
 
   updateSongProgress = progressRatio => this.activePlayer.seekTo(progressRatio);
 
