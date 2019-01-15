@@ -1,3 +1,16 @@
+
+.fullView {
+  .discover-full-song {
+    .slide {
+      opacity: 0;
+    }
+    .slide.selected {
+      opacity: 1 !important;
+    }
+  }
+}
+
+
 .fullView {
 
   @media (max-width: 800px) {
