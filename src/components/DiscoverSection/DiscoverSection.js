@@ -260,16 +260,16 @@ class DiscoverSection extends Component {
                               </div>
                             )) }
                           </Carousel>
+
+                          <PaginationControls
+                            currPageIndex={this.props.currentSongListPageIndex}
+                            onForward={() => this.props.actions.loadMoreSongs()}
+                            onBackward={this.props.actions.loadPreviousSongs}
+                          />
                         </div>
                       :
                         <SongGridPlaceholder />
                       }
-
-                      <PaginationControls
-                        currPageIndex={this.props.currentSongListPageIndex}
-                        onForward={() => this.props.actions.loadMoreSongs()}
-                        onBackward={this.props.actions.loadPreviousSongs}
-                      />
 
                     </div>
 

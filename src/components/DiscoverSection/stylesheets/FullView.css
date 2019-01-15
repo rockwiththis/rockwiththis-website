@@ -91,7 +91,8 @@
     flex-direction: row;
     height: 20px;
     display: flex;
-    justify-content: center; }
+    justify-content: center;
+    padding: 20px 0; }
     .fullView .songGrid .pagination-controls .grid-arrow {
       height: 20px;
       -webkit-transition: all .2s ease;
