@@ -898,9 +898,6 @@ form.rwt-email-form button {
 .socialLinks.hide {
   display: none; }
 
-.connectPage .main-content {
-  padding-top: 45px; }
-
 @media screen and (max-width: 480px) {
   .headerContainer {
     height: 50px !important; }
