@@ -9,8 +9,8 @@
     display: none !important; } }
 
 .fullView .songGrid {
-  height: calc(38vw - 30px);
-  width: calc(38vw - 30px);
+  height: calc(37vw - 30px);
+  width: calc(37vw - 30px);
   max-height: 674px;
   padding: 0;
   display: inline-block;
@@ -28,7 +28,7 @@
     .fullView .songGrid {
       display: none !important; } }
   .fullView .songGrid .grid-container-wrapper {
-    width: calc(38vw - 30px);
+    width: calc(37vw - 30px);
     overflow: hidden;
     white-space: nowrap; }
     @media (max-width: 1100px) and (min-width: 800px) {
