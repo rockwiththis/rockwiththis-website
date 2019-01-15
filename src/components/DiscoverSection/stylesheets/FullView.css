@@ -163,7 +163,6 @@
     display: none !important; } }
 
 .fullView .discover-full-song button.toggle-song {
-  display: none;
   cursor: pointer !important;
   position: absolute;
   top: 0;

@@ -45,7 +45,8 @@
         margin: 0;
         position: relative;
         text-align: center;
-        background: transparent; }
+        background: transparent;
+        padding: 0 40px; }
     .carousel .slider-wrapper .slider.animated {
       -webkit-transition: all .35s ease-in-out;
       transition: all .35s ease-in-out; }
@@ -98,9 +99,6 @@ body::-webkit-scrollbar-thumb {
   height: 35px; }
 
 .search-wrapper {
-  display: none !important; }
-
-.discover-full-song .toggle-song {
   display: none !important; }
 
 @media (min-width: 480px) and (max-width: 800px) {

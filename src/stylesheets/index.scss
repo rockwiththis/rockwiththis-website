@@ -68,6 +68,7 @@ $landing-height: calc(100vh - 220px);
         position: relative;
         text-align: center;
         background: transparent;
+        padding: 0 40px;
       }
     }
     .slider.animated {
@@ -137,12 +138,6 @@ body::-webkit-scrollbar-thumb {
 
 .search-wrapper {
     display: none !important;
-}
-
-
-// TOGGLE ARROWS HIDE FOR NOW
-.discover-full-song .toggle-song {
-  display: none !important;
 }
 
 
