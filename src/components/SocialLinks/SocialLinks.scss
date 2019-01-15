@@ -1,20 +1,132 @@
-.socialLinks {
-    background: #d8d8d8;
-    height: 45px;
-    margin-top: 90px;
-    max-width: 1685px;
-    margin: 90px auto 0;
-    border-radius: 4px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
+// .socialLinks {
+//     background: #d8d8d8;
+//     height: 45px;
+//     margin-top: 90px;
+//     max-width: 1685px;
+//     margin: 90px auto 0;
+//     border-radius: 4px;
+//     border-bottom-right-radius: 0;
+//     border-bottom-left-radius: 0;
+// }
+//
+//
+// .socialLinks {
+//
+//   background: #f5f3f3;
+//   height: 45px;
+//   margin-top: 75px;
+//
+//   ul {
+//     // width: 324px;
+//     width: 407px;
+//     margin: 0 auto;
+//     padding: 0;
+//     list-style: none;
+//
+//       li {
+//       display: inline-block;
+//       margin: 11px 30px 0;
+//
+//       &.sc {
+//             margin: 10px 25px 0;
+//       }
+//
+//       i.im.im-soundcloud {
+//           font-size: 27px;
+//           margin-top: 0px;
+//           transform: translateY(4px);
+//       }
+//       i.im.im-instagram {
+//           font-size: 23px;
+//           transform: translateY(1px);
+//       }
+//       i.im.im-spotify {
+//     transform: translateY(1px);
+// }
+//       i {
+//         font-size: 22px;
+//         height: auto;
+//         color: #282828
+//       }
+//     }
+//   }
+// }
+//
+// @media (min-width: 800px) {
+//   .socalLinks {
+//     transform: translateX(5px);
+//   }
+// }
+//
+// @media (max-width: 800px) {
+//   .socialLinks {
+//     ul {
+//       // width: 324px;
+//       width: 366px;
+//       margin: 0 auto;
+//       padding: 0;
+//       list-style: none;
+//
+//         li {
+//         display: inline-block;
+//         margin: 0px 25px 0;
+//             transform: translateY(-2.5px);
+//
+//         &.sc {
+//               margin: 10px 25px 0;
+//         }
+//
+//         i.im.im-soundcloud {
+//             font-size: 27px;
+//             margin-top: 0px;
+//             transform: translateY(4px);
+//         }
+//         i.im.im-instagram {
+//             font-size: 23px;
+//             transform: translateY(1px);
+//         }
+//         i.im.im-spotify {
+//       transform: translateY(1px);
+//   }
+//         i {
+//           font-size: 22px;
+//           height: auto;
+//           color: #282828
+//         }
+//       }
+//     }
+//   }
+//
+// }
+//
+//
+// .socialLinks.notFixed {
+//     position: relative !important;
+// }
+//
+// .socialLinks.notFixed + .singleSongPage {
+//     position: relative !important;
+// }
+//
+// @media (max-width: 480px) {
+//   .socialLinks.notFixed + .singleSongPage .singleSongContainer{
+//       margin-top: 50px !important
+//   }
+// }
+
 
 
 .socialLinks {
 
   background: #f5f3f3;
-  height: 45px;
+  height: 40px;
   margin-top: 75px;
+  margin-top: 90px;
+  max-width: 1685px;
+  margin: 75px auto 0;
+  border-radius: 4px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
 
   ul {
     // width: 324px;
@@ -25,10 +137,17 @@
 
       li {
       display: inline-block;
-      margin: 11px 30px 0;
+      margin: 10px 30px 0;
+      vertical-align: top;
 
       &.sc {
-            margin: 10px 25px 0;
+            margin: 7px 25px 0;
+      }
+      &.fb {
+            margin: 11px 30px 0;
+      }
+      &.twitter {
+            margin: 11px 30px 0;
       }
 
       i.im.im-soundcloud {

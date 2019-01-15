@@ -1,17 +1,13 @@
 .socialLinks {
-  background: #d8d8d8;
-  height: 45px;
+  background: #f5f3f3;
+  height: 40px;
+  margin-top: 75px;
   margin-top: 90px;
   max-width: 1685px;
-  margin: 90px auto 0;
+  margin: 75px auto 0;
   border-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
-
-.socialLinks {
-  background: #f5f3f3;
-  height: 45px;
-  margin-top: 75px; }
   .socialLinks ul {
     width: 407px;
     margin: 0 auto;
@@ -19,9 +15,14 @@
     list-style: none; }
     .socialLinks ul li {
       display: inline-block;
-      margin: 11px 30px 0; }
+      margin: 10px 30px 0;
+      vertical-align: top; }
       .socialLinks ul li.sc {
-        margin: 10px 25px 0; }
+        margin: 7px 25px 0; }
+      .socialLinks ul li.fb {
+        margin: 11px 30px 0; }
+      .socialLinks ul li.twitter {
+        margin: 11px 30px 0; }
       .socialLinks ul li i.im.im-soundcloud {
         font-size: 27px;
         margin-top: 0px;
