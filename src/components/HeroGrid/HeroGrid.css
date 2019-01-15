@@ -76,21 +76,22 @@
           width: calc(100% - 160px);
           margin-left: 80px;
           display: inline-block;
-          padding: 8px 0 8px;
+          padding: 10px 0 8px;
           transform: translateX(-1.6px); }
           @media (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
-              width: calc(100% - 150px); } }
-          @media screen and (max-width: 650px) {
+              width: calc(100% - 150px);
+              margin-left: 70px; } }
+          @media (max-width: 650px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
               width: calc(100% - 116px);
-              margin-left: 60px;
-              padding: 3px 0; } }
+              margin-left: 56px;
+              padding: 8px 0 5px; } }
           @media (max-width: 480px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-info {
               width: calc(100% - 80px);
               margin-left: 40px;
-              padding: 5px 0 2px; } }
+              padding: 5px 0 3px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
             font-size: 30px;
             line-height: 30px;
@@ -99,7 +100,7 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            margin-bottom: 4px; }
+            margin-bottom: 2px; }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 25px;
@@ -126,8 +127,7 @@
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
                 font-size: 25px;
-                line-height: 25px;
-                margin-top: 5px; } }
+                line-height: 25px; } }
             @media screen and (max-width: 650px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
                 font-size: 20px;
@@ -135,8 +135,7 @@
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
                 font-size: 15px;
-                line-height: 15px;
-                margin-top: 2px; } }
+                line-height: 15px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
           position: absolute;
           top: -43px;
