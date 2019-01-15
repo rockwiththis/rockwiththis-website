@@ -174,9 +174,6 @@ class FiltersBar extends Component {
 
       const alphabetizedFilters = this.props.filters.sort((a, b) => (a.name > b.name) ? 1 : -1)
 
-      console.log("this.props.filters", this.props.filters);
-      console.log("alphabetizedFilters", alphabetizedFilters);
-
       const filterTags = alphabetizedFilters.map((filter, i) => {
           return (
             <button
