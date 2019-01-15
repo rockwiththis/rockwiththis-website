@@ -175,13 +175,11 @@ class FiltersBar extends Component {
 
 
 
-      let filterNames = this.props.filters.map(a => a.name);
 
-      const alphabetizedFilters = filterNames.sort(function (a, b) {
-          if (a < b) return -1;
-          else if (a > b) return 1;
-          return 0;
-      });
+      const alphabetizedFilters = this.props.filters.sort((a, b) => (a.name > b.name) ? 1 : -1)
+
+      console.log("this.props.filters", this.props.filters);
+      console.log("alphabetizedFilters", alphabetizedFilters);
 
       const filterTags = alphabetizedFilters.map((filter, i) => {
           return (
@@ -189,7 +187,7 @@ class FiltersBar extends Component {
               className={`tag ${filter.selected ? 'selected' : ''}`}
               onClick={() => this.props.actions.toggleFilter(filter, i)}
             >
-              #{filter}
+              #{filter.name}
             </button>
           )
         })
