@@ -15,7 +15,6 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "aws-sdk": "^2.334.0",
     "axios": "^0.17.1",
     "bcrypt": "^3.0.2",
     "history": "^4.7.2",
