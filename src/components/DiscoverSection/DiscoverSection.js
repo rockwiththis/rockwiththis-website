@@ -149,13 +149,13 @@ class DiscoverSection extends Component {
   }
 
   showPreviousDiscoverSong = () => {
-    const newIndex = this.getSnapshotPostIndex() - 1;
+    const currIndex = this.getSnapshotPostIndex();
 
-    if (newIndex < 0)
+    if (this.props.filteredPosts.length % currIndex === 0)
       this.props.actions.loadPreviousSongs(true);
     else
       this.props.actions.updateSnapshotSong(
-        this.props.filteredPosts[newIndex]
+        this.props.filteredPosts[currIndex - 1]
       );
   }
 
