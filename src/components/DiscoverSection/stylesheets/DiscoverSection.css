@@ -55,3 +55,5 @@ div#discovery-container.fullGridLayout .discover-full-song {
   @media (max-width: 480px) {
     .discovery-section .songList.fixedFiltersBarPadding {
       padding-top: 65px; } }
+  .discovery-section .pagination-controls {
+    padding: 20px 0; }
