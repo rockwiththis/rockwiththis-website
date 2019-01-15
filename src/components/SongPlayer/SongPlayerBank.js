@@ -57,9 +57,6 @@ class SongPlayerBank extends React.Component {
     const activeIndex = !!this.activePlayer ? this.activePlayer.index : null;
     const snapshotIndex = !!snapshotSong && this.allPlayers[snapshotSong.id] && this.allPlayers[snapshotSong.id].index
     var indexOffset = this.props.heroSongs.length;
-    console.log("set new song list", songList);
-    console.log(activeIndex);
-    console.log(snapshotIndex);
 
     this.songListPlayers = songList.reduce((currPlayers, song, i) => {
       const currIndex = i + indexOffset;
@@ -96,10 +93,13 @@ class SongPlayerBank extends React.Component {
   }
 
   createPlayer = (song, index) => {
-    console.log(`Song ${song.id} @ index ${index}`);
-      return !!song.soundcloud_track_id ?
-        this.createSoundCloudPlayer(song, index) :
-        this.createYoutubePlayer(song, index)
+    if (!!song.soundcloud_track_id)
+      return this.createSoundCloudPlayer(song, index)
+
+    else if (!!song.youtube_link || !!song.youtube_track_id)
+      return this.createYoutubePlayer(song, index)
+
+    else return null
   }
 
   getCleanPlayerElement = (index, elementType, getId) => {
@@ -117,7 +117,7 @@ class SongPlayerBank extends React.Component {
   createYoutubePlayer = (song, index) => {
     const playerDiv = this.getCleanPlayerElement(index, 'div', getYoutubePlayerId);
     const player = new this.YT.Player(playerDiv.id, {
-      videoId: song.youtube_link.match(youtubeUrlPattern)[1],
+      videoId: this.getYoutubeVideoId(song),
       playerVars: {
         playsinline: 1
       },
@@ -141,6 +141,15 @@ class SongPlayerBank extends React.Component {
       seekTo: ratio => player.seekTo(ratio * player.getDuration(), true)
     };
   }
+
+  getYoutubeVideoId = song => {
+    if (!!song.youtube_link) {
+      const match = song.youtube_link.match(youtubeUrlPattern);
+      if (!!match) return match[1]
+    }
+    return song.youtube_id;
+  }
+
 
   handleYoutubePlayerStateChange = changeEvent => (
       changeEvent.data === 0 && this.props.onSongEnd
@@ -186,7 +195,6 @@ class SongPlayerBank extends React.Component {
 
   playSongListSong = songToPlay => {
     const newActivePlayer = this.allPlayers[songToPlay.id];
-    console.log("playing song", newActivePlayer);
     if (!!newActivePlayer) {
       newActivePlayer.play();
 
