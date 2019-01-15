@@ -93,7 +93,9 @@
                 display: inline-block;
                 margin-left: 5px;
                 margin-top: 2.5px;
-                text-align: left; }
+                text-align: left;
+                height: 18px;
+                overflow: hidden; }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
                   display: inline-block; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile .postDate {
@@ -106,7 +108,7 @@
                     padding: 0;
                     -webkit-transition: all .3s ease;
                     background: #fff;
-                    font-size: 13px;
+                    font-size: 12px;
                     border-radius: 6px !important;
                     transition: all .3s ease;
                     color: #1a6ea9 !important;
@@ -115,7 +117,8 @@
                     cursor: pointer;
                     letter-spacing: .7px;
                     box-shadow: none;
-                    font-family: Baloo,cursive; }
+                    font-family: Baloo,cursive;
+                    margin-right: 0; }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .ShareBox {
                   display: none; }
             .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer {
