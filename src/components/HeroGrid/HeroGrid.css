@@ -111,7 +111,8 @@
             @media screen and (max-width: 480px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 15px;
-                line-height: 15px; } }
+                line-height: 15px;
+                margin-bottom: 2px; } }
           .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
             font-size: 30px;
             line-height: 30px;
