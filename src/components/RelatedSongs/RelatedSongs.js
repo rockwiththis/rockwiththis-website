@@ -24,6 +24,8 @@ class RelatedSongs extends Component {
 
     relatedSongsStack () {
       const filteredRelatedSongs = this.props.relatedSongs.filter(relatedSong => relatedSong.id !== this.props.singleSong.id)
+      console.log("this.props.YES", this.props);
+      console.log("related songs", relatedSongs);
 
       const relatedSongs = filteredRelatedSongs.slice(0,11).map(this.renderRelatedSong)
 

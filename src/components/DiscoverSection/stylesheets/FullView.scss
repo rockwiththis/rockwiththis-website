@@ -183,14 +183,19 @@
 
   .discover-full-song {
 
+    @media (min-width: 1750px) {
+      width: 53% !important;
+    }
+
     @media (min-width: 905px) {
       max-width: none;
-      width: 57%;
+      width: 55%;
       display: inline-block;
       height: auto;
       position: relative;
       margin: 20px 35px 0;
       padding-bottom: 35px;
+      max-width: 925px;
     }
     @media (max-width: 1500px) and (min-width: 1250px) {
       width: 56%;
@@ -242,7 +247,7 @@
             height: auto;
             margin: 0 auto;
             display: block;
-            max-width: 750px;
+            max-width: 850px;
 
             .wrapper {
               pointer-events: none;
