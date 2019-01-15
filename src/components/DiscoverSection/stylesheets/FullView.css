@@ -128,7 +128,7 @@
 
 @media (min-width: 905px) {
   .fullView .discover-full-song {
-    max-width: 905px;
+    max-width: none;
     width: 57%;
     display: inline-block;
     height: auto;
