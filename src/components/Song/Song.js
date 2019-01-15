@@ -10,7 +10,7 @@ import ShareBox from 'components/ShareBox/ShareBox'
 
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
-import loadingButton from 'images/Loading Icon 2_5.gif'
+import loadingButton from 'images/Loading_Icon_2_5.gif'
 import pauseButtonWhite from 'images/PAUSE-BUTTON.png'
 import hoverGradient from 'images/rwt-hover-gradient.png'
 
@@ -80,7 +80,8 @@ class Song extends Component {
         } = this.props
 
         const readyToPlay = !!this.props.songPlayerDurations[song.id];
-        const playPauseButton = !readyToPlay ?
+        //const playPauseButton = !readyToPlay ?
+        const playPauseButton = !false ?
           <img src={loadingButton} className="loadingButton" /> :
           song.id === activeSong.id && isPlaying ?
             <img src={pauseButtonWhite} className="pauseButton" /> :
