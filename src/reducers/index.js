@@ -77,11 +77,16 @@ const appReducers = handleActions({
   },
   'app/LOAD_MORE_SONGS': (state, action) => {
     return update(state, {
-      filteredPosts: { $set: [...state.filteredPosts, ...action.payload]},
-      songListPosts: { $set: action.payload },
+      filteredPosts: { $set: [ ...state.filteredPosts, ...action.payload.newSongList ]},
+      songListPosts: { $set: action.payload.newSongList },
       currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
       maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
-      shouldLoadPlayers: { $set: true }
+      shouldLoadPlayers: { $set: true },
+      snapshotPost: {
+        $set: action.payload.updateSnapshot ?
+          action.payload.newSongList[0] :
+          state.snapshotPost
+      }
     })
   },
   'app/LOAD_NEXT_SONGS': (state, action) => {
@@ -92,7 +97,12 @@ const appReducers = handleActions({
     return update(state, {
       songListPosts: { $set: newSongList },
       currentSongListPageIndex: { $set: newPageIndex },
-      shouldLoadPlayers: { $set: true }
+      shouldLoadPlayers: { $set: true },
+      snapshotPost: {
+        $set: action.payload.updateSnapshot ?
+          action.payload.newSongList[0] :
+          state.snapshotPost
+      }
     })
   },
   'app/LOAD_PREVIOUS_SONGS': (state, action) => {
@@ -104,7 +114,12 @@ const appReducers = handleActions({
       return update(state, {
         songListPosts: { $set: newSongList },
         currentSongListPageIndex: { $set: newPageIndex },
-        shouldLoadPlayers: { $set: true }
+        shouldLoadPlayers: { $set: true },
+        snapshotPost: {
+          $set: action.payload.updateSnapshot ?
+            newSongList.slice(-1).pop() :
+            state.snapshotPost
+        }
       })
     } else {
       return state

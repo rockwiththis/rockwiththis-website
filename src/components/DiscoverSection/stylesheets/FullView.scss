@@ -216,7 +216,6 @@
     }
 
     button.toggle-song {
-      display: none;
       cursor: pointer!important;
       position: absolute;
       top: 0;
@@ -225,6 +224,7 @@
       width: 30px;
       background-size: contain;
       opacity: .5;
+      z-index: 4;
 
       img {
         top: 50%;

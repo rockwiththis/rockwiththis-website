@@ -68,6 +68,7 @@ $landing-height: calc(100vh - 220px);
         position: relative;
         text-align: center;
         background: transparent;
+        padding: 0 40px;
       }
     }
     .slider.animated {
@@ -137,12 +138,6 @@ body::-webkit-scrollbar-thumb {
 
 .search-wrapper {
     display: none !important;
-}
-
-
-// TOGGLE ARROWS HIDE FOR NOW
-.discover-full-song .toggle-song {
-  display: none !important;
 }
 
 
@@ -218,19 +213,6 @@ $discovery-parallax-padding: calc(100vw + 89px);
     z-index: 3 !important;
     top: 70px;
   }
-
-}
-
-
-
-// DISCOVERY SECTION
-.discovery-section {
-
-    .pagination-controls {
-      padding: 20px 0;
-    }
-
-
 }
 
 body {
@@ -371,16 +353,6 @@ button {
 span.postTags:nth-of-type(3) {
     display: none !important;
 }
-
-
-
-
-
-.toggle-song {
-  z-index: 2;
-}
-
-
 
 .discovery-container::-webkit-scrollbar {
     display: none;

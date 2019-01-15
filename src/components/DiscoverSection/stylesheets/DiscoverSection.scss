@@ -59,19 +59,19 @@ div#discovery-container.fullGridLayout .discover-full-song {
 
   .songList {
     z-index: 890;
-      padding-bottom: 75px;
 
-      @media (min-width: 800px) {
-        display: none;
-      }
-      @media (max-width: 800px) {
-        width: 100%;
-        display: inline-block;
-        background: #fff;
-        vertical-align: top;
-        padding-top: 15px;
-        padding-bottom: 75px;
-      }
+    @media (min-width: 800px) {
+      display: none;
+      padding-bottom: 100px;
+    }
+    @media (max-width: 800px) {
+      width: 100%;
+      display: inline-block;
+      background: #fff;
+      vertical-align: top;
+      padding-top: 15px;
+      padding-bottom: 30px;
+    }
   }
   .songList.fixedFiltersBarPadding {
     @media (max-width: 800px) and (min-width: 480px) {
@@ -82,6 +82,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
     }
   }
 
-
-
+  .pagination-controls {
+    padding: 20px 0;
+  }
 }

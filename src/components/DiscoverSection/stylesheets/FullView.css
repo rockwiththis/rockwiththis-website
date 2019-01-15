@@ -163,7 +163,6 @@
     display: none !important; } }
 
 .fullView .discover-full-song button.toggle-song {
-  display: none;
   cursor: pointer !important;
   position: absolute;
   top: 0;
@@ -171,7 +170,8 @@
   max-height: 674px;
   width: 30px;
   background-size: contain;
-  opacity: .5; }
+  opacity: .5;
+  z-index: 4; }
   .fullView .discover-full-song button.toggle-song img {
     top: 50%;
     height: 30px; }
