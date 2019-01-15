@@ -21,15 +21,31 @@
     height: 100%; }
     .filters-bar .filters-bar-content .filters-button {
       display: inline-block;
-      font-size: 12px;
-      border: 1px solid #1a6ea9;
-      border-radius: 4px;
-      padding: 12px;
-      color: #1a6ea9;
-      transition: all .3s ease;
-      vertical-align: top;
-      margin-top: 20px;
-      background: #fff; }
+      font-size: 12px; }
+      @media (min-width: 800px) {
+        .filters-bar .filters-bar-content .filters-button {
+          display: inline-block;
+          font-size: 14px;
+          border: 2px solid #282828;
+          border-radius: 4px;
+          padding: 12px;
+          color: #282828;
+          transition: all .3s ease;
+          vertical-align: top;
+          margin-top: 18px;
+          background: #fff;
+          font-weight: 700;
+          letter-spacing: 1px; } }
+      @media (max-width: 800px) {
+        .filters-bar .filters-bar-content .filters-button {
+          border: 1px solid #1a6ea9;
+          border-radius: 4px;
+          padding: 12px;
+          color: #1a6ea9;
+          transition: all .3s ease;
+          vertical-align: top;
+          margin-top: 20px;
+          background: #fff; } }
       @media (min-width: 800px) {
         .filters-bar .filters-bar-content .filters-button {
           margin-left: 165px; } }
@@ -49,11 +65,14 @@
         transform: translateY(2px); }
     .filters-bar .filters-bar-content .filters-button:hover {
       display: inline-block;
-      border: 1px solid #1a6ea9 !important;
+      border: 1px solid #1a6ea9;
       background: #1a6ea9;
       border-radius: 4px;
       color: #fff;
       cursor: pointer; }
+      @media (min-width: 800px) {
+        .filters-bar .filters-bar-content .filters-button:hover {
+          border: 2px solid #1a6ea9 !important; } }
     .filters-bar .filters-bar-content .toggle-views-button {
       transition: all .3s ease;
       vertical-align: top;
@@ -108,7 +127,7 @@
         vertical-align: top;
         -webkit-transform: translateY(-13px);
         transform: translateY(-13px);
-        font-size: 10px;
+        font-size: 11px;
         position: relative;
         z-index: 6;
         cursor: pointer;

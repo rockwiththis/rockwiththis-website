@@ -2,7 +2,7 @@
   display: inline-block;
   margin: 0 auto;
   position: relative;
-  margin-left: 3px;
+  margin-left: 4px;
   transform: translateY(5px); }
   .discovery-container .discover-full-song .songContainer .ShareBox .shareButton:hover {
     cursor: pointer; }
