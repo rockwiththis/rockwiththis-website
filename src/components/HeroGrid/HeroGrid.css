@@ -579,19 +579,19 @@
       .hero-posts .previous-week .less-featured-track-wrapper {
         position: absolute; }
       .hero-posts .previous-week .less-featured-track-wrapper.index-0 {
-        top: 0;
-        right: 0; }
+        bottom: 0;
+        left: 0; }
       .hero-posts .previous-week .less-featured-track-wrapper.index-1 {
-        top: 33.333%;
-        right: 0; }
+        bottom: 0;
+        right: 33.333%; }
       .hero-posts .previous-week .less-featured-track-wrapper.index-2 {
-        top: 66.666%;
+        bottom: 0;
         right: 0; }
       .hero-posts .previous-week .less-featured-track-wrapper.index-3 {
-        top: 66.666%;
-        left: 33.333%; }
+        top: 33.33%;
+        right: 0; }
       .hero-posts .previous-week .less-featured-track-wrapper.index-4 {
-        top: 66.666%;
-        left: 0; }
+        top: 0;
+        right: 0; }
       .hero-posts .previous-week .less-featured-track-wrapper.index-5 {
         display: none; } }
