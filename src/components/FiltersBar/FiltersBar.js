@@ -203,8 +203,8 @@ class FiltersBar extends Component {
           <div className="filters-bar-content">
 
               <button onClick={this.showSubGenreFilters} className={`filters-button ${this.state.showSubGenreFilters ? 'active' : ''}`}>
-              <i class="im im-angle-down"></i>
                 Subgenres
+                <i class="im im-angle-down"></i>
               </button>
               <div className="search-wrapper">
                     <input className="filter-search"  placeholder=" Search" type="text" value="" name="filter-search" id="search"/>

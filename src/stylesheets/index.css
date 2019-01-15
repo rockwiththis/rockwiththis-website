@@ -45,8 +45,7 @@
         margin: 0;
         position: relative;
         text-align: center;
-        background: transparent;
-        padding: 0 40px; }
+        background: transparent; }
     .carousel .slider-wrapper .slider.animated {
       -webkit-transition: all .35s ease-in-out;
       transition: all .35s ease-in-out; }
