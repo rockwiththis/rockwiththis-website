@@ -22,7 +22,6 @@
     .fullView .songGrid {
       display: none !important; } }
   .fullView .songGrid .grid-container-wrapper {
-    height: calc(38vw - 30px);
     width: calc(38vw - 30px);
     overflow: hidden;
     white-space: nowrap; }

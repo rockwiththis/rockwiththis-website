@@ -53,7 +53,7 @@ class ConnectPage extends Component {
         return (
           <div>
           <Helmet>
-            <title>Rock With This - Your New Favorite Song</title>
+            <title>Rock With This</title>
           </Helmet>
              <div className="connectPage">
 
