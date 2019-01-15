@@ -117,7 +117,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
-        width: calc(100% - 50px);
+        width: calc(100% - 60px);
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;

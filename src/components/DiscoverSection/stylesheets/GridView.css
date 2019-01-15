@@ -167,7 +167,7 @@
           height: 30px;
           border-radius: 0; }
       .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info {
-        width: calc(100% - 40px);
+        width: calc(100% - 45px);
         text-align: left;
         display: inline-block;
         vertical-align: top;
