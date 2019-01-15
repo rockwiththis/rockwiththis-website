@@ -80,8 +80,7 @@ class Song extends Component {
         } = this.props
 
         const readyToPlay = !!this.props.songPlayerDurations[song.id];
-        //const playPauseButton = !readyToPlay ?
-        const playPauseButton = !false ?
+        const playPauseButton = !readyToPlay ?
           <img src={loadingButton} className="loadingButton" /> :
           song.id === activeSong.id && isPlaying ?
             <img src={pauseButtonWhite} className="pauseButton" /> :
