@@ -282,8 +282,8 @@
       pointer-events: all; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer .songDescription {
         font-family: Open-Sans,sans-serif;
-        font-size: 18px;
-        line-height: 30px;
+        font-size: 16px;
+        line-height: 28px;
         font-weight: 100;
         display: block;
         text-align: left;
