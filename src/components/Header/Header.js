@@ -107,7 +107,7 @@ class Header extends Component {
               }
               <div className="nav-right">
                 {/* <NavLink className="nav-link nav-submit" to="/submit" activeClassName='is-active' >Submit</NavLink>*/}
-                <NavLink className="nav-link nav-about" to="/connect" activeClassName='is-active' >About</NavLink>
+                <NavLink className="nav-link nav-about" to="/connect" activeClassName='is-active' >About Us</NavLink>
               </div>
               </div>
             </div>
