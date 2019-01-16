@@ -15,7 +15,6 @@ const getSongsQuery = (limit, offset, subgenreIds) => {
     ON subgenres.id = subgenre_songs.subgenre_id
     LEFT JOIN users AS curator ON curator.id = songs.curator_id
     ${subgenreIdFilter}
-    WHERE songs.id != 3550
     ORDER BY songs.created_at DESC, songs.id
     ${limitStatement}
     ${offsetStatement}

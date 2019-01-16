@@ -10,7 +10,7 @@ printf "Starting server process\n"
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   cd $REMOTE_PATH/server/current \
   && npm install --production \
-  && pm2 startOrRestart ecosystem.config.js"
+  && pm2 start ecosystem.config.js"
 printf "Success!\n"
 
 printf "Returning to branch $CURRENT_BRANCH\n"
