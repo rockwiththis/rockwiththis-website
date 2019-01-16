@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "nodemon index.js",
-    "start-dev": "DB_CONFIG_FILE='./config-prod.js' npm start"
+    "start": "node index.js",
+    "start-dev": "DB_CONFIG_FILE='./config-prod.js' nodemon index.js"
   },
   "dependencies": {
     "aws-sdk": "^2.334.0",
