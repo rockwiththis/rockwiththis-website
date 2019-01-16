@@ -23,6 +23,7 @@ const { checkSession } = require('../../auth/util');
 const DEFAULT_SONG_LIMIT = 16;
 
 router.get('/', (req, res) => {
+  console.log("running newest code");
   console.log("fetching songs");
   const isQuery = req.query && (Object.keys(req.query).length > 0);
 
