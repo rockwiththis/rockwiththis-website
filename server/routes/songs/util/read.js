@@ -17,7 +17,8 @@ const getSongsQuery = (limit, offset, subgenreIds) => {
     ${subgenreIdFilter}
     ORDER BY songs.created_at DESC, songs.id
     ${limitStatement}
-    ${offsetStatement}
+    //${offsetStatement}
+    OFFSET 1
   `);
 
   return { text: queryText };
