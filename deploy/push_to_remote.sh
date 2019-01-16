@@ -6,7 +6,7 @@ printf "Pushing from ./$TARGET_NAME to remote $DEST_PATH\n"
 find $TARGET_NAME -type f -not -path '*/node_modules*' \
   | xargs tar cf - \
   | ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
-    tar xf - -C $DEST_PATH"
+    mkdir $DEST_PATH && tar xf - -C $DEST_PATH"
 
 printf "Success!\n"
 
