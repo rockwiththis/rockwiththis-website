@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet';
@@ -17,15 +17,30 @@ class Homepage extends Component {
 
     render() {
         return (
-          <div>
-             <div className="homeContainer">
-                 <HeroPosts
-                   {...this.props}
-                   heroPosts={this.props.heroPosts}
-                 />
-               <DiscoverSection {...this.props} />
-                 </div>
-           </div>
+          <Fragment>
+              <Helmet>
+                <title>Rock With This</title>
+                  <meta name="description" content="We don't have every song. Just the best you haven't heard." />
+                  <meta name="keywords" content="Music Discovery Curation" />
+                  <meta name="application-name" content="ROCKWITHTHIS" />
+                  <meta name="theme-color" content="#e162f8" />
+                  <meta property="og:url" content="http://www.rockwiththis.com/" />
+                  <meta property="og:title" content="Rock With This" />
+                  <meta property="og:description" content="We don't have every song. Just the best you haven't heard." />
+                  <meta property="og:image" content="images/ROCKWITHTHIS.png" />
+                  <meta property="og:image:url" content="images/ROCKWITHTHIS.png" />
+
+              </Helmet>
+              <div>
+                 <div className="homeContainer">
+                     <HeroPosts
+                       {...this.props}
+                       heroPosts={this.props.heroPosts}
+                     />
+                   <DiscoverSection {...this.props} />
+                     </div>
+               </div>
+           </Fragment>
         )
     }
 }
