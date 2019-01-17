@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ReactGA from 'react-ga';
 import Root from './Root'
 import configureStore from './store/configureStore'
 import './stylesheets/index.css'
@@ -8,6 +9,11 @@ const store = configureStore();
 
 if (process.env.NODE_ENV === 'development') {
   window.store = store
+}
+
+function initializeReactGA() {
+    ReactGA.initialize('UA-132692108-1');
+    ReactGA.pageview('/homepage');
 }
 
 
