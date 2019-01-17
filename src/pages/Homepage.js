@@ -27,8 +27,6 @@ class Homepage extends Component {
                   <meta property="og:url" content="http://www.rockwiththis.com/" />
                   <meta property="og:title" content="Rock With This" />
                   <meta property="og:description" content="We don't have every song. Just the best you haven't heard." />
-                  <meta property="og:image" content="images/ROCKWITHTHIS.png" />
-                  <meta property="og:image:url" content="images/ROCKWITHTHIS.png" />
 
               </Helmet>
               <div>
