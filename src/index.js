@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 function initializeReactGA() {
-    ReactGA.initialize('UA-132692108-1');
+    ReactGA.initialize('UA-132667269-1');
     ReactGA.pageview('/homepage');
 }
 
