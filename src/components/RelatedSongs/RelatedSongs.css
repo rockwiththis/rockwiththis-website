@@ -3,7 +3,7 @@
   display: inline-block;
   vertical-align: top;
   float: right; }
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     .relatedSongs {
       width: 100%;
       display: inline-block;
@@ -11,7 +11,6 @@
       float: none;
       padding-top: 10px;
       padding-bottom: 12px;
-      max-width: 674px;
       margin: 0 auto;
       display: block; } }
   .relatedSongs .relatedSongsContainer p.related-songs-title {

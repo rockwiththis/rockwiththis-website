@@ -4,14 +4,14 @@
   vertical-align: top;
   float: right;
 
-  @media (max-width: 800px) {
+  @media (max-width: 1200px) {
     width: 100%;
     display: inline-block;
     vertical-align: top;
     float: none;
     padding-top: 10px;
     padding-bottom: 12px;
-    max-width: 674px;
+    // max-width: 674px;
     margin: 0 auto;
     display: block;
   }
