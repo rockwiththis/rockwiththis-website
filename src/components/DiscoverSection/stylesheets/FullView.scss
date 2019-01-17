@@ -18,8 +18,8 @@
   }
 
   .songGrid {
-      height: calc(37vw - 30px);
-      width: calc(37vw - 30px);
+      // height: calc(37vw - 30px);
+      // width: calc(37vw - 30px);
       // max-height: 674px;
       padding: 0;
       display: inline-block;
@@ -41,8 +41,6 @@
     }
 
     .grid-container-wrapper {
-      // height: calc(38vw - 30px);
-      width: calc(37vw - 30px);
       overflow: hidden;
       white-space: nowrap;
 
@@ -52,10 +50,15 @@
       }
 
       .carousel {
+        height: calc(37vw - 30px);
+        width: calc(37vw - 30px);
         .grid-container {
           position: relative;
           white-space: normal;
           display: inline-block;
+          height: calc(37vw - 30px);
+          width: calc(37vw - 30px);
+          text-align: left;
 
           .songContainer {
             width: calc(25% - 2px);
@@ -232,7 +235,10 @@
     }
 
     button.toggle-song {
-      cursor: pointer!important;
+      display: none;
+
+      height: calc(100vh - 225px) !important;
+      cursor: pointer !important;
       position: absolute;
       top: 0;
       height: 100%;

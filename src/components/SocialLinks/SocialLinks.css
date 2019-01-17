@@ -9,11 +9,14 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
   .socialLinks ul {
-    width: 407px;
+    width: 406px;
     margin: 0 auto;
     padding: 0;
     list-style: none;
     height: 40px; }
+    @media (min-width: 800px) {
+      .socialLinks ul {
+        transform: translateX(1px); } }
     .socialLinks ul li {
       display: inline-block;
       margin: 10px 30px 0;

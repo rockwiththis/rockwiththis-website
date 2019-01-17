@@ -203,8 +203,8 @@ class FiltersBar extends Component {
           <div className="filters-bar-content">
 
               <button onClick={this.showSubGenreFilters} className={`filters-button ${this.state.showSubGenreFilters ? 'active' : ''}`}>
-                Subgenres
-                <i class="im im-angle-down"></i>
+                Filter
+                <i class="im im-filter"></i>
               </button>
               <div className="search-wrapper">
                     <input className="filter-search"  placeholder=" Search" type="text" value="" name="filter-search" id="search"/>
@@ -217,7 +217,7 @@ class FiltersBar extends Component {
 
               </div>
 
-              <button onClick={this.showToggleViewsDropdown} className="toggle-views-button ">Toggle Views <i class="im im-angle-down"></i></button>
+              <button onClick={this.showToggleViewsDropdown} className="toggle-views-button ">Views <i class="im im im-eye"></i></button>
               <div className="ToggleViewsWrapper">
               <a className="viewButton" name='expanded' onClick={this.changeGridView}>
                 <span>Full</span>
@@ -246,13 +246,11 @@ class FiltersBar extends Component {
                   }}
                   >
                   <button onClick={this.closeSubGenreFiltersX} className="closeDropdown"><i class="im im-x-mark"></i></button>
-
-                  <div className='bottom-buttons'>
-                    <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.clearFilters}>Clear All</button>
-                    <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.fetchCurrentRequest}>Search Filters {!disableClearAll && <i className='fa fa-arrow-right' />}</button>
-                  </div>
                   <div className="filter-tags-container">
                     {filterTags}
+                  </div>
+                  <div className='bottom-buttons'>
+                    <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.fetchCurrentRequest}>Search {!disableClearAll && <i className='fa fa-arrow-right' />}</button>
                   </div>
                 </div>
             }

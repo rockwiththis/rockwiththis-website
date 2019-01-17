@@ -34,19 +34,20 @@
       transform: translateY(-50%);
       -webkit-transform: translateY(-50%); }
   .headerContainer #headerLogo {
-    width: 340px;
+    width: 425px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
+    @media (max-width: 1000px) {
+      .headerContainer #headerLogo {
+        width: 375px; } }
   .headerContainer #headerLogoMobile {
     display: none; }
   .headerContainer #headerLogo img {
     width: 100%; }
   .headerContainer.shrunk {
     height: 75px; }
-    .headerContainer.shrunk #headerLogo {
-      width: 340px; }
 
 @media (max-width: 800px) {
   #headerLogo {

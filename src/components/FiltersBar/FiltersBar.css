@@ -26,16 +26,17 @@
         .filters-bar .filters-bar-content .filters-button {
           display: inline-block;
           font-size: 14px;
-          border: 2px solid #282828;
+          border: 2px solid #1a6ea9;
           border-radius: 4px;
           padding: 12px;
-          color: #282828;
+          color: #1a6ea9;
           transition: all .3s ease;
           vertical-align: top;
           margin-top: 18px;
           background: #fff;
           font-weight: 700;
-          letter-spacing: 1px; } }
+          letter-spacing: 1px;
+          text-transform: uppercase; } }
       @media (max-width: 800px) {
         .filters-bar .filters-bar-content .filters-button {
           border: 1px solid #1a6ea9;
@@ -54,15 +55,14 @@
           margin-top: 15px; } }
       @media (max-width: 480px) {
         .filters-bar .filters-bar-content .filters-button {
-          margin-top: 5px;
-          font-size: 14px;
-          padding: 10px;
-          border-radius: 6px; } }
-      .filters-bar .filters-bar-content .filters-button i.im.im-angle-down {
-        font-size: 12px;
-        margin-left: 10px;
-        -webkit-transform: translateY(2px);
-        transform: translateY(2px); }
+          margin-top: 7px;
+          padding: 8px;
+          border-radius: 6px;
+          font-size: 12px; } }
+      .filters-bar .filters-bar-content .filters-button i.im.im-filter {
+        font-size: 10px;
+        margin-left: 6px;
+        transform: translateY(1px); }
     .filters-bar .filters-bar-content .filters-button:hover {
       display: inline-block;
       border: 1px solid #1a6ea9;
@@ -94,15 +94,14 @@
           margin-top: 15px; } }
       @media (max-width: 480px) {
         .filters-bar .filters-bar-content .toggle-views-button {
-          margin-top: 5px;
-          font-size: 14px;
-          padding: 10px;
+          margin-top: 7px;
+          padding: 8px;
           border-radius: 6px; } }
       .filters-bar .filters-bar-content .toggle-views-button i {
-        font-size: 12px;
-        -webkit-transform: translateY(2px);
-        transform: translateY(2px);
-        margin-left: 10px; }
+        -webkit-transform: translateY(3px);
+        transform: translateY(3px);
+        font-size: 14px;
+        margin-left: 4px; }
     .filters-bar .filters-bar-content .toggle-views-button:hover {
       border: 1px solid #1a6ea9 !important;
       background: #1a6ea9 !important;
@@ -355,19 +354,19 @@
           .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons {
             margin-bottom: 10px; } }
         .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
-          width: 45%;
+          width: 100%;
           font-weight: 700;
           padding: 10px;
-          font-family: Roboto,sans-serif; }
+          font-family: Roboto,sans-serif;
+          font-size: 20px;
+          text-transform: uppercase; }
           @media (max-width: 800px) {
             .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
               font-size: 14px; } }
           @media (max-width: 480px) {
             .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
               padding: 6px;
-              font-size: 12px;
-              width: 40%;
-              margin: 4px 5%; } }
+              font-size: 12px; } }
         .filters-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.disabled {
           pointer-events: none; }
   .filters-bar .SubgenreFiltersDropDown.expand {

@@ -43,11 +43,15 @@
         }
       }
   #headerLogo {
-    width: 340px;
+    width: 425px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    @media (max-width: 1000px) {
+      width: 375px;
+    }
   }
   #headerLogoMobile {
     display: none;
@@ -58,9 +62,9 @@
   &.shrunk {
     height: 75px;
     // box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    #headerLogo {
-      width: 340px;
-    }
+    // #headerLogo {
+    //   width: 340px;
+    // }
   }
 }
 

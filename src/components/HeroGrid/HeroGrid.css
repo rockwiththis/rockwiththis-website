@@ -435,7 +435,7 @@
             padding: 5px;
             margin-bottom: 0;
             display: inline-block;
-            padding: 6px 0 3px;
+            padding: 5px 0 4px;
             transform: translateX(-0.8px); }
             @media (max-width: 800px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
@@ -462,7 +462,8 @@
               text-overflow: ellipsis;
               font-size: 14.5px;
               line-height: 15px;
-              overflow-x: hidden; }
+              overflow-x: hidden;
+              transform: translateY(1px); }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
             height: 40px;
             width: 40px;

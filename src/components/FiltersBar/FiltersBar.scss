@@ -31,16 +31,17 @@
         @media (min-width: 800px) {
           display: inline-block;
           font-size: 14px;
-          border: 2px solid #282828;
+          border: 2px solid #1a6ea9;
           border-radius: 4px;
           padding: 12px;
-          color: #282828;
+          color: #1a6ea9;
           transition: all .3s ease;
           vertical-align: top;
           margin-top: 18px;
           background: #fff;
           font-weight: 700;
           letter-spacing: 1px;
+          text-transform: uppercase;
         }
 
         @media (max-width: 800px) {
@@ -63,18 +64,19 @@
           margin-top: 15px;
         }
         @media (max-width: 480px) {
-          margin-top: 5px;
-          font-size: 14px;
-          padding: 10px;
+          margin-top: 7px;
+          padding: 8px;
           border-radius: 6px;
+          font-size: 12px;
         }
 
-        i.im.im-angle-down {
-            font-size: 12px;
-            margin-left: 10px;
-            -webkit-transform: translateY(2px);
-            transform: translateY(2px);
+        i.im.im-filter {
+          font-size: 10px;
+          margin-left: 6px;
+            // -webkit-transform: translateY(2px);
+            transform: translateY(1px);
         }
+
       }
       .filters-button:hover {
         @media (min-width: 800px) {
@@ -110,17 +112,17 @@
           margin-top: 15px;
         }
         @media (max-width: 480px) {
-          margin-top: 5px;
-          font-size: 14px;
-          padding: 10px;
+          margin-top: 7px;
+          padding: 8px;
           border-radius: 6px;
         }
 
         i {
-            font-size: 12px;
-            -webkit-transform: translateY(2px);
-            transform: translateY(2px);
-            margin-left: 10px;
+            // font-size: 12px;
+            -webkit-transform: translateY(3px);
+            transform: translateY(3px);
+            font-size: 14px;
+            margin-left: 4px;
         }
       }
       .toggle-views-button:hover {
@@ -445,10 +447,12 @@
               // }
 
               button.large-bottom {
-                width: 45%;
+                width: 100%;
                 font-weight: 700;
                 padding: 10px;
                 font-family: Roboto,sans-serif;
+                font-size: 20px;
+                text-transform: uppercase;
 
                 @media (max-width: 800px) {
                   font-size: 14px;
@@ -456,8 +460,6 @@
                 @media (max-width: 480px) {
                   padding: 6px;
                   font-size: 12px;
-                  width: 40%;
-                  margin: 4px 5%;
                 }
               }
               button.disabled {
