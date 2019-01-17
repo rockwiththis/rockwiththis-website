@@ -39,7 +39,7 @@
               display: none; }
           .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer {
             display: inline-block;
-            width: calc(100% - 150px);
+            width: calc(100% - 155px);
             vertical-align: top;
             height: auto;
             padding-left: 0; }
