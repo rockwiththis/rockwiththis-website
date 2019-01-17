@@ -20,7 +20,7 @@ class Homepage extends Component {
           <Fragment>
               <Helmet>
                 <title>Rock With This</title>
-                  <meta name="description" content="We don't have every song. Just the best you haven't heard." />
+                  <meta name="description" content="We don't have every song...just the best you haven't heard." />
                   <meta name="keywords" content="Music Discovery Curation" />
                   <meta name="application-name" content="ROCKWITHTHIS" />
                   <meta name="theme-color" content="#e162f8" />
