@@ -294,6 +294,12 @@
             @media (max-width: 800px) {
               .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox i {
                 top: 2px; } }
+          .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox i.fas.fa-clipboard {
+            font-size: 18px !important;
+            color: #fff !important;
+            padding: 5px;
+            padding-top: 15px;
+            padding-left: 7px; }
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo :hover {
           cursor: pointer; }
     @media (min-width: 800px) {

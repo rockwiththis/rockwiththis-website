@@ -151,8 +151,13 @@ a.smsLink {
 .closeSharePopup {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 25px;
   font-size: 20px;
+
+  i.fa-times-circle {
+    color: #1a6ea9 !important;
+
+  }
 }
 
     .SocialMediaShareButton {
@@ -240,13 +245,16 @@ form.url-clipboard {
 .clipboard-icon-container {
     width: 30px;
     display: inline-block;
-    background: black;
+    background: #1a6ea9;
     height: 31px;
     vertical-align: top;
+
     i.fas.fa-clipboard {
-    font-size: 20px;
-    color: white;
-    padding: 5px;
+      font-size: 18px !important;
+      color: #fff !important;
+      padding: 5px;
+      padding-top: 15px;
+      padding-left: 7px;
 }
 }
 

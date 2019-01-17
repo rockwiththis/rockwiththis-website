@@ -96,8 +96,10 @@ a.smsLink {
   .sharePopup .closeSharePopup {
     position: absolute;
     top: 5px;
-    right: 5px;
+    right: 25px;
     font-size: 20px; }
+    .sharePopup .closeSharePopup i.fa-times-circle {
+      color: #1a6ea9 !important; }
   .sharePopup .SocialMediaShareButton {
     transition: ALL .3S ease; }
   .sharePopup .SocialMediaShareButton:hover {
@@ -158,13 +160,15 @@ form.url-clipboard {
   form.url-clipboard .clipboard-icon-container {
     width: 30px;
     display: inline-block;
-    background: black;
+    background: #1a6ea9;
     height: 31px;
     vertical-align: top; }
     form.url-clipboard .clipboard-icon-container i.fas.fa-clipboard {
-      font-size: 20px;
-      color: white;
-      padding: 5px; }
+      font-size: 18px !important;
+      color: #fff !important;
+      padding: 5px;
+      padding-top: 15px;
+      padding-left: 7px; }
   form.url-clipboard .tooltip {
     color: green;
     position: absolute;
