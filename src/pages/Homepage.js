@@ -18,7 +18,6 @@ class Homepage extends Component {
     render() {
         return (
           <div>
-            </Helmet>
              <div className="homeContainer">
                  <HeroPosts
                    {...this.props}
