@@ -51,7 +51,7 @@
 
       .carousel {
         height: calc(37vw - 30px);
-        width: calc(37vw - 30px);
+        width: calc(37vw - 30px) !important;
         .grid-container {
           position: relative;
           white-space: normal;
