@@ -20,7 +20,7 @@
   .songGrid {
       height: calc(37vw - 30px);
       width: calc(37vw - 30px);
-      max-height: 674px;
+      // max-height: 674px;
       padding: 0;
       display: inline-block;
       vertical-align: top;
@@ -28,7 +28,9 @@
       margin-top: 20px;
       position: relative;
       z-index: 3;
-      max-width: 674px;
+      // max-width: 674px;
+      max-width: 590px;
+      max-height: 590px;
 
     @media (max-width: 1100px) and (min-width: 800px) {
       width: calc(30% - 35px);
@@ -202,13 +204,14 @@
 
     @media (min-width: 905px) {
       max-width: none;
-      width: 55%;
+      width: 58%;
       display: inline-block;
       height: auto;
       position: relative;
       margin: 20px 35px 0;
       padding-bottom: 35px;
-      max-width: 925px;
+      // max-width: 925px;
+      max-width: 970px;;
     }
     @media (max-width: 1500px) and (min-width: 1250px) {
       width: 56%;
@@ -229,7 +232,6 @@
     }
 
     button.toggle-song {
-      display: none;
       cursor: pointer!important;
       position: absolute;
       top: 0;
@@ -247,10 +249,19 @@
 
     }
     button.toggle-song.previous {
-      transform: rotate(180deg);
+      // transform: rotate(180deg);
+      transform: rotate(180deg) translateX(50%);
+      @media (max-width: 1100px) {
+        transform: rotate(180deg) translateX(30%);
+      }
     }
     button.toggle-song.next {
       right: 0;
+      transform: translateX(50%);
+
+      @media (max-width: 1100px) {
+        transform: translateX(30%);
+      }
     }
 
     .carousel-wrapper {
@@ -261,7 +272,9 @@
             height: auto;
             margin: 0 auto;
             display: block;
-            max-width: 850px;
+            // max-width: 850px;
+            // max-width: calc(100% - 60px);
+            max-width: 90%;
 
             .wrapper {
               pointer-events: none;

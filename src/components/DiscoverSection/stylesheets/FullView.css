@@ -11,7 +11,6 @@
 .fullView .songGrid {
   height: calc(37vw - 30px);
   width: calc(37vw - 30px);
-  max-height: 674px;
   padding: 0;
   display: inline-block;
   vertical-align: top;
@@ -19,7 +18,8 @@
   margin-top: 20px;
   position: relative;
   z-index: 3;
-  max-width: 674px; }
+  max-width: 590px;
+  max-height: 590px; }
   @media (max-width: 1100px) and (min-width: 800px) {
     .fullView .songGrid {
       width: calc(30% - 35px);
@@ -138,13 +138,13 @@
 @media (min-width: 905px) {
   .fullView .discover-full-song {
     max-width: none;
-    width: 55%;
+    width: 58%;
     display: inline-block;
     height: auto;
     position: relative;
     margin: 20px 35px 0;
     padding-bottom: 35px;
-    max-width: 925px; } }
+    max-width: 970px; } }
 
 @media (max-width: 1500px) and (min-width: 1250px) {
   .fullView .discover-full-song {
@@ -168,7 +168,6 @@
     display: none !important; } }
 
 .fullView .discover-full-song button.toggle-song {
-  display: none;
   cursor: pointer !important;
   position: absolute;
   top: 0;
@@ -183,17 +182,24 @@
     height: 30px; }
 
 .fullView .discover-full-song button.toggle-song.previous {
-  transform: rotate(180deg); }
+  transform: rotate(180deg) translateX(50%); }
+  @media (max-width: 1100px) {
+    .fullView .discover-full-song button.toggle-song.previous {
+      transform: rotate(180deg) translateX(30%); } }
 
 .fullView .discover-full-song button.toggle-song.next {
-  right: 0; }
+  right: 0;
+  transform: translateX(50%); }
+  @media (max-width: 1100px) {
+    .fullView .discover-full-song button.toggle-song.next {
+      transform: translateX(30%); } }
 
 .fullView .discover-full-song .carousel-wrapper .carousel .songContainer {
   position: relative;
   height: auto;
   margin: 0 auto;
   display: block;
-  max-width: 850px; }
+  max-width: 90%; }
   .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper {
     pointer-events: none;
     cursor: default; }
