@@ -18,9 +18,22 @@ class Homepage extends Component {
     render() {
         return (
           <div>
-          <Helmet>
-            <title>Rock With This</title>
-          </Helmet>
+
+            <Helmet>
+                <title>ROCKWITHTHIS</title>
+                <meta name="description" content="We don't have every song. Just the best you haven't heard." />
+                <meta name="keywords" content="Music Discovery Curation" />
+                <meta name="application-name" content="ROCKWITHTHIS" />
+                <meta name="theme-color" content="#e162f8" />
+
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:url" content="http://www.rockwiththis.com/" />
+                <meta property="og:title" content="Rock With This" />
+                <meta property="og:description" content="We don't have every song. Just the best you haven't heard." />
+                <meta property="og:image" content="images/ROCKWITHTHIS.png" />
+                <meta property="og:image:url" content="images/ROCKWITHTHIS.png" />
+            </Helmet>
              <div className="homeContainer">
                  <HeroPosts
                    {...this.props}

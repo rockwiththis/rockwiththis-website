@@ -34,7 +34,7 @@ class ShareBox extends Component {
 
       this.state = {
         showSharePopup: false,
-        value: `http://rockwiththis-staging.com/songs/${this.props.song.id}`,
+        value: `http://rockwiththis.com/songs/${this.props.song.id}`,
         copied: false,
       }
 
@@ -77,7 +77,7 @@ onCopyUrl() {
           song
       } = this.props
 
-      const textMessage = `sms:?&body=Rock With This Song %0a http://rockwiththis-staging.com/songs/${this.props.song.id}`
+      const textMessage = `sms:?&body=Rock With This Song %0a http://rockwiththis.com/songs/${this.props.song.id}`
 
 
         return (
