@@ -22,6 +22,7 @@ function initializeReactGA() {
 
 
 
+
 // TODO we should really split up the stores by route
 ReactDOM.render((
     <Root store={store} />
