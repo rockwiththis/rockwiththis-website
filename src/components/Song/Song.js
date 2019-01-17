@@ -131,7 +131,7 @@ class Song extends Component {
                   <p className="leftInfo mobile">
                     <span className="postDate ">
                       <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
-                      | <Moment format="M/dd/YY" date={song.created_at} /> |&nbsp;
+                      | <Moment format="M/DD/YY" date={song.created_at} /> |&nbsp;
                     </span>
                   </p>
 
