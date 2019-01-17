@@ -435,7 +435,7 @@
             padding: 5px;
             margin-bottom: 0;
             display: inline-block;
-            padding: 5px 0 4px;
+            padding: 6px 0 3px;
             transform: translateX(-0.8px); }
             @media (max-width: 800px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
