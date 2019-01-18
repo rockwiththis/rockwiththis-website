@@ -53,7 +53,7 @@ class FiltersBar extends Component {
           filtersToShow: this.props.selectedFilters,
           loading: false,
         },
-        scrollToTopOfSongList
+        this.scrollToTopOfSongList
       )
     }
 
@@ -62,10 +62,8 @@ class FiltersBar extends Component {
         // TODO let's start setting scroll position through react props
         $('#discovery-container').animate({scrollTop: 0}, 100);
       } else {
-        Scroll.scroller.scrollTo('discoverySectionScroll', {
-          duration: 500,
-          smooth: true
-        })
+        const songListTopPos = $('.socialLinks').height() + $('#hero-post').height();
+        window.scrollTo(0, songListTopPos);
       }
     }
 
