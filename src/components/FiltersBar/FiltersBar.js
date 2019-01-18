@@ -29,43 +29,43 @@ class FiltersBar extends Component {
         this.closeSubGenreFiltersX = this.closeSubGenreFiltersX.bind(this);
         this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
         this.changeGridView = this.changeGridView.bind(this)
-        this.fetchCurrentRequest = this.fetchCurrentRequest.bind(this)
         this.clearFilters = this.clearFilters.bind(this)
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         window.addEventListener('scroll', this.fixedFiltersBar)
         window.addEventListener('resize', this.fixedFiltersBar);
     }
 
-    fetchCurrentRequest() {
-      this.setState({ loading: true })
+    setFilteredSongList = () =>
+      this.setState(
+        { loading: true },
+        this.props.actions.setFilteredSongList(this.songListUpdated)
+      );
 
-
-      const callback = () => {
-        document.removeEventListener('click', this.closeSubGenreFilters)
-        this.setState({
+    songListUpdated = () => {
+      document.removeEventListener('click', this.closeSubGenreFilters)
+      this.setState(
+        {
           showSubGenreFilters: false,
           showToggleViewsDropdown: false,
           fixedFilterBar: true,
           filtersToShow: this.props.selectedFilters,
           loading: false,
-        }, () => {
-          if (window.innerWidth > 800) {
-              $('#discovery-container').animate({scrollTop: 0}, 100);
-          } else {
-            Scroll.scroller.scrollTo('discoverySectionScroll', {
-              duration: 500,
-              smooth: true
-            })
-          }
+        },
+        this.scrollToTopOfSongList
+      )
+    }
 
-
-
-        })
+    // TODO let's start setting scroll position through react props
+    scrollToTopOfSongList = () => {
+      if (window.innerWidth > 800) {
+        $('#discovery-container').animate({scrollTop: 0}, 100);
+      } else {
+        const songListTopPos = $('.socialLinks').height() + $('#hero-post').height();
+        if (typeof songListTopPos === 'number')
+          window.scrollTo(0, songListTopPos);
       }
-      this.props.actions.fetchCurrentRequest(callback)
-      this.props.resetGridPage()
     }
 
     clearFilters() {
@@ -239,20 +239,33 @@ class FiltersBar extends Component {
           <div className={`SubgenreFiltersDropDown ${this.state.showSubGenreFilters ? 'expand' : ''}`}>
             {this.state.loading && <LoadingComponent />}
             {this.state.showSubGenreFilters &&
-                <div
-                  className='dropdown-internal'
-                  ref={(element) => {
-                    this.SubgenreFiltersDropDown = element;
-                  }}
-                  >
-                  <button onClick={this.closeSubGenreFiltersX} className="closeDropdown"><i class="im im-x-mark"></i></button>
-                  <div className="filter-tags-container">
-                    {filterTags}
-                  </div>
-                  <div className='bottom-buttons'>
-                    <button className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.fetchCurrentRequest}>Search {!disableClearAll && <i className='fa fa-arrow-right' />}</button>
-                  </div>
+              <div
+                className='dropdown-internal'
+                ref={(element) => {
+                  this.SubgenreFiltersDropDown = element;
+                }}
+              >
+                <button
+                  onClick={this.closeSubGenreFiltersX}
+                  className="closeDropdown">
+                    <i class="im im-x-mark"></i>
+                </button>
+
+                <div className="filter-tags-container">
+                  {filterTags}
                 </div>
+
+                <div className='bottom-buttons'>
+                  <button
+                    className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`}
+                    disabled={disableClearAll}
+                    onClick={this.setFilteredSongList}
+                  >
+                    Search&nbsp;
+                    {!disableClearAll && <i className='fa fa-arrow-right' />}
+                  </button>
+                </div>
+              </div>
             }
           </div>
 

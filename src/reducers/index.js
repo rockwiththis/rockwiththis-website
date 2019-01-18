@@ -60,7 +60,7 @@ const appReducers = handleActions({
       filteredPosts: { $set: [...state.posts, ...action.payload] }
     })
   },
-  'app/FETCH_CURRENT_REQUEST': (state, action) => {
+  'app/SET_FILTERED_SONG_LIST': (state, action) => {
     return update(state, {
       filteredPosts: { $set: action.payload },
       songListPosts: { $set: action.payload.slice(0, state.songListSize) },
@@ -70,7 +70,7 @@ const appReducers = handleActions({
       shouldLoadPlayers: { $set: true }
     })
   },
-  'app/CURRENT_REQUEST_LOADING': (state, action) => {
+  'app/SET_LOADING_STATUS': (state, action) => {
     return update(state, {
       currentRequestLoading: { $set: action.payload }
     })

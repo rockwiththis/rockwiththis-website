@@ -231,7 +231,7 @@ class DiscoverSection extends Component {
           <div id="discover" className="discovery-section">
             <img className="discover-cover" src={black} />
 
-              <FiltersBar {...this.props} resetGridPage={this.props.actions.resetLoadedSongs}/>
+              <FiltersBar {...this.props} />
 
               <div id="discovery-container"
                 onScroll={this.handleDiscoveryScroll}
