@@ -43,11 +43,11 @@ export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
   })
 }
 
-export const CURRENT_REQUEST_LOADING = createAction('app/CURRENT_REQUEST_LOADING')
-export const FETCH_CURRENT_REQUEST = createAction('app/FETCH_CURRENT_REQUEST')
+export const SET_LOADING_STATUS = createAction('app/SET_LOADING_STATUS')
+export const SET_FILTERED_SONG_LIST = createAction('app/SET_FILTERED_SONG_LIST')
 
-export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
-  dispatch(CURRENT_REQUEST_LOADING(true))
+export const setFilteredSongList = (callback) => (dispatch, getState) => {
+  dispatch(SET_LOADING_STATUS(true))
 
   const filtersArray = []
   const filterIds = getState().selectedFilters.map(filter => filter.id)
@@ -58,11 +58,11 @@ export const fetchCurrentRequest = (callback) => (dispatch, getState) => {
 
   fetch(fullURL).then(res => res.json()).then((res) => {
 
-    dispatch(CURRENT_REQUEST_LOADING(false))
+    dispatch(SET_LOADING_STATUS(false))
     console.log("resx");
     console.log(res);
     if (res.length > 0) {
-      dispatch(FETCH_CURRENT_REQUEST(res))
+      dispatch(SET_FILTERED_SONG_LIST(res))
 
       if (callback) callback()
     } else {
@@ -121,11 +121,6 @@ export const loadPreviousSongs = (updateSnapshot = false) => dispatch => {
     })
   }
   dispatch(LOAD_PREVIOUS_SONGS({ updateSnapshot }))
-};
-
-const RESET_LOADED_SONGS = createAction('app/RESET_LOADED_SONGS');
-export const resetLoadedSongs = () => dispatch => {
-  dispatch(RESET_LOADED_SONGS())
 };
 
 const UPDATE_SNAPSHOT_SONG = createAction('app/UPDATE_SNAPSHOT_SONG');
