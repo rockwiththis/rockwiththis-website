@@ -57,9 +57,9 @@ class FiltersBar extends Component {
       )
     }
 
+    // TODO let's start setting scroll position through react props
     scrollToTopOfSongList = () => {
       if (window.innerWidth > 800) {
-        // TODO let's start setting scroll position through react props
         $('#discovery-container').animate({scrollTop: 0}, 100);
       } else {
         const songListTopPos = $('.socialLinks').height() + $('#hero-post').height();
