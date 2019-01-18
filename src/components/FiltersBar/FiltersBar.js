@@ -63,7 +63,8 @@ class FiltersBar extends Component {
         $('#discovery-container').animate({scrollTop: 0}, 100);
       } else {
         const songListTopPos = $('.socialLinks').height() + $('#hero-post').height();
-        window.scrollTo(0, songListTopPos);
+        if (typeof songListTopPos === 'number')
+          window.scrollTo(0, songListTopPos);
       }
     }
 
