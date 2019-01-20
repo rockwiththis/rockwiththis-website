@@ -225,7 +225,8 @@
                     display: inline-block;
                     max-width: 80%;
                     // width: 80%;
-                    padding: 3px 0;
+                    // padding: 3px 0;
+                    padding: 3px 0 2px;
                     white-space: nowrap;
                     // overflow-x: hidden;
                     padding-left: 7px;
@@ -239,6 +240,7 @@
                       text-overflow: ellipsis;
                       white-space: nowrap;
                       overflow: hidden;
+                      overflow-x: hidden;
 
                       .songName {
                         font-size: 25px;
@@ -247,17 +249,17 @@
                         pointer-events: all;
                         font-weight: 700 !important;
                         vertical-align: top;
-                        line-height: 25px;
+                        line-height: 28px;
                       }
                     }
 
                     .artistNameContainer {
                         display: inline-block;
-                        padding-top: 4px;
+                        padding-top: 0px;
 
                         .artistName {
                             font-size: 25px;
-                            line-height: 25px;
+                            line-height: 27px;
                             display: inline-block;
                             color: #000;
                         }
