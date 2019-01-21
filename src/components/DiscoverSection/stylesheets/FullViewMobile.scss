@@ -108,6 +108,11 @@
                           font-size: 16px;
                           line-height: 16px;
                           display: block;
+                          max-width: 100%;
+                          width: auto;
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          overflow: hidden;
                         }
                       }
                       .artistName {
@@ -116,8 +121,11 @@
                         line-height: 16px;
                         display: block;
                         overflow: hidden;
-                        white-space: nowrap;
+                        max-width: 100%;
+                        width: auto;
                         text-overflow: ellipsis;
+                        white-space: nowrap;
+                        overflow: hidden;
                       }
                     }
 

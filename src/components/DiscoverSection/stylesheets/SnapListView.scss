@@ -196,6 +196,11 @@
                           margin-bottom: 2px;
                           display: inline-block;
                           width: 100%;
+                          max-width: 100%;
+                          width: auto;
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          overflow: hidden;
                       }
 
                     }
@@ -241,15 +246,23 @@
                     font-size: 16px;
                     line-height: 20px;
                     max-height: 20px;
-                    overflow-y: hidden;
                     pointer-events: none;
+                    max-width: 100%;
+                    width: auto;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
                   }
                   .artistName {
                     line-height: 20px;
                     max-height: 20px;
-                    overflow-y: hidden;
                     color: #000;
                     font-size: 16px;
+                    max-width: 100%;
+                    width: auto;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
                   }
                 }
 
