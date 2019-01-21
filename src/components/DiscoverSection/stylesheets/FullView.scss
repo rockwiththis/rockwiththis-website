@@ -322,24 +322,32 @@
                     }
 
                     .songInfo.desktop {
-                        width: 50%;
+                        width: 55%;
                         display: inline-block;
                         white-space: nowrap;
                         text-overflow: ellipsis;
                         overflow-x: hidden;
-                        max-width: 350px;
+                        max-width: 55%;
+                        // max-width: 350px;
                         position: relative;
                         overflow-y: hidden;
                         padding: 5px 0 4px;
                         vertical-align: top;
                         transform: translateX(-1.5px);
 
+                        @media (max-width: 1000px) {
+                          width: 53%;
+                        }
+
                         .songtitle {
                           margin-bottom: 3px;
                           pointer-events: all;
+                          text-overflow: ellipsis;
+                          white-space: nowrap;
+                          overflow: hidden;
 
                           a.postTitleLink {
-                              font-size: 24px;
+                              font-size: 23px;
                               line-height: 24px;
                               text-decoration: none;
                               color: #000;
@@ -363,7 +371,7 @@
                         .artist {
 
                           span.artistName {
-                              font-size: 24px;
+                              font-size: 23px;
                               line-height: 24px;
                           }
                         }

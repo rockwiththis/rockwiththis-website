@@ -9,6 +9,7 @@ import $ from "jquery";
 
 const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
 // const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
+// const apiBaseUrl = 'http://www.rockwiththis.com/api/'
 
 export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
   dispatch({
