@@ -116,6 +116,7 @@ router.delete('/:id', (req, res) => (
 
 const handleSuccess = (res, opString) => {
   console.log(`${opString} successful!`);
+  console.log(res);
   return res.sendStatus(200);
 };
 

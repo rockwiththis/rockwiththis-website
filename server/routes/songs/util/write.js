@@ -28,7 +28,8 @@ const songsWriteSchema = {
   bpm: { required: true },
   artistLocation: { db: 'artist_location', required: true },
   createdAt: { db: 'created_at', required: true },
-  hidden: {}
+  hidden: {},
+  moments: {}
   // subgenreIds (parsed separately so not in schema)
 }
 
