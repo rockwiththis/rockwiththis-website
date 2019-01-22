@@ -7,7 +7,7 @@ source deploy/setup.sh
 npm run build
 
 DEST_PATH=$REMOTE_PATH/build
-DEST_NAME=$build-$(date +%Y%m%d%H%M%S)
+DEST_NAME=build-$(date +%Y%m%d%H%M%S)
 printf "Pushing from ./build to remote $DEST_PATH/$DEST_NAME\n"
 
 find build -type f -not -path '*/node_modules*' \

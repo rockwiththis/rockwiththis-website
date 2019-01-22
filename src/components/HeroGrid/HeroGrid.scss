@@ -112,7 +112,7 @@
               }
 
               .song-title {
-                font-size: 30px;
+                font-size: 28px;
                 line-height: 30px;
                 font-weight: 700;
                 color: #000;
@@ -122,22 +122,22 @@
                 margin-bottom: 2px;
 
                 @media screen and (max-width: 800px) {
-                  font-size: 25px;
+                  font-size: 23px;
                   line-height: 25px;
                 }
                 @media screen and (max-width: 650px) {
-                  font-size: 20px;
+                  font-size: 19px;
                   line-height: 20px;
                 }
                 @media screen and (max-width: 480px) {
-                  font-size: 15px;
+                  font-size: 14.5px;
                   line-height: 15px;
                   margin-bottom: 2px;
                 }
               }
 
               .song-artist {
-                font-size: 30px;
+                font-size: 28px;
                 line-height: 30px;
                 overflow: hidden;
                 white-space: nowrap;
@@ -148,15 +148,15 @@
                 color: #000;
 
                 @media screen and (max-width: 800px) {
-                  font-size: 25px;
+                  font-size: 23px;
                   line-height: 25px;
                 }
                 @media screen and (max-width: 650px) {
-                  font-size: 20px;
+                  font-size: 19px;
                   line-height: 20px;
                 }
                 @media screen and (max-width: 480px) {
-                  font-size: 15px;
+                  font-size: 14.5px;
                   line-height: 15px;
                 }
               }

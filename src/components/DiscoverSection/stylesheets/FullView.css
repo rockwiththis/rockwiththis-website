@@ -231,22 +231,28 @@
             height: 50px;
             vertical-align: baseline; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
-        width: 50%;
+        width: 55%;
         display: inline-block;
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow-x: hidden;
-        max-width: 350px;
+        max-width: 55%;
         position: relative;
         overflow-y: hidden;
         padding: 5px 0 4px;
         vertical-align: top;
         transform: translateX(-1.5px); }
+        @media (max-width: 1000px) {
+          .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
+            width: 53%; } }
         .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
           margin-bottom: 3px;
-          pointer-events: all; }
+          pointer-events: all;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden; }
           .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle a.postTitleLink {
-            font-size: 24px;
+            font-size: 23px;
             line-height: 24px;
             text-decoration: none;
             color: #000;
@@ -262,7 +268,7 @@
             -webkit-transform: translateY(-3px);
             transform: translateY(-3px); }
         .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist span.artistName {
-          font-size: 24px;
+          font-size: 23px;
           line-height: 24px; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile {
         display: none; }
