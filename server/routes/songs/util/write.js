@@ -3,8 +3,9 @@ const songsWriteSchema = {
   name: { required: true },
   description: { required: true },
   imageUrl: { db: 'image_url', required: true },
+  songFileName: { db: 'song_file_name', required: true },
   curatorId: { db: 'curator_id', required: true },
-  artistName: { db: 'artist_name', required: true},
+  artistName: { db: 'artist_name', required: true },
   spotify: {
     required: true, // DB way ... shouldn't we actually at least one / exactly one link type?
     fields: {
@@ -26,7 +27,8 @@ const songsWriteSchema = {
   // Should these really be required?
   bpm: { required: true },
   artistLocation: { db: 'artist_location', required: true },
-  createdAt: { db: 'created_at', required: true }
+  createdAt: { db: 'created_at', required: true },
+  hidden: {}
   // subgenreIds (parsed separately so not in schema)
 }
 

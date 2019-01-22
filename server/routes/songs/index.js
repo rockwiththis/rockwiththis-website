@@ -94,8 +94,12 @@ const insertSongSubgenres = (songDbResponse, params) => {
 }
 
 router.patch('/:id', (req, res) => (
-    checkSession(req.body)
+    database.query('BEGIN')
+      .then(() => checkSession(req.body))
+      .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
       .then(() => database.query(getUpdateSongQuery(req.params.id, req.body)))
+      .then(() => database.query(getInsertSubgenreSongQuery(req.params.id, req.body)))
+      .then(() => database.query('COMMIT'))
       .then(() => handleSuccess(res, 'update'))
       .catch(e => handleError(res, e))
 ));
@@ -112,7 +116,6 @@ router.delete('/:id', (req, res) => (
 
 const handleSuccess = (res, opString) => {
   console.log(`${opString} successful!`);
-  console.log(res);
   return res.sendStatus(200);
 };
 
@@ -121,8 +124,6 @@ const handleError = (res, error) => {
     return res.sendStatus(400);
   } else {
     console.log('Unexpected error:');
-    console.log("res", res)
-
     console.log(error);
     return res.sendStatus(500);
   }

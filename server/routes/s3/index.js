@@ -10,16 +10,27 @@ const fileType = require('file-type');
 const s3 = new AWS.S3();
 
 const parseFormRequestFile = request => (
+    new Promise(resolve => {
+      formidable.IncomingForm().parse(request, (err, fields, fileData) => {
+        resolve({
+          file: fileData.file,
+          fileName: fields.fileName.split('.')[0]
+        })
+      })
+    })
+);
+
+const parseFormRequestFields = request => (
   new Promise(resolve => {
     formidable.IncomingForm().parse(request, (err, fields, fileData) => {
-      resolve(fileData.file)
+      resolve(fields);
     })
   })
 );
 
-const uploadFile = (buffer, name, type) => {
+const uploadFile = (buffer, name, type, isPrivate) => {
   const params = {
-    ACL: 'public-read',
+    ACL: isPrivate ? 'private' : 'public-read',
     Body: buffer,
     Bucket: 'rockwiththis',
     ContentType: type.mime,
@@ -28,27 +39,45 @@ const uploadFile = (buffer, name, type) => {
   return s3.upload(params).promise();
 };
 
-router.post('/upload', (req, res) => {
-  console.log("received request");
-  console.log(AWS.config.credentials);
-  return parseFormRequestFile(req)
-    .then(file => {
-      const buffer = fs.readFileSync(file.path);
-      const type = fileType(buffer);
-      const timestamp = Date.now().toString();
-      const fileName = `song-uploads/${timestamp}-lg`;
-      return uploadFile(buffer, fileName, type);
-    })
-    .then(data => {
-      console.log("SUCCESS!!!")
-      console.log(data);
-      return res.status(200).json({ s3ImageUrl: data.Location })
-    })
-    .catch(e => {
-      console.log("failure");
-      console.log(e);
-      return res.status(500)
-    });
-});
+const processUpload = (req, isPrivate, path, fileNameOverride) => (
+    parseFormRequestFile(req)
+      .then(fileData => {
+        const buffer = fs.readFileSync(fileData.file.path);
+        const type = fileType(buffer);
+        const fileName = !!fileNameOverride ? fileNameOverride : fileData.fileName
+
+        return uploadFile(buffer, `${path}/${fileName}`, type, isPrivate)
+          .then(file => ({
+            file,
+            fileName: `${fileName}.${type.ext}`
+          }));
+      })
+);
+
+router.post('/upload/image', (req, res) => (
+    processUpload(req, false, 'song-uploads', `${Date.now().toString()}-lg`)
+      .then(({ file }) => {
+        console.log("Successfully uploaded image")
+        return res.status(200).json({ s3ImageUrl: file.Location })
+      })
+      .catch(e => {
+        console.log("failure uploading image");
+        console.log(e);
+        return res.status(500)
+      })
+));
+
+router.post('/upload/song', (req, res) => (
+    processUpload(req, true, 'songs')
+      .then(({ fileName }) => {
+        console.log("Successfully uploaded song audio")
+        return res.status(200).json({ s3SongName: fileName })
+      })
+      .catch(e => {
+        console.log("failure uploading song audio");
+        console.log(e);
+        return res.status(500)
+      })
+));
 
 module.exports = router;
