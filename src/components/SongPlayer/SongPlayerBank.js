@@ -113,6 +113,7 @@ class SongPlayerBank extends React.Component {
     */
     return new Howl({
       src: ['https://s3-us-west-1.amazonaws.com/rockwiththis/songs/win98.mp3'],
+      html5: true,
       autoplay: false,
       onload: this.onPlayerReady(song.id),
       onend: this.props.onSongEnd
