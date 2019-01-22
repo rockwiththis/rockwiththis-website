@@ -49,7 +49,7 @@ const processUpload = (req, isPrivate, path, fileNameOverride) => (
         return uploadFile(buffer, `${path}/${fileName}`, type, isPrivate)
           .then(file => ({
             file,
-            fileName: fileName
+            fileName: `${fileName}.${type.ext}`
           }));
       })
 );
