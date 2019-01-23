@@ -16,23 +16,22 @@
         height: calc(50vw - 2px);
       }
       @media screen and (max-width: 800px) {
-        max-height: 650px!important;
-        max-width: 650px!important;
-        height: 100vw !important;
-        overflow: visible !important;
+        max-height: 650px;
+        max-width: 650px;
+        height: 100vw;
+        overflow: visible;
         position: relative;
       }
 
       @media screen and (max-width: 480px) {
         width: 100vw;
-        max-height: 650px !important;
-        max-width: 650px !important;
-        position: fixed;
+        max-height: 650px;
+        max-width: 650px;
         margin: 0 auto;
         left: 50%;
         transform: translateX(-50%);
         top: 90px;
-        z-index: 3 !important;
+        z-index: 3;
       }
 
   .featured-track-wrapper {
