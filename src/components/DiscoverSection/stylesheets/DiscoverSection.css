@@ -15,7 +15,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
       height: calc(100vh - 174px); } }
   @media (max-width: 480px) {
     .discovery-section {
-      margin-top: 90px;
+      margin-top: 49px;
       z-index: 900;
       background: #fff; } }
   .discovery-section img.discover-cover {

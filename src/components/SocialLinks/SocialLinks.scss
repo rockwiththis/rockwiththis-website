@@ -12,6 +12,10 @@
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 
+  @media (max-width: 480px) {
+    position: relative !important;
+  }
+
   ul {
     // width: 324px;
     width: 406px;

@@ -8,6 +8,9 @@
   border-radius: 4px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0; }
+  @media (max-width: 480px) {
+    .socialLinks {
+      position: relative !important; } }
   .socialLinks ul {
     width: 406px;
     margin: 0 auto;
