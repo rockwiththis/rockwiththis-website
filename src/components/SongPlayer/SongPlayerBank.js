@@ -2,6 +2,7 @@
 
 import React from 'react';
 import SoundCloudWidget from 'soundcloud-widget';
+import { Howl } from 'howler';
 
 import './SongPlayerBank.scss';
 
@@ -31,6 +32,13 @@ class SongPlayerBank extends React.Component {
   shouldComponentUpdate = () => false;
 
   componentDidMount = () => {
+    this.heroPlayers = this.props.heroSongs.reduce((currPlayers, song, i) => ({
+      ...currPlayers,
+      [song.id]: this.createPlayer(song, i)
+    }), {});
+    this.allPlayers = this.heroPlayers;
+    this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
+    /*
     this.loadYoutubeIframeApi()
     .then(YT => {
       this.YT = YT;
@@ -41,6 +49,7 @@ class SongPlayerBank extends React.Component {
       this.setSongListPlayers(this.props.initialSongList);
       this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
     })
+    */
   }
 
   loadYoutubeIframeApi = () => (
@@ -93,6 +102,7 @@ class SongPlayerBank extends React.Component {
   }
 
   createPlayer = (song, index) => {
+    /*
     if (!!song.soundcloud_track_id)
       return this.createSoundCloudPlayer(song, index)
 
@@ -100,6 +110,14 @@ class SongPlayerBank extends React.Component {
       return this.createYoutubePlayer(song, index)
 
     else return null
+    */
+    return new Howl({
+      src: ['https://s3-us-west-1.amazonaws.com/rockwiththis/songs/win98.mp3'],
+      html5: true,
+      autoplay: false,
+      onload: this.onPlayerReady(song.id),
+      onend: this.props.onSongEnd
+    });
   }
 
   getCleanPlayerElement = (index, elementType, getId) => {
@@ -187,8 +205,8 @@ class SongPlayerBank extends React.Component {
 
   onPlayerReady = songId => ref => (
       this.allPlayers[songId] &&
-      this.allPlayers[songId].getDuration()
-        .then(seconds => this.props.setSongDuration(songId, seconds))
+      this.props.setSongDuration(songId, this.allPlayers[songId].duration())
+        //.then(seconds => this.props.setSongDuration(songId, seconds))
   )
 
   updateSongProgress = progressRatio => this.activePlayer.seekTo(progressRatio);
@@ -200,8 +218,7 @@ class SongPlayerBank extends React.Component {
 
       if (!!this.activePlayer) {
         clearInterval(this.durationInterval);
-        this.activePlayer.seekTo(0);
-        this.activePlayer.pause();
+        this.activePlayer.stop();
       }
       this.activePlayer = newActivePlayer;
       this.durationInterval = setInterval(this.activePlayer.reportProgress, REPORT_DURATION_INTERVAL);
