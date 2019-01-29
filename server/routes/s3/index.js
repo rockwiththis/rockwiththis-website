@@ -80,20 +80,4 @@ router.post('/upload/song', (req, res) => (
       })
 ));
 
-router.get('/song/:songFileName', (req, res) => {
-  return s3.getObject({
-    Bucket: "rockwiththis",
-    Key: `songs/${decodeURI(req.params.songFileName)}`
-  }).promise()
-    .then(song => {
-      res.writeHead(200, { 'Content-Type': song.ContentType });
-      res.end(song.Body);
-    })
-    .catch(e => {
-        console.log("failed fetching song audio");
-        console.log(e);
-        return res.status(500)
-    });
-});
-
 module.exports = router;
