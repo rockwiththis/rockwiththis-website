@@ -14,10 +14,7 @@ export const INITIAL_STATE = {
   isPlaying: false,
   discoverLayout: 'expanded',
   fullHeightPlayer: false,
-  activeSong: {
-    better_featured_image: '',
-    acf: {}
-  },
+  activeSong: {},
   activeSongProgress: {
     playedRatio: 0,
     secondsPlayed: 0,
@@ -127,8 +124,7 @@ const appReducers = handleActions({
   },
   'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
     return update(state, {
-      snapshotPost: { $set: action.payload },
-      activeSong: { $set: !!state.activeSong.id ? state.activeSong : action.payload }
+      snapshotPost: { $set: action.payload }
     })
   },
   'app/PLAYER_BANK_UPDATED': (state, action) => {
@@ -144,7 +140,9 @@ const appReducers = handleActions({
   },
   'app/FETCH_SINGLE_SONG': (state, action) => {
     return update(state, {
-      singleSong: { $set: action.payload }
+      singleSong: { $set: action.payload },
+      activeSong: { $set: !!state.activeSong.id ? state.activeSong : action.payload },
+      shouldLoadPlayers: { $set: true }
     })
   },
   'app/CLEAR_SINGLE_SONG': (state, action) => {
