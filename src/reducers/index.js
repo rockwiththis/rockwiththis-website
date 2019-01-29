@@ -47,7 +47,8 @@ const appReducers = handleActions({
       songListPosts: { $set: action.payload },
       snapshotPost: { $set: action.payload[0] },
       heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
-      activeSong: { $set: action.payload[0] }
+      activeSong: { $set: state.activeSong.id ? state.activeSong : action.payload[0] },
+      shouldLoadPlayers: { $set: true }
     })
   },
   'app/SET_REMAINING_POSTS': (state, action) => {
