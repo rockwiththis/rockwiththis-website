@@ -35,52 +35,40 @@ class SongPlayerBank extends React.Component {
   componentDidMount = () => {
     this.heroPlayers = this.props.heroSongs.reduce((currPlayers, song, i) => ({
       ...currPlayers,
-      [song.id]: this.createPlayer(song, i)
+      [song.id]: this.createPlayer(song)
     }), {});
+    this.allPlayers = { ...this.heroPlayers };
     this.setSongListPlayers(this.props.initialSongList);
+
     this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
   }
 
-  setSongListPlayers = (songList, snapshotSong) => {
-    const activeIndex = !!this.activePlayer ? this.activePlayer.index : null;
-    const snapshotIndex = !!snapshotSong && this.allPlayers[snapshotSong.id] && this.allPlayers[snapshotSong.id].index
-    var indexOffset = this.props.heroSongs.length;
-
-    this.songListPlayers = songList.reduce((currPlayers, song, i) => {
-      const currIndex = i + indexOffset;
-
-      if (!!this.heroPlayers[song.id]) {
-        indexOffset -= 1;
-        return currPlayers
-
-      } else if (currIndex === activeIndex) {
-        indexOffset += 1;
-        return {
-          ...currPlayers,
-          [this.activePlayer.songId]: this.activePlayer,
-          [song.id]: this.createPlayer(song, currIndex + 1)
-        }
-
-      } else if (currIndex === snapshotIndex) {
-        indexOffset += 1;
-        return {
-          ...currPlayers,
-          [snapshotSong.id]: this.allPlayers[snapshotSong.id],
-          [song.id]: this.createPlayer(song, currIndex + 1)
-        }
-
-      } else {
-        return {
-          ...currPlayers,
-          [song.id]: this.createPlayer(song, currIndex)
-        }
-      }
-    }, {});
-
-    this.allPlayers = { ...this.heroPlayers, ...this.songListPlayers }
+  setSongListPlayers = songList => {
+    this.songListPlayers = songList.reduce((currPlayers, song) => (
+        !!song.id ?
+          {
+            ...currPlayers,
+            [song.id]: this.allPlayers[song.id] || this.createPlayer(song)
+          } :
+          currPlayers
+    ), {});
+    this.allPlayers = { ...this.allPlayers, ...this.songListPlayers }
   }
 
-  createPlayer = (song, index) =>
+  ensureActivePlayer = activeSong => {
+    // Verify that `activePlayer` is set correctly ... useful for navigation to single song page
+    if (!!this.allPlayers[activeSong.id]) {
+      this.activePlayer = this.allPlayers[activeSong.id];
+    } else {
+      this.activePlayer = this.createPlayer(activeSong);
+      this.allPlayers = {
+        ...this.allPlayers,
+        [activeSong.id]: this.activePlayer
+      };
+    }
+  }
+
+  createPlayer = song =>
     new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
@@ -118,11 +106,14 @@ class SongPlayerBank extends React.Component {
     clearInterval(this.durationInterval);
   }
 
-  reportActivePlayerProgress = () =>
-    this.props.setActiveSongProgress({
-      playedRatio: this.activePlayer.seek() / this.activePlayer.duration(),
-      playedSeconds: this.activePlayer.seek()
-    });
+  reportActivePlayerProgress = () => {
+    if (typeof this.activePlayer.seek() === 'number') {
+      this.props.setActiveSongProgress({
+        playedRatio: this.activePlayer.seek() / this.activePlayer.duration(),
+        playedSeconds: this.activePlayer.seek()
+      });
+    }
+  }
 
   updateSongProgress = progressRatio => {
     this.activePlayer.seek(this.activePlayer.duration() * progressRatio);
