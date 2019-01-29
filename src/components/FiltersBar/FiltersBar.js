@@ -89,8 +89,6 @@ class FiltersBar extends Component {
         filtersToShow: [],
       })
 
-      this.props.resetGridPage()
-
       if (window.innerWidth > 800) {
           $('#discovery-container').animate({scrollTop: 0}, 100);
       } else {
