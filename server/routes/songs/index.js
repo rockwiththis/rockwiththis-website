@@ -3,10 +3,9 @@ const router = express.Router();
 const database = require('../../db');
 
 const {
-  getSongsQuery,
-  getSongsSubgenresQuery,
-  nestSongsWithSubgenres,
-  nestSingleSongWithGenres,
+  getSongs,
+  getSingleSong,
+  includeNestedRelations
 } = require('./util/read.js');
 
 const {
@@ -23,54 +22,25 @@ const { checkSession } = require('../../auth/util');
 const DEFAULT_SONG_LIMIT = 16;
 
 router.get('/', (req, res) => {
-  console.log("fetching songs");
   const isQuery = req.query && (Object.keys(req.query).length > 0);
 
   const songsLimit = (isQuery && req.query.limit) || DEFAULT_SONG_LIMIT;
   const songsOffset = (isQuery && req.query.offset) || 0;
   const subgenreIdFilter = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
 
-  database.query(getSongsQuery(songsLimit, songsOffset, subgenreIdFilter))
-    .then(songsResult => {
-      database.query(getSongsSubgenresQuery(songsResult.rows.map(song => song.id)))
-        .then(subgenresResult => {
-          console.log(`successfully fetched ${songsResult.rows.length} songs`);
-          res.json(nestSongsWithSubgenres(songsResult.rows, subgenresResult.rows))
-        })
-        .catch(error => {
-          console.log('>>> GET SONGS route error fetching subgenres', error);
-        });
-    })
-    .catch(error => {
-      console.log('>>> GET SONGS route error fetching songs', error);
-    });
+  return getSongs(songsLimit, songsOffset, subgenreIdFilter)
+    .then(includeNestedRelations)
+    .then(res.json)
+    .catch(e => console.log('>>> GET SONGS fetch error', e));
 });
 
-// TODO use same nesting code as batch get
 router.get('/:id', (req, res) => {
-  var singleSongId = parseInt(req.params.id);
+  const singleSongId = parseInt(req.params.id);
 
-  const queryText = (`
-    SELECT subgenres.id as genre_id, subgenres.name as genre_name, songs.*,
-    curator.first_name as curator_first_name, curator.last_name as curator_last_name
-    FROM songs
-    LEFT JOIN subgenre_songs ON songs.id = subgenre_songs.song_id
-    LEFT JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id
-    LEFT JOIN users AS curator ON curator.id = songs.curator_id
-    WHERE songs.id = $1
-  `);
-  const query = {
-    text: queryText,
-    values: [singleSongId],
-  }
-
-  database.query(query)
-  .then(results => {
-
-    const singleSongWithSubGenres = nestSingleSongWithGenres(results.rows);
-
-    return res.json(singleSongWithSubGenres[0]);
-  })
+  return getSingleSong(singleSongId)
+    .then(song => includeNestedRelations([song]))
+    .then(nestResult => res.json(nestResult[0]))
+    .catch(e => console.log('>>> GET SINGLE SONG fetch error', e));
 });
 
 router.post('/', (req, res) => (
@@ -79,10 +49,11 @@ router.post('/', (req, res) => (
     .then(() => database.query(getInsertSongQuery(req.body)))
     .then(insertSongResponse => insertSongSubgenres(insertSongResponse, req.body))
     .then(() => database.query('COMMIT'))
-    .then(() => handleSuccess(res, 'insert'))
-    .catch(e => database.query('ROLLBACK').then(() => handleError(res, e)))
+    .then(() => handleWriteSuccess(res, 'insert'))
+    .catch(e => handleWriteError(res, e))
 ));
 
+// TODO move this to utils/write.js
 const insertSongSubgenres = (songDbResponse, params) => {
   const insertedSongIds = songDbResponse.rows.map(r => r.id);
   if (insertedSongIds.length != 1) return Promise.reject("bad db insert response: " + songDbResponse)
@@ -94,14 +65,14 @@ const insertSongSubgenres = (songDbResponse, params) => {
 }
 
 router.patch('/:id', (req, res) => (
-    database.query('BEGIN')
-      .then(() => checkSession(req.body))
-      .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
-      .then(() => database.query(getUpdateSongQuery(req.params.id, req.body)))
-      .then(() => database.query(getInsertSubgenreSongQuery(req.params.id, req.body)))
-      .then(() => database.query('COMMIT'))
-      .then(() => handleSuccess(res, 'update'))
-      .catch(e => handleError(res, e))
+  database.query('BEGIN')
+    .then(() => checkSession(req.body))
+    .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
+    .then(() => database.query(getUpdateSongQuery(req.params.id, req.body)))
+    .then(() => database.query(getInsertSubgenreSongQuery(req.params.id, req.body)))
+    .then(() => database.query('COMMIT'))
+    .then(() => handleWriteSuccess(res, 'update'))
+    .catch(e => handleWriteError(res, e))
 ));
 
 router.delete('/:id', (req, res) => (
@@ -110,24 +81,27 @@ router.delete('/:id', (req, res) => (
     .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
     .then(() => database.query(getDeleteSongQuery(req.params.id)))
     .then(() => database.query('COMMIT'))
-    .then(() => handleSuccess(res, 'delete'))
-    .catch(e => handleError(res, e))
+    .then(() => handleWriteSuccess(res, 'delete'))
+    .catch(e => handleWriteError(res, e))
 ));
 
-const handleSuccess = (res, opString) => {
+// TODO move these to utils/write.js
+const handleWriteSuccess = (res, opString) => {
   console.log(`${opString} successful!`);
   console.log(res);
   return res.sendStatus(200);
 };
 
-const handleError = (res, error) => {
-  if (error == 400) {
-    return res.sendStatus(400);
-  } else {
-    console.log('Unexpected error:');
-    console.log(error);
-    return res.sendStatus(500);
-  }
-};
+const handleWriteError = (res, error) => (
+  database.query('ROLLBACK').then(() => {
+    if (error == 400) {
+      return res.sendStatus(400);
+    } else {
+      console.log('Unexpected error:');
+      console.log(error);
+      return res.sendStatus(500);
+    }
+  })
+);
 
 module.exports = router;
