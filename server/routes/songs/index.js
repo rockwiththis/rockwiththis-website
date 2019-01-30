@@ -9,11 +9,9 @@ const {
 } = require('./util/read.js');
 
 const {
-  getInsertSongQuery,
-  getInsertSubgenreSongQuery,
-  getUpdateSongQuery,
-  getDeleteSongQuery,
-  getDeleteSubgenreSongQuery
+  insertSong,
+  updateSong,
+  deleteSong
 } = require('./util/write.js');
 
 const { checkSession } = require('../../auth/util');
