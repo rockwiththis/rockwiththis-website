@@ -7,25 +7,27 @@ const propTypes = {
 
 class PaginationDots extends React.Component {
 
+  renderRegularDot = (isActive = false) => {
+    const className = isActive ?
+      'pagination-dot pagination-dot-active' :
+      'pagination-dot';
+    return <button className={className}><i className="fas fa-circle"></i></button>;
+  }
+
   render() {
 
-    const paginationDotsBase = [...Array(4)].map((z,i) => {
-        const className = i == this.props.currPageIndex ?
-          'pagination-dot pagination-dot-active' :
-          'pagination-dot';
-        return <button className={className}><i className="fas fa-circle"></i></button>;
-    });
-
-    const paginationDots = this.props.currPageIndex > 3 ?
-      [
-        <button className='pagination-dot-small'/>,
-        ...paginationDotsBase,
-        <button className='pagination-dot-small'/>,
-      ] :
-      [
-        <button className='pagination-dot-small'/>,
-        ...paginationDotsBase,
-      ];
+    const paginationDots =
+      this.props.currPageIndex > 3 ?
+        [
+          <button className='pagination-dot-small'/>,
+          ...([...Array(3)].map(() => this.renderRegularDot())),
+          this.renderRegularDot(true),
+          <button className='pagination-dot-small'/>,
+        ] :
+        [
+          ...([...Array(4)].map((z,i) => this.renderRegularDot(i === this.props.currPageIndex))),
+          <button className='pagination-dot-small'/>,
+        ];
 
     return (
         <div className="pagination-container">

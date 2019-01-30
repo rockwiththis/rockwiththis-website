@@ -264,7 +264,7 @@ class DiscoverSection extends Component {
                           <PaginationControls
                             currPageIndex={this.props.currentSongListPageIndex}
                             onForward={() => this.props.actions.loadMoreSongs()}
-                            onBackward={this.props.actions.loadPreviousSongs}
+                            onBackward={() => this.props.actions.loadPreviousSongs()}
                           />
                         </div>
                       :
@@ -335,7 +335,7 @@ class DiscoverSection extends Component {
                     <PaginationControls
                       currPageIndex={this.props.currentSongListPageIndex}
                       onForward={() => this.props.actions.loadMoreSongs()}
-                      onBackward={this.props.actions.loadPreviousSongs}
+                      onBackward={() => this.props.actions.loadPreviousSongs()}
                     />
 
                   </div>
