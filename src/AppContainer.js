@@ -42,16 +42,21 @@ class AppContainer extends Component {
 
     if (prevProps.activeSong.id !== this.props.activeSong.id &&
         this.props.isPlaying) {
-      console.log("PLAYING FRESH SONG", this.props.activeSong);
       this.playerBankRef.current.playSongListSong(this.props.activeSong);
 
     } else if (this.props.isPlaying && !prevProps.isPlaying) {
-      console.log("PLAYING CURRENT SONG", this.props.activeSong);
       this.playerBankRef.current.playActiveSong();
     }
 
     if (this.props.shouldLoadPlayers) {
-      this.playerBankRef.current.setSongListPlayers(this.props.songListPosts, this.props.snapshotPost);
+      this.playerBankRef.current.setSongListPlayers(
+        [
+          ...this.props.songListPosts,
+          this.props.snapshotPost,
+          this.props.singleSong
+        ],
+      );
+      this.props.activeSong && this.playerBankRef.current.ensureActivePlayer(this.props.activeSong);
       this.props.actions.playerBankUpdated();
     }
 
@@ -110,7 +115,7 @@ class AppContainer extends Component {
 
           <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
           {
-            this.props.songListPosts.length > 0 && this.props.heroPosts.length > 0 &&
+            !!this.props.activeSong && !!this.props.activeSong.id &&
             <SongPlayerBank
               heroSongs={this.props.heroPosts}
               initialSongList={this.props.songListPosts}

@@ -20,7 +20,6 @@ class SingleSong extends Component {
     constructor(props) {
       super(props);
       this.state = { expanded: false };
-      props.actions.updateSnapshotSong(this.props.singleSong);
     }
 
     // TODO This duplicate logic should be standardized
@@ -65,22 +64,16 @@ class SingleSong extends Component {
         )
     }
 
-    renderDescription() {
-        const song = this.props.singleSong
-        console.log("this.props.singleSong");
-        console.log(this.props.singleSong);
-        return (
-              <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
-                  <p
-                    className="songDescription"
-                    dangerouslySetInnerHTML={{ __html: this.parsedDescription(this.props.singleSong) }}
-                  />
-              </div>
-        )
-    }
+    renderDescription = () => (
+      <div className={`bottomContentContainer ${this.state.expanded ? 'expanded' : ''}`}>
+        <p
+          className="songDescription"
+          dangerouslySetInnerHTML={{ __html: this.parsedDescription(this.props.singleSong) }}
+        />
+      </div>
+    );
 
     render() {
-      console.log(this.props)
         const {
             activeSong,
             isPlaying,
@@ -88,9 +81,9 @@ class SingleSong extends Component {
         const song = this.props.singleSong
 
         const { height } = this.state
-        const songTagsMeta = song.sub_genres.map(tag => {
-          return (<meta name="tag" content={tag.name} />)
-        })
+        const songTagsMeta = song.sub_genres.map((tag, i) =>
+          <meta name="tag" content={tag.name} key={i} />
+        );
         const songTags = song.sub_genres.map(tag => {
           return (
               <span key={tag.id} className="tag">#{tag.name}</span>
@@ -169,7 +162,6 @@ class SingleSong extends Component {
 
 SingleSong.propTypes = {
     singleSong: PropTypes.object.isRequired,
-    toggleSong: PropTypes.func.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     activeSong: PropTypes.object,
 }
