@@ -6,7 +6,13 @@ const {
   getAllRelationQueries
 } = require('./schema.js');
 
-const insertSong = params => {
+const transactional = performQueries =>
+  database.query('BEGIN')
+    .then(() => performQueries())
+    .then(() => database.query('COMMIT'))
+    .catch(() => database.query('ROLLBACK'));
+
+const insertSong = params => transactional(() => {
   const missingFields = getMissingRequiredFields(params);
   if (Object.keys(missingFields).length > 0) {
     console.log('Missing fields:');
@@ -28,9 +34,9 @@ const insertSong = params => {
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
   })
   .then(insertResponse => insertRelation(insertResponse.rows[0].id, params));
-};
+})();
 
-const updateSong = (songId, params) => {
+const updateSong = (songId, params) => transactional(() => {
   if (!songId) {
     console.log("id required, not provided");
     throw 400
@@ -52,9 +58,9 @@ const updateSong = (songId, params) => {
   })
   .then(() => deleteRelations(songId))
   .then(() => insertRelations(songId, params));
-};
+})();
 
-const deleteSong = songId => {
+const deleteSong = songId => transactional(() => {
   if (!songId) {
     console.log("id required, not provided");
     throw 400
@@ -65,7 +71,8 @@ const deleteSong = songId => {
     values: [songId]
   })
   .then(() => deleteRelations(songId));
-}
+})();
+
 
 const performRelationQueries = getQuery =>
   Promise.all(getAllRelationQueries.map(database.query))

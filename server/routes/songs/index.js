@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const database = require('../../db');
 
 const {
   getSongs,
@@ -42,64 +41,40 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => (
-  database.query('BEGIN')
-    .then(() => checkSession(req.body))
-    .then(() => database.query(getInsertSongQuery(req.body)))
-    .then(insertSongResponse => insertSongSubgenres(insertSongResponse, req.body))
-    .then(() => database.query('COMMIT'))
+  checkSession(req.body)
+    .then(() => insertSong(req.body))
     .then(() => handleWriteSuccess(res, 'insert'))
     .catch(e => handleWriteError(res, e))
 ));
 
-// TODO move this to utils/write.js
-const insertSongSubgenres = (songDbResponse, params) => {
-  const insertedSongIds = songDbResponse.rows.map(r => r.id);
-  if (insertedSongIds.length != 1) return Promise.reject("bad db insert response: " + songDbResponse)
-
-  const subgenreQuery = getInsertSubgenreSongQuery(insertedSongIds[0], params);
-  return !!subgenreQuery ?
-    database.query(subgenreQuery) :
-    Promise.resolve()
-}
-
 router.patch('/:id', (req, res) => (
-  database.query('BEGIN')
-    .then(() => checkSession(req.body))
-    .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
-    .then(() => database.query(getUpdateSongQuery(req.params.id, req.body)))
-    .then(() => database.query(getInsertSubgenreSongQuery(req.params.id, req.body)))
-    .then(() => database.query('COMMIT'))
+  checkSession(req.body)
+    .then(() => updateSong(req.body))
     .then(() => handleWriteSuccess(res, 'update'))
     .catch(e => handleWriteError(res, e))
 ));
 
 router.delete('/:id', (req, res) => (
-  database.query('BEGIN')
-    .then(() => checkSession(req.body))
-    .then(() => database.query(getDeleteSubgenreSongQuery(req.params.id)))
-    .then(() => database.query(getDeleteSongQuery(req.params.id)))
-    .then(() => database.query('COMMIT'))
+  checkSession(req.body)
+    .then(() => deleteSong(req.body))
     .then(() => handleWriteSuccess(res, 'delete'))
     .catch(e => handleWriteError(res, e))
 ));
 
-// TODO move these to utils/write.js
 const handleWriteSuccess = (res, opString) => {
   console.log(`${opString} successful!`);
   console.log(res);
   return res.sendStatus(200);
 };
 
-const handleWriteError = (res, error) => (
-  database.query('ROLLBACK').then(() => {
-    if (error == 400) {
-      return res.sendStatus(400);
-    } else {
-      console.log('Unexpected error:');
-      console.log(error);
-      return res.sendStatus(500);
-    }
-  })
-);
+const handleWriteError = (res, error) => {
+  if (error == 400) {
+    return res.sendStatus(400);
+  } else {
+    console.log('Unexpected error:');
+    console.log(error);
+    return res.sendStatus(500);
+  }
+};
 
 module.exports = router;
