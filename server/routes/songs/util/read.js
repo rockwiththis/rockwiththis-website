@@ -6,7 +6,7 @@ const songSelect = `
     curator.first_name as curator_first_name,
     curator.last_name as curator_last_name
   FROM songs
-  LEFT JOIN users AS curator ON curator.id = songs.curator_id'
+  LEFT JOIN users AS curator ON curator.id = songs.curator_id
 `;
 
 const relationSelect = relationName => `
@@ -20,8 +20,8 @@ const subgenreJoins = (joinType = 'INNER') => `
 `;
 
 const momentJoins = (joinType = 'INNER') => `
-  ${joinType} JOIN moment_songs ON songs.id = moment_songs.song_id
-  ${joinType} JOIN moments ON moments.id = moment_songs.moment_id
+  ${joinType} JOIN song_moments ON songs.id = song_moments.song_id
+  ${joinType} JOIN moments ON moments.id = song_moments.moment_id
 `;
 
 const getSongs = (limit, offset, subgenreIds) => {
@@ -32,14 +32,14 @@ const getSongs = (limit, offset, subgenreIds) => {
   const offsetStatement = `OFFSET ${Number(offset)}`;
   const limitStatement = `LIMIT ${Number(limit)}`;
 
-  const queryText = (`
+  const queryText = `(
     ${songSelect}
     ${subgenreJoins('LEFT')}
     ${subgenreIdFilter}
     ORDER BY songs.created_at DESC, songs.id
     ${limitStatement}
     ${offsetStatement}
-  `);
+  )`;
 
   return database.query({ text: queryText })
     .then(result => result.rows);
@@ -67,26 +67,27 @@ const includeNestedRelations = songs => {
   );
 }
 
-const getRelatedSubgenres = songIds =>
-  database.query({
+const getRelatedSubgenres = songIds => {
+  return database.query({
     text: `
       ${relationSelect('subgenres')}
       ${subgenreJoins('INNER')}
-      WHERE songs.id IN ($1)
+      WHERE songs.id IN (${songIds.map((_,i) => '$' + (i+1)).join(',')})
       ORDER BY songs.id
     `,
-    values: [songIds]
+    values: songIds
   }).then(result => result.rows);
+}
 
 const getRelatedMoments = songIds =>
   database.query({
     text: `
       ${relationSelect('moments')}
       ${momentJoins('INNER')}
-      WHERE songs.id IN ($1)
+      WHERE songs.id IN (${songIds.map((_,i) => '$' + (i+1)).join(',')})
       ORDER BY songs.id
     `,
-    values: [songIds]
+    values: [...songIds]
   }).then(result => result.rows);
 
 const nestSongsWithRelations = (songs, subgenres, moments) => {

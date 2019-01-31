@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
 
   return getSongs(songsLimit, songsOffset, subgenreIdFilter)
     .then(includeNestedRelations)
-    .then(res.json)
+    .then(songs => res.json(songs))
     .catch(e => console.log('>>> GET SONGS fetch error', e));
 });
 
