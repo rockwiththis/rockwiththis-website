@@ -68,7 +68,7 @@ router.post('/upload/image', (req, res) => (
 ));
 
 router.post('/upload/song', (req, res) => (
-    processUpload(req, true, 'songs')
+    processUpload(req, false, 'songs')
       .then(({ fileName }) => {
         console.log("Successfully uploaded song audio")
         return res.status(200).json({ s3SongName: fileName })
