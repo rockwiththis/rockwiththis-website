@@ -132,17 +132,12 @@ class SingleSong extends Component {
                       <div className="metaInfo">
 
                         <p className="leftInfo desktop">
-                          <span className="postDate ">
-                            <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
-                            | <Moment format="ll" date={song.created_at} /> |&nbsp;
-                          </span>
+                            <span className="postAuthor">Curated by <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;
+                            |&nbsp;
                         </p>
 
                         <p className="leftInfo mobile">
-                          <span className="postDate ">
-                            <Moment format="M/D/YY" date={song.created_at} /> |&nbsp;
-                            <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span> |&nbsp;
-                          </span>
+                            <span className="postAuthor">Curated by <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>|&nbsp;
                         </p>
 
                         <span className="postTags">{songTags}</span>

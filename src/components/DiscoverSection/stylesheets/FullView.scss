@@ -124,7 +124,7 @@
           }
           .songContainer.activeDiscoverFullSong {
             .imageHover {
-              opacity: 1 !important;
+              opacity: 1;
 
               img {
                 display: block;
@@ -362,8 +362,8 @@
                               margin-left: 3px;
                               width: 30px;
                               padding: 0 3px;
-                              -webkit-transform: translateY(-3px);
-                              transform: translateY(-3px);
+                              -webkit-transform: translateY(-2.3px);
+                              transform: translateY(-2.3px);
                           }
 
                         }
@@ -386,16 +386,15 @@
                       p.leftInfo {
                           display: inline-block;
                           margin: 0 4px 5px 0;
-
-                          .postDate {
-                            font-size: 16px;
-                            line-height: 24px;
-                            font-weight: 700;
-                            display: inline-block;
-                          }
                       }
                       .leftInfo.mobile {
                           display: none;
+                      }
+                      .leftInfo.desktop {
+
+                          .curatorName {
+                            font-weight: bold;
+                          }
                       }
                       .postTags {
                         display: inline-block;
@@ -405,20 +404,6 @@
                         transform: translateY(-2px);
 
                         .tag {
-                            // margin: 0 2px;
-                            // padding: 2px 4px!important;
-                            // border-radius: 2px;
-                            // -webkit-transition: all .3s ease;
-                            // font-size: 12px;
-                            // border-radius: 6px!important;
-                            // transition: all .3s ease;
-                            // color: #fff!important;
-                            // background: #1a6ea9!important;
-                            // border: 1px solid #1a6ea9!important;
-                            // cursor: pointer;
-                            // letter-spacing: .7px;
-                            // box-shadow: 0 3px 2px -2px #c9c6cb;
-                            // font-family: Baloo,cursive;
                             margin: 0 2px;
                             font-size: 11px;
                             border-radius: 4px;

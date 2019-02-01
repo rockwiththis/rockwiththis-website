@@ -123,16 +123,12 @@ class Song extends Component {
 
                 <p className="metaInfo">
                   <p className="leftInfo desktop">
-                    <span className="postDate ">
-                      <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
-                      | <Moment format="ll" date={song.created_at} /> |&nbsp;
-                    </span>
+                      <span className="postAuthor"><span className="curatedBy">Curated by </span><span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;
+                      |
                   </p>
                   <p className="leftInfo mobile">
-                    <span className="postDate ">
-                      <span className="postAuthor">{`${song.curator_first_name} ${song.curator_last_name}`}</span>&nbsp;
-                      | <Moment format="M/D/YY" date={song.created_at} /> |&nbsp;
-                    </span>
+                      <span className="postAuthor"><span className="curatedBy">Curated by </span><span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;
+                      |
                   </p>
 
                   {this.renderTags(song)}

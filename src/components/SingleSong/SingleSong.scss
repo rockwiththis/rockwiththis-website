@@ -303,14 +303,8 @@
                       margin-bottom: 5px;
                       margin-right: 4px;
 
-                      .postDate  {
-                        font-size: 18px;
-                        font-weight: 700;
-
-                        @media (max-width: 800px) {
-                          font-size: 16px;
-                          line-height: 22px;
-                        }
+                      .curatorName {
+                        font-weight: bold;
                       }
                   }
 

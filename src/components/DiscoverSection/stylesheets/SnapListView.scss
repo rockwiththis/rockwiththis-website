@@ -166,7 +166,7 @@
                     position: relative;
                     white-space: nowrap;
                     text-overflow: ellipsis;
-                        padding: 5px 0 3px 0;
+                        padding: 4px 0 4px 0;
                   }
                   @media (max-width: 1200px) and (min-width: 1075px) {
                     // max-width: 300px;
@@ -192,7 +192,7 @@
                           color: black;
                           font-weight: 700;
                           font-size: 20px;
-                          line-height: 20px;
+                          line-height: 23px;
                           margin-bottom: 2px;
                           display: inline-block;
                           width: 100%;
@@ -281,13 +281,8 @@
                       margin-right: 4px;
                     }
 
-                    .postDate {
-                        font-size: 16px;
-                        line-height: 20px;
-
-                        @media (max-width: 1000px) and (min-width: 800px) {
-                          font-size: 14px;
-                        }
+                    .curatorName {
+                      font-weight: bold;
                     }
                   }
                   .leftInfo.mobile {

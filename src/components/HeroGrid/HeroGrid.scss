@@ -417,7 +417,10 @@
         }
       }
       .feature-track:hover {
-          img.heroHoverGradient, .hover-content {
+           .hover-content {
+            opacity: 1;
+          }
+          img.heroHoverGradient {
             opacity: 1;
           }
       }
@@ -719,9 +722,12 @@
           }
       }
       .feature-track:hover {
-          img.heroHoverGradient, .hover-content {
-            opacity: 1;
-          }
+          .hover-content {
+           opacity: 1;
+         }
+         img.heroHoverGradient {
+           opacity: 1;
+         }
       }
     }
     @media screen and (max-width: 1200px) and (min-width: 800px) {

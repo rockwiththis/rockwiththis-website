@@ -121,7 +121,7 @@
         position: relative;
         white-space: nowrap;
         text-overflow: ellipsis;
-        padding: 5px 0 3px 0; } }
+        padding: 4px 0 4px 0; } }
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
         display: none; } }
@@ -134,7 +134,7 @@
           color: black;
           font-weight: 700;
           font-size: 20px;
-          line-height: 20px;
+          line-height: 23px;
           margin-bottom: 2px;
           display: inline-block;
           width: 100%;
@@ -199,12 +199,8 @@
           display: inline-block;
           margin: 0;
           margin-right: 4px; } }
-      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .postDate {
-        font-size: 16px;
-        line-height: 20px; }
-        @media (max-width: 1000px) and (min-width: 800px) {
-          .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .postDate {
-            font-size: 14px; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .curatorName {
+        font-weight: bold; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
         display: none; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {

@@ -145,6 +145,14 @@
                       .leftInfo.mobile {
                       display: inline-block;
 
+                      .curatedBy {
+                        display: none;
+                      }
+                      .curatorName {
+                        font-weight: bold;
+                        font-size: 12px;
+                      }
+
                         .postDate {
                           font-size: 12px;
                         }

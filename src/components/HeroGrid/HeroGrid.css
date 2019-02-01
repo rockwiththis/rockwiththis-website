@@ -351,7 +351,9 @@
         @media screen and (max-width: 800px) {
           .hero-posts .featured-track-wrapper .feature-track img.heroHoverGradient {
             display: none; } }
-    .hero-posts .featured-track-wrapper .feature-track:hover img.heroHoverGradient, .hero-posts .featured-track-wrapper .feature-track:hover .hover-content {
+    .hero-posts .featured-track-wrapper .feature-track:hover .hover-content {
+      opacity: 1; }
+    .hero-posts .featured-track-wrapper .feature-track:hover img.heroHoverGradient {
       opacity: 1; }
   .hero-posts .previous-week {
     max-height: 674px;
@@ -582,7 +584,9 @@
             font-size: 14px;
             border-radius: 6px;
             padding: 10px; }
-      .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover img.heroHoverGradient, .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover .hover-content {
+      .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover .hover-content {
+        opacity: 1; }
+      .hero-posts .previous-week .less-featured-track-wrapper .feature-track:hover img.heroHoverGradient {
         opacity: 1; }
     @media screen and (max-width: 1200px) and (min-width: 800px) {
       .hero-posts .previous-week .less-featured-track-wrapper.index-4 {

@@ -88,7 +88,7 @@
         .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer:hover .imageHover img {
           display: none; }
       .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer.activeDiscoverFullSong .imageHover {
-        opacity: 1 !important; }
+        opacity: 1; }
         .fullView .songGrid .grid-container-wrapper .carousel .grid-container .songContainer.activeDiscoverFullSong .imageHover img {
           display: block;
           position: absolute;
@@ -265,8 +265,8 @@
             margin-left: 3px;
             width: 30px;
             padding: 0 3px;
-            -webkit-transform: translateY(-3px);
-            transform: translateY(-3px); }
+            -webkit-transform: translateY(-2.3px);
+            transform: translateY(-2.3px); }
         .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist span.artistName {
           font-size: 23px;
           line-height: 24px; }
@@ -275,13 +275,10 @@
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo p.leftInfo {
         display: inline-block;
         margin: 0 4px 5px 0; }
-        .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo p.leftInfo .postDate {
-          font-size: 16px;
-          line-height: 24px;
-          font-weight: 700;
-          display: inline-block; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
         display: none; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.desktop .curatorName {
+        font-weight: bold; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {
         display: inline-block;
         margin: 0;
