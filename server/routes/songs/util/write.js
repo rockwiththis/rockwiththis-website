@@ -1,4 +1,4 @@
-const database = require('../../../db');
+const dbPool = require('../../../db');
 
 const {
   getMissingRequiredFields,
@@ -7,12 +7,23 @@ const {
 } = require('./schema.js');
 
 const transactional = performQueries =>
-  database.query('BEGIN')
-    .then(() => performQueries())
-    .then(() => database.query('COMMIT'))
-    .catch(() => database.query('ROLLBACK'));
+  dbPool.connect((err, client, done) => {
+    if (!!err) {
+      console.log("Error connecting to db pool", err);
+      done();
+      throw err;
+    }
+    return client.query('BEGIN')
+      .then(() => performQueries(client))
+      .then(() => client.query('COMMIT'))
+      .then(() => done())
+      .catch(e => client.query('ROLLBACK').then(() => {
+        done();
+        throw e;
+      }));
+  });
 
-const insertSong = params => transactional(() => {
+const insertSong = params => transactional(client => {
   const missingFields = getMissingRequiredFields(params);
   if (Object.keys(missingFields).length > 0) {
     console.log('Missing fields:');
@@ -29,14 +40,14 @@ const insertSong = params => transactional(() => {
     dbFieldValues.map((fields, i)  => '$' + (i+1)).join(',') +
   ') RETURNING id';
 
-  return database.query({
+  return client.query({
     text: queryText,
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
   })
   .then(insertResponse => insertRelation(insertResponse.rows[0].id, params));
-})();
+});
 
-const updateSong = (songId, params) => transactional(() => {
+const updateSong = (songId, params) => transactional(client => {
   if (!songId) {
     console.log("id required, not provided");
     throw 400
@@ -49,53 +60,58 @@ const updateSong = (songId, params) => transactional(() => {
     ' WHERE id = $' + (dbFieldValues.length + 1)
   ');';
 
-  return database.query({
+  return client.query({
     text: queryText,
     values: [
       ...dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue ),
       songId
     ]
   })
-  .then(() => deleteRelations(songId))
-  .then(() => insertRelations(songId, params));
-})();
+  .then(() => deleteRelations(client, songId))
+  .then(() => insertRelations(client, songId, params));
+});
 
-const deleteSong = songId => transactional(() => {
+const deleteSong = songId => transactional(client => {
   if (!songId) {
     console.log("id required, not provided");
     throw 400
   }
 
-  return database.query({
+  return client.query({
     text: 'DELETE FROM songs WHERE songs.id = $1',
     values: [songId]
   })
-  .then(() => deleteRelations(songId));
-})();
+  .then(() => deleteRelations(client, songId));
+});
 
 
-const performRelationQueries = getQuery =>
-  Promise.all(getAllRelationQueries.map(database.query))
+const performRelationQueries = (client, getQuery) =>
+  Promise.all(getAllRelationQueries(getQuery).map(q => q && client.query(q)));
 
-const insertRelations = (songId, params) => {
+const insertRelations = (client, songId, params) => {
   if (!songId)
     throw "Cannot insert relations w/o song id";
 
-  return performRelationQueries((relationName, joinTable, db) => ({
-    text: `
-      INSERT INTO ${joinTable} (song_id, ${db}) VALUES ' +
+  return performRelationQueries(client, (relationName, joinTable, db) => {
+    if (!params[relationName] || params[relationName].length == 0)
+      return null;
+
+    const text =
+      `INSERT INTO ${joinTable} (song_id, ${db}) VALUES ` +
       params[relationName].map((id, i) => '($1,$' + (i+2) + ')').join(',');
-    `,
-    values: [ songId, ...params[relationName] ]
-  }));
+    return {
+      text,
+      values: [ songId, ...params[relationName] ]
+    };
+  });
 }
 
-const deleteRelations = songId => {
+const deleteRelations = (client, songId) => {
   if (!songId)
     throw "Cannot delete relations w/o song id";
 
-  return performRelationQueries((relationName, joinTable, db) => ({
-    text: `DELETE FROM ${join_table} WHERE subgenre_songs.song_id = $1`,
+  return performRelationQueries(client, (relationName, joinTable, db) => ({
+    text: `DELETE FROM ${joinTable} WHERE song_id = $1`,
     values: [ songId ]
   }));
 };

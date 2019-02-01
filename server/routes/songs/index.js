@@ -47,23 +47,22 @@ router.post('/', (req, res) => (
     .catch(e => handleWriteError(res, e))
 ));
 
-router.patch('/:id', (req, res) => (
+router.patch('/:id', (req, res) => {
   checkSession(req.body)
-    .then(() => updateSong(req.body))
+    .then(() => updateSong(Number.parseInt(req.params.id), req.body))
     .then(() => handleWriteSuccess(res, 'update'))
     .catch(e => handleWriteError(res, e))
-));
+});
 
 router.delete('/:id', (req, res) => (
   checkSession(req.body)
-    .then(() => deleteSong(req.body))
+    .then(() => deleteSong(req.params.id, req.body))
     .then(() => handleWriteSuccess(res, 'delete'))
     .catch(e => handleWriteError(res, e))
 ));
 
 const handleWriteSuccess = (res, opString) => {
   console.log(`${opString} successful!`);
-  console.log(res);
   return res.sendStatus(200);
 };
 

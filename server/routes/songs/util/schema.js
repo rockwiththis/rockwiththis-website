@@ -32,8 +32,8 @@ const songsWriteSchema = {
     hidden: {}
   },
   relations: {
-    subgenreIds: { join_table: 'subgenre_songs', db: 'subgenre_id' },
-    momentIds: { join_table: 'song_moments', db: 'moment_id' }
+    subgenreIds: { joinTable: 'subgenre_songs', db: 'subgenre_id' },
+    momentIds: { joinTable: 'song_moments', db: 'moment_id' }
   }
 }
 
@@ -78,12 +78,8 @@ const getDbFieldValues = (params, schema = songsWriteSchema.fields, dbNamePrefix
 
 const getAllRelationQueries = getQueryByRelation => 
   Object.keys(songsWriteSchema.relations).map(relationName => {
-    if (!params[relationName] || params[relationName].length == 0)
-      return null;
-
     const { joinTable, db } = songsWriteSchema.relations[relationName];
-
-    return getQuery(relationName, joinTable, db).then(database.query);
+    return getQueryByRelation(relationName, joinTable, db);
   });
 
 module.exports = {
