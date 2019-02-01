@@ -56,6 +56,9 @@
       height: calc(100% - 1px);
       -webkit-filter: brightness(1);
       filter: brightness(1); }
+      @media screen and (max-width: 800px) {
+        .hero-posts .featured-track-wrapper .feature-track {
+          width: calc(100%); } }
       .hero-posts .featured-track-wrapper .feature-track img {
         position: relative;
         height: 100%;

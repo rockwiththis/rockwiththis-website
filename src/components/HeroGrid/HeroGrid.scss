@@ -67,6 +67,10 @@
         -webkit-filter: brightness(1);
         filter: brightness(1);
 
+        @media screen and (max-width: 800px) {
+          width: calc(100%);
+        }
+
         img {
             position: relative;
             height: 100%;
