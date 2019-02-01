@@ -281,6 +281,11 @@
                       margin-right: 4px;
                     }
 
+                    span.separater {
+                        transform: translateY(-1px);
+                        display: inline-block;
+                    }
+
                     .curatorName {
                       font-weight: bold;
                     }

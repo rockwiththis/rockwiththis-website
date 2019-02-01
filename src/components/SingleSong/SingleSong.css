@@ -234,7 +234,7 @@
           display: inline-block;
           margin: 0;
           margin-bottom: 5px;
-          margin-right: 4px; }
+          margin-right: 0px; }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo p.leftInfo .curatorName {
             font-weight: bold; }
         @media (max-width: 800px) {
@@ -246,6 +246,7 @@
             .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .leftInfo.mobile {
               display: inline-block; } }
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags {
+          display: inline-block;
           transform: translateY(-2px); }
           @media (min-width: 800px) {
             .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags {

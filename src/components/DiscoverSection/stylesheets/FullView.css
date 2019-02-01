@@ -277,6 +277,9 @@
         margin: 0 4px 5px 0; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
         display: none; }
+      .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.desktop span.separater {
+        transform: translateY(-1px);
+        display: inline-block; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.desktop .curatorName {
         font-weight: bold; }
       .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {

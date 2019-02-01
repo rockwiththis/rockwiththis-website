@@ -124,11 +124,11 @@ class Song extends Component {
                 <p className="metaInfo">
                   <p className="leftInfo desktop">
                       <span className="postAuthor"><span className="curatedBy">Curated by </span><span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;
-                      |
+                      <span className="separater">|</span>
                   </p>
                   <p className="leftInfo mobile">
                       <span className="postAuthor"><span className="curatedBy">Curated by </span><span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;
-                      |
+                      <span className="separater">|</span>
                   </p>
 
                   {this.renderTags(song)}

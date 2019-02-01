@@ -133,11 +133,11 @@ class SingleSong extends Component {
 
                         <p className="leftInfo desktop">
                             <span className="postAuthor">Curated by <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;
-                            |&nbsp;
+                            <span className="separater">|</span>&nbsp;
                         </p>
 
                         <p className="leftInfo mobile">
-                            <span className="postAuthor">Curated by <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>|&nbsp;
+                            <span className="postAuthor">Curated by <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span></span>&nbsp;<span className="separater">|</span>&nbsp;
                         </p>
 
                         <span className="postTags">{songTags}</span>

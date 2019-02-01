@@ -199,6 +199,9 @@
           display: inline-block;
           margin: 0;
           margin-right: 4px; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo span.separater {
+        transform: translateY(-1px);
+        display: inline-block; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .curatorName {
         font-weight: bold; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {

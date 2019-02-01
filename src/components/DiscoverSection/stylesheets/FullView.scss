@@ -392,9 +392,14 @@
                       }
                       .leftInfo.desktop {
 
-                          .curatorName {
-                            font-weight: bold;
-                          }
+                        span.separater {
+                            transform: translateY(-1px);
+                            display: inline-block;
+                        }
+                        
+                        .curatorName {
+                          font-weight: bold;
+                        }
                       }
                       .postTags {
                         display: inline-block;
