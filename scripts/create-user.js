@@ -36,13 +36,13 @@ const createSchema = {
     },
     firstName: {
       message: 'First Name',
-      validator: /^[a-zA-Z\-]+$/,
+      validator: /^[a-zA-Z\- ]+$/,
       warning: 'What are you, a robot?',
       required: true
     },
     lastName: {
       message: 'Last Name',
-      validator: /^[a-zA-Z\-]+$/,
+      validator: /^[a-zA-Z\- ]+$/,
       warning: 'What are you, a robot?',
       required: true
     },
@@ -104,7 +104,7 @@ const processNewUser = ({ username, password, firstName, lastName, isSuperadmin,
         if (doesSuperuserExist)
           return logErrorAndContinue("\nSorry, That superuser username already exists.\n");
         else
-          return saveNewUser(username, password, firstName, lastName, isSuperadmin, isCurator);
+          return saveNewUser(username, password, firstName.trim(), lastName.trim(), isSuperadmin, isCurator);
       })
 )
 
