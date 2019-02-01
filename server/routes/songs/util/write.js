@@ -44,7 +44,7 @@ const insertSong = params => transactional(client => {
     text: queryText,
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
   })
-  .then(insertResponse => insertRelation(insertResponse.rows[0].id, params));
+  .then(insertResponse => insertRelations(client, insertResponse.rows[0].id, params));
 });
 
 const updateSong = (songId, params) => transactional(client => {
