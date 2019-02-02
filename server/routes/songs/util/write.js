@@ -1,102 +1,37 @@
-// TODO get these in parity w/ sql
-const songsWriteSchema = {
-  name: { required: true },
-  description: { required: true },
-  imageUrl: { db: 'image_url', required: true },
-  songFileName: { db: 'song_file_name', required: true },
-  curatorId: { db: 'curator_id', required: true },
-  artistName: { db: 'artist_name', required: true },
-  spotify: {
-    required: true, // DB way ... shouldn't we actually at least one / exactly one link type?
-    fields: {
-      link: { required: true },
+const dbPool = require('../../../db');
+
+const {
+  getMissingRequiredFields,
+  getDbFieldValues,
+  getAllRelationQueries
+} = require('./schema.js');
+
+const transactional = performQueries =>
+  dbPool.connect((err, client, done) => {
+    if (!!err) {
+      console.log("Error connecting to db pool", err);
+      done();
+      throw err;
     }
-  },
-  soundcloud: {
-    fields: {
-      link: { required: true },
-      trackId: { db: 'track_id', required: true },
-    }
-  },
-  youtube: {
-    fields: {
-      link: { required: true },
-      trackId: { db: 'track_id', required: true },
-    }
-  },
-  // Should these really be required?
-  bpm: { required: true },
-  artistLocation: { db: 'artist_location', required: true },
-  createdAt: { db: 'created_at', required: true },
-  hidden: {},
-  moments: {}
-  // subgenreIds (parsed separately so not in schema)
-}
+    return client.query('BEGIN')
+      .then(() => performQueries(client))
+      .then(() => client.query('COMMIT'))
+      .then(() => done())
+      .catch(e => client.query('ROLLBACK').then(() => {
+        done();
+        throw e;
+      }));
+  });
 
-// This doesn't work, but would be nice for debugging single-statement functions
-const logThen = (msg, thing) => {
-  console.log(msg);
-  return thing();
-}
-
-// TODO import recompose and use this w/ `compose` in `getMissingRequiredFields` instead of reduce
-const keyValueArrayToObject = keyValueArray => (
-    keyValueArray.reduce( (curr, [ key, value ]) => ({
-      ...curr,
-      key: value
-    }), {})
-);
-
-
-const requiredFieldNameIfMissing = (fieldName, fieldData, params) => (
-  (!params[fieldName] && fieldData.required) ?
-    fieldName :
-    (!!fieldData.fields && !!params[fieldName] && fieldData.isRequired) ?
-      getMissingRequiredFields(params[fieldName], fieldData.fields) :
-      null
-);
-
-const getMissingRequiredFields = (params, schema) => (
-    Object.entries(schema)
-      .map( ([ fieldName, fieldData ]) => (
-          [ fieldName, requiredFieldNameIfMissing(fieldName, fieldData, params) ]
-      ))
-      .filter( ([fieldName, fieldData ]) => fieldData != null && Object.keys(fieldData).length > 0 )
-      .reduce( (allMissingFields, [ fieldName, missingData ]) => ({
-        ...allMissingFields,
-        [fieldName]: missingData
-      }), {})
-);
-
-const getDbFieldValues = (params, schema, dbNamePrefix = '') => (
-    Object.entries(schema)
-      .reduce ( (currPairs, [fieldName, fieldData]) => {
-
-        const paramValue = (!params[fieldName] && !!fieldData.default) ?
-          fieldData.default() :
-          params[fieldName];
-
-        const dbFieldName = dbNamePrefix + (fieldData.db ? fieldData.db : fieldName);
-
-        const nextPairs = (!!fieldData.fields && !!paramValue) ?
-          getDbFieldValues(params[fieldName], fieldData.fields, fieldName + '_') :
-          [ [dbFieldName, paramValue] ];
-
-        return [ ...currPairs, ...nextPairs ];
-      }, [] )
-      .filter( ([fieldName, fieldData ]) => !!fieldData )
-);
-
-const getInsertSongQuery = params => {
-
-  const missingFields = getMissingRequiredFields(params, songsWriteSchema);
+const insertSong = params => transactional(client => {
+  const missingFields = getMissingRequiredFields(params);
   if (Object.keys(missingFields).length > 0) {
     console.log('Missing fields:');
     console.log(missingFields);
     throw 400;
   }
 
-  const dbFieldValues = getDbFieldValues(params, songsWriteSchema)
+  const dbFieldValues = getDbFieldValues(params)
 
   const queryText =
     'INSERT INTO songs (' +
@@ -105,85 +40,85 @@ const getInsertSongQuery = params => {
     dbFieldValues.map((fields, i)  => '$' + (i+1)).join(',') +
   ') RETURNING id';
 
-  return {
+  return client.query({
     text: queryText,
     values: dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue )
-  };
-};
+  })
+  .then(insertResponse => insertRelations(client, insertResponse.rows[0].id, params));
+});
 
-const getInsertSubgenreSongQuery = (songId, params) => {
-
-  if (!songId) {
-    throw "Cannot generate subgenre song query w/o song id"
-  } else if (!params.subgenreIds || params.subgenreIds.length == 0) {
-    return null;
-  }
-
-  const queryText =
-    'INSERT INTO subgenre_songs (song_id, subgenre_id) VALUES ' +
-    params.subgenreIds.map((id, i) => '($1,$' + (i+2) + ')').join(',');
-
-  return {
-    text: queryText,
-    values: [ songId, ...params.subgenreIds ]
-  };
-};
-
-const getUpdateSongQuery = (songId, params) => {
-
+const updateSong = (songId, params) => transactional(client => {
   if (!songId) {
     console.log("id required, not provided");
     throw 400
   }
 
-  const dbFieldValues = getDbFieldValues(params, songsWriteSchema);
+  const dbFieldValues = getDbFieldValues(params);
   const queryText =
     'UPDATE songs SET ' +
     dbFieldValues.map( ([ dbFieldName, dbFieldValue ], i) => dbFieldName + ' = $' + (i+1) ).join(',') +
     ' WHERE id = $' + (dbFieldValues.length + 1)
   ');';
 
-  return {
+  return client.query({
     text: queryText,
     values: [
       ...dbFieldValues.map( ([ dbFieldName, dbFieldValue ]) => dbFieldValue ),
       songId
     ]
-  };
-};
+  })
+  .then(() => deleteRelations(client, songId))
+  .then(() => insertRelations(client, songId, params));
+});
 
-const getDeleteSongQuery = songId => {
-
+const deleteSong = songId => transactional(client => {
   if (!songId) {
     console.log("id required, not provided");
     throw 400
   }
-  return {
+
+  return client.query({
     text: 'DELETE FROM songs WHERE songs.id = $1',
     values: [songId]
-  };
+  })
+  .then(() => deleteRelations(client, songId));
+});
+
+
+const performRelationQueries = (client, getQuery) =>
+  Promise.all(getAllRelationQueries(getQuery).map(q => q && client.query(q)));
+
+const insertRelations = (client, songId, params) => {
+  if (!songId)
+    throw "Cannot insert relations w/o song id";
+
+  return performRelationQueries(client, (relationName, joinTable, db) => {
+    if (!params[relationName] || params[relationName].length == 0)
+      return null;
+
+    const text =
+      `INSERT INTO ${joinTable} (song_id, ${db}) VALUES ` +
+      params[relationName].map((id, i) => '($1,$' + (i+2) + ')').join(',');
+    return {
+      text,
+      values: [ songId, ...params[relationName] ]
+    };
+  });
 }
-const getDeleteSubgenreSongQuery = (songId) => {
 
-  if (!songId) {
-    console.log("id required, not provided");
-    throw 400
-  }
+const deleteRelations = (client, songId) => {
+  if (!songId)
+    throw "Cannot delete relations w/o song id";
 
-  const queryText =
-    'DELETE FROM subgenre_songs WHERE subgenre_songs.song_id = $1'
-
-  return {
-    text: queryText,
+  return performRelationQueries(client, (relationName, joinTable, db) => ({
+    text: `DELETE FROM ${joinTable} WHERE song_id = $1`,
     values: [ songId ]
-  };
+  }));
 };
 
 
 module.exports = {
-  getInsertSongQuery,
-  getInsertSubgenreSongQuery,
-  getUpdateSongQuery,
-  getDeleteSongQuery,
-  getDeleteSubgenreSongQuery
+  insertSong,
+  updateSong,
+  deleteSong
 };
