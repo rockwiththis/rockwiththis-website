@@ -6,7 +6,8 @@
   height: calc(40vw - 3px);
   margin: 0 auto;
   padding-bottom: 0px;
-  background: #fff; }
+  background: #fff;
+  border-top: 2px solid #fff; }
   @media screen and (max-width: 1200px) {
     .hero-posts {
       height: calc(50vw - 2px); } }

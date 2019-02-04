@@ -100,7 +100,6 @@ class AppContainer extends Component {
     return (
         <div>
           <Header {...this.props} shrinkHeader={this.state.shrinkHeader} />
-          <SocialLinks />
 
           {
             React.cloneElement(

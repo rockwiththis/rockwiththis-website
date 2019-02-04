@@ -200,10 +200,10 @@ class FiltersBar extends Component {
           <div className={`filters-bar ${this.state.fixedFilterBar ? 'fixedFiltersBar' : ''}`}>
           <div className="filters-bar-content">
 
-              <button onClick={this.showSubGenreFilters} className={`filters-button ${this.state.showSubGenreFilters ? 'active' : ''}`}>
+            {/* <button onClick={this.showSubGenreFilters} className={`filters-button ${this.state.showSubGenreFilters ? 'active' : ''}`}>
                 Filter
                 <i class="im im-filter"></i>
-              </button>
+              </button> */}
               <div className="search-wrapper">
                     <input className="filter-search"  placeholder=" Search" type="text" value="" name="filter-search" id="search"/>
               </div>

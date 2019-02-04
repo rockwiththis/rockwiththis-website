@@ -173,7 +173,7 @@ class DiscoverSection extends Component {
   enableDiscoverScroll() {
     if (location.pathname == "/") {
 
-      const scrollHeight = document.getElementById('hero-post').clientHeight + 45
+      const scrollHeight = document.getElementById('hero-post').clientHeight
       window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
       window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
     }
@@ -220,7 +220,7 @@ class DiscoverSection extends Component {
         />
     ))
 
-    const chunkLength = window.innerWidth > 1100 ? 16 : 8;
+    const chunkLength = window.innerWidth > 1100 ? 32 : 8;
     const chunkedSongsGridsFull = chunk(songGridsFull, chunkLength);
 
     // const disableBack = this.props.posts[0] && this.props.posts[0].id === this.props.activeSong.id
@@ -293,6 +293,7 @@ class DiscoverSection extends Component {
                                 showStatus={false}
                                 showArrows={false}
                                 infiniteLoop
+                                transitionTime="0"
                                 selectedItem={this.getSnapshotPostIndex()}
                                 ref={(e) => this.carousel = e}
                               >
