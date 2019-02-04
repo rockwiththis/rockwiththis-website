@@ -14,6 +14,9 @@
   .songGrid, .discover-full-song {
     overflow: hidden !important;
   }
+  .discover-full-song .carousel-wrapper .carousel .slide {
+    overflow: hidden !important;
+}
 }
 
 
@@ -264,11 +267,17 @@
     .carousel-wrapper {
 
       .carousel {
+        .slide {
+          height: calc(100vh - 200px);
+          overflow: scroll;
+        }
+
         .songContainer {
             position: relative;
             height: auto;
             margin: 0 auto;
             display: block;
+            padding-bottom: 25px;
 
             .wrapper {
               pointer-events: none;

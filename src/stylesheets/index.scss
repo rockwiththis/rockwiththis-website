@@ -1,7 +1,18 @@
 
 
 .homeContainer {
-  margin-top: 75px;
+  margin-top: 75px !important;
+
+  @media (max-width: 480px) {
+    margin-top: 0px !important;
+  }
+}
+.singleSongPage {
+  margin-top: 75px !important;
+
+  @media (max-width: 480px) {
+    margin-top: 50px !important;
+  }
 }
 
 
@@ -1543,9 +1554,9 @@ width: 800px;
   display: none !important;
 }
 
-.singleSongPage.page .singleSongContainer {
-    margin-top: 95px !important;
-}
+// .singleSongPage.page .singleSongContainer {
+//     margin-top: 95px !important;
+// }
 
 @media(min-width: 800px) {
   .singleSongPage {

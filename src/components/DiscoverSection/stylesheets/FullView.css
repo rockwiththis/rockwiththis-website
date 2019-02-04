@@ -7,6 +7,9 @@
 .disableScroll .songGrid, .disableScroll .discover-full-song {
   overflow: hidden !important; }
 
+.disableScroll .discover-full-song .carousel-wrapper .carousel .slide {
+  overflow: hidden !important; }
+
 @media (max-width: 800px) {
   .fullView {
     display: none !important; } }
@@ -176,11 +179,15 @@
     @media (max-width: 1100px) {
       .fullView .discover-full-song button.toggle-song.next {
         transform: translateX(30%); } }
+  .fullView .discover-full-song .carousel-wrapper .carousel .slide {
+    height: calc(100vh - 200px);
+    overflow: scroll; }
   .fullView .discover-full-song .carousel-wrapper .carousel .songContainer {
     position: relative;
     height: auto;
     margin: 0 auto;
-    display: block; }
+    display: block;
+    padding-bottom: 25px; }
     .fullView .discover-full-song .carousel-wrapper .carousel .songContainer .wrapper {
       pointer-events: none;
       cursor: default; }
