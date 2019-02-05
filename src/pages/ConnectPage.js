@@ -6,6 +6,7 @@ import Mailchimp from 'components/Newsletter/Mailchimp.js'
 import { Link } from 'react-router-dom'
 import { fetchPosts } from 'actions/index'
 import { fetchFilters } from 'actions/filters'
+import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 
 import introImage from 'images/intro-bigger.png'
 import diag2 from 'images/diagblue.png'
@@ -56,6 +57,7 @@ class ConnectPage extends Component {
             <title>Rock With This</title>
           </Helmet>
              <div className="connectPage">
+               <SocialLinks />
 
 
                 <div className="main-content">
@@ -89,25 +91,6 @@ class ConnectPage extends Component {
 
                           className='rwt-email-form'
                         />
-                        <div className="social-container desktop-social">
-                          <ul>
-                          <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
-                          <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
-                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
-                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
-                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
-                          </ul>
-                        </div>
-                        <div className="social-container mobile-social">
-                          <ul>
-                          <li><a target="_blank" href="https://www.instagram.com/rockwiththismusic/"><img src={instagram} /></a></li>
-                          <li><a target="_blank" href="https://www.facebook.com/rockwiththis/"><img src={facebook} /></a></li>
-                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={twitter} /></a></li>
-                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={soundcloud} /></a></li>
-                          <li><a target="_blank" href="https://www.twitter/RWTmusic"><img src={spotify} /></a></li>
-                          </ul>
-
-                        </div>
 
                     </div>
 
