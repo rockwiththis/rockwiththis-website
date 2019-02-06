@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Helmet } from 'react-helmet';
 import HeroPosts from 'components/HeroGrid/HeroPosts'
-import DiscoverSection from 'components/DiscoverSection/DiscoverSection.js'
+import DiscoverSection from 'components/discover/DiscoverSection.js'
 import { fetchPosts } from 'actions/index'
 import { fetchFilters } from 'actions/filters'
 
