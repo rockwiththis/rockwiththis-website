@@ -20,11 +20,9 @@ import PaginationControls from 'components/PaginationControls';
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
 
-import './stylesheets/FullViewMobile.scss'
 import './stylesheets/DiscoverSection.scss'
 import './stylesheets/GridView.scss'
 import './stylesheets/SnapListView.scss'
-import './stylesheets/FullView.scss'
 
 
 /* eslint-disable */
@@ -149,23 +147,23 @@ class DiscoverSection extends Component {
   }
 
   showPreviousDiscoverSong = () => {
-    const currIndex = this.getSnapshotPostIndex();
+    const currIndex = this.getSpotlightPostIndex();
 
     if (this.props.filteredPosts.length % currIndex === 0)
       this.props.actions.loadPreviousSongs(true);
     else
-      this.props.actions.updateSnapshotSong(
+      this.props.actions.updateSpotlightSong(
         this.props.filteredPosts[currIndex - 1]
       );
   }
 
   showNextDiscoverSong = () => {
-    const newIndex = this.getSnapshotPostIndex() + 1;
+    const newIndex = this.getSpotlightPostIndex() + 1;
 
     if (newIndex >= this.props.filteredPosts.length)
       this.props.actions.loadMoreSongs(null, true);
     else
-      this.props.actions.updateSnapshotSong(
+      this.props.actions.updateSpotlightSong(
         this.props.filteredPosts[newIndex]
       );
   }
@@ -188,9 +186,9 @@ class DiscoverSection extends Component {
     this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
   }
 
-  getSnapshotPostIndex = () => (
+  getSpotlightPostIndex = () => (
       this.props.filteredPosts.findIndex(song => (
-          song.id === this.props.snapshotPost.id
+          song.id === this.props.spotlightPost.id
       ))
   );
 
@@ -203,7 +201,7 @@ class DiscoverSection extends Component {
         <SongGridSquare
           {...this.props}
           index={index}
-          activeDiscoverFullSong={this.props.snapshotPost.id === song.id}
+          activeDiscoverFullSong={this.props.spotlightPost.id === song.id}
           key={song.id}
           song={song}
         />
@@ -287,14 +285,14 @@ class DiscoverSection extends Component {
                           </button>
 
                           <div className='carousel-wrapper'>
-                            {this.props.snapshotPost.id && this.props.filteredPosts[0] &&
+                            {this.props.spotlightPost.id && this.props.filteredPosts[0] &&
                               <Carousel
                                 showThumbs={false}
                                 showStatus={false}
                                 showArrows={false}
                                 infiniteLoop
                                 transitionTime="0"
-                                selectedItem={this.getSnapshotPostIndex()}
+                                selectedItem={this.getSpotlightPostIndex()}
                                 ref={(e) => this.carousel = e}
                               >
                                 {this.props.filteredPosts.map(post => (

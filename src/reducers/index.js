@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import assert from 'assert';
 import { FETCH_POSTS } from '../actions/index'
 import { FETCH_FILTERS } from '../actions/filters'
 import { FETCH_RELATED_SONGS } from '../actions/relatedSongs'
@@ -123,11 +124,19 @@ const appReducers = handleActions({
       return state
     }
   },
+
   'app/UPDATE_SPOTLIGHT_SONG': (state, action) => {
-    return update(state, {
-      spotlightPost: { $set: action.payload }
-    })
+    assert(
+      !!action.payload.newSpotlightSong,
+      'Resolver expected `newSpotlightSong in payload'
+    );
+
+    return {
+      ...state,
+      spotlightPost: action.payload.newSpotlightSong
+    };
   },
+
   'app/PLAYER_BANK_UPDATED': (state, action) => {
     return update(state, { shouldLoadPlayers: { $set: false } });
   },

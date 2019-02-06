@@ -124,9 +124,9 @@ export const loadPreviousSongs = (updateSpotlight = false) => dispatch => {
   dispatch(LOAD_PREVIOUS_SONGS({ updateSpotlight }))
 };
 
-const UPDATE_SNAPSHOT_SONG = createAction('app/UPDATE_SNAPSHOT_SONG');
+const UPDATE_SPOTLIGHT_SONG = createAction('app/UPDATE_SPOTLIGHT_SONG');
 export const updateSpotlightSong = newSpotlightSong => dispatch => {
-  dispatch(UPDATE_SNAPSHOT_SONG(newSpotlightSong));
+  dispatch(UPDATE_SPOTLIGHT_SONG(newSpotlightSong));
 }
 
 const PLAYER_BANK_UPDATED = createAction('app/PLAYER_BANK_UPDATED');
