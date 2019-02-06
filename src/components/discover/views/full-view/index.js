@@ -83,11 +83,7 @@ class FullView extends Component {
               <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
             </button>
 
-            {/* TODO fix this component */}
-            <Song
-              {...this.props}
-              song={this.props.spotlightSong}
-            />
+            <Song song={this.props.spotlightSong} />
 
             <button
               className="toggle-song next"
