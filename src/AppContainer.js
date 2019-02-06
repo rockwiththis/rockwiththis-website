@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { fetchFilters } from 'actions/filters'
-import * as Actions from 'actions/index'
+import * as BindActions from 'actions/bind-with-dispatch'
 import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 import Header from 'components/Header/Header.js'
 import MainPlayer from 'components/FooterPlayer/MainPlayer'
@@ -52,7 +52,7 @@ class AppContainer extends Component {
       this.playerBankRef.current.setSongListPlayers(
         [
           ...this.props.songListPosts,
-          this.props.snapshotPost,
+          this.props.spotlightPost,
           this.props.singleSong
         ],
       );
@@ -134,7 +134,7 @@ const mapStateToProps = (state, ownProps) => Object.assign(state, ownProps)
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(Actions, dispatch),
+    actions: bindActionCreators(BindActions, dispatch)
   }
 }
 

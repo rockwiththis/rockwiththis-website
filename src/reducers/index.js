@@ -23,7 +23,7 @@ export const INITIAL_STATE = {
   filteredPosts: [],
   songListPosts: [],
   heroPosts: [],
-  snapshotPost: {},
+  spotlightPost: {},
   singlePageSongPost: {},
   queue: [],
   relatedSongs: [],
@@ -45,7 +45,7 @@ const appReducers = handleActions({
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
       songListPosts: { $set: action.payload },
-      snapshotPost: { $set: action.payload[0] },
+      spotlightPost: { $set: action.payload[0] },
       heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
       activeSong: { $set: state.activeSong.id ? state.activeSong : action.payload[0] },
       shouldLoadPlayers: { $set: true }
@@ -62,7 +62,7 @@ const appReducers = handleActions({
     return update(state, {
       filteredPosts: { $set: action.payload },
       songListPosts: { $set: action.payload.slice(0, state.songListSize) },
-      snapshotPost: { $set: action.payload[0] },
+      spotlightPost: { $set: action.payload[0] },
       currentSongListPageIndex: { $set: 0 },
       maxSongListPageIndex: { $set: 0 },
       shouldLoadPlayers: { $set: true }
@@ -80,10 +80,10 @@ const appReducers = handleActions({
       currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
       maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
       shouldLoadPlayers: { $set: true },
-      snapshotPost: {
-        $set: action.payload.updateSnapshot ?
+      spotlightPost: {
+        $set: action.payload.updateSpotlight ?
           action.payload.newSongList[0] :
-          state.snapshotPost
+          state.spotlightPost
       }
     })
   },
@@ -96,10 +96,10 @@ const appReducers = handleActions({
       songListPosts: { $set: newSongList },
       currentSongListPageIndex: { $set: newPageIndex },
       shouldLoadPlayers: { $set: true },
-      snapshotPost: {
-        $set: action.payload.updateSnapshot ?
+      spotlightPost: {
+        $set: action.payload.updateSpotlight ?
           action.payload.newSongList[0] :
-          state.snapshotPost
+          state.spotlightPost
       }
     })
   },
@@ -113,19 +113,19 @@ const appReducers = handleActions({
         songListPosts: { $set: newSongList },
         currentSongListPageIndex: { $set: newPageIndex },
         shouldLoadPlayers: { $set: true },
-        snapshotPost: {
-          $set: action.payload.updateSnapshot ?
+        spotlightPost: {
+          $set: action.payload.updateSpotlight ?
             newSongList.slice(-1).pop() :
-            state.snapshotPost
+            state.spotlightPost
         }
       })
     } else {
       return state
     }
   },
-  'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
+  'app/UPDATE_SPOTLIGHT_SONG': (state, action) => {
     return update(state, {
-      snapshotPost: { $set: action.payload }
+      spotlightPost: { $set: action.payload }
     })
   },
   'app/PLAYER_BANK_UPDATED': (state, action) => {

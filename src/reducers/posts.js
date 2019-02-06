@@ -1,4 +1,4 @@
-import { FETCH_POSTS } from '../actions/index'
+import { FETCH_POSTS } from '../actions/bind-with-dispatch'
 
 export default (state = [], action) => {
     switch (action.type) {
