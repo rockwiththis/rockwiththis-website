@@ -5,9 +5,6 @@ const API_BASE_URL =
     'http://localhost:9292/api' :
     '/api'
 
-export const updateSpotlightSong = newSpotlightSong =>
-  createAction('app/UPDATE_SPOTLIGHT_SONG')({ newSpotlightSong });
-
 const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS');
 export const loadMoreSongs = ({ updateSpotlight = false }) => (dispatch, getState) => {
   const state = getState();
@@ -24,3 +21,13 @@ export const loadMoreSongs = ({ updateSpotlight = false }) => (dispatch, getStat
       dispatch(LOAD_MORE_SONGS({ newSongList, updateSpotlight }));
     });
 }
+
+export const updateSpotlightSong = newSpotlightSong =>
+  createAction('app/UPDATE_SPOTLIGHT_SONG')({ newSpotlightSong });
+
+export const playSong = song =>
+  createAction('app/PLAY_SONG')({ song });
+
+export const playActiveSong = createAction('app/PLAY_ACTIVE_SONG');
+
+export const pauseSong = createAction('app/PAUSE_SONG');

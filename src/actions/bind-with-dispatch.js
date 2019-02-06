@@ -74,6 +74,7 @@ export const setFilteredSongList = (callback) => (dispatch, getState) => {
 
 export const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS');
 export const LOAD_NEXT_SONGS = createAction('app/LOAD_NEXT_SONGS');
+
 export const loadMoreSongs = (callback, updateSpotlight = false) => (dispatch, getState) => {
   const state = getState();
 
@@ -142,10 +143,13 @@ export const playerLoaded = (loadedSongId, durationSeconds) => dispatch => (
   }))
 );
 
-export const TOGGLE_PLAY_PAUSE = createAction('app/TOGGLE_PLAY_PAUSE')
-export const togglePlayPause = playPause => (dispatch) => {
-  console.log("toggling")
-  dispatch(TOGGLE_PLAY_PAUSE(playPause))
+const PLAY_ACTIVE_SONG = createAction('app/PLAY_ACTIVE_SONG');
+const PAUSE_SONG = createAction('app/PAUSE_SONG');
+export const togglePlayPause = shouldPlay => (dispatch) => {
+  console.log("toggling");
+  dispatch(
+      shouldPlay ? PLAY_ACTIVE_SONG() : PAUSE_SONG()
+  );
 }
 
 export const TOGGLE_SONG = createAction('app/TOGGLE_SONG')

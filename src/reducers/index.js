@@ -20,9 +20,9 @@ export const INITIAL_STATE = {
     playedRatio: 0,
     secondsPlayed: 0,
   },
-  posts: [],
+  posts: [],  // TODO rename to `originalPosts`
   filteredPosts: [],
-  songListPosts: [],
+  songListPosts: [],  // TODO eliminate
   heroPosts: [],
   spotlightPost: {},
   singlePageSongPost: {},
@@ -38,7 +38,14 @@ export const INITIAL_STATE = {
   shouldLoadPlayers: false
 }
 
+const expectPayloadValue = (key, payload, resolverName) =>
+  assert(
+    !!payload[key],
+    `resolver ${resolverName} expected value at ${key} in payload`
+  );
+
 const appReducers = handleActions({
+  // TODO rename to 'FETCH_ORIGINAL_POSTS'
   'app/FETCH_POSTS': (state, action) => {
     console.log("Fetched posts!");
     console.log(action.payload);
@@ -75,18 +82,21 @@ const appReducers = handleActions({
     })
   },
   'app/LOAD_MORE_SONGS': (state, action) => {
-    return update(state, {
-      filteredPosts: { $set: [ ...state.filteredPosts, ...action.payload.newSongList ]},
-      songListPosts: { $set: action.payload.newSongList },
-      currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
-      maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
-      shouldLoadPlayers: { $set: true },
-      spotlightPost: {
-        $set: action.payload.updateSpotlight ?
+    expectPayloadValue(action.payload, 'newSongList', 'LOAD_MORE_SONGS');
+
+    return {
+      ...state,
+      filteredPosts: [ ...state.filteredPosts, ...action.payload.newSongList ],
+      songListPosts: action.payload.newSongList,
+      currentSongListPageIndex: state.currentSongListPageIndex + 1,
+      maxSongListPageIndex: state.currentSongListPageIndex + 1,
+      shouldLoadPlayers: true,
+      spotlightPost: (
+        action.payload.updateSpotlight ?
           action.payload.newSongList[0] :
           state.spotlightPost
-      }
-    })
+      )
+    };
   },
   'app/LOAD_NEXT_SONGS': (state, action) => {
     const newPageIndex = state.currentSongListPageIndex + 1;
@@ -126,10 +136,7 @@ const appReducers = handleActions({
   },
 
   'app/UPDATE_SPOTLIGHT_SONG': (state, action) => {
-    assert(
-      !!action.payload.newSpotlightSong,
-      'Resolver expected `newSpotlightSong in payload'
-    );
+    expectPayloadValue(action.payload, 'newSpotlightSong', 'UPDATE_SPOTLIGHT_SONG');
 
     return {
       ...state,
@@ -140,6 +147,9 @@ const appReducers = handleActions({
   'app/PLAYER_BANK_UPDATED': (state, action) => {
     return update(state, { shouldLoadPlayers: { $set: false } });
   },
+
+  // TODO we need a better way of indicating loaded player
+  // Using this scheme, once a player is loaded, app will never "unload" it
   'app/PLAYER_LOADED': (state, action) => {
     return update(state, {
       songPlayerDurations: { $set: {
@@ -170,21 +180,27 @@ const appReducers = handleActions({
       relatedSongs: { $set: action.payload }
     })
   },
-  'app/TOGGLE_PLAY_PAUSE': (state, action) => {
-    return update(state, {
-      isPlaying: { $set: action.payload }
-    })
-  },
-  'app/TOGGLE_SONG': (state, action) => {
-    return update(state, {
-      activeSong: { $set: action.payload },
-      isPlaying: { $set: true },
-      activeSongDuration: { $set: state.songPlayerDurations[action.payload.id] },
-      activeSongProgress: { $set: {
+  'app/PAUSE_SONG': (state, action) => ({
+    ...state,
+    isPlaying: false
+  }),
+  'app/PLAY_ACTIVE_SONG': (state, action) => ({
+    ...state,
+    isPlaying: true
+  }),
+  'app/PLAY_SONG': (state, action) => {
+    expectPayloadValue(action.payload, 'song', 'PLAY_SONG');
+
+    return {
+      ...state,
+      activeSong: action.payload.song,
+      isPlaying: true,
+      activeSongDuration: state.songPlayerDurations[action.payload.song.id],
+      activeSongProgress: {
         playedRatio: 0,
         secondsPlayed: 0,
-      }}
-    })
+      }
+    };
   },
   'app/CHANGE_GRID_VIEW': (state, action) => {
     return update(state, {

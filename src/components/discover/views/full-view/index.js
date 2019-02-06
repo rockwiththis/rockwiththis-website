@@ -1,17 +1,22 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-import { updateSpotlightSong } from 'actions';
+import { updateSpotlightSong, loadMoreSongs } from 'actions';
+import FullSongPlaceholder from './FullSongPlaceholder';
+import SongGridPlaceholder from './SongGridPlaceholder';
+import SongGridSquare from 'components/SongGrid/SongGridSquare';
+import Song from 'components/Song/Song';
 
-const songShape = {
-  id: PropTypes.number
-}
+import './stylesheets/FullView.scss'
+import './stylesheets/FullViewMobile.scss'
+
 
 const propTypes = {
-  songs: PropTypes.arrayOf(PropTypes.shape(songShape)).isRequired,
-  spotlightSong: PropTypes.shape(songShape).isRequired,
+  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
 
-  // connected actions
+  // from redux
+  spotlightSong: PropTypes.object.isRequired,
   updateSpotlightSong: PropTypes.func.isRequired,
   loadMoreSongs: PropTypes.func.isRequired
 }
@@ -29,7 +34,7 @@ class FullView extends Component {
   showPreviousDiscoverSong = () => {
     const newIndex = this.getSpotlightSongIndex() - 1;
 
-    if (currIndex >= 0)
+    if (newIndex >= 0)
       this.props.updateSpotlightSong(this.props.songs[newIndex]);
   }
 
@@ -43,13 +48,15 @@ class FullView extends Component {
   }
 
   render() {
-    if (songGridSquares.length === 0) return (
+    if (this.props.songs.length === 0) return (
         <div className="fullView">
           <SongGridPlaceholder />
-          <FullSongPlaceHolder />
+          <FullSongPlaceholder />
         </div>
     );
 
+    console.log("RENDERING FULL VIEW");
+    console.log(this.props);
     return (
         <div className="fullView">
 
@@ -59,13 +66,13 @@ class FullView extends Component {
                   key={song.id}
                   song={song}
                   className={
-                    this.props.spotlightSong.id === song.id &&
-                    'activeDiscoverFullSong'
+                    this.props.spotlightSong.id === song.id ?
+                    'activeDiscoverFullSong' : null
                   }
                   showGenresOnHover={true}
                   onClick={() => this.props.updateSpotlightSong(song)}
-                >
-            )}
+                />
+            ))}
           </div>
 
           <div className="discover-full-song">
@@ -76,10 +83,11 @@ class FullView extends Component {
               <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
             </button>
 
+            {/* TODO fix this component */}
             <Song
               {...this.props}
               song={this.props.spotlightSong}
-            >
+            />
 
             <button
               className="toggle-song next"
@@ -97,6 +105,6 @@ class FullView extends Component {
 FullView.propTypes = propTypes;
 
 export default connect(
-  null,
+  ({ spotlightPost }) => ({ spotlightSong: spotlightPost }),
   { updateSpotlightSong, loadMoreSongs }
 )(FullView);

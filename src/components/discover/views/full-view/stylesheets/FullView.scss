@@ -16,7 +16,7 @@
   }
   .discover-full-song .carousel-wrapper .carousel .slide {
     overflow: hidden !important;
-}
+  }
 }
 
 
@@ -27,22 +27,22 @@
   }
 
   .songGrid {
-      // height: calc(37vw - 30px);
-      // width: calc(37vw - 30px);
-      // max-height: 674px;
-      padding: 0;
-      display: inline-block;
-      vertical-align: top;
-      margin: 0;
-      position: relative;
-      z-index: 3;
-      // max-width: 674px;
-      // max-width: 590px;
-      width: calc(40vw - 2px);
-      border-right: 2px solid #fff;
-      max-width: 674px;
-      height: calc(100vh - 195px);
-      overflow: scroll;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    position: relative;
+    z-index: 3;
+    width: calc(40vw - 2px);
+    border-right: 2px solid #fff;
+    max-width: 674px;
+    height: calc(100vh - 195px);
+    y-overflow: scroll;
+
+    // Hide scrollbar
+    scrollbar-width: none;                /* Firefox */
+    -ms-overflow-style: none;             /* IE 10+ */
+    &::-webkit-scrollbar { width: 0px; }  /* Chrome + Safari */
 
     @media (max-width: 1100px) and (min-width: 800px) {
       width: calc(30% - 35px);
@@ -60,7 +60,6 @@
         height: auto;
         width: 100% !important;
       }
-
 
       .carousel {
         @media (min-width: 1100px) {
@@ -91,7 +90,7 @@
               position: relative;
 
               .imageHover {
-                background-image: url('../../../images/rwt-hover-gradient.png');
+                background-image: url('../../../../../images/rwt-hover-gradient.png');
                 position: absolute;
                 top: 0;
                 bottom: 3px;
@@ -212,17 +211,18 @@
     }
   }
 
-  .discover-full-song {
+  .discover-full-song-container {
+    display: inline-block;
+    width: 60%;
+  }
 
-      max-width: none;
-      // width: 60vw;
-      width: calc(60vw - 80px);
-      padding: 0 20px;
-      margin: 0 20px;
-      display: inline-block;
-      position: relative;
-      height: calc(100vh - 200px);
-      overflow: scroll;
+  .discover-full-song {
+    padding: 0 20px;
+    margin: 0 20px;
+    display: inline-block;
+    position: relative;
+    height: calc(100vh - 200px);
+    overflow-y: scroll;
 
     @media (max-width: 800px) {
       display: none !important;

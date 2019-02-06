@@ -29,7 +29,7 @@ class SongGrid extends Component {
       </span>
 
     render() {
-        // Using this `songContainer` class in multiple components is dangerous
+        // Using this `songContainer` class in multiple components makes CSS'ing really hard
         return (
             <div
               className={['songContainer', this.props.className].join(' ')}

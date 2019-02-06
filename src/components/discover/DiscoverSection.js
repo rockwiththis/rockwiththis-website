@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
 import YouTube from 'react-youtube'
 import { Icon } from 'react-fa'
 import { Element } from 'react-scroll'
 import { Carousel } from 'react-responsive-carousel';
 import { chunk } from 'lodash';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+
+import FullView from './views/full-view';
 import HeroPosts from 'components/HeroGrid/HeroPosts'
 import SongGridSquare from 'components/SongGrid/SongGridSquare'
 import Song from 'components/Song/Song'
@@ -13,13 +13,12 @@ import ShareBox from 'components/ShareBox/ShareBox'
 import FiltersBar from 'components/FiltersBar/FiltersBar'
 import LoadingComponent from 'components/Loading/LoadingComponent'
 import black from 'images/black.jpg'
-import FullSongPlaceHolder from 'components/FullSongPlaceholder/FullSongPlaceholder'
-import SongGridPlaceholder from 'components/SongGridPlaceholder/SongGridPlaceholder'
 import HeroGridPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import PaginationControls from 'components/PaginationControls';
 import * as Scroll from 'react-scroll'
-import $ from "jquery";
+import $ from 'jquery';
 
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import './stylesheets/DiscoverSection.scss'
 import './stylesheets/GridView.scss'
 import './stylesheets/SnapListView.scss'
@@ -235,10 +234,12 @@ class DiscoverSection extends Component {
                 onScroll={this.handleDiscoveryScroll}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
+              {this.props.discoverLayout !== 'snapshot' &&
+                <FullView songs={this.props.filteredPosts} />
+              }
 
-              {/*  FULL VIEW - we should take this out as it's own component.  This is the default view that consists the carousel IMAGE GRID on the left and the FULL SONG preview on the right.  */}
+              {/*  FULL VIEW - we should take this out as it's own component.  This is the default view that consists the carousel IMAGE GRID on the left and the FULL SONG preview on the right.
 
-                {this.props.discoverLayout !== 'snapshot' &&
                   <div className="fullView">
 
                     <div className="songGrid">
@@ -319,8 +320,9 @@ class DiscoverSection extends Component {
                   </div>
                 }
 
-              {/*  FULL VIEW  */}
+              END FULL VIEW  */}
 
+            
 
 
 
