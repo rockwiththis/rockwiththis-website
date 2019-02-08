@@ -43,13 +43,16 @@ class Song extends Component {
       else this.props.actions.togglePlayPause(false);
     }
 
-    renderTags = (className = 'tag') => (
-      <span className="postTags">
+    renderTags = (className = 'tag') => {
+      console.log("RENDER TAGS");
+      console.log(className);
+
+      return (<span className="postTags">
         { this.props.song.sub_genres.map(genre => (
             <span key={genre.name} className={className}>#{genre.name}</span>
         ))}
-      </span>
-    );
+      </span>);
+    };
 
     renderHoverTags = () => this.renderTags('hover-tag');
 
@@ -135,7 +138,7 @@ class Song extends Component {
                   <span className="separater">|</span>
                 </p>
 
-                {this.renderTags(song)}
+                {this.renderTags()}
 
                 <ShareBox song={song} />
               </p>

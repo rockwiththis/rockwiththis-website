@@ -38,7 +38,7 @@ export const INITIAL_STATE = {
   shouldLoadPlayers: false
 }
 
-const expectPayloadValue = (key, payload, resolverName) =>
+const expectPayloadValue = (payload, key, resolverName) =>
   assert(
     !!payload[key],
     `resolver ${resolverName} expected value at ${key} in payload`
