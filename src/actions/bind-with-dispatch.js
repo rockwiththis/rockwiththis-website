@@ -3,9 +3,7 @@ import { FETCH_FILTERS } from './filters'
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
 
-
-// TODO i think we should not be exporting the actual actions
-// Look into redux-thunk for more control
+// This file is deprecated. We should start migrating actions to index.js instead of adding any code here.
 
 const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
 // const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
@@ -152,12 +150,8 @@ export const togglePlayPause = shouldPlay => (dispatch) => {
   );
 }
 
-export const TOGGLE_SONG = createAction('app/TOGGLE_SONG')
-export const toggleSong = song => (dispatch) => {
-  console.log("the song is")
-  console.log(song)
-  dispatch(TOGGLE_SONG(song))
-}
+export const toggleSong = song =>
+  createAction('app/PLAY_SONG')({ song });
 
 export const CHANGE_GRID_VIEW = createAction('app/CHANGE_GRID_VIEW')
 export const changeGridView = layout => (dispatch) => {
