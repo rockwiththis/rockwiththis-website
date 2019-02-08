@@ -35,7 +35,8 @@ export const INITIAL_STATE = {
   songListSize: 16,
   heroSongCount: 7,
   songPlayerDurations: {},
-  shouldLoadPlayers: false
+  shouldLoadPlayers: false,
+  loadingSongs: false
 }
 
 const expectPayloadValue = (payload, key, resolverName) =>
@@ -81,8 +82,13 @@ const appReducers = handleActions({
       currentRequestLoading: { $set: action.payload }
     })
   },
-  'app/LOAD_MORE_SONGS': (state, action) => {
-    expectPayloadValue(action.payload, 'newSongList', 'LOAD_MORE_SONGS');
+  'app/LOADING_MORE_SONGS': (state, action) => ({
+    ...state,
+    loadingSongs: true,
+    songLoadingError: undefined
+  }),
+  'app/LOADED_MORE_SONGS': (state, action) => {
+    expectPayloadValue(action.payload, 'newSongList', 'LOADED_MORE_SONGS');
 
     return {
       ...state,
@@ -95,7 +101,18 @@ const appReducers = handleActions({
         action.payload.updateSpotlight ?
           action.payload.newSongList[0] :
           state.spotlightPost
-      )
+      ),
+      loadingSongs: false,
+      songLoadingError: undefined
+    };
+  },
+  'app/LOAD_SONGS_FAILED': (state, action) => {
+    expectPayloadValue(action.payload, 'errorMessage', 'LOAD_SONGS_FAILED');
+
+    return {
+      ...state,
+      loadingSongs: false,
+      songLoadingError: action.payload.errorMessage
     };
   },
   'app/LOAD_NEXT_SONGS': (state, action) => {

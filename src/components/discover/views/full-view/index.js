@@ -7,6 +7,7 @@ import FullSongPlaceholder from './FullSongPlaceholder';
 import SongGridPlaceholder from './SongGridPlaceholder';
 import SongGridSquare from 'components/SongGrid/SongGridSquare';
 import Song from 'components/Song/Song';
+import LoadingComponent from 'components/Loading/LoadingComponent';
 
 import './stylesheets/FullView.scss'
 import './stylesheets/FullViewMobile.scss'
@@ -21,7 +22,7 @@ const propTypes = {
   loadMoreSongs: PropTypes.func.isRequired
 }
 
-// TODO avoid storing direct s3 links in code
+// TODO avoid storing direct s3 image links in code
 
 class FullView extends Component {
 
@@ -47,6 +48,13 @@ class FullView extends Component {
       this.props.updateSpotlightSong(this.props.songs[newIndex]);
   }
 
+  handleScroll = e => {
+    const scrollThreshold = e.target.scrollHeight - (e.target.offsetHeight + 100);
+
+    if (e.target.scrollTop > scrollThreshold && !this.props.loadingSongs)
+      this.props.loadMoreSongs();
+  }
+
   render() {
     if (this.props.songs.length === 0) return (
         <div className="fullView">
@@ -62,7 +70,7 @@ class FullView extends Component {
         <div className="fullView">
 
           <div className="song-grid-container">
-            <div className="songGrid">
+            <div className="songGrid" onScroll={this.handleScroll}>
               {this.props.songs.map(song => (
                   <SongGridSquare
                     key={song.id}
@@ -75,6 +83,12 @@ class FullView extends Component {
                     onClick={() => this.props.updateSpotlightSong(song)}
                   />
               ))}
+
+              {this.props.loadingSongs &&
+                <div className='loading-bottom'>
+                  <LoadingComponent />
+                </div>
+              }
             </div>
           </div>
 
@@ -106,6 +120,9 @@ class FullView extends Component {
 FullView.propTypes = propTypes;
 
 export default connect(
-  ({ spotlightPost }) => ({ spotlightSong: spotlightPost }),
+  ({ spotlightPost, loadingSongs }) => ({
+    spotlightSong: spotlightPost,
+    loadingSongs
+  }),
   { updateSpotlightSong, loadMoreSongs }
 )(FullView);

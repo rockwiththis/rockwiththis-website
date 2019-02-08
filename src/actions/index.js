@@ -3,23 +3,27 @@ import { createAction } from 'redux-actions'
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
     'http://localhost:9292/api' :
-    '/api'
+    '/api';
 
-const LOAD_MORE_SONGS = createAction('app/LOAD_MORE_SONGS');
-export const loadMoreSongs = ({ updateSpotlight = false }) => (dispatch, getState) => {
+const LOADING_MORE_SONGS = createAction('app/LOADING_MORE_SONGS');
+const LOADED_MORE_SONGS = createAction('app/LOADED_MORE_SONGS');
+const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
+export const loadMoreSongs = ({ updateSpotlight = false } = {}) => (dispatch, getState) => {
   const state = getState();
   const filterIds = state.selectedFilters.map(filter => filter.id)
   const fullURL =
     `${API_BASE_URL}/songs?` +
     `offset=${state.filteredPosts.length}&` +
-    `tags=[${filterIds}]`
+    `tags=[${filterIds}]`;
 
+  dispatch(LOADING_MORE_SONGS());
   return fetch(fullURL)
     .then(res => res.json())
     .then(newSongList => {
       if (newSongList.length === 0) return;
-      dispatch(LOAD_MORE_SONGS({ newSongList, updateSpotlight }));
-    });
+      dispatch(LOADED_MORE_SONGS({ newSongList, updateSpotlight }));
+    })
+    .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
 
 export const updateSpotlightSong = newSpotlightSong =>
