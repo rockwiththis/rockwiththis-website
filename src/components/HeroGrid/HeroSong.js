@@ -7,12 +7,22 @@ import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 
-import { toggleSong, togglePlayPause } from 'actions/queue'
+import { playSong, pauseSong } from 'actions';
 
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
 import loadingButton from 'images/play-loading.gif'
 
+const propTypes = {
+  song: PropTypes.object.isRequired,
+
+  // Redux
+  isPlaying: PropTypes.bool.isRequired,
+  activeSong: PropTypes.object.isRequired,
+  songPlayerDurations: PropTypes.objectOf(PropTypes.number),
+  playSong: PropTypes.func.isRequired,
+  pauseSong: PropTypes.func.isRequired
+};
 
 class HeroSong extends Component {
 
@@ -24,12 +34,8 @@ class HeroSong extends Component {
           !this.props.isPlaying ||
           song.id !== this.props.activeSong.id
       );
-      if (isPlayButton) {
-        //this.props.playSong(song);
-        this.props.actions.toggleSong(song);
-      } else {
-        this.props.actions.togglePlayPause(false);
-      }
+      if (isPlayButton) this.props.playSong(song);
+      else this.props.pauseSong();
     }
 
     render() {
@@ -59,14 +65,13 @@ class HeroSong extends Component {
     }
 }
 
-HeroSong.propTypes = {
-    song: PropTypes.object.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
-    activeSong: PropTypes.object,
-}
+HeroSong.propTypes = propTypes;
 
-HeroSong.defaultProps = {
-    activeSong: {},
-}
-
-export default HeroSong
+export default connect(
+    ({ isPlaying, activeSong, songPlayerDurations }) => ({
+      isPlaying,
+      activeSong,
+      songPlayerDurations
+    }),
+    { playSong, pauseSong }
+)(HeroSong)
