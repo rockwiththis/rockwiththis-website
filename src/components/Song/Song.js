@@ -34,7 +34,6 @@ class Song extends Component {
     onPressPlay = song => event => {
       // TODO this should be determined by caller
       // to guarantee that appearance of button aligns w/ its behavior
-      console.log(event);
       const isPlayButton = (
           !this.props.isPlaying ||
           song.id !== this.props.activeSong.id
@@ -43,16 +42,13 @@ class Song extends Component {
       else this.props.actions.togglePlayPause(false);
     }
 
-    renderTags = (className = 'tag') => {
-      console.log("RENDER TAGS");
-      console.log(className);
-
-      return (<span className="postTags">
+    renderTags = (className = 'tag') => (
+      <span className="postTags">
         { this.props.song.sub_genres.map(genre => (
             <span key={genre.name} className={className}>#{genre.name}</span>
         ))}
-      </span>);
-    };
+      </span>
+    );
 
     renderHoverTags = () => this.renderTags('hover-tag');
 

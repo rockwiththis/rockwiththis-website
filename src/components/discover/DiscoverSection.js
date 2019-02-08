@@ -35,12 +35,6 @@ class DiscoverSection extends Component {
         disableScroll: true,
         loading: true
       }
-
-      this.loadMoreSongs = this.loadMoreSongs.bind(this)
-      this.changeDiscoverSong = this.changeDiscoverSong.bind(this)
-      this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
-      this.enableDiscoverScroll = this.enableDiscoverScroll.bind(this)
-      //this.mobileLoadMore = this.mobileLoadMore.bind(this)
   }
 
   componentWillMount() {
@@ -88,23 +82,37 @@ class DiscoverSection extends Component {
   }
   */
 
-  componentWillReceiveProps(nextProps) {
-      if (this.props.isPlaying !== nextProps.isPlaying ||
-          this.props.activeSong !== nextProps.activeSong) {
-
-      }
+  /* Temporarily disabling in favor of pagination
+  handleScroll = scrollEvent => {
+    if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 )
+      return;
+    if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100))
+      this.loadMoreSongs();
   }
+  */
 
-  fixedFiltersBar() {
+  fixedFiltersBar = () => {
+    const heroElement = document.getElementById('hero-post');
+    const headerElement = document.getElementById('header');
 
-    if (location.pathname == "/") {
-      const scrollHeight = (document.getElementById('hero-post').clientHeight + document.getElementById('header').clientHeight - 12)
+    if (!!heroElement && !!headerElement) {
+      const scrollHeight = heroElement.clientHeight + headerElement.clientHeight - 12
       const fixedFilterBar = window.scrollY > scrollHeight
+
       this.setState({ fixedFilterBar })
     }
   }
 
-  loadMoreSongs(altCallback) {
+  enableDiscoverScroll = () => {
+    if (location.pathname == "/") {
+
+      const scrollHeight = document.getElementById('hero-post').clientHeight
+      window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
+      window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
+    }
+  }
+
+  loadMoreSongs = altCallback => {
 
     this.setState({ loadingMoreSongs: true })
     const callback = (noMorePosts) => {
@@ -119,31 +127,9 @@ class DiscoverSection extends Component {
     }
   }
 
-  /* Temporarily disabling in favor of pagination
-  handleScroll = scrollEvent => {
-    if (this.props.discoverLayout == "expanded"  && window.innerWidth > 800 )
-      return;
-    if (e.target.scrollTop > e.target.scrollHeight - (e.target.offsetHeight + 100))
-      this.loadMoreSongs();
-  }
-  */
-
   handleMainPageScroll = () => this.props.setMainPageScroll(window.scrollY);
 
   handleDiscoveryScroll = scrollEvent => this.props.setDiscoveryScroll(scrollEvent.target.scrollTop);
-
-  // This is currently not supported but it's cool b/c im pretty sure the arrows are hidden anyway
-  changeDiscoverSong(increment) {
-    let newIndex = increment ? this.state.discoverFullSongIndex + 1 :
-      this.state.discoverFullSongIndex - 1
-    if(newIndex == this.props.filteredPosts.length){
-      this.loadMoreSongs()
-    }
-    if(newIndex == -1){
-      newIndex = this.props.filteredPosts.length - 1
-    }
-    this.setState({ discoverFullSongIndex: newIndex })
-  }
 
   showPreviousDiscoverSong = () => {
     const currIndex = this.getSpotlightPostIndex();
@@ -165,15 +151,6 @@ class DiscoverSection extends Component {
       this.props.actions.updateSpotlightSong(
         this.props.filteredPosts[newIndex]
       );
-  }
-
-  enableDiscoverScroll() {
-    if (location.pathname == "/") {
-
-      const scrollHeight = document.getElementById('hero-post').clientHeight
-      window.scrollY > scrollHeight ? this.setState({ disableScroll: false }) : ''
-      window.scrollY < scrollHeight ? this.setState({ disableScroll: true }) : ''
-    }
   }
 
   isCurrentSong = song => song.id === this.props.activeSong.id
@@ -256,20 +233,18 @@ class DiscoverSection extends Component {
 
               {/*  SONGS LIST  */}
 
+              {this.state.loadingMoreSongs && !this.state.noMorePosts &&
+                <div className='loading-bottom'>
+                  <LoadingComponent />
+                </div>
+              }
+              {this.state.noMorePosts &&
+                <div className='loading-bottom'>
+                  <span>No more posts to load.</span>
+                </div>
+              }
 
-
-                {this.state.loadingMoreSongs && !this.state.noMorePosts &&
-                  <div className='loading-bottom'>
-                    <LoadingComponent />
-                  </div>
-                }
-                {this.state.noMorePosts &&
-                  <div className='loading-bottom'>
-                    <span>No more posts to load.</span>
-                  </div>
-                }
-
-              </div>
+            </div>
 
           </div>
         </div>

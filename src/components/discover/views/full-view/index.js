@@ -50,8 +50,12 @@ class FullView extends Component {
   render() {
     if (this.props.songs.length === 0) return (
         <div className="fullView">
-          <SongGridPlaceholder />
-          <FullSongPlaceholder />
+          <div className="song-grid-container">
+            <SongGridPlaceholder />
+          </div>
+          <div className="discover-full-song-container">
+            <FullSongPlaceholder />
+          </div>
         </div>
     );
     return (
