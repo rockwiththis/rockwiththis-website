@@ -54,43 +54,44 @@ class FullView extends Component {
           <FullSongPlaceholder />
         </div>
     );
-
-    console.log("RENDERING FULL VIEW");
-    console.log(this.props);
     return (
         <div className="fullView">
 
-          <div className="songGrid">
-            {this.props.songs.map(song => (
-                <SongGridSquare
-                  key={song.id}
-                  song={song}
-                  className={
-                    this.props.spotlightSong.id === song.id ?
-                    'activeDiscoverFullSong' : null
-                  }
-                  showGenresOnHover={true}
-                  onClick={() => this.props.updateSpotlightSong(song)}
-                />
-            ))}
+          <div className="song-grid-container">
+            <div className="songGrid">
+              {this.props.songs.map(song => (
+                  <SongGridSquare
+                    key={song.id}
+                    song={song}
+                    className={
+                      this.props.spotlightSong.id === song.id ?
+                      'activeDiscoverFullSong' : null
+                    }
+                    showGenresOnHover={true}
+                    onClick={() => this.props.updateSpotlightSong(song)}
+                  />
+              ))}
+            </div>
           </div>
 
-          <div className="discover-full-song">
-            <button
-              className="toggle-song previous"
-              onClick={this.showPreviousDiscoverSong}
-            >
-              <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-            </button>
+          <div className="discover-full-song-container">
+            <div className="discover-full-song">
+              <button
+                className="toggle-song previous"
+                onClick={this.showPreviousDiscoverSong}
+              >
+                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
+              </button>
 
-            <Song song={this.props.spotlightSong} />
+              <Song song={this.props.spotlightSong} />
 
-            <button
-              className="toggle-song next"
-              onClick={this.showNextDiscoverSong}
-            >
-              <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-            </button>
+              <button
+                className="toggle-song next"
+                onClick={this.showNextDiscoverSong}
+              >
+                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
+              </button>
+            </div>
           </div>
 
         </div>
