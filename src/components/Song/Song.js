@@ -31,15 +31,15 @@ const propTypes = {
 class Song extends Component {
 
     // TODO it would be really slick to move this code into a shared hoc
-    onPressPlay = song => event => {
+    onPressPlay = () => {
       // TODO this should be determined by caller
       // to guarantee that appearance of button aligns w/ its behavior
       const isPlayButton = (
           !this.props.isPlaying ||
-          song.id !== this.props.activeSong.id
+          this.props.song.id !== this.props.activeSong.id
       );
-      if (isPlayButton) this.props.actions.toggleSong(song);
-      else this.props.actions.togglePlayPause(false);
+      if (isPlayButton) this.props.playSong(this.props.song);
+      else this.props.pauseSong();
     }
 
     renderTags = (className = 'tag') => (
@@ -82,7 +82,7 @@ class Song extends Component {
               <div className="singlePostPlayer hideMobile">
                 <button
                   className="singlePostPlayerButton"
-                  onClick={readyToPlay ? this.onPressPlay(song) : undefined}
+                  onClick={readyToPlay ? () => this.onPressPlay() : undefined}
                 >
                   {playPauseButton}
                 </button>
@@ -92,7 +92,7 @@ class Song extends Component {
                 className="songInfo mobile"
                 onClick={
                   this.props.discoveryLayout === 'snapshot' ?
-                    this.onPressPlay(song) : undefined
+                    () => this.onPressPlay() : undefined
                 }
               >
                 <Link className="postTitleLink" to={`/songs/${song.id}`}>
@@ -184,7 +184,7 @@ class Song extends Component {
                   <div className="songImageInfoContainer grid">
                     <button
                       className="singlePostPlayerButton"
-                      onClick={this.onPressPlay(song)}
+                      onClick={() => this.onPressPlay()}
                     >
                       {playPauseButton}
                     </button>
