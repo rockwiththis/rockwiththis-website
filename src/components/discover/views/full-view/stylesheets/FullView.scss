@@ -25,10 +25,14 @@
   }
 
   .song-grid-container {
-    width: 40vw;
+    width: 40%;
     max-width: 674px;
     display: inline-block;
     vertical-align: top;
+
+    @media (max-width: 1100px) and (min-width: 800px) {
+      width: 30%;
+    }
   }
 
   .songGrid {
@@ -36,17 +40,12 @@
     margin-right: 2px;
     height: calc(100vh - 195px);
     box-sizing: border-box;
-    y-overflow: scroll;
+    overflow-y: scroll;
 
     // Hide scrollbar
     scrollbar-width: none;                /* Firefox */
     -ms-overflow-style: none;             /* IE 10+ */
     &::-webkit-scrollbar { width: 0px; }  /* Chrome + Safari */
-
-    // Leaving for now
-    @media (max-width: 1100px) and (min-width: 800px) {
-      width: calc(30% - 35px);
-    }
 
     // This class name is ridiculously over-used
     .songContainer {
@@ -127,6 +126,10 @@
   .discover-full-song-container {
     display: inline-block;
     width: 60%;
+
+    @media (max-width: 1100px) and (min-width: 800px) {
+      width: 70%;
+    }
   }
 
   .discover-full-song {
@@ -161,18 +164,10 @@
 
     button.toggle-song.previous {
       transform: rotate(180deg);
-
-      @media (max-width: 1100px) {
-        transform: rotate(180deg) translateX(30%);
-      }
     }
 
     button.toggle-song.next {
       right: 0;
-
-      @media (max-width: 1100px) {
-        transform: translateX(30%);
-      }
     }
 
     // This class name is ridiculously over-used

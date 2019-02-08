@@ -15,17 +15,20 @@
     display: none !important; } }
 
 .fullView .song-grid-container {
-  width: 40vw;
+  width: 40%;
   max-width: 674px;
   display: inline-block;
   vertical-align: top; }
+  @media (max-width: 1100px) and (min-width: 800px) {
+    .fullView .song-grid-container {
+      width: 30%; } }
 
 .fullView .songGrid {
   width: 100%;
   margin-right: 2px;
   height: calc(100vh - 195px);
   box-sizing: border-box;
-  y-overflow: scroll;
+  overflow-y: scroll;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -33,9 +36,6 @@
   /* Chrome + Safari */ }
   .fullView .songGrid::-webkit-scrollbar {
     width: 0px; }
-  @media (max-width: 1100px) and (min-width: 800px) {
-    .fullView .songGrid {
-      width: calc(30% - 35px); } }
   .fullView .songGrid .songContainer {
     width: 25%;
     display: inline-block;
@@ -91,6 +91,9 @@
 .fullView .discover-full-song-container {
   display: inline-block;
   width: 60%; }
+  @media (max-width: 1100px) and (min-width: 800px) {
+    .fullView .discover-full-song-container {
+      width: 70%; } }
 
 .fullView .discover-full-song {
   margin-left: 10px;
@@ -120,14 +123,8 @@
       height: 30px; }
   .fullView .discover-full-song button.toggle-song.previous {
     transform: rotate(180deg); }
-    @media (max-width: 1100px) {
-      .fullView .discover-full-song button.toggle-song.previous {
-        transform: rotate(180deg) translateX(30%); } }
   .fullView .discover-full-song button.toggle-song.next {
     right: 0; }
-    @media (max-width: 1100px) {
-      .fullView .discover-full-song button.toggle-song.next {
-        transform: translateX(30%); } }
   .fullView .discover-full-song .songContainer {
     position: relative;
     height: auto;
