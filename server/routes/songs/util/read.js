@@ -49,7 +49,6 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle
 
   const queryText = `(
     ${songSelect}
-    ${subgenreJoins('LEFT')}
     ${subgenreIdFilter}
     ${omitSongIdsFilter}
     ${orderStatement}
