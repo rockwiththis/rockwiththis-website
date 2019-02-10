@@ -18,6 +18,7 @@ const propTypes = {
 
   // from redux
   spotlightSong: PropTypes.object.isRequired,
+  loadingSongs: PropTypes.bool.isRequired,
   updateSpotlightSong: PropTypes.func.isRequired,
   loadMoreSongs: PropTypes.func.isRequired
 }

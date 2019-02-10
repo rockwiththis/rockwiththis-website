@@ -22,7 +22,7 @@ const propTypes = {
   // Redux
   isPlaying: PropTypes.bool.isRequired,
   activeSong: PropTypes.object.isRequired,
-  discoverLayoud: PropTypes.string,
+  discoverLayout: PropTypes.string,
   songPlayerDurations: PropTypes.objectOf(PropTypes.number),
   playSong: PropTypes.func.isRequired,
   pauseSong: PropTypes.func.isRequired
