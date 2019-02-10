@@ -14,9 +14,8 @@ import './stylesheets/FullViewMobile.scss'
 
 
 const propTypes = {
-  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
-
   // from redux
+  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
   spotlightSong: PropTypes.object.isRequired,
   loadingSongs: PropTypes.bool.isRequired,
   updateSpotlightSong: PropTypes.func.isRequired,
@@ -121,7 +120,8 @@ class FullView extends Component {
 FullView.propTypes = propTypes;
 
 export default connect(
-  ({ spotlightPost, loadingSongs }) => ({
+  ({ filteredPosts, spotlightPost, loadingSongs }) => ({
+    songs: filteredPosts,
     spotlightSong: spotlightPost,
     loadingSongs
   }),

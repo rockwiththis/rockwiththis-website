@@ -66,19 +66,19 @@ class DiscoverSection extends Component {
 
               <FiltersBar {...this.props} />
 
-              <div id="discovery-container"
+              <div
+                id="discovery-container"
+                name="discovery-container"
                 onScroll={this.handleDiscoveryScroll}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
-                {this.props.discoverLayout !== 'snapshot' &&
-                  <FullView songs={this.props.filteredPosts} />
+                {
+                  this.props.discoverLayout !== 'snapshot' &&
+                  <FullView />
                 }
 
                 {/* TODO move render logic here instead */}
-                <ListView
-                  songs={this.props.filteredPosts}
-                  isFilterBarFixed={this.state.isFilterBarFixed}
-                />
+                <ListView isFilterBarFixed={this.state.isFilterBarFixed} />
             </div>
 
           </div>

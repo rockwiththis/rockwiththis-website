@@ -92,7 +92,7 @@ class FiltersBar extends Component {
       if (window.innerWidth > 800) {
           $('#discovery-container').animate({scrollTop: 0}, 100);
       } else {
-        Scroll.scroller.scrollTo('discoverySectionScroll', {
+        Scroll.scroller.scrollTo('discovery-container', {
           duration: 500,
           smooth: true
         })

@@ -7,10 +7,10 @@ import Song from 'components/Song/Song';
 import LoadingComponent from 'components/Loading/LoadingComponent';
 
 const propTypes = {
-  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
   isFilterBarFixed: PropTypes.bool.isRequired,
 
   // from redux
+  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSongs: PropTypes.bool.isRequired,
   loadMoreSongs: PropTypes.func.isRequired
 }
@@ -55,12 +55,9 @@ class ListView extends Component {
           className={`songList ${this.getFixedFilterBarClass()}`}
           onScroll={this.handleScroll}
         >
-          <div className="discoverySectionScroll">
-
-            {this.props.songListPosts.map(song => (
-                <Song key={song.id} song={song} />
-            ))}
-          </div>
+          {this.props.songs.map(song => (
+              <Song key={song.id} song={song} />
+          ))}
 
           {this.props.loadingSongs &&
             <div className='loading-bottom'>
@@ -75,6 +72,9 @@ class ListView extends Component {
 ListView.propTypes = propTypes;
 
 export default connect(
-  ({ loadingSongs }) => ({ loadingSongs }),
+  ({ filteredPosts, loadingSongs }) => ({
+    songs: filteredPosts,
+    loadingSongs
+  }),
   { loadMoreSongs }
 )(ListView);

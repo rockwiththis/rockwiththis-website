@@ -35,7 +35,16 @@ div#discovery-container.fullGridLayout .discover-full-song {
     .discovery-section .discovery-container {
       height: calc(100vh - 50px); } }
   .discovery-section .songList {
-    z-index: 890; }
+    z-index: 890;
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+    /* Chrome + Safari */ }
+    .discovery-section .songList::-webkit-scrollbar {
+      width: 0px; }
     @media (min-width: 800px) {
       .discovery-section .songList {
         display: none;

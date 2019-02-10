@@ -95,7 +95,7 @@ export const loadMoreSongs = (callback, updateSpotlight = false) => (dispatch, g
         if (window.innerWidth > 800) {
             $('#discovery-container').animate({scrollTop: 0}, 100);
         } else {
-          Scroll.scroller.scrollTo('discoverySectionScroll', {
+          Scroll.scroller.scrollTo('discovery-container', {
             duration: 500,
             smooth: true
           })
@@ -115,7 +115,7 @@ export const loadPreviousSongs = (updateSpotlight = false) => dispatch => {
   if (window.innerWidth > 800) {
       $('#discovery-container').animate({scrollTop: 0}, 100);
   } else {
-    Scroll.scroller.scrollTo('discoverySectionScroll', {
+    Scroll.scroller.scrollTo('discovery-container', {
       duration: 500,
       smooth: true
     })
