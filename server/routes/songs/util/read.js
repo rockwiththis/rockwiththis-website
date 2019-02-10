@@ -24,9 +24,9 @@ const momentJoins = (joinType = 'INNER') => `
   ${joinType} JOIN moments ON moments.id = song_moments.moment_id
 `;
 
-const getSongs = (limit, offset, subgenreIds, omitSongIds) => {
+const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, shuffle = false}) => {
       
-  let sqlInjectValues = [limit, offset];
+  let sqlInjectValues = [songsLimit, songsOffset];
   const limitStatement = 'LIMIT $1';
   const offsetStatement = 'OFFSET $2';
   let subgenreIdFilter = '';
@@ -37,10 +37,14 @@ const getSongs = (limit, offset, subgenreIds, omitSongIds) => {
     subgenreIdsFilter = 'WHERE subgenres.id IN $' + sqlInjectValues.length;
   }
 
-  if (omitSongIdsFilter.length > 0) {
+  if (omitSongIds.length > 0) {
     sqlInjectValues.push(omitSongIds);
     omitSongIdsFilter = 'WHERE songs.id NOT IN $' + sqlInjectValues.length;
   }
+
+  const orderStatement = shuffle ?
+    'ORDER BY random()' :
+    'ORDER BY songs.created_at DESC, songs.id';
 
   const queryText = `(
     ${songSelect}

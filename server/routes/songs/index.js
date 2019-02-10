@@ -16,17 +16,28 @@ const {
 const { checkSession } = require('../../auth/util');
 
 // TODO define this in some shared place
-const DEFAULT_SONG_LIMIT = 32;
+const DEFAULT_SONG_LIMIT = 16;
+
+const parseGetParams = request => {
+  const params = request.query || {}
+  return {
+    songsLimit: params.limit || DEFAULT_SONG_LIMIT,
+    songsOffset: params.offset || 0,
+    subgenreIds: params.tags && JSON.parse(params.tags) || {},
+    omitSongIds: params.omitSongIds && JSON.parse(params.omitSongIds) || {}
+  };
+}
 
 router.get('/', (req, res) => {
-  const params = req.query || {};
+  return getSongs(parseGetParams(req))
+    .then(includeNestedRelations)
+    .then(songs => res.json(songs))
+    .catch(e => console.log('>>> GET SONGS fetch error', e));
+});
 
-  const songsLimit = params.limit || DEFAULT_SONG_LIMIT;
-  const songsOffset = params.offset || 0;
-  const subgenreIdFilter = params.tags && JSON.parse(params.tags) || [];
-  const omitSongIds = params.omitSongIds && JSON.parse(params.omitSongIds) || [];
-
-  return getSongs(songsLimit, songsOffset, subgenreIdFilter, omitSongIds)
+router.get('/shuffle', (req, res) => {
+  const params = { ...parseGetParams(req), shuffle: true };
+  return getSongs(params)
     .then(includeNestedRelations)
     .then(songs => res.json(songs))
     .catch(e => console.log('>>> GET SONGS fetch error', e));
