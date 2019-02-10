@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { updateSpotlightSong, loadMoreSongs } from 'actions';
+import { updateSpotlightSong } from 'actions/set-state';
+import { loadMoreSongs } from 'actions/fetch/songs';
+
 import FullSongPlaceholder from './FullSongPlaceholder';
 import SongGridPlaceholder from './SongGridPlaceholder';
 import SongGridSquare from 'components/SongGrid/SongGridSquare';

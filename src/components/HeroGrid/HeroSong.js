@@ -7,7 +7,7 @@ import AnimateHeight from 'react-animate-height'
 import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 
-import { playSong, pauseSong } from 'actions';
+import { playSong, pauseSong } from 'actions/player';
 
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'

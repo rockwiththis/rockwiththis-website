@@ -82,24 +82,24 @@ const appReducers = handleActions({
       currentRequestLoading: { $set: action.payload }
     })
   },
-  'app/LOADING_MORE_SONGS': (state, action) => ({
+  'app/LOADING_SONGS': (state, action) => ({
     ...state,
     loadingSongs: true,
     songLoadingError: undefined
   }),
   'app/LOADED_MORE_SONGS': (state, action) => {
-    expectPayloadValue(action.payload, 'newSongList', 'LOADED_MORE_SONGS');
+    expectPayloadValue(action.payload, 'newSongs', 'LOADED_MORE_SONGS');
 
     return {
       ...state,
-      filteredPosts: [ ...state.filteredPosts, ...action.payload.newSongList ],
-      songListPosts: action.payload.newSongList,
+      filteredPosts: [ ...state.filteredPosts, ...action.payload.newSongs ],
+      songListPosts: action.payload.newSongs,
       currentSongListPageIndex: state.currentSongListPageIndex + 1,
       maxSongListPageIndex: state.currentSongListPageIndex + 1,
       shouldLoadPlayers: true,
       spotlightPost: (
         action.payload.updateSpotlight ?
-          action.payload.newSongList[0] :
+          action.payload.newSongs[0] :
           state.spotlightPost
       ),
       loadingSongs: false,

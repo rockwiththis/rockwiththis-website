@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { loadMoreSongs } from 'actions';
+import { loadMoreSongs } from 'actions/fetch/songs';
 import Song from 'components/Song/Song';
 import LoadingComponent from 'components/Loading/LoadingComponent';
 

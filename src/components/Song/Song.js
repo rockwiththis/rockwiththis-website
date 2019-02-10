@@ -8,7 +8,7 @@ import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 import ShareBox from 'components/ShareBox/ShareBox'
 
-import { playSong, pauseSong } from 'actions';
+import { playSong, pauseSong } from 'actions/player';
 
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
