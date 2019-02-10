@@ -1,10 +1,11 @@
 const database = require('../../../db');
 
 const songSelect = `
-  SELECT
-    DISTINCT songs.*,
+  SELECT DISTINCT
+    songs.*,
     curator.first_name as curator_first_name,
-    curator.last_name as curator_last_name
+    curator.last_name as curator_last_name,
+    random() as random
   FROM songs
   LEFT JOIN users AS curator ON curator.id = songs.curator_id
 `;
@@ -24,7 +25,7 @@ const momentJoins = (joinType = 'INNER') => `
   ${joinType} JOIN moments ON moments.id = song_moments.moment_id
 `;
 
-const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, shuffle = false}) => {
+const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle = false}) => {
       
   let sqlInjectValues = [songsLimit, songsOffset];
   const limitStatement = 'LIMIT $1';
@@ -34,16 +35,16 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, shuffle =
 
   if (subgenreIds.length > 0) {
     sqlInjectValues.push(subgenreIds);
-    subgenreIdsFilter = 'WHERE subgenres.id IN $' + sqlInjectValues.length;
+    subgenreIdsFilter = `WHERE subgenres.id = ANY (\$${sqlInjectValues.length})`;
   }
 
   if (omitSongIds.length > 0) {
     sqlInjectValues.push(omitSongIds);
-    omitSongIdsFilter = 'WHERE songs.id NOT IN $' + sqlInjectValues.length;
+    omitSongIdsFilter = `WHERE songs.id != ANY (\$${sqlInjectValues.length})`;
   }
 
-  const orderStatement = shuffle ?
-    'ORDER BY random()' :
+  const orderStatement = isShuffle ?
+    'ORDER BY random' :
     'ORDER BY songs.created_at DESC, songs.id';
 
   const queryText = `(
@@ -51,7 +52,7 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, shuffle =
     ${subgenreJoins('LEFT')}
     ${subgenreIdFilter}
     ${omitSongIdsFilter}
-    ORDER BY songs.created_at DESC, songs.id
+    ${orderStatement}
     ${limitStatement}
     ${offsetStatement}
   )`;

@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/shuffle', (req, res) => {
-  const params = { ...parseGetParams(req), shuffle: true };
+  const params = { ...parseGetParams(req), isShuffle: true };
   return getSongs(params)
     .then(includeNestedRelations)
     .then(songs => res.json(songs))
