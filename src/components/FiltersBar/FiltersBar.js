@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
 
+import { resetSongs } from 'actions/fetch/songs';
 
 import LoadingComponent from 'components/Loading/LoadingComponent'
 
@@ -161,7 +161,6 @@ class FiltersBar extends Component {
       this.props.actions.changeGridView(e.target.name)
     }
 
-
     render() {
       const full = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm18-6h-16v24h16v-24zm-18 9h-6v6h6v-6zm0 9h-6v6h6v-6z"/></svg>
       const snapshot = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 22h-4v-4h4v4zm0-12h-4v4h4v-4zm0-8h-4v4h4v-4zm3 0v4h17v-4h-17zm0 12h17v-4h-17v4zm0 8h17v-4h-17v4z"/></svg>
@@ -230,6 +229,15 @@ class FiltersBar extends Component {
               <span>Grid</span>
               </a>
               <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
+
+              <div style={{ 'vertical-align': 'top', 'display': 'inline-block' }}>
+                <input
+                  type="checkbox"
+                  checked={this.props.isShuffle}
+                  onChange={() => this.props.resetSongs({ isShuffle: !this.props.isShuffle })}
+                />
+                <p style={{ 'display': 'inline-block' }}>Shuffle</p>
+              </div>
 
               </div>
           </div>
@@ -312,4 +320,7 @@ class FiltersBar extends Component {
     }
 }
 
-export default FiltersBar
+export default connect(
+    ({ isShuffle }) => ({ isShuffle }),
+    { resetSongs }
+)(FiltersBar)

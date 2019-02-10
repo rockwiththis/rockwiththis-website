@@ -36,7 +36,8 @@ export const INITIAL_STATE = {
   heroSongCount: 7,
   songPlayerDurations: {},
   shouldLoadPlayers: false,
-  loadingSongs: false
+  loadingSongs: false,
+  isShuffle: false
 }
 
 const expectPayloadValue = (payload, key, resolverName) =>
@@ -48,8 +49,6 @@ const expectPayloadValue = (payload, key, resolverName) =>
 const appReducers = handleActions({
   // TODO rename to 'FETCH_ORIGINAL_POSTS'
   'app/FETCH_POSTS': (state, action) => {
-    console.log("Fetched posts!");
-    console.log(action.payload);
     return update(state, {
       posts: { $set: action.payload },
       filteredPosts: { $set: action.payload },
@@ -105,6 +104,18 @@ const appReducers = handleActions({
       loadingSongs: false,
       songLoadingError: undefined
     };
+  },
+  'app/RESET_SONGS': (state, action) => {
+    expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
+
+    return {
+      ...state,
+      posts: action.payload.songs,
+      filteredPosts: action.payload.songs,
+      songListPosts: action.payload.songs,
+      shouldLoadPlayers: true,
+      isShuffle: !!action.payload.isShuffle
+    }
   },
   'app/LOAD_SONGS_FAILED': (state, action) => {
     expectPayloadValue(action.payload, 'errorMessage', 'LOAD_SONGS_FAILED');
