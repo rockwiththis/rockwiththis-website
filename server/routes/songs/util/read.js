@@ -24,24 +24,35 @@ const momentJoins = (joinType = 'INNER') => `
   ${joinType} JOIN moments ON moments.id = song_moments.moment_id
 `;
 
-const getSongs = (limit, offset, subgenreIds) => {
+const getSongs = (limit, offset, subgenreIds, omitSongIds) => {
+      
+  let sqlInjectValues = [limit, offset];
+  const limitStatement = 'LIMIT $1';
+  const offsetStatement = 'OFFSET $2';
+  let subgenreIdFilter = '';
+  let omitSongIdsFilter = '';
 
-  const subgenreIdFilter = (
-    subgenreIds.length > 0  ? `WHERE subgenres.id IN (${subgenreIds})` : ''
-  );
-  const offsetStatement = `OFFSET ${Number(offset)}`;
-  const limitStatement = `LIMIT ${Number(limit)}`;
+  if (subgenreIds.length > 0) {
+    sqlInjectValues.push(subgenreIds);
+    subgenreIdsFilter = 'WHERE subgenres.id IN $' + sqlInjectValues.length;
+  }
+
+  if (omitSongIdsFilter.length > 0) {
+    sqlInjectValues.push(omitSongIds);
+    omitSongIdsFilter = 'WHERE songs.id NOT IN $' + sqlInjectValues.length;
+  }
 
   const queryText = `(
     ${songSelect}
     ${subgenreJoins('LEFT')}
     ${subgenreIdFilter}
+    ${omitSongIdsFilter}
     ORDER BY songs.created_at DESC, songs.id
     ${limitStatement}
     ${offsetStatement}
   )`;
 
-  return database.query({ text: queryText })
+  return database.query({ text: queryText, values: sqlInjectValues })
     .then(result => result.rows);
 }
 

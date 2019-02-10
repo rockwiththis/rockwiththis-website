@@ -19,13 +19,14 @@ const { checkSession } = require('../../auth/util');
 const DEFAULT_SONG_LIMIT = 32;
 
 router.get('/', (req, res) => {
-  const isQuery = req.query && (Object.keys(req.query).length > 0);
+  const params = req.query || {};
 
-  const songsLimit = (isQuery && req.query.limit) || DEFAULT_SONG_LIMIT;
-  const songsOffset = (isQuery && req.query.offset) || 0;
-  const subgenreIdFilter = (isQuery && req.query.tags && JSON.parse(req.query.tags)) || [];
+  const songsLimit = params.limit || DEFAULT_SONG_LIMIT;
+  const songsOffset = params.offset || 0;
+  const subgenreIdFilter = params.tags && JSON.parse(params.tags) || [];
+  const omitSongIds = params.omitSongIds && JSON.parse(params.omitSongIds) || [];
 
-  return getSongs(songsLimit, songsOffset, subgenreIdFilter)
+  return getSongs(songsLimit, songsOffset, subgenreIdFilter, omitSongIds)
     .then(includeNestedRelations)
     .then(songs => res.json(songs))
     .catch(e => console.log('>>> GET SONGS fetch error', e));
