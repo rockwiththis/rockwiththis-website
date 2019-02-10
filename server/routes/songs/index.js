@@ -16,7 +16,7 @@ const {
 const { checkSession } = require('../../auth/util');
 
 // TODO define this in some shared place
-const DEFAULT_SONG_LIMIT = 16;
+const DEFAULT_SONG_LIMIT = 32;
 
 const parseGetParams = request => {
   const params = request.query || {}

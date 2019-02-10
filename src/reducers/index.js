@@ -113,8 +113,9 @@ const appReducers = handleActions({
       posts: action.payload.songs,
       filteredPosts: action.payload.songs,
       songListPosts: action.payload.songs,
+      isShuffle: !!action.payload.isShuffle,
       shouldLoadPlayers: true,
-      isShuffle: !!action.payload.isShuffle
+      loadingSongs: false
     }
   },
   'app/LOAD_SONGS_FAILED': (state, action) => {

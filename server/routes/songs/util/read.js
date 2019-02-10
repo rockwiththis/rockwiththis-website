@@ -40,7 +40,7 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle
 
   if (omitSongIds.length > 0) {
     sqlInjectValues.push(omitSongIds);
-    omitSongIdsFilter = `WHERE songs.id != ANY (\$${sqlInjectValues.length})`;
+    omitSongIdsFilter = `WHERE NOT songs.id = ANY (\$${sqlInjectValues.length})`;
   }
 
   const orderStatement = isShuffle ?
