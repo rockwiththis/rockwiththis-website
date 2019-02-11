@@ -2,9 +2,11 @@ import { combineReducers } from 'redux'
 import update from 'react-addons-update'
 import { handleActions } from 'redux-actions'
 
-import { expectPayloadValue } from './util';
 import fetchSongsReducers from './fetch/songs';
+import setStateReducers from './set-state';
+import playerReducers from './player';
 
+// TODO split this out to imported reducers
 const INITIAL_STATE = {
   shrinkHeader: false,
   isPlaying: false,
@@ -82,15 +84,6 @@ const appReducers = handleActions({
     }
   },
 
-  'app/UPDATE_SPOTLIGHT_SONG': (state, action) => {
-    expectPayloadValue(action.payload, 'newSpotlightSong', 'UPDATE_SPOTLIGHT_SONG');
-
-    return {
-      ...state,
-      spotlightPost: action.payload.newSpotlightSong
-    };
-  },
-
   'app/PLAYER_BANK_UPDATED': (state, action) => {
     return update(state, { shouldLoadPlayers: { $set: false } });
   },
@@ -126,28 +119,6 @@ const appReducers = handleActions({
     return update(state, {
       relatedSongs: { $set: action.payload }
     })
-  },
-  'app/PAUSE_SONG': (state, action) => ({
-    ...state,
-    isPlaying: false
-  }),
-  'app/PLAY_ACTIVE_SONG': (state, action) => ({
-    ...state,
-    isPlaying: true
-  }),
-  'app/PLAY_SONG': (state, action) => {
-    expectPayloadValue(action.payload, 'song', 'PLAY_SONG');
-
-    return {
-      ...state,
-      activeSong: action.payload.song,
-      isPlaying: true,
-      activeSongDuration: state.songPlayerDurations[action.payload.song.id],
-      activeSongProgress: {
-        playedRatio: 0,
-        secondsPlayed: 0,
-      }
-    };
   },
   'app/CHANGE_GRID_VIEW': (state, action) => {
     return update(state, {
@@ -189,7 +160,9 @@ const appReducers = handleActions({
       filters: { $set: action.filters },
     })
   },
-  ...fetchSongsReducers
+  ...fetchSongsReducers,
+  ...setStateReducers,
+  ...playerReducers
 }, INITIAL_STATE)
 
 export default appReducers
