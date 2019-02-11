@@ -2,6 +2,8 @@ import { combineReducers } from 'redux'
 import update from 'react-addons-update'
 import { handleActions } from 'redux-actions'
 
+import { FULL_VIEW } from 'constants/discover-views';
+
 import fetchSongsReducers from './fetch/songs';
 import setStateReducers from './set-state';
 import playerReducers from './player';
@@ -11,7 +13,7 @@ import scrollReducers from './scroll';
 const INITIAL_STATE = {
   shrinkHeader: false,
   isPlaying: false,
-  discoverLayout: 'expanded',
+  discoverLayout: FULL_VIEW,
   fullHeightPlayer: false,
   activeSong: {},
   activeSongProgress: {

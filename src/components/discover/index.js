@@ -81,24 +81,21 @@ class DiscoverSection extends Component {
           <div id="discover" className="discovery-section">
             <img className="discover-cover" src={black} />
 
-              <ControlBar
-                isControlBarFixed={this.state.isControlBarFixed}
-                {...this.props}
-              />
+            <ControlBar isControlBarFixed={this.state.isControlBarFixed} />
 
-              <div
-                id="discovery-container"
-                name="discovery-container"
-                onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
-                className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
-              >
-                {
-                  this.props.discoverLayout !== 'snapshot' &&
-                  <FullView />
-                }
+            <div
+              id="discovery-container"
+              name="discovery-container"
+              onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
+              className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
+            >
+              {
+                this.props.discoverLayout !== 'snapshot' &&
+                <FullView />
+              }
 
-                {/* TODO move render logic here instead */}
-                <ListView isControlBarFixed={this.state.isControlBarFixed} />
+              {/* TODO move render logic here instead */}
+              <ListView isControlBarFixed={this.state.isControlBarFixed} />
             </div>
 
           </div>

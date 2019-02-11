@@ -13,7 +13,6 @@ const fetchSongs = (state, omitCurrSongs, isShuffle = state.isShuffle) => {
     `tags=[${subgenreFilterIds}]` +
     (omitCurrSongs ? `&omitSongIds=[${currSongIds}]` : '');
 
-  console.log("FETCHING SONGS", fullURL);
   return fetch(fullURL).then(res => res.json());
 }
 

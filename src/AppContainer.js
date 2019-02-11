@@ -50,13 +50,13 @@ class AppContainer extends Component {
     }
 
     if (this.props.shouldLoadPlayers) {
-      this.playerBankRef.current.setSongListPlayers(
-        [
-          ...this.props.filteredPosts,
-          this.props.spotlightPost,
-          this.props.singleSong
-        ],
-      );
+      const playerSongs = [
+        ...this.props.filteredPosts,
+        this.props.spotlightPost,
+        this.props.singleSong
+      ].filter(song => !!song && !!song.id);
+
+      this.playerBankRef.current.setSongListPlayers(playerSongs);
       this.props.activeSong && this.playerBankRef.current.ensureActivePlayer(this.props.activeSong);
       this.props.actions.playerBankUpdated();
     }

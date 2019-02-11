@@ -7,7 +7,7 @@ import HeroPosts from 'components/HeroGrid/HeroPosts';
 import DiscoverSection from 'components/discover';
 
 import { resetSongs } from 'actions/fetch/songs';
-import setMainScroll from 'actions/scroll';
+import { setMainScroll } from 'actions/scroll';
 
 const propTypes = {
   // Redux
@@ -73,5 +73,5 @@ export default connect(
     songs: filteredPosts,
     mainScrollPos
   }),
-  { fetchInitialSongs: resetSongs,  }
+  { fetchInitialSongs: resetSongs, setMainScroll }
 )(Homepage)

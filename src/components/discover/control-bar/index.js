@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
-import * as Scroll from 'react-scroll'
-import $ from "jquery";
 
 import { resetSongs } from 'actions/fetch/songs';
+import { FULL_VIEW, SNAPSHOT_LIST_VIEW, GRID_LIST_VIEW } from 'constants/discover-views';
 
-import LoadingComponent from 'components/Loading/LoadingComponent'
+import ViewsDropdown from './views-dropdown';
+import GenreFilters from './genre-filters';
+
+import FullViewIcon from 'components/icons/full-view';
+import SnapshotViewIcon from 'components/icons/snapshot-view';
+import GridViewIcon from 'components/icons/grid-view';
+import {
+  TiArrowShuffle as ShuffleIcon,
+  TiTags as GenreIcon,
+  TiTime as MomentIcon
+} from 'react-icons/ti';
 
 import './control-bar.scss'
 
@@ -16,304 +25,160 @@ const propTypes = {
   isControlBarFixed: PropTypes.bool.isRequired,
 }
 
-class FiltersBar extends Component {
+/* TODO handle scroll
+ * Toggle filter modal -> scroll main to discovery
+ * Update songs -> scroll to top of discovery
+ */
+
+class ControlBar extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      filtersToShow: [],
-      showSubGenreFilters: false,
-      showToggleViewsDropdown: false,
+      isGenreFiltersActive: false,
+      isViewsDropdownActive: false,
     }
 
-    this.showToggleViewsDropdown = this.showToggleViewsDropdown.bind(this);
-    this.closeToggleViewsDropdown = this.closeToggleViewsDropdown.bind(this);
-    this.showSubGenreFilters = this.showSubGenreFilters.bind(this);
-    this.closeSubGenreFilters = this.closeSubGenreFilters.bind(this);
-    this.closeSubGenreFiltersX = this.closeSubGenreFiltersX.bind(this);
-    this.changeGridView = this.changeGridView.bind(this)
-    this.clearFilters = this.clearFilters.bind(this)
+    // TODO pass child a function to close itself instead of this ref bullshit
+    this.genreFilterModalRef = React.createRef();
+    this.viewsDropdownRef = React.createRef();
   }
 
-  // TODO Replace this with a call to our new-and-improved fetch action
-  setFilteredSongList = () =>
+  showGenreFilters = () =>
     this.setState(
-      { loading: true },
-      this.props.actions.setFilteredSongList(this.songListUpdated)
+      { isGenreFiltersActive: true },
+      () => document.addEventListener('click', this.handleClickOffGenreFilterModal)
     );
 
-  songListUpdated = () => {
-    document.removeEventListener('click', this.closeSubGenreFilters)
+  hideGenreFilters = () =>
     this.setState(
-      {
-        showSubGenreFilters: false,
-        showToggleViewsDropdown: false,
-        filtersToShow: this.props.selectedFilters,
-        loading: false,
-      },
-      this.scrollToTopOfSongList
+      { isGenreFiltersActive: false },
+      () => document.removeEventListener('click', this.handleClickOffGenreFilterModal)
+    );
+
+  handleClickOffGenreFilterModal = event =>
+    this.genreFilterModalRef.current &&
+    !this.genreFilterModalRef.current.contains(event.target) &&
+    hideGenreFilters();
+
+
+  showViewsDropdown = event =>
+    this.setState(
+      { isViewsDropdownActive: true },
+      () => document.addEventListener('click', this.handleClickOffViewsDropdown)
+    );
+
+  hideViewsDropdown = () =>
+    this.setState(
+      { isViewsDropdownActive: false },
+      () => document.removeEventListener('click', this.handleClickOffViewsDropdown)
+    );
+
+  handleClickOffViewsDropdown = event =>
+    this.viewsDropdownRef.current &&
+    !this.viewsDropdownRef.current.contains(event.target) &&
+    hideViewsDropdown();
+
+  changeGridView = event => {
+    hideViewsDropdown();
+    this.props.changeGridView(e.target.name);
+  }
+
+  getActiveViewIcon = () => {
+    switch(this.props.discoverView) {
+      case FULL_VIEW:
+        return <FullViewIcon width="24" height="24" />;
+        break;
+      case SNAPSHOT_LIST_VIEW:
+        return <SnapshotViewIcon width="24" height="24" />;
+        break;
+      case GRID_LIST_VIEW:
+        return <GridViewIcon width="24" height="24" />;
+        break;
+      default: null
+    }
+  }
+
+  getActiveViewName = () => {
+    switch(this.props.discoverView) {
+      case FULL_VIEW:
+        return 'Full View';
+      case SNAPSHOT_LIST_VIEW:
+        return 'Snapshot View';
+      case GRID_LIST_VIEW:
+        return 'Grid View';
+      default: null
+    }
+  }
+
+
+  getFixedControlBarClass = () =>
+    this.props.isControlBarFixed ? 'fixed-control-bar' : '';
+
+  render() {
+    return (
+        <div className={`control-bar ${this.getFixedControlBarClass}`}>
+
+          <div className="control-bar-items">
+            <div
+              className={
+                'control-bar-item ' +
+                'shuffle ' +
+                this.props.isShuffle ? 'highlighted' : ''
+              }
+              onClick={() => this.props.resetSongs({ isShuffle: !this.props.isShuffle })}
+            >
+              <span className="control-bar-icon"><ShuffleIcon /></span>
+              <span className="control-bar-title">Shuffle</span>
+            </div>
+
+            <div
+              className={
+                'control-bar-item ' +
+                'view ' +
+                this.state.isViewsDropdownActive ? 'selected' : ''
+              }
+              onClick={() => this.showViewsDropdown()}
+            >
+              <span className="control-bar-icon">{ this.getActiveViewIcon }</span>
+              <span className="control-bar-title mobile">{ this.getActiveViewName }</span>
+              <span className="control-bar-title desktop">{ this.getActiveViewName }</span>
+            </div>
+
+            <div
+              className={
+                'control-bar-item ' +
+                'genre-filter ' +
+                this.state.isGenreFiltersActive ? 'selected' : ''
+              }
+              onClick={() => this.showGenreFilters()}
+            >
+              <span className="control-bar-icon"><GenreIcon /></span>
+              <span className="control-bar-title">Subgenres</span>
+            </div>
+
+            <div className="control-bar-item moments">
+              <span className="control-bar-icon"><MomentIcon /></span>
+              <span className="control-bar-title">Moments</span>
+            </div>
+          </div>
+
+          <div className="control-bar-content">
+            <ViewsDropdown />
+            <GenreFilters />
+          </div>
+
+        </div>
     )
   }
 
-    // TODO let's start setting scroll position through react props
-    scrollToTopOfSongList = () => {
-      if (window.innerWidth > 800) {
-        $('#discovery-container').animate({scrollTop: 0}, 100);
-      } else {
-        const songListTopPos = $('.socialLinks').height() + $('#hero-post').height();
-        if (typeof songListTopPos === 'number')
-          window.scrollTo(0, songListTopPos);
-      }
-    }
-
-    clearFilters() {
-
-      this.setState({ loading: true })
-      const callback = () => {
-        document.removeEventListener('click', this.closeSubGenreFilters)
-      }
-
-      this.state.filtersToShow.map((filter, i) => {
-        filter.selected = false;
-
-      })
-
-      this.props.actions.fetchPosts(false, callback)
-      this.setState({
-        showSubGenreFilters: false,
-        showToggleViewsDropdown: false,
-        loading: false,
-        selectedFilters: [],
-        filtersToShow: [],
-      })
-
-      if (window.innerWidth > 800) {
-          $('#discovery-container').animate({scrollTop: 0}, 100);
-      } else {
-        Scroll.scroller.scrollTo('discovery-container', {
-          duration: 500,
-          smooth: true
-        })
-      }
-    }
-
-    showSubGenreFilters(event) {
-
-
-      const scrollHeight = document.getElementById('hero-post').clientHeight + document.getElementById('hero-post').clientHeight
-
-
-
-      event.preventDefault();
-
-
-      this.setState({
-        showSubGenreFilters: true,
-      });
-
-      document.addEventListener('click', this.closeSubGenreFilters);
-    }
-
-    closeSubGenreFilters(event) {
-      if (this.SubgenreFiltersDropDown && !this.SubgenreFiltersDropDown.contains(event.target)) {
-        this.setState({ showSubGenreFilters: false }, () => {
-          document.removeEventListener('click', this.closeSubGenreFilters);
-        });
-      }
-    }
-
-    closeSubGenreFiltersX() {
-      this.setState({ showSubGenreFilters: false }, () => {
-        document.removeEventListener('click', this.closeSubGenreFilters);
-      });
-
-    }
-
-    showToggleViewsDropdown(event) {
-      event.preventDefault();
-
-      this.setState({
-        showToggleViewsDropdown: true,
-      });
-
-      document.addEventListener('click', this.closeToggleViewsDropdown);
-    }
-
-    closeToggleViewsDropdown() {
-        this.setState({ showToggleViewsDropdown: false }, () => {
-          document.removeEventListener('click', this.closeToggleViewsDropdown);
-        });
-    }
-
-    changeGridView(e) {
-      e.preventDefault()
-      this.props.actions.changeGridView(e.target.name)
-    }
-
-  getFixedControlBarClass = () =>
-    this.props.isControlBarFixed ? 'fixedFiltersBar' : '';
-
-    render() {
-      const full = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm18-6h-16v24h16v-24zm-18 9h-6v6h6v-6zm0 9h-6v6h6v-6z"/></svg>
-      const snapshot = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 22h-4v-4h4v4zm0-12h-4v4h4v-4zm0-8h-4v4h4v-4zm3 0v4h17v-4h-17zm0 12h17v-4h-17v4zm0 8h17v-4h-17v4z"/></svg>
-      const grid = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
-
-
-
-
-      const alphabetizedFilters = this.props.filters.sort((a, b) => (a.name > b.name) ? 1 : -1)
-
-      const filterTags = alphabetizedFilters.map((filter, i) => {
-          return (
-            <button
-              className={`tag ${filter.selected ? 'selected' : ''}`}
-              onClick={() => this.props.actions.toggleFilter(filter, i)}
-            >
-              #{filter.name}
-            </button>
-          )
-        })
-
-
-        const selectedFilters = this.state.filtersToShow.map((filter, i) => {
-          return (
-            <button
-              className={`tag selected-filter ${filter.selected ? 'selected' : ''}`}
-            >
-             <span className="filter-name">#{filter.name}</span>
-             {/* <span className="remove-x">X</span> */}
-
-            </button>
-          )
-        })
-        const disableClearAll = this.props.selectedFilters.length === 0
-        return (
-          <div className={`filters-bar ${this.getFixedControlBarClass}`}>
-            <div className="filters-bar-content">
-
-            {/* <button onClick={this.showSubGenreFilters} className={`filters-button ${this.state.showSubGenreFilters ? 'active' : ''}`}>
-                Filter
-                <i class="im im-filter"></i>
-              </button> */}
-              <div className="search-wrapper">
-                    <input className="filter-search"  placeholder=" Search" type="text" value="" name="filter-search" id="search"/>
-              </div>
-
-              <div className="selectedFilters">
-              {this.state.filtersToShow.length > 0 &&
-                <button className={`clearButton ${disableClearAll ? 'disabled' : ''}`} disabled={disableClearAll} onClick={this.clearFilters}>Clear All ({this.state.filtersToShow.length})</button>}
-                {selectedFilters}
-
-              </div>
-
-              <button onClick={this.showToggleViewsDropdown} className="toggle-views-button ">Views <i class="im im im-eye"></i></button>
-              <div className="ToggleViewsWrapper">
-              <a className="viewButton" name='expanded' onClick={this.changeGridView}>
-                <span>Full</span>
-              </a>
-              <svg className={`viewIcon ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/></svg>
-
-              <a className="viewButton" name='snapshot' onClick={this.changeGridView}>
-              <span>Snap</span>
-              </a>
-              <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
-              <a className="viewButton" name='fullGrid' onClick={this.changeGridView}>
-              <span>Grid</span>
-              </a>
-              <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
-
-              <div style={{ 'vertical-align': 'top', 'display': 'inline-block' }}>
-                <input
-                  type="checkbox"
-                  checked={this.props.isShuffle}
-                  onChange={() => this.props.resetSongs({ isShuffle: !this.props.isShuffle })}
-                />
-                <p style={{ 'display': 'inline-block' }}>Shuffle</p>
-              </div>
-
-              </div>
-          </div>
-
-          <div className={`SubgenreFiltersDropDown ${this.state.showSubGenreFilters ? 'expand' : ''}`}>
-            {this.state.loading && <LoadingComponent />}
-            {this.state.showSubGenreFilters &&
-              <div
-                className='dropdown-internal'
-                ref={(element) => {
-                  this.SubgenreFiltersDropDown = element;
-                }}
-              >
-                <button
-                  onClick={this.closeSubGenreFiltersX}
-                  className="closeDropdown">
-                    <i class="im im-x-mark"></i>
-                </button>
-
-                <div className="filter-tags-container">
-                  {filterTags}
-                </div>
-
-                <div className='bottom-buttons'>
-                  <button
-                    className={`large-bottom tag ${disableClearAll ? 'disabled' : ''}`}
-                    disabled={disableClearAll}
-                    onClick={this.setFilteredSongList}
-                  >
-                    Search&nbsp;
-                    {!disableClearAll && <i className='fa fa-arrow-right' />}
-                  </button>
-                </div>
-              </div>
-            }
-          </div>
-
-            {
-              this.state.showToggleViewsDropdown
-                ? (
-                  <div
-                    className="ToggleViewsDropDown"
-                    ref={(element) => {
-                      this.ToggleViewsDropDown = element;
-                    }}
-                    >
-
-
-
-                    <div className="fake-button">
-                    <button className={`mobile ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} name='expanded' onClick={this.changeGridView}>Full</button>
-                    <svg className={`viewIcon ${this.props.discoverLayout == 'expanded' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/></svg>
-                    <span>Full</span>
-                    </div>
-                    <div className="fake-button">
-                    <button className={`mobile ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} name='snapshot' onClick={this.changeGridView}>List</button>
-                    <svg className={`viewIcon ${this.props.discoverLayout == 'snapshot' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M24 3h-12v-2h12v2zm0 3h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm0 5h-12v2h12v-2zm-14-20h-10v10h10v-10zm0 12h-10v10h10v-10z"/></svg>
-                    <span>List</span>
-
-                    </div>
-                    <div className="fake-button">
-                    <button className={`mobile ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} name='fullGrid' onClick={this.changeGridView}>Grid</button>
-
-                    <svg className={`viewIcon ${this.props.discoverLayout == 'fullGrid' ? 'active' : ''}`} width="20" height="20" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm9-6h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6zm-18 9h-6v6h6v-6zm9 0h-6v6h6v-6zm9 0h-6v6h6v-6z"/></svg>
-                    <span>Grid</span>
-
-                    </div>
-
-
-
-                    </div>
-
-                )
-                : (
-                  null
-                )
-            }
-          </div>
-        )
-    }
+  render() {
+    return <p>WEEEEEEEEE</p>
+  }
 }
 
 export default connect(
-    ({ isShuffle }) => ({ isShuffle }),
-    { resetSongs }
-)(FiltersBar)
+  ({ isShuffle }) => ({ isShuffle }),
+  { resetSongs }
+)(ControlBar)

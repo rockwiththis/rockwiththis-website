@@ -18,6 +18,10 @@ export default {
     };
   },
 
+  'app/LOAD_INITIAL_SONGS': (state, action) => {
+    expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
+  },
+
   'app/RESET_SONGS': (state, action) => {
     expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
     const isShuffle = action.payload.isShuffle === undefined ?
@@ -26,10 +30,23 @@ export default {
     return {
       ...state,
       filteredPosts: action.payload.songs,
+      heroPosts: (
+          state.heroPosts.length > 0 ?
+            state.heroPosts : action.payload.songs.slice(0,7)
+      ),
+      spotlightPost: (
+          Object.keys(state.spotlightPost).length > 0 ?
+            state.spotlightPost : action.payload.songs[0]
+      ),
+      activeSong: (
+          Object.keys(state.activeSong).length > 0 ?
+            state.activeSong : action.payload.songs[0]
+      ),
       isShuffle: isShuffle,
       shouldLoadPlayers: true,
       loadingSongs: false,
-      songLoadingError: undefined
+      songLoadingError: undefined,
+      discoverScrollPos: 0
     }
   },
 
