@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import HeroPosts from 'components/HeroGrid/HeroPosts'
-import DiscoverSection from 'components/discover'
+import HeroPosts from 'components/HeroGrid/HeroPosts';
+import DiscoverSection from 'components/discover';
 
 import { resetSongs } from 'actions/fetch/songs';
 
@@ -75,4 +75,4 @@ Homepage.propTypes = propTypes;
 export default connect(
   ({ filteredPosts }) => ({ songs: filteredPosts }),
   { fetchInitialSongs: resetSongs }
-h)(Homepage)
+)(Homepage)
