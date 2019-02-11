@@ -7,7 +7,7 @@ import { resetSongs } from 'actions/fetch/songs';
 
 import LoadingComponent from 'components/Loading/LoadingComponent'
 
-import './FiltersBar.scss'
+import './control-bar.scss'
 
 /* eslint-disable */
 

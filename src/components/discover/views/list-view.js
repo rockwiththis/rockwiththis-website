@@ -7,7 +7,7 @@ import Song from 'components/Song/Song';
 import LoadingComponent from 'components/Loading/LoadingComponent';
 
 const propTypes = {
-  isFilterBarFixed: PropTypes.bool.isRequired,
+  isControlBarFixed: PropTypes.bool.isRequired,
 
   // from redux
   songs: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -45,14 +45,14 @@ class ListView extends Component {
     if (shouldLoadMore) this.props.loadMoreSongs();
   }
 
-  getFixedFilterBarClass = () =>
-    this.props.isFilterBarFixed ? 'fixedFiltersBarPadding' : '';
+  getFixedControlBarClass = () =>
+    this.props.isControlBarFixed ? 'fixedFiltersBarPadding' : '';
 
   render() {
     return (
         <div
           id="songList" 
-          className={`songList ${this.getFixedFilterBarClass()}`}
+          className={`songList ${this.getFixedControlBarClass()}`}
           onScroll={this.handleScroll}
         >
           {this.props.songs.map(song => (
