@@ -17,8 +17,9 @@ class AppContainer extends Component {
     this.state = { shrinkHeader: false };
     this.mainPageScroll = 0;
     this.discoveryScroll = 0;
-    this.playerContainerRef = React.createRef();
+
     this.playerBankRef = React.createRef();
+
     this.props.actions.fetchFilters()
   }
 
@@ -59,12 +60,8 @@ class AppContainer extends Component {
       this.props.activeSong && this.playerBankRef.current.ensureActivePlayer(this.props.activeSong);
       this.props.actions.playerBankUpdated();
     }
-
-    if (this.props.location.pathname === '/' && prevProps.location.pathname !== '/')
-      this.resetScroll();
   };
 
-  // TODO this won't work on some browsers b/c of video autoplay constraints. Handle this case.
   changeSongOnEnd = () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
 
@@ -84,13 +81,6 @@ class AppContainer extends Component {
   handleProgressUpdate = progressRatio => {
       this.playerBankRef.current.updateSongProgress(progressRatio)
   };
-
-  resetScroll = () => {
-    window.scrollTo(0, this.mainPageScroll);
-
-    const discoveryContainer = document.getElementById('discovery-container');
-    if (!!discoveryContainer) discoveryContainer.scrollTop = this.discoveryScroll;
-  }
 
   setMainPageScroll = newScrollPos => this.mainPageScroll = newScrollPos;
 

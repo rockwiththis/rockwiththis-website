@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import FiltersBar from 'components/FiltersBar/FiltersBar';
 import FullView from './views/full-view';
@@ -9,6 +10,17 @@ import './stylesheets/DiscoverSection.scss';
 import './stylesheets/GridView.scss';
 import './stylesheets/SnapListView.scss';
 
+
+const propTypes = {
+  discoverScrollPos: PropTypes.number,
+
+  // TODO once it won't cause a fuckton of re-rendering, set redux state instead
+  setDiscoverScrollPos: PropTypes.func.isRequired,
+
+  // Redux
+  discoverLayout: PropTypes.string.isRequired
+}
+
 class DiscoverSection extends Component {
   constructor(props) {
     super(props)
@@ -18,20 +30,24 @@ class DiscoverSection extends Component {
     }
   }
 
+  // TODO tracking window scroll should really be happening in pages/Homepage instead
   componentDidMount() {
     window.addEventListener('scroll', this.updateFixedFilterBarFlag);
-    window.addEventListener('scroll', this.handleMainPageScroll);
     window.addEventListener('scroll', this.enableDiscoverScroll);
     window.addEventListener('resize', this.enableDiscoverScroll);
+
+    const discoveryContainer = document.getElementById('discovery-container');
+    if (!!discoveryContainer && !!this.props.discoverScrollPos)
+      discoveryContainer.scrollTop = this.props.discoverScrollPos;
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.updateFixedFilterBarFlag);
-    window.removeEventListener('scroll', this.handleMainPageScroll);
     window.removeEventListener('scroll', this.enableDiscoverScroll);
     window.removeEventListener('resize', this.enableDiscoverScroll);
   }
 
+  // TODO tracking window scroll should really be happening in pages/Homepage instead
   updateFixedFilterBarFlag = () => {
     const heroElement = document.getElementById('hero-post');
     const headerElement = document.getElementById('header');
@@ -44,6 +60,7 @@ class DiscoverSection extends Component {
     }
   }
 
+  // TODO tracking window scroll should really be happening in pages/Homepage instead
   enableDiscoverScroll = () => {
     const scrollHeight = document.getElementById('hero-post').clientHeight;
     if (window.scrollY > scrollHeight)
@@ -51,12 +68,6 @@ class DiscoverSection extends Component {
     else
       this.setState({ disableScroll: true })
   }
-
-  handleMainPageScroll = () => this.props.setMainPageScroll(window.scrollY);
-
-  handleDiscoveryScroll = scrollEvent => this.props.setDiscoveryScroll(scrollEvent.target.scrollTop);
-
-  isCurrentSong = song => song.id === this.props.activeSong.id;
 
   render() {
     return (
@@ -69,7 +80,7 @@ class DiscoverSection extends Component {
               <div
                 id="discovery-container"
                 name="discovery-container"
-                onScroll={this.handleDiscoveryScroll}
+                onScroll={e => this.props.setDiscoverScrollPos(e.target.scrollTop)}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
                 {
@@ -87,4 +98,6 @@ class DiscoverSection extends Component {
   }
 }
 
-export default DiscoverSection
+export default connect(
+  ({ discoverLayout }) => ({ discoverLayout }),
+)(DiscoverSection)
