@@ -5,6 +5,7 @@ import { handleActions } from 'redux-actions'
 import fetchSongsReducers from './fetch/songs';
 import setStateReducers from './set-state';
 import playerReducers from './player';
+import scrollReducers from './scroll';
 
 // TODO split this out to imported reducers
 const INITIAL_STATE = {
@@ -31,7 +32,9 @@ const INITIAL_STATE = {
   songPlayerDurations: {},
   shouldLoadPlayers: false,
   loadingSongs: false,
-  isShuffle: false
+  isShuffle: false,
+  mainScrollPos: 0,
+  discoverScrollPos: 0
 }
 
 const appReducers = handleActions({
@@ -162,7 +165,8 @@ const appReducers = handleActions({
   },
   ...fetchSongsReducers,
   ...setStateReducers,
-  ...playerReducers
+  ...playerReducers,
+  ...scrollReducers
 }, INITIAL_STATE)
 
 export default appReducers

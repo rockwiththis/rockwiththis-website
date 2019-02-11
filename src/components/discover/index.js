@@ -6,6 +6,8 @@ import ControlBar from './control-bar';
 import FullView from './views/full-view';
 import ListView from './views/list-view';
 
+import { setDiscoverScroll } from 'actions/scroll';
+
 import black from 'images/black.jpg';
 
 import './stylesheets/DiscoverSection.scss';
@@ -14,13 +16,10 @@ import './stylesheets/SnapListView.scss';
 
 
 const propTypes = {
-  discoverScrollPos: PropTypes.number,
-
-  // TODO once it won't cause a fuckton of re-rendering, set redux state instead
-  setDiscoverScrollPos: PropTypes.func.isRequired,
-
   // Redux
-  discoverLayout: PropTypes.string.isRequired
+  discoverLayout: PropTypes.string.isRequired,
+  discoverScrollPos: PropTypes.number,
+  setDiscoverScroll: PropTypes.func.isRequired,
 }
 
 class DiscoverSection extends Component {
@@ -37,16 +36,21 @@ class DiscoverSection extends Component {
     window.addEventListener('scroll', this.updateFixedControlBarFlag);
     window.addEventListener('scroll', this.enableDiscoverScroll);
     window.addEventListener('resize', this.enableDiscoverScroll);
-
-    const discoveryContainer = document.getElementById('discovery-container');
-    if (!!discoveryContainer && !!this.props.discoverScrollPos)
-      discoveryContainer.scrollTop = this.props.discoverScrollPos;
+    this.updateScroll();
   }
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.updateFixedControlBarFlag);
     window.removeEventListener('scroll', this.enableDiscoverScroll);
     window.removeEventListener('resize', this.enableDiscoverScroll);
+  }
+
+  componentDidUpdate = () => this.updateScroll();
+
+  updateScroll = () => {
+    const discoveryContainer = document.getElementById('discovery-container');
+    if (!!discoveryContainer)
+      discoveryContainer.scrollTop = this.props.discoverScrollPos;
   }
 
   // TODO tracking window scroll should really be happening in pages/Homepage instead
@@ -79,14 +83,13 @@ class DiscoverSection extends Component {
 
               <ControlBar
                 isControlBarFixed={this.state.isControlBarFixed}
-                setDiscoverScrollPos={this.props.setDiscoverScrollPos}
                 {...this.props}
               />
 
               <div
                 id="discovery-container"
                 name="discovery-container"
-                onScroll={e => this.props.setDiscoverScrollPos(e.target.scrollTop)}
+                onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
                 className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
               >
                 {
@@ -105,5 +108,6 @@ class DiscoverSection extends Component {
 }
 
 export default connect(
-  ({ discoverLayout }) => ({ discoverLayout }),
+  ({ discoverLayout, discoverScrollPos }) => ({ discoverLayout, discoverScrollPos }),
+  { setDiscoverScroll }
 )(DiscoverSection)

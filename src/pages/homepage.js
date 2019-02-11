@@ -7,18 +7,14 @@ import HeroPosts from 'components/HeroGrid/HeroPosts';
 import DiscoverSection from 'components/discover';
 
 import { resetSongs } from 'actions/fetch/songs';
+import setMainScroll from 'actions/scroll';
 
 const propTypes = {
-  mainScrollPos: PropTypes.number,
-  discoverScrollPos: PropTypes.number,
-
-  // TODO once it won't cause a fuckton of re-rendering, set redux state instead
-  setMainScrollPos: PropTypes.func.isRequired,
-  setDiscoverScrollPos: PropTypes.func.isRequired,
-
   // Redux
   songs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchInitialSongs: PropTypes.func.isRequired
+  fetchInitialSongs: PropTypes.func.isRequired,
+  mainScrollPos: PropTypes.number.isRequired,
+  setMainScroll: PropTypes.func.isRequired
 }
 
 class Homepage extends Component {
@@ -28,14 +24,18 @@ class Homepage extends Component {
     this.props.fetchInitialSongs();
 
   componentDidMount = () => {
-    window.scrollTo(0, this.mainPageScroll);
-    window.addEventListener('scroll', this.setMainScrollPos);
+    window.addEventListener('scroll', this.reportMainScrollPos);
+    this.updateScroll();
   }
 
   componentWillUnmount = () =>
-    window.removeEventListener('scroll', this.setMainScrollPos);
+    window.removeEventListener('scroll', this.reportMainScrollPos);
 
-  setMainScrollPos = () => this.props.setMainScrollPos(window.scrollY);
+  componentDidUpdate = () => this.updateScroll;
+
+  reportMainScrollPos = () => this.props.setMainScroll(window.scrollY);
+
+  updateScroll = () => window.scrollTo(0, this.props.mainScrollPos);
 
   render() {
     return (
@@ -59,10 +59,7 @@ class Homepage extends Component {
               heroPosts={this.props.heroPosts}
             />
 
-            <DiscoverSection
-              discoverScrollPos={this.props.discoverScrollPos}
-              setDiscoverScrollPos={this.props.setDiscvoerScrollPos}
-            />
+            <DiscoverSection />
           </div>
         </Fragment>
     )
@@ -72,6 +69,9 @@ class Homepage extends Component {
 Homepage.propTypes = propTypes;
 
 export default connect(
-  ({ filteredPosts }) => ({ songs: filteredPosts }),
-  { fetchInitialSongs: resetSongs }
+  ({ filteredPosts, mainScrollPos }) => ({
+    songs: filteredPosts,
+    mainScrollPos
+  }),
+  { fetchInitialSongs: resetSongs,  }
 )(Homepage)

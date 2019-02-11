@@ -91,18 +91,9 @@ class AppContainer extends Component {
         <div>
           <Header {...this.props} shrinkHeader={this.state.shrinkHeader} />
 
-          {
-            React.cloneElement(
-                this.props.children,
-                {
-                  ...this.props,
-                  setMainPageScroll: this.setMainPageScroll,
-                  setDiscoveryScroll: this.setDiscoveryScroll
-                }
-            )
-          }
+          { React.cloneElement(this.props.children, this.props) }
 
-          <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
+          <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate} />
           {
             !!this.props.activeSong && !!this.props.activeSong.id &&
             <SongPlayerBank

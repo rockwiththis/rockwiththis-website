@@ -13,7 +13,7 @@ import './control-bar.scss'
 /* eslint-disable */
 
 const propTypes = {
-  isControlBarFixed: PropTypes.bool.isRequired
+  isControlBarFixed: PropTypes.bool.isRequired,
 }
 
 class FiltersBar extends Component {
@@ -36,24 +36,25 @@ class FiltersBar extends Component {
     this.clearFilters = this.clearFilters.bind(this)
   }
 
-    setFilteredSongList = () =>
-      this.setState(
-        { loading: true },
-        this.props.actions.setFilteredSongList(this.songListUpdated)
-      );
+  // TODO Replace this with a call to our new-and-improved fetch action
+  setFilteredSongList = () =>
+    this.setState(
+      { loading: true },
+      this.props.actions.setFilteredSongList(this.songListUpdated)
+    );
 
-    songListUpdated = () => {
-      document.removeEventListener('click', this.closeSubGenreFilters)
-      this.setState(
-        {
-          showSubGenreFilters: false,
-          showToggleViewsDropdown: false,
-          filtersToShow: this.props.selectedFilters,
-          loading: false,
-        },
-        this.scrollToTopOfSongList
-      )
-    }
+  songListUpdated = () => {
+    document.removeEventListener('click', this.closeSubGenreFilters)
+    this.setState(
+      {
+        showSubGenreFilters: false,
+        showToggleViewsDropdown: false,
+        filtersToShow: this.props.selectedFilters,
+        loading: false,
+      },
+      this.scrollToTopOfSongList
+    )
+  }
 
     // TODO let's start setting scroll position through react props
     scrollToTopOfSongList = () => {
