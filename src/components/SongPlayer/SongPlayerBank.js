@@ -44,7 +44,6 @@ class SongPlayerBank extends React.Component {
   }
 
   setSongListPlayers = songList => {
-    console.log(songList);
     this.songListPlayers = songList.reduce((currPlayers, song) => (
         !!song.id ?
           {

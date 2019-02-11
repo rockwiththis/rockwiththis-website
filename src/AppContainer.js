@@ -62,6 +62,7 @@ class AppContainer extends Component {
     }
   };
 
+  // This is now broken ...
   changeSongOnEnd = () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
 

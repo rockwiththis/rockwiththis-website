@@ -172,10 +172,6 @@ class ControlBar extends Component {
         </div>
     )
   }
-
-  render() {
-    return <p>WEEEEEEEEE</p>
-  }
 }
 
 export default connect(
