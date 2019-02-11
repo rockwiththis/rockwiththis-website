@@ -52,7 +52,7 @@ class AppContainer extends Component {
     if (this.props.shouldLoadPlayers) {
       this.playerBankRef.current.setSongListPlayers(
         [
-          ...this.props.songListPosts,
+          ...this.props.filteredPosts,
           this.props.spotlightPost,
           this.props.singleSong
         ],
@@ -107,7 +107,7 @@ class AppContainer extends Component {
             !!this.props.activeSong && !!this.props.activeSong.id &&
             <SongPlayerBank
               heroSongs={this.props.heroPosts}
-              initialSongList={this.props.songListPosts}
+              initialSongList={this.props.filteredPosts}
               initialActiveSong={this.props.activeSong}
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}

@@ -77,7 +77,11 @@ class DiscoverSection extends Component {
           <div id="discover" className="discovery-section">
             <img className="discover-cover" src={black} />
 
-              <ControlBar {...this.props} />
+              <ControlBar
+                isControlBarFixed={this.state.isControlBarFixed}
+                setDiscoverScrollPos={this.props.setDiscoverScrollPos}
+                {...this.props}
+              />
 
               <div
                 id="discovery-container"

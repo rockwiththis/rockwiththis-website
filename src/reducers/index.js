@@ -1,16 +1,11 @@
 import { combineReducers } from 'redux'
-import assert from 'assert';
-import { FETCH_POSTS } from '../actions/index'
-import { FETCH_FILTERS } from '../actions/filters'
-import { FETCH_RELATED_SONGS } from '../actions/relatedSongs'
-import posts from './posts'
-import queue from './queue'
-import relatedSongs from './relatedSongs'
-import filters from './filters'
 import update from 'react-addons-update'
 import { handleActions } from 'redux-actions'
 
-export const INITIAL_STATE = {
+import { expectPayloadValue } from './util';
+import fetchSongsReducers from './fetch/songs';
+
+const INITIAL_STATE = {
   shrinkHeader: false,
   isPlaying: false,
   discoverLayout: 'expanded',
@@ -20,13 +15,10 @@ export const INITIAL_STATE = {
     playedRatio: 0,
     secondsPlayed: 0,
   },
-  posts: [],  // TODO rename to `originalPosts`
-  filteredPosts: [],
-  songListPosts: [],  // TODO eliminate
   heroPosts: [],
+  filteredPosts: [],
   spotlightPost: {},
   singlePageSongPost: {},
-  queue: [],
   relatedSongs: [],
   filters: [],
   selectedFilters: [],
@@ -40,36 +32,10 @@ export const INITIAL_STATE = {
   isShuffle: false
 }
 
-const expectPayloadValue = (payload, key, resolverName) =>
-  assert(
-    !!payload[key],
-    `resolver ${resolverName} expected value at ${key} in payload`
-  );
-
 const appReducers = handleActions({
-  // TODO rename to 'FETCH_ORIGINAL_POSTS'
-  'app/FETCH_POSTS': (state, action) => {
-    return update(state, {
-      posts: { $set: action.payload },
-      filteredPosts: { $set: action.payload },
-      songListPosts: { $set: action.payload },
-      spotlightPost: { $set: action.payload[0] },
-      heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
-      activeSong: { $set: state.activeSong.id ? state.activeSong : action.payload[0] },
-      shouldLoadPlayers: { $set: true }
-    })
-  },
-  'app/SET_REMAINING_POSTS': (state, action) => {
-    // WTF??
-    return state
-    return update(state, {
-      filteredPosts: { $set: [...state.posts, ...action.payload] }
-    })
-  },
   'app/SET_FILTERED_SONG_LIST': (state, action) => {
     return update(state, {
       filteredPosts: { $set: action.payload },
-      songListPosts: { $set: action.payload.slice(0, state.songListSize) },
       spotlightPost: { $set: action.payload[0] },
       currentSongListPageIndex: { $set: 0 },
       maxSongListPageIndex: { $set: 0 },
@@ -81,59 +47,12 @@ const appReducers = handleActions({
       currentRequestLoading: { $set: action.payload }
     })
   },
-  'app/LOADING_SONGS': (state, action) => ({
-    ...state,
-    loadingSongs: true,
-    songLoadingError: undefined
-  }),
-  'app/LOADED_MORE_SONGS': (state, action) => {
-    expectPayloadValue(action.payload, 'newSongs', 'LOADED_MORE_SONGS');
-
-    return {
-      ...state,
-      filteredPosts: [ ...state.filteredPosts, ...action.payload.newSongs ],
-      songListPosts: action.payload.newSongs,
-      currentSongListPageIndex: state.currentSongListPageIndex + 1,
-      maxSongListPageIndex: state.currentSongListPageIndex + 1,
-      shouldLoadPlayers: true,
-      spotlightPost: (
-        action.payload.updateSpotlight ?
-          action.payload.newSongs[0] :
-          state.spotlightPost
-      ),
-      loadingSongs: false,
-      songLoadingError: undefined
-    };
-  },
-  'app/RESET_SONGS': (state, action) => {
-    expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
-
-    return {
-      ...state,
-      posts: action.payload.songs,
-      filteredPosts: action.payload.songs,
-      songListPosts: action.payload.songs,
-      isShuffle: !!action.payload.isShuffle,
-      shouldLoadPlayers: true,
-      loadingSongs: false
-    }
-  },
-  'app/LOAD_SONGS_FAILED': (state, action) => {
-    expectPayloadValue(action.payload, 'errorMessage', 'LOAD_SONGS_FAILED');
-
-    return {
-      ...state,
-      loadingSongs: false,
-      songLoadingError: action.payload.errorMessage
-    };
-  },
   'app/LOAD_NEXT_SONGS': (state, action) => {
     const newPageIndex = state.currentSongListPageIndex + 1;
     const startPostIndex = newPageIndex * state.songListSize;
     const endPostIndex = startPostIndex + state.songListSize;
     const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
     return update(state, {
-      songListPosts: { $set: newSongList },
       currentSongListPageIndex: { $set: newPageIndex },
       shouldLoadPlayers: { $set: true },
       spotlightPost: {
@@ -150,7 +69,6 @@ const appReducers = handleActions({
       const endPostIndex = startPostIndex + state.songListSize;
       const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
       return update(state, {
-        songListPosts: { $set: newSongList },
         currentSongListPageIndex: { $set: newPageIndex },
         shouldLoadPlayers: { $set: true },
         spotlightPost: {
@@ -270,7 +188,8 @@ const appReducers = handleActions({
     return update(state, {
       filters: { $set: action.filters },
     })
-  }
+  },
+  ...fetchSongsReducers
 }, INITIAL_STATE)
 
 export default appReducers

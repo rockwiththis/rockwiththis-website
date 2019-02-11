@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { Helmet } from "react-helmet";
 import Mailchimp from 'components/Newsletter/Mailchimp.js'
 import { Link } from 'react-router-dom'
-import { fetchPosts } from 'actions/index'
 import { fetchFilters } from 'actions/filters'
 import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 

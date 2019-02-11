@@ -23,10 +23,9 @@ const propTypes = {
 
 class Homepage extends Component {
 
-  componentWillMount = () => {
-    if (this.props.songs.length === 0)
-      this.props.actions.fetchPosts();
-  }
+  componentWillMount = () =>
+    this.props.songs.length === 0 &&
+    this.props.fetchInitialSongs();
 
   componentDidMount = () => {
     window.scrollTo(0, this.mainPageScroll);

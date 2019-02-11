@@ -21,7 +21,7 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle = false } = {}) => (dispatch, getState) => {
+export const resetSongs = ({ isShuffle } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
   return fetchSongs(getState(), false, isShuffle)
     .then(fetchedSongs => (

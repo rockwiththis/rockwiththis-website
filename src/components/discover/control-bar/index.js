@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
@@ -11,31 +12,29 @@ import './control-bar.scss'
 
 /* eslint-disable */
 
+const propTypes = {
+  isControlBarFixed: PropTypes.bool.isRequired
+}
+
 class FiltersBar extends Component {
-    constructor(props) {
-        super(props)
 
-        this.state = {
-          filtersToShow: [],
-          showSubGenreFilters: false,
-          showToggleViewsDropdown: false,
-          fixedFilterBar: false
-        }
+  constructor(props) {
+    super(props)
 
-        this.showToggleViewsDropdown = this.showToggleViewsDropdown.bind(this);
-        this.closeToggleViewsDropdown = this.closeToggleViewsDropdown.bind(this);
-        this.showSubGenreFilters = this.showSubGenreFilters.bind(this);
-        this.closeSubGenreFilters = this.closeSubGenreFilters.bind(this);
-        this.closeSubGenreFiltersX = this.closeSubGenreFiltersX.bind(this);
-        this.fixedFiltersBar = this.fixedFiltersBar.bind(this)
-        this.changeGridView = this.changeGridView.bind(this)
-        this.clearFilters = this.clearFilters.bind(this)
+    this.state = {
+      filtersToShow: [],
+      showSubGenreFilters: false,
+      showToggleViewsDropdown: false,
     }
 
-    componentDidMount = () => {
-        window.addEventListener('scroll', this.fixedFiltersBar)
-        window.addEventListener('resize', this.fixedFiltersBar);
-    }
+    this.showToggleViewsDropdown = this.showToggleViewsDropdown.bind(this);
+    this.closeToggleViewsDropdown = this.closeToggleViewsDropdown.bind(this);
+    this.showSubGenreFilters = this.showSubGenreFilters.bind(this);
+    this.closeSubGenreFilters = this.closeSubGenreFilters.bind(this);
+    this.closeSubGenreFiltersX = this.closeSubGenreFiltersX.bind(this);
+    this.changeGridView = this.changeGridView.bind(this)
+    this.clearFilters = this.clearFilters.bind(this)
+  }
 
     setFilteredSongList = () =>
       this.setState(
@@ -49,7 +48,6 @@ class FiltersBar extends Component {
         {
           showSubGenreFilters: false,
           showToggleViewsDropdown: false,
-          fixedFilterBar: true,
           filtersToShow: this.props.selectedFilters,
           loading: false,
         },
@@ -96,15 +94,6 @@ class FiltersBar extends Component {
           duration: 500,
           smooth: true
         })
-      }
-    }
-
-    fixedFiltersBar() {
-
-      if (location.pathname == "/") {
-        const scrollHeight = (document.getElementById('hero-post').clientHeight + document.getElementById('header').clientHeight - 12)
-        const fixedFilterBar = window.scrollY > scrollHeight
-        this.setState({ fixedFilterBar })
       }
     }
 
@@ -161,6 +150,9 @@ class FiltersBar extends Component {
       this.props.actions.changeGridView(e.target.name)
     }
 
+  getFixedControlBarClass = () =>
+    this.props.isControlBarFixed ? 'fixedFiltersBar' : '';
+
     render() {
       const full = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M6 6h-6v-6h6v6zm18-6h-16v24h16v-24zm-18 9h-6v6h6v-6zm0 9h-6v6h6v-6z"/></svg>
       const snapshot = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 22h-4v-4h4v4zm0-12h-4v4h4v-4zm0-8h-4v4h4v-4zm3 0v4h17v-4h-17zm0 12h17v-4h-17v4zm0 8h17v-4h-17v4z"/></svg>
@@ -196,8 +188,8 @@ class FiltersBar extends Component {
         })
         const disableClearAll = this.props.selectedFilters.length === 0
         return (
-          <div className={`filters-bar ${this.state.fixedFilterBar ? 'fixedFiltersBar' : ''}`}>
-          <div className="filters-bar-content">
+          <div className={`filters-bar ${this.getFixedControlBarClass}`}>
+            <div className="filters-bar-content">
 
             {/* <button onClick={this.showSubGenreFilters} className={`filters-button ${this.state.showSubGenreFilters ? 'active' : ''}`}>
                 Filter

@@ -27,21 +27,6 @@ export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
   })
 }
 
-export const FETCH_POSTS = createAction('app/FETCH_POSTS')
-export const SET_REMAINING_POSTS = createAction('app/SET_REMAINING_POSTS')
-export const fetchPosts = (pageNumber = 1, callback) => (dispatch) => {
-  dispatch(CLEAR_FILTERS())
-
-  const dataURL = apiBaseUrl + '/songs'
-  console.log('QUERYING FOR DATA FROM ' + dataURL);
-
-  fetch(dataURL).then(res => res.json()).then((res) => {
-
-    console.log("res1", res)
-    dispatch(FETCH_POSTS(res))
-  })
-}
-
 export const SET_LOADING_STATUS = createAction('app/SET_LOADING_STATUS')
 export const SET_FILTERED_SONG_LIST = createAction('app/SET_FILTERED_SONG_LIST')
 

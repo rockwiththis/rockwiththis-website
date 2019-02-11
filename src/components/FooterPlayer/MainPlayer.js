@@ -39,7 +39,7 @@ class MainPlayer extends Component {
     }
 
     changeSong(next) {
-        this.props.posts.forEach((post, i, arr) => {
+        this.props.filteredPosts.forEach((post, i, arr) => {
             if (post.id === this.props.activeSong.id) {
                 const queuePosition = next ? i + 1 : i - 1
                 this.props.actions.toggleSong(arr[queuePosition])
@@ -100,7 +100,11 @@ class MainPlayer extends Component {
 
         )
 
-        const disableBack = this.props.posts[0] && this.props.posts[0].id === this.props.activeSong.id
+        const disableBack = (
+          this.props.filteredPosts[0] &&
+          this.props.filteredPosts[0].id === this.props.activeSong.id
+        );
+
         return (
             <div className="player-controls">
                 <div className="player-controls-buttons">
