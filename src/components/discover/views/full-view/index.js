@@ -68,7 +68,6 @@ class FullView extends Component {
           </div>
         </div>
     );
-    console.log("RENDER FULL VIEW", this.props.spotlightSong, this.props.songs);
     return (
         <div className="fullView">
 

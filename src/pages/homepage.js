@@ -13,8 +13,8 @@ const propTypes = {
   // Redux
   songs: PropTypes.arrayOf(PropTypes.object).isRequired,
   fetchInitialSongs: PropTypes.func.isRequired,
-  mainScrollPos: PropTypes.number.isRequired,
-  setMainScroll: PropTypes.func.isRequired
+  // mainScrollPos: PropTypes.number.isRequired,
+  // setMainScroll: PropTypes.func.isRequired
 }
 
 class Homepage extends Component {
@@ -22,6 +22,8 @@ class Homepage extends Component {
   componentWillMount = () =>
     this.props.songs.length === 0 &&
     this.props.fetchInitialSongs();
+
+  /* TODO come up w/ better scroll anchoring solution
 
   componentDidMount = () => {
     window.addEventListener('scroll', this.reportMainScrollPos);
@@ -36,6 +38,8 @@ class Homepage extends Component {
   reportMainScrollPos = () => this.props.setMainScroll(window.scrollY);
 
   updateScroll = () => window.scrollTo(0, this.props.mainScrollPos);
+
+  */
 
   render() {
     return (
@@ -69,9 +73,6 @@ class Homepage extends Component {
 Homepage.propTypes = propTypes;
 
 export default connect(
-  ({ filteredPosts, mainScrollPos }) => ({
-    songs: filteredPosts,
-    mainScrollPos
-  }),
-  { fetchInitialSongs: resetSongs, setMainScroll }
+  ({ filteredPosts }) => ({ songs: filteredPosts }),
+  { fetchInitialSongs: resetSongs }
 )(Homepage)

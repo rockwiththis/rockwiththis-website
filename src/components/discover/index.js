@@ -19,7 +19,7 @@ const propTypes = {
   // Redux
   discoverLayout: PropTypes.string.isRequired,
   discoverScrollPos: PropTypes.number,
-  setDiscoverScroll: PropTypes.func.isRequired,
+  // setDiscoverScroll: PropTypes.func.isRequired,
 }
 
 class DiscoverSection extends Component {
@@ -36,7 +36,7 @@ class DiscoverSection extends Component {
     window.addEventListener('scroll', this.updateFixedControlBarFlag);
     window.addEventListener('scroll', this.enableDiscoverScroll);
     window.addEventListener('resize', this.enableDiscoverScroll);
-    this.updateScroll();
+    //this.updateScroll();
   }
 
   componentWillUnmount() {
@@ -45,6 +45,9 @@ class DiscoverSection extends Component {
     window.removeEventListener('resize', this.enableDiscoverScroll);
   }
 
+  /* TODO find better scroll anchoring solution
+   * Bonus points for including this other scroll handling!
+
   componentDidUpdate = () => this.updateScroll();
 
   updateScroll = () => {
@@ -52,6 +55,7 @@ class DiscoverSection extends Component {
     if (!!discoveryContainer)
       discoveryContainer.scrollTop = this.props.discoverScrollPos;
   }
+  */
 
   // TODO tracking window scroll should really be happening in pages/Homepage instead
   updateFixedControlBarFlag = () => {
@@ -86,7 +90,7 @@ class DiscoverSection extends Component {
             <div
               id="discovery-container"
               name="discovery-container"
-              onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
+              // onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
               className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
             >
               {
@@ -105,6 +109,5 @@ class DiscoverSection extends Component {
 }
 
 export default connect(
-  ({ discoverLayout, discoverScrollPos }) => ({ discoverLayout, discoverScrollPos }),
-  { setDiscoverScroll }
+  ({ discoverLayout, discoverScrollPos }) => ({ discoverLayout, discoverScrollPos })
 )(DiscoverSection)
