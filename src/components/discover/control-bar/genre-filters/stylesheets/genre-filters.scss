@@ -17,6 +17,24 @@
       max-width: calc(1686px * 0.9);
       background-color: black;
       opacity: 0.9;
+      box-sizing: border-box;
+      padding-top: 10px;
+
+      color: white;
+      > div {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .genre-header {
+        font-size: 24pt;
+        font-weight: bold;
+      }
+
+      .subgenre-header {
+        font-size: 20pt;
+        font-weight: bold;
+      }
     }
   }
 

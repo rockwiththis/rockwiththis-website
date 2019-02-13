@@ -5,6 +5,7 @@ import { handleActions } from 'redux-actions'
 import { FULL_VIEW } from 'constants/discover-views';
 
 import fetchSongsReducers from './fetch/songs';
+import fetchGenresReducers from './fetch/genres';
 import setStateReducers from './set-state';
 import playerReducers from './player';
 import scrollReducers from './scroll';
@@ -161,6 +162,7 @@ const appReducers = handleActions({
     })
   },
   ...fetchSongsReducers,
+  ...fetchGenresReducers,
   ...setStateReducers,
   ...playerReducers,
   ...scrollReducers

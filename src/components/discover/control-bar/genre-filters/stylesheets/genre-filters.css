@@ -14,7 +14,19 @@
     margin: 0 auto;
     max-width: calc(1686px * 0.9);
     background-color: black;
-    opacity: 0.9; }
+    opacity: 0.9;
+    box-sizing: border-box;
+    padding-top: 10px;
+    color: white; }
+    .genre-filters .modal-container .modal > div {
+      text-align: center;
+      margin: 20px 0; }
+    .genre-filters .modal-container .modal .genre-header {
+      font-size: 24pt;
+      font-weight: bold; }
+    .genre-filters .modal-container .modal .subgenre-header {
+      font-size: 20pt;
+      font-weight: bold; }
 
 .genre-filters .modal-overlay {
   position: fixed;

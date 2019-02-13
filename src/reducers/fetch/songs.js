@@ -18,10 +18,6 @@ export default {
     };
   },
 
-  'app/LOAD_INITIAL_SONGS': (state, action) => {
-    expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
-  },
-
   'app/RESET_SONGS': (state, action) => {
     expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
     const isShuffle = action.payload.isShuffle === undefined ?

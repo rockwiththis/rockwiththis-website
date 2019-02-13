@@ -37,11 +37,24 @@ class GenreFilters extends Component {
             (this.props.isActive ? '' : ' hidden')
           }
         >
-          <div className="modal-overlay">
-          </div>
+          <div className="modal-overlay"></div>
+
           <div className="modal-container" ref={this.modalRef}>
             <div className="modal">
-              <p>Filter genres here!</p>
+
+              <div className="genre-header">pick your genres</div>
+
+              <div className="genres">[Genre Buttons Here]</div>
+
+              <div className="subgenre-separator">OR</div>
+
+              <div className="subgenre-header">subgenres</div>
+
+              <div className="subgenres">
+                [Subgenre buttons here]
+              </div>
+
+              <button className="submit">submit</button>
             </div>
           </div>
         </div>
