@@ -1,3 +1,6 @@
+.fullView .discover-full-song button.toggle-song {
+  display: none; }
+
 .homeContainer {
   margin-top: 75px !important; }
   @media (max-width: 480px) {
@@ -198,7 +201,9 @@ a.spotifyLink {
   .songList {
     display: none; }
   .disableScroll {
-    overflow: hidden !important; } }
+    overflow: hidden !important; }
+    .disableScroll .songList {
+      overflow: hidden !important; } }
 
 @media (max-width: 800px) {
   img.main.playButton {

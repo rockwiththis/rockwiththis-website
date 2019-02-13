@@ -104,9 +104,9 @@ class ControlBar extends Component {
 
   render() {
     return (
-        <div className="control-wrapper">
+        <div>
 
-          <div className={`control-bar ${this.getFixedControlBarClass}`}>
+          <div className={`control-bar ${this.props.isControlBarFixed ? 'fixed-control-bar' : ''}`}>
             <div
               className={
                 'control-bar-item ' +

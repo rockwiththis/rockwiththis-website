@@ -1,4 +1,7 @@
-
+// HIDING JUST FOR NOW
+.fullView .discover-full-song button.toggle-song {
+  display: none;
+}
 
 .homeContainer {
   margin-top: 75px !important;
@@ -296,6 +299,10 @@ a.spotifyLink {
 
 }&.disableScroll {
   overflow: hidden !important;
+
+  .songList {
+    overflow: hidden !important;
+  }
 }
 }
 
@@ -1540,10 +1547,6 @@ width: 800px;
       top: 50px;
   }
 
-
-  .discovery-section {
-      // margin-top: calc(100vw + 90px);
-  }
 
 .headerContainer {
   box-shadow: none !important;
