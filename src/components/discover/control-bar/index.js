@@ -9,8 +9,8 @@ import {
   GRID_LIST_VIEW
 } from 'constants/discover-views';
 
-import ViewsDropdown from './views-dropdown';
-import GenreFilters from './genre-filters';
+import ViewsDropdown from './views-dropdown/index.js';
+import GenreFilters from './genre-filters/index.js';
 
 import FullViewIcon from 'components/icons/full-view';
 import SnapshotViewIcon from 'components/icons/snapshot-view';
