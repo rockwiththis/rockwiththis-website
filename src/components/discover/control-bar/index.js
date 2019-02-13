@@ -45,49 +45,21 @@ class ControlBar extends Component {
       isViewsDropdownActive: false,
     }
 
-    this.genreFilterModalRef = React.createRef();
+    this.genreFiltersRef = React.createRef();
     this.viewsDropdownRef = React.createRef();
   }
 
   showGenreFilters = () =>
-    this.setState(
-      { isGenreFiltersActive: true },
-      () => document.addEventListener('click', this.handleClickOffGenreFilterModal)
-    );
+    this.setState({ isGenreFiltersActive: true });
 
   hideGenreFilters = () =>
-    this.setState(
-      { isGenreFiltersActive: false },
-      () => document.removeEventListener('click', this.handleClickOffGenreFilterModal)
-    );
-
-  handleClickOffGenreFilterModal = event =>
-    this.genreFilterModalRef.current &&
-    !this.genreFilterModalRef.current.contains(event.target) &&
-    hideGenreFilters();
-
+    this.setState({ isGenreFiltersActive: false });
 
   showViewsDropdown = event =>
-    this.setState(
-      { isViewsDropdownActive: true },
-      () => document.addEventListener('click', this.handleClickOffViewsDropdown)
-    );
+    this.setState({ isViewsDropdownActive: true });
 
   hideViewsDropdown = () =>
-    this.setState(
-      { isViewsDropdownActive: false },
-      () => document.removeEventListener('click', this.handleClickOffViewsDropdown)
-    );
-
-  handleClickOffViewsDropdown = event =>
-    this.viewsDropdownRef.current &&
-    !this.viewsDropdownRef.current.contains(event.target) &&
-    hideViewsDropdown();
-
-  changeGridView = event => {
-    hideViewsDropdown();
-    this.props.changeGridView(e.target.name);
-  }
+    this.setState({ isViewsDropdownActive: false });
 
   getActiveViewIcon = () => {
     switch(this.props.discoverLayout) {
@@ -115,7 +87,6 @@ class ControlBar extends Component {
       default: null
     }
   }
-
 
   getFixedControlBarClass = () =>
     this.props.isControlBarFixed ? 'fixed-control-bar' : '';
@@ -171,11 +142,11 @@ class ControlBar extends Component {
           <div className="controls">
             <ViewsDropdown
               isActive={this.state.isViewsDropdownActive}
-              onFinish={this.hideViewsDropdown}
+              hide={this.hideViewsDropdown}
             />
             <GenreFilters
               isActive={this.state.isGenreFiltersActive}
-              onFinish={this.hideGenreFilters}
+              hide={this.hideGenreFilters}
             />
           </div>
         </div>
