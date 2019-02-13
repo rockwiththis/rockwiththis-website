@@ -27,6 +27,7 @@ import './stylesheets/control-bar.scss'
 
 const propTypes = {
   isControlBarFixed: PropTypes.bool.isRequired,
+  scrollToDiscover: PropTypes.func.isRequired,
 
   // Redux
   discoverLayout: PropTypes.string.isRequired,
@@ -43,21 +44,30 @@ class ControlBar extends Component {
 
   constructor(props) {
     super(props)
-
     this.state = {
       isGenreFiltersActive: false,
       isViewsDropdownActive: false,
     }
-
-    this.genreFiltersRef = React.createRef();
-    this.viewsDropdownRef = React.createRef();
   }
 
-  showGenreFilters = () =>
-    this.setState({ isGenreFiltersActive: true });
+  disableScrolling = () => {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    window.onscroll= () => window.scrollTo(x, y);
+  }
 
-  hideGenreFilters = () =>
+  enableScrolling = () => window.onscroll = () => {}
+
+  showGenreFilters = () => {
+    this.props.scrollToDiscover();
+    this.disableScrolling();
+    this.setState({ isGenreFiltersActive: true });
+  }
+
+  hideGenreFilters = () => {
+    this.enableScrolling();
     this.setState({ isGenreFiltersActive: false });
+  }
 
   showViewsDropdown = event =>
     this.setState({ isViewsDropdownActive: true });

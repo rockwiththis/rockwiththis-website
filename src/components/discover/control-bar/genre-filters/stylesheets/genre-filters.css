@@ -1,2 +1,28 @@
 .genre-filters.hidden {
   display: none; }
+
+.genre-filters .modal-container {
+  position: fixed;
+  top: 140px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 240px);
+  z-index: 1; }
+  .genre-filters .modal-container .modal {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: calc(1686px * 0.9);
+    background-color: black;
+    opacity: 0.9; }
+
+.genre-filters .modal-overlay {
+  position: fixed;
+  top: 120px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  opacity: 0.7; }

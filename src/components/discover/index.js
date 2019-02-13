@@ -29,6 +29,7 @@ class DiscoverSection extends Component {
       isControlBarFixed: false,
       disableScroll: true
     }
+    this.mainContainerRef = React.createRef();
   }
 
   // TODO tracking window scroll should really be happening in pages/Homepage instead
@@ -79,13 +80,18 @@ class DiscoverSection extends Component {
       this.setState({ disableScroll: true })
   }
 
+  scrollToDiscover = () => this.mainContainerRef.current.scrollIntoView(true);
+
   render() {
     return (
-        <div className="songsContainer clearfix">
+        <div className="songsContainer clearfix" ref={this.mainContainerRef}>
           <div id="discover" className="discovery-section">
             <img className="discover-cover" src={black} />
 
-            <ControlBar isControlBarFixed={this.state.isControlBarFixed} />
+            <ControlBar
+              isControlBarFixed={this.state.isControlBarFixed}
+              scrollToDiscover={this.scrollToDiscover}
+            />
 
             <div
               id="discovery-container"

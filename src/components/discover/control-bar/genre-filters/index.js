@@ -12,7 +12,7 @@ class GenreFilters extends Component {
 
   constructor(props) {
     super(props);
-    this.mainDivRef = React.createRef();
+    this.modalRef = React.createRef();
   }
 
   componentDidUpdate = prevProps => {
@@ -24,12 +24,10 @@ class GenreFilters extends Component {
       document.removeEventListener('click', this.hideOnClickOff);
   }
 
-  hideOnClickOff = event => {
-    console.log("CLICK OFF FILTERS", this.mainDivRef.current)
-    this.mainDivRef.current &&
-    !this.mainDivRef.current.contains(event.target) &&
+  hideOnClickOff = event =>
+    this.modalRef.current &&
+    !this.modalRef.current.contains(event.target) &&
     this.props.hide();
-  }
 
   render() {
     return (
@@ -38,9 +36,14 @@ class GenreFilters extends Component {
             'genre-filters' +
             (this.props.isActive ? '' : ' hidden')
           }
-          ref={this.mainDivRef}
         >
-          <p>Filter genres here!</p>
+          <div className="modal-overlay">
+          </div>
+          <div className="modal-container" ref={this.modalRef}>
+            <div className="modal">
+              <p>Filter genres here!</p>
+            </div>
+          </div>
         </div>
     )
   }
