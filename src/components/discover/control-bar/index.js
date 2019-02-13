@@ -17,12 +17,17 @@ import {
   TiTime as MomentIcon
 } from 'react-icons/ti';
 
-import './control-bar.scss'
+import './stylesheets/control-bar.scss'
 
 /* eslint-disable */
 
 const propTypes = {
   isControlBarFixed: PropTypes.bool.isRequired,
+
+  // Redux
+  discoverLayout: PropTypes.string.isRequired,
+  isShuffle: PropTypes.bool.isRequired,
+  resetSongs: PropTypes.func.isRequired
 }
 
 /* TODO handle scroll
@@ -40,7 +45,6 @@ class ControlBar extends Component {
       isViewsDropdownActive: false,
     }
 
-    // TODO pass child a function to close itself instead of this ref bullshit
     this.genreFilterModalRef = React.createRef();
     this.viewsDropdownRef = React.createRef();
   }
@@ -86,7 +90,7 @@ class ControlBar extends Component {
   }
 
   getActiveViewIcon = () => {
-    switch(this.props.discoverView) {
+    switch(this.props.discoverLayout) {
       case FULL_VIEW:
         return <FullViewIcon width="24" height="24" />;
         break;
@@ -101,13 +105,13 @@ class ControlBar extends Component {
   }
 
   getActiveViewName = () => {
-    switch(this.props.discoverView) {
+    switch(this.props.discoverLayout) {
       case FULL_VIEW:
-        return 'Full View';
+        return 'Full';
       case SNAPSHOT_LIST_VIEW:
-        return 'Snapshot View';
+        return 'Snapshot';
       case GRID_LIST_VIEW:
-        return 'Grid View';
+        return 'Grid';
       default: null
     }
   }
@@ -118,14 +122,14 @@ class ControlBar extends Component {
 
   render() {
     return (
-        <div className={`control-bar ${this.getFixedControlBarClass}`}>
+        <div className="control-wrapper">
 
-          <div className="control-bar-items">
+          <div className={`control-bar ${this.getFixedControlBarClass}`}>
             <div
               className={
                 'control-bar-item ' +
                 'shuffle ' +
-                this.props.isShuffle ? 'highlighted' : ''
+                (this.props.isShuffle ? 'active' : '')
               }
               onClick={() => this.props.resetSongs({ isShuffle: !this.props.isShuffle })}
             >
@@ -137,20 +141,20 @@ class ControlBar extends Component {
               className={
                 'control-bar-item ' +
                 'view ' +
-                this.state.isViewsDropdownActive ? 'selected' : ''
+                (this.state.isViewsDropdownActive ? 'active' : '')
               }
               onClick={() => this.showViewsDropdown()}
             >
               <span className="control-bar-icon">{ this.getActiveViewIcon }</span>
-              <span className="control-bar-title mobile">{ this.getActiveViewName }</span>
-              <span className="control-bar-title desktop">{ this.getActiveViewName }</span>
+              <span className="control-bar-title mobile">{ this.getActiveViewName() }</span>
+              <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
             </div>
 
             <div
               className={
                 'control-bar-item ' +
                 'genre-filter ' +
-                this.state.isGenreFiltersActive ? 'selected' : ''
+                (this.state.isGenreFiltersActive ? 'active' : '')
               }
               onClick={() => this.showGenreFilters()}
             >
@@ -164,17 +168,22 @@ class ControlBar extends Component {
             </div>
           </div>
 
-          <div className="control-bar-content">
-            <ViewsDropdown />
-            <GenreFilters />
+          <div className="controls">
+            <ViewsDropdown
+              isActive={this.state.isViewsDropdownActive}
+              onFinish={this.hideViewsDropdown}
+            />
+            <GenreFilters
+              isActive={this.state.isGenreFiltersActive}
+              onFinish={this.hideGenreFilters}
+            />
           </div>
-
         </div>
     )
   }
 }
 
 export default connect(
-  ({ isShuffle }) => ({ isShuffle }),
+  ({ discoverLayout, isShuffle }) => ({ discoverLayout, isShuffle }),
   { resetSongs }
 )(ControlBar)

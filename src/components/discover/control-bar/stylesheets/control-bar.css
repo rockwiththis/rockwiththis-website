@@ -1,392 +1,45 @@
-.control-bar {
+.control-wrapper .control-bar {
   width: 100%;
   height: 45px;
   background: #f5f3f3;
-  position: relative;
-  padding: 0px;
-  max-width: 1685px;
   border-bottom: 1px solid #C9C6CB;
   border-top: 1px solid #C9C6CB;
-  z-index: 903;
-  margin: 0 auto; }
+  max-width: 1685px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding-top: 10px; }
   @media (max-width: 480px) {
-    .control-bar {
+    .control-wrapper .control-bar {
       height: 50px;
       background: #fff; } }
-  .control-bar .control-bar-items {
-    position: relative;
-    height: 100%; }
-    .control-bar .control-bar-items .filters-button {
-      display: inline-block;
-      font-size: 12px; }
-      @media (min-width: 800px) {
-        .control-bar .control-bar-items .filters-button {
-          display: inline-block;
-          font-size: 14px;
-          border: 2px solid #1a6ea9;
-          border-radius: 4px;
-          padding: 12px;
-          color: #1a6ea9;
-          transition: all .3s ease;
-          vertical-align: top;
-          margin-top: 18px;
-          background: #fff;
-          font-weight: 700;
-          letter-spacing: 1px;
-          text-transform: uppercase; } }
-      @media (max-width: 800px) {
-        .control-bar .control-bar-items .filters-button {
-          border: 1px solid #1a6ea9;
-          border-radius: 4px;
-          padding: 12px;
-          color: #1a6ea9;
-          transition: all .3s ease;
-          vertical-align: top;
-          margin-top: 20px;
-          background: #fff; } }
-      @media (min-width: 800px) {
-        .control-bar .control-bar-items .filters-button {
-          margin-left: 165px; } }
-      @media (max-width: 800px) {
-        .control-bar .control-bar-items .filters-button {
-          margin-top: 15px; } }
-      @media (max-width: 480px) {
-        .control-bar .control-bar-items .filters-button {
-          margin-top: 7px;
-          padding: 8px;
-          border-radius: 6px;
-          font-size: 12px; } }
-      .control-bar .control-bar-items .filters-button i.im.im-filter {
-        font-size: 10px;
-        margin-left: 6px;
-        transform: translateY(1px); }
-    .control-bar .control-bar-items .filters-button:hover {
-      display: inline-block;
-      border: 1px solid #1a6ea9;
-      background: #1a6ea9;
-      border-radius: 4px;
-      color: #fff;
-      cursor: pointer; }
-      @media (min-width: 800px) {
-        .control-bar .control-bar-items .filters-button:hover {
-          border: 2px solid #1a6ea9 !important; } }
-    .control-bar .control-bar-items .toggle-views-button {
-      transition: all .3s ease;
-      vertical-align: top;
-      margin-top: 20px;
-      margin-left: 0px;
-      position: absolute;
-      right: 35px;
-      display: inline-block;
-      font-size: 12px;
-      border: 1px solid #1a6ea9 !important;
-      border-radius: 4px;
-      padding: 10px;
-      color: #1a6ea9; }
-      @media (min-width: 800px) {
-        .control-bar .control-bar-items .toggle-views-button {
-          display: none; } }
-      @media (max-width: 800px) {
-        .control-bar .control-bar-items .toggle-views-button {
-          margin-top: 15px; } }
-      @media (max-width: 480px) {
-        .control-bar .control-bar-items .toggle-views-button {
-          margin-top: 7px;
-          padding: 8px;
-          border-radius: 6px; } }
-      .control-bar .control-bar-items .toggle-views-button i {
-        -webkit-transform: translateY(3px);
-        transform: translateY(3px);
-        font-size: 14px;
-        margin-left: 4px; }
-    .control-bar .control-bar-items .toggle-views-button:hover {
-      border: 1px solid #1a6ea9 !important;
-      background: #1a6ea9 !important;
-      color: #fff;
-      cursor: pointer; }
-    @media (min-width: 800px) {
-      .control-bar .control-bar-items .ToggleViewsWrapper a.viewButton {
-        width: 30px;
-        height: 50px;
-        margin-left: 0px;
-        display: inline-block;
-        vertical-align: top;
-        -webkit-transform: translateY(-13px);
-        transform: translateY(-13px);
-        font-size: 11px;
-        position: relative;
-        z-index: 6;
-        cursor: pointer;
-        text-transform: uppercase;
-        font-weight: bold; } }
-    @media (min-width: 800px) {
-      .control-bar .control-bar-items .ToggleViewsWrapper a.viewButton span {
-        transform: translateY(33px);
-        display: inline-block;
-        width: 100%;
-        text-align: center;
+  .control-wrapper .control-bar .control-bar-item {
+    display: inline-block;
+    margin-left: 30px;
+    cursor: pointer; }
+    .control-wrapper .control-bar .control-bar-item.active {
+      color: red; }
+    .control-wrapper .control-bar .control-bar-item .control-bar-icon {
+      height: 24px; }
+    @media (max-width: 800px) {
+      .control-wrapper .control-bar .control-bar-item .control-bar-title.desktop {
         display: none; } }
     @media (min-width: 800px) {
-      .control-bar .control-bar-items .ToggleViewsWrapper svg.viewIcon {
-        transform: translate(-127%, -6px);
-        z-index: 5;
-        position: relative; } }
-    .control-bar .control-bar-items .ToggleViewsWrapper svg.viewIcon path {
-      fill: #282828; }
-    .control-bar .control-bar-items .ToggleViewsWrapper svg.viewIcon.active path {
-      fill: #1a6ea9; }
-    .control-bar .control-bar-items .search-wrapper {
-      display: none; }
-    .control-bar .control-bar-items .selectedFilters {
-      display: inline-block;
-      margin-left: 15px;
-      vertical-align: top;
-      margin-top: 20px;
-      width: auto;
-      overflow: hidden; }
-      @media (max-width: 800px) {
-        .control-bar .control-bar-items .selectedFilters {
-          display: none; } }
-      .control-bar .control-bar-items .selectedFilters button.clearButton {
-        border: 1px solid #1a6ea9 !important;
-        border-radius: 4px;
-        padding: 12px;
-        color: #1a6ea9;
-        margin-left: 0px;
-        margin-right: 10px; }
-      .control-bar .control-bar-items .selectedFilters .clearButton:hover {
-        border: 1px solid #1a6ea9 !important;
-        border-radius: 4px;
-        padding: 12px;
-        color: #fff !important;
-        background: #1a6ea9;
-        cursor: pointer; }
-      .control-bar .control-bar-items .selectedFilters .tag {
-        margin-top: 5px;
-        margin: 0 2px;
-        font-size: 14px;
-        border-radius: 6px;
-        transition: all .2s ease;
-        color: #fff;
-        background: #1a6ea9;
-        border: 1px solid #1a6ea9;
-        cursor: pointer;
-        letter-spacing: 1px;
-        box-shadow: 0 3px 2px -2px #C9C6CB;
-        padding: 6px;
-        font-family: Baloo,cursive;
-        cursor: pointer;
-        display: inline-block; }
-        @media (max-width: 1000px) and (min-width: 800px) {
-          .control-bar .control-bar-items .selectedFilters .tag {
-            font-size: 16px;
-            margin: 8px !important; } }
-  .control-bar .views-dropdown {
-    position: absolute;
-    border: 1px solid #C9C6CB;
-    border-top: 0;
-    right: 35px;
-    background: #fff;
-    z-index: 902;
-    max-width: 300px;
-    top: 70px;
-    border-radius: 4px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    padding: 15px; }
-    @media (max-width: 800px) {
-      .control-bar .views-dropdown {
-        width: 100%;
-        left: 0;
-        right: 0;
-        max-width: calc(100vw - 30px);
-        height: 35px; } }
-    @media (max-width: 480px) {
-      .control-bar .views-dropdown {
-        border-left-width: 1px;
-        top: 50px;
-        padding: 10px 0;
-        background: #fff;
-        max-width: 100vw;
-        border-radius: 0px; } }
-    @media (max-width: 800px) {
-      .control-bar .views-dropdown .fake-button {
-        width: 33.3%;
-        display: inline-block;
-        text-align: center;
-        height: 100%;
-        z-index: 9;
-        position: relative; } }
-    @media (max-width: 800px) {
-      .control-bar .views-dropdown .fake-button button {
-        color: rgba(0, 0, 0, 0);
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        max-width: none;
-        display: inline-block;
-        padding: 6px 15px 35px;
-        border: 0;
-        border-radius: 0;
-        margin: 0;
-        z-index: 10;
-        cursor: pointer; } }
-    .control-bar .views-dropdown .fake-button button ~ span {
-      text-transform: uppercase;
-      font-size: 12px;
-      font-weight: 700;
-      display: block; }
-    .control-bar .views-dropdown .fake-button svg.viewIcon.active {
-      fill: #1a6ea9;
-      color: #1a6ea9; }
-  .control-bar .SubgenreFiltersDropDown {
-    position: absolute;
-    border-top: 0;
-    background: #fff;
-    z-index: 902;
-    top: 70px;
-    border-radius: 4px;
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-    box-shadow: 0 3px 2px -2px #C9C6CB;
-    max-height: 0;
-    overflow: hidden;
-    transition: .2s ease all; }
+      .control-wrapper .control-bar .control-bar-item .control-bar-title.mobile {
+        display: none; } }
     @media (min-width: 800px) {
-      .control-bar .SubgenreFiltersDropDown {
-        width: calc(38vw - 30px);
-        left: 30px; } }
-    @media (max-width: 1175px) and (min-width: 800px) {
-      .control-bar .SubgenreFiltersDropDown {
-        width: calc(45vw - 30px); } }
-    @media (max-width: 1000px) and (min-width: 800px) {
-      .control-bar .SubgenreFiltersDropDown {
-        width: 500px; } }
-    @media (max-width: 480px) {
-      .control-bar .SubgenreFiltersDropDown {
-        left: 15px;
-        top: 50px;
-        max-width: 100%;
-        left: 0; } }
-    .control-bar .SubgenreFiltersDropDown .dropdown-internal {
-      padding: 15px 15px 15px 15px; }
-      @media (max-width: 800px) {
-        .control-bar .SubgenreFiltersDropDown .dropdown-internal {
-          padding: 15px; } }
-      .control-bar .SubgenreFiltersDropDown .dropdown-internal .closeDropdown {
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        cursor: pointer;
-        -webkit-transition: all .3s ease;
-        transition: all .3s ease; }
-        @media (max-width: 480px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .closeDropdown {
-            top: 10px; } }
-        .control-bar .SubgenreFiltersDropDown .dropdown-internal .closeDropdown i {
-          color: #1a6ea9; }
-          @media (max-width: 480px) {
-            .control-bar .SubgenreFiltersDropDown .dropdown-internal .closeDropdown i {
-              font-size: 18px; } }
-      .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag {
-        cursor: pointer;
-        display: inline-block;
-        border-radius: 6px;
-        transition: all .2s ease;
-        color: #1a6ea9;
-        background: #fff;
-        border: 1px solid #1a6ea9;
-        cursor: pointer;
-        letter-spacing: .7px;
-        box-shadow: 0 3px 2px -2px #C9C6CB;
-        padding: 6px;
-        font-family: Baloo,cursive;
-        cursor: pointer;
-        display: inline-block; }
-        @media (min-width: 800px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag {
-            font-size: 14px;
-            margin: 6px;
-            letter-spacing: 1px; } }
-        @media (max-width: 1175px) and (min-width: 800px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag {
-            font-size: 12px; } }
-        @media (max-width: 1000px) and (min-width: 800px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag {
-            font-size: 14px; } }
-        @media (max-width: 800px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag {
-            margin: 5px; } }
-        @media (max-width: 480px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag {
-            font-size: 10px;
-            padding: 4px;
-            margin: 4px; } }
-      @media (min-width: 800px) {
-        .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag:hover {
-          background: #1f84c7;
-          color: #fff; } }
-      .control-bar .SubgenreFiltersDropDown .dropdown-internal .tag.selected {
-        background: #1a6ea9;
-        color: #fff !important; }
-      .control-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons {
-        width: 100%;
-        margin-bottom: 15px; }
-        @media (max-width: 480px) {
-          .control-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons {
-            margin-bottom: 10px; } }
-        .control-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
-          width: 100%;
-          font-weight: 700;
-          padding: 10px;
-          font-family: Roboto,sans-serif;
-          font-size: 20px;
-          text-transform: uppercase; }
-          @media (max-width: 800px) {
-            .control-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
-              font-size: 14px; } }
-          @media (max-width: 480px) {
-            .control-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.large-bottom {
-              padding: 6px;
-              font-size: 12px; } }
-        .control-bar .SubgenreFiltersDropDown .dropdown-internal .bottom-buttons button.disabled {
-          pointer-events: none; }
-  .control-bar .SubgenreFiltersDropDown.expand {
-    max-height: none; }
-    @media (min-width: 800px) {
-      .control-bar .SubgenreFiltersDropDown.expand {
-        min-height: calc(38vw - 20px); } }
-    @media (max-width: 1000px) and (min-width: 800px) {
-      .control-bar .SubgenreFiltersDropDown.expand {
-        height: calc(100vh - 215px);
-        left: 0;
-        width: 100vw; } }
-    @media (max-width: 800px) {
-      .control-bar .SubgenreFiltersDropDown.expand {
-        height: calc(100vh - 155px);
-        max-height: none; } }
-    @media (max-width: 480px) {
-      .control-bar .SubgenreFiltersDropDown.expand {
-        height: calc(100vh - 100px);
-        position: fixed;
-        overflow-y: scroll; } }
+      .control-wrapper .control-bar .control-bar-item .control-bar-title {
+        margin-left: 10px;
+        vertical-align: top; } }
+  @media (max-width: 800px) {
+    .control-wrapper .control-bar.fixed-control-bar {
+      box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+      border-left: 0px;
+      position: fixed;
+      top: 75px; } }
+  @media (max-width: 480px) {
+    .control-wrapper .control-bar.fixed-control-bar {
+      top: 50px;
+      height: 50px; } }
 
-@media (max-width: 800px) {
-  .fixed-control-bar {
-    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    border-left: 0px;
-    position: fixed;
-    top: 75px; } }
-
-@media (max-width: 480px) {
-  .fixed-control-bar {
-    top: 50px; } }
-
-@media (max-width: 480px) {
-  .fixed-control-bar {
-    height: 50px; } }
+.control-wrapper .controls {
+  position: absolute; }
