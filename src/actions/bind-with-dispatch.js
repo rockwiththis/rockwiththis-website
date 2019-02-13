@@ -138,11 +138,6 @@ export const togglePlayPause = shouldPlay => (dispatch) => {
 export const toggleSong = song =>
   createAction('app/PLAY_SONG')({ song });
 
-export const CHANGE_GRID_VIEW = createAction('app/CHANGE_GRID_VIEW')
-export const changeGridView = layout => (dispatch) => {
-  dispatch(CHANGE_GRID_VIEW(layout))
-}
-
 export const TOGGLE_FILTER = createAction('app/TOGGLE_FILTER')
 export const toggleFilter = (filter, i) => (dispatch) => {
     const payload = { filter, i }

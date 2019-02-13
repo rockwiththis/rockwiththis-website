@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
 import { resetSongs } from 'actions/fetch/songs';
-import { FULL_VIEW, SNAPSHOT_LIST_VIEW, GRID_LIST_VIEW } from 'constants/discover-views';
+import {
+  FULL_VIEW,
+  SNAPSHOT_LIST_VIEW,
+  GRID_LIST_VIEW
+} from 'constants/discover-views';
 
 import ViewsDropdown from './views-dropdown';
 import GenreFilters from './genre-filters';
@@ -64,14 +68,11 @@ class ControlBar extends Component {
   getActiveViewIcon = () => {
     switch(this.props.discoverLayout) {
       case FULL_VIEW:
-        return <FullViewIcon width="24" height="24" />;
-        break;
+        return <FullViewIcon width="16" height="16" />;
       case SNAPSHOT_LIST_VIEW:
-        return <SnapshotViewIcon width="24" height="24" />;
-        break;
+        return <SnapshotViewIcon width="16" height="16" />;
       case GRID_LIST_VIEW:
-        return <GridViewIcon width="24" height="24" />;
-        break;
+        return <GridViewIcon width="16" height="16" />;
       default: null
     }
   }
@@ -116,7 +117,7 @@ class ControlBar extends Component {
               }
               onClick={() => this.showViewsDropdown()}
             >
-              <span className="control-bar-icon">{ this.getActiveViewIcon }</span>
+              <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
               <span className="control-bar-title mobile">{ this.getActiveViewName() }</span>
               <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
             </div>
@@ -142,6 +143,7 @@ class ControlBar extends Component {
           <div className="controls">
             <ViewsDropdown
               isActive={this.state.isViewsDropdownActive}
+              activeView={this.props.discoverLayout}
               hide={this.hideViewsDropdown}
             />
             <GenreFilters

@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+
+import { updateDiscoverLayout } from 'actions/set-state';
+
+import {
+  FULL_VIEW,
+  SNAPSHOT_LIST_VIEW,
+  GRID_LIST_VIEW
+} from 'constants/discover-views';
+
+import FullViewIcon from 'components/icons/full-view';
+import SnapshotViewIcon from 'components/icons/snapshot-view';
+import GridViewIcon from 'components/icons/grid-view';
 
 import './stylesheets/views-dropdown.scss';
 
 const propTypes = {
   isActive: PropTypes.bool.isRequired,
-  hide: PropTypes.func.isRequired
+  activeView: PropTypes.bool.isRequired,
+  hide: PropTypes.func.isRequired,
+
+  // Redux
+  updateDiscoverLayout: PropTypes.func.isRequired
 }
 
 class ViewsDropdown extends Component {
 
-  constructor(props) {
-    super(props);
-    this.mainDivRef = React.createRef();
-  }
-
   componentDidUpdate = prevProps => {
 
     if (!prevProps.isActive && this.props.isActive)
-      document.addEventListener('click', this.hideOnClickOff);
+      document.addEventListener('click', this.props.hide);
 
     else if (prevProps.isActive && !this.props.isActive)
-      document.removeEventListener('click', this.hideOnClickOff);
+      document.removeEventListener('click', this.props.hide);
   }
-
-  hideOnClickOff = event =>
-    this.mainDivRef.current &&
-    !this.mainDivRef.current.contains(event.target) &&
-    this.props.hide();
 
   render() {
     return (
@@ -36,9 +43,39 @@ class ViewsDropdown extends Component {
             'views-dropdown' +
             (this.props.isActive ? '' : ' hidden')
           }
-          ref={this.mainDivRef}
         >
-          <p>Toggle views here!</p>
+          <div
+            className={
+              'view-select-item' +
+              (this.props.activeView === FULL_VIEW ? ' active' : '')
+            }
+            onClick={() => this.props.updateDiscoverLayout(FULL_VIEW)}
+          >
+            <FullViewIcon />
+            <span>Full View</span>
+          </div>
+
+          <div
+            className={
+              'view-select-item' +
+              (this.props.activeView === SNAPSHOT_LIST_VIEW ? ' active' : '')
+            }
+            onClick={() => this.props.updateDiscoverLayout(SNAPSHOT_LIST_VIEW)}
+          >
+            <SnapshotViewIcon />
+            <span>Snapshot View</span>
+          </div>
+
+          <div
+            className={
+              'view-select-item' +
+              (this.props.activeView === GRID_LIST_VIEW ? ' active' : '')
+            }
+            onClick={() => this.props.updateDiscoverLayout(GRID_LIST_VIEW)}
+          >
+            <GridViewIcon />
+            <span>Grid View</span>
+          </div>
         </div>
     )
   }
@@ -46,4 +83,4 @@ class ViewsDropdown extends Component {
 
 ViewsDropdown.propTypes = propTypes;
 
-export default ViewsDropdown;
+export default connect(null, { updateDiscoverLayout })(ViewsDropdown);

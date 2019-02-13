@@ -125,11 +125,6 @@ const appReducers = handleActions({
       relatedSongs: { $set: action.payload }
     })
   },
-  'app/CHANGE_GRID_VIEW': (state, action) => {
-    return update(state, {
-      discoverLayout: { $set: action.payload }
-    })
-  },
   'app/FETCH_FILTERS': (state, action) => {
     console.log("action.payload");
     console.log(action.payload);

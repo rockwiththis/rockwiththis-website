@@ -1,45 +1,52 @@
-.control-wrapper .control-bar {
+.control-wrapper {
   width: 100%;
-  height: 45px;
-  background: #f5f3f3;
-  border-bottom: 1px solid #C9C6CB;
-  border-top: 1px solid #C9C6CB;
   max-width: 1685px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding-top: 10px; }
-  @media (max-width: 480px) {
-    .control-wrapper .control-bar {
-      height: 50px;
-      background: #fff; } }
-  .control-wrapper .control-bar .control-bar-item {
-    display: inline-block;
-    margin-left: 30px;
-    cursor: pointer; }
-    .control-wrapper .control-bar .control-bar-item.active {
-      color: red; }
-    .control-wrapper .control-bar .control-bar-item .control-bar-icon {
-      height: 24px; }
+  margin: 0 auto; }
+  .control-wrapper .control-bar {
+    height: 45px;
+    background: #f5f3f3;
+    border-bottom: 1px solid #C9C6CB;
+    border-top: 1px solid #C9C6CB;
+    box-sizing: border-box;
+    padding-top: 12px; }
+    @media (max-width: 480px) {
+      .control-wrapper .control-bar {
+        height: 50px;
+        background: #fff; } }
+    .control-wrapper .control-bar .control-bar-item {
+      margin-left: 30px;
+      width: 120px;
+      display: inline-block;
+      cursor: pointer; }
+      .control-wrapper .control-bar .control-bar-item.active {
+        color: red; }
+      .control-wrapper .control-bar .control-bar-item .control-bar-icon {
+        height: 24px; }
+      @media (max-width: 800px) {
+        .control-wrapper .control-bar .control-bar-item .control-bar-title.desktop {
+          display: none; } }
+      @media (min-width: 800px) {
+        .control-wrapper .control-bar .control-bar-item .control-bar-title.mobile {
+          display: none; } }
+      @media (min-width: 800px) {
+        .control-wrapper .control-bar .control-bar-item .control-bar-title {
+          margin-left: 10px;
+          vertical-align: top; } }
+      .control-wrapper .control-bar .control-bar-item.view {
+        width: 160px; }
     @media (max-width: 800px) {
-      .control-wrapper .control-bar .control-bar-item .control-bar-title.desktop {
-        display: none; } }
-    @media (min-width: 800px) {
-      .control-wrapper .control-bar .control-bar-item .control-bar-title.mobile {
-        display: none; } }
-    @media (min-width: 800px) {
-      .control-wrapper .control-bar .control-bar-item .control-bar-title {
-        margin-left: 10px;
-        vertical-align: top; } }
-  @media (max-width: 800px) {
-    .control-wrapper .control-bar.fixed-control-bar {
-      box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-      border-left: 0px;
-      position: fixed;
-      top: 75px; } }
-  @media (max-width: 480px) {
-    .control-wrapper .control-bar.fixed-control-bar {
-      top: 50px;
-      height: 50px; } }
-
-.control-wrapper .controls {
-  position: absolute; }
+      .control-wrapper .control-bar.fixed-control-bar {
+        box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+        border-left: 0px;
+        position: fixed;
+        top: 75px; } }
+    @media (max-width: 480px) {
+      .control-wrapper .control-bar.fixed-control-bar {
+        top: 50px;
+        height: 50px; } }
+  .control-wrapper .controls {
+    position: absolute;
+    width: 100%;
+    max-width: 1685px;
+    margin: 0 auto;
+    z-index: 1000; }

@@ -1,5 +1,26 @@
 .views-dropdown {
+  margin-left: 160px;
+  width: 160px;
+  background-color: white;
+  padding: 20px;
+  padding-bottom: 10px;
+
   &.hidden { display: none }
+
+  .view-select-item {
+    margin-bottom: 20px;
+    cursor: pointer;
+
+    svg {
+      height: 20px;
+      margin-right: 20px;
+      vertical-align: middle;
+    }
+
+    &.active {
+      color: red;
+    }
+  }
 }
 
 /* From old design
