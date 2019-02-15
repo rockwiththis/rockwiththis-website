@@ -56,10 +56,10 @@ class GenreFilters extends Component {
         >
           <div className="modal-overlay"></div>
           <div className="modal-background-container">
-            <div className="modal-background"></div>
+            <div className="modal-background" ref={this.modalRef}></div>
           </div>
 
-          <div className="genre-filter-content-container" ref={this.modalRef}>
+          <div className="genre-filter-content-container">
             {
               Object.keys(this.props.genres).length > 0 &&
               <div className="genre-filter-content">
@@ -72,8 +72,6 @@ class GenreFilters extends Component {
                       </div>
                   ))}
                 </div>
-
-                <div className="subgenre-separator">OR</div>
 
                 <div className="subgenre-header">subgenres</div>
 
@@ -98,7 +96,7 @@ class GenreFilters extends Component {
                   })}
                 </div>
 
-                <button className="submit">submit</button>
+                <div className="submit-button">submit</div>
               </div>
             }
           </div>

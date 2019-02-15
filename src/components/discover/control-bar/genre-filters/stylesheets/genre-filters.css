@@ -25,40 +25,50 @@
     margin: 0 auto;
     max-width: calc(1686px * 0.9);
     background-color: black;
-    opacity: 0.85; }
+    opacity: 0.85;
+    border-radius: 10px; }
 
 .genre-filters .genre-filter-content-container {
-  position: absolute;
+  position: fixed;
+  top: 140px;
+  left: 0;
   z-index: 2;
-  top: 20px;
   width: 100%;
-  height: calc(100vh - 250px); }
+  height: calc(100vh - 240px); }
   .genre-filters .genre-filter-content-container .genre-filter-content {
+    width: 90%;
+    max-width: calc(1686px * 0.9);
+    margin: 0 auto;
     margin-top: 30px;
     color: white;
-    font-weight: bold; }
+    font-weight: bold;
+    text-align: center; }
     .genre-filters .genre-filter-content-container .genre-filter-content > div {
-      text-align: center;
       margin: 20px 0; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genre-header {
       font-size: 24pt; }
     .genre-filters .genre-filter-content-container .genre-filter-content .subgenre-header {
-      font-size: 20pt; }
-    .genre-filters .genre-filter-content-container .genre-filter-content .genre-button, .genre-filters .genre-filter-content-container .genre-filter-content .subgenre-button {
+      font-size: 20pt;
+      margin-top: 30px; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genre-button, .genre-filters .genre-filter-content-container .genre-filter-content .subgenre-button, .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
       cursor: pointer;
       display: inline-block;
       margin: 10px;
-      padding: 5px 10px;
       border: 1px solid white;
       background: #303030; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
       border-radius: 5px;
       padding: 10px 12px; }
     .genre-filters .genre-filter-content-container .genre-filter-content .subgenres {
-      max-width: 750px;
+      max-width: 1100px;
       margin: 0 auto; }
       .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
         display: inline-block;
         margin: 10px 15px; }
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
+          padding: 5px 10px;
           border-radius: 15px; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
+      margin-top: 25px;
+      padding: 12px 15px;
+      border-radius: 5px; }

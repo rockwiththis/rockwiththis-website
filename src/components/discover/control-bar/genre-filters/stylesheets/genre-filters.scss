@@ -31,24 +31,29 @@
       max-width: calc(1686px * 0.9);
       background-color: black;
       opacity: 0.85;
+      border-radius: 10px;
     }
   }
 
   .genre-filter-content-container {
     // Doing this so modal opacity is not inherited by the contents
-    position: absolute;
+    position: fixed;
+    top: 140px;
+    left: 0;
     z-index: 2;
-    top: 20px;
     width: 100%;
-    height: calc(100vh - 250px);
+    height: calc(100vh - 240px);
 
     .genre-filter-content {
+      width: 90%;
+      max-width: calc(1686px * 0.9);
+      margin: 0 auto;
       margin-top: 30px;
       color: white;
       font-weight: bold;
+      text-align: center;
 
       > div {
-        text-align: center;
         margin: 20px 0;
       }
 
@@ -58,13 +63,13 @@
 
       .subgenre-header {
         font-size: 20pt;
+        margin-top: 30px;
       }
 
-      .genre-button, .subgenre-button {
+      .genre-button, .subgenre-button, .submit-button {
         cursor: pointer;
         display: inline-block;
         margin: 10px;
-        padding: 5px 10px;
         border: 1px solid white;
         background: rgba(48, 48, 48, 1.0);
       }
@@ -77,7 +82,7 @@
       }
 
       .subgenres {
-        max-width: 750px;
+        max-width: 1100px;
         margin: 0 auto;
 
         .subgenre-group {
@@ -85,9 +90,16 @@
           margin: 10px 15px;
 
           .subgenre-button {
+            padding: 5px 10px;
             border-radius: 15px;
           }
         }
+      }
+
+      .submit-button {
+        margin-top: 25px;
+        padding: 12px 15px;
+        border-radius: 5px;
       }
 
     }
