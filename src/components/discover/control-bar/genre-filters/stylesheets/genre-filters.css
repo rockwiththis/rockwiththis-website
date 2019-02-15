@@ -36,15 +36,28 @@
   width: 100%;
   height: calc(100vh - 240px); }
   .genre-filters .genre-filter-content-container .genre-filter-content {
+    position: relative;
     width: 90%;
     max-width: calc(1686px * 0.9);
     margin: 0 auto;
-    margin-top: 30px;
+    padding: 0 20px;
+    margin-top: 20px;
     color: white;
     font-weight: bold;
-    text-align: center; }
+    text-align: center;
+    box-sizing: border-box; }
     .genre-filters .genre-filter-content-container .genre-filter-content > div {
       margin: 20px 0; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .close {
+      position: absolute;
+      font-size: 40pt;
+      font-weight: normal;
+      cursor: pointer;
+      margin: 0 auto;
+      margin-top: 0;
+      width: calc(100% - 40px);
+      text-align: right;
+      box-sizing: border-box; }
     .genre-filters .genre-filter-content-container .genre-filter-content .gf-button {
       cursor: pointer;
       display: inline-block;

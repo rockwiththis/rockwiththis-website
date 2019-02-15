@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { find, pickBy, uniq, compact, flatten } from 'lodash';
+import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
 import { resetSongs } from 'actions/fetch/songs';
@@ -151,6 +152,8 @@ class GenreFilters extends Component {
             {
               Object.keys(this.props.genres).length > 0 ? (
                 <div className="genre-filter-content" ref={this.modalRef}>
+
+                  <div className="close" onClick={() => this.props.hide()}><IoIosClose /></div>
 
                   <div
                     className={
