@@ -43,54 +43,6 @@ const INITIAL_STATE = {
 }
 
 const appReducers = handleActions({
-  'app/SET_FILTERED_SONG_LIST': (state, action) => {
-    return update(state, {
-      filteredPosts: { $set: action.payload },
-      spotlightPost: { $set: action.payload[0] },
-      currentSongListPageIndex: { $set: 0 },
-      maxSongListPageIndex: { $set: 0 },
-      shouldLoadPlayers: { $set: true }
-    })
-  },
-  'app/SET_LOADING_STATUS': (state, action) => {
-    return update(state, {
-      currentRequestLoading: { $set: action.payload }
-    })
-  },
-  'app/LOAD_NEXT_SONGS': (state, action) => {
-    const newPageIndex = state.currentSongListPageIndex + 1;
-    const startPostIndex = newPageIndex * state.songListSize;
-    const endPostIndex = startPostIndex + state.songListSize;
-    const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
-    return update(state, {
-      currentSongListPageIndex: { $set: newPageIndex },
-      shouldLoadPlayers: { $set: true },
-      spotlightPost: {
-        $set: action.payload.updateSpotlight ?
-          action.payload.newSongList[0] :
-          state.spotlightPost
-      }
-    })
-  },
-  'app/LOAD_PREVIOUS_SONGS': (state, action) => {
-    const newPageIndex = state.currentSongListPageIndex - 1;
-    if (newPageIndex >= 0) {
-      const startPostIndex = newPageIndex * state.songListSize;
-      const endPostIndex = startPostIndex + state.songListSize;
-      const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
-      return update(state, {
-        currentSongListPageIndex: { $set: newPageIndex },
-        shouldLoadPlayers: { $set: true },
-        spotlightPost: {
-          $set: action.payload.updateSpotlight ?
-            newSongList.slice(-1).pop() :
-            state.spotlightPost
-        }
-      })
-    } else {
-      return state
-    }
-  },
 
   'app/PLAYER_BANK_UPDATED': (state, action) => {
     return update(state, { shouldLoadPlayers: { $set: false } });
@@ -126,29 +78,6 @@ const appReducers = handleActions({
   'app/SET_RELATED_SONGS': (state, action) => {
     return update(state, {
       relatedSongs: { $set: action.payload }
-    })
-  },
-  'app/TOGGLE_FILTER': (state, action) => {
-    const filters = state.filters
-    console.log("filters", filters);
-    console.log(action.payload.i);
-    filters[action.payload.i].selected = !filters[action.payload.i].selected
-
-    const selectedFilters = filters.filter(filter => filter.selected === true)
-    return update(state, {
-      filters: { $set: filters },
-      selectedFilters: { $set: selectedFilters}
-    })
-  },
-  'app/CLEAR_FILTERS': (state, action) => {
-    // const filters = state.filters.map(filter => {
-    //   filter.selected = false
-    //   return filter
-    // })
-    return update(state, {
-      // filters: { $set: filters },
-      filteredPosts: { $set: state.posts },
-      selectedFilters: { $set: [] }
     })
   },
   ...fetchSongsReducers,
