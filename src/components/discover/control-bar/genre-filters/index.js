@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, uniq, compact, flatten } from 'lodash';
+import { find, pickBy, uniq, compact, flatten } from 'lodash';
 
 import { fetchGenres } from 'actions/fetch/genres';
 import { resetSongs } from 'actions/fetch/songs';
@@ -65,7 +65,7 @@ class GenreFilters extends Component {
         this.props.genres[genreName].subgenres.reduce(
           (currSubgenres, subgenreToRemove) => ({
             ...currSubgenres,
-            [subgenreToRemove.name]: undefined
+            [subgenreToRemove.id]: undefined
           }),
           this.state.selectedSubgenres
         )
@@ -88,7 +88,8 @@ class GenreFilters extends Component {
     })
 
   areAllGenresSelected = () =>
-    !find(this.state.selectedGenres, x => !!x)
+    !find(this.state.selectedGenres, x => !!x) &&
+    !this.areAnySubgenresSelected()
 
   areAnySubgenresSelected = () =>
     !!find(this.state.selectedSubgenres, x => !!x)
@@ -119,11 +120,12 @@ class GenreFilters extends Component {
 
     const subgenreIds = [
       ...flatten(
-        Object.keys(this.state.selectedGenres).map(genreName => (
-            this.props.genres[genreName].subgenres.map(subgenre => subgenre.id_)
-        ))
+        Object.keys(pickBy(this.state.selectedGenres, value => !!value))
+          .map(genreName => (
+            this.props.genres[genreName].subgenres.map(subgenre => subgenre.id)
+          ))
       ),
-      ...Object.keys(this.state.selectedSubgenres)
+      ...Object.keys(pickBy(this.state.selectedSubgenres, value => !!value))
     ]
 
     if (subgenreIds !== this.props.currSubgenreFilterIds)
