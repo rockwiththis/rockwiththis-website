@@ -63,6 +63,15 @@
         margin: 10px;
         background-color: #303030;
         box-shadow: 2px 2px 5px black;
+
+        &.selected {
+          background-color: white;
+          color: black;
+        }
+        &.included {
+          background-color: gray;
+          color: black;
+        }
       }
 
       .genres {
@@ -80,10 +89,6 @@
           border: 1px solid gray;
         }
         &.all-selected {
-          .genre-button {
-            background-color: gray;
-            color: black;
-          }
           .all-button {
             border: 1px solid white;
           }

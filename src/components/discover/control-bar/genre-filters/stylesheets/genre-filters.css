@@ -51,6 +51,12 @@
       margin: 10px;
       background-color: #303030;
       box-shadow: 2px 2px 5px black; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.selected {
+        background-color: white;
+        color: black; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
+        background-color: gray;
+        color: black; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
       font-size: 24pt; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
@@ -61,9 +67,6 @@
       border-radius: 5px;
       padding: 5px 20px;
       border: 1px solid gray; }
-    .genre-filters .genre-filter-content-container .genre-filter-content .genres.all-selected .genre-button {
-      background-color: gray;
-      color: black; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres.all-selected .all-button {
       border: 1px solid white; }
     .genre-filters .genre-filter-content-container .genre-filter-content .subgenres {

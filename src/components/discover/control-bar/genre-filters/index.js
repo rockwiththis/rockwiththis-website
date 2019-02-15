@@ -46,6 +46,40 @@ class GenreFilters extends Component {
 
   getGenreName = genre => genre.spacedName || genre.name;
 
+  // Mark selected genre as set or unset
+  // Always reset the child subgenres
+  toggleGenre = genreKey =>
+    this.setState({
+      ...this.state,
+      selectedGenres: {
+        ...this.state.selectedGenres,
+        [genreKey]: !!this.state.selectedGenres[genreKey] ? undefined : true
+      },
+      selectedSubgenres:
+        this.props.genres[genreKey].subgenres.reduce(
+          (currSubgenres, subgenreToRemove) => ({
+            ...currSubgenres,
+            [subgenreToRemove.name]: undefined
+          }),
+          this.state.selectedSubgenres
+        )
+    })
+
+  // Mark selected subgenre as set or unset
+  // Always reset the parent genre
+  toggleSubgenre = (genreKey, subgenreKey) =>
+    this.setState({
+      ...this.state,
+      selectedGenres: {
+        ...this.state.selectedGenres,
+        [genreKey]: undefined
+      },
+      selectedSubgenres: {
+        ...this.state.selectedSubgenres,
+        [subgenreKey]: !!this.state.selectedSubgenres[subgenreKey] ? undefined : true
+      }
+    })
+
   render() {
     return (
         <div
@@ -67,7 +101,7 @@ class GenreFilters extends Component {
                   <div
                     className={
                       'genres' +
-                      (this.state.selectedGenres.length === 0 ? ' all-selected' : '')
+                      (Object.keys(this.state.selectedGenres).length === 0 ? ' all-selected' : '')
                     }
                   >
                     <div className="genre-header">
@@ -76,7 +110,14 @@ class GenreFilters extends Component {
                     </div>
 
                     { ALL_GENRES.map(genreKey => (
-                        <div className={`gf-button genre-button ${genreKey}`}>
+                        <div
+                          className={
+                            `gf-button genre-button ${genreKey}` +
+                            (!!this.state.selectedGenres[genreKey] ? ' selected' : '') +
+                            (Object.keys(this.state.selectedGenres).length === 0 ? ' included' : '')
+                          }
+                          onClick={() => this.toggleGenre(genreKey)}
+                        >
                           { this.getGenreName(this.props.genres[genreKey]) }
                         </div>
                     ))}
@@ -85,7 +126,7 @@ class GenreFilters extends Component {
                   <div
                     className={
                       'subgenres' +
-                      (this.state.selectedSubgenres.length > 0 ? ' any-selected' : '')
+                      (Object.keys(this.state.selectedSubgenres).length > 0 ? ' any-selected' : '')
                     }
                   >
                     <div className="subgenre-header">
@@ -93,24 +134,25 @@ class GenreFilters extends Component {
                       <div className="gf-button clear-button">clear</div>
                     </div>
 
-                    { ALL_GENRES.map(genreKey => {
-                        const genre = this.props.genres[genreKey];
-
-                        return (
-                            <div className={`subgenre-group ${genreKey}`}>
-                              {
-                                !genre.isHidden &&
-                                <div className='gf-button subgenre-button'>{ this.getGenreName(genre) }</div>
-                              }
-                              {
-                                genre.subgenres.map(subgenre => (
-                                  !subgenre.isHidden &&
-                                  <div className='gf-button subgenre-button'>{ this.getGenreName(subgenre) }</div>
-                                ))
-                              }
-                            </div>
-                        );
-                    })}
+                    { ALL_GENRES.map(genreKey => (
+                        <div className={`subgenre-group ${genreKey}`}>
+                          {
+                            this.props.genres[genreKey].subgenres.map(subgenre => (
+                              !subgenre.isHidden &&
+                              <div
+                                className={
+                                  `gf-button subgenre-button ${genreKey}` +
+                                  (!!this.state.selectedSubgenres[subgenre.name] ? ' selected' : '') +
+                                  (!!this.state.selectedGenres[genreKey] ? ' included' : '')
+                                }
+                                onClick={() => this.toggleSubgenre(genreKey, subgenre.name)}
+                              >
+                                { this.getGenreName(subgenre) }
+                              </div>
+                            ))
+                          }
+                        </div>
+                    ))}
                   </div>
 
                   <div className="gf-button submit-button">submit</div>
