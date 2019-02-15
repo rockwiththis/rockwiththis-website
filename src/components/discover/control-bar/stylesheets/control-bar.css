@@ -1,7 +1,8 @@
 .control-wrapper {
   width: 100%;
   max-width: 1685px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  user-select: none; }
   .control-wrapper .control-bar {
     height: 45px;
     background: #f5f3f3;
