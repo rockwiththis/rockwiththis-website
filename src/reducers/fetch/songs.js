@@ -20,8 +20,12 @@ export default {
 
   'app/RESET_SONGS': (state, action) => {
     expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
+
     const isShuffle = action.payload.isShuffle === undefined ?
       state.isShuffle : action.payload.isShuffle
+
+    const subgenreFilterIds = action.payload.subgenreIds === undefined ?
+      state.subgenreFilterIds : action.payload.subgenreIds
 
     return {
       ...state,
@@ -39,6 +43,7 @@ export default {
             state.activeSong : action.payload.songs[0]
       ),
       isShuffle: isShuffle,
+      subgenreFilterIds: subgenreFilterIds,
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,

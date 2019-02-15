@@ -28,6 +28,7 @@ const INITIAL_STATE = {
   relatedSongs: [],
   filters: [],
   genres: {},
+  subgenreFilterIds: [],
   selectedFilters: [],
   currentSongListPageIndex: 0,
   maxSongListPageIndex: 0,
