@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { find, uniq, compact } from 'lodash';
 
 import { fetchGenres } from 'actions/fetch/genres';
 import { ALL_GENRES } from 'constants/base-genres';
@@ -76,9 +77,41 @@ class GenreFilters extends Component {
       },
       selectedSubgenres: {
         ...this.state.selectedSubgenres,
-        [subgenreKey]: !!this.state.selectedSubgenres[subgenreKey] ? undefined : true
+        [subgenreKey]: !!this.state.selectedSubgenres[subgenreKey] ? undefined : genreKey
       }
     })
+
+  areAllGenresSelected = () =>
+    !find(this.state.selectedGenres, x => !!x)
+
+  areAnySubgenresSelected = () =>
+    !!find(this.state.selectedSubgenres, x => !!x)
+
+  selectAllGenres = () =>
+    this.setState({
+      ...this.state,
+      selectedGenres: {},
+      selectedSubgenres: {}
+    })
+
+  clearSelectedSubgenres = () => {
+    const includedGenreKeys = uniq(compact(
+      Object.values(this.state.selectedSubgenres)
+    ));
+    this.setState({
+      ...this.state,
+      selectedGenres:
+        includedGenreKeys.reduce((currGenres, genreKey) => ({
+          ...currGenres,
+          [genreKey]: true
+        }), this.state.selectedGenres),
+      selectedSubgenres: {}
+    })
+  }
+
+  submit = () => {
+
+  }
 
   render() {
     return (
@@ -101,12 +134,17 @@ class GenreFilters extends Component {
                   <div
                     className={
                       'genres' +
-                      (Object.keys(this.state.selectedGenres).length === 0 ? ' all-selected' : '')
+                      (this.areAllGenresSelected() ? ' all-selected' : '')
                     }
                   >
                     <div className="genre-header">
                       <span>pick your genres | </span>
-                      <div className="gf-button all-button">all</div>
+                      <div
+                        className="gf-button all-button"
+                        onClick={() => this.selectAllGenres()}
+                      >
+                        all
+                      </div>
                     </div>
 
                     { ALL_GENRES.map(genreKey => (
@@ -114,7 +152,7 @@ class GenreFilters extends Component {
                           className={
                             `gf-button genre-button ${genreKey}` +
                             (!!this.state.selectedGenres[genreKey] ? ' selected' : '') +
-                            (Object.keys(this.state.selectedGenres).length === 0 ? ' included' : '')
+                            (this.areAllGenresSelected() ? ' included' : '')
                           }
                           onClick={() => this.toggleGenre(genreKey)}
                         >
@@ -126,12 +164,17 @@ class GenreFilters extends Component {
                   <div
                     className={
                       'subgenres' +
-                      (Object.keys(this.state.selectedSubgenres).length > 0 ? ' any-selected' : '')
+                      (this.areAnySubgenresSelected() ? ' any-selected' : '')
                     }
                   >
                     <div className="subgenre-header">
                       <span>subgenres | </span>
-                      <div className="gf-button clear-button">clear</div>
+                      <div
+                        className="gf-button clear-button"
+                        onClick={() => this.clearSelectedSubgenres()}
+                      >
+                        clear
+                      </div>
                     </div>
 
                     { ALL_GENRES.map(genreKey => (
@@ -155,7 +198,10 @@ class GenreFilters extends Component {
                     ))}
                   </div>
 
-                  <div className="gf-button submit-button">submit</div>
+                  <div
+                    className="gf-button submit-button"
+                    onClick={() => this.submit()}
+                  >submit</div>
                 </div>
               ) : (
                 <div className="genre-filter-content" ref={this.modalRef}></div>

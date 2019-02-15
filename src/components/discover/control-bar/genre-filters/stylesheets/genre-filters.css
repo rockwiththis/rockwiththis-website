@@ -80,7 +80,8 @@
         border-radius: 15px;
         padding: 5px 10px;
         margin-left: 5px;
-        color: gray; }
+        color: gray;
+        border: 1px solid gray; }
       .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
         display: inline-block;
         margin: 10px 15px; }
