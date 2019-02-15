@@ -59,7 +59,7 @@ class GenreFilters extends Component {
             <div className="modal-background"></div>
           </div>
 
-          <div className="genre-filter-content-container">
+          <div className="genre-filter-content-container" ref={this.modalRef}>
             {
               Object.keys(this.props.genres).length > 0 &&
               <div className="genre-filter-content">
