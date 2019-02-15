@@ -56,48 +56,68 @@ class GenreFilters extends Component {
         >
           <div className="modal-overlay"></div>
           <div className="modal-background-container">
-            <div className="modal-background" ref={this.modalRef}></div>
+            <div className="modal-background"></div>
           </div>
 
           <div className="genre-filter-content-container">
             {
-              Object.keys(this.props.genres).length > 0 &&
-              <div className="genre-filter-content">
-                <div className="genre-header">pick your genres</div>
+              Object.keys(this.props.genres).length > 0 ? (
+                <div className="genre-filter-content" ref={this.modalRef}>
 
-                <div className="genres">
-                  { ALL_GENRES.map(genreKey => (
-                      <div className={`genre-button ${genreKey}`}>
-                        { this.getGenreName(this.props.genres[genreKey]) }
-                      </div>
-                  ))}
+                  <div
+                    className={
+                      'genres' +
+                      (this.state.selectedGenres.length === 0 ? ' all-selected' : '')
+                    }
+                  >
+                    <div className="genre-header">
+                      <span>pick your genres | </span>
+                      <div className="gf-button all-button">all</div>
+                    </div>
+
+                    { ALL_GENRES.map(genreKey => (
+                        <div className={`gf-button genre-button ${genreKey}`}>
+                          { this.getGenreName(this.props.genres[genreKey]) }
+                        </div>
+                    ))}
+                  </div>
+
+                  <div
+                    className={
+                      'subgenres' +
+                      (this.state.selectedSubgenres.length > 0 ? ' any-selected' : '')
+                    }
+                  >
+                    <div className="subgenre-header">
+                      <span>subgenres | </span>
+                      <div className="gf-button clear-button">clear</div>
+                    </div>
+
+                    { ALL_GENRES.map(genreKey => {
+                        const genre = this.props.genres[genreKey];
+
+                        return (
+                            <div className={`subgenre-group ${genreKey}`}>
+                              {
+                                !genre.isHidden &&
+                                <div className='gf-button subgenre-button'>{ this.getGenreName(genre) }</div>
+                              }
+                              {
+                                genre.subgenres.map(subgenre => (
+                                  !subgenre.isHidden &&
+                                  <div className='gf-button subgenre-button'>{ this.getGenreName(subgenre) }</div>
+                                ))
+                              }
+                            </div>
+                        );
+                    })}
+                  </div>
+
+                  <div className="gf-button submit-button">submit</div>
                 </div>
-
-                <div className="subgenre-header">subgenres</div>
-
-                <div className="subgenres">
-                  { ALL_GENRES.map(genreKey => {
-                      const genre = this.props.genres[genreKey];
-
-                      return (
-                          <div className={`subgenre-group ${genreKey}`}>
-                            {
-                              !genre.isHidden &&
-                              <div className='subgenre-button'>{ this.getGenreName(genre) }</div>
-                            }
-                            {
-                              genre.subgenres.map(subgenre => (
-                                !subgenre.isHidden &&
-                                <div className='subgenre-button'>{ this.getGenreName(subgenre) }</div>
-                              ))
-                            }
-                          </div>
-                      );
-                  })}
-                </div>
-
-                <div className="submit-button">submit</div>
-              </div>
+              ) : (
+                <div className="genre-filter-content" ref={this.modalRef}></div>
+              )
             }
           </div>
 
