@@ -27,6 +27,7 @@ const INITIAL_STATE = {
   singlePageSongPost: {},
   relatedSongs: [],
   filters: [],
+  genres: {},
   selectedFilters: [],
   currentSongListPageIndex: 0,
   maxSongListPageIndex: 0,

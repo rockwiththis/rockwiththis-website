@@ -2,42 +2,6 @@
 
   &.hidden { display : none }
 
-  .modal-container {
-    position: fixed;
-    top: 140px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 240px);
-    z-index: 1;
-
-    .modal {
-      width: 90%;
-      height: 100%;
-      margin: 0 auto;
-      max-width: calc(1686px * 0.9);
-      background-color: black;
-      opacity: 0.9;
-      box-sizing: border-box;
-      padding-top: 10px;
-
-      color: white;
-      > div {
-        text-align: center;
-        margin: 20px 0;
-      }
-
-      .genre-header {
-        font-size: 24pt;
-        font-weight: bold;
-      }
-
-      .subgenre-header {
-        font-size: 20pt;
-        font-weight: bold;
-      }
-    }
-  }
-
   .modal-overlay {
     position: fixed;
     // Better would be to sort out z-indexing and
@@ -51,4 +15,82 @@
     background-color: white;
     opacity: 0.7;
   }
+
+  .modal-background-container {
+    position: fixed;
+    top: 140px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 240px);
+    z-index: 1;
+
+    .modal-background {
+      width: 90%;
+      height: 100%;
+      margin: 0 auto;
+      max-width: calc(1686px * 0.9);
+      background-color: black;
+      opacity: 0.85;
+    }
+  }
+
+  .genre-filter-content-container {
+    // Doing this so modal opacity is not inherited by the contents
+    position: absolute;
+    z-index: 2;
+    top: 20px;
+    width: 100%;
+    height: calc(100vh - 250px);
+
+    .genre-filter-content {
+      margin-top: 30px;
+      color: white;
+      font-weight: bold;
+
+      > div {
+        text-align: center;
+        margin: 20px 0;
+      }
+
+      .genre-header {
+        font-size: 24pt;
+      }
+
+      .subgenre-header {
+        font-size: 20pt;
+      }
+
+      .genre-button, .subgenre-button {
+        cursor: pointer;
+        display: inline-block;
+        margin: 10px;
+        padding: 5px 10px;
+        border: 1px solid white;
+        background: rgba(48, 48, 48, 1.0);
+      }
+
+      .genres {
+        .genre-button {
+          border-radius: 5px;
+          padding: 10px 12px;
+        }
+      }
+
+      .subgenres {
+        max-width: 750px;
+        margin: 0 auto;
+
+        .subgenre-group {
+          display: inline-block;
+          margin: 10px 15px;
+
+          .subgenre-button {
+            border-radius: 15px;
+          }
+        }
+      }
+
+    }
+  }
+
 }
