@@ -127,13 +127,6 @@ const appReducers = handleActions({
       relatedSongs: { $set: action.payload }
     })
   },
-  'app/FETCH_FILTERS': (state, action) => {
-    console.log("action.payload");
-    console.log(action.payload);
-    return update(state, {
-      filters: { $set: action.payload.subgenres }
-    })
-  },
   'app/TOGGLE_FILTER': (state, action) => {
     const filters = state.filters
     console.log("filters", filters);
@@ -155,11 +148,6 @@ const appReducers = handleActions({
       // filters: { $set: filters },
       filteredPosts: { $set: state.posts },
       selectedFilters: { $set: [] }
-    })
-  },
-  'FETCH_FILTERS_SUCCESS': (state, action) => {
-    return update(state, {
-      filters: { $set: action.filters },
     })
   },
   ...fetchSongsReducers,

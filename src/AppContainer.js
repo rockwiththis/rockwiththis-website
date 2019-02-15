@@ -18,8 +18,6 @@ class AppContainer extends Component {
     this.discoveryScroll = 0;
 
     this.playerBankRef = React.createRef();
-
-    this.props.actions.fetchFilters()
   }
 
   componentDidMount = () => {

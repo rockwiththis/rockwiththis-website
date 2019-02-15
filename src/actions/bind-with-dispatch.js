@@ -1,5 +1,4 @@
 import { createAction } from 'redux-actions'
-import { FETCH_FILTERS } from './filters'
 import * as Scroll from 'react-scroll'
 import $ from "jquery";
 
@@ -8,24 +7,6 @@ import $ from "jquery";
 const apiBaseUrl = process.env.NODE_ENV == 'development' ? 'http://localhost:9292/api' : '/api'
 // const apiBaseUrl = 'http://ec2-18-208-165-207.compute-1.amazonaws.com/api/'
 // const apiBaseUrl = 'http://www.rockwiththis.com/api/'
-
-export const fetchFilters = (pageNumber = 1) => (dispatch, getState) => {
-  dispatch({
-    type: FETCH_FILTERS.IN_PROGRESS,
-  })
-  const dataURL = apiBaseUrl + '/subgenres'
-  fetch(dataURL).then(res => res.json()).then(res => {
-    dispatch({
-      type: FETCH_FILTERS.SUCCESS,
-      filters: res,
-    })
-  }).catch((error) => {
-    dispatch({
-      type: FETCH_FILTERS.FAILURE,
-      payload: error,
-    })
-  })
-}
 
 export const SET_LOADING_STATUS = createAction('app/SET_LOADING_STATUS')
 export const SET_FILTERED_SONG_LIST = createAction('app/SET_FILTERED_SONG_LIST')
