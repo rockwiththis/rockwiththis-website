@@ -52,10 +52,12 @@ const LOADED_MORE_SONGS = createAction('app/LOADED_MORE_SONGS');
 export const loadMoreSongs = ({ updateSpotlight = false } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
   return fetchSongs(getState(), true)
-    .then(fetchedSongs => (
+    .then(fetchedSongs => {
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
         dispatch(LOADED_MORE_SONGS({ newSongs: fetchedSongs, updateSpotlight }))
-    ))
+
+      return fetchedSongs;
+    })
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
