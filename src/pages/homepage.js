@@ -6,13 +6,13 @@ import { Helmet } from 'react-helmet';
 import HeroPosts from 'components/HeroGrid/HeroPosts';
 import DiscoverSection from 'components/discover';
 
-import { resetSongs } from 'actions/fetch/songs';
+import { setInitialSongs } from 'actions/fetch/songs';
 import { setMainScroll } from 'actions/scroll';
 
 const propTypes = {
   // Redux
   songs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  fetchInitialSongs: PropTypes.func.isRequired,
+  setInitialSongs: PropTypes.func.isRequired,
   // mainScrollPos: PropTypes.number.isRequired,
   // setMainScroll: PropTypes.func.isRequired
 }
@@ -21,7 +21,7 @@ class Homepage extends Component {
 
   componentWillMount = () =>
     this.props.songs.length === 0 &&
-    this.props.fetchInitialSongs();
+    this.props.setInitialSongs();
 
   /* TODO come up w/ better scroll anchoring solution
 
@@ -74,5 +74,5 @@ Homepage.propTypes = propTypes;
 
 export default connect(
   ({ filteredPosts }) => ({ songs: filteredPosts }),
-  { fetchInitialSongs: resetSongs }
+  { setInitialSongs }
 )(Homepage)

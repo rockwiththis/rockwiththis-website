@@ -36,6 +36,18 @@ export const resetSongs = ({ isShuffle, subgenreIds } = {}) => (dispatch, getSta
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
 
+const SET_INITIAL_SONGS = createAction('app/SET_INITIAL_SONGS');
+export const setInitialSongs = () => (dispatch, getState) => {
+  dispatch(LOADING_SONGS());
+  return fetchSongs(getState(), false)
+    .then(fetchedSongs => (
+      fetchedSongs.length === 0 ?
+        dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
+        dispatch(SET_INITIAL_SONGS({ songs: fetchedSongs }))
+    ))
+    .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
+}
+
 const LOADED_MORE_SONGS = createAction('app/LOADED_MORE_SONGS');
 export const loadMoreSongs = ({ updateSpotlight = false } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
