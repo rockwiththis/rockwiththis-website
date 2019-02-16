@@ -19,6 +19,8 @@
       width: 120px;
       display: inline-block;
       cursor: pointer;
+      text-align: center;
+
 
       @media(max-width: 800px) {
         width: 20%;
@@ -71,4 +73,11 @@
     max-width: 1685px;
     margin: 0 auto;
     z-index: 1000;
+  }
+  .fixed-controls-bar {
+
+    @media (max-width: 800px) {
+      top: 100px;
+      position: fixed !important;
+    }
   }

@@ -14,7 +14,8 @@
   .control-bar .control-bar-item {
     width: 120px;
     display: inline-block;
-    cursor: pointer; }
+    cursor: pointer;
+    text-align: center; }
     @media (max-width: 800px) {
       .control-bar .control-bar-item {
         width: 20%;
@@ -55,3 +56,8 @@
   max-width: 1685px;
   margin: 0 auto;
   z-index: 1000; }
+
+@media (max-width: 800px) {
+  .fixed-controls-bar {
+    top: 100px;
+    position: fixed !important; } }

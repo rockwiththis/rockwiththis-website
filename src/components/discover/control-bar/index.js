@@ -127,8 +127,13 @@ class ControlBar extends Component {
               }
               onClick={() => this.showViewsDropdown()}
             >
+            {/*
               <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
               <span className="control-bar-title mobile">{ this.getActiveViewName() }</span>
+              <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
+            */}
+            <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
+              <span className="control-bar-title mobile">View</span>
               <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
             </div>
 
@@ -150,7 +155,7 @@ class ControlBar extends Component {
             </div>
           </div>
 
-          <div className="controls">
+          <div className={`controls ${this.props.isControlBarFixed ? 'fixed-controls-bar' : ''}`}>
             <ViewsDropdown
               isActive={this.state.isViewsDropdownActive}
               activeView={this.props.discoverLayout}
