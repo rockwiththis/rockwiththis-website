@@ -1,12 +1,20 @@
 const database = require('../../../db');
 
-const songSelect = `
-  SELECT DISTINCT
+const songSelect = (isFiltered = false, filterInjectIndex) => `
+  SELECT
     songs.*,
     curator.first_name as curator_first_name,
     curator.last_name as curator_last_name,
     random() as random
-  FROM songs
+  ${ isFiltered && !!filterInjectIndex ?
+    `FROM (
+      SELECT DISTINCT joined_songs.*
+      FROM songs as joined_songs
+      ${subgenreJoins('LEFT', 'joined_songs')}
+      WHERE subgenres.id = ANY (\$${filterInjectIndex})
+    ) as songs` :
+    'FROM songs'
+  }
   LEFT JOIN users AS curator ON curator.id = songs.curator_id
 `;
 
@@ -15,8 +23,8 @@ const relationSelect = relationName => `
   FROM songs
 `;
 
-const subgenreJoins = (joinType = 'INNER') => `
-  ${joinType} JOIN subgenre_songs ON songs.id = subgenre_songs.song_id
+const subgenreJoins = (joinType = 'INNER', songTableName = 'songs') => `
+  ${joinType} JOIN subgenre_songs ON ${songTableName}.id = subgenre_songs.song_id
   ${joinType} JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id
 `;
 
@@ -30,12 +38,12 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle
   let sqlInjectValues = [songsLimit, songsOffset];
   const limitStatement = 'LIMIT $1';
   const offsetStatement = 'OFFSET $2';
-  let subgenreIdFilter = '';
+  let subgenreFilterInjectIndex = null;
   let omitSongIdsFilter = '';
 
   if (subgenreIds.length > 0) {
     sqlInjectValues.push(subgenreIds);
-    subgenreIdsFilter = `WHERE subgenres.id = ANY (\$${sqlInjectValues.length})`;
+    subgenreFilterInjectIndex = sqlInjectValues.length;
   }
 
   if (omitSongIds.length > 0) {
@@ -48,8 +56,7 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle
     'ORDER BY songs.created_at DESC, songs.id';
 
   const queryText = `(
-    ${songSelect}
-    ${subgenreIdFilter}
+    ${songSelect(subgenreIds.length > 0, subgenreFilterInjectIndex)}
     ${omitSongIdsFilter}
     ${orderStatement}
     ${limitStatement}
@@ -63,7 +70,7 @@ const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle
 const getSingleSong = songId =>
   database.query({
     text: `
-      ${songSelect}
+      ${songSelect()}
       WHERE songs.id = $1
     `,
     values: [songId]

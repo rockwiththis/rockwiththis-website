@@ -2,7 +2,21 @@
 
   &.hidden { display : none }
 
-  .modal-container {
+  .modal-overlay {
+    position: fixed;
+    // Better would be to sort out z-indexing and
+    // just let the headers be above this
+    top: 120px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    opacity: 0.7;
+  }
+
+  .modal-background-container {
     position: fixed;
     top: 140px;
     left: 0;
@@ -10,7 +24,7 @@
     height: calc(100vh - 240px);
     z-index: 1;
 
-    .modal {
+    .modal-background {
       width: 90%;
       height: 100%;
       margin: 0 auto;
@@ -20,10 +34,30 @@
       box-sizing: border-box;
       padding-top: 10px;
       border-radius: 8px;
+    }
+  }
+  .genre-filter-content-container {
+    // Doing this so modal opacity is not inherited by the contents
+    position: fixed;
+    top: 140px;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: calc(100vh - 240px);
 
+    .genre-filter-content {
+      position: relative;
+      width: 90%;
+      max-width: calc(1686px * 0.9);
+      margin: 0 auto;
+      padding: 0 20px;
+      margin-top: 20px;
       color: white;
+      font-weight: bold;
+      text-align: center;
+      box-sizing: border-box;
+
       > div {
-        text-align: center;
         margin: 20px 0;
       }
 
@@ -31,12 +65,95 @@
         font-size: 24pt;
         font-weight: bold;
         font-weight: bold;
+      .close {
+        position: absolute;
+        font-size: 40pt;
+        font-weight: normal;
+        cursor: pointer;
+        margin: 0 auto;
+        margin-top: 0;
+        width: calc(100% - 40px);
+        text-align: right;
+        box-sizing: border-box;
       }
 
-      .subgenre-header {
-        font-size: 20pt;
-        font-weight: bold;
+      .gf-button {
+        cursor: pointer;
+        display: inline-block;
+        margin: 10px;
+        background-color: #303030;
+        box-shadow: 2px 2px 5px black;
+
+        &.selected {
+          background-color: white;
+          color: black;
+        }
+        &.included {
+          background-color: gray;
+          color: black;
+        }
       }
+
+      .genres {
+        .genre-header {
+          font-size: 24pt;
+        }
+        .genre-button {
+          border-radius: 5px;
+          padding: 10px 12px;
+        }
+        .all-button {
+          font-size: 16pt;
+          border-radius: 5px;
+          padding: 5px 20px;
+          border: 1px solid gray;
+        }
+        &.all-selected {
+          .all-button {
+            border: 1px solid white;
+          }
+        }
+      }
+
+      .subgenres {
+        max-width: 1100px;
+        margin: 0 auto;
+
+        .subgenre-header {
+          font-size: 20pt;
+          margin-top: 30px;
+        }
+        .clear-button {
+          font-size: 12pt;
+          border-radius: 15px;
+          padding: 5px 10px;
+          margin-left: 5px;
+          color: gray;
+          border: 1px solid gray;
+        }
+        .subgenre-group {
+          display: inline-block;
+          margin: 10px 15px;
+
+          .subgenre-button {
+            padding: 5px 10px;
+            border-radius: 15px;
+          }
+        }
+        &.any-selected {
+          .clear-button {
+            border: 1px solid white;
+            color: white;
+          }
+        }
+      }
+
+      .submit-button {
+        margin-top: 25px;
+        padding: 12px 15px;
+        border-radius: 5px;
+      }
+
     }
   }
 

@@ -46,7 +46,15 @@ const groupSubgenres = rows => (
           name: nextRow.genre_name,
           spacedName: nextRow.genre_spaced_name,
           isHidden: nextRow.genre_is_hidden,
-          subgenres: [ nextSubgenre ].filter(s => !!s)
+          subgenres: [
+            {
+              id: nextRow.genre_id,
+              name: nextRow.genre_name,
+              spacedName: nextRow.genre_spaced_name,
+              isHidden: nextRow.genre_is_hidden,
+            },
+            nextSubgenre
+          ].filter(s => !!s)
         }
     }
   }, {})

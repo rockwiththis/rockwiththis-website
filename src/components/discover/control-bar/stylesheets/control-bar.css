@@ -16,6 +16,37 @@
     display: inline-block;
     cursor: pointer;
     text-align: center; }
+  user-select: none; }
+  .control-wrapper .control-bar {
+    height: 45px;
+    background: #f5f3f3;
+    border-bottom: 1px solid #C9C6CB;
+    border-top: 1px solid #C9C6CB;
+    box-sizing: border-box;
+    padding-top: 12px; }
+    @media (max-width: 480px) {
+      .control-wrapper .control-bar {
+        height: 50px;
+        background: #fff; } }
+    .control-wrapper .control-bar .control-bar-item {
+      margin-left: 30px;
+      width: 160px;
+      display: inline-block;
+      cursor: pointer; }
+      .control-wrapper .control-bar .control-bar-item.active {
+        color: red; }
+      .control-wrapper .control-bar .control-bar-item .control-bar-icon {
+        height: 24px; }
+      @media (max-width: 800px) {
+        .control-wrapper .control-bar .control-bar-item .control-bar-title.desktop {
+          display: none; } }
+      @media (min-width: 800px) {
+        .control-wrapper .control-bar .control-bar-item .control-bar-title.mobile {
+          display: none; } }
+      @media (min-width: 800px) {
+        .control-wrapper .control-bar .control-bar-item .control-bar-title {
+          margin-left: 10px;
+          vertical-align: top; } }
     @media (max-width: 800px) {
       .control-bar .control-bar-item {
         width: 20%;

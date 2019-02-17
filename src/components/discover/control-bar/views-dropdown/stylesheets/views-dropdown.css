@@ -3,7 +3,7 @@
   width: 160px;
   background-color: white;
   padding: 20px;
-  padding-bottom: 10px; }
+  padding-bottom: 1px; }
   .views-dropdown.hidden {
     display: none; }
   @media (max-width: 800px) {

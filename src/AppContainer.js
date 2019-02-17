@@ -1,14 +1,25 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
-import * as BindActions from 'actions/bind-with-dispatch'
-import SocialLinks from 'components/SocialLinks/SocialLinks.js'
-import Header from 'components/Header/Header.js'
-import MainPlayer from 'components/FooterPlayer/MainPlayer'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
+import * as BindActions from 'actions/bind-with-dispatch';
+
+import { loadMoreSongs } from 'actions/fetch/songs';
+import { playSong } from 'actions/player';
+
+import SocialLinks from 'components/SocialLinks/SocialLinks.js';
+import Header from 'components/Header/Header.js';
+import MainPlayer from 'components/FooterPlayer/MainPlayer';
 import SongPlayerBank from 'components/SongPlayer/SongPlayerBank';
 
-// TODO proptypes
+const propTypes = {
+  // Redux
+  actions: PropTypes.object,   // TODO stop using this
+  loadMoreSongs: PropTypes.func.isRequired,
+  playSong: PropTypes.func.isRequired
+} 
 
 class AppContainer extends Component {
   constructor(props) {
@@ -18,8 +29,6 @@ class AppContainer extends Component {
     this.discoveryScroll = 0;
 
     this.playerBankRef = React.createRef();
-
-    this.props.actions.fetchFilters()
   }
 
   componentDidMount = () => {
@@ -61,20 +70,15 @@ class AppContainer extends Component {
     }
   };
 
-  // This is now broken ...
   changeSongOnEnd = () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
 
     if (nextIndex >= this.props.filteredPosts.length) {
-      console.log("loading more songs");
-      this.props.actions.loadMoreSongs(nextSongs => {
-        console.log("in callback");
-        console.log(nextSongs);
-          this.props.actions.toggleSong(nextSongs[0])
-      });
+      this.props.loadMoreSongs()
+        .then(newSongs => this.props.playSong(newSongs[0]));
 
     } else {
-      this.props.actions.toggleSong(this.props.filteredPosts[nextIndex]);
+      this.props.playSong(this.props.filteredPosts[nextIndex]);
     }
   }
 
@@ -115,8 +119,12 @@ const mapStateToProps = (state, ownProps) => Object.assign(state, ownProps)
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(BindActions, dispatch)
+    actions: bindActionCreators(BindActions, dispatch),
+    loadMoreSongs,
+    playSong
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatch)(AppContainer))
+export default withRouter(
+  connect(mapStateToProps, mapDispatch)(AppContainer)
+)
