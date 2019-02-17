@@ -92,7 +92,7 @@ class ControlBar extends Component {
       case FULL_VIEW:
         return 'Full';
       case SNAPSHOT_LIST_VIEW:
-        return 'Snapshot';
+        return 'Snap';
       case GRID_LIST_VIEW:
         return 'Grid';
       default: null
@@ -115,8 +115,11 @@ class ControlBar extends Component {
               }
               onClick={() => this.props.resetSongs({ isShuffle: !this.props.isShuffle })}
             >
+            <div className="control-bar-item-content">
               <span className="control-bar-icon"><ShuffleIcon /></span>
               <span className="control-bar-title">Shuffle</span>
+            </div>
+
             </div>
 
             <div
@@ -132,9 +135,12 @@ class ControlBar extends Component {
               <span className="control-bar-title mobile">{ this.getActiveViewName() }</span>
               <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
             */}
-            <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
-              <span className="control-bar-title mobile">View</span>
-              <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
+            <div className="control-bar-item-content">
+              <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
+                <span className="control-bar-title mobile">{ this.getActiveViewName() } View</span>
+                <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
+            </div>
+
             </div>
 
             <div
@@ -145,13 +151,17 @@ class ControlBar extends Component {
               }
               onClick={() => this.showGenreFilters()}
             >
-              <span className="control-bar-icon"><GenreIcon /></span>
-              <span className="control-bar-title">Subgenres</span>
+              <div className="control-bar-item-content">
+                <span className="control-bar-icon"><GenreIcon /></span>
+                <span className="control-bar-title">Subgenres</span>
+              </div>
             </div>
 
             <div className="control-bar-item moments">
-              <span className="control-bar-icon"><MomentIcon /></span>
-              <span className="control-bar-title">Moments</span>
+              <div className="control-bar-item-content">
+                <span className="control-bar-icon"><MomentIcon /></span>
+                <span className="control-bar-title">Moments</span>
+              </div>
             </div>
           </div>
 

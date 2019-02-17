@@ -51,8 +51,10 @@ class ViewsDropdown extends Component {
             }
             onClick={() => this.props.updateDiscoverLayout(FULL_VIEW)}
           >
-            <FullViewIcon />
-            <span>Full</span>
+            <div className="view-select-item-content">
+              <FullViewIcon />
+              <span>Full</span>
+            </div>
           </div>
 
           <div
@@ -62,8 +64,10 @@ class ViewsDropdown extends Component {
             }
             onClick={() => this.props.updateDiscoverLayout(SNAPSHOT_LIST_VIEW)}
           >
-            <SnapshotViewIcon />
-            <span>Snapshot</span>
+            <div className="view-select-item-content">
+              <SnapshotViewIcon />
+              <span>Snap</span>
+            </div>
           </div>
 
           <div
@@ -73,8 +77,10 @@ class ViewsDropdown extends Component {
             }
             onClick={() => this.props.updateDiscoverLayout(GRID_LIST_VIEW)}
           >
-            <GridViewIcon />
-            <span>Grid</span>
+            <div className="view-select-item-content">
+              <GridViewIcon />
+              <span>Grid</span>
+            </div>
           </div>
         </div>
     )
