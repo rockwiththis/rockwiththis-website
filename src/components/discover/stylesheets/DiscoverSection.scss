@@ -14,7 +14,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
   position: relative;
 
   @media (min-width: 800px) {
-    height: calc(100vh - 125px);
+    height: calc(100vh - 122px);
   }
   @media (max-width: 480px) {
     // margin-top: calc(100vw + 89px);
@@ -29,7 +29,7 @@ div#discovery-container.fullGridLayout .discover-full-song {
 
   .disableScroll {
     @media (min-width: 800px) {
-      overflow: hidden ;
+      overflow: hidden;
     }
   }
 

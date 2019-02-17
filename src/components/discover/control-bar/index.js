@@ -9,8 +9,8 @@ import {
   GRID_LIST_VIEW
 } from 'constants/discover-views';
 
-import ViewsDropdown from './views-dropdown';
-import GenreFilters from './genre-filters';
+import ViewsDropdown from './views-dropdown/index.js';
+import GenreFilters from './genre-filters/index.js';
 
 import FullViewIcon from 'components/icons/full-view';
 import SnapshotViewIcon from 'components/icons/snapshot-view';
@@ -104,9 +104,9 @@ class ControlBar extends Component {
 
   render() {
     return (
-        <div className="control-wrapper">
+        <div>
 
-          <div className={`control-bar ${this.getFixedControlBarClass}`}>
+          <div className={`control-bar ${this.props.isControlBarFixed ? 'fixed-control-bar' : ''}`}>
             <div
               className={
                 'control-bar-item ' +
@@ -127,8 +127,13 @@ class ControlBar extends Component {
               }
               onClick={() => this.showViewsDropdown()}
             >
+            {/*
               <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
               <span className="control-bar-title mobile">{ this.getActiveViewName() }</span>
+              <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
+            */}
+            <span className="control-bar-icon">{ this.getActiveViewIcon() }</span>
+              <span className="control-bar-title mobile">View</span>
               <span className="control-bar-title desktop">{ `${this.getActiveViewName()} View` }</span>
             </div>
 
@@ -150,7 +155,7 @@ class ControlBar extends Component {
             </div>
           </div>
 
-          <div className="controls">
+          <div className={`controls ${this.props.isControlBarFixed ? 'fixed-controls-bar' : ''}`}>
             <ViewsDropdown
               isActive={this.state.isViewsDropdownActive}
               activeView={this.props.discoverLayout}

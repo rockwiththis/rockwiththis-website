@@ -13,9 +13,10 @@
     background: #f5f3f3;
     border-bottom: 1px solid #C9C6CB;
     border-top: 1px solid #C9C6CB;
-
+    width: 100%;
+    max-width: 1685px;
+    margin: 0 auto;
     box-sizing: border-box;
-    padding-top: 12px;
 
     @media (max-width: 480px) {
       height: 50px;
@@ -23,10 +24,18 @@
     }
 
     .control-bar-item {
+      width: 120px;
       margin-left: 30px;
       width: 160px;
       display: inline-block;
       cursor: pointer;
+      text-align: center;
+
+
+      @media(max-width: 800px) {
+        width: 20%;
+        display: inline-block;
+      }
 
       &.active {
         color: red;
@@ -34,6 +43,8 @@
 
       .control-bar-icon {
         height: 24px;
+        display: block;
+        text-align: center;
       }
 
       .control-bar-title {
@@ -53,6 +64,7 @@
         border-left: 0px;
         position: fixed;
         top: 75px;
+        z-index: 903;
       }
       @media (max-width: 480px) {
         top: 50px;
@@ -68,4 +80,10 @@
     margin: 0 auto;
     z-index: 1000;
   }
-}
+  .fixed-controls-bar {
+
+    @media (max-width: 800px) {
+      top: 100px;
+      position: fixed !important;
+    }
+  }

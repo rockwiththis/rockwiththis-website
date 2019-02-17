@@ -1,7 +1,21 @@
-.control-wrapper {
+.control-bar {
+  height: 45px;
+  background: #f5f3f3;
+  border-bottom: 1px solid #C9C6CB;
+  border-top: 1px solid #C9C6CB;
   width: 100%;
   max-width: 1685px;
   margin: 0 auto;
+  box-sizing: border-box; }
+  @media (max-width: 480px) {
+    .control-bar {
+      height: 50px;
+      background: #fff; } }
+  .control-bar .control-bar-item {
+    width: 120px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center; }
   user-select: none; }
   .control-wrapper .control-bar {
     height: 45px;
@@ -34,18 +48,47 @@
           margin-left: 10px;
           vertical-align: top; } }
     @media (max-width: 800px) {
-      .control-wrapper .control-bar.fixed-control-bar {
-        box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-        border-left: 0px;
-        position: fixed;
-        top: 75px; } }
-    @media (max-width: 480px) {
-      .control-wrapper .control-bar.fixed-control-bar {
-        top: 50px;
-        height: 50px; } }
-  .control-wrapper .controls {
-    position: absolute;
-    width: 100%;
-    max-width: 1685px;
-    margin: 0 auto;
-    z-index: 1000; }
+      .control-bar .control-bar-item {
+        width: 20%;
+        display: inline-block; } }
+    .control-bar .control-bar-item.active {
+      color: red; }
+    .control-bar .control-bar-item .control-bar-icon {
+      height: 24px;
+      display: block;
+      text-align: center; }
+    @media (max-width: 800px) {
+      .control-bar .control-bar-item .control-bar-title.desktop {
+        display: none; } }
+    @media (min-width: 800px) {
+      .control-bar .control-bar-item .control-bar-title.mobile {
+        display: none; } }
+    @media (min-width: 800px) {
+      .control-bar .control-bar-item .control-bar-title {
+        margin-left: 10px;
+        vertical-align: top; } }
+    .control-bar .control-bar-item.view {
+      width: 160px; }
+  @media (max-width: 800px) {
+    .control-bar.fixed-control-bar {
+      box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+      border-left: 0px;
+      position: fixed;
+      top: 75px;
+      z-index: 903; } }
+  @media (max-width: 480px) {
+    .control-bar.fixed-control-bar {
+      top: 50px;
+      height: 50px; } }
+
+.controls {
+  position: absolute;
+  width: 100%;
+  max-width: 1685px;
+  margin: 0 auto;
+  z-index: 1000; }
+
+@media (max-width: 800px) {
+  .fixed-controls-bar {
+    top: 100px;
+    position: fixed !important; } }
