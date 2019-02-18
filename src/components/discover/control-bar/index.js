@@ -11,6 +11,7 @@ import {
 
 import ViewsDropdown from './views-dropdown/index.js';
 import GenreFilters from './genre-filters/index.js';
+import Moments from './moments/index.js';
 
 import FullViewIcon from 'components/icons/full-view';
 import SnapshotViewIcon from 'components/icons/snapshot-view';
@@ -47,6 +48,7 @@ class ControlBar extends Component {
     this.state = {
       isGenreFiltersActive: false,
       isViewsDropdownActive: false,
+      isMomentsActive: false,
     }
   }
 
@@ -74,6 +76,12 @@ class ControlBar extends Component {
 
   hideViewsDropdown = () =>
     this.setState({ isViewsDropdownActive: false });
+
+  showMoments = event =>
+    this.setState({ isMomentsActive: true });
+
+  hideMoments = () =>
+    this.setState({ isMomentsActive: false });
 
   getActiveViewIcon = () => {
     switch(this.props.discoverLayout) {
@@ -165,7 +173,14 @@ class ControlBar extends Component {
                   </div>
                 </div>
 
-                <div className="control-bar-item moments">
+                  <div
+                    className={
+                      'control-bar-item ' +
+                      'moments ' +
+                      (this.state.isMomentsActive ? 'active' : '')
+                    }
+                    onClick={() => this.showMoments()}
+                  >
                   <div className="control-bar-item-content">
                     <span className="control-bar-icon">
 
@@ -176,7 +191,6 @@ class ControlBar extends Component {
                     <span className="control-bar-title">Moments</span>
                   </div>
                 </div>
-
           </div>
 
           <div className={`controls ${this.props.isControlBarFixed ? 'fixed-controls-bar' : ''}`}>
@@ -189,6 +203,10 @@ class ControlBar extends Component {
               isActive={this.state.isGenreFiltersActive}
               hide={this.hideGenreFilters}
             />
+            <Moments
+                isActive={this.state.isMomentsActive}
+                hide={this.hideMoments}
+              />
           </div>
         </div>
     )

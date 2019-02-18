@@ -1,0 +1,22 @@
+.moments-modal.hidden {
+  display: none; }
+
+.moments-modal {
+  width: 50vw;
+  background: #282828;
+  margin-left: 315px;
+  height: auto;
+  padding: 15px;
+  width: auto;
+  color: #fff; }
+  @media (max-width: 800px) {
+    .moments-modal {
+      margin: 0;
+      width: 100vw;
+      text-align: center; } }
+  .moments-modal .text {
+    font-size: 12px;
+    margin-bottom: 5px; }
+  .moments-modal .comingSoon {
+    font-size: 14px;
+    font-weight: bold; }

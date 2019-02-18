@@ -93,7 +93,7 @@
     .genre-filters .genre-filter-content-container .genre-filter-content .gf-button {
       cursor: pointer;
       display: inline-block;
-      margin: 10px;
+      margin: 10px 5px;
       background-color: #303030;
       box-shadow: 2px 2px 5px black;
       opacity: .7; }
