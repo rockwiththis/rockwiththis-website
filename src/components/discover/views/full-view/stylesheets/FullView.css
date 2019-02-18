@@ -96,11 +96,11 @@
       width: 70%; } }
 
 .fullView .discover-full-song {
-  margin-left: 10px;
   height: calc(100vh - 200px);
   display: inline-block;
   position: relative;
   overflow-y: scroll;
+  width: 100%;
   scrollbar-width: none;
   /* Firefox */
   -ms-overflow-style: none;
@@ -131,7 +131,8 @@
     width: calc(100% - 70px);
     margin: 0 auto;
     display: block;
-    padding-bottom: 25px; }
+    padding-bottom: 25px;
+    max-width: 800px; }
     .fullView .discover-full-song .songContainer .wrapper {
       pointer-events: none;
       cursor: default; }
@@ -164,14 +165,12 @@
           text-overflow: ellipsis;
           overflow-x: hidden;
           max-width: 55%;
+          width: 49%;
           position: relative;
           overflow-y: hidden;
           padding: 5px 0 4px;
           vertical-align: top;
           transform: translateX(-1.5px); }
-          @media (max-width: 1000px) {
-            .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
-              width: 53%; } }
           .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
             margin-bottom: 3px;
             pointer-events: all;

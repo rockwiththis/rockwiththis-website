@@ -77,68 +77,65 @@
       cursor: pointer;
       margin: 0 auto;
       margin-top: 0;
-      width: calc(100% - 40px);
+      width: 55px;
       text-align: right;
-      box-sizing: border-box; }
+      box-sizing: border-box;
+      right: 5px; }
       @media (max-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .close {
           display: none; } }
     .genre-filters .genre-filter-content-container .genre-filter-content > div {
       margin: 20px 0; }
-    .genre-filters .genre-filter-content-container .genre-filter-content .genre-header {
-      font-size: 24pt;
-      font-weight: bold;
-      font-weight: bold; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .gf-button {
-        cursor: pointer;
-        display: inline-block;
-        margin: 10px;
-        background-color: #303030;
-        box-shadow: 2px 2px 5px black; }
-        .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .gf-button.selected {
-          background-color: white;
-          color: black; }
-        .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .gf-button.included {
-          background-color: gray;
-          color: black; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .genres .genre-header {
-        font-size: 24pt; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .genres .genre-button {
-        border-radius: 5px;
-        padding: 10px 12px; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .genres .all-button {
-        font-size: 16pt;
-        border-radius: 5px;
-        padding: 5px 20px;
+    .genre-filters .genre-filter-content-container .genre-filter-content .gf-button {
+      cursor: pointer;
+      display: inline-block;
+      margin: 10px;
+      background-color: #303030;
+      box-shadow: 2px 2px 5px black; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.selected {
+        background-color: white;
+        color: black; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
+        background-color: gray;
+        color: black; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
+      font-size: 24pt; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
+      border-radius: 5px;
+      padding: 10px 12px; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres .all-button {
+      font-size: 16pt;
+      border-radius: 5px;
+      padding: 5px 20px;
+      border: 1px solid gray; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres.all-selected .all-button {
+      border: 1px solid white; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .subgenres {
+      max-width: 1100px;
+      margin: 0 auto; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
+        font-size: 20pt;
+        margin-top: 30px; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .clear-button {
+        font-size: 12pt;
+        border-radius: 15px;
+        padding: 5px 10px;
+        margin-left: 5px;
+        color: gray;
         border: 1px solid gray; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .genres.all-selected .all-button {
-        border: 1px solid white; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .subgenres {
-        max-width: 1100px;
-        margin: 0 auto; }
-        .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .subgenres .subgenre-header {
-          font-size: 20pt;
-          margin-top: 30px; }
-        .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .subgenres .clear-button {
-          font-size: 12pt;
-          border-radius: 15px;
+      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
+        display: inline-block;
+        margin: 10px 15px; }
+        .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
           padding: 5px 10px;
-          margin-left: 5px;
-          color: gray;
-          border: 1px solid gray; }
-        .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .subgenres .subgenre-group {
-          display: inline-block;
-          margin: 10px 15px; }
-          .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .subgenres .subgenre-group .subgenre-button {
-            padding: 5px 10px;
-            border-radius: 15px; }
-        .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .subgenres.any-selected .clear-button {
-          border: 1px solid white;
-          color: white; }
-      .genre-filters .genre-filter-content-container .genre-filter-content .genre-header .submit-button {
-        margin-top: 25px;
-        padding: 12px 15px;
-        border-radius: 5px; }
+          border-radius: 15px; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres.any-selected .clear-button {
+        border: 1px solid white;
+        color: white; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
+      margin-top: 25px;
+      padding: 12px 15px;
+      border-radius: 5px; }
   .genre-filters .genre-filter-content-container .modal-overlay {
     position: fixed;
     top: 120px;

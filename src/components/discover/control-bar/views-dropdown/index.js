@@ -53,7 +53,7 @@ class ViewsDropdown extends Component {
           >
             <div className="view-select-item-content">
               <FullViewIcon />
-              <span>Full</span>
+              <span>Full View</span>
             </div>
           </div>
 
@@ -66,7 +66,7 @@ class ViewsDropdown extends Component {
           >
             <div className="view-select-item-content">
               <SnapshotViewIcon />
-              <span>Snap</span>
+              <span>Snap View</span>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ class ViewsDropdown extends Component {
           >
             <div className="view-select-item-content">
               <GridViewIcon />
-              <span>Grid</span>
+              <span>Grid View</span>
             </div>
           </div>
         </div>

@@ -95,7 +95,7 @@
         }
       }
     }
-    
+
     .songContainer:hover {
       .imageHover {
         opacity: 1;
@@ -133,11 +133,13 @@
   }
 
   .discover-full-song {
-    margin-left: 10px;
+    // margin-left: 10px;
     height: calc(100vh - 200px);
     display: inline-block;
     position: relative;
     overflow-y: scroll;
+    width: 100%;
+
 
     // Hide scrollbar
     scrollbar-width: none;                /* Firefox */
@@ -178,6 +180,7 @@
       margin: 0 auto;
       display: block;
       padding-bottom: 25px;
+      max-width: 800px;
 
       .wrapper {
         pointer-events: none;
@@ -228,6 +231,7 @@
                 text-overflow: ellipsis;
                 overflow-x: hidden;
                 max-width: 55%;
+                width: 49%;
                 // max-width: 350px;
                 position: relative;
                 overflow-y: hidden;
@@ -235,9 +239,7 @@
                 vertical-align: top;
                 transform: translateX(-1.5px);
 
-                @media (max-width: 1000px) {
-                  width: 53%;
-                }
+
 
                 .songtitle {
                   margin-bottom: 3px;

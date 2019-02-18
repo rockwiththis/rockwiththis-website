@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
 export default class FullViewIcon extends Component {
 
@@ -6,11 +6,9 @@ export default class FullViewIcon extends Component {
     return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width={this.props.width}
-          height={this.props.height}
           viewBox="0 0 24 24"
         >
-          <path d="M6 6h-6v-6h6v6zm18-6h-16v24h16v-24zm-18 9h-6v6h6v-6zm0 9h-6v6h6v-6z"/>
+          <path d="M24 3h-11v-2h11v2zm0 3h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm0 5h-11v2h11v-2zm-13-20h-11v22h11v-22z"/>
         </svg>
     )
   }

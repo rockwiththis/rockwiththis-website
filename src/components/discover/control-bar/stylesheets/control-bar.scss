@@ -5,26 +5,26 @@
     max-width: 1685px;
     margin: 0 auto;
     user-select: none;
-    height: 45px;
+    height: 50px;
     background: #f5f3f3;
     border-bottom: 2px solid #e3e3e3e3;
+    border-top: 2px solid #e3e3e3;
 
-    width: 100%;
+    // width: 100%;
     max-width: 1685px;
     margin: 0 auto;
     box-sizing: border-box;
 
     @media (max-width: 480px) {
       height: 50px;
-      background: #fff;
+      background: #f5f3f3;
     }
 
     .control-bar-item {
       position: relative;
-      width: 120px;
-      height: 100%;
+      // height: 100%;
       margin-left: 30px;
-      width: 160px;
+      width: auto;
       display: inline-block;
       cursor: pointer;
       text-align: center;
@@ -34,26 +34,41 @@
         width: 25%;
         display: inline-block;
         margin: 0;
+        height: 100%;
       }
 
       &.active {
-        background: #282828;
+        background: #000;
         color: #fff;
+
+        @media(min-width: 800px) {
+          border-radius: 8px;
+        }
 
         svg {
           fill: #fff;
         }
       }
       &.active.shuffle {
-        background: #fff;
         color: #1a6ea9;
+        background: #f5f3f3;
+
+        .control-bar-item-content {
+          @media(min-width: 800px) {
+            background: linear-gradient(to right, #1e0c49, #0097d5);
+          }
+        }
 
         svg {
           fill: #1a6ea9;
+
+          @media (min-width: 800px) {
+            fill: #fff;
+          }
         }
       }
       &.active.view {
-        background: #fff;
+        background: #f5f3f3;;
         color: #282828;
 
         svg {
@@ -62,20 +77,61 @@
       }
 
       .control-bar-item-content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
+
+        @media(max-width: 800px) {
+          // position: absolute;
+          // top: 50%;
+          // left: 50%;
+          // transform: translate(-50%, -50%);
+          width: 100%;
+          padding-top:5px;
+        }
+
+        @media (min-width: 800px) {
+          border: 2px solid #282828;
+          border-radius: 8px;
+          padding: 6px;
+        }
+
+        svg {
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        i.fas.fa-bolt {
+            font-size: 18px;
+        }
+      }
+      .control-bar-item-content:hover {
+        @media(min-width: 800px) {
+          background: #282828;
+          color: #fff;
+          cursor: pointer;
+        }
+
+        svg {
+          @media(min-width: 800px) {
+            fill: #fff;
+          }
+        }
       }
 
       .control-bar-icon {
-        // height: 24px;
-        display: block;
-        text-align: center;
+        display: inline-block;
+        @media(min-width: 800px) {
+          height: 20px;
+        }
+
+        @media (max-width: 800px) {
+          display: block;
+          text-align: center;
+        }
+
       }
 
       .control-bar-title {
+        font-size: 12px;
+        font-weight: bold;
         &.desktop { @media(max-width: 800px) { display: none } }
         &.mobile {
           @media(min-width: 800px) {
@@ -84,17 +140,61 @@
         }
 
         @media(min-width: 800px) {
-          margin-left: 10px;
-          vertical-align: top;
+          margin-left: 5px;
+          font-size: 13px;
+          vertical-align: middle;
+          display: inline-block;
+          font-weight: bold;
         }
         @media(max-width: 800px) {
           font-size: 12px;
+        }
+      }
+      .control-bar-title.shuffle {
+        @media(min-width: 800px) {
+          display: none;
+        }
+      }
+    }
+
+    .control-bar-item.shuffle {
+      @media (min-width: 800px) {
+        width: auto;
+      }
+
+      .control-bar-item-content {
+        @media (min-width: 800px) {
+          border: 2px solid #282828;
+          border-radius: 50%;
+          padding: 6px !important;
+          margin-top: 5px;
+          background: #f5f3f3;
+        }
+
+
+        .control-bar-icon {
+          @media (min-width: 800px) {
+            // transform: translateY(2px);
+          }
+        }
+      }
+      .control-bar-item-content:hover {
+        @media (min-width: 800px) {
+          background: linear-gradient(to right, #1e0c49, #0097d5);
+          cursor: pointer;
+        }
+
+        svg {
+          @media (min-width: 800px) {
+            fill: #fff;
+          }
         }
       }
     }
 
     &.fixed-control-bar {
       border-bottom: 0px solid rgba(255,255,255,0);
+      border-top: 0px solid #fff;
       @media (max-width: 800px) {
         box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
         border-left: 0px;
@@ -111,7 +211,7 @@
 
   .controls {
     position: absolute;
-    width: 100%;
+    // width: 100%;
     max-width: 1685px;
     margin: 0 auto;
     z-index: 1000;

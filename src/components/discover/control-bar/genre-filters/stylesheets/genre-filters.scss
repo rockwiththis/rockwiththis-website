@@ -92,9 +92,10 @@
         cursor: pointer;
         margin: 0 auto;
         margin-top: 0;
-        width: calc(100% - 40px);
+        width: 55px;
         text-align: right;
         box-sizing: border-box;
+        right: 5px;
 
         @media (max-width: 800px) {
           display: none;
@@ -104,11 +105,6 @@
       > div {
         margin: 20px 0;
       }
-
-      .genre-header {
-        font-size: 24pt;
-        font-weight: bold;
-        font-weight: bold;
 
       .gf-button {
         cursor: pointer;
@@ -186,8 +182,6 @@
         padding: 12px 15px;
         border-radius: 5px;
       }
-
-    }
   }
 
   .modal-overlay {
