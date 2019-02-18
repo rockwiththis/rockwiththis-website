@@ -62,9 +62,10 @@
       font-size: 12px;
       font-weight: bold; }
   .views-dropdown .view-select-item.active {
-    color: #1a6ea9; }
+    color: #fff;
+    background: #282828; }
     .views-dropdown .view-select-item.active svg {
-      fill: #1a6ea9; }
+      fill: #fff; }
   @media (min-width: 800px) {
     .views-dropdown .view-select-item:last-of-type {
       border-bottom: none; } }

@@ -83,10 +83,13 @@
 
   }
   .view-select-item.active {
-    color: #1a6ea9;
+    // color: #1a6ea9;
+    color: #fff;
+    background: #282828;
 
     svg {
-      fill: #1a6ea9;
+      // fill: #1a6ea9;
+      fill: #fff;
     }
   }
   .view-select-item:last-of-type {

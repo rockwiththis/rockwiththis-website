@@ -3,7 +3,7 @@
 
 .moments-modal {
   width: 50vw;
-  background: #282828;
+  background: rgba(0, 0, 0, 0.9);
   margin-left: 315px;
   height: auto;
   padding: 15px;
