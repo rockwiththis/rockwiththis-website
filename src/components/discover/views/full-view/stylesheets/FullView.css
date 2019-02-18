@@ -1,8 +1,9 @@
-.fullView .discover-full-song .slide {
-  opacity: 0; }
-
-.fullView .discover-full-song .slide.selected {
-  opacity: 1 !important; }
+.fullView {
+  padding: 15px; }
+  .fullView .discover-full-song .slide {
+    opacity: 0; }
+  .fullView .discover-full-song .slide.selected {
+    opacity: 1 !important; }
 
 .disableScroll .songGrid, .disableScroll .discover-full-song {
   overflow: hidden !important; }
@@ -144,7 +145,6 @@
           width: 100%; }
       .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
         text-align: left;
-        padding-top: 15px;
         margin-bottom: 5px; }
         .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
           display: inline-block; }
