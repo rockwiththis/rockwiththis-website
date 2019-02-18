@@ -25,11 +25,6 @@
       background: #f5f3f3;
     }
 
-    .left-content-control-bar {
-      @media(min-width: 1100px) {
-        width: 40%;
-        position: relative;
-      }
 
       .filter-controls {
         display: inline-block;
@@ -230,7 +225,6 @@
           }
         }
       }
-    }
     }
   }
 

@@ -107,7 +107,6 @@ class ControlBar extends Component {
         <div>
 
           <div className={`control-bar ${this.props.isControlBarFixed ? 'fixed-control-bar' : ''}`}>
-            <div className="left-content-control-bar">
               <div
                 className={
                   'control-bar-item ' +
@@ -148,7 +147,8 @@ class ControlBar extends Component {
 
               </div>
 
-              <div className="filter-controls">
+              <span className="control-bar-separator">|</span>
+
                 <div
                   className={
                     'control-bar-item ' +
@@ -176,8 +176,6 @@ class ControlBar extends Component {
                     <span className="control-bar-title">Moments</span>
                   </div>
                 </div>
-              </div>
-            </div>
 
           </div>
 

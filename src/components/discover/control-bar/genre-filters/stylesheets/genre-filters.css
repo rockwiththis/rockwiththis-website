@@ -95,7 +95,8 @@
       display: inline-block;
       margin: 10px;
       background-color: #303030;
-      box-shadow: 2px 2px 5px black; }
+      box-shadow: 2px 2px 5px black;
+      opacity: .7; }
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.selected {
         opacity: 1; }
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
