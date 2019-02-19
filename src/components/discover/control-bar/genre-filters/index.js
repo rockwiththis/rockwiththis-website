@@ -88,12 +88,16 @@ class GenreFilters extends Component {
       }
     })
 
+  areAnyGenresSelected = () => find(this.state.selectedGenres, x => !!x)
+
   areAllGenresSelected = () =>
-    !find(this.state.selectedGenres, x => !!x) &&
+    !this.areAnyGenresSelected() &&
     !this.areAnySubgenresSelected()
 
   areAnySubgenresSelected = () =>
     !!find(this.state.selectedSubgenres, x => !!x)
+
+  areNoneSelected = () => !this.areAnyGenresSelected() && !this.areAnySubgenresSelected()
 
   selectAllGenres = () =>
     this.setState({
@@ -140,8 +144,6 @@ class GenreFilters extends Component {
   }
 
   render() {
-    console.log(Object.values(this.state.selectedSubgenres));
-    console.log(indexOf(Object.values(this.state.selectedSubgenres), "funk"));
     return (
         <div
           className={
@@ -197,14 +199,13 @@ class GenreFilters extends Component {
                       (this.areAnySubgenresSelected() ? ' any-selected' : '')
                     }
                   >
-                    <div className="subgenre-header">
-                      <span>subgenres | </span>
-                      <div
-                        className="gf-button clear-button"
-                        onClick={() => this.clearSelectedSubgenres()}
-                      >
-                        clear
-                      </div>
+                    <div
+                      className={
+                        'subgenre-header' +
+                        (this.areNoneSelected() ? ' hide-mobile' : '')
+                      }
+                    >
+                      subgenres
                     </div>
 
                     { ALL_GENRES.map(genreName => (

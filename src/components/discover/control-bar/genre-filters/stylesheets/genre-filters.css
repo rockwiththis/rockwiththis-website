@@ -135,13 +135,9 @@
           .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
             font-size: 18px;
             margin-top: 0; } }
-      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .clear-button {
-        font-size: 12px;
-        border-radius: 15px;
-        padding: 5px 10px;
-        margin-left: 5px;
-        color: gray;
-        border: 1px solid gray; }
+        @media (max-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header.hide-mobile {
+            display: none; } }
       .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
         display: inline-block;
         margin: 0px 15px; }
@@ -161,9 +157,6 @@
           @media (max-width: 800px) {
             .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
               font-size: 10px; } }
-      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres.any-selected .clear-button {
-        border: 1px solid white;
-        color: white; }
     .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
       margin-top: 25px;
       padding: 12px 15px;
