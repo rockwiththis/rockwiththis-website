@@ -61,6 +61,11 @@
     width: 100%;
     height: calc(100vh - 240px);
 
+    overflow: scroll;
+    scrollbar-width: none;                /* Firefox */
+    -ms-overflow-style: none;             /* IE 10+ */
+    &::-webkit-scrollbar { width: 0px; }  /* Chrome + Safari */
+
     @media (max-width: 800px) {
       top: 100px;
       height: calc(100vh - 150px);

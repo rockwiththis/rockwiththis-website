@@ -48,7 +48,15 @@
   left: 0;
   z-index: 2;
   width: 100%;
-  height: calc(100vh - 240px); }
+  height: calc(100vh - 240px);
+  overflow: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+  /* Chrome + Safari */ }
+  .genre-filters .genre-filter-content-container::-webkit-scrollbar {
+    width: 0px; }
   @media (max-width: 800px) {
     .genre-filters .genre-filter-content-container {
       top: 100px;
