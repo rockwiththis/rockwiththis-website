@@ -1,136 +1,55 @@
 import { combineReducers } from 'redux'
-import { FETCH_POSTS } from '../actions/index'
-import { FETCH_FILTERS } from '../actions/filters'
-import { FETCH_RELATED_SONGS } from '../actions/relatedSongs'
-import posts from './posts'
-import queue from './queue'
-import relatedSongs from './relatedSongs'
-import filters from './filters'
 import update from 'react-addons-update'
 import { handleActions } from 'redux-actions'
 
-export const INITIAL_STATE = {
+import { FULL_VIEW } from 'constants/discover-views';
+
+import fetchSongsReducers from './fetch/songs';
+import fetchGenresReducers from './fetch/genres';
+import setStateReducers from './set-state';
+import playerReducers from './player';
+import scrollReducers from './scroll';
+
+// TODO split this out to imported reducers
+const INITIAL_STATE = {
   shrinkHeader: false,
   isPlaying: false,
-  discoverLayout: 'expanded',
+  discoverLayout: FULL_VIEW,
   fullHeightPlayer: false,
   activeSong: {},
   activeSongProgress: {
     playedRatio: 0,
     secondsPlayed: 0,
   },
-  posts: [],
-  filteredPosts: [],
-  songListPosts: [],
   heroPosts: [],
-  snapshotPost: {},
+  filteredPosts: [],
+  spotlightPost: {},
   singlePageSongPost: {},
-  queue: [],
   relatedSongs: [],
   filters: [],
+  genres: {},
+  subgenreFilterIds: [],
   selectedFilters: [],
   currentSongListPageIndex: 0,
   maxSongListPageIndex: 0,
   songListSize: 16,
   heroSongCount: 7,
   songPlayerDurations: {},
-  shouldLoadPlayers: false
+  shouldLoadPlayers: false,
+  loadingSongs: false,
+  isShuffle: false,
+  mainScrollPos: 0,
+  discoverScrollPos: 0
 }
 
 const appReducers = handleActions({
-  'app/FETCH_POSTS': (state, action) => {
-    console.log("Fetched posts!");
-    console.log(action.payload);
-    return update(state, {
-      posts: { $set: action.payload },
-      filteredPosts: { $set: action.payload },
-      songListPosts: { $set: action.payload },
-      snapshotPost: { $set: action.payload[0] },
-      heroPosts: { $set: action.payload.slice(0, state.heroSongCount) },
-      activeSong: { $set: state.activeSong.id ? state.activeSong : action.payload[0] },
-      shouldLoadPlayers: { $set: true }
-    })
-  },
-  'app/SET_REMAINING_POSTS': (state, action) => {
-    // WTF??
-    return state
-    return update(state, {
-      filteredPosts: { $set: [...state.posts, ...action.payload] }
-    })
-  },
-  'app/SET_FILTERED_SONG_LIST': (state, action) => {
-    return update(state, {
-      filteredPosts: { $set: action.payload },
-      songListPosts: { $set: action.payload.slice(0, state.songListSize) },
-      snapshotPost: { $set: action.payload[0] },
-      currentSongListPageIndex: { $set: 0 },
-      maxSongListPageIndex: { $set: 0 },
-      shouldLoadPlayers: { $set: true }
-    })
-  },
-  'app/SET_LOADING_STATUS': (state, action) => {
-    return update(state, {
-      currentRequestLoading: { $set: action.payload }
-    })
-  },
-  'app/LOAD_MORE_SONGS': (state, action) => {
-    return update(state, {
-      filteredPosts: { $set: [ ...state.filteredPosts, ...action.payload.newSongList ]},
-      songListPosts: { $set: action.payload.newSongList },
-      currentSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
-      maxSongListPageIndex: { $set: state.currentSongListPageIndex + 1 },
-      shouldLoadPlayers: { $set: true },
-      snapshotPost: {
-        $set: action.payload.updateSnapshot ?
-          action.payload.newSongList[0] :
-          state.snapshotPost
-      }
-    })
-  },
-  'app/LOAD_NEXT_SONGS': (state, action) => {
-    const newPageIndex = state.currentSongListPageIndex + 1;
-    const startPostIndex = newPageIndex * state.songListSize;
-    const endPostIndex = startPostIndex + state.songListSize;
-    const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
-    return update(state, {
-      songListPosts: { $set: newSongList },
-      currentSongListPageIndex: { $set: newPageIndex },
-      shouldLoadPlayers: { $set: true },
-      snapshotPost: {
-        $set: action.payload.updateSnapshot ?
-          action.payload.newSongList[0] :
-          state.snapshotPost
-      }
-    })
-  },
-  'app/LOAD_PREVIOUS_SONGS': (state, action) => {
-    const newPageIndex = state.currentSongListPageIndex - 1;
-    if (newPageIndex >= 0) {
-      const startPostIndex = newPageIndex * state.songListSize;
-      const endPostIndex = startPostIndex + state.songListSize;
-      const newSongList = state.filteredPosts.slice(startPostIndex, endPostIndex);
-      return update(state, {
-        songListPosts: { $set: newSongList },
-        currentSongListPageIndex: { $set: newPageIndex },
-        shouldLoadPlayers: { $set: true },
-        snapshotPost: {
-          $set: action.payload.updateSnapshot ?
-            newSongList.slice(-1).pop() :
-            state.snapshotPost
-        }
-      })
-    } else {
-      return state
-    }
-  },
-  'app/UPDATE_SNAPSHOT_SONG': (state, action) => {
-    return update(state, {
-      snapshotPost: { $set: action.payload }
-    })
-  },
+
   'app/PLAYER_BANK_UPDATED': (state, action) => {
     return update(state, { shouldLoadPlayers: { $set: false } });
   },
+
+  // TODO we need a better way of indicating loaded player
+  // Using this scheme, once a player is loaded, app will never "unload" it
   'app/PLAYER_LOADED': (state, action) => {
     return update(state, {
       songPlayerDurations: { $set: {
@@ -161,62 +80,11 @@ const appReducers = handleActions({
       relatedSongs: { $set: action.payload }
     })
   },
-  'app/TOGGLE_PLAY_PAUSE': (state, action) => {
-    return update(state, {
-      isPlaying: { $set: action.payload }
-    })
-  },
-  'app/TOGGLE_SONG': (state, action) => {
-    return update(state, {
-      activeSong: { $set: action.payload },
-      isPlaying: { $set: true },
-      activeSongDuration: { $set: state.songPlayerDurations[action.payload.id] },
-      activeSongProgress: { $set: {
-        playedRatio: 0,
-        secondsPlayed: 0,
-      }}
-    })
-  },
-  'app/CHANGE_GRID_VIEW': (state, action) => {
-    return update(state, {
-      discoverLayout: { $set: action.payload }
-    })
-  },
-  'app/FETCH_FILTERS': (state, action) => {
-    console.log("action.payload");
-    console.log(action.payload);
-    return update(state, {
-      filters: { $set: action.payload.subgenres }
-    })
-  },
-  'app/TOGGLE_FILTER': (state, action) => {
-    const filters = state.filters
-    console.log("filters", filters);
-    console.log(action.payload.i);
-    filters[action.payload.i].selected = !filters[action.payload.i].selected
-
-    const selectedFilters = filters.filter(filter => filter.selected === true)
-    return update(state, {
-      filters: { $set: filters },
-      selectedFilters: { $set: selectedFilters}
-    })
-  },
-  'app/CLEAR_FILTERS': (state, action) => {
-    // const filters = state.filters.map(filter => {
-    //   filter.selected = false
-    //   return filter
-    // })
-    return update(state, {
-      // filters: { $set: filters },
-      filteredPosts: { $set: state.posts },
-      selectedFilters: { $set: [] }
-    })
-  },
-  'FETCH_FILTERS_SUCCESS': (state, action) => {
-    return update(state, {
-      filters: { $set: action.filters },
-    })
-  }
+  ...fetchSongsReducers,
+  ...fetchGenresReducers,
+  ...setStateReducers,
+  ...playerReducers,
+  ...scrollReducers
 }, INITIAL_STATE)
 
 export default appReducers

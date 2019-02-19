@@ -4,28 +4,24 @@ import moment from 'moment'
 import HeroSong from './HeroSong'
 import HeroPostsPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
 import hoverGradient from 'images/rwt-hover-gradient.png'
+
 import './HeroGrid.scss'
 
-/* eslint-disable */
-
-
 class HeroPosts extends React.Component {
+
     constructor(props) {
-        super(props)
-        this.state = {
-            scrollPercentage: 0,
-            loading: true,
-            hideSongOfDay: false
-        }
+      super(props)
+      this.state = {
+        scrollPercentage: 0,
+        loading: true,
+        hideSongOfDay: false
+      }
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.checkToHideHeroSong)
-        window.addEventListener('resize', this.checkToHideHeroSong)
-
+      window.addEventListener('scroll', this.checkToHideHeroSong)
+      window.addEventListener('resize', this.checkToHideHeroSong)
     }
-
-
 
     componentWillMount() {
       const callback = () => {
@@ -36,16 +32,12 @@ class HeroPosts extends React.Component {
     }
 
     checkToHideHeroSong = () => {
+      const songDiv = document.getElementById('hero-post');
+      if (!songDiv) return;
 
-      if (location.pathname == "/") {
-
-        const songDiv = document.getElementById('hero-post');
-        if (!songDiv) return;
-
-        const scrollHeight = songDiv.clientHeight + 45
-        const hideSongOfDay = window.scrollY > scrollHeight
-        this.setState({ hideSongOfDay })
-      }
+      const scrollHeight = songDiv.clientHeight + 45
+      const hideSongOfDay = window.scrollY > scrollHeight
+      this.setState({ hideSongOfDay })
     }
 
 
@@ -82,7 +74,7 @@ class HeroPosts extends React.Component {
                           </Link>
                           <div className="post-info">
                           {!isSmall && <span className="song-of-day-tag">Song of the day</span>}
-                              <HeroSong {...this.props} song={post} />
+                              <HeroSong song={post} />
                               <Link className='move-back-link' to={`/songs/${post.id}`}>
                                 <div className="song-info">
                                     <p className="song-title">{title}</p>

@@ -9,64 +9,55 @@ import  pauseButton  from 'images/PAUSE-BUTTON.png'
 import  playButton  from 'images/playbutton.svg'
 import './SongGridSquare.scss'
 
-
+const propTypes = {
+  song: PropTypes.shape({
+    sub_genres: PropTypes.arrayOf(PropTypes.string),
+    image_url: PropTypes.string.isRequired
+  }).isRequired,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  showGenresOnHover: PropTypes.bool
+}
 
 class SongGrid extends Component {
 
-    renderTags() {
-        const {
-            song,
-        } = this.props
-
-        const tags = song.sub_genres.map(tag =>
-            <span key={tag.name} className="grid-tag">#{tag.name}</span>)
-
-        return (
-            <span className="postTags">
-                {tags}
-            </span>
-        )
-    }
-
+    renderGenreTags = () =>
+      <span className="postTags">
+        { this.props.song.sub_genres.map(genre =>
+            <span key={genre.name} className="grid-tag">#{genre.name}</span>
+        ) }
+      </span>
 
     render() {
-        const {
-            song,
-            activeSong,
-            isPlaying,
-        } = this.props
-
+        // Using this `songContainer` class in multiple components makes CSS'ing really hard
         return (
             <div
-              id={song.id}
-              data-index={this.props.index}
-              className={`songContainer ${this.props.activeDiscoverFullSong ? 'activeDiscoverFullSong' : ''}`}
-              key={`${song.id}`}
-              onClick={() => this.props.actions.updateSnapshotSong(song)}
+              className={['songContainer', this.props.className].join(' ')}
+              onClick={this.props.onClick}
             >
-                <div className="imageContainer">
+              {/* TODO remove this div if possible */}
+              <div className="imageContainer">
+
+                { this.props.showGenresOnHover &&
                   <div className="imageHover">
                     <img src={head} />
                     <div className="tagWrapper">
-                      {this.renderTags()}
+                      {this.renderGenreTags()}
                     </div>
-
                   </div>
-                    <img className="carousel-song-image songImage" src={song.image_url} />
-                </div>
+                }
+
+                <img
+                  className="carousel-song-image songImage"
+                  src={this.props.song.image_url}
+                />
+              </div>
+
             </div>
         )
     }
 }
 
-SongGrid.propTypes = {
-    song: PropTypes.object.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
-    activeSong: PropTypes.object,
-}
-
-SongGrid.defaultProps = {
-    activeSong: {},
-}
+SongGrid.propTypes = propTypes
 
 export default SongGrid

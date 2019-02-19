@@ -1,15 +1,25 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
-import { fetchFilters } from 'actions/filters'
-import * as Actions from 'actions/index'
-import SocialLinks from 'components/SocialLinks/SocialLinks.js'
-import Header from 'components/Header/Header.js'
-import MainPlayer from 'components/FooterPlayer/MainPlayer'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+
+import * as BindActions from 'actions/bind-with-dispatch';
+
+import { loadMoreSongs } from 'actions/fetch/songs';
+import { playSong } from 'actions/player';
+
+import SocialLinks from 'components/SocialLinks/SocialLinks.js';
+import Header from 'components/Header/Header.js';
+import MainPlayer from 'components/FooterPlayer/MainPlayer';
 import SongPlayerBank from 'components/SongPlayer/SongPlayerBank';
 
-// TODO proptypes
+const propTypes = {
+  // Redux
+  actions: PropTypes.object,   // TODO stop using this
+  loadMoreSongs: PropTypes.func.isRequired,
+  playSong: PropTypes.func.isRequired
+} 
 
 class AppContainer extends Component {
   constructor(props) {
@@ -17,9 +27,8 @@ class AppContainer extends Component {
     this.state = { shrinkHeader: false };
     this.mainPageScroll = 0;
     this.discoveryScroll = 0;
-    this.playerContainerRef = React.createRef();
+
     this.playerBankRef = React.createRef();
-    this.props.actions.fetchFilters()
   }
 
   componentDidMount = () => {
@@ -49,48 +58,33 @@ class AppContainer extends Component {
     }
 
     if (this.props.shouldLoadPlayers) {
-      this.playerBankRef.current.setSongListPlayers(
-        [
-          ...this.props.songListPosts,
-          this.props.snapshotPost,
-          this.props.singleSong
-        ],
-      );
+      const playerSongs = [
+        ...this.props.filteredPosts,
+        this.props.spotlightPost,
+        this.props.singleSong
+      ].filter(song => !!song && !!song.id);
+
+      this.playerBankRef.current.setSongListPlayers(playerSongs);
       this.props.activeSong && this.playerBankRef.current.ensureActivePlayer(this.props.activeSong);
       this.props.actions.playerBankUpdated();
     }
-
-    if (this.props.location.pathname === '/' && prevProps.location.pathname !== '/')
-      this.resetScroll();
   };
 
-  // TODO this won't work on some browsers b/c of video autoplay constraints. Handle this case.
   changeSongOnEnd = () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
 
     if (nextIndex >= this.props.filteredPosts.length) {
-      console.log("loading more songs");
-      this.props.actions.loadMoreSongs(nextSongs => {
-        console.log("in callback");
-        console.log(nextSongs);
-          this.props.actions.toggleSong(nextSongs[0])
-      });
+      this.props.loadMoreSongs()
+        .then(newSongs => this.props.playSong(newSongs[0]));
 
     } else {
-      this.props.actions.toggleSong(this.props.filteredPosts[nextIndex]);
+      this.props.playSong(this.props.filteredPosts[nextIndex]);
     }
   }
 
   handleProgressUpdate = progressRatio => {
       this.playerBankRef.current.updateSongProgress(progressRatio)
   };
-
-  resetScroll = () => {
-    window.scrollTo(0, this.mainPageScroll);
-
-    const discoveryContainer = document.getElementById('discovery-container');
-    if (!!discoveryContainer) discoveryContainer.scrollTop = this.discoveryScroll;
-  }
 
   setMainPageScroll = newScrollPos => this.mainPageScroll = newScrollPos;
 
@@ -100,25 +94,15 @@ class AppContainer extends Component {
     return (
         <div>
           <Header {...this.props} shrinkHeader={this.state.shrinkHeader} />
-          <SocialLinks />
 
-          {
-            React.cloneElement(
-                this.props.children,
-                {
-                  ...this.props,
-                  setMainPageScroll: this.setMainPageScroll,
-                  setDiscoveryScroll: this.setDiscoveryScroll
-                }
-            )
-          }
+          { React.cloneElement(this.props.children, this.props) }
 
-          <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate}/>
+          <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate} />
           {
             !!this.props.activeSong && !!this.props.activeSong.id &&
             <SongPlayerBank
               heroSongs={this.props.heroPosts}
-              initialSongList={this.props.songListPosts}
+              initialSongList={this.props.filteredPosts}
               initialActiveSong={this.props.activeSong}
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
@@ -135,8 +119,12 @@ const mapStateToProps = (state, ownProps) => Object.assign(state, ownProps)
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(Actions, dispatch),
+    actions: bindActionCreators(BindActions, dispatch),
+    loadMoreSongs,
+    playSong
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatch)(AppContainer))
+export default withRouter(
+  connect(mapStateToProps, mapDispatch)(AppContainer)
+)

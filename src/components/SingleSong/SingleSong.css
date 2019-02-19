@@ -20,9 +20,6 @@
       z-index: 80;
       position: relative;
       margin-top: 0px; } }
-  @media (max-width: 480px) {
-    .singleSongPage .singleSongContainer {
-      margin-top: 50px; } }
   .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer {
     width: 45%;
     display: inline-block;

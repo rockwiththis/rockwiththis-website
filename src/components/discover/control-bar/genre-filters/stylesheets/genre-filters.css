@@ -1,35 +1,6 @@
 .genre-filters.hidden {
   display: none; }
 
-.genre-filters .modal-container {
-  position: fixed;
-  top: 140px;
-  left: 0;
-  width: 100%;
-  height: calc(100vh - 240px);
-  z-index: 1; }
-  .genre-filters .modal-container .modal {
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-    max-width: calc(1686px * 0.9);
-    background-color: black;
-    opacity: 0.9;
-    box-sizing: border-box;
-    padding-top: 10px;
-    border-radius: 8px;
-    color: white; }
-    .genre-filters .modal-container .modal > div {
-      text-align: center;
-      margin: 20px 0; }
-    .genre-filters .modal-container .modal .genre-header {
-      font-size: 24pt;
-      font-weight: bold;
-      font-weight: bold; }
-    .genre-filters .modal-container .modal .subgenre-header {
-      font-size: 20pt;
-      font-weight: bold; }
-
 .genre-filters .modal-overlay {
   position: fixed;
   top: 120px;
@@ -43,3 +14,223 @@
   @media (max-width: 800px) {
     .genre-filters .modal-overlay {
       top: 100px; } }
+
+.genre-filters .modal-background-container {
+  position: fixed;
+  top: 140px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 240px);
+  z-index: 1; }
+  @media (max-width: 800px) {
+    .genre-filters .modal-background-container {
+      top: 100px;
+      height: calc(100vh - 150px); } }
+  .genre-filters .modal-background-container .modal-background {
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    max-width: calc(1686px * 0.95);
+    background-color: black;
+    opacity: 0.9;
+    box-sizing: border-box;
+    padding-top: 10px;
+    border-radius: 8px; }
+    @media (max-width: 800px) {
+      .genre-filters .modal-background-container .modal-background {
+        width: 100%;
+        max-width: 100vw;
+        border-radius: 0; } }
+
+.genre-filters .genre-filter-content-container {
+  position: fixed;
+  top: 140px;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: calc(100vh - 240px);
+  overflow: scroll;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+  /* Chrome + Safari */ }
+  .genre-filters .genre-filter-content-container::-webkit-scrollbar {
+    width: 0px; }
+  @media (max-width: 800px) {
+    .genre-filters .genre-filter-content-container {
+      top: 100px;
+      height: calc(100vh - 150px); } }
+  .genre-filters .genre-filter-content-container .genre-filter-content {
+    position: relative;
+    width: 90%;
+    max-width: calc(1686px * 0.9);
+    margin: 0 auto;
+    padding: 0 0px;
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    box-sizing: border-box; }
+    @media (max-width: 800px) {
+      .genre-filters .genre-filter-content-container .genre-filter-content {
+        width: 100%;
+        max-width: none;
+        padding: 15px;
+        margin: 0; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content .close {
+      position: absolute;
+      font-size: 40px;
+      font-weight: normal;
+      cursor: pointer;
+      margin: 0 auto;
+      margin-top: 0;
+      width: 55px;
+      text-align: right;
+      box-sizing: border-box;
+      right: 5px; }
+      @media (max-width: 800px) {
+        .genre-filters .genre-filter-content-container .genre-filter-content .close {
+          display: none; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content > div {
+      margin: 20px 0; }
+      @media (max-width: 800px) {
+        .genre-filters .genre-filter-content-container .genre-filter-content > div {
+          text-align: left;
+          margin: 10px 0; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content .gf-button {
+      cursor: pointer;
+      display: inline-block;
+      margin: 10px 5px;
+      background-color: #303030;
+      box-shadow: 2px 2px 5px black;
+      opacity: .7; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.selected {
+        opacity: 1; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
+        opacity: .7; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
+      font-size: 24px; }
+      @media (max-width: 800px) {
+        .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
+          font-size: 20px;
+          text-align: left; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
+      border-radius: 5px;
+      padding: 7px 9px;
+      font-size: 14px;
+      border: 2px solid #303030; }
+      @media (max-width: 800px) {
+        .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
+          font-size: 10px; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres .all-button {
+      font-size: 16px;
+      border-radius: 5px;
+      padding: 5px 20px;
+      border: 1px solid gray; }
+      @media (max-width: 800px) {
+        .genre-filters .genre-filter-content-container .genre-filter-content .genres .all-button {
+          font-size: 14px; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content .genres.all-selected .all-button {
+      border: 1px solid white; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .subgenres {
+      max-width: 1100px;
+      margin: 0 auto; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
+        font-size: 20px;
+        margin-top: 30px; }
+        @media (max-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
+            font-size: 18px;
+            margin-top: 0; } }
+        @media (max-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header.hide-mobile {
+            display: none; } }
+      .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
+        display: inline-block;
+        margin: 0px 15px; }
+        @media (max-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
+            margin: 0px;
+            text-align: left;
+            width: 100%; } }
+        @media (max-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group.hide-mobile {
+            display: none; } }
+        .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
+          padding: 5px 10px;
+          border-radius: 15px;
+          font-size: 12px;
+          border: 1px solid #303030; }
+          @media (max-width: 800px) {
+            .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
+              font-size: 10px; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
+      margin-top: 25px;
+      padding: 12px 15px;
+      border-radius: 5px; }
+
+.genres.all-selected .genre-button {
+  opacity: .7; }
+
+.genres .genre-button.selected {
+  opacity: 1;
+  border: 2px solid #fff !important; }
+
+.genres div:nth-of-type(2).included, .genres div:nth-of-type(2).selected {
+  background: linear-gradient(to right, #1e0c49, #0097d5); }
+
+.genres .chill.included, .genres .chill.selected {
+  background: linear-gradient(to left, #39EF6C, #011403); }
+
+.genres .hiphop.included, .genres .hiphop.selected {
+  background: #000 !important; }
+
+.genres .funk.included, .genres .funk.selected {
+  background: linear-gradient(to right, #3023AE, #DB00FF); }
+
+.genres .soul.included, .genres .soul.selected {
+  background: linear-gradient(to right, #3023AE, #ED1936); }
+
+.genres .rock.included, .genres .rock.selected {
+  background: linear-gradient(to right, #0E018E, #C86DD7); }
+
+.genres .triphop.included, .genres .triphop.selected {
+  background: linear-gradient(to right, #000000, #6B1CF7); }
+
+.genres .remix.included, .genres .remix.selected {
+  background: linear-gradient(to left, #1e0c49, #0097d5); }
+
+.genres .world.included, .genres .world.selected {
+  background: linear-gradient(to right, #FF0000, #F76B1C); }
+
+.subgenres div:nth-of-type(2) .included, .subgenres div:nth-of-type(2) .selected {
+  background: linear-gradient(to right, #1e0c49, #0097d5); }
+
+.subgenres .selected {
+  border: 1px solid #fff !important; }
+
+.subgenres .chill .included, .subgenres .chill .selected {
+  background: linear-gradient(to left, #39EF6C, #011403); }
+
+.subgenres .hiphop .included, .subgenres .hiphop .selected {
+  background: #000 !important;
+  opacity: 1 !important; }
+
+.subgenres .funk .included, .subgenres .funk .selected {
+  background: linear-gradient(to right, #3023AE, #DB00FF); }
+
+.subgenres .soul .included, .subgenres .soul .selected {
+  background: linear-gradient(to right, #3023AE, #ED1936); }
+
+.subgenres .rock .included, .subgenres .rock .selected {
+  background: linear-gradient(to right, #0E018E, #C86DD7); }
+
+.subgenres .triphop .included, .subgenres .triphop .selected {
+  background: linear-gradient(to right, #000000, #6B1CF7); }
+
+.subgenres .remix .included, .subgenres .remix .selected {
+  background: linear-gradient(to left, #1e0c49, #0097d5); }
+
+.subgenres .world .included, .subgenres .world .selected {
+  background: linear-gradient(to right, #FF0000, #F76B1C); }
