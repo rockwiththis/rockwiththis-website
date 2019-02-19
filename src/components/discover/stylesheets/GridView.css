@@ -9,7 +9,11 @@
 @media (min-width: 800px) {
   .fullGridLayout .songList {
     display: block;
-    text-align: center; } }
+    text-align: left; } }
+
+@media (max-width: 800px) {
+  .fullGridLayout .songList {
+    padding-top: 2px; } }
 
 .fullGridLayout .songList .songContainer {
   margin: 2px;
