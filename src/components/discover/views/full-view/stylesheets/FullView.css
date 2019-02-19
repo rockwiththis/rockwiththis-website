@@ -5,6 +5,9 @@
   .fullView .discover-full-song .slide.selected {
     opacity: 1 !important; }
 
+.fullGridLayout .fullView {
+  display: none; }
+
 .disableScroll .songGrid, .disableScroll .discover-full-song {
   overflow: hidden !important; }
 

@@ -10,6 +10,10 @@
   }
 }
 
+.fullGridLayout .fullView {
+  display: none;
+}
+
 .disableScroll {
   .songGrid, .discover-full-song {
     overflow: hidden !important;
