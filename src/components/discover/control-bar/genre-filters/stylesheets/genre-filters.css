@@ -150,6 +150,9 @@
             margin: 0px;
             text-align: left;
             width: 100%; } }
+        @media (max-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group.hide-mobile {
+            display: none; } }
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
           padding: 5px 10px;
           border-radius: 15px;
@@ -165,19 +168,6 @@
       margin-top: 25px;
       padding: 12px 15px;
       border-radius: 5px; }
-  .genre-filters .genre-filter-content-container .modal-overlay {
-    position: fixed;
-    top: 120px;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    background-color: white;
-    opacity: 0.7; }
-    @media (max-width: 800px) {
-      .genre-filters .genre-filter-content-container .modal-overlay {
-        top: 100px; } }
 
 .genres.all-selected .genre-button {
   opacity: .7; }

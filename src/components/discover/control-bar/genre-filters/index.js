@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, pickBy, uniq, compact, flatten } from 'lodash';
+import { find, pickBy, uniq, compact, flatten, indexOf } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -29,8 +29,8 @@ class GenreFilters extends Component {
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: [],
-      selectedSubgenres: []
+      selectedGenres: {},
+      selectedSubgenres: {}
     }
 
     props.fetchGenres();
@@ -117,6 +117,10 @@ class GenreFilters extends Component {
     })
   }
 
+  shouldHideSubgenreGroupMobile = genreName =>
+    !this.state.selectedGenres[genreName] &&
+    indexOf(Object.values(this.state.selectedSubgenres), genreName) === -1
+
   submit = () => {
 
     const subgenreIds = [
@@ -136,6 +140,8 @@ class GenreFilters extends Component {
   }
 
   render() {
+    console.log(Object.values(this.state.selectedSubgenres));
+    console.log(indexOf(Object.values(this.state.selectedSubgenres), "funk"));
     return (
         <div
           className={
@@ -202,7 +208,12 @@ class GenreFilters extends Component {
                     </div>
 
                     { ALL_GENRES.map(genreName => (
-                        <div className={`subgenre-group ${genreName}`}>
+                        <div
+                          className={
+                            `subgenre-group ${genreName}` +
+                            (this.shouldHideSubgenreGroupMobile(genreName) ? ' hide-mobile' : '')
+                          }
+                        >
                           {
                             this.props.genres[genreName].subgenres.map(subgenre => (
                               !subgenre.isHidden &&
