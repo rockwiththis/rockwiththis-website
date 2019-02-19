@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
+import $ from 'jquery';
 
 import { resetSongs } from 'actions/fetch/songs';
 import {
@@ -52,13 +53,9 @@ class ControlBar extends Component {
     }
   }
 
-  disableScrolling = () => {
-    const x = window.scrollX;
-    const y = window.scrollY;
-    window.onscroll= () => window.scrollTo(x, y);
-  }
+  disableScrolling = () => $('body').css('overflow', 'hidden');
 
-  enableScrolling = () => window.onscroll = () => {}
+  enableScrolling = () => $('body').css('overflow', 'auto');
 
   showGenreFilters = () => {
     this.props.scrollToDiscover();

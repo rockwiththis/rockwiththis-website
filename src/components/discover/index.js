@@ -97,7 +97,12 @@ class DiscoverSection extends Component {
               id="discovery-container"
               name="discovery-container"
               // onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
-              className={`discovery-container ${this.state.disableScroll ? 'disableScroll' : ''} ${this.props.discoverLayout === 'snapshot' ? 'previewScrollLayout' : 'fullViewLayout'} ${this.props.discoverLayout === 'fullGrid' ? 'fullGridLayout' : ''}`}
+              className={
+                'discovery-container' +
+                (this.state.disableScroll ? ' disableScroll' : '') +
+                (this.props.discoverLayout === 'snapshot' ? ' previewScrollLayout' : ' fullViewLayout') +
+                (this.props.discoverLayout === 'fullGrid' ? ' fullGridLayout' : '')
+              }
             >
               {
                 this.props.discoverLayout !== 'snapshot' &&
