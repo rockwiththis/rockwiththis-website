@@ -175,7 +175,7 @@ class GenreFilters extends Component {
                         className="gf-button all-button"
                         onClick={() => this.selectAllGenres()}
                       >
-                        all
+                        reset
                       </div>
                     </div>
 
