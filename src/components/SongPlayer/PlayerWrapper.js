@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player';
 
-import { loadingPlayer, playerLoaded } from 'actions';
+import { loadingPlayer, playerLoaded } from 'actions/player';
 
 import './SongPlayer.scss'
 

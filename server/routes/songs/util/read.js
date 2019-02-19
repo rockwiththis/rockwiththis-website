@@ -1,11 +1,20 @@
 const database = require('../../../db');
 
-const songSelect = `
+const songSelect = (isFiltered = false, filterInjectIndex) => `
   SELECT
-    DISTINCT songs.*,
+    songs.*,
     curator.first_name as curator_first_name,
-    curator.last_name as curator_last_name
-  FROM songs
+    curator.last_name as curator_last_name,
+    random() as random
+  ${ isFiltered && !!filterInjectIndex ?
+    `FROM (
+      SELECT DISTINCT joined_songs.*
+      FROM songs as joined_songs
+      ${subgenreJoins('LEFT', 'joined_songs')}
+      WHERE subgenres.id = ANY (\$${filterInjectIndex})
+    ) as songs` :
+    'FROM songs'
+  }
   LEFT JOIN users AS curator ON curator.id = songs.curator_id
 `;
 
@@ -14,8 +23,8 @@ const relationSelect = relationName => `
   FROM songs
 `;
 
-const subgenreJoins = (joinType = 'INNER') => `
-  ${joinType} JOIN subgenre_songs ON songs.id = subgenre_songs.song_id
+const subgenreJoins = (joinType = 'INNER', songTableName = 'songs') => `
+  ${joinType} JOIN subgenre_songs ON ${songTableName}.id = subgenre_songs.song_id
   ${joinType} JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id
 `;
 
@@ -24,31 +33,44 @@ const momentJoins = (joinType = 'INNER') => `
   ${joinType} JOIN moments ON moments.id = song_moments.moment_id
 `;
 
-const getSongs = (limit, offset, subgenreIds) => {
+const getSongs = ({ songsLimit, songsOffset, subgenreIds, omitSongIds, isShuffle = false}) => {
+      
+  let sqlInjectValues = [songsLimit, songsOffset];
+  const limitStatement = 'LIMIT $1';
+  const offsetStatement = 'OFFSET $2';
+  let subgenreFilterInjectIndex = null;
+  let omitSongIdsFilter = '';
 
-  const subgenreIdFilter = (
-    subgenreIds.length > 0  ? `WHERE subgenres.id IN (${subgenreIds})` : ''
-  );
-  const offsetStatement = `OFFSET ${Number(offset)}`;
-  const limitStatement = `LIMIT ${Number(limit)}`;
+  if (subgenreIds.length > 0) {
+    sqlInjectValues.push(subgenreIds);
+    subgenreFilterInjectIndex = sqlInjectValues.length;
+  }
+
+  if (omitSongIds.length > 0) {
+    sqlInjectValues.push(omitSongIds);
+    omitSongIdsFilter = `WHERE NOT songs.id = ANY (\$${sqlInjectValues.length})`;
+  }
+
+  const orderStatement = isShuffle ?
+    'ORDER BY random' :
+    'ORDER BY songs.created_at DESC, songs.id';
 
   const queryText = `(
-    ${songSelect}
-    ${subgenreJoins('LEFT')}
-    ${subgenreIdFilter}
-    ORDER BY songs.created_at DESC, songs.id
+    ${songSelect(subgenreIds.length > 0, subgenreFilterInjectIndex)}
+    ${omitSongIdsFilter}
+    ${orderStatement}
     ${limitStatement}
     ${offsetStatement}
   )`;
 
-  return database.query({ text: queryText })
+  return database.query({ text: queryText, values: sqlInjectValues })
     .then(result => result.rows);
 }
 
 const getSingleSong = songId =>
   database.query({
     text: `
-      ${songSelect}
+      ${songSelect()}
       WHERE songs.id = $1
     `,
     values: [songId]

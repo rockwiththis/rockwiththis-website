@@ -15,6 +15,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "axios": "^0.17.1",
     "bcrypt": "^3.0.3",
     "history": "^4.7.2",
@@ -35,6 +36,7 @@
     "react-fa": "^5.0.0",
     "react-ga": "^2.5.6",
     "react-helmet": "^5.2.0",
+    "react-icons": "^3.3.0",
     "react-jsx": "^1.0.0",
     "react-mailchimp-form": "^1.0.1",
     "react-mailchimp-subscribe": "^1.1.0",

@@ -1,3 +1,18 @@
+.fullView .discover-full-song button.toggle-song {
+  display: none; }
+
+.homeContainer {
+  margin-top: 75px !important; }
+  @media (max-width: 480px) {
+    .homeContainer {
+      margin-top: 0px !important; } }
+
+.singleSongPage {
+  margin-top: 75px !important; }
+  @media (max-width: 480px) {
+    .singleSongPage {
+      margin-top: 50px !important; } }
+
 .songImageInfoContainer {
   display: none; }
 
@@ -186,7 +201,9 @@ a.spotifyLink {
   .songList {
     display: none; }
   .disableScroll {
-    overflow: hidden !important; } }
+    overflow: hidden !important; }
+    .disableScroll .songList {
+      overflow: hidden !important; } }
 
 @media (max-width: 800px) {
   img.main.playButton {
@@ -911,9 +928,7 @@ form.rwt-email-form button {
   .headerContainer {
     box-shadow: none !important; }
   .hover-content {
-    display: none !important; }
-  .singleSongPage.page .singleSongContainer {
-    margin-top: 95px !important; } }
+    display: none !important; } }
 
 @media screen and (max-width: 480px) and (min-width: 800px) {
   .singleSongPage {

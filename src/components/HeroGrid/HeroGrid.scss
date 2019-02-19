@@ -11,6 +11,7 @@
     margin: 0 auto;
     padding-bottom: 0px;
     background: #fff;
+    border-top: 2px solid #fff;
 
       @media screen and (max-width: 1200px) {
         height: calc(50vw - 2px);
@@ -21,6 +22,7 @@
         height: 100vw;
         overflow: visible;
         position: relative;
+        border-top: 0px solid #fff;
       }
 
       @media screen and (max-width: 480px) {

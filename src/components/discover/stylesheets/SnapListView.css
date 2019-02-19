@@ -1,0 +1,306 @@
+@media (min-width: 800px) {
+  .previewScrollLayout .songList {
+    display: block;
+    max-width: 1400px;
+    margin: 0 auto; } }
+
+.previewScrollLayout .songList .songContainer {
+  position: relative; }
+  @media (min-width: 800px) {
+    .previewScrollLayout .songList .songContainer {
+      width: calc(50% - 30px);
+      padding: 15px;
+      display: inline-block;
+      max-width: 700px;
+      margin: 0 auto; } }
+  @media (max-width: 800px) {
+    .previewScrollLayout .songList .songContainer {
+      display: inline-block;
+      vertical-align: top;
+      padding: 0;
+      width: 100%;
+      border-bottom: 1px solid #e0e0e0;
+      margin: 5px 0; } }
+  @media (max-width: 800px) {
+    .previewScrollLayout .songList .songContainer .wrapper {
+      width: calc(80% - 15px);
+      display: inline-block;
+      padding: 0 0 5px 15px;
+      pointer-events: all;
+      cursor: pointer; } }
+  @media (min-width: 800px) {
+    .previewScrollLayout .songList .songContainer .wrapper .postContent {
+      display: inline-block;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      max-height: 200px; } }
+  @media (max-width: 1000px) and (min-width: 800px) {
+    .previewScrollLayout .songList .songContainer .wrapper .postContent {
+      height: auto; } }
+  @media (max-width: 800px) {
+    .previewScrollLayout .songList .songContainer .wrapper .postContent {
+      display: inline-block;
+      width: 100%;
+      height: auto; } }
+  .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer {
+    display: inline-block; }
+    @media (min-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer {
+        max-height: 200px;
+        max-width: 200px;
+        height: 12vw;
+        width: 12vw;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 15px; } }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer {
+        max-width: 50px;
+        height: 50px;
+        width: 50px;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 5px;
+        position: relative; } }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link {
+      display: none; }
+    @media (min-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer img.songImage {
+        max-height: 200px;
+        height: 100%;
+        width: 100%;
+        border-radius: 4px; } }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer img.songImage {
+        border-radius: 2px;
+        height: 50px;
+        width: 50px;
+        max-width: 50px;
+        margin-left: 0px; } }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer {
+      display: none; }
+  .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer {
+    display: inline-block; }
+    @media (min-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer {
+        display: inline-block;
+        width: calc(100% - 12vw - 15px);
+        vertical-align: top;
+        height: auto; } }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer {
+        width: 80%; } }
+    @media (min-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
+        display: inline-block;
+        text-align: left;
+        vertical-align: top;
+        height: 50px; } }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton {
+      padding: 2.5px 5px 2.5px 0; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
+        width: 45px;
+        height: 45px; }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .hideMobile {
+        display: none; } }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo {
+        display: inline-block;
+        width: calc(100% - 75px);
+        overflow: hidden;
+        pointer-events: all; } }
+    @media (min-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
+        display: inline-block !important;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow-x: hidden;
+        width: calc(100% - 60px);
+        position: relative;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 4px 0 4px 0; } }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
+        display: none; } }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
+      height: 20px;
+      margin-bottom: 2px; }
+      @media (min-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle .postTitleLink {
+          text-decoration: none;
+          color: black;
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 23px;
+          margin-bottom: 2px;
+          display: inline-block;
+          width: 100%;
+          max-width: 100%;
+          width: auto;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle .spotify {
+        display: none; }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist {
+      height: 20px;
+      width: 100%; }
+      @media (min-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist .artistName {
+          color: #000;
+          font-size: 20px;
+          line-height: 20px; } }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile {
+      display: inline-block;
+      vertical-align: top;
+      pointer-events: all;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      padding: 6px 0 4px; }
+      @media (min-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile {
+          display: none; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile .postTitleLink {
+        display: block;
+        text-decoration: none;
+        color: black;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 20px;
+        max-height: 20px;
+        pointer-events: none;
+        max-width: 100%;
+        width: auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile .artistName {
+        line-height: 20px;
+        max-height: 20px;
+        color: #000;
+        font-size: 16px;
+        max-width: 100%;
+        width: auto;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden; }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo {
+      margin: 2px 0; }
+      @media (max-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo {
+          display: none; } }
+      @media (min-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo {
+          display: inline-block;
+          margin: 0;
+          margin-right: 4px; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo span.separater {
+        transform: translateY(-1px);
+        display: inline-block; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .curatorName {
+        font-weight: bold; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
+        display: none; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {
+        display: inline-block;
+        margin: 0;
+        position: relative;
+        transform: translateY(-2px); }
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag {
+          margin: 0 2px;
+          font-size: 11px;
+          border-radius: 4px;
+          -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+          color: #fff;
+          background: #1a6ea9;
+          border: 1px solid #1a6ea9;
+          cursor: pointer;
+          letter-spacing: .7px;
+          box-shadow: 0 3px 2px -2px #C9C6CB;
+          padding: 2px 4px;
+          font-family: 'Baloo', cursive; }
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags span.tag:nth-of-type(3), .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .postTags span.tag:nth-of-type(4), .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .postTags span.tag:nth-of-type(5) {
+          display: none; }
+        @media (max-width: 1100px) and (min-width: 800px) {
+          .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag:nth-of-type(2) {
+            display: none; } }
+        @media (max-width: 800px) {
+          .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {
+            display: none; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .ShareBox {
+        display: none; }
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer {
+      padding-top: 3px;
+      padding-bottom: 0; }
+      @media (max-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer {
+          display: none; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer .songDescription {
+        position: relative;
+        font-size: 14px;
+        line-height: 24px;
+        font-family: 'Open Sans', sans-serif;
+        height: 100px;
+        overflow: hidden;
+        padding-bottom: 25px; }
+        @media (max-width: 1000px) and (min-width: 800px) {
+          .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer .songDescription {
+            font-size: 12px;
+            line-height: 22px;
+            padding-bottom: 10px; } }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer p.songDescription::after {
+        content: ' ';
+        height: 24px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: #fafafa;
+        opacity: .8; }
+  @media (min-width: 800px) {
+    .previewScrollLayout .songList .songContainer .goToSongPage {
+      display: none; } }
+  @media (max-width: 800px) {
+    .previewScrollLayout .songList .songContainer .goToSongPage {
+      display: inline-block;
+      width: 20%;
+      height: 50px;
+      vertical-align: top;
+      position: relative; } }
+  .previewScrollLayout .songList .songContainer .goToSongPage i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: black;
+    z-index: 1;
+    font-size: 16px; }
+  .previewScrollLayout .songList .songContainer .seeMore {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: #000;
+    letter-spacing: .5px;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    text-decoration: none; }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .seeMore {
+        display: none; } }
+    .previewScrollLayout .songList .songContainer .seeMore i {
+      font-size: 12px;
+      vertical-align: bottom;
+      margin-left: 2px; }
+  .previewScrollLayout .songList .songContainer .seeMore:hover {
+    color: #1a6ea9;
+    text-decoration: underline; }
+  @media (max-width: 800px) {
+    .previewScrollLayout .songList .songContainer hr {
+      display: none; } }

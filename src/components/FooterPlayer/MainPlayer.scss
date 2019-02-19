@@ -13,6 +13,7 @@ footer {
     display: block;
     z-index: 1000;
     padding: 10px;
+    border-top: 2px solid #fff;
 
     @media (max-width: 800px) {
       z-index: 901;
