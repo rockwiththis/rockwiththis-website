@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, indexOf, flatten, map, mapValues, compact, get } from 'lodash';
+import { find, indexOf, flatten, map, filter } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -110,7 +110,7 @@ class GenreFilters extends Component {
   shouldHideSubgenreGroupMobile = genreName =>
     !this.state.selectedGenres[genreName] &&
     indexOf(
-      mapValues(this.state.selectedSubgenres, 'parentGenreName'),
+      map(Object.values(this.state.selectedSubgenres), 'parentGenreName'),
       genreName
     ) === -1
 
@@ -120,10 +120,10 @@ class GenreFilters extends Component {
       const genreSubgenres = this.state.selectedGenres[genreName] ?
         this.props.genres[genreName].subgenres : []
 
-      const individualSubgenres = compact(mapValues(
-        this.state.selectedSubgenres,
-        subgenre => get(subgenre, 'parentGenreName') === genreName
-      ));
+      const individualSubgenres = filter(
+        Object.values(this.state.selectedSubgenres),
+        subgenre => subgenre && subgenre.parentGenreName === genreName
+      );
 
       return [
         ...genreSubgenres,
@@ -133,7 +133,6 @@ class GenreFilters extends Component {
 
     if (map(allSubgenres, s => s.id) !== map(this.props.subgenreFilters, s => s.id))
       this.props.resetSongs({ subgenreFilters: allSubgenres });
-    else console.log(allSubgenres, this.props.subgenreFilters);
 
     this.props.hide();
   }
