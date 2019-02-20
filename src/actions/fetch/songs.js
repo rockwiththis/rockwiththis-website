@@ -14,12 +14,11 @@ const fetchSongs = (
   isShuffle = state.isShuffle,
   subgenreIds = getIds(state.subgenreFilterIds)
 ) => {
-  const subgenreFilterIds = state.selectedFilters.map(filter => filter.id);
   const currSongIds = state.filteredPosts.map(song => song.id);
   const fullURL =
     `${API_BASE_URL}/songs/${isShuffle ? 'shuffle' : ''}?` +
-    `tags=[${subgenreIds}]` +
-    (omitCurrSongs ? `&omitSongIds=[${currSongIds}]` : '');
+    (subgenreIds ? `tags=[${subgenreIds}]&` : '') +
+    (omitCurrSongs ? `omitSongIds=[${currSongIds}]` : '');
 
   return fetch(fullURL).then(res => res.json());
 }

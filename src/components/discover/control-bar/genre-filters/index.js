@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, indexOf, flatten, map, mapValues } from 'lodash';
+import { find, indexOf, flatten, map, mapValues, compact, get } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -18,7 +18,7 @@ const propTypes = {
   // Redux
   genres: PropTypes.object.isRequired,
   fetchGenres: PropTypes.func.isRequired,
-  currSubgenreFilterIds: PropTypes.array.isRequired,
+  subgenreFilters: PropTypes.array.isRequired,
   resetSongs: PropTypes.func.isRequired
 }
 
@@ -120,10 +120,10 @@ class GenreFilters extends Component {
       const genreSubgenres = this.state.selectedGenres[genreName] ?
         this.props.genres[genreName].subgenres : []
 
-      const individualSubgenres = mapValues(
+      const individualSubgenres = compact(mapValues(
         this.state.selectedSubgenres,
-        subgenre => subgenre.parentGenreName === genreName
-      );
+        subgenre => get(subgenre, 'parentGenreName') === genreName
+      ));
 
       return [
         ...genreSubgenres,
@@ -131,8 +131,9 @@ class GenreFilters extends Component {
       ]
     }));
 
-    if (map(allSubgenres, s => s.id) === map(this.props.subgenreFilters, s => s.id))
+    if (map(allSubgenres, s => s.id) !== map(this.props.subgenreFilters, s => s.id))
       this.props.resetSongs({ subgenreFilters: allSubgenres });
+    else console.log(allSubgenres, this.props.subgenreFilters);
 
     this.props.hide();
   }
@@ -247,9 +248,6 @@ class GenreFilters extends Component {
 GenreFilters.propTypes = propTypes;
 
 export default connect(
-  ({ genres, subgenreFilterIds }) => ({
-    genres,
-    currSubgenreFilterIds: subgenreFilterIds
-  }),
+  ({ genres, subgenreFilters }) => ({ genres, subgenreFilters }),
   { fetchGenres, resetSongs }
 )(GenreFilters);
