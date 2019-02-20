@@ -64,7 +64,6 @@ export default {
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
-      discoverScrollPos: 0
     }
   },
 

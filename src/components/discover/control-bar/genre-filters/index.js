@@ -214,7 +214,7 @@ class GenreFilters extends Component {
                               !subgenre.isHidden &&
                               <div
                                 className={
-                                  'gf-button subgenre-button' +
+                                  'gf-button subgenre-button subgenre-badge' +
                                   (!!this.state.selectedSubgenres[subgenre.id] ? ' selected' : '') +
                                   (!!this.state.selectedGenres[genreName] ? ' included' : '')
                                 }

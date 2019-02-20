@@ -145,6 +145,15 @@
   @media (min-width: 800px) {
     .control-bar .control-bar-item.shuffle .control-bar-item-content:hover svg {
       fill: #fff; } }
+  .control-bar .active-filters {
+    display: inline-block;
+    margin-left: 30px; }
+    @media (max-width: 800px) {
+      .control-bar .active-filters {
+        display: none; } }
+    .control-bar .active-filters .subgenre-badge {
+      display: inline-block;
+      margin-right: 10px; }
 
 .fixed-control-bar {
   border-bottom: 0px solid rgba(255, 255, 255, 0);
