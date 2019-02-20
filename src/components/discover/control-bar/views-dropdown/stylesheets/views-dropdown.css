@@ -60,7 +60,10 @@
       display: inline-block;
       text-align: center;
       font-size: 12px;
-      font-weight: bold; }
+      font-weight: normal; }
+      @media (max-width: 800px) {
+        .views-dropdown .view-select-item .view-select-item-content span {
+          font-weight: bold; } }
   .views-dropdown .view-select-item.active {
     color: #fff;
     background: #282828; }

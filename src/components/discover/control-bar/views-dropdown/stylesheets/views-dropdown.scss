@@ -54,6 +54,8 @@
       margin: 0;
     }
     .view-select-item-content {
+
+
       @media (max-width: 800px) {
         position: absolute;
         top: 50%;
@@ -77,7 +79,11 @@
         display: inline-block;
         text-align: center;
         font-size: 12px;
-        font-weight: bold;
+        font-weight: normal;
+
+        @media(max-width: 800px) {
+          font-weight: bold;
+        }
       }
     }
 

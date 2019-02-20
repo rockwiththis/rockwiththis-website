@@ -1,5 +1,7 @@
 .fullView {
   padding: 15px;
+  padding-right: 0;
+
   .discover-full-song {
     .slide {
       opacity: 0;
@@ -73,18 +75,37 @@
         box-sizing: border-box;
 
         .imageHover {
-          background-image: url('../../../../../images/rwt-hover-gradient.png');
+          // background-image: url('../../../../../images/rwt-hover-gradient.png');
           position: absolute;
           left: 0;
           right: 0;
           top: 0;
-          opacity: 0;
+          opacity: 1;
           background-size: cover;
           height: calc(100% - 3px);
           border: 0 solid #fff;
 
+          .contentWrapper {
+            background: rgba(0,0,0,0);
+
+            .readMore {
+              display: none;
+              text-align: center;
+              color: #fff;
+              font-size: 10px;
+              padding: 8px;
+              background: #000;
+              border-radius: 4px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+
           img {
-            display: block;
+
+            display: none;
             width: 100%;
             position: absolute;
             max-width: 50px;
@@ -102,16 +123,21 @@
     }
 
     .songContainer:hover {
-      .imageHover {
-        opacity: 1;
 
-        img {
-          display: none;
+      .contentWrapper {
+        background: rgba(0,0,0,.7) !important;
+
+        .readMore {
+          display: inline-block !important;
         }
       }
     }
 
     .songContainer.activeDiscoverFullSong {
+
+      .readMore {
+        display: none !important;
+      }
       .imageHover {
         opacity: 1;
 
@@ -124,6 +150,10 @@
           -webkit-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
         }
+      }
+
+      .contentWrapper {
+          background: rgba(0,0,0,.8) !important;
       }
     }
   }

@@ -4,7 +4,8 @@
     border-bottom: 0px solid #fff;
 }
 
-.imageHover .tagWrapper {
+
+.imageHover .contentWrapper {
     height: 100%;
     width: 100%;
     position: absolute;
@@ -15,26 +16,45 @@
     // border-top: 4px solid #fff;
     // border-bottom: 4px solid #fff;
 
-    .postTags {
+    .gridSongInfo {
       display: inline-block;
       margin: 0;
       pointer-events: none;
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50% );
-      text-align: center;
+      text-align: left;
+      height: auto;
+      width: calc(100% - 6px);
+      vertical-align: middle;
+      bottom: 0;
+      background: rgba(255,255,255,.8);
+      padding: 2px;
+      padding-left: 4px;
 
-      span.grid-tag {
+
+      span {
         color: #fff;
         margin: 0px;
         padding: 0px;
-        border-radius: 6px;
         letter-spacing: .5px;
-        font-size: 16px;
-        font-family: 'Baloo', cursive;
+        font-size: 10px;
         display: block;
-        line-height: 18px;
+        line-height: 12px;
+        color: #000;
+      }
+      .song-name {
+        font-weight: bold;
+        font-size: 12px;
+        line-height: 13px;
+        font-weight: 700;
+        margin-bottom: 1px;
+        height: 13px;
+        overflow: hidden;
+
+      }
+      .artist-name {
+        font-weight: 400;
+        font-size: 11px;
+        line-height: 12px;
       }
 }
 }

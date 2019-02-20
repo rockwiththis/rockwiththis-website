@@ -1,5 +1,6 @@
 .fullView {
-  padding: 15px; }
+  padding: 15px;
+  padding-right: 0; }
   .fullView .discover-full-song .slide {
     opacity: 0; }
   .fullView .discover-full-song .slide.selected {
@@ -57,17 +58,30 @@
       position: relative;
       box-sizing: border-box; }
       .fullView .songGrid .songContainer .imageContainer .imageHover {
-        background-image: url("../../../../../images/rwt-hover-gradient.png");
         position: absolute;
         left: 0;
         right: 0;
         top: 0;
-        opacity: 0;
+        opacity: 1;
         background-size: cover;
         height: calc(100% - 3px);
         border: 0 solid #fff; }
+        .fullView .songGrid .songContainer .imageContainer .imageHover .contentWrapper {
+          background: rgba(0, 0, 0, 0); }
+          .fullView .songGrid .songContainer .imageContainer .imageHover .contentWrapper .readMore {
+            display: none;
+            text-align: center;
+            color: #fff;
+            font-size: 10px;
+            padding: 8px;
+            background: #000;
+            border-radius: 4px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); }
         .fullView .songGrid .songContainer .imageContainer .imageHover img {
-          display: block;
+          display: none;
           width: 100%;
           position: absolute;
           max-width: 50px;
@@ -77,10 +91,12 @@
           transform: translate(-50%, -50%); }
       .fullView .songGrid .songContainer .imageContainer img.carousel-song-image {
         width: 100%; }
-  .fullView .songGrid .songContainer:hover .imageHover {
-    opacity: 1; }
-    .fullView .songGrid .songContainer:hover .imageHover img {
-      display: none; }
+  .fullView .songGrid .songContainer:hover .contentWrapper {
+    background: rgba(0, 0, 0, 0.7) !important; }
+    .fullView .songGrid .songContainer:hover .contentWrapper .readMore {
+      display: inline-block !important; }
+  .fullView .songGrid .songContainer.activeDiscoverFullSong .readMore {
+    display: none !important; }
   .fullView .songGrid .songContainer.activeDiscoverFullSong .imageHover {
     opacity: 1; }
     .fullView .songGrid .songContainer.activeDiscoverFullSong .imageHover img {
@@ -91,6 +107,8 @@
       left: 50%;
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%); }
+  .fullView .songGrid .songContainer.activeDiscoverFullSong .contentWrapper {
+    background: rgba(0, 0, 0, 0.8) !important; }
 
 .fullView .discover-full-song-container {
   display: inline-block;
