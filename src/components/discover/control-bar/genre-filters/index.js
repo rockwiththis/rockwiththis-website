@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, indexOf, flatten, map, filter } from 'lodash';
+import { pickBy, get, find, flatten } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -29,10 +29,9 @@ class GenreFilters extends Component {
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: {},     // genre objects keyed by name
-      selectedSubgenres: {}   // subgenre objects + `parentGenreName` keyed by id
+      selectedGroupedSubgenres: {},
+      highlightedGenres: {}
     }
-
     props.fetchGenres();
   }
 
@@ -52,87 +51,123 @@ class GenreFilters extends Component {
 
   getGenreName = genre => genre.spacedName || genre.name;
 
-  // Mark selected genre as set or unset
-  // Always reset the child subgenres
+  getSelectedSubgenresByGenre = genreName => {
+    const x = pickBy(
+      get(this.state.selectedGroupedSubgenres, genreName, {}),
+      subgenre => !!subgenre
+    )
+    if (genreName === 'funk') console.log('BRING THA FUNK', x);
+    return x;
+  }
+
+  areAnySubgenresSelectedForGenre = genreName =>
+    Object.keys(this.getSelectedSubgenresByGenre(genreName)).length > 0
+
+  isEntireGenreSelected = genreName =>
+    this.props.genres[genreName].subgenres.length ===
+    Object.keys(this.getSelectedSubgenresByGenre(genreName)).length
+
+  shouldSetEntireGenre = genreName =>
+    !this.isEntireGenreSelected(genreName) && (
+      !!this.state.highlightedGenres[genreName] ||
+      this.areAnySubgenresSelectedForGenre(genreName)
+    )
+
+  shouldSetGenreHighlighted = genreName =>
+    !this.areAnySubgenresSelectedForGenre(genreName) &&
+    !this.state.highlightedGenres[genreName]
+
+  getAllSubgenresByGenre = genreName =>
+    this.props.genres[genreName].subgenres.reduce(
+      (curr, subgenre) => ({
+        ...curr,
+        [subgenre.id]: subgenre
+      }),
+      {}
+    )
+
+  // Cycle no subgenres -> highlighted -> all subgenres
   toggleGenre = genreName =>
     this.setState({
       ...this.state,
-      selectedGenres: {
-        ...this.state.selectedGenres,
-        [genreName]: !!this.state.selectedGenres[genreName] ?
-          undefined : this.props.genres[genreName]
+      selectedGroupedSubgenres: {
+        ...this.state.selectedGroupedSubgenres,
+        [genreName]: this.shouldSetEntireGenre(genreName) ?
+          this.getAllSubgenresByGenre(genreName) : {}
       },
-      selectedSubgenres:
-        this.props.genres[genreName].subgenres.reduce(
-          (currSubgenres, subgenreToRemove) => ({
-            ...currSubgenres,
-            [subgenreToRemove.id]: undefined
-          }),
-          this.state.selectedSubgenres
-        )
-    })
-
-  // Mark selected subgenre as set or unset
-  // Always reset the parent genre
-  toggleSubgenre = (genreName, subgenre) =>
-    this.setState({
-      ...this.state,
-      selectedGenres: {
-        ...this.state.selectedGenres,
-        [genreName]: undefined
-      },
-      selectedSubgenres: {
-        ...this.state.selectedSubgenres,
-        [subgenre.id]: !!this.state.selectedSubgenres[subgenre.id] ?
-          undefined : { ...subgenre, parentGenreName: genreName }
+      highlightedGenres: {
+        ...this.state.highlightedGenres,
+        [genreName]: this.shouldSetGenreHighlighted(genreName) ?
+          true : undefined
       }
     })
 
-  areAnyGenresSelected = () => find(this.state.selectedGenres, x => !!x)
+  // Mark selected subgenre as set or unset
+  // Always un-highlight parent genre
+  toggleSubgenre = (genreName, subgenre) => {
+    const currGroupedSubgenres = this.getSelectedSubgenresByGenre(genreName);
+    this.setState({
+      ...this.state,
+      selectedGroupedSubgenres: {
+        ...this.state.selectedGroupedSubgenres,
+        [genreName]: {
+          ...currGroupedSubgenres,
+          [subgenre.id]: currGroupedSubgenres[subgenre.id] ?
+            undefined : subgenre
+        }
+      },
+      highlightedGenres: {
+        ...this.state.highlightedGenres,
+        [genreName]: undefined
+      }
+    })
+  }
+
+  areAnySubgenresSelected = () => find(ALL_GENRES, this.areAnySubgenresSelectedForGenre);
+
+  areAnyGenresHighlighted = () => find(Object.values(this.state.highlightedGenres), g => !!g);
 
   areAllGenresSelected = () =>
-    !this.areAnyGenresSelected() &&
-    !this.areAnySubgenresSelected()
+    !this.areAnySubgenresSelected() &&
+    !this.areAnyGenresHighlighted()
 
-  areAnySubgenresSelected = () =>
-    !!find(this.state.selectedSubgenres, x => !!x)
+  isGenreIncluded = genreName =>
+    this.areAllGenresSelected() ||
+    this.state.highlightedGenres[genreName] ||
+    this.areAnySubgenresSelectedForGenre(genreName)
 
-  areNoneSelected = () => !this.areAnyGenresSelected() && !this.areAnySubgenresSelected()
+  areSubgenresIncluded = genreName =>
+    this.state.highlightedGenres[genreName] &&
+    !this.areAnySubgenresSelectedForGenre(genreName)
 
   selectAllGenres = () =>
     this.setState({
       ...this.state,
-      selectedGenres: {},
-      selectedSubgenres: {}
+      selectedGroupedSubgenres: {},
+      highlightedGenres: {}
     })
 
   // genre + no subgenres w/ parent genreName selected
   shouldHideSubgenreGroupMobile = genreName =>
-    !this.state.selectedGenres[genreName] &&
-    indexOf(
-      map(Object.values(this.state.selectedSubgenres), 'parentGenreName'),
-      genreName
-    ) === -1
+    !this.state.highlightedGenres[genreName] &&
+    !this.areAnySubgenresSelectedForGenre(genreName)
+
+  getSubgenreIds = genres => flatten(genres.map(genre => (
+    genre.isParent ?
+      genre.subgenres.map(g => g.id) :
+      genre.id
+  )))
 
   submit = () => {
-    const allSubgenres = flatten(ALL_GENRES.map(genreName => {
-
-      const genreSubgenres = this.state.selectedGenres[genreName] ?
-        this.props.genres[genreName].subgenres : []
-
-      const individualSubgenres = filter(
-        Object.values(this.state.selectedSubgenres),
-        subgenre => subgenre && subgenre.parentGenreName === genreName
-      );
-
-      return [
-        ...genreSubgenres,
-        ...individualSubgenres
-      ]
-    }));
-
-    if (map(allSubgenres, s => s.id) !== map(this.props.subgenreFilters, s => s.id))
-      this.props.resetSongs({ subgenreFilters: allSubgenres });
+    const newGenreFilters = flatten(
+      ALL_GENRES.map(genreName => (
+        this.state.highlightedGenres[genreName] || this.isEntireGenreSelected(genreName) ?
+          [{ ...this.props.genres[genreName], isParent: true }] :
+          this.getSelectedSubgenresByGenre(genreName)
+      ))
+    );
+    if (this.getSubgenreIds(newGenreFilters) !== this.getSubgenreIds(this.props.genreFilters))
+      this.props.resetSongs({ genreFilters: newGenreFilters });
 
     this.props.hide();
   }
@@ -177,8 +212,8 @@ class GenreFilters extends Component {
                         <div
                           className={
                             `gf-button genre-button ${genreName}` +
-                            (!!this.state.selectedGenres[genreName] ? ' selected' : '') +
-                            (this.areAllGenresSelected() ? ' included' : '')
+                            (this.isEntireGenreSelected(genreName) ? ' selected' : '') +
+                            (this.isGenreIncluded(genreName) ? ' included' : '')
                           }
                           onClick={() => this.toggleGenre(genreName)}
                         >
@@ -187,16 +222,11 @@ class GenreFilters extends Component {
                     ))}
                   </div>
 
-                  <div
-                    className={
-                      'subgenres' +
-                      (this.areAnySubgenresSelected() ? ' any-selected' : '')
-                    }
-                  >
+                  <div className='subgenres'>
                     <div
                       className={
                         'subgenre-header' +
-                        (this.areNoneSelected() ? ' hide-mobile' : '')
+                        (this.areAllGenresSelected() ? ' hide-mobile' : '')
                       }
                     >
                       subgenres
@@ -215,8 +245,8 @@ class GenreFilters extends Component {
                               <div
                                 className={
                                   'gf-button subgenre-button subgenre-badge' +
-                                  (!!this.state.selectedSubgenres[subgenre.id] ? ' selected' : '') +
-                                  (!!this.state.selectedGenres[genreName] ? ' included' : '')
+                                  (!!this.getSelectedSubgenresByGenre(genreName)[subgenre.id] ? ' selected' : '') +
+                                  (this.areSubgenresIncluded(genreName) ? ' included' : '')
                                 }
                                 onClick={() => this.toggleSubgenre(genreName, subgenre)}
                               >
