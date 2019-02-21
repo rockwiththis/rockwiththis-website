@@ -106,7 +106,7 @@
                 text-align: left;
                 height: 20px;
                 overflow: hidden;
-                transform: translateY(1px); }
+                transform: translateY(3px); }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
                   display: inline-block; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile .curatedBy {
@@ -144,7 +144,7 @@
               line-height: 20px;
               max-height: 58px !important;
               overflow: hidden;
-              padding: 2px 5px 5px;
+              padding: 4px 5px 5px;
               margin-top: -5px;
               font-family: 'Object-Sans-Light',sans-serif; }
       .discovery-section .fullViewLayout .songList .songContainer .goToSongPage {
