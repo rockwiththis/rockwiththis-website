@@ -70,7 +70,7 @@
         position: absolute;
         bottom: 0;
         width: 100%;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.9);
         transition: all 0s linear;
         z-index: 102; }
         @media screen and (max-width: 800px) {
@@ -163,7 +163,7 @@
           border-top-right-radius: 6px;
           padding: 14px 10px 10px 12px;
           font-weight: 700;
-          font-family: 'Object-Sans-Heavy',sans-serif; }
+          font-family: 'Object-Sans-Bold',sans-serif; }
           @media screen and (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
               top: -28px;
@@ -419,7 +419,7 @@
           bottom: 0;
           width: 100%;
           height: auto;
-          background: rgba(255, 255, 255, 0.8);
+          background: rgba(255, 255, 255, 0.9);
           z-index: 102; }
           @media (max-width: 800px) {
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info {
