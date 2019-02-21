@@ -10,7 +10,8 @@
   width: auto;
   color: #fff;
   border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 4px; }
+  border-bottom-left-radius: 4px;
+  font-family: 'Object-Sans-Regular',sans-serif; }
   @media (max-width: 800px) {
     .moments-modal {
       margin: 0;
@@ -20,7 +21,8 @@
       border-bottom-left-radius: 0px; } }
   .moments-modal .text {
     font-size: 12px;
-    margin-bottom: 5px; }
+    margin-bottom: 10px; }
   .moments-modal .comingSoon {
     font-size: 14px;
-    font-weight: bold; }
+    font-weight: bold;
+    font-family: 'Object-Sans-Bold',sans-serif; }

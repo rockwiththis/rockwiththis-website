@@ -246,7 +246,7 @@
             color: #fff;
             font-weight: 400;
             position: absolute;
-            top: 50%;
+            top: 51%;
             left: 50%;
             transform: translate(-50%, -50%); }
             @media screen and (max-width: 1000px) and (min-width: 800px) {
@@ -269,7 +269,8 @@
               font-size: 20px;
               font-weight: 400;
               line-height: 28px;
-              margin: 0; }
+              margin: 0;
+              font-family: 'Object-Sans-Regular',sans-serif; }
               @media screen and (max-width: 1200px) and (min-width: 1000px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
                   font-size: 18px; } }
@@ -295,7 +296,8 @@
                   text-align: center; } }
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
               font-size: 32px;
-              font-weight: 700; }
+              font-weight: 700;
+              font-family: 'Object-Sans-Bold',sans-serif; }
               @media screen and (max-width: 1200px) and (min-width: 1000px) {
                 .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
                   font-size: 28px; } }
@@ -521,7 +523,7 @@
               @media screen and (min-width: 800px) {
                 .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date {
                   position: absolute;
-                  top: 50%;
+                  top: 51%;
                   left: 50%;
                   transform: translate(-50%, -50%);
                   margin: 0; } }
@@ -538,7 +540,8 @@
                 line-height: 12px;
                 font-weight: 400;
                 margin: 0;
-                margin-bottom: 3px; }
+                margin-bottom: 3px;
+                font-family: 'Object-Sans-Regular',sans-serif; }
                 @media (max-width: 800px) {
                   .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .month {
                     position: absolute;
@@ -553,7 +556,8 @@
                 font-size: 14px;
                 line-height: 14px;
                 font-weight: 400;
-                margin: 0; }
+                margin: 0;
+                font-family: 'Object-Sans-Bold',sans-serif; }
                 @media screen and (max-width: 800px) {
                   .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date .post-date .day {
                     display: none; } }
