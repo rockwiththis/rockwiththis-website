@@ -84,13 +84,17 @@
           white-space: nowrap;
           text-overflow: ellipsis;
           font-size: 20px;
-          line-height: 25px; }
+          line-height: 25px;
+          font-family: 'Object-Sans-Bold',sans-serif;
+          transform: translateY(4px); }
         .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer .song-info .song-artist {
           font-size: 18px;
           line-height: 25px;
           overflow: hidden;
           white-space: nowrap;
-          text-overflow: ellipsis; }
+          text-overflow: ellipsis;
+          font-family: 'Object-Sans-Regular',sans-serif;
+          transform: translateY(2px); }
       .singleSongPage .singleSongContainer .songContainer .wrapper .imageContainer .songImageInfoContainer a.spotify-mobile {
         display: inline-block;
         position: relative;
@@ -196,7 +200,8 @@
               pointer-events: all;
               font-weight: 700 !important;
               vertical-align: top;
-              line-height: 28px; }
+              line-height: 28px;
+              font-family: 'Object-Sans-Bold',sans-serif; }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .artistNameContainer {
             display: inline-block;
             padding-top: 0px; }
@@ -204,7 +209,8 @@
               font-size: 25px;
               line-height: 27px;
               display: inline-block;
-              color: #000; }
+              color: #000;
+              font-family: 'Object-Sans-Regular',sans-serif; }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo a.spotify {
             display: inline-block;
             position: absolute;
@@ -233,7 +239,8 @@
           margin-bottom: 5px;
           margin-right: 0px; }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo p.leftInfo .curatorName {
-            font-weight: bold; }
+            font-weight: bold;
+            font-family: 'Object-Sans-Bold',sans-serif; }
         @media (max-width: 800px) {
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo p.leftInfo.desktop {
             display: none; } }
@@ -255,12 +262,12 @@
             color: #fff;
             background: #1a6ea9;
             border: 1px solid #1a6ea9;
-            font-family: 'Baloo', cursive;
+            font-family: 'Object-Sans-Bold',sans-serif;
             transition: all .2s ease;
             cursor: pointer;
             letter-spacing: .7px;
             box-shadow: 0 3px 2px -2px #C9C6CB;
-            padding: 0px 4px;
+            padding: 4px;
             margin: 0 2px;
             font-size: 12px;
             border-radius: 4px;
@@ -287,7 +294,7 @@
             top: 0; }
             @media (max-width: 800px) {
               .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox i {
-                top: 2px; } }
+                top: -1px; } }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .ShareBox i.fas.fa-clipboard {
             font-size: 18px !important;
             color: #fff !important;
@@ -304,14 +311,13 @@
     .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription {
       font-size: 17px;
       line-height: 28px;
-      font-family: 'Open-Sans', sans-serif;
+      font-family: 'Object-Sans-Thin',sans-serif;
       font-weight: 100; }
       @media (min-width: 800px) {
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription {
           padding-bottom: 50px; } }
       @media (max-width: 800px) {
         .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .bottomContentContainer .songDescription {
-          font-family: 'Open Sans', sans-serif;
           font-size: 14px;
           line-height: 26px;
           margin-top: 0;

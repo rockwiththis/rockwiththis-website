@@ -110,7 +110,11 @@
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
         opacity: .7; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
-      font-size: 24px; }
+      font-size: 24px;
+      font-family: 'Object-Sans-Heavy',sans-serif; }
+      .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header span.separator {
+        font-family: 'Object-Sans-Light',sans-serif;
+        margin-left: 4px; }
       @media (max-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
           font-size: 20px;
@@ -118,8 +122,9 @@
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
       border-radius: 5px;
       padding: 7px 9px;
-      font-size: 14px;
-      border: 2px solid #303030; }
+      font-size: 16px;
+      border: 2px solid #303030;
+      font-family: 'Object-Sans-Bold',sans-serif; }
       @media (max-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
           font-size: 10px; } }
@@ -127,7 +132,11 @@
       font-size: 16px;
       border-radius: 5px;
       padding: 5px 20px;
-      border: 1px solid gray; }
+      border: 1px solid gray;
+      transform: translateY(-2px);
+      font-family: 'Object-Sans-Light',sans-serif;
+      padding-top: 7px;
+      margin-left: 10px; }
       @media (max-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .genres .all-button {
           font-size: 14px; } }
@@ -138,7 +147,9 @@
       margin: 0 auto; }
       .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
         font-size: 20px;
-        margin-top: 30px; }
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-family: 'Object-Sans-Heavy',sans-serif; }
         @media (max-width: 800px) {
           .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
             font-size: 18px;
@@ -148,7 +159,7 @@
             display: none; } }
       .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
         display: inline-block;
-        margin: 0px 15px; }
+        margin: 5px 15px; }
         @media (max-width: 800px) {
           .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group {
             margin: 0px;
@@ -160,20 +171,25 @@
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
           padding: 5px 10px;
           border-radius: 15px;
-          font-size: 12px;
-          border: 1px solid #303030; }
+          font-size: 14px;
+          border: 1px solid #303030;
+          font-family: 'Object-Sans-Bold',sans-serif; }
           @media (max-width: 800px) {
             .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
               font-size: 10px; } }
       @media (min-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group:nth-of-type(2) {
-          max-width: 700px;
+          max-width: 850px;
           margin: 0 auto;
           display: block; } }
     .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
       margin-top: 25px;
       padding: 12px 15px;
-      border-radius: 5px; }
+      border-radius: 5px;
+      border: 2px solid #282828;
+      font-family: 'Object-Sans-Heavy',sans-serif; }
+    .genre-filters .genre-filter-content-container .genre-filter-content .submit-button:hover {
+      border: 2px solid #fff; }
 
 .genres.all-selected .genre-button {
   opacity: .7; }
@@ -219,8 +235,7 @@
   background: linear-gradient(to left, #39EF6C, #011403); }
 
 .subgenres .hiphop .included, .subgenres .hiphop .selected {
-  background: #000 !important;
-  opacity: 1 !important; }
+  background: #000 !important; }
 
 .subgenres .funk .included, .subgenres .funk .selected {
   background: linear-gradient(to right, #3023AE, #DB00FF); }

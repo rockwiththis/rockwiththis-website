@@ -23,13 +23,16 @@
       position: absolute;
       text-align: left;
       height: auto;
-      width: calc(100% - 6px);
+      width: calc(100% - 8px);
       vertical-align: middle;
       bottom: 0;
-      background: rgba(255,255,255,.8);
-      padding: 2px;
-      padding-left: 4px;
-      padding-bottom: 0;
+      background: rgba(255,255,255,.9);
+      padding: 4px;
+      padding-bottom: 2px;
+
+      @media(min-width: 1100px) and (max-width: 1250px) {
+        padding-bottom: 2px;
+      }
 
 
       span {
@@ -43,22 +46,33 @@
         color: #000;
       }
       .song-name {
-        font-weight: bold;
-        font-size: 11px;
+        font-size: 12px;
         line-height: 12px;
         font-weight: 700;
-        // margin-bottom: 1px;
-        height: 13px;
+        height: 11.5px;
         overflow: hidden;
+        font-family: 'Object-Sans-Bold',sans-serif;
+        margin-bottom: 1px;
 
+        @media(min-width: 1100px) and (max-width: 1250px) {
+          font-size: 10px;
+          line-height: 10px;
+          height: 9px;
+        }
       }
       .artist-name {
         font-weight: 400;
         font-size: 11px;
         line-height: 12px;
-        line-height: 12px;
-        height: 13px;
+        height: 12px;
         overflow: hidden;
+        font-family: 'Object-Sans-Normal',sans-serif;
+
+        @media(min-width: 1100px) and (max-width: 1250px) {
+          font-size: 10px;
+          line-height: 10px;
+          height: 11px;
+        }
       }
 }
 }

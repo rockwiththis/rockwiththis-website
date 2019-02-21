@@ -110,7 +110,9 @@
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;
-            margin-bottom: 2px; }
+            margin-bottom: 2px;
+            font-family: 'Object-Sans-Bold',sans-serif;
+            transform: translateY(2px); }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-title {
                 font-size: 23px;
@@ -133,7 +135,9 @@
             max-height: 40px;
             overflow-x: hidden;
             font-weight: 400;
-            color: #000; }
+            color: #000;
+            font-family: 'Object-Sans-Regular',sans-serif;
+            transform: translateY(2px); }
             @media screen and (max-width: 800px) {
               .hero-posts .featured-track-wrapper .feature-track .post-info .song-info .song-artist {
                 font-size: 23px;
@@ -148,7 +152,7 @@
                 line-height: 22px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
           position: absolute;
-          top: -43px;
+          top: -45px;
           display: inline-block;
           background: #ec2121;
           color: #fff !important;
@@ -157,8 +161,9 @@
           letter-spacing: 5px;
           text-transform: uppercase;
           border-top-right-radius: 6px;
-          padding: 10px 10px 10px 12px;
-          font-weight: 700; }
+          padding: 14px 10px 10px 12px;
+          font-weight: 700;
+          font-family: 'Object-Sans-Heavy',sans-serif; }
           @media screen and (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
               top: -28px;
@@ -170,9 +175,10 @@
               font-size: 14px; } }
           @media screen and (max-width: 480px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-              top: -30px;
+              top: -25px;
               font-size: 14px;
-              padding: 7px; } }
+              padding: 7px;
+              padding-bottom: 4px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper {
           display: inline-block;
           color: #fff;
@@ -342,7 +348,7 @@
           border-radius: 6px;
           letter-spacing: .5px;
           font-size: 40px;
-          font-family: Baloo,cursive;
+          font-family: 'Object-Sans-Bold',sans-serif;
           display: block;
           line-height: 40px; }
       .hero-posts .featured-track-wrapper .feature-track img.heroHoverGradient {
@@ -473,7 +479,9 @@
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow-x: hidden;
-              margin-bottom: 1px; }
+              margin-bottom: 1px;
+              font-family: 'Object-Sans-Bold',sans-serif;
+              transform: translateY(2px); }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist {
               font-weight: 400;
               color: #000;
@@ -483,7 +491,8 @@
               font-size: 14.5px;
               line-height: 15px;
               overflow-x: hidden;
-              transform: translateY(1px); }
+              font-family: 'Object-Sans-Regular',sans-serif;
+              transform: translateY(2px); }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
             height: 40px;
             width: 40px;
@@ -576,7 +585,7 @@
             padding: 0;
             border-radius: 6px;
             letter-spacing: .5px;
-            font-family: Baloo,cursive;
+            font-family: 'Object-Sans-Bold',sans-serif;
             display: block; }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .hover-content .goToPage {
             z-index: 107;

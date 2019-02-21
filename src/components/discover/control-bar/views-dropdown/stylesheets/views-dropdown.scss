@@ -83,6 +83,10 @@
 
         @media(max-width: 800px) {
           font-weight: bold;
+          display: block;
+          transform: translateY(5px);
+          font-family: 'Object-Sans-Bold',sans-serif;
+
         }
       }
     }

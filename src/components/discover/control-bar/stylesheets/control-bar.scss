@@ -163,6 +163,7 @@
       .control-bar-title {
         font-size: 12px;
         font-weight: bold;
+        transform:translateY(2px);
         &.desktop { @media(max-width: 800px) { display: none } }
         &.mobile {
           @media(min-width: 800px) {
@@ -179,6 +180,9 @@
         }
         @media(max-width: 800px) {
           font-size: 12px;
+          padding-top: 4px;
+          display: block;
+          font-family: 'Object-Sans-Bold',sans-serif;
         }
       }
       .control-bar-title.shuffle {
@@ -209,7 +213,14 @@
 
         .control-bar-icon {
           @media (min-width: 800px) {
-            // transform: translateY(2px);
+            height: 22px;
+          }
+
+          svg {
+            height: 22px;
+            vertical-align: middle;
+            width: 22px;
+            transform: translateY(1px);
           }
         }
       }
@@ -220,6 +231,7 @@
         }
 
         svg {
+
           @media (min-width: 800px) {
             fill: #fff;
           }

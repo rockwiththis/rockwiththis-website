@@ -170,7 +170,7 @@ class GenreFilters extends Component {
                     }
                   >
                     <div className="genre-header">
-                      <span>pick your genres | </span>
+                      <span>pick your genres <span className="separator">|</span></span>
                       <div
                         className="gf-button all-button"
                         onClick={() => this.selectAllGenres()}

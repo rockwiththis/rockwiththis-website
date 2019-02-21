@@ -52,7 +52,7 @@ class HeroPosts extends React.Component {
             const title = post.name
             const artist = post.artist_name
             const tags = post.sub_genres.map(tag =>
-                <span key={tag.name} className="hero-tag">#{tag.name}</span>)
+                <span key={tag.name} className="hero-tag">{tag.name}</span>)
 
             return (
                   <div className={`${isSmall ? 'less-' : ''}featured-track-wrapper index-${i}`} key={post.id}>
