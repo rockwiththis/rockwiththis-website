@@ -122,13 +122,13 @@
         margin: 10px 5px;
         background-color: #303030;
         box-shadow: 2px 2px 5px black;
-        opacity: .7;
+        opacity: .9;
 
         &.selected {
           opacity: 1;
         }
         &.included {
-          opacity: .7;
+          opacity: .9;
         }
       }
 
@@ -151,7 +151,7 @@
         }
         .genre-button {
           border-radius: 5px;
-          padding: 7px 9px;
+          padding: 9px 11px;
           font-size: 16px;
           border: 2px solid #303030;
           font-family: 'Object-Sans-Bold',sans-serif;
@@ -260,7 +260,7 @@
 
 .genres.all-selected {
   .genre-button {
-    opacity: .7;
+    opacity: .9;
   }
 }
 
@@ -276,17 +276,19 @@
   // gotta change classname to just "electronic" but had to do it this way because classnames can't have a "/"
   div:nth-of-type(2).included, div:nth-of-type(2).selected {
     // background: linear-gradient(to right, #1e0c49, #0097d5);
-    background: linear-gradient(to right, #1e0c49, #0097d5);
+    background: linear-gradient(to right, #3A1399, #0097d5);
 
   }
 
 
 
   .chill.included, .chill.selected {
-    background: linear-gradient(to left, #39EF6C, #011403);
+    background: linear-gradient(to left, #39EF6C, #02870E);
   }
   .hiphop.included, .hiphop.selected {
-    background: #000 !important;
+    // background: #000 !important;
+    background: linear-gradient(to right, #000, #4D4D4D);
+
   }
   .funk.included, .funk.selected {
     background: linear-gradient(to right, #3023AE, #DB00FF);
@@ -301,7 +303,7 @@
     background: linear-gradient(to right, #000000, #6B1CF7);
   }
   .remix.included, .remix.selected {
-    background: linear-gradient(to left, #1e0c49, #0097d5);
+    background: linear-gradient(to right, #3A1399, #0097d5);
   }
   .world.included, .world.selected {
     background: linear-gradient(to right, #FF0000, #F76B1C);
@@ -313,7 +315,7 @@
 
   div:nth-of-type(2) {
     .included, .selected {
-          background: linear-gradient(to right, #1e0c49, #0097d5);
+          background: linear-gradient(to right, #3A1399, #0097d5);
     }
   }
 
@@ -322,12 +324,14 @@
   }
   .chill {
     .included, .selected {
-      background: linear-gradient(to left, #39EF6C, #011403);
+      background: linear-gradient(to left, #39EF6C, #02870E);
     }
   }
   .hiphop {
     .included, .selected {
-      background: #000 !important;
+      // background: #000 !important;
+      background: linear-gradient(to right, #000, #4D4D4D);
+
     }
   }
   .funk {
@@ -352,7 +356,7 @@
   }
   .remix {
     .included, .selected {
-          background: linear-gradient(to left, #1e0c49, #0097d5);
+          background: linear-gradient(to right, #3A1399, #0097d5);
     }
   }
   .world {

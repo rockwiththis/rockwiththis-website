@@ -104,11 +104,11 @@
       margin: 10px 5px;
       background-color: #303030;
       box-shadow: 2px 2px 5px black;
-      opacity: .7; }
+      opacity: .9; }
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.selected {
         opacity: 1; }
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
-        opacity: .7; }
+        opacity: .9; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
       font-size: 24px;
       font-family: 'Object-Sans-Heavy',sans-serif; }
@@ -121,7 +121,7 @@
           text-align: left; } }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-button {
       border-radius: 5px;
-      padding: 7px 9px;
+      padding: 9px 11px;
       font-size: 16px;
       border: 2px solid #303030;
       font-family: 'Object-Sans-Bold',sans-serif; }
@@ -192,20 +192,20 @@
       border: 2px solid #fff; }
 
 .genres.all-selected .genre-button {
-  opacity: .7; }
+  opacity: .9; }
 
 .genres .genre-button.selected {
   opacity: 1;
   border: 2px solid #fff !important; }
 
 .genres div:nth-of-type(2).included, .genres div:nth-of-type(2).selected {
-  background: linear-gradient(to right, #1e0c49, #0097d5); }
+  background: linear-gradient(to right, #3A1399, #0097d5); }
 
 .genres .chill.included, .genres .chill.selected {
-  background: linear-gradient(to left, #39EF6C, #011403); }
+  background: linear-gradient(to left, #39EF6C, #02870E); }
 
 .genres .hiphop.included, .genres .hiphop.selected {
-  background: #000 !important; }
+  background: linear-gradient(to right, #000, #4D4D4D); }
 
 .genres .funk.included, .genres .funk.selected {
   background: linear-gradient(to right, #3023AE, #DB00FF); }
@@ -220,22 +220,22 @@
   background: linear-gradient(to right, #000000, #6B1CF7); }
 
 .genres .remix.included, .genres .remix.selected {
-  background: linear-gradient(to left, #1e0c49, #0097d5); }
+  background: linear-gradient(to right, #3A1399, #0097d5); }
 
 .genres .world.included, .genres .world.selected {
   background: linear-gradient(to right, #FF0000, #F76B1C); }
 
 .subgenres div:nth-of-type(2) .included, .subgenres div:nth-of-type(2) .selected {
-  background: linear-gradient(to right, #1e0c49, #0097d5); }
+  background: linear-gradient(to right, #3A1399, #0097d5); }
 
 .subgenres .selected {
   border: 1px solid #fff !important; }
 
 .subgenres .chill .included, .subgenres .chill .selected {
-  background: linear-gradient(to left, #39EF6C, #011403); }
+  background: linear-gradient(to left, #39EF6C, #02870E); }
 
 .subgenres .hiphop .included, .subgenres .hiphop .selected {
-  background: #000 !important; }
+  background: linear-gradient(to right, #000, #4D4D4D); }
 
 .subgenres .funk .included, .subgenres .funk .selected {
   background: linear-gradient(to right, #3023AE, #DB00FF); }
@@ -250,7 +250,7 @@
   background: linear-gradient(to right, #000000, #6B1CF7); }
 
 .subgenres .remix .included, .subgenres .remix .selected {
-  background: linear-gradient(to left, #1e0c49, #0097d5); }
+  background: linear-gradient(to right, #3A1399, #0097d5); }
 
 .subgenres .world .included, .subgenres .world .selected {
   background: linear-gradient(to right, #FF0000, #F76B1C); }
