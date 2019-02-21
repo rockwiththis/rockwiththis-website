@@ -19,7 +19,8 @@
     bottom: 0;
     background: rgba(255, 255, 255, 0.8);
     padding: 2px;
-    padding-left: 4px; }
+    padding-left: 4px;
+    padding-bottom: 0; }
     .imageHover .contentWrapper .gridSongInfo span {
       color: #fff;
       margin: 0px;
@@ -31,16 +32,18 @@
       color: #000; }
     .imageHover .contentWrapper .gridSongInfo .song-name {
       font-weight: bold;
-      font-size: 12px;
-      line-height: 13px;
+      font-size: 11px;
+      line-height: 12px;
       font-weight: 700;
-      margin-bottom: 1px;
       height: 13px;
       overflow: hidden; }
     .imageHover .contentWrapper .gridSongInfo .artist-name {
       font-weight: 400;
       font-size: 11px;
-      line-height: 12px; }
+      line-height: 12px;
+      line-height: 12px;
+      height: 13px;
+      overflow: hidden; }
 
 .activeDiscoverFullSong .tagWrapper {
   display: none; }

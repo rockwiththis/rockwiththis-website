@@ -29,6 +29,7 @@
       background: rgba(255,255,255,.8);
       padding: 2px;
       padding-left: 4px;
+      padding-bottom: 0;
 
 
       span {
@@ -43,10 +44,10 @@
       }
       .song-name {
         font-weight: bold;
-        font-size: 12px;
-        line-height: 13px;
+        font-size: 11px;
+        line-height: 12px;
         font-weight: 700;
-        margin-bottom: 1px;
+        // margin-bottom: 1px;
         height: 13px;
         overflow: hidden;
 
@@ -55,6 +56,9 @@
         font-weight: 400;
         font-size: 11px;
         line-height: 12px;
+        line-height: 12px;
+        height: 13px;
+        overflow: hidden;
       }
 }
 }
