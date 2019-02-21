@@ -1,5 +1,7 @@
 .fullView {
   padding: 15px;
+  padding-right: 0;
+
   .discover-full-song {
     .slide {
       opacity: 0;
@@ -73,18 +75,69 @@
         box-sizing: border-box;
 
         .imageHover {
-          background-image: url('../../../../../images/rwt-hover-gradient.png');
+          // background-image: url('../../../../../images/rwt-hover-gradient.png');
           position: absolute;
           left: 0;
           right: 0;
           top: 0;
-          opacity: 0;
+          opacity: 1;
           background-size: cover;
           height: calc(100% - 3px);
           border: 0 solid #fff;
 
+
+          .contentWrapper {
+            background: rgba(0,0,0,0);
+
+            .hoverContent {
+              display: none;
+              position: absolute;
+              top: 45%;
+              left: 50%;
+              -webkit-transform: translate(-50%, -50%);
+              text-align: center;
+              width: 100%;
+
+              .postTags {
+                width: 100%;
+                display: block;
+                margin-bottom: 10px;
+
+                .grid-tag {
+                  display: block;
+                  font-size: 12px;
+                  line-height: 15px;
+                  color: #fff;
+                  font-weight: 600;
+                  font-family: 'Object-Sans-Bold',sans-serif;
+
+                }
+                .grid-tag:nth-of-type(3) {
+                  display: none;
+                }
+              }
+            }
+
+            .readMore {
+              text-align: center;
+              color: #fff;
+              font-size: 10px;
+              padding: 8px;
+              background: #000;
+              border-radius: 4px;
+              font-family: 'Object-Sans-Bold',sans-serif;
+
+
+
+              @media(min-width:1100px) and (max-width: 1250px) {
+                font-size: 8px;
+              }
+            }
+          }
+
           img {
-            display: block;
+
+            display: none;
             width: 100%;
             position: absolute;
             max-width: 50px;
@@ -102,16 +155,39 @@
     }
 
     .songContainer:hover {
-      .imageHover {
-        opacity: 1;
+      cursor: pointer;
 
-        img {
-          display: none;
+      .contentWrapper {
+        background: rgba(0,0,0,.7) !important;
+
+        .hoverContent {
+          display: inline-block !important;
+        }
+
+        .gridSongInfo {
+          // background: #000;
+          background:rgba(0,0,0,.5) ;
+
+          span {
+            color: #fff;
+          }
+        }
+
+      }
+    }
+    .songContainer.activeDiscoverFullSong:hover {
+      .contentWrapper {
+        .hoverContent {
+          display: none !important;
         }
       }
     }
 
     .songContainer.activeDiscoverFullSong {
+
+      .hoverContent {
+        display: none !important;
+      }
       .imageHover {
         opacity: 1;
 
@@ -124,6 +200,10 @@
           -webkit-transform: translate(-50%,-50%);
           transform: translate(-50%,-50%);
         }
+      }
+
+      .contentWrapper {
+          background: rgba(0,0,0,.8) !important;
       }
     }
   }
@@ -246,11 +326,13 @@
 
 
                 .songtitle {
-                  margin-bottom: 3px;
                   pointer-events: all;
                   text-overflow: ellipsis;
                   white-space: nowrap;
                   overflow: hidden;
+                  font-family: 'Object-Sans-Bold',sans-serif;
+                  transform:translateY(2px);
+
 
                   a.postTitleLink {
                     font-size: 23px;
@@ -268,15 +350,16 @@
                     margin-left: 3px;
                     width: 30px;
                     padding: 0 3px;
-                    -webkit-transform: translateY(-4px);
-                    transform: translateY(-4px);
+                    transform: translateY(-2px);
                   }
                 }
 
                 .artist {
+                  transform:translateY(3px);
                   span.artistName {
                     font-size: 23px;
                     line-height: 24px;
+                    font-family: 'Object-Sans-Normal',sans-serif;
                   }
                 }
               }
@@ -302,7 +385,7 @@
                     display: inline-block;
                   }
                   .curatorName {
-                    font-weight: bold;
+                    font-family: 'Object-Sans-Bold',sans-serif;
                   }
                 }
 
@@ -325,8 +408,8 @@
                     cursor: pointer;
                     letter-spacing: .7px;
                     box-shadow: 0 3px 2px -2px #C9C6CB;
-                    padding: 2px 4px;
-                    font-family: 'Baloo', cursive;
+                    padding: 4px;
+                    font-family: 'Object-Sans-Bold',sans-serif;
                   }
                 }
               }
@@ -337,7 +420,6 @@
               pointer-events: all;
 
               .songDescription {
-                font-family: Open-Sans,sans-serif;
                 font-size: 16px;
                 line-height: 28px;
                 font-weight: 100;
@@ -345,6 +427,7 @@
                 text-align: left;
                 margin-top: 0;
                 padding: 0 5px;
+                font-family: 'Object-Sans-Light',sans-serif;
               }
             }
           }

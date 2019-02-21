@@ -45,7 +45,7 @@ class Song extends Component {
     renderTags = (className = 'tag') => (
       <span className="postTags">
         { this.props.song.sub_genres.map(genre => (
-            <span key={genre.name} className={className}>#{genre.name}</span>
+            <span key={genre.name} className={className}>{genre.name}</span>
         ))}
       </span>
     );

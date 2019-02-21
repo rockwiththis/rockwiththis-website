@@ -86,7 +86,7 @@ class SingleSong extends Component {
         );
         const songTags = song.sub_genres.map(tag => {
           return (
-              <span key={tag.id} className="tag">#{tag.name}</span>
+              <span key={tag.id} className="tag">{tag.name}</span>
           )
         })
         return (

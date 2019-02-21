@@ -203,6 +203,7 @@ a.smsLink {
         vertical-align: top;
         text-align: left;
         padding: 0 15px;
+        padding-right: 0 !important;
 
         p {
           text-align: left;
@@ -253,7 +254,7 @@ form.url-clipboard {
       font-size: 18px !important;
       color: #fff !important;
       padding: 5px;
-      padding-top: 15px;
+      padding-top: 7px;
       padding-left: 7px;
 }
 }
@@ -295,6 +296,7 @@ form.url-clipboard {
     vertical-align: top;
     text-align: left;
     padding: 0 15px !important;
+    padding-right: 0 !important;
 }
 
 .song-info {

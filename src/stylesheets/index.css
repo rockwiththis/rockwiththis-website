@@ -1,6 +1,41 @@
 .fullView .discover-full-song button.toggle-song {
   display: none; }
 
+@font-face {
+  font-family: 'Object-Sans-Light';
+  font-style: normal;
+  font-weight: 100;
+  src: local("Object Sans Light"), local("ObjectSansLight"), url("../fonts/object-sans/light/ObjectSans-Light.woff2") format("woff2"), url("../fonts/object-sans/light/ObjectSans-Light.woff") format("woff"), url("../fonts/object-sans/light/ObjectSans-Light.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Object-Sans-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Object Sans Regular"), local("ObjectSansRegular"), url("../fonts/object-sans/regular/ObjectSans-Regular.woff2") format("woff2"), url("../fonts/object-sans/regular/ObjectSans-Regular.woff") format("woff"), url("../fonts/object-sans/regular/ObjectSans-Regular.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Object-Sans-Bold';
+  font-style: bold;
+  font-weight: 600;
+  src: url("../fonts/object-sans/bold/ObjectSans-Bold.eot");
+  /* IE9 Compat Modes */
+  src: local("Object Sans Bold"), local("ObjectSansBold"), url("../fonts/object-sans/bold/ObjectSans-Bold.woff2") format("woff2"), url("../fonts/object-sans/bold/ObjectSans-Bold.woff") format("woff"), url("../fonts/object-sans/bold/ObjectSans-Bold.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Object-Sans-Heavy';
+  font-style: bold;
+  font-weight: 700;
+  src: local("Object Sans Heavy"), local("ObjectSansHeavy"), url("../fonts/object-sans/heavy/ObjectSans-Heavy.woff2") format("woff2"), url("../fonts/object-sans/heavy/ObjectSans-Heavy.woff") format("woff"), url("../fonts/object-sans/heavy/ObjectSans-Heavy.ttf") format("truetype"); }
+
+@font-face {
+  font-family: 'Object-Sans-Black';
+  font-style: bold;
+  font-weight: 800;
+  src: local("Object Sans Black"), local("ObjectSansBlack"), url("../fonts/object-sans/black/ObjectSans-Black.woff2") format("woff2"), url("../fonts/object-sans/black/ObjectSans-Black.woff") format("woff"), url("../fonts/object-sans/black/ObjectSans-Black.ttf") format("truetype"); }
+
+body {
+  font-family: 'Object-Sans-Regular',sans-serif; }
+
 .homeContainer {
   margin-top: 75px !important; }
   @media (max-width: 480px) {
@@ -89,7 +124,6 @@
   display: inline-block; }
 
 body {
-  font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   /* Lets it scroll lazy */ }
@@ -468,8 +502,7 @@ form.rwt-email-form button {
     .main-content .four-content p {
       font-size: 20px;
       line-height: 30px;
-      font-weight: 400 !important;
-      font-family: Open-Sans,sans-serif; }
+      font-weight: 400 !important; }
     .main-content .four-content p.mission-tagline {
       margin-bottom: 10px; }
     .main-content .four-content p.email-text {
@@ -501,8 +534,7 @@ form.rwt-email-form button {
       color: #fff;
       font-size: 24px;
       line-height: 34px;
-      max-width: 515px;
-      font-family: Open-Sans,sans-serif; }
+      max-width: 515px; }
     .blue-content .blue-content-container h1.blue-title {
       color: #fff;
       font-size: 40px;
@@ -624,6 +656,20 @@ form.rwt-email-form button {
 .four-content {
   max-width: 500px;
   display: inline-block; }
+  .four-content h3 {
+    font-family: 'Object-Sans-Black',sans-serif; }
+  .four-content p.mission-tagline {
+    font-family: 'Object-Sans-Bold',sans-serif; }
+  .four-content p.email-text {
+    font-family: 'Object-Sans-Regular',sans-serif; }
+  .four-content .form-input {
+    font-family: 'Object-Sans-Light',sans-serif; }
+
+.blue-content .blue-title {
+  font-family: 'Object-Sans-Black',sans-serif; }
+
+.blue-content p {
+  font-family: 'Object-Sans-Light',sans-serif !important; }
 
 .main-content img.cross {
   height: 250px;

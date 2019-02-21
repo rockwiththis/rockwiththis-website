@@ -106,7 +106,8 @@
           text-align: center; } }
     .control-bar .control-bar-item .control-bar-title {
       font-size: 12px;
-      font-weight: bold; }
+      font-weight: bold;
+      transform: translateY(2px); }
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-title.desktop {
           display: none; } }
@@ -122,7 +123,10 @@
           font-weight: normal; } }
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-title {
-          font-size: 12px; } }
+          font-size: 12px;
+          padding-top: 4px;
+          display: block;
+          font-family: 'Object-Sans-Bold',sans-serif; } }
     @media (min-width: 800px) {
       .control-bar .control-bar-item .control-bar-title.shuffle {
         display: none; } }
@@ -138,6 +142,14 @@
       padding: 6px !important;
       margin-top: 5px;
       background: #f5f3f3; } }
+  @media (min-width: 800px) {
+    .control-bar .control-bar-item.shuffle .control-bar-item-content .control-bar-icon {
+      height: 22px; } }
+  .control-bar .control-bar-item.shuffle .control-bar-item-content .control-bar-icon svg {
+    height: 22px;
+    vertical-align: middle;
+    width: 22px;
+    transform: translateY(1px); }
   @media (min-width: 800px) {
     .control-bar .control-bar-item.shuffle .control-bar-item-content:hover {
       background: #282828;
