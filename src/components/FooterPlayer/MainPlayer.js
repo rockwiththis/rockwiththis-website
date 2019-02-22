@@ -25,8 +25,6 @@ class MainPlayer extends Component {
         }
 
         this.renderButtons = this.renderButtons.bind(this)
-        this.changeSong = this.changeSong.bind(this)
-        this.changeSongOnEnd = this.changeSongOnEnd.bind(this)
         this.updateStorePlayPause = this.updateStorePlayPause.bind(this)
     }
 
@@ -38,29 +36,13 @@ class MainPlayer extends Component {
       this.props.actions.togglePlayPause(!this.props.isPlaying)
     }
 
-    changeSong(next) {
-        this.props.filteredPosts.forEach((post, i, arr) => {
-            if (post.id === this.props.activeSong.id) {
-                const queuePosition = next ? i + 1 : i - 1
-                this.props.actions.toggleSong(arr[queuePosition])
-            }
-        })
-    }
-
-    changeSongOnEnd() {
-      // this.props.actions.setSongDuration(0)
-
-      // NOTE(@josephwilliams): switched from this.props.posts to this.props.filteredPosts as the latter includes all posts, combined, from 'fetchPosts' smallDataURL and bigDataURL.
-      // find current song in queue
-      const isCurrentSong = (song) => (song.id === this.props.activeSong.id)
-      const currentQueuePosition = this.props.filteredPosts.findIndex(isCurrentSong)
-
-      // determine next song in queue, or reset queue position to 0 if at end of queue
-      let nextQueuePosition = (currentQueuePosition + 1);
-      const isEndOfQueue = (nextQueuePosition >= this.props.filteredPosts.length)
-      nextQueuePosition = (isEndOfQueue ? 0 : nextQueuePosition)
-
-      this.props.actions.toggleSong(this.props.filteredPosts[nextQueuePosition])
+    playPreviousSong = () => {
+      this.props.filteredPosts.forEach((post, i, arr) => {
+        if (post.id === this.props.activeSong.id) {
+          const queuePosition = i - 1
+          this.props.actions.toggleSong(arr[queuePosition])
+        }
+      })
     }
 
     renderInfo() {
@@ -112,7 +94,7 @@ class MainPlayer extends Component {
                         disabled={disableBack}
                         id="player-control-button-back"
                         className={`player-control-button ${disableBack ? 'disabled' : ''}`}
-                        onClick={() => this.changeSong(false)}
+                        onClick={this.playPreviousSong}
                     >
                     <i className="im im-previous"></i>
 
@@ -127,7 +109,7 @@ class MainPlayer extends Component {
                     <button
                         id="player-control-button-next"
                         className="player-control-button"
-                        onClick={() => this.changeSong(true)}
+                        onClick={this.props.playNextSong}
                     >
                     <i className="im im-next"></i>
 

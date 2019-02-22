@@ -38,8 +38,6 @@ class SongGrid extends Component {
 
     render() {
         // Using this `songContainer` class in multiple components makes CSS'ing really hard
-
-        console.log("zzz", this.props.song);
         return (
             <div
               className={['songContainer', this.props.className].join(' ')}
