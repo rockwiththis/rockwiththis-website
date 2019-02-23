@@ -411,6 +411,10 @@
                     padding: 4px;
                     font-family: 'Object-Sans-Bold',sans-serif;
                   }
+                  .tag:nth-of-type(2) {
+                      display: none !important;
+                  }
+
                 }
               }
             }

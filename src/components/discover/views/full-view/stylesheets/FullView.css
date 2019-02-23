@@ -280,6 +280,8 @@
             box-shadow: 0 3px 2px -2px #C9C6CB;
             padding: 4px;
             font-family: 'Object-Sans-Bold',sans-serif; }
+          .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag:nth-of-type(2) {
+            display: none !important; }
       .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer {
         max-height: none;
         padding-bottom: 0px;
