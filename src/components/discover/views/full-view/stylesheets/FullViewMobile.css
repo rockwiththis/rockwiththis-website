@@ -106,7 +106,8 @@
                 text-align: left;
                 height: 20px;
                 overflow: hidden;
-                transform: translateY(3px); }
+                transform: translateY(3px);
+                margin-bottom: 3px; }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
                   display: inline-block; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile .curatedBy {

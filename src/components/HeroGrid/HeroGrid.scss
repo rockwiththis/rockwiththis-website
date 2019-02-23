@@ -194,20 +194,13 @@
                 font-family: 'Object-Sans-Bold',sans-serif;
 
                 @media screen and (max-width: 800px)  {
-                  top: -28px;
-                  font-size: 14px;
-                  padding: 6px;
-                }
-                @media screen and (max-width: 650px)  {
-                  top: -28px;
-                  font-size: 14px;
-                }
-                @media screen and (max-width: 480px)  {
                   top: -25px;
                   font-size: 14px;
+                  padding: 6px;
                   padding: 7px;
                   padding-bottom: 4px;
                 }
+              
             }
 
             .post-square-wrapper {

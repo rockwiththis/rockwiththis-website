@@ -166,17 +166,9 @@
           font-family: 'Object-Sans-Bold',sans-serif; }
           @media screen and (max-width: 800px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-              top: -28px;
-              font-size: 14px;
-              padding: 6px; } }
-          @media screen and (max-width: 650px) {
-            .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-              top: -28px;
-              font-size: 14px; } }
-          @media screen and (max-width: 480px) {
-            .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
               top: -25px;
               font-size: 14px;
+              padding: 6px;
               padding: 7px;
               padding-bottom: 4px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper {
