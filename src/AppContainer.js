@@ -19,7 +19,7 @@ const propTypes = {
   actions: PropTypes.object,   // TODO stop using this
   loadMoreSongs: PropTypes.func.isRequired,
   playSong: PropTypes.func.isRequired
-} 
+}
 
 class AppContainer extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class AppContainer extends Component {
     }
   };
 
-  changeSongOnEnd = () => {
+  playNextSong = () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
 
     if (nextIndex >= this.props.filteredPosts.length) {
@@ -97,7 +97,11 @@ class AppContainer extends Component {
 
           { React.cloneElement(this.props.children, this.props) }
 
-          <MainPlayer {...this.props} onProgressUpdate={this.handleProgressUpdate} />
+          <MainPlayer
+            onProgressUpdate={this.handleProgressUpdate}
+            playNextSong={this.playNextSong}
+            {...this.props}
+          />
           {
             !!this.props.activeSong && !!this.props.activeSong.id &&
             <SongPlayerBank
@@ -106,7 +110,7 @@ class AppContainer extends Component {
               initialActiveSong={this.props.activeSong}
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
-              onSongEnd={this.changeSongOnEnd}
+              onSongEnd={this.playNextSong}
               ref={this.playerBankRef}
             />
           }
@@ -120,8 +124,8 @@ const mapStateToProps = (state, ownProps) => Object.assign(state, ownProps)
 const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(BindActions, dispatch),
-    loadMoreSongs,
-    playSong
+    loadMoreSongs: () => dispatch(loadMoreSongs()),
+    playSong: song => dispatch(playSong(song))
   }
 }
 
