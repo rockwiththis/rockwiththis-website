@@ -38,9 +38,11 @@ class SongPlayerBank extends React.Component {
       [song.id]: this.createPlayer(song)
     }), {});
     this.allPlayers = { ...this.heroPlayers };
-    this.setSongListPlayers(this.props.initialSongList);
 
-    this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
+    setTimeout(() => {
+      this.setSongListPlayers(this.props.initialSongList);
+      this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
+    }, 5000);
   }
 
   setSongListPlayers = songList => {
