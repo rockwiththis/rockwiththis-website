@@ -73,7 +73,7 @@ class SongPlayerBank extends React.Component {
   createPlayer = song =>
     new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
-      html5: true,
+      html5: false,
       autoplay: false,
       onload: this.onPlayerReady(song.id),
       onend: this.props.onSongEnd
