@@ -33,6 +33,9 @@ class SongPlayerBank extends React.Component {
   shouldComponentUpdate = () => false;
 
   componentDidMount = () => {
+    this.createPlayer(this.props.heroSongs[0]);
+
+    /*
     this.heroPlayers = this.props.heroSongs.reduce((currPlayers, song, i) => ({
       ...currPlayers,
       [song.id]: this.createPlayer(song)
@@ -43,6 +46,7 @@ class SongPlayerBank extends React.Component {
       this.setSongListPlayers(this.props.initialSongList);
       this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
     //}, 5000);
+    */
   }
 
   setSongListPlayers = songList => {
@@ -70,15 +74,17 @@ class SongPlayerBank extends React.Component {
     }
   }
 
-  createPlayer = song => setTimeout(() => (
-    new Howl({
+  createPlayer = song => {
+    //setTimeout(() => {}, 1000);
+
+    return new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: false,
       autoplay: false,
       onload: this.onPlayerReady(song.id),
       onend: this.props.onSongEnd
     })
-  ), 1000)
+  }
 
   onPlayerReady = songId => () =>
     this.allPlayers[songId] &&
