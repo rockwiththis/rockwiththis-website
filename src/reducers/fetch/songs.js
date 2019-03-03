@@ -28,7 +28,7 @@ export default {
       heroPosts: action.payload.songs.slice(0,7),
       spotlightPost: action.payload.songs[0],
       activeSong: action.payload.songs[0],
-      //shouldLoadPlayers: true,
+      shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
     }
