@@ -52,17 +52,19 @@ class SongPlayerBank extends React.Component {
 
   setSongListPlayers = songList => {
 
+    var loadedSongCount = 0;
     songList.forEach((song, i) => {
-      setTimeout(() => {
-        if (!!this.allPlayers[song.id]) {
-          this.songListPlayers[song.id] = this.allPlayers[song.id]
+      if (!!this.allPlayers[song.id]) {
+        this.songListPlayers[song.id] = this.allPlayers[song.id]
 
-        } else {
+      } else {
+        setTimeout(() => {
           const player = this.createPlayer(song);
           this.songListPlayers[song.id] = player;
           this.allPlayers[song.id] = player;
-        }
-      }, SONG_LOAD_WAIT_TIME * i);
+        }, SONG_LOAD_WAIT_TIME * loadedSongCount);
+        loadedSongCount += 1;
+      }
     });
 
     // unload all players in `allPlayers` but not `heroPlayers` or `songListPlayers`
