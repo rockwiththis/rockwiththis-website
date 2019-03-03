@@ -39,10 +39,10 @@ class SongPlayerBank extends React.Component {
     }), {});
     this.allPlayers = { ...this.heroPlayers };
 
-    setTimeout(() => {
+    //setTimeout(() => {
       this.setSongListPlayers(this.props.initialSongList);
       this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
-    }, 5000);
+    //}, 5000);
   }
 
   setSongListPlayers = songList => {
@@ -70,14 +70,15 @@ class SongPlayerBank extends React.Component {
     }
   }
 
-  createPlayer = song =>
+  createPlayer = song => setTimeout(() => (
     new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: false,
       autoplay: false,
       onload: this.onPlayerReady(song.id),
       onend: this.props.onSongEnd
-    });
+    })
+  ), 1000)
 
   onPlayerReady = songId => () =>
     this.allPlayers[songId] &&
