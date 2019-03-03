@@ -42,8 +42,6 @@ class SongPlayerBank extends React.Component {
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
   setActiveSongs = songs => {
-    console.log("SETTING ACTIVE SONGS", songs);
-
     this.activeSongs = {};
     songs.forEach((song, i) => {
       this.activeSongs[song.id] = song;
@@ -53,7 +51,7 @@ class SongPlayerBank extends React.Component {
     if (!this.loadingSongId) this.loadNextPlayer();
 
     Object.keys(this.loadedPlayers).forEach(songId => {
-      if (!find(songs, ['id', songId])) {
+      if (!find(songs, ['id', parseInt(songId)])) {
         this.loadedPlayers[songId].unload();
         this.loadedPlayers[songId] = undefined;
       }
@@ -64,13 +62,11 @@ class SongPlayerBank extends React.Component {
     const nextSong = this.songLoadQueue.shift();
 
     if (!!nextSong && this.isSongActive(nextSong)) {
-      console.log("LOADING NEXT PLAYER", nextSong)
       this.loadingSongId = nextSong.id;
       this.loadedPlayers[nextSong.id] = (
         this.loadedPlayers[nextSong.id] ||
         this.createPlayer(nextSong)
       );
-      console.log(this.loadedPlayers[nextSong.id]);
 
     } else if (!!nextSong) {
       this.loadNextPlayer();
@@ -80,21 +76,16 @@ class SongPlayerBank extends React.Component {
     }
   }
 
-  createPlayer = song => {
-    console.log("CREATING PLAYER", song);
-    return new Howl({
+  createPlayer = song =>
+    new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
       autoplay: false,
-      preload: true,
-      //onload: this.onPlayerReady(song.id),
-      //onload: () => console.log("PLAYER READY"),
-      onend: this.props.onSongEnd
+      onload: this.onPlayerReady(song.id),
+      onend: this.props.onSongEnd,
     })
-  }
 
   onPlayerReady = songId => () => {
-    console.log("PLAYER READY", songId);
     if (!!this.loadedPlayers[songId]) {
       this.activePlayer = this.activePlayer || this.loadedPlayers[songId];
       this.props.setSongDuration(songId, this.loadedPlayers[songId].duration());
