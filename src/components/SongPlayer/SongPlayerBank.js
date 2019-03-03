@@ -33,7 +33,12 @@ class SongPlayerBank extends React.Component {
   shouldComponentUpdate = () => false;
 
   componentDidMount = () => {
+    const song = this.props.heroSongs[0];
+    const player = this.createPlayer(song);
+    this.heroPlayers[song.id] = player;
+    this.allPlayers[song.id] = player;
 
+    /*
     this.props.heroSongs.forEach(song => {
       const player = this.createPlayer(song);
       this.heroPlayers[song.id] = player;
@@ -44,6 +49,8 @@ class SongPlayerBank extends React.Component {
       this.setSongListPlayers(this.props.initialSongList);
       this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
     //}, 5000);
+    */
+
   }
 
   setSongListPlayers = songList => {
@@ -82,8 +89,6 @@ class SongPlayerBank extends React.Component {
   }
 
   createPlayer = song => {
-    //setTimeout(() => {}, 1000);
-
     return new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
