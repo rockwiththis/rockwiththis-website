@@ -15,7 +15,6 @@ const fetchSongs = (
   const currSongIds = state.filteredPosts.map(song => song.id);
   const fullURL =
     `${API_BASE_URL}/songs/${isShuffle ? 'shuffle' : ''}?` +
-    `limit=16&` +
     `tags=[${subgenreIds}]` +
     (omitCurrSongs ? `&omitSongIds=[${currSongIds}]` : '');
 
