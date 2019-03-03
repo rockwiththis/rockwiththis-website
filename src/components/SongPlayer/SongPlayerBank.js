@@ -23,9 +23,9 @@ const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 class SongPlayerBank extends React.Component {
   constructor(props) {
     super(props);
-    this.songListPlayers = undefined;
-    this.heroPlayers = undefined;
-    this.allPlayers = undefined;
+    this.songListPlayers = {};
+    this.heroPlayers = {};
+    this.allPlayers = {};
     this.activePlayer = undefined;
     this.durationInterval = undefined;
   }
@@ -33,32 +33,39 @@ class SongPlayerBank extends React.Component {
   shouldComponentUpdate = () => false;
 
   componentDidMount = () => {
-    this.createPlayer(this.props.heroSongs[0]);
 
-    /*
-    this.heroPlayers = this.props.heroSongs.reduce((currPlayers, song, i) => ({
-      ...currPlayers,
-      [song.id]: this.createPlayer(song)
-    }), {});
-    this.allPlayers = { ...this.heroPlayers };
+    this.props.heroSongs.forEach(song => {
+      const player = this.createPlayer(song);
+      this.heroPlayers[song.id] = player;
+      this.allPlayers[song.id] = player;
+    });
 
     //setTimeout(() => {
       this.setSongListPlayers(this.props.initialSongList);
       this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
     //}, 5000);
-    */
   }
 
   setSongListPlayers = songList => {
-    this.songListPlayers = songList.reduce((currPlayers, song) => (
-        !!song.id ?
-          {
-            ...currPlayers,
-            [song.id]: this.allPlayers[song.id] || this.createPlayer(song)
-          } :
-          currPlayers
-    ), {});
-    this.allPlayers = { ...this.allPlayers, ...this.songListPlayers }
+
+    songList.forEach(song => {
+      if (!!this.allPlayers[song.id]) {
+        this.songListPlayers[song.id] = this.allPlayers[song.id]
+
+      } else {
+        const player = this.createPlayer(song);
+        this.songListPlayers[song.id] = player;
+        this.allPlayers[song.id] = player;
+      }
+    });
+
+    // unload all players in `allPlayers` but not `heroPlayers` or `songListPlayers`
+    Object.keys(this.allPlayers).forEach(songId => {
+      if (!this.heroPlayers[songId] && !this.songListPlayers[songId]) {
+        this.allPlayers[songId].unload();
+        this.allPlayers[songId] = undefined;
+      }
+    });
   }
 
   ensureActivePlayer = activeSong => {
