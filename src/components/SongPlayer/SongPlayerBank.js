@@ -16,6 +16,7 @@ const getSoundCloudUrl = scid => {
   return `https://w.soundcloud.com/player/?url=${url}`;
 }
 
+const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
@@ -34,38 +35,45 @@ class SongPlayerBank extends React.Component {
 
   componentDidMount = () => {
 
-    this.props.heroSongs.forEach(song => {
-      const player = this.createPlayer(song);
-      this.heroPlayers[song.id] = player;
-      this.allPlayers[song.id] = player;
+    this.props.heroSongs.forEach((song, i) => {
+      setTimeout(() => {
+        const player = this.createPlayer(song);
+        this.heroPlayers[song.id] = player;
+        this.allPlayers[song.id] = player;
+        if (this.props.initialActiveSong.id === song.id) this.activePlayer = player;
+      }, SONG_LOAD_WAIT_TIME * i);
     });
 
-    //setTimeout(() => {
+    setTimeout(() => {
       this.setSongListPlayers(this.props.initialSongList);
       this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
-    //}, 5000);
+    }, SONG_LOAD_WAIT_TIME * this.props.heroSongs.length);
   }
 
   setSongListPlayers = songList => {
 
-    songList.forEach(song => {
-      if (!!this.allPlayers[song.id]) {
-        this.songListPlayers[song.id] = this.allPlayers[song.id]
+    songList.forEach((song, i) => {
+      setTimeout(() => {
+        if (!!this.allPlayers[song.id]) {
+          this.songListPlayers[song.id] = this.allPlayers[song.id]
 
-      } else {
-        const player = this.createPlayer(song);
-        this.songListPlayers[song.id] = player;
-        this.allPlayers[song.id] = player;
-      }
+        } else {
+          const player = this.createPlayer(song);
+          this.songListPlayers[song.id] = player;
+          this.allPlayers[song.id] = player;
+        }
+      }, SONG_LOAD_WAIT_TIME * i);
     });
 
     // unload all players in `allPlayers` but not `heroPlayers` or `songListPlayers`
-    Object.keys(this.allPlayers).forEach(songId => {
-      if (!this.heroPlayers[songId] && !this.songListPlayers[songId]) {
-        this.allPlayers[songId].unload();
-        this.allPlayers[songId] = undefined;
-      }
-    });
+    setTimeout(() => {
+      Object.keys(this.allPlayers).forEach(songId => {
+        if (!this.heroPlayers[songId] && !this.songListPlayers[songId]) {
+          this.allPlayers[songId].unload();
+          this.allPlayers[songId] = undefined;
+        }
+      });
+    }, SONG_LOAD_WAIT_TIME * songList.length)
   }
 
   ensureActivePlayer = activeSong => {
