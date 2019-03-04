@@ -163,7 +163,7 @@
       .control-bar-title {
         font-size: 12px;
         font-weight: bold;
-        transform:translateY(2px);
+        // transform:translateY(2px);
         &.desktop { @media(max-width: 800px) { display: none } }
         &.mobile {
           @media(min-width: 800px) {

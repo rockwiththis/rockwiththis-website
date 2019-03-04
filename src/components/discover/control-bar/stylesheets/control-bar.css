@@ -106,8 +106,7 @@
           text-align: center; } }
     .control-bar .control-bar-item .control-bar-title {
       font-size: 12px;
-      font-weight: bold;
-      transform: translateY(2px); }
+      font-weight: bold; }
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-title.desktop {
           display: none; } }
