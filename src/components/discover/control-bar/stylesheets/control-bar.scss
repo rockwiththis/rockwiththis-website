@@ -114,6 +114,18 @@
           fill: #fff;
         }
       }
+      &.active.moments {
+        background: #282828;;
+        color: #fff;
+
+        span {
+          color: #fff;
+        }
+
+        svg {
+          fill: #fff;
+        }
+      }
 
       .control-bar-item-content {
 

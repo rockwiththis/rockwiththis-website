@@ -34,30 +34,31 @@
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link .hover-content, .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .imageContainer .song-hover-link .heroHoverGradient {
                 display: none; }
             .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .imageContainer img {
-              max-height: 135px;
+              max-height: 115px;
               border-radius: 4px;
               margin-left: 10px; }
             .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer {
               display: none; }
           .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer {
             display: inline-block;
-            width: calc(100% - 156px);
+            width: calc(100% - 135px);
             vertical-align: top;
             height: auto;
             padding-left: 0; }
             .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
-              text-align: left; }
+              text-align: left;
+              height: 55px; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
                 display: inline-block;
                 text-align: left;
                 pointer-events: all;
                 vertical-align: top;
-                padding-right: 5px; }
+                margin-right: 4px; }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
-                  width: 40px;
-                  height: 40px; }
+                  width: 35px;
+                  height: 35px; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo {
                 width: calc(100% - 45px);
                 display: inline-block;
@@ -74,11 +75,11 @@
                   color: #000;
                   font-weight: 700;
                   overflow: hidden;
-                  display: block;
-                  margin-bottom: 2px; }
+                  display: block; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo .postTitleLink .songName {
                     font-size: 14px;
                     line-height: 16px;
+                    margin-bottom: 2px;
                     display: block;
                     max-width: 100%;
                     width: auto;
@@ -86,6 +87,12 @@
                     white-space: nowrap;
                     overflow: hidden;
                     font-family: 'Object-Sans-Bold',sans-serif; }
+                  .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo .postTitleLink .songName:after {
+                    content: '';
+                    margin-bottom: -1.5px;
+                    display: block;
+                    height: 0;
+                    width: 0; }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo .artistName {
                   color: #000;
                   font-size: 14px;
@@ -98,22 +105,29 @@
                   white-space: nowrap;
                   overflow: hidden;
                   font-family: 'Object-Sans-Normal',sans-serif; }
+                .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo .artistName:before {
+                  content: '';
+                  margin-top: -1.5px;
+                  display: block;
+                  height: 0;
+                  width: 0; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
                 display: none; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo {
                 width: 100%;
                 display: inline-block;
                 margin-left: 5px;
-                margin-top: 2.5px;
+                margin-top: 0px;
                 text-align: left;
                 height: auto;
                 overflow: hidden; }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
                   display: inline-block; }
+                  .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile span.separater {
+                    font-size: 10px; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile .curatedBy {
                     display: none; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile .curatorName {
-                    font-weight: bold;
                     font-size: 10px;
                     font-family: 'Object-Sans-Bold',sans-serif; }
                   .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile .postDate {
@@ -159,15 +173,16 @@
         position: absolute;
         right: 15px; }
         .discovery-section .fullViewLayout .songList .songContainer .seeMore span {
-          bottom: -5px;
+          bottom: -10px;
           position: absolute;
+          font-size: 10px;
           right: 15px;
           font-family: 'Object-Sans-Normal',sans-serif; }
         .discovery-section .fullViewLayout .songList .songContainer .seeMore .im {
-          font-size: 12px;
+          font-size: 10px;
           margin-left: 2px;
           position: absolute;
-          bottom: -4px;
+          bottom: -11px;
           right: 0; }
       .discovery-section .fullViewLayout .songList .songContainer hr {
         width: 95%;

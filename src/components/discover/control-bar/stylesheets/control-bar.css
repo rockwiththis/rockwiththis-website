@@ -77,6 +77,13 @@
       color: #fff; }
     .control-bar .control-bar-item.active.genre-filter svg {
       fill: #fff; }
+    .control-bar .control-bar-item.active.moments {
+      background: #282828;
+      color: #fff; }
+      .control-bar .control-bar-item.active.moments span {
+        color: #fff; }
+      .control-bar .control-bar-item.active.moments svg {
+        fill: #fff; }
     @media (max-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
         width: 100%;

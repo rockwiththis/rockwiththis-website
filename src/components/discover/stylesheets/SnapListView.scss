@@ -37,9 +37,9 @@
         .wrapper {
 
           @media (max-width: 800px) {
-            width: calc(80% - 15px);
+            width: calc(90% - 15px);
             display: inline-block;
-            padding: 0 0 5px 15px;
+            padding: 0 0 5px 10px;
             pointer-events: all;
             cursor: pointer;
           }
@@ -78,8 +78,8 @@
 
               @media (max-width: 800px) {
                 max-width: 50px;
-                height: 50px;
-                width: 50px;
+                height: 40px;
+                width: 40px;
                 display: inline-block;
                 vertical-align: top;
                 padding-right: 5px;
@@ -100,9 +100,9 @@
                 }
                 @media (max-width: 800px) {
                   border-radius: 2px;
-                  height: 50px;
-                  width: 50px;
-                  max-width: 50px;
+                  height: 40px;
+                  width: 40px;
+                  max-width: 40px;
                   margin-left: 0px;
                 }
               }
@@ -121,7 +121,7 @@
                 height: auto;
               }
               @media (max-width: 800px) {
-                width: 80%;
+                width: 85%;
               }
 
               .postInfoContainer {
@@ -251,8 +251,8 @@
                     text-decoration: none;
                     color: black;
                     font-weight: 700;
-                    font-size: 16px;
-                    line-height: 20px;
+                    font-size: 14px;
+                    line-height: 16px;
                     max-height: 20px;
                     pointer-events: none;
                     max-width: 100%;
@@ -263,15 +263,18 @@
                     font-family: 'Object-Sans-Bold',sans-serif;
                   }
                   .artistName {
-                    line-height: 20px;
-                    max-height: 20px;
                     color: #000;
-                    font-size: 17px;
+                    font-size: 14px;
+                    line-height: 16px;
                     max-width: 100%;
                     width: auto;
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
+                  }
+
+                  a {
+                    text-decoration: none;
                   }
                 }
 
@@ -392,8 +395,8 @@
           }
           @media (max-width: 800px) {
             display: inline-block;
-            width: 20%;
-            height: 50px;
+            width: 10%;
+            height: 40px;
             vertical-align: top;
             position: relative;
           }
@@ -407,6 +410,9 @@
             color: black;
             z-index: 1;
             font-size: 16px;
+            @media (max-width: 800px) {
+              font-size: 14px;
+            }
           }
         }
 
@@ -423,6 +429,10 @@
 
 
           @media (max-width: 800px) {
+            // position: absolute;
+            // width: 100%;
+            // height: 100%;
+            // z-index: 90;
             display: none;
           }
 
@@ -430,6 +440,14 @@
             font-size: 12px;
             vertical-align: bottom;
             margin-left: 2px;
+            @media (max-width: 800px) {
+              display: none;
+            }
+          }
+          span {
+            @media (max-width: 800px) {
+              display: none;
+            }
           }
         }
         .seeMore:hover {
