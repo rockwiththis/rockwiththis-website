@@ -4,7 +4,7 @@ import { Link, NavLink, Nav } from 'react-router-dom'
 import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 import desktopLogo from 'images/RWT-Hortizontal-Logo-Vector.svg'
-import mobileLogo from 'images/RWT_Stacked.svg'
+import mobileLogo from 'images/RWT_HeadLogo.svg'
 import NavLeftNotHome from './NavLeftNotHome.js'
 
 import './Header.scss'

@@ -185,6 +185,7 @@ footer {
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 3px;
           }
 
           button#player-control-button-back, button#player-control-button-next {
@@ -327,7 +328,6 @@ footer {
           }
 
           .player-duration-bar-current-time, .player-duration-bar-song-duration {
-              font-family: Open Sans;
               letter-spacing: 2px;
               font-size: 10px;
               flex: 0 0 60px;

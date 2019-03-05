@@ -4,6 +4,10 @@
     max-width: 1400px;
     margin: 0 auto; } }
 
+@media (max-width: 800px) {
+  .previewScrollLayout .songList .songContainer:nth-of-type(1) {
+    display: none !important; } }
+
 .previewScrollLayout .songList .songContainer {
   position: relative; }
   @media (min-width: 800px) {
@@ -23,9 +27,9 @@
       margin: 5px 0; } }
   @media (max-width: 800px) {
     .previewScrollLayout .songList .songContainer .wrapper {
-      width: calc(80% - 15px);
+      width: calc(90% - 15px);
       display: inline-block;
-      padding: 0 0 5px 15px;
+      padding: 0 0 5px 10px;
       pointer-events: all;
       cursor: pointer; } }
   @media (min-width: 800px) {
@@ -57,8 +61,8 @@
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer {
         max-width: 50px;
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
         display: inline-block;
         vertical-align: top;
         padding-right: 5px;
@@ -74,9 +78,9 @@
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer img.songImage {
         border-radius: 2px;
-        height: 50px;
-        width: 50px;
-        max-width: 50px;
+        height: 40px;
+        width: 40px;
+        max-width: 40px;
         margin-left: 0px; } }
     .previewScrollLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer {
       display: none; }
@@ -90,7 +94,7 @@
         height: auto; } }
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer {
-        width: 80%; } }
+        width: 85%; } }
     @media (min-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
         display: inline-block;
@@ -171,8 +175,8 @@
         text-decoration: none;
         color: black;
         font-weight: 700;
-        font-size: 16px;
-        line-height: 20px;
+        font-size: 14px;
+        line-height: 16px;
         max-height: 20px;
         pointer-events: none;
         max-width: 100%;
@@ -182,15 +186,16 @@
         overflow: hidden;
         font-family: 'Object-Sans-Bold',sans-serif; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile .artistName {
-        line-height: 20px;
-        max-height: 20px;
         color: #000;
-        font-size: 17px;
+        font-size: 14px;
+        line-height: 16px;
         max-width: 100%;
         width: auto;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile a {
+        text-decoration: none; }
     .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo {
       margin: 2px 0; }
       @media (max-width: 800px) {
@@ -222,7 +227,6 @@
           color: #fff;
           background: #1a6ea9;
           border: 1px solid #1a6ea9;
-          cursor: pointer;
           letter-spacing: .7px;
           box-shadow: 0 3px 2px -2px #C9C6CB;
           padding: 4px;
@@ -270,8 +274,8 @@
   @media (max-width: 800px) {
     .previewScrollLayout .songList .songContainer .goToSongPage {
       display: inline-block;
-      width: 20%;
-      height: 50px;
+      width: 10%;
+      height: 40px;
       vertical-align: top;
       position: relative; } }
   .previewScrollLayout .songList .songContainer .goToSongPage i {
@@ -283,6 +287,9 @@
     color: black;
     z-index: 1;
     font-size: 16px; }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .goToSongPage i {
+        font-size: 14px; } }
   .previewScrollLayout .songList .songContainer .seeMore {
     display: block;
     text-align: right;
@@ -300,6 +307,12 @@
       font-size: 12px;
       vertical-align: bottom;
       margin-left: 2px; }
+      @media (max-width: 800px) {
+        .previewScrollLayout .songList .songContainer .seeMore i {
+          display: none; } }
+    @media (max-width: 800px) {
+      .previewScrollLayout .songList .songContainer .seeMore span {
+        display: none; } }
   .previewScrollLayout .songList .songContainer .seeMore:hover {
     color: #1a6ea9;
     text-decoration: underline; }

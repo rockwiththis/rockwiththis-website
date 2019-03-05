@@ -288,9 +288,6 @@ button {
 span.postTags:nth-of-type(3) {
   display: none !important; }
 
-.discovery-container::-webkit-scrollbar {
-  display: none; }
-
 @media (max-width: 800px) {
   .ss-sharebox-desktop {
     display: none !important; }
@@ -657,7 +654,7 @@ form.rwt-email-form button {
   max-width: 500px;
   display: inline-block; }
   .four-content h3 {
-    font-family: 'Object-Sans-Black',sans-serif; }
+    font-family: 'Object-Sans-Heavy',sans-serif; }
   .four-content p.mission-tagline {
     font-family: 'Object-Sans-Bold',sans-serif; }
   .four-content p.email-text {
@@ -666,7 +663,7 @@ form.rwt-email-form button {
     font-family: 'Object-Sans-Light',sans-serif; }
 
 .blue-content .blue-title {
-  font-family: 'Object-Sans-Black',sans-serif; }
+  font-family: 'Object-Sans-Heavy',sans-serif; }
 
 .blue-content p {
   font-family: 'Object-Sans-Light',sans-serif !important; }

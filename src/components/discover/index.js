@@ -64,7 +64,7 @@ class DiscoverSection extends Component {
     const headerElement = document.getElementById('header');
 
     if (!!heroElement && !!headerElement) {
-      const scrollHeight = heroElement.clientHeight + headerElement.clientHeight - 12
+      const scrollHeight = heroElement.clientHeight + headerElement.clientHeight - 50
       const isControlBarFixed = window.scrollY > scrollHeight
 
       this.setState({ isControlBarFixed })

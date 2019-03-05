@@ -98,20 +98,23 @@
         .genre-filters .genre-filter-content-container .genre-filter-content > div {
           text-align: left;
           margin: 10px 0; } }
+    .genre-filters .genre-filter-content-container .genre-filter-content span.less-bold {
+      font-family: 'Object-Sans-Light',sans-serif;
+      font-weight: 100; }
     .genre-filters .genre-filter-content-container .genre-filter-content .gf-button {
       cursor: pointer;
       display: inline-block;
       margin: 10px 5px;
       background-color: #303030;
       box-shadow: 2px 2px 5px black;
-      opacity: .9; }
+      opacity: .75; }
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.selected {
         opacity: 1; }
       .genre-filters .genre-filter-content-container .genre-filter-content .gf-button.included {
-        opacity: .9; }
+        opacity: 1; }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header {
       font-size: 24px;
-      font-family: 'Object-Sans-Heavy',sans-serif; }
+      font-family: 'Object-Sans-Bold',sans-serif; }
       .genre-filters .genre-filter-content-container .genre-filter-content .genres .genre-header span.separator {
         font-family: 'Object-Sans-Light',sans-serif;
         margin-left: 4px; }
@@ -142,14 +145,17 @@
           font-size: 14px; } }
     .genre-filters .genre-filter-content-container .genre-filter-content .genres.all-selected .all-button {
       border: 1px solid white; }
+    @media (min-width: 800px) {
+      .genre-filters .genre-filter-content-container .genre-filter-content .genres .all-button:hover {
+        border: 1px solid white; } }
     .genre-filters .genre-filter-content-container .genre-filter-content .subgenres {
       max-width: 1100px;
       margin: 0 auto; }
       .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
         font-size: 20px;
-        margin-top: 30px;
+        margin-top: 15px;
         margin-bottom: 15px;
-        font-family: 'Object-Sans-Heavy',sans-serif; }
+        font-family: 'Object-Sans-Bold',sans-serif; }
         @media (max-width: 800px) {
           .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-header {
             font-size: 18px;
@@ -169,30 +175,39 @@
           .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group.hide-mobile {
             display: none; } }
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
-          padding: 5px 10px;
+          padding: 6px 10px;
           border-radius: 15px;
           font-size: 14px;
           border: 1px solid #303030;
-          font-family: 'Object-Sans-Bold',sans-serif; }
+          font-family: 'Object-Sans-Regular',sans-serif; }
           @media (max-width: 800px) {
             .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button {
               font-size: 10px; } }
+        @media (min-width: 800px) {
+          .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group .subgenre-button:hover {
+            border: 1px solid #fff;
+            opacity: 1 !important; } }
       @media (min-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group:nth-of-type(2) {
           max-width: 850px;
-          margin: 0 auto;
+          margin: 5px auto;
           display: block; } }
     .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
-      margin-top: 25px;
       padding: 12px 15px;
       border-radius: 5px;
       border: 2px solid #282828;
-      font-family: 'Object-Sans-Heavy',sans-serif; }
-    .genre-filters .genre-filter-content-container .genre-filter-content .submit-button:hover {
-      border: 2px solid #fff; }
+      font-family: 'Object-Sans-Bold',sans-serif; }
+    @media (min-width: 800px) {
+      .genre-filters .genre-filter-content-container .genre-filter-content .submit-button:hover {
+        border: 2px solid #fff; } }
 
 .genres.all-selected .genre-button {
   opacity: .9; }
+
+@media (min-width: 800px) {
+  .genre-button:hover {
+    opacity: 1 !important;
+    border: 2px solid #fff !important; } }
 
 .genres .genre-button.selected {
   opacity: 1;
@@ -228,29 +243,88 @@
 .subgenres div:nth-of-type(2) .included, .subgenres div:nth-of-type(2) .selected {
   background: linear-gradient(to right, #3A1399, #0097d5); }
 
+@media (min-width: 800px) {
+  .subgenres div:nth-of-type(2) .subgenre-button:hover {
+    background: linear-gradient(to right, #3A1399, #0097d5); } }
+
 .subgenres .selected {
   border: 1px solid #fff !important; }
 
 .subgenres .chill .included, .subgenres .chill .selected {
   background: linear-gradient(to left, #39EF6C, #02870E); }
 
+@media (min-width: 800px) {
+  .subgenres .chill .subgenre-button:hover {
+    background: linear-gradient(to left, #39EF6C, #02870E); } }
+
 .subgenres .hiphop .included, .subgenres .hiphop .selected {
   background: linear-gradient(to right, #000, #4D4D4D); }
+
+@media (min-width: 800px) {
+  .subgenres .hiphop .subgenre-button:hover {
+    background: linear-gradient(to right, #000, #4D4D4D); } }
 
 .subgenres .funk .included, .subgenres .funk .selected {
   background: linear-gradient(to right, #3023AE, #DB00FF); }
 
+@media (min-width: 800px) {
+  .subgenres .funk .subgenre-button:hover {
+    background: linear-gradient(to right, #3023AE, #DB00FF); } }
+
 .subgenres .soul .included, .subgenres .soul .selected {
   background: linear-gradient(to right, #3023AE, #ED1936); }
+
+@media (min-width: 800px) {
+  .subgenres .soul .subgenre-button:hover {
+    background: linear-gradient(to right, #3023AE, #ED1936); } }
 
 .subgenres .rock .included, .subgenres .rock .selected {
   background: linear-gradient(to right, #0E018E, #C86DD7); }
 
+@media (min-width: 800px) {
+  .subgenres .rock .subgenre-button:hover {
+    background: linear-gradient(to right, #0E018E, #C86DD7); } }
+
 .subgenres .triphop .included, .subgenres .triphop .selected {
   background: linear-gradient(to right, #000000, #6B1CF7); }
+
+@media (min-width: 800px) {
+  .subgenres .triphop .subgenre-button:hover {
+    background: linear-gradient(to right, #000000, #6B1CF7); } }
 
 .subgenres .remix .included, .subgenres .remix .selected {
   background: linear-gradient(to right, #3A1399, #0097d5); }
 
+@media (min-width: 800px) {
+  .subgenres .remix .subgenre-button:hover {
+    background: linear-gradient(to right, #3A1399, #0097d5); } }
+
 .subgenres .world .included, .subgenres .world .selected {
   background: linear-gradient(to right, #FF0000, #F76B1C); }
+
+@media (min-width: 800px) {
+  .subgenres .world .subgenre-button:hover {
+    background: linear-gradient(to right, #FF0000, #F76B1C); } }
+
+.subgenre-group:nth-of-type(2) .subgenre-button:nth-of-type(1) {
+  display: none !important; }
+
+.gf-button.subgenre-button span:after {
+  content: '';
+  margin-bottom: -2px;
+  display: inline-block;
+  margin-bottom: -2px;
+  display: block;
+  content: '';
+  height: 0;
+  width: 0; }
+
+.gf-button.genre-button span:after {
+  content: '';
+  margin-bottom: -2px;
+  display: inline-block;
+  margin-bottom: -2px;
+  display: block;
+  content: '';
+  height: 0;
+  width: 0; }

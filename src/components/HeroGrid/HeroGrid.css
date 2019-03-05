@@ -448,7 +448,7 @@
                 height: 100%; }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
             line-height: 20px;
-            width: calc(100% - 100px);
+            width: calc(100% - 80px);
             height: auto;
             margin-right: 0;
             margin-left: 40px;
@@ -488,7 +488,7 @@
               font-family: 'Object-Sans-Regular',sans-serif;
               transform: translateY(2px); }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
-            height: 40px;
+            height: 41px;
             width: 40px;
             background: #000;
             color: #fff;

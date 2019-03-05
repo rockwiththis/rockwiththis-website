@@ -10,12 +10,12 @@ export const REMIX='remix';
 
 export const ALL_GENRES = [
   ELECTRONIC,
+  HIP_HOP,
+  CHILL,
+  TRIP_HOP,
   FUNK,
   SOUL,
-  CHILL,
   ROCK,
-  HIP_HOP,
-  TRIP_HOP,
-  REMIX,
-  WORLD
+  WORLD,
+  REMIX
 ]

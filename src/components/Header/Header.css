@@ -1,5 +1,5 @@
 .headerContainer {
-  font-family: 'Object-Sans-Heavy',sans-serif;
+  font-family: 'Object-Sans-Bold',sans-serif;
   background: linear-gradient(to right, #1e0c49, #0097d5);
   /* background-image: url('http://rockwiththis.com/wp-content/uploads/2018/01/light-to-dark-header.jpg');
   background-repeat: repeat-x;
@@ -25,6 +25,10 @@
       transform: translateY(4px); }
     .headerContainer .content-wrapper .nav-link {
       letter-spacing: 1px !important; }
+      @media (max-width: 800px) {
+        .headerContainer .content-wrapper .nav-link {
+          font-family: 'Object-Sans-Regular',sans-serif;
+          font-size: 12px; } }
     .headerContainer .content-wrapper a.nav-link.left {
       position: absolute;
       left: 35px;
@@ -58,9 +62,9 @@
     display: none; }
   #headerLogoMobile {
     display: inline-block !important;
-    max-width: 150px;
+    max-width: 55px;
     margin: 0 auto;
-    width: 150px;
+    width: 55px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -68,9 +72,9 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
     #headerLogoMobile img {
-      max-width: 150px;
+      max-width: 55px;
       margin: 0 auto;
-      width: 150px; } }
+      width: 55px; } }
 
 @media screen and (max-width: 600px) {
   .headerContainer #headerLogo img {

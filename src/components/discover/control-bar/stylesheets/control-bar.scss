@@ -44,7 +44,7 @@
         margin-right: 10px;
         font-size: 28px;
         vertical-align: middle;
-        color: #282828;
+        color: #545454;
         opacity: .9;
 
       }
@@ -70,7 +70,7 @@
 
       &.active {
         background: #000;
-        color: #fff;
+        color: #fff ;
 
         @media(min-width: 800px) {
           border-radius: 8px;
@@ -106,6 +106,26 @@
           fill: #282828;
         }
       }
+      &.active.genre-filter {
+        .control-bar-title {
+          color: #fff;
+        }
+        svg {
+          fill: #fff;
+        }
+      }
+      &.active.moments {
+        background: #282828;;
+        color: #fff;
+
+        span {
+          color: #fff;
+        }
+
+        svg {
+          fill: #fff;
+        }
+      }
 
       .control-bar-item-content {
 
@@ -119,12 +139,14 @@
         }
 
         @media (min-width: 800px) {
-          border: 1px solid #282828;
+          // border: 1px solid #282828;
+          border: 1px solid #545454;
           border-radius: 8px;
           padding: 6px;
         }
 
         svg {
+            fill: #545454;
             height: 20px;
             vertical-align: middle;
         }
@@ -138,6 +160,12 @@
           background: #282828;
           color: #fff;
           cursor: pointer;
+        }
+
+        .control-bar-title {
+          @media(min-width: 800px) {
+            color: #fff;
+          }
         }
 
         svg {
@@ -163,7 +191,8 @@
       .control-bar-title {
         font-size: 12px;
         font-weight: bold;
-        transform:translateY(2px);
+        color: #545454;
+        // transform:translateY(2px);
         &.desktop { @media(max-width: 800px) { display: none } }
         &.mobile {
           @media(min-width: 800px) {
@@ -174,15 +203,15 @@
         @media(min-width: 800px) {
           margin-left: 5px;
           font-size: 13px;
-          vertical-align: middle;
+          // vertical-align: middle;
           display: inline-block;
           font-weight: normal ;
         }
         @media(max-width: 800px) {
           font-size: 12px;
-          padding-top: 4px;
+          padding-top: 6px;
           display: block;
-          font-family: 'Object-Sans-Bold',sans-serif;
+          font-family: 'Object-Sans-Regular',sans-serif;
         }
       }
       .control-bar-title.shuffle {
@@ -203,7 +232,8 @@
 
       .control-bar-item-content {
         @media (min-width: 800px) {
-          border: 2px solid #282828;
+          // border: 2px solid #282828;
+          border: 2px solid #545454;
           border-radius: 50%;
           padding: 6px !important;
           margin-top: 5px;
@@ -217,6 +247,7 @@
           }
 
           svg {
+            fill: #545454;
             height: 22px;
             vertical-align: middle;
             width: 22px;

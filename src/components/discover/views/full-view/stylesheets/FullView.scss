@@ -50,9 +50,18 @@
     overflow-y: scroll;
 
     // Hide scrollbar
-    scrollbar-width: none;                /* Firefox */
-    -ms-overflow-style: none;             /* IE 10+ */
-    &::-webkit-scrollbar { width: 0px; }  /* Chrome + Safari */
+    scrollbar-width: 0px;                /* Firefox */
+    -ms-overflow-style: none;
+                 /* IE 10+ */
+    &::-webkit-scrollbar {
+      width: 0px;
+     }  /* Chrome + Safari */
+//      &::-webkit-scrollbar-thumb {
+//     border-radius: 8px;
+//     border: 2px solid white; /* should match background, can't be transparent */
+//     background-color: rgba(0, 0, 0, .5);
+// }
+
 
     // This class name is ridiculously over-used
     .songContainer {
@@ -321,7 +330,7 @@
                 overflow-y: hidden;
                 padding: 5px 0 4px;
                 vertical-align: top;
-                transform: translateX(-1.5px);
+                // transform: translateX(-1.5px);
 
 
 
@@ -331,7 +340,7 @@
                   white-space: nowrap;
                   overflow: hidden;
                   font-family: 'Object-Sans-Bold',sans-serif;
-                  transform:translateY(2px);
+                  // transform:translateY(2px);
 
 
                   a.postTitleLink {
@@ -350,12 +359,12 @@
                     margin-left: 3px;
                     width: 30px;
                     padding: 0 3px;
-                    transform: translateY(-2px);
+                    // transform: translateY(-2px);
                   }
                 }
 
                 .artist {
-                  transform:translateY(3px);
+                  // transform:translateY(3px);
                   span.artistName {
                     font-size: 23px;
                     line-height: 24px;
