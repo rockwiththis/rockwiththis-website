@@ -36,6 +36,9 @@
 body {
   font-family: 'Object-Sans-Regular',sans-serif; }
 
+a {
+  text-decoration: none; }
+
 .homeContainer {
   margin-top: 75px !important; }
   @media (max-width: 480px) {
