@@ -129,7 +129,8 @@ a.smsLink {
   height: 120px;
   vertical-align: top;
   text-align: left;
-  padding: 0 15px; }
+  padding: 0 15px;
+  padding-right: 0 !important; }
   .shareInfoTop .song-info p {
     text-align: left; }
   .shareInfoTop .song-info p.song-name, .shareInfoTop .song-info p.artist-name {
@@ -167,7 +168,7 @@ form.url-clipboard {
       font-size: 18px !important;
       color: #fff !important;
       padding: 5px;
-      padding-top: 15px;
+      padding-top: 7px;
       padding-left: 7px; }
   form.url-clipboard .tooltip {
     color: green;
@@ -194,7 +195,8 @@ form.url-clipboard {
       width: calc(100% - 130px) !important;
       vertical-align: top;
       text-align: left;
-      padding: 0 15px !important; }
+      padding: 0 15px !important;
+      padding-right: 0 !important; }
     .sharePopup .song-info {
       display: inline-block;
       width: calc(100% - 150px);

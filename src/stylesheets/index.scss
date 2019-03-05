@@ -4,18 +4,66 @@
 }
 
 
-// @font-face {
-//   font-family: 'Object-Sans';
-//   font-style: normal;
-//   font-weight: 400;
-//   src: url('../fonts/open-sans-v13-latin-regular.eot'); /* IE9 Compat Modes */
-//   src: local('Open Sans'), local('OpenSans'),
-//        url('../fonts/open-sans-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-//        url('../fonts/open-sans-v13-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-//        url('../fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
-//        url('../fonts/open-sans-v13-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-//        url('../fonts/open-sans-v13-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
-// }
+@font-face {
+  font-family: 'Object-Sans-Light';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Object Sans Light'), local('ObjectSansLight'),
+       url('../fonts/object-sans/light/ObjectSans-Light.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/object-sans/light/ObjectSans-Light.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/object-sans/light/ObjectSans-Light.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Object-Sans-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Object Sans Regular'), local('ObjectSansRegular'),
+       url('../fonts/object-sans/regular/ObjectSans-Regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/object-sans/regular/ObjectSans-Regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/object-sans/regular/ObjectSans-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Object-Sans-Bold';
+  font-style: bold;
+  font-weight: 600;
+  src: url('../fonts/object-sans/bold/ObjectSans-Bold.eot'); /* IE9 Compat Modes */
+  src: local('Object Sans Bold'), local('ObjectSansBold'),
+       url('../fonts/object-sans/bold/ObjectSans-Bold.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/object-sans/bold/ObjectSans-Bold.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/object-sans/bold/ObjectSans-Bold.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Object-Sans-Heavy';
+  font-style: bold;
+  font-weight: 700;
+  src: local('Object Sans Heavy'), local('ObjectSansHeavy'),
+       url('../fonts/object-sans/heavy/ObjectSans-Heavy.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/object-sans/heavy/ObjectSans-Heavy.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/object-sans/heavy/ObjectSans-Heavy.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'Object-Sans-Black';
+  font-style: bold;
+  font-weight: 800;
+  src: local('Object Sans Black'), local('ObjectSansBlack'),
+       url('../fonts/object-sans/black/ObjectSans-Black.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/object-sans/black/ObjectSans-Black.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/object-sans/black/ObjectSans-Black.ttf') format('truetype'), /* Safari, Android, iOS */
+}
+
+
+
+
+body {
+  // font-family: 'Object-Sans-Light',sans-serif;
+  font-family: 'Object-Sans-Regular',sans-serif;
+  // font-family: 'Object-Sans-Bold',sans-serif;
+  // font-family: 'Object-Sans-Heavy',sans-serif;
+  // font-family: 'Object-Sans-Black',sans-serif;
+}
+
 
 .homeContainer {
   margin-top: 75px !important;
@@ -147,7 +195,6 @@ $landing-height: calc(100vh - 220px);
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
 }
@@ -563,42 +610,6 @@ transform: translateX(-50%);
 
 
 
-
-// SUBMIT A SONG PAGE
-// .submitSongPage.page {
-//     min-height: calc(100vh - 45px - 150px);
-//     background: linear-gradient(to right, #1e0c49, #0097d5);
-//     padding: 25px;
-//
-//
-//
-//     .left-content {
-//
-//       width: 40%;
-//       display: inline-block;
-//       margin: 0 5%;
-//       h3 {
-//           font-size: 40px;
-//           color: #fff;
-//           font-weight: 700;
-//           margin-top: 25px;
-//           line-height: 50px;
-//           text-align: left;
-//           margin-bottom: 8px;
-//       }
-//       p {
-//           font-size: 20px;
-//           line-height: 30px;
-//           font-weight: 400;
-//           font-family: Open-Sans,sans-serif;
-//           color: #fff;
-//               max-width: 600px;
-//       }
-//     }
-// }
-
-
-
 .msg-alert {
     margin-top: 10px;
     position: absolute;
@@ -810,7 +821,6 @@ vertical-align: top;
     font-size: 20px;
     line-height: 30px;
 font-weight: 400 !important;
-font-family: Open-Sans,sans-serif;
 
   }
 
@@ -864,7 +874,6 @@ margin-right: 25px;
           font-size: 24px;
           line-height: 34px;
           max-width: 515px;
-          font-family: Open-Sans,sans-serif;
         }
 
     h1.blue-title {
@@ -1070,6 +1079,34 @@ box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 .four-content {
     max-width: 500px;
     display: inline-block;
+
+    h3 {
+      font-family: 'Object-Sans-Black',sans-serif;
+    }
+
+    p.mission-tagline {
+      font-family: 'Object-Sans-Bold',sans-serif;
+    }
+    p.email-text {
+      font-family: 'Object-Sans-Regular',sans-serif;
+
+    }
+
+    .form-input {
+      font-family: 'Object-Sans-Light',sans-serif;
+
+    }
+}
+.blue-content {
+
+  .blue-title {
+    font-family: 'Object-Sans-Black',sans-serif;
+  }
+  p {
+    font-family: 'Object-Sans-Light',sans-serif !important;
+
+  }
+
 }
 
 .main-content img.cross {
@@ -1154,6 +1191,7 @@ width: 800px;
     line-height: 46px;
     text-align: left;
     margin-bottom: 8px;
+
 }
 
   }

@@ -1,5 +1,6 @@
 .headerContainer {
   // height: 90px;
+  font-family: 'Object-Sans-Heavy',sans-serif;
   background: linear-gradient(to right, #1e0c49, #0097d5);
   /* background-image: url('http://rockwiththis.com/wp-content/uploads/2018/01/light-to-dark-header.jpg');
   background-repeat: repeat-x;
@@ -25,6 +26,10 @@
 
         .navLink {
           position: absolute;
+          transform: translateY(4px);
+        }
+        .nav-link {
+          letter-spacing: 1px !important;
         }
         a.nav-link.left {
             position: absolute;
@@ -121,6 +126,7 @@
     margin: 0 10px;
     transition: all .3s ease;
     border-bottom: 1px solid rgba(255,255,255,0);
+    transform: translateY(6px);
     }
     a.nav-link:hover {
     color: rgba(255,255,255,1);
@@ -208,6 +214,5 @@ width: 30px;
   .singleSongBackButton {
   height: 25px;
   width: 25px;
-  margin-top: 5px;
   }
 }

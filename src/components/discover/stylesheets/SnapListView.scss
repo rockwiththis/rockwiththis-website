@@ -184,6 +184,8 @@
                   .songtitle {
                     height: 20px;
                     margin-bottom: 2px;
+                    font-family: 'Object-Sans-Bold',sans-serif;
+
 
                     .postTitleLink {
 
@@ -252,12 +254,13 @@
                     text-overflow: ellipsis;
                     white-space: nowrap;
                     overflow: hidden;
+                    font-family: 'Object-Sans-Bold',sans-serif;
                   }
                   .artistName {
                     line-height: 20px;
                     max-height: 20px;
                     color: #000;
-                    font-size: 16px;
+                    font-size: 17px;
                     max-width: 100%;
                     width: auto;
                     text-overflow: ellipsis;
@@ -287,7 +290,9 @@
                     }
 
                     .curatorName {
-                      font-weight: bold;
+                      font-family: 'Object-Sans-Bold',sans-serif;
+
+
                     }
                   }
                   .leftInfo.mobile {
@@ -312,9 +317,10 @@
                       cursor: pointer;
                       letter-spacing: .7px;
                       box-shadow: 0 3px 2px -2px #C9C6CB;
-                      padding: 2px 4px;
+                      padding: 4px;
+                      padding-top: 6px;
                       // font-weight: bold;
-                      font-family: 'Baloo', cursive;
+                      font-family: 'Object-Sans-Bold',sans-serif;
                     }
 
 
@@ -347,10 +353,11 @@
                     position: relative;
                     font-size: 14px;
                     line-height: 24px;
-                    font-family: 'Open Sans', sans-serif;
                     height: 100px;
                     overflow: hidden;
                     padding-bottom: 25px;
+                    font-family: 'Object-Sans-Light',sans-serif;
+
 
                     @media (max-width: 1000px) and (min-width: 800px) {
                       font-size: 12px;
@@ -360,7 +367,7 @@
                 }
                 p.songDescription::after {
                   content: ' ';
-                  height: 24px;
+                  height: 26px;
                   width: 100%;
                   position: absolute;
                   bottom: 0;
@@ -407,6 +414,8 @@
           -webkit-transition: all .3s ease;
           transition: all .3s ease;
           text-decoration: none;
+          font-family: 'Object-Sans-Bold',sans-serif;
+
 
           @media (max-width: 800px) {
             display: none;

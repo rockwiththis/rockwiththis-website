@@ -127,7 +127,8 @@
         display: none; } }
     .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
       height: 20px;
-      margin-bottom: 2px; }
+      margin-bottom: 2px;
+      font-family: 'Object-Sans-Bold',sans-serif; }
       @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle .postTitleLink {
           text-decoration: none;
@@ -178,12 +179,13 @@
         width: auto;
         text-overflow: ellipsis;
         white-space: nowrap;
-        overflow: hidden; }
+        overflow: hidden;
+        font-family: 'Object-Sans-Bold',sans-serif; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.mobile .artistName {
         line-height: 20px;
         max-height: 20px;
         color: #000;
-        font-size: 16px;
+        font-size: 17px;
         max-width: 100%;
         width: auto;
         text-overflow: ellipsis;
@@ -203,7 +205,7 @@
         transform: translateY(-1px);
         display: inline-block; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .curatorName {
-        font-weight: bold; }
+        font-family: 'Object-Sans-Bold',sans-serif; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.mobile {
         display: none; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags {
@@ -223,8 +225,9 @@
           cursor: pointer;
           letter-spacing: .7px;
           box-shadow: 0 3px 2px -2px #C9C6CB;
-          padding: 2px 4px;
-          font-family: 'Baloo', cursive; }
+          padding: 4px;
+          padding-top: 6px;
+          font-family: 'Object-Sans-Bold',sans-serif; }
         @media (max-width: 1100px) and (min-width: 800px) {
           .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag:nth-of-type(2) {
             display: none; } }
@@ -243,10 +246,10 @@
         position: relative;
         font-size: 14px;
         line-height: 24px;
-        font-family: 'Open Sans', sans-serif;
         height: 100px;
         overflow: hidden;
-        padding-bottom: 25px; }
+        padding-bottom: 25px;
+        font-family: 'Object-Sans-Light',sans-serif; }
         @media (max-width: 1000px) and (min-width: 800px) {
           .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer .songDescription {
             font-size: 12px;
@@ -254,7 +257,7 @@
             padding-bottom: 10px; } }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer p.songDescription::after {
         content: ' ';
-        height: 24px;
+        height: 26px;
         width: 100%;
         position: absolute;
         bottom: 0;
@@ -288,7 +291,8 @@
     letter-spacing: .5px;
     -webkit-transition: all .3s ease;
     transition: all .3s ease;
-    text-decoration: none; }
+    text-decoration: none;
+    font-family: 'Object-Sans-Bold',sans-serif; }
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .seeMore {
         display: none; } }

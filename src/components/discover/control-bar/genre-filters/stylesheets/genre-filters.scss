@@ -122,19 +122,27 @@
         margin: 10px 5px;
         background-color: #303030;
         box-shadow: 2px 2px 5px black;
-        opacity: .7;
+        opacity: .9;
 
         &.selected {
           opacity: 1;
         }
         &.included {
-          opacity: .7;
+          opacity: .9;
         }
       }
 
       .genres {
         .genre-header {
           font-size: 24px;
+          font-family: 'Object-Sans-Heavy',sans-serif;
+
+          span.separator {
+            font-family: 'Object-Sans-Light',sans-serif;
+            margin-left: 4px;
+
+          }
+
 
           @media(max-width: 800px) {
             font-size: 20px;
@@ -143,9 +151,11 @@
         }
         .genre-button {
           border-radius: 5px;
-          padding: 7px 9px;
-          font-size: 14px;
+          padding: 9px 11px;
+          font-size: 16px;
           border: 2px solid #303030;
+          font-family: 'Object-Sans-Bold',sans-serif;
+
 
           @media(max-width: 800px) {
             font-size: 10px;
@@ -156,6 +166,12 @@
           border-radius: 5px;
           padding: 5px 20px;
           border: 1px solid gray;
+          transform: translateY(-2px);
+          font-family: 'Object-Sans-Light',sans-serif;
+          padding-top: 7px;
+          margin-left: 10px;
+
+
 
           @media(max-width: 800px) {
             font-size: 14px;
@@ -175,6 +191,8 @@
         .subgenre-header {
           font-size: 20px;
           margin-top: 30px;
+          margin-bottom: 15px;
+          font-family: 'Object-Sans-Heavy',sans-serif;
 
           @media(max-width: 800px) {
             font-size: 18px;
@@ -188,7 +206,8 @@
         }
         .subgenre-group {
           display: inline-block;
-          margin: 0px 15px;
+          margin: 5px 15px;
+
 
           @media(max-width: 800px) {
             margin: 0px;
@@ -205,12 +224,21 @@
           .subgenre-button {
             padding: 5px 10px;
             border-radius: 15px;
-            font-size: 12px;
+            font-size: 14px;
             border: 1px solid #303030;
+            font-family: 'Object-Sans-Bold',sans-serif;
+
 
             @media(max-width: 800px) {
               font-size: 10px;
             }
+          }
+        }
+        .subgenre-group:nth-of-type(2){
+          @media(min-width:800px) {
+            max-width: 850px;
+            margin: 0 auto;
+            display: block;
           }
         }
       }
@@ -219,6 +247,12 @@
         margin-top: 25px;
         padding: 12px 15px;
         border-radius: 5px;
+        border: 2px solid #282828;
+        font-family: 'Object-Sans-Heavy',sans-serif;
+
+      }
+      .submit-button:hover {
+        border: 2px solid #fff;
       }
     }
   }
@@ -226,7 +260,7 @@
 
 .genres.all-selected {
   .genre-button {
-    opacity: .7;
+    opacity: .9;
   }
 }
 
@@ -241,17 +275,20 @@
 
   // gotta change classname to just "electronic" but had to do it this way because classnames can't have a "/"
   div:nth-of-type(2).included, div:nth-of-type(2).selected {
-    background: linear-gradient(to right, #1e0c49, #0097d5);
+    // background: linear-gradient(to right, #1e0c49, #0097d5);
+    background: linear-gradient(to right, #3A1399, #0097d5);
 
   }
 
 
 
   .chill.included, .chill.selected {
-    background: linear-gradient(to left, #39EF6C, #011403);
+    background: linear-gradient(to left, #39EF6C, #02870E);
   }
   .hiphop.included, .hiphop.selected {
-    background: #000 !important;
+    // background: #000 !important;
+    background: linear-gradient(to right, #000, #4D4D4D);
+
   }
   .funk.included, .funk.selected {
     background: linear-gradient(to right, #3023AE, #DB00FF);
@@ -266,7 +303,7 @@
     background: linear-gradient(to right, #000000, #6B1CF7);
   }
   .remix.included, .remix.selected {
-    background: linear-gradient(to left, #1e0c49, #0097d5);
+    background: linear-gradient(to right, #3A1399, #0097d5);
   }
   .world.included, .world.selected {
     background: linear-gradient(to right, #FF0000, #F76B1C);
@@ -278,7 +315,7 @@
 
   div:nth-of-type(2) {
     .included, .selected {
-          background: linear-gradient(to right, #1e0c49, #0097d5);
+          background: linear-gradient(to right, #3A1399, #0097d5);
     }
   }
 
@@ -287,13 +324,14 @@
   }
   .chill {
     .included, .selected {
-      background: linear-gradient(to left, #39EF6C, #011403);
+      background: linear-gradient(to left, #39EF6C, #02870E);
     }
   }
   .hiphop {
     .included, .selected {
-      background: #000 !important;
-      opacity: 1 !important;
+      // background: #000 !important;
+      background: linear-gradient(to right, #000, #4D4D4D);
+
     }
   }
   .funk {
@@ -318,7 +356,7 @@
   }
   .remix {
     .included, .selected {
-          background: linear-gradient(to left, #1e0c49, #0097d5);
+          background: linear-gradient(to right, #3A1399, #0097d5);
     }
   }
   .world {

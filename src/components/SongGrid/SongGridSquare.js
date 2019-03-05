@@ -21,11 +21,19 @@ const propTypes = {
 
 class SongGrid extends Component {
 
-    renderGenreTags = () =>
+  renderGenreTags = () =>
       <span className="postTags">
         { this.props.song.sub_genres.map(genre =>
-            <span key={genre.name} className="grid-tag">#{genre.name}</span>
+            <span key={genre.name} className="grid-tag">{genre.name}</span>
         ) }
+      </span>
+
+    renderSongInfo = () =>
+      <span className="gridSongInfo">
+
+        <span className="song-name">{this.props.song.name}</span>
+        <span className="artist-name">{this.props.song.artist_name}</span>
+
       </span>
 
     render() {
@@ -40,9 +48,13 @@ class SongGrid extends Component {
 
                 { this.props.showGenresOnHover &&
                   <div className="imageHover">
-                    <img src={head} />
-                    <div className="tagWrapper">
-                      {this.renderGenreTags()}
+
+                    <div className="contentWrapper">
+                      <div className="hoverContent">
+                        {this.renderGenreTags()}
+                        <span className="readMore">Read More</span>
+                      </div>
+                      {this.renderSongInfo()}
                     </div>
                   </div>
                 }

@@ -75,6 +75,7 @@ footer {
         white-space: nowrap;
         text-overflow: ellipsis;
         padding: 5px 0 4px;
+        padding-top: 9px;
 
         @media screen and (min-width: 600px) {
           margin-left: 0px;
@@ -82,13 +83,13 @@ footer {
         @media screen and (max-width: 480px) {
           width: 100%;
           max-width: 285px;
-          padding: 9px 0 4px;
+          padding: 10px 0 4px;
         }
 
         a.songImageLink {
             text-decoration: none;
             color: #fff;
-            margin-bottom: 5px;
+            // margin-bottom: 5px;
             display: block;
 
             @media screen and (max-width: 480px) {
@@ -96,17 +97,21 @@ footer {
             }
 
             .song-title {
-              font-size: 20px;
-              line-height: 23px;
+              // font-size: 20px;
+              // line-height: 23px;
+              font-size: 16px;
+              line-height: 20px;
               display: block;
               max-width: 100%;
               width: auto;
               text-overflow: ellipsis;
               white-space: nowrap;
               overflow: hidden;
+              font-family: 'Object-Sans-Bold',sans-serif;
+
 
               @media screen and (max-width: 480px) {
-                  font-size: 16px;
+                  font-size: 14px;
                   line-height: 16px;
               }
             }
@@ -115,16 +120,20 @@ footer {
         .artist-title {
           color: #fff;
           font-weight: 100;
-          font-size: 20px;
+          // font-size: 20px;
+          // line-height: 20px;
+          font-size: 16px;
           line-height: 20px;
           max-width: 100%;
           width: auto;
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
+          font-family: 'Object-Sans-Thin',sans-serif;
+
 
             @media screen and (max-width: 480px) {
-                font-size: 16px;
+                font-size: 14px;
                 line-height: 16px;
             }
         }

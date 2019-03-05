@@ -113,12 +113,13 @@
                           text-overflow: ellipsis;
                           white-space: nowrap;
                           overflow: hidden;
+                          font-family: 'Object-Sans-Bold',sans-serif;
                         }
                       }
                       .artistName {
                         color: #000;
                         font-size: 16px;
-                        line-height: 16px;
+                        line-height: 17px;
                         display: block;
                         overflow: hidden;
                         max-width: 100%;
@@ -126,6 +127,8 @@
                         text-overflow: ellipsis;
                         white-space: nowrap;
                         overflow: hidden;
+                        font-family: 'Object-Sans-Normal',sans-serif;
+
                       }
                     }
 
@@ -141,6 +144,9 @@
                       text-align: left;
                       height: 20px;
                       overflow: hidden;
+                      transform: translateY(3px);
+                          margin-bottom: 3px;
+
 
                       .leftInfo.mobile {
                       display: inline-block;
@@ -151,6 +157,7 @@
                       .curatorName {
                         font-weight: bold;
                         font-size: 12px;
+                        font-family: 'Object-Sans-Bold',sans-serif;
                       }
 
                         .postDate {
@@ -175,8 +182,8 @@
                           cursor: pointer;
                           letter-spacing: .7px;
                           box-shadow: none;
-                          font-family: Baloo,cursive;
                           margin-right: 0;
+                          font-family: 'Object-Sans-Bold',sans-serif;
 
                         }
                       }
@@ -188,7 +195,6 @@
                   }
 
                   .bottomContentContainer {
-                    margin-top: 2.5px;
 
                     p.songDescription {
                       font-family: Open Sans,sans-serif;
@@ -196,8 +202,10 @@
                       line-height: 20px;
                       max-height: 58px!important;
                       overflow: hidden;
-                      padding: 2px 5px 5px;
-                      margin-top: -5px;
+                      padding: 4px 5px 5px;
+                      // margin-top: -5px;
+                      font-family: 'Object-Sans-Light',sans-serif;
+
                     }
                   }
                 }
@@ -221,6 +229,8 @@
                 bottom: -5px;
                 position: absolute;
                 right: 15px;
+                font-family: 'Object-Sans-Normal',sans-serif;
+                transform: translateY(1px);
               }
               .im {
                 font-size: 12px;

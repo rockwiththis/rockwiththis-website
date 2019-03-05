@@ -8,17 +8,7 @@
   height: 55px;
   background: #f5f3f3;
   border-bottom: 2px solid #e3e3e3e3;
-  border-top: 2px solid #fff;
-
-  // width: 100%;
-  max-width: 1685px;
-  margin: 0 auto;
-  box-sizing: border-box;
-
-  @media(min-width: 800px) {
-    padding: 0 15px;
-    padding-top: 2.5px;
-  }
+  border-top: 2px solid #e3e3e3e3;
 
   @media (max-width: 480px) {
     height: 50px;
@@ -156,16 +146,26 @@
         display: block;
         text-align: center;
       }
-
     }
 
     .control-bar-title {
       font-size: 12px;
       font-weight: bold;
+      transform:translateY(2px);
       &.desktop { @media(max-width: 800px) { display: none } }
       &.mobile {
         @media(min-width: 800px) {
-          display: none
+          margin-left: 5px;
+          font-size: 13px;
+          vertical-align: middle;
+          display: inline-block;
+          font-weight: normal ;
+        }
+        @media(max-width: 800px) {
+          font-size: 12px;
+          padding-top: 4px;
+          display: block;
+          font-family: 'Object-Sans-Bold',sans-serif;
         }
       }
 
@@ -205,11 +205,22 @@
         background: #f5f3f3;
       }
 
-
       .control-bar-icon {
         @media (min-width: 800px) {
-          // transform: translateY(2px);
+          height: 22px;
         }
+
+        svg {
+          height: 22px;
+          vertical-align: middle;
+          width: 22px;
+          transform: translateY(1px);
+        }
+      }
+    }
+    .control-bar-item-content:hover {
+      @media (min-width: 800px) {
+        // transform: translateY(2px);
       }
     }
     .control-bar-item-content:hover {
@@ -262,8 +273,8 @@
   margin: 0 auto;
   z-index: 1000;
 }
-.fixed-controls-bar {
 
+.fixed-controls-bar {
   @media (max-width: 800px) {
     top: 100px;
     position: fixed !important;
