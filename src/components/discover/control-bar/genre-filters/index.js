@@ -43,6 +43,8 @@ class GenreFilters extends Component {
 
     else if (prevProps.isActive && !this.props.isActive)
       document.removeEventListener('click', this.hideOnClickOff);
+
+      console.log(this.props.genres, "this.genres");
   }
 
   hideOnClickOff = event =>
@@ -170,7 +172,7 @@ class GenreFilters extends Component {
                     }
                   >
                     <div className="genre-header">
-                      <span>pick your genres <span className="separator">|</span></span>
+                      <span><span className="less-bold">pick your</span> genres <span className="separator">|</span></span>
                       <div
                         className="gf-button all-button"
                         onClick={() => this.selectAllGenres()}
@@ -188,7 +190,9 @@ class GenreFilters extends Component {
                           }
                           onClick={() => this.toggleGenre(genreName)}
                         >
+                        <span>
                           { this.getGenreName(this.props.genres[genreName]) }
+                        </span>
                         </div>
                     ))}
                   </div>
@@ -205,7 +209,7 @@ class GenreFilters extends Component {
                         (this.areNoneSelected() ? ' hide-mobile' : '')
                       }
                     >
-                      subgenres
+                      <span className="less-bold">or your</span> subgenres
                     </div>
 
                     { ALL_GENRES.map(genreName => (
@@ -226,7 +230,10 @@ class GenreFilters extends Component {
                                 }
                                 onClick={() => this.toggleSubgenre(genreName, subgenre.id)}
                               >
+                              <span>
                                 { this.getGenreName(subgenre) }
+                              </span>
+
                               </div>
                             ))
                           }

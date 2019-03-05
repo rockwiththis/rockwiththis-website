@@ -10,6 +10,10 @@
         background: #fff;
         vertical-align: top;
 
+        .songContainer:nth-of-type(1) {
+          display: none !important;
+        }
+
         .songContainer {
           display: inline-block;
           vertical-align: top;
@@ -105,7 +109,7 @@
                         margin-bottom: 2px;
 
                         .songName {
-                          font-size: 16px;
+                          font-size: 14px;
                           line-height: 16px;
                           display: block;
                           max-width: 100%;
@@ -118,8 +122,8 @@
                       }
                       .artistName {
                         color: #000;
-                        font-size: 16px;
-                        line-height: 17px;
+                        font-size: 14px;
+                        line-height: 16px;
                         display: block;
                         overflow: hidden;
                         max-width: 100%;
@@ -142,10 +146,11 @@
                       margin-left: 5px;
                       margin-top: 2.5px;
                       text-align: left;
-                      height: 20px;
+                      // height: 20px;
+                      height: auto;
                       overflow: hidden;
-                      transform: translateY(3px);
-                          margin-bottom: 3px;
+                      // transform: translateY(3px);
+                          // margin-bottom: 3px;
 
 
                       .leftInfo.mobile {
@@ -156,7 +161,7 @@
                       }
                       .curatorName {
                         font-weight: bold;
-                        font-size: 12px;
+                        font-size: 10px;
                         font-family: 'Object-Sans-Bold',sans-serif;
                       }
 
@@ -173,7 +178,7 @@
                           padding: 0;
                           -webkit-transition: all .3s ease;
                           background: #fff;
-                          font-size: 12px;
+                          font-size: 10px;
                           border-radius: 6px!important;
                           transition: all .3s ease;
                           color: #1a6ea9!important;
@@ -197,12 +202,11 @@
                   .bottomContentContainer {
 
                     p.songDescription {
-                      font-family: Open Sans,sans-serif;
-                      font-size: 12px;
-                      line-height: 20px;
+                      font-size: 10px;
+                      line-height: 16px;
                       max-height: 58px!important;
                       overflow: hidden;
-                      padding: 4px 5px 5px;
+                      padding: 0px 5px 5px;
                       // margin-top: -5px;
                       font-family: 'Object-Sans-Light',sans-serif;
 
@@ -230,13 +234,13 @@
                 position: absolute;
                 right: 15px;
                 font-family: 'Object-Sans-Normal',sans-serif;
-                transform: translateY(1px);
+                // transform: translateY(1px);
               }
               .im {
                 font-size: 12px;
                 margin-left: 2px;
-                -webkit-transform: translateY(2px);
-                transform: translateY(2px);
+                // -webkit-transform: translateY(2px);
+                // transform: translateY(2px);
                 position: absolute;
                 bottom: -4px;
                 right: 0;

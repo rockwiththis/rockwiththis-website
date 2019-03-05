@@ -34,7 +34,7 @@
         margin-right: 10px;
         font-size: 28px;
         vertical-align: middle;
-        color: #282828;
+        color: #545454;
         opacity: .9; } }
   .control-bar .control-bar-item {
     position: relative;
@@ -73,16 +73,21 @@
       color: #282828; }
       .control-bar .control-bar-item.active.view svg {
         fill: #282828; }
+    .control-bar .control-bar-item.active.genre-filter .control-bar-title {
+      color: #fff; }
+    .control-bar .control-bar-item.active.genre-filter svg {
+      fill: #fff; }
     @media (max-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
         width: 100%;
         padding-top: 5px; } }
     @media (min-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
-        border: 1px solid #282828;
+        border: 1px solid #545454;
         border-radius: 8px;
         padding: 6px; } }
     .control-bar .control-bar-item .control-bar-item-content svg {
+      fill: #545454;
       height: 20px;
       vertical-align: middle; }
     .control-bar .control-bar-item .control-bar-item-content i.fas.fa-bolt {
@@ -92,6 +97,9 @@
         background: #282828;
         color: #fff;
         cursor: pointer; } }
+    @media (min-width: 800px) {
+      .control-bar .control-bar-item .control-bar-item-content:hover .control-bar-title {
+        color: #fff; } }
     @media (min-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content:hover svg {
         fill: #fff; } }
@@ -106,7 +114,8 @@
           text-align: center; } }
     .control-bar .control-bar-item .control-bar-title {
       font-size: 12px;
-      font-weight: bold; }
+      font-weight: bold;
+      color: #545454; }
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-title.desktop {
           display: none; } }
@@ -117,15 +126,14 @@
         .control-bar .control-bar-item .control-bar-title {
           margin-left: 5px;
           font-size: 13px;
-          vertical-align: middle;
           display: inline-block;
           font-weight: normal; } }
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-title {
           font-size: 12px;
-          padding-top: 4px;
+          padding-top: 6px;
           display: block;
-          font-family: 'Object-Sans-Bold',sans-serif; } }
+          font-family: 'Object-Sans-Regular',sans-serif; } }
     @media (min-width: 800px) {
       .control-bar .control-bar-item .control-bar-title.shuffle {
         display: none; } }
@@ -136,7 +144,7 @@
       width: auto; } }
   @media (min-width: 800px) {
     .control-bar .control-bar-item.shuffle .control-bar-item-content {
-      border: 2px solid #282828;
+      border: 2px solid #545454;
       border-radius: 50%;
       padding: 6px !important;
       margin-top: 5px;
@@ -145,6 +153,7 @@
     .control-bar .control-bar-item.shuffle .control-bar-item-content .control-bar-icon {
       height: 22px; } }
   .control-bar .control-bar-item.shuffle .control-bar-item-content .control-bar-icon svg {
+    fill: #545454;
     height: 22px;
     vertical-align: middle;
     width: 22px;
