@@ -17,8 +17,9 @@ const propTypes = {
 
   // Redux
   genres: PropTypes.object.isRequired,
+  genreFilters: PropTypes.array.isRequired,
+  subgenreFilters: PropTypes.array.isRequired,
   fetchGenres: PropTypes.func.isRequired,
-  currSubgenreFilterIds: PropTypes.array.isRequired,
   resetSongs: PropTypes.func.isRequired
 }
 
@@ -29,8 +30,8 @@ class GenreFilters extends Component {
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: props.selectedGenres,
-      selectedSubgenres: props.selectedSubgenres
+      selectedGenres: props.genreFilters,      // Keyed by genre name
+      selectedSubgenres: props.subgenreFilters // Keyed by genre id
     }
     props.fetchGenres();
   }
@@ -42,36 +43,35 @@ class GenreFilters extends Component {
 
     else if (prevProps.isActive && !this.props.isActive)
       document.removeEventListener('click', this.hideOnClickOff);
-
-      console.log(this.props.genres, "this.genres");
   }
 
-  resetSelection = () =>
+  closeModal = () => {
+    this.props.hide();
     this.setState({
-      selectedGenres: this.props.selectedGenres,
-      selectedSubgenres: this.props.selectedSubgenres
-    })
-
-  hideOnClickOff = event => {
-    if (this.modalRef.current && !this.modalRef.current.contains(event.target)) {
-      this.props.hide();
-      this.resetSelection();
-    }
+      selectedGenres: this.props.genreFilters,
+      selectedSubgenres: this.props.subgenreFilters
+    });
   }
+
+  hideOnClickOff = event =>
+    this.modalRef.current &&
+    !this.modalRef.current.contains(event.target) &&
+    this.closeModal()
 
   getGenreName = genre => genre.spacedName || genre.name;
 
   // Mark selected genre as set or unset
   // Always reset the child subgenres
-  toggleGenre = genre =>
+  toggleGenre = genreName => {
+    const genre = this.props.genres[genreName];
     this.setState({
       ...this.state,
       selectedGenres: {
         ...this.state.selectedGenres,
-        [genre.name]: !!this.state.selectedGenres[genre.name] ? undefined : genre
+        [genreName]: !!this.state.selectedGenres[genreName] ? undefined : genre
       },
       selectedSubgenres:
-        this.props.genres[genre.name].subgenres.reduce(
+        genre.subgenres.reduce(
           (currSubgenres, subgenreToRemove) => ({
             ...currSubgenres,
             [subgenreToRemove.id]: undefined
@@ -79,6 +79,7 @@ class GenreFilters extends Component {
           this.state.selectedSubgenres
         )
     })
+  }
 
   // Mark selected subgenre as set or unset
   // Always reset the parent genre
@@ -118,17 +119,18 @@ class GenreFilters extends Component {
     !this.state.selectedGenres[genreName] &&
     !find(Object.values(this.state.selectedSubgenres), ['parentGenre', genreName])
 
-  isSelectionDifferent = () =>
-    Object.keys(this.props.genreFilters !== Object.keys(this.state.selectedGenres)) &&
-    Object.keys(this.props.subgenreFilters !== Object.keys(this.state.selectedSubgenres))
-
   submit = () => {
-    if (this.isSelectionDifferent()) {
-      this.props.resetSongs({
-        genreFilters: Object.values(this.state.selectedGenres),
-        subgenreFilters: Object.values(this.state.selectedSubgenres)
-      });
-    }
+    const genreFilters = Object.values(this.state.selectedGenres).filter(g => !!g)
+    const subgenreFilters = Object.values(this.state.selectedSubgenres).filter(sg => !!sg)
+
+    const isSelectionDifferent = (
+      genreFilters !== this.props.genreFilters &&
+      subgenreFilters !== this.props.subgenreFilters
+    );
+
+    if (isSelectionDifferent)
+      this.props.resetSongs({ genreFilters, subgenreFilters });
+
     this.props.hide();
   }
 
@@ -150,7 +152,7 @@ class GenreFilters extends Component {
               Object.keys(this.props.genres).length > 0 ? (
                 <div className="genre-filter-content" ref={this.modalRef}>
 
-                  <div className="close" onClick={() => this.props.hide()}><IoIosClose /></div>
+                  <div className="close" onClick={() => this.closeModal()}><IoIosClose /></div>
 
                   <div
                     className={
@@ -215,7 +217,7 @@ class GenreFilters extends Component {
                                   (!!this.state.selectedSubgenres[subgenre.id] ? ' selected' : '') +
                                   (!!this.state.selectedGenres[genreName] ? ' included' : '')
                                 }
-                                onClick={() => this.toggleSubgenre(genreName, subgenre.id)}
+                                onClick={() => this.toggleSubgenre(genreName, subgenre)}
                               >
                               <span>
                                 { this.getGenreName(subgenre) }
@@ -247,9 +249,10 @@ class GenreFilters extends Component {
 GenreFilters.propTypes = propTypes;
 
 export default connect(
-  ({ genres, subgenreFilterIds }) => ({
+  ({ genres, genreFilters, subgenreFilters }) => ({
     genres,
-    currSubgenreFilterIds: subgenreFilterIds
+    genreFilters,
+    subgenreFilters
   }),
   { fetchGenres, resetSongs }
 )(GenreFilters);
