@@ -138,6 +138,8 @@ class GenreFilters extends Component {
     if (isSelectionDifferent)
       this.props.resetSongs({ genreFilters, subgenreFilters });
 
+      console.log("submit", this.state);
+
     this.props.hide();
   }
 

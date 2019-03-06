@@ -32,12 +32,14 @@ const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
 export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
+  debugger
   dispatch(LOADING_SONGS());
   const state = getState();
   const subgenreIds = getSubgenreIds(
     genreFilters || state.genreFilters,
     subgenreFilters || state.subgenreFilters
   );
+  debugger
   return fetchSongs(state, false, isShuffle, subgenreIds)
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
