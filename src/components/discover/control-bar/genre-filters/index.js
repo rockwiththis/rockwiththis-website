@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, pickBy, uniq, compact, flatten, indexOf } from 'lodash';
+import { find, pickBy, uniq, compact, flatten, indexOf, orderBy } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -17,8 +17,9 @@ const propTypes = {
 
   // Redux
   genres: PropTypes.object.isRequired,
+  genreFilters: PropTypes.array.isRequired,
+  subgenreFilters: PropTypes.array.isRequired,
   fetchGenres: PropTypes.func.isRequired,
-  currSubgenreFilterIds: PropTypes.array.isRequired,
   resetSongs: PropTypes.func.isRequired
 }
 
@@ -29,10 +30,9 @@ class GenreFilters extends Component {
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: {},
-      selectedSubgenres: {}
+      selectedGenres: {},   // Keyed by genre name
+      selectedSubgenres: {} // Keyed by genre id
     }
-
     props.fetchGenres();
   }
 
@@ -45,25 +45,40 @@ class GenreFilters extends Component {
       document.removeEventListener('click', this.hideOnClickOff);
   }
 
+  closeModal = () => {
+    this.props.hide();
+    this.setState({
+      selectedGenres: this.props.genreFilters.reduce((currGenres, genre) => ({
+        ...currGenres,
+        [genre.name]: genre
+      }), {}),
+      selectedSubgenres: this.props.subgenreFilters.reduce((currSubgenres, subgenre) => ({
+        ...currSubgenres,
+        [subgenre.id]: subgenre
+      }), {})
+    });
+
+  }
+
   hideOnClickOff = event =>
     this.modalRef.current &&
     !this.modalRef.current.contains(event.target) &&
-    this.props.hide();
+    this.closeModal()
 
   getGenreName = genre => genre.spacedName || genre.name;
 
   // Mark selected genre as set or unset
   // Always reset the child subgenres
   toggleGenre = genreName => {
-    const genreId = this.props.genres[genreName].id;
+    const genre = this.props.genres[genreName];
     this.setState({
       ...this.state,
       selectedGenres: {
         ...this.state.selectedGenres,
-        [genreName]: !!this.state.selectedGenres[genreName] ? undefined : true
+        [genreName]: !!this.state.selectedGenres[genreName] ? undefined : genre
       },
       selectedSubgenres:
-        this.props.genres[genreName].subgenres.reduce(
+        genre.subgenres.reduce(
           (currSubgenres, subgenreToRemove) => ({
             ...currSubgenres,
             [subgenreToRemove.id]: undefined
@@ -75,7 +90,7 @@ class GenreFilters extends Component {
 
   // Mark selected subgenre as set or unset
   // Always reset the parent genre
-  toggleSubgenre = (genreName, subgenreId) =>
+  toggleSubgenre = (genreName, subgenre) =>
     this.setState({
       ...this.state,
       selectedGenres: {
@@ -84,7 +99,8 @@ class GenreFilters extends Component {
       },
       selectedSubgenres: {
         ...this.state.selectedSubgenres,
-        [subgenreId]: !!this.state.selectedSubgenres[subgenreId] ? undefined : genreName
+        [subgenre.id]: !!this.state.selectedSubgenres[subgenre.id] ?
+          undefined : { ...subgenre, parentGenre: genreName }
       }
     })
 
@@ -106,39 +122,21 @@ class GenreFilters extends Component {
       selectedSubgenres: {}
     })
 
-  clearSelectedSubgenres = () => {
-    const includedGenreNames = uniq(compact(
-      Object.values(this.state.selectedSubgenres)
-    ));
-    this.setState({
-      ...this.state,
-      selectedGenres:
-        includedGenreNames.reduce((currGenres, genreName) => ({
-          ...currGenres,
-          [genreName]: true
-        }), this.state.selectedGenres),
-      selectedSubgenres: {}
-    })
-  }
-
   shouldHideSubgenreGroupMobile = genreName =>
     !this.state.selectedGenres[genreName] &&
-    indexOf(Object.values(this.state.selectedSubgenres), genreName) === -1
+    !find(Object.values(this.state.selectedSubgenres), ['parentGenre', genreName])
 
   submit = () => {
+    const genreFilters = Object.values(this.state.selectedGenres).filter(g => !!g)
+    const subgenreFilters = Object.values(this.state.selectedSubgenres).filter(sg => !!sg)
 
-    const subgenreIds = [
-      ...flatten(
-        Object.keys(pickBy(this.state.selectedGenres, value => !!value))
-          .map(genreName => (
-            this.props.genres[genreName].subgenres.map(subgenre => subgenre.id)
-          ))
-      ),
-      ...Object.keys(pickBy(this.state.selectedSubgenres, value => !!value))
-    ]
+    const isSelectionDifferent = (
+      genreFilters !== this.props.genreFilters &&
+      subgenreFilters !== this.props.subgenreFilters
+    );
 
-    if (subgenreIds !== this.props.currSubgenreFilterIds)
-      this.props.resetSongs({ subgenreIds });
+    if (isSelectionDifferent)
+      this.props.resetSongs({ genreFilters, subgenreFilters });
 
     this.props.hide();
   }
@@ -161,7 +159,7 @@ class GenreFilters extends Component {
               Object.keys(this.props.genres).length > 0 ? (
                 <div className="genre-filter-content" ref={this.modalRef}>
 
-                  <div className="close" onClick={() => this.props.hide()}><IoIosClose /></div>
+                  <div className="close" onClick={() => this.closeModal()}><IoIosClose /></div>
 
                   <div
                     className={
@@ -170,7 +168,7 @@ class GenreFilters extends Component {
                     }
                   >
                     <div className="genre-header">
-                      <span>pick your genres <span className="separator">|</span></span>
+                      <span><span className="less-bold">pick your</span> genres <span className="separator">|</span></span>
                       <div
                         className="gf-button all-button"
                         onClick={() => this.selectAllGenres()}
@@ -188,7 +186,9 @@ class GenreFilters extends Component {
                           }
                           onClick={() => this.toggleGenre(genreName)}
                         >
+                        <span>
                           { this.getGenreName(this.props.genres[genreName]) }
+                        </span>
                         </div>
                     ))}
                   </div>
@@ -205,7 +205,7 @@ class GenreFilters extends Component {
                         (this.areNoneSelected() ? ' hide-mobile' : '')
                       }
                     >
-                      subgenres
+                      <span className="less-bold">or your</span> subgenres
                     </div>
 
                     { ALL_GENRES.map(genreName => (
@@ -216,7 +216,7 @@ class GenreFilters extends Component {
                           }
                         >
                           {
-                            this.props.genres[genreName].subgenres.map(subgenre => (
+                            orderBy(this.props.genres[genreName].subgenres,['name'], ['asc']).map(subgenre => (
                               !subgenre.isHidden &&
                               <div
                                 className={
@@ -224,9 +224,12 @@ class GenreFilters extends Component {
                                   (!!this.state.selectedSubgenres[subgenre.id] ? ' selected' : '') +
                                   (!!this.state.selectedGenres[genreName] ? ' included' : '')
                                 }
-                                onClick={() => this.toggleSubgenre(genreName, subgenre.id)}
+                                onClick={() => this.toggleSubgenre(genreName, subgenre)}
                               >
+                              <span>
                                 { this.getGenreName(subgenre) }
+                              </span>
+
                               </div>
                             ))
                           }
@@ -253,9 +256,10 @@ class GenreFilters extends Component {
 GenreFilters.propTypes = propTypes;
 
 export default connect(
-  ({ genres, subgenreFilterIds }) => ({
+  ({ genres, genreFilters, subgenreFilters }) => ({
     genres,
-    currSubgenreFilterIds: subgenreFilterIds
+    genreFilters,
+    subgenreFilters
   }),
   { fetchGenres, resetSongs }
 )(GenreFilters);

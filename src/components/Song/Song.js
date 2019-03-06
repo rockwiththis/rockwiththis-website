@@ -90,17 +90,13 @@ class Song extends Component {
                 </button>
               </div>
 
-              <div
-                className="songInfo mobile"
-                onClick={
-                  this.props.discoveryLayout === 'snapshot' ?
-                    () => this.togglePlay() : undefined
-                }
-              >
-                <Link className="postTitleLink" to={`/songs/${song.id}`}>
-                  <span className="songName">{song.name}</span>
+              <div className="songInfo mobile">
+                <Link to={`/songs/${song.id}`}>
+                  <div className="postTitleLink">
+                    <span className="songName">{song.name}</span>
+                  </div>
+                  <span className="artistName">{song.artist_name}</span>
                 </Link>
-                <span className="artistName">{song.artist_name}</span>
               </div>
 
               <div className="songInfo desktop">

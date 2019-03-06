@@ -116,26 +116,31 @@
         }
       }
 
+      span.less-bold {
+        font-family: 'Object-Sans-Light',sans-serif;
+        font-weight: 100;
+      }
+
       .gf-button {
         cursor: pointer;
         display: inline-block;
         margin: 10px 5px;
         background-color: #303030;
         box-shadow: 2px 2px 5px black;
-        opacity: .9;
+        opacity: .75;
 
         &.selected {
           opacity: 1;
         }
         &.included {
-          opacity: .9;
+          opacity: 1;
         }
       }
 
       .genres {
         .genre-header {
           font-size: 24px;
-          font-family: 'Object-Sans-Heavy',sans-serif;
+          font-family: 'Object-Sans-Bold',sans-serif;
 
           span.separator {
             font-family: 'Object-Sans-Light',sans-serif;
@@ -154,6 +159,7 @@
           padding: 9px 11px;
           font-size: 16px;
           border: 2px solid #303030;
+          // font-family: 'Object-Sans-Regular',sans-serif;
           font-family: 'Object-Sans-Bold',sans-serif;
 
 
@@ -182,6 +188,14 @@
             border: 1px solid white;
           }
         }
+
+        @media(min-width:800px) {
+          .all-button:hover {
+                border: 1px solid white;
+          }
+        }
+
+
       }
 
       .subgenres {
@@ -190,9 +204,9 @@
 
         .subgenre-header {
           font-size: 20px;
-          margin-top: 30px;
+          margin-top: 15px;
           margin-bottom: 15px;
-          font-family: 'Object-Sans-Heavy',sans-serif;
+          font-family: 'Object-Sans-Bold',sans-serif;
 
           @media(max-width: 800px) {
             font-size: 18px;
@@ -222,37 +236,45 @@
           }
 
           .subgenre-button {
-            padding: 5px 10px;
+            padding: 6px 10px;
             border-radius: 15px;
             font-size: 14px;
             border: 1px solid #303030;
-            font-family: 'Object-Sans-Bold',sans-serif;
+            font-family: 'Object-Sans-Regular',sans-serif;
 
 
             @media(max-width: 800px) {
               font-size: 10px;
             }
           }
+          .subgenre-button:hover {
+            @media(min-width:800px) {
+            border: 1px solid #fff;
+            opacity: 1 !important;
+            }
+          }
         }
         .subgenre-group:nth-of-type(2){
           @media(min-width:800px) {
-            max-width: 850px;
-            margin: 0 auto;
+            max-width: 820px;
+            margin: 5px auto;
             display: block;
           }
         }
       }
 
       .submit-button {
-        margin-top: 25px;
+        // margin-top: 25px;
         padding: 12px 15px;
         border-radius: 5px;
         border: 2px solid #282828;
-        font-family: 'Object-Sans-Heavy',sans-serif;
+        font-family: 'Object-Sans-Bold',sans-serif;
 
       }
       .submit-button:hover {
-        border: 2px solid #fff;
+        @media(min-width:800px) {
+          border: 2px solid #fff;
+        }
       }
     }
   }
@@ -261,6 +283,12 @@
 .genres.all-selected {
   .genre-button {
     opacity: .9;
+  }
+}
+.genre-button:hover {
+  @media(min-width:800px) {
+    opacity: 1 !important;
+    border: 2px solid #fff !important;
   }
 }
 
@@ -315,7 +343,12 @@
 
   div:nth-of-type(2) {
     .included, .selected {
-          background: linear-gradient(to right, #3A1399, #0097d5);
+      background: linear-gradient(to right, #3A1399, #0097d5);
+    }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #3A1399, #0097d5);
+    }
     }
   }
 
@@ -326,42 +359,115 @@
     .included, .selected {
       background: linear-gradient(to left, #39EF6C, #02870E);
     }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to left, #39EF6C, #02870E);
+    }
+    }
   }
   .hiphop {
     .included, .selected {
-      // background: #000 !important;
       background: linear-gradient(to right, #000, #4D4D4D);
-
+    }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #000, #4D4D4D);
+    }
     }
   }
   .funk {
     .included, .selected {
       background: linear-gradient(to right, #3023AE, #DB00FF);
     }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #3023AE, #DB00FF);
+    }
+    }
   }
   .soul {
     .included, .selected {
       background: linear-gradient(to right, #3023AE, #ED1936);
+    }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #3023AE, #ED1936);
+    }
     }
   }
   .rock {
     .included, .selected {
       background: linear-gradient(to right, #0E018E, #C86DD7);
     }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #0E018E, #C86DD7);
+    }
+    }
   }
   .triphop {
     .included, .selected {
       background: linear-gradient(to right, #000000, #6B1CF7);
     }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #000000, #6B1CF7);
+    }
+    }
   }
   .remix {
     .included, .selected {
-          background: linear-gradient(to right, #3A1399, #0097d5);
+      background: linear-gradient(to right, #3A1399, #0097d5);
+    }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #3A1399, #0097d5);
+    }
     }
   }
   .world {
     .included, .selected {
       background: linear-gradient(to right, #FF0000, #F76B1C);
     }
+    .subgenre-button:hover {
+      @media(min-width:800px) {
+      background: linear-gradient(to right, #FF0000, #F76B1C);
+    }
+    }
   }
+}
+
+.subgenre-group:nth-of-type(2) {
+  .subgenre-button:nth-of-type(2) {
+    display: none !important;
+  }
+}
+
+
+
+
+
+
+
+
+// Managing the extra white space after our custom fontface
+.gf-button.subgenre-button span:after {
+    content: '';
+    margin-bottom: -2px;
+    display: inline-block;
+    margin-bottom: -2px;
+    display: block;
+    content: '';
+    height: 0;
+    width: 0;
+}
+.gf-button.genre-button span:after {
+    content: '';
+    margin-bottom: -2px;
+    display: inline-block;
+    margin-bottom: -2px;
+    display: block;
+    content: '';
+    height: 0;
+    width: 0;
 }
