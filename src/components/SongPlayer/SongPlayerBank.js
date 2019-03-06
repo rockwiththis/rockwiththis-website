@@ -128,10 +128,10 @@ class SongPlayerBank extends React.Component {
   loadAndPlaySong = song => {
     if (!!this.loadingSongs[song.id]) {
       this.loadedPlayers[song.id].off('load');
-      this.loadedPlayers[song.id].on('load', this.onPlayerReady(song.id, true));
+      this.loadedPlayers[song.id].on('load', this.onPlayerReady(song, true));
     }
     else if (!!this.loadedPlayers[song.id]) {
-      this.onPlayerReady(song.id, true)();
+      this.onPlayerReady(song, true)();
     } else {
       this.loadedPlayers[song.id] = this.createPlayer(song, true);
     }
