@@ -22,7 +22,7 @@ const getSoundCloudUrl = scid => {
 const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
 
-const MAX_SONG_LOADS = 4;
+const MAX_SONG_LOADS = 1;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
