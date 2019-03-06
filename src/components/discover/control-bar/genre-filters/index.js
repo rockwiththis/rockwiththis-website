@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, pickBy, uniq, compact, flatten, indexOf } from 'lodash';
+import { find, pickBy, uniq, compact, flatten, indexOf, orderBy } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -44,7 +44,11 @@ class GenreFilters extends Component {
     else if (prevProps.isActive && !this.props.isActive)
       document.removeEventListener('click', this.hideOnClickOff);
 
-      console.log(this.props.genres, "this.genres");
+
+      // const subgenres = this.props.genres['world'].subgenres
+      // orderBy(subgenres, ['name'], ['asc'])
+      // console.log(subgenres, "this.genres.subgenre");
+
   }
 
   hideOnClickOff = event =>
@@ -220,7 +224,7 @@ class GenreFilters extends Component {
                           }
                         >
                           {
-                            this.props.genres[genreName].subgenres.map(subgenre => (
+                            orderBy(this.props.genres[genreName].subgenres,['name'], ['asc']).map(subgenre => (
                               !subgenre.isHidden &&
                               <div
                                 className={

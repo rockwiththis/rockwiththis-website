@@ -811,6 +811,10 @@ img.color.bottom {
 z-index: 499;
 vertical-align: top;
     padding-top: 120px;
+
+    @media(min-width: 1050px) {
+      float: right;
+    }
   h3 {
     font-size: 40px;
   color: #000;
