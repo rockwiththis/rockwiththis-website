@@ -43,10 +43,6 @@ class SongPlayerBank extends React.Component {
 
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
-  shouldLoadMoreSongs = () =>
-    Object.values(this.loadingSongs).filter(s => !!s).length < MAX_SONG_LOADS &&
-    this.songLoadQueue.length > 0
-
   setActiveSongs = songs => {
     this.activeSongs = {};
     songs.forEach((song, i) => {
@@ -57,15 +53,19 @@ class SongPlayerBank extends React.Component {
     this.loadNextPlayers();
 
     Object.keys(this.loadedPlayers).forEach(songId => {
-      if (!find(songs, ['id', parseInt(songId)])) {
+      if (!!this.loadedPlayers[songId] && !find(songs, ['id', parseInt(songId)])) {
         this.loadedPlayers[songId].unload();
         this.loadedPlayers[songId] = undefined;
       }
     })
   }
 
+  shouldLoadMoreSongs = () =>
+    Object.values(this.loadingSongs).filter(s => !!s).length < MAX_SONG_LOADS &&
+    this.songLoadQueue.length > 0
+
   loadNextPlayers = () => {
-    while (shouldLoadMoreSongs()) {
+    while (this.shouldLoadMoreSongs()) {
       const nextSong = this.songLoadQueue.shift();
 
       if (!!nextSong && this.isSongActive(nextSong)) {
