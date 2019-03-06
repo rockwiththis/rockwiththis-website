@@ -1,22 +1,28 @@
 import { createAction } from 'redux-actions'
+import { flatten } from 'lodash';
 
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
     'http://localhost:9292/api' :
     '/api';
 
+const getSubgenreIds = (genreFilters, subgenreFilters) =>
+  [
+    ...flatten(genreFilters.map(genre => genre.subgenres.map(sg => sg.id))),
+    ...subgenreFilters.map(sg => sg.id)
+  ]
+
 const fetchSongs = (
   state,
   omitCurrSongs,
   isShuffle = state.isShuffle,
-  subgenreIds = state.subgenreFilterIds
+  subgenreIds = getSubgenreIds(state.genreFilters, state.subgenreFilters)
 ) => {
-  const subgenreFilterIds = state.selectedFilters.map(filter => filter.id);
   const currSongIds = state.filteredPosts.map(song => song.id);
   const fullURL =
     `${API_BASE_URL}/songs/${isShuffle ? 'shuffle' : ''}?` +
-    `tags=[${subgenreIds}]` +
-    (omitCurrSongs ? `&omitSongIds=[${currSongIds}]` : '');
+    (subgenreIds ? `tags=[${subgenreIds}]&` : '') +
+    (omitCurrSongs ? `omitSongIds=[${currSongIds}]` : '');
 
   return fetch(fullURL).then(res => res.json());
 }
@@ -25,13 +31,13 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle, subgenreIds } = {}) => (dispatch, getState) => {
+export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
-  return fetchSongs(getState(), false, isShuffle, subgenreIds)
+  return fetchSongs(getState(), false, isShuffle, getSubgenreIds(genreFilters, subgenreFilters))
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
-        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, subgenreIds }))
+        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, subgenreFilters }))
     ))
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
