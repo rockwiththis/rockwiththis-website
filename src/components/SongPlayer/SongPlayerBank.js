@@ -20,6 +20,8 @@ const getSoundCloudUrl = scid => {
 const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
 
+const MAX_SONG_LOADS = 4;
+
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
 class SongPlayerBank extends React.Component {
@@ -27,7 +29,7 @@ class SongPlayerBank extends React.Component {
     super(props);
     this.activeSongs = {};
     this.songLoadQueue = [];
-    this.loadingSongId = undefined;
+    this.loadingSongs = {};
     this.loadedPlayers = {};
     this.activePlayer = undefined;
     this.durationInterval = undefined;
@@ -41,6 +43,10 @@ class SongPlayerBank extends React.Component {
 
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
+  shouldLoadMoreSongs = () =>
+    Object.values(this.loadingSongs).filter(s => !!s).length < MAX_SONG_LOADS &&
+    this.songLoadQueue.length > 0
+
   setActiveSongs = songs => {
     this.activeSongs = {};
     songs.forEach((song, i) => {
@@ -48,7 +54,7 @@ class SongPlayerBank extends React.Component {
       if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.push(song);
     })
 
-    if (!this.loadingSongId) this.loadNextPlayer();
+    this.loadNextPlayers();
 
     Object.keys(this.loadedPlayers).forEach(songId => {
       if (!find(songs, ['id', parseInt(songId)])) {
@@ -58,21 +64,17 @@ class SongPlayerBank extends React.Component {
     })
   }
 
-  loadNextPlayer = () => {
-    const nextSong = this.songLoadQueue.shift();
+  loadNextPlayers = () => {
+    while (shouldLoadMoreSongs()) {
+      const nextSong = this.songLoadQueue.shift();
 
-    if (!!nextSong && this.isSongActive(nextSong)) {
-      this.loadingSongId = nextSong.id;
-      this.loadedPlayers[nextSong.id] = (
-        this.loadedPlayers[nextSong.id] ||
-        this.createPlayer(nextSong)
-      );
-
-    } else if (!!nextSong) {
-      this.loadNextPlayer();
-
-    } else {
-      this.loadingSongId = undefined;
+      if (!!nextSong && this.isSongActive(nextSong)) {
+        this.loadingSongs[nextSong.id] = nextSong;
+        this.loadedPlayers[nextSong.id] = (
+          this.loadedPlayers[nextSong.id] ||
+          this.createPlayer(nextSong)
+        );
+      }
     }
   }
 
@@ -90,7 +92,8 @@ class SongPlayerBank extends React.Component {
       this.activePlayer = this.activePlayer || this.loadedPlayers[songId];
       this.props.setSongDuration(songId, this.loadedPlayers[songId].duration());
     }
-    this.loadNextPlayer();
+    this.loadingSongs[songId] = undefined;
+    this.loadNextPlayers();
   }
 
   playSongListSong = songToPlay => {
