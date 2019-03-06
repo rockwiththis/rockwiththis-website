@@ -50,13 +50,7 @@ class ControlBar extends Component {
       isGenreFiltersActive: false,
       isViewsDropdownActive: false,
       isMomentsActive: false,
-      selectedGenres:[]
     }
-  }
-
-  componentDidUpdate() {
-
-    console.log(this.props, "this.pROPS");
   }
 
   disableScrolling = () => $('body').css('overflow', 'hidden');
@@ -109,14 +103,6 @@ class ControlBar extends Component {
       default: null
     }
   }
-
-  // renderSelectedGenres = (className) => (
-  //   <span className="selectedGenres">
-  //     { this.state.selectedGenres.map(genre => (
-  //         <span key={genre.name} className={className}>{genre.name}</span>
-  //     ))}
-  //   </span>
-  // );
 
   getFixedControlBarClass = () =>
     this.props.isControlBarFixed ? 'fixed-control-bar' : '';
@@ -202,17 +188,6 @@ class ControlBar extends Component {
                     <span className="control-bar-title">Moments</span>
                   </div>
                 </div>
-                <span className="control-bar-separator">|</span>
-
-                <div className="filter-query-container">
-                  <div className="reset-button">
-                    <span>Reset</span>
-                  </div>
-                  <div className="selectedGenres">
-
-
-                  </div>
-                </div>
           </div>
 
           <div className={`controls ${this.props.isControlBarFixed ? 'fixed-controls-bar' : ''}`}>
@@ -237,4 +212,5 @@ class ControlBar extends Component {
 
 export default connect(
   ({ discoverLayout, isShuffle }) => ({ discoverLayout, isShuffle }),
+  { resetSongs }
 )(ControlBar)
