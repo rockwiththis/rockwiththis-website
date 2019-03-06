@@ -1,5 +1,5 @@
 import { expectPayloadValue } from 'reducers/util';
-import { omitBy } from 'lodash';
+import { omitBy, get } from 'lodash';
 
 export default {
 
@@ -37,11 +37,9 @@ export default {
   'app/RESET_SONGS': (state, action) => {
     expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
 
-    const isShuffle = action.payload.isShuffle === undefined ?
-      state.isShuffle : action.payload.isShuffle;
-
-    const subgenreFilterIds = action.payload.subgenreIds === undefined ?
-      state.subgenreFilterIds : action.payload.subgenreIds;
+    const isShuffle = get(action.payload, 'isShuffle', state.isShuffle);
+    const genreFilters = get(action.payload, 'genreFilters', state.genreFilters);
+    const subgenreFilters = get(action.payload, 'subgenreFilters', state.subgenreFilters);
 
     const newPlayerDurations = state.filteredPosts
       .filter(oldSong => (
@@ -63,11 +61,11 @@ export default {
       filteredPosts: action.payload.songs,
       songPlayerDurations: newPlayerDurations,
       isShuffle: isShuffle,
-      subgenreFilterIds: subgenreFilterIds,
+      genreFilters: genreFilters,
+      subgenreFilters: subgenreFilters,
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
-      discoverScrollPos: 0
     }
   },
 

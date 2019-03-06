@@ -28,7 +28,8 @@ const INITIAL_STATE = {
   relatedSongs: [],
   filters: [],
   genres: {},
-  subgenreFilterIds: [],
+  genreFilters: [],
+  subgenreFilters: [],
   selectedFilters: [],
   currentSongListPageIndex: 0,
   maxSongListPageIndex: 0,
@@ -37,9 +38,7 @@ const INITIAL_STATE = {
   songPlayerDurations: {},
   shouldLoadPlayers: false,
   loadingSongs: false,
-  isShuffle: false,
-  mainScrollPos: 0,
-  discoverScrollPos: 0
+  isShuffle: false
 }
 
 const appReducers = handleActions({
