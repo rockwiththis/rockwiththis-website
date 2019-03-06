@@ -19,6 +19,7 @@ const propTypes = {
   // Redux
   isPlaying: PropTypes.bool.isRequired,
   activeSong: PropTypes.object.isRequired,
+  nextSong: PropTypes.object,
   songPlayerDurations: PropTypes.objectOf(PropTypes.number),
   playSong: PropTypes.func.isRequired,
   pauseSong: PropTypes.func.isRequired
@@ -26,37 +27,32 @@ const propTypes = {
 
 class HeroSong extends Component {
 
+    isPlaying = () =>
+      this.props.isPlaying &&
+      this.props.song.id === this.props.activeSong.id
+
+    isLoading = () =>
+      this.props.nextSong &&
+      this.props.song.id === this.props.nextSong.id
+
     // TODO this is duplicated in src/components/Song/Song.js
-    onPressPlay = song => event => {
-      // TODO this should be determined by caller
-      // to guarantee that appearance of button aligns w/ its behavior
-      const isPlayButton = (
-          !this.props.isPlaying ||
-          song.id !== this.props.activeSong.id
-      );
-      if (isPlayButton) this.props.playSong(song);
-      else this.props.pauseSong();
+    togglePlay = () => {
+      if (this.isPlaying()) this.props.pauseSong();
+      else this.props.playSong(this.props.song)
     }
 
     render() {
-        const {
-            song,
-            activeSong,
-            isPlaying,
-        } = this.props
-
-        const readyToPlay = !!this.props.songPlayerDurations[song.id];
-        const playPauseButton = !readyToPlay ?
-          <img src={loadingButton} className="loadingButton" /> :
-          song.id === activeSong.id && isPlaying ?
-            <img src={pauseButton} className="pauseButton" /> :
+        const playPauseButton = this.isPlaying() ?
+          <img src={pauseButton} className="pauseButton" /> :
+          this.isLoading() ?
+            <img src={loadingButton} className="loadingButton" /> :
             <img src={playButton} className="playButton" />
 
           return (
               <div className='post-square-wrapper play'>
                   <button
                       className="heroSongPlayerButton"
-                      onClick={readyToPlay && this.onPressPlay(song)}
+                      onClick={this.togglePlay}
                   >
                       {playPauseButton}
                   </button>
@@ -68,10 +64,16 @@ class HeroSong extends Component {
 HeroSong.propTypes = propTypes;
 
 export default connect(
-    ({ isPlaying, activeSong, songPlayerDurations }) => ({
-      isPlaying,
-      activeSong,
-      songPlayerDurations
-    }),
-    { playSong, pauseSong }
+  ({
+    isPlaying,
+    activeSong,
+    nextSong,
+    songPlayerDurations
+  }) => ({
+    isPlaying,
+    activeSong,
+    nextSong,
+    songPlayerDurations
+  }),
+  { playSong, pauseSong }
 )(HeroSong)
