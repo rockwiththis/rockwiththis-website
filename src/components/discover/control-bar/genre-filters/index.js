@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { find, pickBy, uniq, compact, flatten, indexOf } from 'lodash';
+import { find, pickBy, uniq, compact, flatten, indexOf, orderBy } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 
 import { fetchGenres } from 'actions/fetch/genres';
@@ -51,6 +51,7 @@ class GenreFilters extends Component {
       selectedGenres: this.props.genreFilters,
       selectedSubgenres: this.props.subgenreFilters
     });
+
   }
 
   hideOnClickOff = event =>
@@ -209,7 +210,7 @@ class GenreFilters extends Component {
                           }
                         >
                           {
-                            this.props.genres[genreName].subgenres.map(subgenre => (
+                            orderBy(this.props.genres[genreName].subgenres,['name'], ['asc']).map(subgenre => (
                               !subgenre.isHidden &&
                               <div
                                 className={
