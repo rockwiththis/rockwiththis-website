@@ -29,10 +29,9 @@ class GenreFilters extends Component {
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: {},
-      selectedSubgenres: {}
+      selectedGenres: props.selectedGenres,
+      selectedSubgenres: props.selectedSubgenres
     }
-
     props.fetchGenres();
   }
 
@@ -47,25 +46,32 @@ class GenreFilters extends Component {
       console.log(this.props.genres, "this.genres");
   }
 
-  hideOnClickOff = event =>
-    this.modalRef.current &&
-    !this.modalRef.current.contains(event.target) &&
-    this.props.hide();
+  resetSelection = () =>
+    this.setState({
+      selectedGenres: this.props.selectedGenres,
+      selectedSubgenres: this.props.selectedSubgenres
+    })
+
+  hideOnClickOff = event => {
+    if (this.modalRef.current && !this.modalRef.current.contains(event.target)) {
+      this.props.hide();
+      this.resetSelection();
+    }
+  }
 
   getGenreName = genre => genre.spacedName || genre.name;
 
   // Mark selected genre as set or unset
   // Always reset the child subgenres
-  toggleGenre = genreName => {
-    const genreId = this.props.genres[genreName].id;
+  toggleGenre = genre =>
     this.setState({
       ...this.state,
       selectedGenres: {
         ...this.state.selectedGenres,
-        [genreName]: !!this.state.selectedGenres[genreName] ? undefined : true
+        [genre.name]: !!this.state.selectedGenres[genre.name] ? undefined : genre
       },
       selectedSubgenres:
-        this.props.genres[genreName].subgenres.reduce(
+        this.props.genres[genre.name].subgenres.reduce(
           (currSubgenres, subgenreToRemove) => ({
             ...currSubgenres,
             [subgenreToRemove.id]: undefined
@@ -73,11 +79,10 @@ class GenreFilters extends Component {
           this.state.selectedSubgenres
         )
     })
-  }
 
   // Mark selected subgenre as set or unset
   // Always reset the parent genre
-  toggleSubgenre = (genreName, subgenreId) =>
+  toggleSubgenre = (genreName, subgenre) =>
     this.setState({
       ...this.state,
       selectedGenres: {
@@ -86,7 +91,8 @@ class GenreFilters extends Component {
       },
       selectedSubgenres: {
         ...this.state.selectedSubgenres,
-        [subgenreId]: !!this.state.selectedSubgenres[subgenreId] ? undefined : genreName
+        [subgenre.id]: !!this.state.selectedSubgenres[subgenre.id] ?
+          undefined : { ...subgenre, parentGenre: genreName }
       }
     })
 
@@ -108,40 +114,21 @@ class GenreFilters extends Component {
       selectedSubgenres: {}
     })
 
-  clearSelectedSubgenres = () => {
-    const includedGenreNames = uniq(compact(
-      Object.values(this.state.selectedSubgenres)
-    ));
-    this.setState({
-      ...this.state,
-      selectedGenres:
-        includedGenreNames.reduce((currGenres, genreName) => ({
-          ...currGenres,
-          [genreName]: true
-        }), this.state.selectedGenres),
-      selectedSubgenres: {}
-    })
-  }
-
   shouldHideSubgenreGroupMobile = genreName =>
     !this.state.selectedGenres[genreName] &&
-    indexOf(Object.values(this.state.selectedSubgenres), genreName) === -1
+    !find(Object.values(this.state.selectedSubgenres), ['parentGenre', genreName])
+
+  isSelectionDifferent = () =>
+    Object.keys(this.props.genreFilters !== Object.keys(this.state.selectedGenres)) &&
+    Object.keys(this.props.subgenreFilters !== Object.keys(this.state.selectedSubgenres))
 
   submit = () => {
-
-    const subgenreIds = [
-      ...flatten(
-        Object.keys(pickBy(this.state.selectedGenres, value => !!value))
-          .map(genreName => (
-            this.props.genres[genreName].subgenres.map(subgenre => subgenre.id)
-          ))
-      ),
-      ...Object.keys(pickBy(this.state.selectedSubgenres, value => !!value))
-    ]
-
-    if (subgenreIds !== this.props.currSubgenreFilterIds)
-      this.props.resetSongs({ subgenreIds });
-
+    if (this.isSelectionDifferent()) {
+      this.props.resetSongs({
+        genreFilters: Object.values(this.state.selectedGenres),
+        subgenreFilters: Object.values(this.state.selectedSubgenres)
+      });
+    }
     this.props.hide();
   }
 

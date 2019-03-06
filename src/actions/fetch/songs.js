@@ -1,18 +1,22 @@
 import { createAction } from 'redux-actions'
-import { map } from 'lodash';
+import { flatten } from 'lodash';
 
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
     'http://localhost:9292/api' :
     '/api';
 
-const getIds = array => array && map(array, x => x.id);
+const getSubgenreIds = (genreFilters, subgenreFilters) =>
+  [
+    ...flatten(genreFilters.map(genre => genre.subgenres.map(sg => sg.id))),
+    ...subgenreFilters.map(sg => sg.id)
+  ]
 
 const fetchSongs = (
   state,
   omitCurrSongs,
   isShuffle = state.isShuffle,
-  subgenreIds = getIds(state.subgenreFilterIds)
+  subgenreIds = getSubgenreIds(state.genreFilters, state.subgenreFilters)
 ) => {
   const currSongIds = state.filteredPosts.map(song => song.id);
   const fullURL =
@@ -27,9 +31,9 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle, subgenreFilters } = {}) => (dispatch, getState) => {
+export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
-  return fetchSongs(getState(), false, isShuffle, getIds(subgenreFilters))
+  return fetchSongs(getState(), false, isShuffle, getSubgenreIds(genreFilters, subgenreFilters))
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
