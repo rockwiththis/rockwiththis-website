@@ -30,8 +30,8 @@ class GenreFilters extends Component {
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: props.genreFilters,      // Keyed by genre name
-      selectedSubgenres: props.subgenreFilters // Keyed by genre id
+      selectedGenres: {},   // Keyed by genre name
+      selectedSubgenres: {} // Keyed by genre id
     }
     props.fetchGenres();
   }
@@ -48,8 +48,14 @@ class GenreFilters extends Component {
   closeModal = () => {
     this.props.hide();
     this.setState({
-      selectedGenres: this.props.genreFilters,
-      selectedSubgenres: this.props.subgenreFilters
+      selectedGenres: this.props.genreFilters.reduce((currGenres, genre) => ({
+        ...currGenres,
+        [genre.name]: genre
+      }), {}),
+      selectedSubgenres: this.props.subgenreFilters.reduce((currSubgenres, subgenre) => ({
+        ...currSubgenres,
+        [subgenre.id]: subgenre
+      }), {})
     });
 
   }
