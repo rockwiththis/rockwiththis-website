@@ -1,0 +1,50 @@
+.genre-badge {
+  color: white;
+
+  &.subgenre-badge {
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 14px;
+    border: 1px solid #303030;
+    font-family: 'Object-Sans-Regular',sans-serif;
+
+    @media(max-width: 800px) {
+      font-size: 10px;
+    }
+
+    &:hover {
+      @media(min-width:800px) {
+        border: 1px solid #fff;
+        opacity: 1 !important;
+      }
+    }
+  } 
+
+  &.electronic {
+    background: linear-gradient(to right, #1e0c49, #0097d5);
+  }
+  &.chill {
+    background: linear-gradient(to left, #39EF6C, #011403);
+  }
+  &.hiphop {
+    background: #000;
+  }
+  &.funk {
+    background: linear-gradient(to right, #3023AE, #DB00FF);
+  }
+  &.soul {
+    background: linear-gradient(to right, #3023AE, #ED1936);
+  }
+  &.rock {
+    background: linear-gradient(to right, #0E018E, #C86DD7);
+  }
+  &.triphop {
+    background: linear-gradient(to right, #000000, #6B1CF7);
+  }
+  &.remix {
+    background: linear-gradient(to left, #1e0c49, #0097d5);
+  }
+  &.world {
+    background: linear-gradient(to right, #FF0000, #F76B1C);
+  }
+}
