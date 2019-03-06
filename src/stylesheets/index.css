@@ -491,6 +491,9 @@ form.rwt-email-form button {
     z-index: 499;
     vertical-align: top;
     padding-top: 120px; }
+    @media (min-width: 1050px) {
+      .main-content .four-content {
+        float: right; } }
     .main-content .four-content h3 {
       font-size: 40px;
       color: #000;

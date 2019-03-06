@@ -189,7 +189,7 @@
             opacity: 1 !important; } }
       @media (min-width: 800px) {
         .genre-filters .genre-filter-content-container .genre-filter-content .subgenres .subgenre-group:nth-of-type(2) {
-          max-width: 850px;
+          max-width: 820px;
           margin: 5px auto;
           display: block; } }
     .genre-filters .genre-filter-content-container .genre-filter-content .submit-button {
@@ -306,7 +306,7 @@
   .subgenres .world .subgenre-button:hover {
     background: linear-gradient(to right, #FF0000, #F76B1C); } }
 
-.subgenre-group:nth-of-type(2) .subgenre-button:nth-of-type(1) {
+.subgenre-group:nth-of-type(2) .subgenre-button:nth-of-type(2) {
   display: none !important; }
 
 .gf-button.subgenre-button span:after {
