@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { uniqBy } from 'lodash';
 
 import * as BindActions from 'actions/bind-with-dispatch';
 
@@ -55,17 +56,23 @@ class AppContainer extends Component {
 
     } else if (this.props.isPlaying && !prevProps.isPlaying) {
       this.playerBankRef.current.playActiveSong();
+
+    } else if (!!this.props.nextSong) {
+      this.playerBankRef.current.loadAndPlaySong(this.props.nextSong)
     }
 
     if (this.props.shouldLoadPlayers) {
-      const playerSongs = [
-        ...this.props.filteredPosts,
-        this.props.spotlightPost,
-        this.props.singleSong
-      ].filter(song => !!song && !!song.id);
-
-      this.playerBankRef.current.setSongListPlayers(playerSongs);
-      this.props.activeSong && this.playerBankRef.current.ensureActivePlayer(this.props.activeSong);
+      const currActiveSongs = uniqBy(
+        [
+          this.props.activeSong,
+          ...this.props.heroPosts,
+          ...this.props.filteredPosts,
+          this.props.spotlightPost,
+          this.props.singleSong
+        ].filter(s => !!s && !!s.id),
+        song => song.id
+      );
+      this.playerBankRef.current.setActiveSongs(currActiveSongs);
       this.props.actions.playerBankUpdated();
     }
   };
@@ -91,6 +98,7 @@ class AppContainer extends Component {
   setDiscoveryScroll = newScrollPos => this.discoveryScroll = newScrollPos;
 
   render() {
+
     return (
         <div>
           <Header {...this.props} shrinkHeader={this.state.shrinkHeader} />
@@ -105,11 +113,9 @@ class AppContainer extends Component {
           {
             !!this.props.activeSong && !!this.props.activeSong.id &&
             <SongPlayerBank
-              heroSongs={this.props.heroPosts}
-              initialSongList={this.props.filteredPosts}
-              initialActiveSong={this.props.activeSong}
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
+              playSong={this.props.playSong}
               onSongEnd={this.playNextSong}
               ref={this.playerBankRef}
             />
@@ -125,7 +131,7 @@ const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(BindActions, dispatch),
     loadMoreSongs: () => dispatch(loadMoreSongs()),
-    playSong: song => dispatch(playSong(song))
+    playSong: (song, duration) => dispatch(playSong(song, duration))
   }
 }
 

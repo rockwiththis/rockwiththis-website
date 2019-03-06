@@ -22,6 +22,7 @@ const propTypes = {
   // Redux
   isPlaying: PropTypes.bool.isRequired,
   activeSong: PropTypes.object.isRequired,
+  nextSong: PropTypes.object,
   discoverLayout: PropTypes.string,
   songPlayerDurations: PropTypes.objectOf(PropTypes.number),
   playSong: PropTypes.func.isRequired,
@@ -30,16 +31,18 @@ const propTypes = {
 
 class Song extends Component {
 
+    isPlaying = () =>
+      this.props.isPlaying &&
+      this.props.song.id === this.props.activeSong.id
+
+    isLoading = () =>
+      this.props.nextSong &&
+      this.props.song.id === this.props.nextSong.id
+
     // TODO it would be really slick to move this code into a shared hoc
-    onPressPlay = () => {
-      // TODO this should be determined by caller
-      // to guarantee that appearance of button aligns w/ its behavior
-      const isPlayButton = (
-          !this.props.isPlaying ||
-          this.props.song.id !== this.props.activeSong.id
-      );
-      if (isPlayButton) this.props.playSong(this.props.song);
-      else this.props.pauseSong();
+    togglePlay = () => {
+      if (this.isPlaying()) this.props.pauseSong();
+      else this.props.playSong(this.props.song)
     }
 
     renderTags = (className = 'tag') => (
@@ -59,11 +62,10 @@ class Song extends Component {
     renderTop() {
       const { song } = this.props;
 
-      const readyToPlay = !!this.props.songPlayerDurations[song.id];
-      const playPauseButton = !readyToPlay ?
-        <img src={loadingButton} className="loadingButton" /> :
-        song.id === this.props.activeSong.id && this.props.isPlaying ?
-          <img src={pauseButtonWhite} className="pauseButton" /> :
+      const playPauseButton = this.isPlaying() ?
+        <img src={pauseButtonWhite} className="pauseButton" /> :
+        this.isLoading() ?
+          <img src={loadingButton} className="loadingButton" /> :
           <svg
             className="playButton"
             xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +84,7 @@ class Song extends Component {
               <div className="singlePostPlayer hideMobile">
                 <button
                   className="singlePostPlayerButton"
-                  onClick={readyToPlay ? () => this.onPressPlay() : undefined}
+                  onClick={this.togglePlay}
                 >
                   {playPauseButton}
                 </button>
@@ -180,7 +182,7 @@ class Song extends Component {
                   <div className="songImageInfoContainer grid">
                     <button
                       className="singlePostPlayerButton"
-                      onClick={() => this.onPressPlay()}
+                      onClick={this.togglePlay}
                     >
                       {playPauseButton}
                     </button>
@@ -217,9 +219,16 @@ class Song extends Component {
 Song.propTypes = propTypes;
 
 export default connect(
-    ({ isPlaying, activeSong, discoverLayout, songPlayerDurations }) => ({
+    ({
       isPlaying,
       activeSong,
+      nextSong,
+      discoverLayout,
+      songPlayerDurations
+    }) => ({
+      isPlaying,
+      activeSong,
+      nextSong,
       discoverLayout,
       songPlayerDurations
     }),

@@ -8,28 +8,34 @@ import { Icon } from 'react-fa'
 import YouTube from 'react-youtube'
 import { Helmet } from 'react-helmet';
 
-import { toggleSong, togglePlayPause } from 'actions/queue'
+import { playSong, pauseSong } from 'actions/player';
 import ShareBox from 'components/ShareBox/ShareBox'
 
-import  pauseButton  from 'images/PAUSE-BUTTON.png'
+import pauseButton from 'images/PAUSE-BUTTON.png'
+import loadingButton from 'images/Loading_Icon_2_5.gif'
 
 import './SingleSong.scss'
 
 
 class SingleSong extends Component {
+
     constructor(props) {
       super(props);
       this.state = { expanded: false };
     }
 
-    // TODO This duplicate logic should be standardized
-    onPressPlay(song) {
-      const isPlayButton = (
-          !this.props.isPlaying ||
-          song.id !== this.props.activeSong.id
-      );
-      if (isPlayButton) this.props.actions.toggleSong(song);
-      else this.props.actions.togglePlayPause(false);
+    isPlaying = () =>
+      this.props.isPlaying &&
+      this.props.singleSong.id === this.props.activeSong.id
+
+    isLoading = () =>
+      this.props.nextSong &&
+      this.props.singleSong.id === this.props.nextSong.id
+
+    // TODO this is duplicated in src/components/Song/Song.js
+    togglePlay = () => {
+      if (this.isPlaying()) this.props.pauseSong();
+      else this.props.playSong(this.props.singleSong)
     }
 
     // TODO eliminate duplicate @ Song.js
@@ -42,21 +48,27 @@ class SingleSong extends Component {
             activeSong,
             isPlaying,
         } = this.props
-        const song = this.props.singleSong
-        const playPauseButton = song.id === activeSong.id && isPlaying ? (
-          <img src={pauseButton} className="pauseButton" />
 
-        ) : (
-          <svg className="playButton" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>
-
-        )
-
+        // TODO add a loading button here
+        const playPauseButton = this.isPlaying() ?
+          <img src={pauseButton} className="pauseButton" /> :
+          this.isLoading() ?
+            <img src={loadingButton} className="loadingButton" /> :
+            <svg
+              className="playButton"
+              xmlns="http://www.w3.org/2000/svg"
+              width="60"
+              height="60"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/>
+            </svg>
 
         return (
           <div className='player-button'>
             <button
                 className="singlePostPlayerButton"
-                onClick={() => this.onPressPlay(song)}
+                onClick={this.togglePlay}
             >
                 {playPauseButton}
             </button>
@@ -165,4 +177,4 @@ SingleSong.defaultProps = {
     activeSong: {},
 }
 
-export default SingleSong
+export default connect(null, { playSong, pauseSong })(SingleSong)

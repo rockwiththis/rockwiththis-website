@@ -1,8 +1,11 @@
 // react gods please forgive me for i have sinned...
 
 import React from 'react';
+import { connect } from 'react-redux';
 import SoundCloudWidget from 'soundcloud-widget';
 import { Howl } from 'howler';
+import { find } from 'lodash';
+import { playSong } from 'actions/player';
 
 import './SongPlayerBank.scss';
 
@@ -16,73 +19,89 @@ const getSoundCloudUrl = scid => {
   return `https://w.soundcloud.com/player/?url=${url}`;
 }
 
+const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
+
+const MAX_SONG_LOADS = 1;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
 class SongPlayerBank extends React.Component {
   constructor(props) {
     super(props);
-    this.songListPlayers = undefined;
-    this.heroPlayers = undefined;
-    this.allPlayers = undefined;
+    this.activeSongs = {};
+    this.songLoadQueue = [];
+    this.loadingSongs = {};
+    this.loadedPlayers = {};
     this.activePlayer = undefined;
     this.durationInterval = undefined;
   }
 
   shouldComponentUpdate = () => false;
 
-  componentDidMount = () => {
-    this.heroPlayers = this.props.heroSongs.reduce((currPlayers, song, i) => ({
-      ...currPlayers,
-      [song.id]: this.createPlayer(song)
-    }), {});
-    this.allPlayers = { ...this.heroPlayers };
-    this.setSongListPlayers(this.props.initialSongList);
+  isSongLoadedOrLoading = song =>
+    !!find(this.songLoadQueue, ['id', song.id]) ||
+    !!this.loadedPlayers[song.id]
 
-    this.activePlayer = this.allPlayers[this.props.initialActiveSong.id];
+  isSongActive = song => !!find(this.activeSongs, ['id', song.id])
+
+  setActiveSongs = songs => {
+    this.activeSongs = {};
+    songs.forEach((song, i) => {
+      this.activeSongs[song.id] = song;
+      if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.push(song);
+    })
+
+    this.loadNextPlayers();
+
+    Object.keys(this.loadedPlayers).forEach(songId => {
+      if (!!this.loadedPlayers[songId] && !find(songs, ['id', parseInt(songId)])) {
+        this.loadedPlayers[songId].unload();
+        this.loadedPlayers[songId] = undefined;
+      }
+    })
   }
 
-  setSongListPlayers = songList => {
-    this.songListPlayers = songList.reduce((currPlayers, song) => (
-        !!song.id ?
-          {
-            ...currPlayers,
-            [song.id]: this.allPlayers[song.id] || this.createPlayer(song)
-          } :
-          currPlayers
-    ), {});
-    this.allPlayers = { ...this.allPlayers, ...this.songListPlayers }
-  }
+  shouldLoadMoreSongs = () =>
+    Object.values(this.loadingSongs).filter(s => !!s).length < MAX_SONG_LOADS &&
+    this.songLoadQueue.length > 0
 
-  ensureActivePlayer = activeSong => {
-    // Verify that `activePlayer` is set correctly ... useful for navigation to single song page
-    if (!!this.allPlayers[activeSong.id]) {
-      this.activePlayer = this.allPlayers[activeSong.id];
-    } else {
-      this.activePlayer = this.createPlayer(activeSong);
-      this.allPlayers = {
-        ...this.allPlayers,
-        [activeSong.id]: this.activePlayer
-      };
+  loadNextPlayers = () => {
+    while (this.shouldLoadMoreSongs()) {
+      const nextSong = this.songLoadQueue.shift();
+
+      if (!!nextSong && this.isSongActive(nextSong) && !this.loadedPlayers[nextSong.id]) {
+        this.loadingSongs[nextSong.id] = nextSong;
+        this.loadedPlayers[nextSong.id] = this.createPlayer(nextSong);
+      }
     }
   }
 
-  createPlayer = song =>
+  createPlayer = (song, playOnLoad = false) =>
     new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
       autoplay: false,
-      onload: this.onPlayerReady(song.id),
-      onend: this.props.onSongEnd
-    });
+      onload: this.onPlayerReady(song, playOnLoad),
+      onend: this.props.onSongEnd,
+    })
 
-  onPlayerReady = songId => () =>
-    this.allPlayers[songId] &&
-    this.props.setSongDuration(songId, this.allPlayers[songId].duration())
+  onPlayerReady = (song, playSong) => () => {
+    if (!!this.loadedPlayers[song.id]) {
+      this.activePlayer = this.activePlayer || this.loadedPlayers[song.id];
+      const duration = this.loadedPlayers[song.id].duration();
+      if (playSong) {
+        this.props.playSong(song, duration);
+      } else {
+        this.props.setSongDuration(song.id, duration);
+      }
+    }
+    this.loadingSongs[song.id] = undefined;
+    this.loadNextPlayers();
+  }
 
   playSongListSong = songToPlay => {
-    const newActivePlayer = this.allPlayers[songToPlay.id];
+    const newActivePlayer = this.loadedPlayers[songToPlay.id];
     if (!!newActivePlayer) {
       newActivePlayer.play();
 
@@ -104,6 +123,18 @@ class SongPlayerBank extends React.Component {
   pauseActiveSong = () => {
     this.activePlayer.pause();
     clearInterval(this.durationInterval);
+  }
+
+  loadAndPlaySong = song => {
+    if (!!this.loadingSongs[song.id]) {
+      this.loadedPlayers[song.id].off('load');
+      this.loadedPlayers[song.id].on('load', this.onPlayerReady(song, true));
+    }
+    else if (!!this.loadedPlayers[song.id]) {
+      this.onPlayerReady(song, true)();
+    } else {
+      this.loadedPlayers[song.id] = this.createPlayer(song, true);
+    }
   }
 
   reportActivePlayerProgress = () => {
