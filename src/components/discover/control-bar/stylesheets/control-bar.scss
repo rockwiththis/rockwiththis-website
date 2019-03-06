@@ -91,11 +91,29 @@
         }
 
         svg {
-          fill: #1a6ea9;
+          @media(min-width: 800px) {
+            fill: #fff !important;
+          }
+          @media(max-width: 800px) {
+            fill: #1a6ea9 !important;
+          }
 
           @media (min-width: 800px) {
             fill: #fff;
           }
+        }
+        span {
+          color: #1a6ea9;
+        }
+      }
+      &.active.shuffle:hover {
+        .control-bar-item-content {
+          @media(min-width:800px) {
+            background: rgba(0,0,0,0) !important;
+          }
+        }
+        svg {
+          fill: #545454 !important;
         }
       }
       &.active.view {

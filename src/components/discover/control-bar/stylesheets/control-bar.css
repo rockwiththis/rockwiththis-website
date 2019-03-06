@@ -63,11 +63,22 @@
       @media (min-width: 800px) {
         .control-bar .control-bar-item.active.shuffle .control-bar-item-content {
           background: #282828; } }
-      .control-bar .control-bar-item.active.shuffle svg {
-        fill: #1a6ea9; }
-        @media (min-width: 800px) {
-          .control-bar .control-bar-item.active.shuffle svg {
-            fill: #fff; } }
+      @media (min-width: 800px) {
+        .control-bar .control-bar-item.active.shuffle svg {
+          fill: #fff !important; } }
+      @media (max-width: 800px) {
+        .control-bar .control-bar-item.active.shuffle svg {
+          fill: #1a6ea9 !important; } }
+      @media (min-width: 800px) {
+        .control-bar .control-bar-item.active.shuffle svg {
+          fill: #fff; } }
+      .control-bar .control-bar-item.active.shuffle span {
+        color: #1a6ea9; }
+    @media (min-width: 800px) {
+      .control-bar .control-bar-item.active.shuffle:hover .control-bar-item-content {
+        background: rgba(0, 0, 0, 0) !important; } }
+    .control-bar .control-bar-item.active.shuffle:hover svg {
+      fill: #545454 !important; }
     .control-bar .control-bar-item.active.view {
       background: #f5f3f3;
       color: #282828; }
