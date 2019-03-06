@@ -33,11 +33,16 @@ const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 const RESET_SONGS = createAction('app/RESET_SONGS');
 export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
-  return fetchSongs(getState(), false, isShuffle, getSubgenreIds(genreFilters, subgenreFilters))
+  const state = getState();
+  const subgenreIds = getSubgenreIds(
+    genreFilters || state.genreFilters,
+    subgenreFilters || state.subgenreFilters
+  );
+  return fetchSongs(state, false, isShuffle, subgenreIds)
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
-        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, subgenreFilters }))
+        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, genreFilters, subgenreFilters }))
     ))
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
