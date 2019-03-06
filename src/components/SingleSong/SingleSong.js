@@ -11,7 +11,8 @@ import { Helmet } from 'react-helmet';
 import { playSong, pauseSong } from 'actions/player';
 import ShareBox from 'components/ShareBox/ShareBox'
 
-import  pauseButton  from 'images/PAUSE-BUTTON.png'
+import pauseButton from 'images/PAUSE-BUTTON.png'
+import loadingButton from 'images/Loading_Icon_2_5.gif'
 
 import './SingleSong.scss'
 
@@ -26,6 +27,10 @@ class SingleSong extends Component {
     isPlaying = () =>
       this.props.isPlaying &&
       this.props.singleSong.id === this.props.activeSong.id
+
+    isLoading = () =>
+      this.props.nextSong &&
+      this.props.singleSong.id === this.props.nextSong.id
 
     // TODO this is duplicated in src/components/Song/Song.js
     togglePlay = () => {
@@ -47,15 +52,17 @@ class SingleSong extends Component {
         // TODO add a loading button here
         const playPauseButton = this.isPlaying() ?
           <img src={pauseButton} className="pauseButton" /> :
-          <svg
-            className="playButton"
-            xmlns="http://www.w3.org/2000/svg"
-            width="60"
-            height="60"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/>
-          </svg>
+          this.isLoading() ?
+            <img src={loadingButton} className="loadingButton" /> :
+            <svg
+              className="playButton"
+              xmlns="http://www.w3.org/2000/svg"
+              width="60"
+              height="60"
+              viewBox="0 0 24 24"
+            >
+              <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/>
+            </svg>
 
         return (
           <div className='player-button'>
