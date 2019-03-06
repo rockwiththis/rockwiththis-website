@@ -53,6 +53,10 @@ class ControlBar extends Component {
     }
   }
 
+  componentDidUpdate() {
+
+  }
+
   disableScrolling = () => $('body').css('overflow', 'hidden');
 
   enableScrolling = () => $('body').css('overflow', 'auto');

@@ -48,6 +48,7 @@ class Song extends Component {
     renderTags = (className = 'tag') => (
       <span className="postTags">
         { this.props.song.sub_genres.map(genre => (
+
             <span key={genre.name} className={className}>{genre.name}</span>
         ))}
       </span>
@@ -61,6 +62,7 @@ class Song extends Component {
 
     renderTop() {
       const { song } = this.props;
+      console.log(song, "songy");
 
       const playPauseButton = this.isPlaying() ?
         <img src={pauseButtonWhite} className="pauseButton" /> :
