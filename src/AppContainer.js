@@ -131,7 +131,7 @@ const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(BindActions, dispatch),
     loadMoreSongs: () => dispatch(loadMoreSongs()),
-    playSong: song => dispatch(playSong(song))
+    playSong: (song, duration) => dispatch(playSong(song, duration))
   }
 }
 
