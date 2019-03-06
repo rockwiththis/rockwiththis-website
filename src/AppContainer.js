@@ -56,6 +56,9 @@ class AppContainer extends Component {
 
     } else if (this.props.isPlaying && !prevProps.isPlaying) {
       this.playerBankRef.current.playActiveSong();
+
+    } else if (!!this.props.nextSong) {
+      this.playerBankRef.current.loadAndPlaySong(this.props.nextSong)
     }
 
     if (this.props.shouldLoadPlayers) {
@@ -112,6 +115,7 @@ class AppContainer extends Component {
             <SongPlayerBank
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
+              playSong={this.props.playSong}
               onSongEnd={this.playNextSong}
               ref={this.playerBankRef}
             />

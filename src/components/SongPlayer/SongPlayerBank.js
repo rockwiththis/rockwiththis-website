@@ -1,9 +1,11 @@
 // react gods please forgive me for i have sinned...
 
 import React from 'react';
+import { connect } from 'react-redux';
 import SoundCloudWidget from 'soundcloud-widget';
 import { Howl } from 'howler';
 import { find } from 'lodash';
+import { playSong } from 'actions/player';
 
 import './SongPlayerBank.scss';
 
@@ -20,7 +22,7 @@ const getSoundCloudUrl = scid => {
 const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
 
-const MAX_SONG_LOADS = 1;
+const MAX_SONG_LOADS = 4;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
@@ -68,31 +70,33 @@ class SongPlayerBank extends React.Component {
     while (this.shouldLoadMoreSongs()) {
       const nextSong = this.songLoadQueue.shift();
 
-      if (!!nextSong && this.isSongActive(nextSong)) {
+      if (!!nextSong && this.isSongActive(nextSong) && !this.loadedPlayers[nextSong.id]) {
         this.loadingSongs[nextSong.id] = nextSong;
-        this.loadedPlayers[nextSong.id] = (
-          this.loadedPlayers[nextSong.id] ||
-          this.createPlayer(nextSong)
-        );
+        this.loadedPlayers[nextSong.id] = this.createPlayer(nextSong);
       }
     }
   }
 
-  createPlayer = song =>
+  createPlayer = (song, playOnLoad = false) =>
     new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
       autoplay: false,
-      onload: this.onPlayerReady(song.id),
+      onload: this.onPlayerReady(song, playOnLoad),
       onend: this.props.onSongEnd,
     })
 
-  onPlayerReady = songId => () => {
-    if (!!this.loadedPlayers[songId]) {
-      this.activePlayer = this.activePlayer || this.loadedPlayers[songId];
-      this.props.setSongDuration(songId, this.loadedPlayers[songId].duration());
+  onPlayerReady = (song, playSong) => () => {
+    if (!!this.loadedPlayers[song.id]) {
+      this.activePlayer = this.activePlayer || this.loadedPlayers[song.id];
+      const duration = this.loadedPlayers[song.id].duration();
+      if (playSong) {
+        this.props.playSong(song, duration);
+      } else {
+        this.props.setSongDuration(song.id, duration);
+      }
     }
-    this.loadingSongs[songId] = undefined;
+    this.loadingSongs[song.id] = undefined;
     this.loadNextPlayers();
   }
 
@@ -119,6 +123,14 @@ class SongPlayerBank extends React.Component {
   pauseActiveSong = () => {
     this.activePlayer.pause();
     clearInterval(this.durationInterval);
+  }
+
+  loadAndPlaySong = song => {
+    if (!!this.loadedPlayers[song.id]) {
+      this.onPlayerReady(song.id, true)();
+    } else {
+      this.loadedPlayers[song.id] = this.createPlayer(song, true);
+    }
   }
 
   reportActivePlayerProgress = () => {
