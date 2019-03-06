@@ -17,8 +17,8 @@
 
 .fullGridLayout .songList .songContainer {
   margin: 2px;
-  width: calc(20vw - 4px);
-  height: calc(20vw - 4px);
+  width: calc(20vw - 7px);
+  height: calc(20vw - 7px);
   padding: 0;
   display: inline-block;
   max-width: none;

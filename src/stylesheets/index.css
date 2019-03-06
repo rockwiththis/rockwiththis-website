@@ -46,6 +46,7 @@ a {
       margin-top: 0px !important; } }
 
 .singleSongPage {
+  background: #fafafa;
   margin-top: 75px !important; }
   @media (max-width: 480px) {
     .singleSongPage {

@@ -46,6 +46,9 @@
         vertical-align: middle;
         color: #545454;
         opacity: .9;
+        font-weight: 100;
+        font-family: 'Object-Sans-Thin',sans-serif;
+        transform: translateY(-2px);
 
       }
     }
@@ -240,7 +243,10 @@
     }
 
     .control-bar-item.moments {
-      margin-right: 0 !important;
+      @media(max-width: 800px) {
+        margin-right: 0 !important;
+      }
+
     }
 
     .control-bar-item.shuffle {
@@ -287,6 +293,10 @@
         }
       }
     }
+
+    .filter-query-container {
+      display: inline-block;
+}
   }
 
   .fixed-control-bar {
