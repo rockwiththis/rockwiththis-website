@@ -340,6 +340,7 @@
                   white-space: nowrap;
                   overflow: hidden;
                   font-family: 'Object-Sans-Bold',sans-serif;
+                  transform: translateY(3px);
                   // transform:translateY(2px);
 
 
@@ -359,12 +360,13 @@
                     margin-left: 3px;
                     width: 30px;
                     padding: 0 3px;
-                    // transform: translateY(-2px);
+                    transform: translateY(-2px);
                   }
                 }
 
                 .artist {
-                  // transform:translateY(3px);
+                  transform: translateY(2px);
+
                   span.artistName {
                     font-size: 23px;
                     line-height: 24px;

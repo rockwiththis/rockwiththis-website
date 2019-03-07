@@ -34,8 +34,8 @@
 
     .songContainer {
       margin: 2px;
-      width: calc(20vw - 7px);
-      height: calc(20vw - 7px);
+      width: calc(20vw - 4px);
+      height: calc(20vw - 4px);
       padding: 0;
       display: inline-block;
       max-width: none;
@@ -207,7 +207,7 @@
               z-index: 103;
               left: 0;
               bottom: 0;
-              background: hsla(0,0%,100%,.8);
+              background: hsla(0,0%,100%,.9);
               width: 100%;
               position: absolute;
 
@@ -246,6 +246,9 @@
                       margin-bottom: 2px;
                       font-family: 'Object-Sans-Bold',sans-serif;
                       // transform:translateY(1px);
+                      @media(min-width: 800px) {
+                        transform: translateY(1.5px);
+                      }
 
                   }
                   p.song-artist {
@@ -254,6 +257,13 @@
                     line-height: 15px;
                     font-family: 'Object-Sans-Regular',sans-serif;
                     // transform:translateY(1px);
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    height: 15px;
+                    @media(min-width: 800px) {
+                      transform: translateY(1.5px);
+                    }
 
                   }
               }

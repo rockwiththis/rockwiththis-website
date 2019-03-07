@@ -185,6 +185,9 @@
           padding-left: 7px;
           vertical-align: top;
           position: relative; }
+          @media (min-width: 800px) {
+            .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo {
+              transform: translateY(3px); } }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .topSection .singleSongInfo .songNameContainer {
             display: block;
             max-width: 100%;

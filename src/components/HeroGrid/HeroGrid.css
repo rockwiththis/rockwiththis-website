@@ -470,7 +470,7 @@
             padding: 5px;
             margin-bottom: 0;
             display: inline-block;
-            padding: 5px 0 4px; }
+            padding: 4px 0 4px; }
             @media (max-width: 800px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
                 width: calc(100% - 45px);
@@ -481,19 +481,14 @@
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title {
               font-weight: 700;
               font-size: 14px;
-              line-height: 18px;
+              line-height: 16px;
               color: #000;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
               overflow-x: hidden;
-              font-family: 'Object-Sans-Bold',sans-serif; }
-            .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-title:after {
-              content: '';
-              margin-top: -2px;
-              display: block;
-              height: 0;
-              width: 0; }
+              font-family: 'Object-Sans-Bold',sans-serif;
+              transform: translateY(2px); }
             .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist {
               font-weight: 400;
               color: #000;
@@ -501,15 +496,10 @@
               white-space: nowrap;
               text-overflow: ellipsis;
               font-size: 14px;
-              line-height: 18px;
+              line-height: 16px;
               overflow-x: hidden;
-              font-family: 'Object-Sans-Regular',sans-serif; }
-            .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info .song-artist:after {
-              content: '';
-              margin-bottom: -3px;
-              display: block;
-              height: 0;
-              width: 0; }
+              font-family: 'Object-Sans-Regular',sans-serif;
+              transform: translateY(2px); }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
             height: 41px;
             width: 40px;

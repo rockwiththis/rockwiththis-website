@@ -191,6 +191,9 @@
                     height: 20px;
                     margin-bottom: 2px;
                     font-family: 'Object-Sans-Bold',sans-serif;
+                    @media(min-width: 800px) {
+                      transform: translateY(3px);
+                    }
 
 
                     .postTitleLink {
@@ -221,6 +224,10 @@
                   .artist {
                     height: 20px;
                     width: 100%;
+
+                    @media(min-width: 800px) {
+                      transform: translateY(3px);
+                    }
 
                     .artistName {
 

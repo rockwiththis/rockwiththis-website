@@ -134,6 +134,9 @@
       margin-bottom: 2px;
       font-family: 'Object-Sans-Bold',sans-serif; }
       @media (min-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
+          transform: translateY(3px); } }
+      @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle .postTitleLink {
           text-decoration: none;
           color: black;
@@ -153,6 +156,9 @@
     .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist {
       height: 20px;
       width: 100%; }
+      @media (min-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist {
+          transform: translateY(3px); } }
       @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist .artistName {
           color: #000;

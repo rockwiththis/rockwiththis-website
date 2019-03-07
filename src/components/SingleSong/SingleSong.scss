@@ -237,6 +237,10 @@
                     vertical-align: top;
                     position: relative;
 
+                    @media(min-width: 800px) {
+                      transform: translateY(3px);
+                    }
+
                     .songNameContainer {
                       display: block;
                       max-width: 100%;
@@ -255,8 +259,8 @@
                         vertical-align: top;
                         line-height: 28px;
                         font-family: 'Object-Sans-Bold',sans-serif;
-
                       }
+
                     }
 
                     .artistNameContainer {

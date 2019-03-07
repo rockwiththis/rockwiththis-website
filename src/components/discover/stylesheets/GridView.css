@@ -17,8 +17,8 @@
 
 .fullGridLayout .songList .songContainer {
   margin: 2px;
-  width: calc(20vw - 7px);
-  height: calc(20vw - 7px);
+  width: calc(20vw - 4px);
+  height: calc(20vw - 4px);
   padding: 0;
   display: inline-block;
   max-width: none;
@@ -156,7 +156,7 @@
       z-index: 103;
       left: 0;
       bottom: 0;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.9);
       width: 100%;
       position: absolute; }
       @media (max-width: 800px) {
@@ -187,11 +187,21 @@
           text-overflow: ellipsis;
           margin-bottom: 2px;
           font-family: 'Object-Sans-Bold',sans-serif; }
+          @media (min-width: 800px) {
+            .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info p.song-title {
+              transform: translateY(1.5px); } }
         .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info p.song-artist {
           font-size: 14.5px;
           font-weight: 400;
           line-height: 15px;
-          font-family: 'Object-Sans-Regular',sans-serif; }
+          font-family: 'Object-Sans-Regular',sans-serif;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          height: 15px; }
+          @media (min-width: 800px) {
+            .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info p.song-artist {
+              transform: translateY(1.5px); } }
   .fullGridLayout .songList .songContainer .wrapper .postContent .topContentContainer {
     display: none; }
   .fullGridLayout .songList .songContainer .goToSongPage {
