@@ -17,3 +17,6 @@
   .CoachellaPage p.disclaimer {
     font-size: 10px;
     margin-top: 10px; }
+  .CoachellaPage .email-container {
+    width: 400px;
+    margin: 0 auto; }
