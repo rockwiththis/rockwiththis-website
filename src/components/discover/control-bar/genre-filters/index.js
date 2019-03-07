@@ -47,7 +47,6 @@ class GenreFilters extends Component {
 
   closeModal = () => {
     this.props.hide();
-    /* TODO reimplement this with new nested filters scheme
     this.setState({
       selectedGenres: this.props.genreFilters.reduce((currGenres, genre) => ({
         ...currGenres,
@@ -58,7 +57,7 @@ class GenreFilters extends Component {
         [subgenre.id]: subgenre
       }), {})
     });
-    */
+
   }
 
   hideOnClickOff = event =>
@@ -131,32 +130,15 @@ class GenreFilters extends Component {
     const genreFilters = Object.values(this.state.selectedGenres).filter(g => !!g)
     const subgenreFilters = Object.values(this.state.selectedSubgenres).filter(sg => !!sg)
 
-    const completeGenreFilters = Object.keys(this.state.selectedGenres).reduce((currFilters, genreName) => ({
-      ...currFilters,
-      [genreName]: {
-        ...this.props.genres[genreName],
-        isEntireGenre: true
-      }
-    }), {});
-    const genreFilters = Object.values(this.state.selectedSubgenres).reduce((currFilters, subgenre) => ({
-      ...currFilters,
-      [subgenre.parentGenre]: {
-        ...this.props.genres[subgenre.parentGenre],
-        subgenres: [
-          ...currFilters[subgenre.parentGenre].subgenres || [],
-          subgenre
-        ]
-      }
-    }), completeGenreFilters)
-
     const isSelectionDifferent = (
       genreFilters !== this.props.genreFilters &&
       subgenreFilters !== this.props.subgenreFilters
     );
 
-    // if (isSelectionDifferent)
-    // TODO implement selection difference ... for now it's fine that we just reload every time
-    this.props.resetSongs({ genreFilters });
+    if (isSelectionDifferent)
+      this.props.resetSongs({ genreFilters, subgenreFilters });
+
+      console.log("submit", this.state);
 
     this.props.hide();
   }

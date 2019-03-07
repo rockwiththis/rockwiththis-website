@@ -68,10 +68,11 @@ class AppContainer extends Component {
           ...this.props.heroPosts,
           ...this.props.filteredPosts,
           this.props.spotlightPost,
+          this.props.singleSong
         ].filter(s => !!s && !!s.id),
         song => song.id
       );
-      this.playerBankRef.current.setActiveSongs(currActiveSongs, this.props.singleSong);
+      this.playerBankRef.current.setActiveSongs(currActiveSongs);
       this.props.actions.playerBankUpdated();
     }
   };
