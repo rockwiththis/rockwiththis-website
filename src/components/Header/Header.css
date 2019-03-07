@@ -27,7 +27,7 @@
       letter-spacing: 1px !important; }
       @media (max-width: 800px) {
         .headerContainer .content-wrapper .nav-link {
-          font-family: 'Object-Sans-Regular',sans-serif;
+          font-family: 'Object-Sans-Bold',sans-serif;
           font-size: 12px; } }
     .headerContainer .content-wrapper a.nav-link.left {
       position: absolute;

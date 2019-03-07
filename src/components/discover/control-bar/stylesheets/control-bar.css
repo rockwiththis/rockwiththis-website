@@ -100,8 +100,10 @@
         fill: #fff; }
     @media (max-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
+        padding-top: 5px;
         width: 100%;
-        padding-top: 5px; } }
+        border-right: 1px solid #e3e3e3e3;
+        height: 100%; } }
     @media (min-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
         border: 1px solid #545454;
@@ -132,7 +134,8 @@
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-icon {
           display: block;
-          text-align: center; } }
+          text-align: center;
+          height: 22px; } }
     .control-bar .control-bar-item .control-bar-title {
       font-size: 12px;
       font-weight: bold;
