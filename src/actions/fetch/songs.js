@@ -6,17 +6,14 @@ const API_BASE_URL =
     'http://localhost:9292/api' :
     '/api';
 
-const getSubgenreIds = (genreFilters, subgenreFilters) =>
-  [
-    ...flatten(genreFilters.map(genre => genre.subgenres.map(sg => sg.id))),
-    ...subgenreFilters.map(sg => sg.id)
-  ]
+const getSubgenreIds = genreFilters =>
+  flatten(Object.values(genreFilters).map(g => g.subgenres.map(sg.id)))
 
 const fetchSongs = (
   state,
   omitCurrSongs,
   isShuffle = state.isShuffle,
-  subgenreIds = getSubgenreIds(state.genreFilters, state.subgenreFilters)
+  subgenreIds = getSubgenreIds(state.genreFilters)
 ) => {
   const currSongIds = state.filteredPosts.map(song => song.id);
   const fullURL =
@@ -31,18 +28,16 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
+export const resetSongs = ({ isShuffle, genreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
   const state = getState();
-  const subgenreIds = getSubgenreIds(
-    genreFilters || state.genreFilters,
-    subgenreFilters || state.subgenreFilters
-  );
+  const subgenreIds = getSubgenreIds(genreFilters || state.genreFilters);
+
   return fetchSongs(state, false, isShuffle, subgenreIds)
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
-        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, genreFilters, subgenreFilters }))
+        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, genreFilters }))
     ))
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
