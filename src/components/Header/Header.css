@@ -121,7 +121,7 @@ a.nav-link.active {
 .nav-right {
   position: absolute;
   right: 35px;
-  top: 50%;
+  top: 55%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%); }
@@ -129,10 +129,14 @@ a.nav-link.active {
 .nav-left {
   position: absolute;
   left: 35px;
-  top: 50%;
+  top: 55%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   -webkit-transform: translateY(-50%); }
+  @media (max-width: 800px) {
+    .nav-left svg {
+      height: 22px;
+      width: 22px; } }
 
 .nav-left .nav-submit {
   display: none; }

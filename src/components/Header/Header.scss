@@ -177,18 +177,29 @@ a.nav-link.active {
 .nav-right {
     position: absolute;
     right: 35px;
-    top: 50%;
+    top: 55%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
+
 }
 .nav-left {
     position: absolute;
     left: 35px;
-    top: 50%;
+    top: 55%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     -webkit-transform: translateY(-50%);
+    // height: 30px;
+
+    @media(max-width: 800px) {
+      // height: 22px;
+
+      svg {
+        height: 22px;
+        width: 22px;
+      }
+    }
 }
 
 .nav-left .nav-submit {

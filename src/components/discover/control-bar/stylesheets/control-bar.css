@@ -100,7 +100,6 @@
         fill: #fff; }
     @media (max-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
-        padding-top: 5px;
         width: 100%;
         border-right: 1px solid #e3e3e3e3;
         height: 100%; } }
@@ -135,7 +134,8 @@
         .control-bar .control-bar-item .control-bar-icon {
           display: block;
           text-align: center;
-          height: 22px; } }
+          height: 22px;
+          padding-top: 5px; } }
     .control-bar .control-bar-item .control-bar-title {
       font-size: 12px;
       font-weight: bold;
