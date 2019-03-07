@@ -32,13 +32,13 @@
       .control-bar .control-bar-separator {
         display: inline-block;
         margin-right: 10px;
-        font-size: 28px;
+        font-size: 25px;
         vertical-align: middle;
         color: #545454;
         opacity: .9;
         font-weight: 100;
         font-family: 'Object-Sans-Thin',sans-serif;
-        transform: translateY(-2px); } }
+        transform: translateY(-1px); } }
   .control-bar .control-bar-item {
     position: relative;
     margin-right: 10px;

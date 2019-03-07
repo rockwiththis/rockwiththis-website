@@ -1,6 +1,14 @@
 .CoachellaPage {
   margin-top: 75px !important;
-  padding: 15px; }
+  padding: 15px;
+  background-image: url("http://i.imgur.com/OTQGQJe.png") !important;
+  height: calc(100vh - 165px);
+  background-position: bottom !important;
+  background-size: cover !important; }
+  @media (max-width: 500px) {
+    .CoachellaPage {
+      margin-top: 50px !important;
+      height: calc(100vh - 130px); } }
   .CoachellaPage h1 {
     font-size: 40px;
     line-height: 1.2;
@@ -17,6 +25,36 @@
   .CoachellaPage p.disclaimer {
     font-size: 10px;
     margin-top: 10px; }
+    @media (max-width: 500px) {
+      .CoachellaPage p.disclaimer {
+        width: 250px; } }
   .CoachellaPage .email-container {
     width: 400px;
     margin: 0 auto; }
+    @media (max-width: 500px) {
+      .CoachellaPage .email-container {
+        width: 300px; } }
+    .CoachellaPage .email-container form.rwt-email-form input {
+      height: 50px;
+      border: none;
+      width: 100%;
+      width: 400px;
+      padding: 0;
+      text-align: center;
+      font-size: 14px;
+      font-family: 'Object-Sans-Regular',sans-serif; }
+      @media (max-width: 500px) {
+        .CoachellaPage .email-container form.rwt-email-form input {
+          width: 300px; } }
+    .CoachellaPage .email-container form.rwt-email-form button {
+      width: 100%;
+      font-family: 'Object-Sans-Bold',sans-serif; }
+    .CoachellaPage .email-container .msg-alert {
+      margin-top: 10px;
+      position: absolute;
+      text-align: center;
+      width: 400px;
+      font-family: 'Object-Sans-Regular',sans-serif; }
+      @media (max-width: 500px) {
+        .CoachellaPage .email-container .msg-alert {
+          width: 300px; } }
