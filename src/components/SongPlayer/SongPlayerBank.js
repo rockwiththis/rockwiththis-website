@@ -45,7 +45,12 @@ class SongPlayerBank extends React.Component {
 
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
-  setActiveSongs = songs => {
+  setActiveSongs = (songs, singleSong) => {
+    if (!!singleSong && !!singleSong.id) {
+      this.songLoadQueue.unshift(singleSong);
+      this.loadNextPlayers();
+    }
+
     this.activeSongs = {};
     songs.forEach((song, i) => {
       this.activeSongs[song.id] = song;
