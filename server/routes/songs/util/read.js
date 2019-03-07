@@ -23,12 +23,6 @@ const relationSelect = relationName => `
   FROM songs
 `;
 
-const relatedSubgenreSelect = `
-  SELECT songs.id as song_id, subgenres.*, parent_genre.name as parent_genre_name
-  FROM songs
-  LEFT JOIN subgenres as parent_genre ON parent_genre.id = subgenres.parent_genre_id
-``
-
 const subgenreJoins = (joinType = 'INNER', songTableName = 'songs') => `
   ${joinType} JOIN subgenre_songs ON ${songTableName}.id = subgenre_songs.song_id
   ${joinType} JOIN subgenres ON subgenres.id = subgenre_songs.subgenre_id
@@ -98,11 +92,8 @@ const includeNestedRelations = songs => {
 const getRelatedSubgenres = songIds => {
   return database.query({
     text: `
-      SELECT songs.id as song_id, subgenres.*, parent_genre.name as parent_genre_name
-      FROM songs
+      ${relationSelect('subgenres')}
       ${subgenreJoins('INNER')}
-      LEFT JOIN subgenres as parent_genre ON parent_genre.id = subgenres.parent_genre_id
-      LEFT JOIN subgenres as 
       WHERE songs.id IN (${songIds.map((_,i) => '$' + (i+1)).join(',')})
       ORDER BY songs.id
     `,

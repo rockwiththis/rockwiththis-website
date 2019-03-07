@@ -39,6 +39,7 @@ export default {
 
     const isShuffle = get(action.payload, 'isShuffle', state.isShuffle);
     const genreFilters = get(action.payload, 'genreFilters', state.genreFilters);
+    const subgenreFilters = get(action.payload, 'subgenreFilters', state.subgenreFilters);
 
     const newPlayerDurations = state.filteredPosts
       .filter(oldSong => (
@@ -61,6 +62,7 @@ export default {
       songPlayerDurations: newPlayerDurations,
       isShuffle: isShuffle,
       genreFilters: genreFilters,
+      subgenreFilters: subgenreFilters,
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
