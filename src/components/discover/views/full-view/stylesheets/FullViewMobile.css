@@ -41,7 +41,7 @@
               display: none; }
           .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer {
             width: calc(100% - 130px);
-            height: 112px;
+            height: 110px;
             vertical-align: top;
             height: auto;
             padding-left: 0;
@@ -152,7 +152,6 @@
               overflow: hidden;
               padding: 0px;
               padding-left: 0px;
-              padding-top: 2px;
               font-family: 'Object-Sans-Regular',sans-serif; }
       .discovery-section .fullViewLayout .songList .songContainer .goToSongPage {
         display: none; }
