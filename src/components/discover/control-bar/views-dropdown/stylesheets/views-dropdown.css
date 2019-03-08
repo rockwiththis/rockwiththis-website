@@ -56,7 +56,9 @@
           margin: 0 auto;
           display: block;
           height: 16px;
-          fill: #545454; } }
+          fill: #545454;
+          height: 16px;
+          width: 16px; } }
     .views-dropdown .view-select-item .view-select-item-content span {
       display: inline-block;
       text-align: center;

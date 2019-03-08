@@ -111,6 +111,7 @@
     .control-bar .control-bar-item .control-bar-item-content svg {
       fill: #545454;
       height: 20px;
+      width: 20px;
       vertical-align: middle; }
     .control-bar .control-bar-item .control-bar-item-content i.fas.fa-bolt {
       font-size: 18px; }
@@ -135,7 +136,7 @@
           display: block;
           text-align: center;
           height: 22px;
-          padding-top: 5px; } }
+          padding-top: 8px; } }
     .control-bar .control-bar-item .control-bar-title {
       font-size: 12px;
       font-weight: bold;
@@ -155,7 +156,7 @@
       @media (max-width: 800px) {
         .control-bar .control-bar-item .control-bar-title {
           font-size: 12px;
-          padding-top: 6px;
+          padding-top: 2px;
           display: block;
           font-family: 'Object-Sans-Regular',sans-serif; } }
     @media (min-width: 800px) {
@@ -179,10 +180,12 @@
       height: 22px; } }
   .control-bar .control-bar-item.shuffle .control-bar-item-content .control-bar-icon svg {
     fill: #545454;
-    height: 22px;
-    vertical-align: middle;
-    width: 22px;
-    transform: translateY(1px); }
+    vertical-align: middle; }
+    @media (min-width: 800px) {
+      .control-bar .control-bar-item.shuffle .control-bar-item-content .control-bar-icon svg {
+        transform: translateY(1px);
+        width: 22px;
+        height: 22px; } }
   @media (min-width: 800px) {
     .control-bar .control-bar-item.shuffle .control-bar-item-content:hover {
       background: #282828;

@@ -170,6 +170,7 @@
         svg {
             fill: #545454;
             height: 20px;
+            width: 20px;
             vertical-align: middle;
         }
 
@@ -207,7 +208,7 @@
           display: block;
           text-align: center;
           height: 22px;
-          padding-top: 5px;
+          padding-top: 8px;
         }
 
       }
@@ -233,7 +234,7 @@
         }
         @media(max-width: 800px) {
           font-size: 12px;
-          padding-top: 6px;
+          padding-top: 2px;
           display: block;
           font-family: 'Object-Sans-Regular',sans-serif;
         }
@@ -275,10 +276,13 @@
 
           svg {
             fill: #545454;
-            height: 22px;
             vertical-align: middle;
-            width: 22px;
-            transform: translateY(1px);
+
+            @media(min-width: 800px) {
+              transform: translateY(1px);
+              width: 22px;
+              height: 22px;
+            }
           }
         }
       }
