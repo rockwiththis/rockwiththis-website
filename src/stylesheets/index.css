@@ -34,8 +34,7 @@
   src: local("Object Sans Black"), local("ObjectSansBlack"), url("../fonts/object-sans/black/ObjectSans-Black.woff2") format("woff2"), url("../fonts/object-sans/black/ObjectSans-Black.woff") format("woff"), url("../fonts/object-sans/black/ObjectSans-Black.ttf") format("truetype"); }
 
 body {
-  font-family: 'Object-Sans-Regular',sans-serif;
-  position: relative; }
+  font-family: 'Object-Sans-Regular',sans-serif; }
 
 a {
   text-decoration: none; }

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { find, pickBy, uniq, compact, flatten, indexOf, orderBy } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 
 import { fetchGenres } from 'actions/fetch/genres';
 import { resetSongs } from 'actions/fetch/songs';
@@ -138,7 +140,7 @@ class GenreFilters extends Component {
     if (isSelectionDifferent)
       this.props.resetSongs({ genreFilters, subgenreFilters });
 
-      console.log("submit", this.state);
+      disableBodyScroll(document.querySelector('#genreModalScroll'));
 
     this.props.hide();
   }
@@ -156,7 +158,7 @@ class GenreFilters extends Component {
             <div className="modal-background"></div>
           </div>
 
-          <div className="genre-filter-content-container">
+          <div id="genreModalScroll" className="genre-filter-content-container">
             {
               Object.keys(this.props.genres).length > 0 ? (
                 <div className="genre-filter-content" ref={this.modalRef}>
