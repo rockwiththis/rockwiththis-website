@@ -59,7 +59,7 @@ class ControlBar extends Component {
   }
 
   componentWillUnmount() {
-    clearAllBodyScrollLocks();
+    // clearAllBodyScrollLocks();
   }
 
 

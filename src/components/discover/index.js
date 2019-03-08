@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 
 import ControlBar from './control-bar';
 import FullView from './views/full-view';
@@ -37,6 +39,7 @@ class DiscoverSection extends Component {
     window.addEventListener('scroll', this.updateFixedControlBarFlag);
     window.addEventListener('scroll', this.enableDiscoverScroll);
     window.addEventListener('resize', this.enableDiscoverScroll);
+    // clearAllBodyScrollLocks();
     //this.updateScroll();
   }
 

@@ -10,6 +10,8 @@ import { Helmet } from 'react-helmet';
 
 import { playSong, pauseSong } from 'actions/player';
 import ShareBox from 'components/ShareBox/ShareBox'
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+
 
 import pauseButton from 'images/PAUSE-BUTTON.png'
 import loadingButton from 'images/Loading_Icon_2_5.gif'
@@ -23,6 +25,7 @@ class SingleSong extends Component {
       super(props);
       this.state = { expanded: false };
     }
+
 
     isPlaying = () =>
       this.props.isPlaying &&
