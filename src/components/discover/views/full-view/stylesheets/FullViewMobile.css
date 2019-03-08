@@ -58,7 +58,8 @@
                 text-align: left;
                 pointer-events: all;
                 vertical-align: top;
-                margin-right: 4px; }
+                margin-right: 2px;
+                transform: translateX(-2px); }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
                   width: 35px;
                   height: 35px; }
