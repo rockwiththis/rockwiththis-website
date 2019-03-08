@@ -14,7 +14,7 @@ import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
 import loadingButton from 'images/Loading_Icon_2_5.gif'
 import pauseButtonWhite from 'images/PAUSE-BUTTON.png'
-import hoverGradient from 'images/rwt-hover-gradient.png'
+import hoverGradient from 'images/hero-hover-gradient.png'
 
 const propTypes = {
   song: PropTypes.object.isRequired,

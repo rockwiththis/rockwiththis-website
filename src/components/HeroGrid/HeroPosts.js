@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import moment from 'moment'
 import HeroSong from './HeroSong'
 import HeroPostsPlaceholder from 'components/HeroGridPlaceholder/HeroGridPlaceholder'
-import hoverGradient from 'images/rwt-hover-gradient.png'
+import hoverGradient from 'images/hero-hover-gradient.png'
 
 import './HeroGrid.scss'
 
@@ -69,6 +69,7 @@ class HeroPosts extends React.Component {
 
 
                           <img className="heroHoverGradient" src={hoverGradient} />
+
 
                           <img src={image} />
                           </Link>

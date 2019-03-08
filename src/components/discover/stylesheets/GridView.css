@@ -224,4 +224,4 @@
   -webkit-transition: all .3s ease; }
 
 .fullGridLayout .songList .songContainer:hover .heroHoverGradient {
-  opacity: 1 !important; }
+  opacity: .7 !important; }
