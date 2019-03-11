@@ -333,7 +333,7 @@ footer {
               flex: 0 0 60px;
               display: inline-block;
               color: #fff;
-              transform: translateX(2px);
+              transform: translate(2px, 2px);
 
               @media (max-width: 1000px) {
                 display: none;

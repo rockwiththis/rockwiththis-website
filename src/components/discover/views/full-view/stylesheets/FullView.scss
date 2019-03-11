@@ -296,7 +296,7 @@
 
             .postInfoContainer {
               text-align: left;
-              margin-bottom: 5px;
+              margin-bottom: 0px;
 
               .singlePostPlayer {
                 display: inline-block;
@@ -402,8 +402,8 @@
                   display: inline-block;
                   margin: 0;
                   pointer-events: none;
-                  -webkit-transform: translateY(-3px);
-                  transform: translateY(-3px);
+                  -webkit-transform: translateY(-2px);
+                  transform: translateY(-2px);
 
                   .tag {
                     margin: 0 2px;
@@ -418,7 +418,8 @@
                     letter-spacing: .7px;
                     box-shadow: 0 3px 2px -2px #C9C6CB;
                     padding: 4px;
-                    font-family: 'Object-Sans-Bold',sans-serif;
+                    padding-top: 6px;
+                    font-family: 'Object-Sans-Regular',sans-serif;
                   }
                   .tag:nth-of-type(2) {
                       display: none !important;

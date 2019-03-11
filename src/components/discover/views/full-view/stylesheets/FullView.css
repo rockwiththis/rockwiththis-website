@@ -194,7 +194,7 @@
           width: 100%; }
       .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
         text-align: left;
-        margin-bottom: 5px; }
+        margin-bottom: 0px; }
         .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
           display: inline-block; }
           .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton {
@@ -263,8 +263,8 @@
           display: inline-block;
           margin: 0;
           pointer-events: none;
-          -webkit-transform: translateY(-3px);
-          transform: translateY(-3px); }
+          -webkit-transform: translateY(-2px);
+          transform: translateY(-2px); }
           .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag {
             margin: 0 2px;
             font-size: 11px;
@@ -278,7 +278,8 @@
             letter-spacing: .7px;
             box-shadow: 0 3px 2px -2px #C9C6CB;
             padding: 4px;
-            font-family: 'Object-Sans-Bold',sans-serif; }
+            padding-top: 6px;
+            font-family: 'Object-Sans-Regular',sans-serif; }
           .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag:nth-of-type(2) {
             display: none !important; }
       .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer {
