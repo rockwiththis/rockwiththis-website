@@ -79,6 +79,40 @@
             width: 100%;
         }
 
+        .song-of-day-tag {
+            position: absolute;
+            bottom: 65px;
+            display: inline-block;
+            background: rgba(236,33,33,1);
+            color: #fff!important;
+            left: 0;
+            font-size: 14px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            border-top-right-radius: 6px;
+            padding: 14px 10px 10px 12px;;
+            font-weight: 700;
+            font-family: 'Object-Sans-Bold',sans-serif;
+
+            @media (min-width:650px) and (max-width: 800px)  {
+              font-size: 14px;
+              bottom: 66px;
+              padding: 6px;
+              font-family: 'Object-Sans-Regular',sans-serif;
+            }
+            @media screen and (max-width: 650px)  {
+              bottom: 56px;
+              font-size: 14px;
+              padding: 8px;
+              padding-bottom: 4px;
+              font-family: 'Object-Sans-Regular',sans-serif;
+            }
+            @media screen and (max-width: 480px)  {
+              bottom: 50px;
+
+            }
+        }
+
         .post-info {
             height: 65px;
             position: absolute;
@@ -179,28 +213,6 @@
 
             }
 
-            .song-of-day-tag {
-                position: absolute;
-                top: -38px;
-                display: inline-block;
-                background: rgba(236,33,33,1);
-                color: #fff!important;
-                left: 0;
-                font-size: 14px;
-                letter-spacing: 5px;
-                text-transform: uppercase;
-                border-top-right-radius: 6px;
-                padding: 14px 10px 10px 12px;;
-                font-weight: 700;
-                font-family: 'Object-Sans-Bold',sans-serif;
-
-                @media screen and (max-width: 800px)  {
-                  top: -26px;
-                  font-size: 14px;
-                  padding: 6px;
-                  font-family: 'Object-Sans-Regular',sans-serif;
-                }
-            }
 
             .post-square-wrapper {
                 display: inline-block;

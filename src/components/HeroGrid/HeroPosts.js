@@ -73,8 +73,9 @@ class HeroPosts extends React.Component {
 
                           <img src={image} />
                           </Link>
-                          <div className="post-info">
                           {!isSmall && <span className="song-of-day-tag">Song of the day</span>}
+                          <div className="post-info">
+
                               <HeroSong song={post} />
                               <Link className='move-back-link' to={`/songs/${post.id}`}>
                                 <div className="song-info">

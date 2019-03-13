@@ -65,6 +65,36 @@
         position: relative;
         height: 100%;
         width: 100%; }
+      .hero-posts .featured-track-wrapper .feature-track .song-of-day-tag {
+        position: absolute;
+        bottom: 65px;
+        display: inline-block;
+        background: #ec2121;
+        color: #fff !important;
+        left: 0;
+        font-size: 14px;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        border-top-right-radius: 6px;
+        padding: 14px 10px 10px 12px;
+        font-weight: 700;
+        font-family: 'Object-Sans-Bold',sans-serif; }
+        @media (min-width: 650px) and (max-width: 800px) {
+          .hero-posts .featured-track-wrapper .feature-track .song-of-day-tag {
+            font-size: 14px;
+            bottom: 66px;
+            padding: 6px;
+            font-family: 'Object-Sans-Regular',sans-serif; } }
+        @media screen and (max-width: 650px) {
+          .hero-posts .featured-track-wrapper .feature-track .song-of-day-tag {
+            bottom: 56px;
+            font-size: 14px;
+            padding: 8px;
+            padding-bottom: 4px;
+            font-family: 'Object-Sans-Regular',sans-serif; } }
+        @media screen and (max-width: 480px) {
+          .hero-posts .featured-track-wrapper .feature-track .song-of-day-tag {
+            bottom: 50px; } }
       .hero-posts .featured-track-wrapper .feature-track .post-info {
         height: 65px;
         position: absolute;
@@ -151,26 +181,6 @@
                 font-size: 18px;
                 line-height: 20px;
                 transform: translateY(3px); } }
-        .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-          position: absolute;
-          top: -38px;
-          display: inline-block;
-          background: #ec2121;
-          color: #fff !important;
-          left: 0;
-          font-size: 14px;
-          letter-spacing: 5px;
-          text-transform: uppercase;
-          border-top-right-radius: 6px;
-          padding: 14px 10px 10px 12px;
-          font-weight: 700;
-          font-family: 'Object-Sans-Bold',sans-serif; }
-          @media screen and (max-width: 800px) {
-            .hero-posts .featured-track-wrapper .feature-track .post-info .song-of-day-tag {
-              top: -26px;
-              font-size: 14px;
-              padding: 6px;
-              font-family: 'Object-Sans-Regular',sans-serif; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper {
           display: inline-block;
           color: #fff;
