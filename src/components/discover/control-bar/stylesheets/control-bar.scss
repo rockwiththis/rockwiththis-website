@@ -42,14 +42,11 @@
       @media(min-width: 800px) {
         display: inline-block;
         margin-right: 10px;
-        font-size: 25px;
         vertical-align: middle;
         color: #545454;
-        opacity: .9;
-        font-weight: 100;
-        font-family: 'Object-Sans-Thin',sans-serif;
-        transform: translateY(-1px);
-
+        border-left: 1px solid #545454;
+        height: 25px;
+        transform: translateY(2px);
       }
     }
 

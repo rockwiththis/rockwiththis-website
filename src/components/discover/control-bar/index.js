@@ -145,7 +145,7 @@ class ControlBar extends Component {
 
               </div>
 
-              <span className="control-bar-separator">|</span>
+              <div className="control-bar-separator"></div>
 
               <div
                 className={
@@ -164,7 +164,7 @@ class ControlBar extends Component {
 
               </div>
 
-              <span className="control-bar-separator">|</span>
+              <div className="control-bar-separator"></div>
 
                 <div
                   className={
