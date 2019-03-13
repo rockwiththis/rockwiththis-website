@@ -228,6 +228,7 @@
                   .singleSongInfo {
                     display: inline-block;
                     max-width: 80%;
+                    min-width: 80%;
                     // width: 80%;
                     // padding: 3px 0;
                     padding: 3px 0 2px;
@@ -259,6 +260,7 @@
                         vertical-align: top;
                         line-height: 28px;
                         font-family: 'Object-Sans-Bold',sans-serif;
+                        position: relative;
                       }
 
                     }
@@ -280,7 +282,7 @@
                     a.spotify {
                       display: inline-block;
                       position: absolute;
-                      top: 4px;
+                      top: 0px;
                       right: -35px;
                       color: #65d36e;
                       font-size: 28px;
