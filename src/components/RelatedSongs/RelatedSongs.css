@@ -24,7 +24,7 @@
     margin-bottom: 1px;
     color: #fff;
     background: #1a6ea9;
-    font-family: 'Object-Sans-Bold',sans-serif; }
+    font-family: 'Object-Sans-Regular',sans-serif; }
     @media (max-width: 1200px) {
       .relatedSongs .relatedSongsContainer p.related-songs-title {
         margin-bottom: 2px;
@@ -32,22 +32,25 @@
         letter-spacing: .7px; } }
   .relatedSongs .stack {
     width: 100%;
-    display: inline-block; }
+    display: inline-block;
+    transform: translateY(3px); }
     @media (max-width: 800px) {
       .relatedSongs .stack {
         width: calc(100% - 2px);
         display: inline-block;
-        margin: 0 auto 0 2px; } }
+        margin: 0 auto 0 1px; } }
     .relatedSongs .stack .songContainer {
       width: calc(50% - 2px);
       display: inline-block;
-      margin: 1px; }
+      border: 1px solid #fff;
+      margin: -4px 0; }
       @media (max-width: 1200px) and (min-width: 800px) {
         .relatedSongs .stack .songContainer {
           max-width: calc(20% - 2px); } }
       @media (max-width: 800px) {
         .relatedSongs .stack .songContainer {
-          max-width: calc(33.3% - 2px); } }
+          width: calc(33.333vw - 3px);
+          height: calc(33.333vw - 3px); } }
       .relatedSongs .stack .songContainer img.songImage {
         max-width: 100%;
         margin: 0 !important;
