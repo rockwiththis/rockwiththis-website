@@ -261,7 +261,7 @@
               display: inline-block;
               margin: 0;
               pointer-events: none;
-              transform: translateY(-3px); } }
+              transform: translateY(-1px); } }
           .singleSongPage .singleSongContainer .songContainer .wrapper .postContent .songInfo .metaInfo .postTags .tag {
             color: #fff;
             background: #1a6ea9;
