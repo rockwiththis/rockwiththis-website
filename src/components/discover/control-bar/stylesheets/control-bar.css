@@ -80,8 +80,9 @@
     @media (min-width: 800px) {
       .control-bar .control-bar-item.active.shuffle:hover .control-bar-item-content {
         background: rgba(0, 0, 0, 0) !important; } }
-    .control-bar .control-bar-item.active.shuffle:hover svg {
-      fill: #545454 !important; }
+    @media (min-width: 800px) {
+      .control-bar .control-bar-item.active.shuffle:hover svg {
+        fill: #545454 !important; } }
     .control-bar .control-bar-item.active.view {
       background: #f5f3f3;
       color: #282828; }
@@ -101,7 +102,7 @@
     @media (max-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
         width: 100%;
-        border-right: 1px solid #e3e3e3e3;
+        border-left: 1px solid #e3e3e3e3;
         height: 100%; } }
     @media (min-width: 800px) {
       .control-bar .control-bar-item .control-bar-item-content {
