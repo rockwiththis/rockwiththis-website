@@ -86,7 +86,7 @@
                 line-height: 15px;
                 color: #fff;
                 font-weight: 600;
-                font-family: 'Object-Sans-Bold',sans-serif; }
+                font-family: 'Object-Sans-Regular',sans-serif; }
               .fullView .songGrid .songContainer .imageContainer .imageHover .contentWrapper .hoverContent .postTags .grid-tag:nth-of-type(3) {
                 display: none; }
           .fullView .songGrid .songContainer .imageContainer .imageHover .contentWrapper .readMore {
@@ -94,9 +94,9 @@
             color: #fff;
             font-size: 10px;
             padding: 8px;
-            background: #000;
+            background: #1a6ea9;
             border-radius: 4px;
-            font-family: 'Object-Sans-Bold',sans-serif; }
+            font-family: 'Object-Sans-Regular',sans-serif; }
             @media (min-width: 1100px) and (max-width: 1250px) {
               .fullView .songGrid .songContainer .imageContainer .imageHover .contentWrapper .readMore {
                 font-size: 8px; } }
@@ -114,29 +114,23 @@
   .fullView .songGrid .songContainer:hover {
     cursor: pointer; }
     .fullView .songGrid .songContainer:hover .contentWrapper {
-      background: rgba(0, 0, 0, 0.7) !important; }
+      background: rgba(0, 0, 0, 0.5) !important; }
       .fullView .songGrid .songContainer:hover .contentWrapper .hoverContent {
         display: inline-block !important; }
       .fullView .songGrid .songContainer:hover .contentWrapper .gridSongInfo {
-        background: rgba(0, 0, 0, 0.5); }
+        background: rgba(0, 0, 0, 0.7); }
         .fullView .songGrid .songContainer:hover .contentWrapper .gridSongInfo span {
           color: #fff; }
   .fullView .songGrid .songContainer.activeDiscoverFullSong:hover .contentWrapper .hoverContent {
     display: none !important; }
-  .fullView .songGrid .songContainer.activeDiscoverFullSong .hoverContent {
-    display: none !important; }
-  .fullView .songGrid .songContainer.activeDiscoverFullSong .imageHover {
-    opacity: 1; }
-    .fullView .songGrid .songContainer.activeDiscoverFullSong .imageHover img {
-      display: block;
-      position: absolute;
-      max-width: 50px;
-      top: 50%;
-      left: 50%;
-      -webkit-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%); }
   .fullView .songGrid .songContainer.activeDiscoverFullSong .contentWrapper {
-    background: rgba(0, 0, 0, 0.8) !important; }
+    background: rgba(0, 0, 0, 0.5) !important; }
+    .fullView .songGrid .songContainer.activeDiscoverFullSong .contentWrapper .hoverContent {
+      display: none !important; }
+    .fullView .songGrid .songContainer.activeDiscoverFullSong .contentWrapper .gridSongInfo {
+      background: rgba(0, 0, 0, 0.7); }
+      .fullView .songGrid .songContainer.activeDiscoverFullSong .contentWrapper .gridSongInfo span {
+        color: #fff; }
 
 .fullView .discover-full-song-container {
   display: inline-block;

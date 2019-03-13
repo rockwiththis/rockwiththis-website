@@ -33,13 +33,16 @@
       line-height: 12px;
       color: #000; }
     .imageHover .contentWrapper .gridSongInfo .song-name {
-      font-size: 12px;
+      font-size: 11px;
       line-height: 12px;
       font-weight: 700;
       height: 11.5px;
       overflow: hidden;
       font-family: 'Object-Sans-Bold',sans-serif;
-      margin-bottom: 1px; }
+      margin-bottom: 1px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
       @media (min-width: 1100px) and (max-width: 1250px) {
         .imageHover .contentWrapper .gridSongInfo .song-name {
           font-size: 10px;
@@ -51,7 +54,10 @@
       line-height: 12px;
       height: 12px;
       overflow: hidden;
-      font-family: 'Object-Sans-Normal',sans-serif; }
+      font-family: 'Object-Sans-Normal',sans-serif;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
       @media (min-width: 1100px) and (max-width: 1250px) {
         .imageHover .contentWrapper .gridSongInfo .artist-name {
           font-size: 10px;

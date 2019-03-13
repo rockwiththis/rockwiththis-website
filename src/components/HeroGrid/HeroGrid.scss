@@ -393,10 +393,13 @@
                 background: #1a6ea9;
                 color: #fff;
                 padding: 15px;
+                padding-top: 17px;
+                padding-bottom: 13px;
                 border-radius: 0;
                 max-width: 40%;
                 margin: 10px auto;
                 display: inline-block;
+                border-radius: 6px;
 
                 @media screen and (max-width: 800px)  {
                   display: none;
@@ -437,7 +440,7 @@
             opacity: 1;
           }
           img.heroHoverGradient {
-            opacity: .7;
+            opacity: .5;
           }
       }
   }
@@ -751,6 +754,8 @@
                 font-size: 14px;
                 border-radius: 6px;
                 padding: 10px;
+                padding-top: 12px;
+                padding-bottom: 8px;
             }
           }
       }
@@ -759,7 +764,7 @@
            opacity: 1;
          }
          img.heroHoverGradient {
-           opacity: .7;
+           opacity: .5;
          }
       }
     }
