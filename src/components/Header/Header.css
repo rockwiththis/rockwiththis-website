@@ -141,7 +141,7 @@ a.nav-link.active {
 .nav-left .nav-submit {
   display: none; }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .nav-submit, .nav-week, .nav-discover {
     display: none; }
   .nav-left .nav-submit {
