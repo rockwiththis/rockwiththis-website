@@ -150,8 +150,13 @@ a.nav-link.active {
 .singleSongBackButton {
   transform: rotate(180deg);
   fill: #fff;
-  height: 30px;
-  width: 30px; }
+  height: 25px;
+  width: 25px;
+  opacity: .7; }
+
+@media (min-width: 800px) {
+  .singleSongBackButton:hover {
+    opacity: 1; } }
 
 @media (max-width: 500px) {
   .singleSongBackButton {

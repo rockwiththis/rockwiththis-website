@@ -107,6 +107,7 @@
               @media (max-width: 800px) {
                 width: calc(100% - 150px);
                 margin-left: 70px;
+                height: 50px;
               }
 
               @media (max-width: 650px) {
@@ -115,9 +116,10 @@
                 padding: 8px 0 5px;
               }
               @media (max-width: 480px) {
-                width: calc(100% - 120px);
+                width: calc(100% - 100px);
                 margin-left: 50px;
-                padding: 7px 0 6px;
+                padding: 5px 0;
+                height: auto;
               }
 
               .song-title {
@@ -142,16 +144,11 @@
                 @media screen and (max-width: 480px) {
                   font-size: 18px;
                   line-height: 20px;
-                  margin-bottom: 2px;
+                  margin-bottom: 0px;
+                      transform: translateY(3px);
                 }
               }
-              .song-title:after {
-                content: '';
-                margin-top: -2px;
-                display: block;
-                height: 0;
-                width: 0;
-              }
+
 
               .song-artist {
                 font-size: 24px;
@@ -176,6 +173,7 @@
                 @media screen and (max-width: 480px) {
                   font-size: 18px;
                   line-height: 20px;
+                      transform: translateY(3px);
                 }
               }
 
@@ -197,20 +195,11 @@
                 font-family: 'Object-Sans-Bold',sans-serif;
 
                 @media screen and (max-width: 800px)  {
-                  top: -23px;
+                  top: -26px;
                   font-size: 14px;
                   padding: 6px;
                   font-family: 'Object-Sans-Regular',sans-serif;
                 }
-            }
-            @media (max-width: 800px) {
-              .song-of-day-tag:after {
-                    content: '';
-                    margin-bottom: -3px;
-                    display: block;
-                    height: 0;
-                    width: 0;
-              }
             }
 
             .post-square-wrapper {
@@ -563,10 +552,9 @@
               height: auto;
               margin-right: 0;
               margin-left: 40px;
-              padding: 5px;
               margin-bottom: 0;
               display: inline-block;
-              padding: 4px 0 4px;
+              padding: 4px 0;
               // padding: 6px 0 3px;
               @media (max-width: 800px) {
                 width: calc(100% - 45px);
@@ -588,7 +576,7 @@
                   text-overflow: ellipsis;
                   overflow-x: hidden;
                   font-family: 'Object-Sans-Bold',sans-serif;
-                  transform: translateY(2px);
+                  transform: translateY(3.5px);
 
                   @media (max-width: 800px) {
                     // font-size: 15px;
@@ -616,7 +604,7 @@
                   line-height: 16px;
                   overflow-x: hidden;
                   font-family: 'Object-Sans-Regular',sans-serif;
-                  transform: translateY(2px);
+                  transform: translateY(3.5px);
 
                   @media (max-width: 800px) {
                     // font-size: 15px;
@@ -634,7 +622,7 @@
             }
 
             .post-square-wrapper.date {
-              height: 41px;
+              height: 40px;
               width: 40px;
               background: #000;
               color: #fff;

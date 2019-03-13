@@ -28,7 +28,7 @@
       margin-bottom: 1px;
       color: #fff;
       background: #1a6ea9;
-      font-family: 'Object-Sans-Bold',sans-serif;
+      font-family: 'Object-Sans-Regular',sans-serif;
 
       @media (max-width: 1200px) {
         margin-bottom: 2px;
@@ -41,23 +41,26 @@
   .stack {
     width: 100%;
     display: inline-block;
+        transform: translateY(3px);
 
     @media (max-width: 800px) {
       width: calc(100% - 2px);
       display: inline-block;
-      margin: 0 auto 0 2px;
+      margin: 0 auto 0 1px;
     }
 
     .songContainer {
         width: calc(50% - 2px);
         display: inline-block;
-        margin: 1px;
+        border: 1px solid #fff;
+        margin: -4px 0;
 
         @media (max-width: 1200px) and (min-width: 800px) {
             max-width: calc(20% - 2px);
         }
         @media (max-width: 800px) {
-                max-width: calc(33.3% - 2px);
+          width: calc(33.333vw - 3px);
+          height: calc(33.333vw - 3px);
         }
 
 

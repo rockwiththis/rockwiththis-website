@@ -305,14 +305,14 @@
                   @media (max-width: 800px) {
                     pointer-events: all;
                   }
-                  @media (min-width: 674px) and (max-width: 800px) {
+                  @media (max-width: 800px) {
                     margin-top: 10px;
                   }
 
                   p.leftInfo {
                       display: inline-block;
                       margin: 0;
-                      margin-bottom: 5px;
+                      // margin-bottom: 5px;
                       margin-right: 0px;
 
                       .curatorName {
@@ -338,7 +338,7 @@
 
                   .postTags {
                     display: inline-block;
-                    transform: translateY(-2px);
+                    transform: translateY(-1px);
 
                     @media (min-width: 800px) {
                       display: inline-block;
@@ -351,12 +351,13 @@
                       color: #fff;
                       background: #1a6ea9;
                       border: 1px solid #1a6ea9;
-                      font-family: 'Object-Sans-Bold',sans-serif;
+                      font-family: 'Object-Sans-Regular',sans-serif;
                       transition: all .2s ease;
                       cursor: pointer;
                       letter-spacing: .7px;
                       box-shadow: 0 3px 2px -2px #C9C6CB;
                       padding: 4px;
+                      padding-top: 6px;
                       margin: 0 2px;
                       font-size: 12px;
                       border-radius: 4px;
@@ -429,10 +430,9 @@
                       padding-bottom: 50px;
                     }
                     @media (max-width: 800px) {
-                      font-size: 14px;
+                      font-size: 15px;
                       line-height: 26px;
-                      margin-top: 0;
-                      padding-top: 5px;
+                      margin-top: 5px;
                     }
                     @media (min-width: 674px) and (max-width: 800px) {
                       max-width: 674px;
