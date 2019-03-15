@@ -135,7 +135,8 @@
       font-family: 'Object-Sans-Bold',sans-serif; }
       @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle {
-          transform: translateY(3px); } }
+          transform: translateY(3px);
+          -webkit-transform: translateY(3px); } }
       @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle .postTitleLink {
           text-decoration: none;
@@ -158,7 +159,8 @@
       width: 100%; }
       @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist {
-          transform: translateY(3px); } }
+          transform: translateY(3px);
+          -webkit-transform: translateY(3px); } }
       @media (min-width: 800px) {
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist .artistName {
           color: #000;
@@ -214,6 +216,7 @@
           margin-right: 4px; } }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo span.separater {
         transform: translateY(-1px);
+        -webkit-transform: translateY(-1px);
         display: inline-block; }
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo .curatorName {
         font-family: 'Object-Sans-Bold',sans-serif; }
@@ -223,7 +226,8 @@
         display: inline-block;
         margin: 0;
         position: relative;
-        transform: translateY(-2px); }
+        transform: translateY(-2px);
+        -webkit-transform: translateY(-2px); }
         .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .postTags .tag {
           margin: 0 2px;
           font-size: 11px;

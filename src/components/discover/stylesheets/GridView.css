@@ -108,6 +108,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
         z-index: 107;
         text-align: center;
         width: 100%; }
@@ -191,7 +192,8 @@
           font-family: 'Object-Sans-Bold',sans-serif; }
           @media (min-width: 800px) {
             .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info p.song-title {
-              transform: translateY(1.5px); } }
+              transform: translateY(1.5px);
+              -webkit-transform: translateY(1.5px); } }
         .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info p.song-artist {
           font-size: 14.5px;
           font-weight: 400;
@@ -203,7 +205,8 @@
           height: 15px; }
           @media (min-width: 800px) {
             .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .song-info p.song-artist {
-              transform: translateY(1.5px); } }
+              transform: translateY(1.5px);
+              -webkit-transform: translateY(1.5px); } }
   .fullGridLayout .songList .songContainer .wrapper .postContent .topContentContainer {
     display: none; }
   .fullGridLayout .songList .songContainer .goToSongPage {

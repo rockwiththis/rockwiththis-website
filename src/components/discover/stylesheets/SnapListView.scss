@@ -193,6 +193,7 @@
                     font-family: 'Object-Sans-Bold',sans-serif;
                     @media(min-width: 800px) {
                       transform: translateY(3px);
+                      -webkit-transform: translateY(3px);
                     }
 
 
@@ -227,6 +228,7 @@
 
                     @media(min-width: 800px) {
                       transform: translateY(3px);
+                      -webkit-transform: translateY(3px);
                     }
 
                     .artistName {
@@ -302,6 +304,7 @@
 
                     span.separater {
                         transform: translateY(-1px);
+                        -webkit-transform: translateY(-1px);
                         display: inline-block;
                     }
 
@@ -320,6 +323,7 @@
                     margin: 0;
                     position: relative;
                     transform: translateY(-2px);
+                    -webkit-transform: translateY(-2px);
 
                     .tag {
                       margin: 0 2px;

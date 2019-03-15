@@ -59,7 +59,8 @@
                 pointer-events: all;
                 vertical-align: top;
                 margin-right: 2px;
-                transform: translateX(-2px); }
+                transform: translateX(-2px);
+                -webkit-transform: translateX(-2px); }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
                   width: 35px;
                   height: 35px; }
@@ -89,7 +90,7 @@
                     white-space: nowrap;
                     overflow: hidden;
                     font-family: 'Object-Sans-Bold',sans-serif;
-                    transform: translateY(2px); }
+                    -webkit-transform: translateY(2px); }
                 .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo .artistName {
                   color: #000;
                   font-size: 14px;
@@ -102,7 +103,7 @@
                   white-space: nowrap;
                   overflow: hidden;
                   font-family: 'Object-Sans-Normal',sans-serif;
-                  transform: translateY(2px); }
+                  -webkit-transform: translateY(2px); }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
                 display: none; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo {

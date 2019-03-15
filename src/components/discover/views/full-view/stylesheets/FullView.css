@@ -73,6 +73,7 @@
             position: absolute;
             top: 45%;
             left: 50%;
+            transform: translate(-50%, -50%);
             -webkit-transform: translate(-50%, -50%);
             text-align: center;
             width: 100%; }
@@ -219,7 +220,8 @@
             white-space: nowrap;
             overflow: hidden;
             font-family: 'Object-Sans-Bold',sans-serif;
-            transform: translateY(3px); }
+            transform: translateY(3px);
+            -webkit-transform: translateY(3px); }
             .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .songtitle a.postTitleLink {
               font-size: 23px;
               line-height: 24px;
@@ -234,9 +236,11 @@
               margin-left: 3px;
               width: 30px;
               padding: 0 3px;
-              transform: translateY(-2px); }
+              transform: translateY(-2px);
+              -webkit-transform: translateY(-2px); }
           .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist {
-            transform: translateY(2px); }
+            transform: translateY(2px);
+            -webkit-transform: translateY(2px); }
             .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop .artist span.artistName {
               font-size: 23px;
               line-height: 24px;
@@ -250,6 +254,7 @@
           display: none; }
         .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.desktop span.separater {
           transform: translateY(-1px);
+          -webkit-transform: translateY(-1px);
           display: inline-block; }
         .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .metaInfo .leftInfo.desktop .curatorName {
           font-family: 'Object-Sans-Bold',sans-serif; }
@@ -281,7 +286,7 @@
         padding-bottom: 0px;
         pointer-events: all; }
         .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .bottomContentContainer .songDescription {
-          font-size: 16px;
+          font-size: 14px;
           line-height: 28px;
           font-weight: 100;
           display: block;

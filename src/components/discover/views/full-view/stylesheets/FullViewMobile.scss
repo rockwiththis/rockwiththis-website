@@ -83,6 +83,7 @@
                       vertical-align: top;
                       margin-right: 2px;
                       transform: translateX(-2px);
+                      -webkit-transform: translateX(-2px);
 
                       .singlePostPlayerButton {
 
@@ -124,7 +125,7 @@
                           white-space: nowrap;
                           overflow: hidden;
                           font-family: 'Object-Sans-Bold',sans-serif;
-                          transform: translateY(2px);
+                          -webkit-transform: translateY(2px);
                         }
 
 
@@ -141,7 +142,7 @@
                         white-space: nowrap;
                         overflow: hidden;
                         font-family: 'Object-Sans-Normal',sans-serif;
-                        transform: translateY(2px);
+                        -webkit-transform: translateY(2px);
                       }
 
                     }
