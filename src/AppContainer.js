@@ -13,7 +13,7 @@ import { playSong } from 'actions/player';
 import SocialLinks from 'components/SocialLinks/SocialLinks.js';
 import Header from 'components/Header/Header.js';
 import MainPlayer from 'components/FooterPlayer/MainPlayer';
-import SongPlayerBank from 'components/SongPlayer/SongPlayerBank';
+import AudioManager from 'components/audio-manager';
 
 const propTypes = {
   // Redux
@@ -112,7 +112,7 @@ class AppContainer extends Component {
           />
           {
             !!this.props.activeSong && !!this.props.activeSong.id &&
-            <SongPlayerBank
+            <AudioManager
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
               playSong={this.props.playSong}

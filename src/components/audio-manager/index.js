@@ -1,5 +1,5 @@
-// react gods please forgive me for i have sinned...
-
+// TODO move control handlers into `shouldComponentUpdate` + plug into redux
+// see 'audio-controls-cleanup' branch
 import React from 'react';
 import { connect } from 'react-redux';
 import SoundCloudWidget from 'soundcloud-widget';
@@ -7,7 +7,7 @@ import { Howl } from 'howler';
 import { find } from 'lodash';
 import { playSong } from 'actions/player';
 
-import './SongPlayerBank.scss';
+import './audio-manager.scss';
 
 const getParentPlayerId = i => `song-player-song-${i}`;
 const getYoutubePlayerId = i => `song-list-yt-player-${i}`;
@@ -26,7 +26,9 @@ const MAX_SONG_LOADS = 1;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
-class SongPlayerBank extends React.Component {
+// TODO PropTypes
+
+class AudioManager extends React.Component {
   constructor(props) {
     super(props);
     this.activeSongs = {};
@@ -151,7 +153,7 @@ class SongPlayerBank extends React.Component {
     this.reportActivePlayerProgress();
   }
 
-  render = () => <div className="song-player-bank"></div>;
+  render = () => <div className="audio-manager-players"></div>;
 }
 
-export default SongPlayerBank;
+export default AudioManager;
