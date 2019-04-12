@@ -125,28 +125,38 @@ class AudioManager extends React.Component {
 
   createYoutubePlayer = (song, playOnLoad) => {
     const playerDiv = this.getCleanPlayerElement('div', song.id);
+    const onReady = this.onPlayerReady(song.id, playOnLoad);
     const player = new this.YT.Player(playerDiv.id, {
       videoId: this.getYoutubeVideoId(song),
       playerVars: {
         playsinline: 1
       },
       events: {
-        'onReady': this.onPlayerReady(song.id, playOnLoad),
+        'onReady': onReady,
         'onStateChange': this.handleYoutubePlayerStateChange
       }
     });
+
+    // TODO define this as a class
     return {
       song: song,
       play: () => player.playVideo(),
       pause: () => player.pauseVideo(),
+      stop: () => player.stopVideo(),
       reportProgress: () => (
         this.props.setActiveSongProgress({
           playedRatio: player.getCurrentTime() / player.getDuration(),
           playedSeconds: player.getCurrentTime()
         })
       ),
-      getDuration: () => Promise.resolve(player.getDuration()),
-      seekTo: ratio => player.seekTo(ratio * player.getDuration(), true)
+      duration: () => Promise.resolve(player.getDuration()),
+      seekTo: ratio => player.seekTo(ratio * player.getDuration(), true),
+      unload: () => player.destroy(),
+      setOnReadyHandler: onReady => {
+        // Idk if this will actually work
+        player.removeEventListener('onReady', 'onReady');
+        player.addEventListener('onReady', onReady);
+      }
     };
   }
 
@@ -162,17 +172,22 @@ class AudioManager extends React.Component {
     changeEvent.data === 0 && this.props.onSongEnd();
 
   createSoundcloudPlayer = (song, playOnLoad) => {
-    const playerDiv = this.getCleanPlayerElement('iframe', song.id);
-    playerDiv.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
+    const playerElement = this.getCleanPlayerElement('iframe', song.id);
+    playerElement.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
 
-    const player = new SoundCloudWidget(playerDiv);
+    const player = new SoundCloudWidget(playerElement);
     player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
     player.bind(SoundCloudWidget.events.FINISH, this.props.onSongEnd);
 
+    // TODO define this as a class
     return {
       song: song,
       play: () => player.play(),
       pause: () => player.pause(),
+      stop: () => {
+        player.pause();
+        player.seekTo(0);
+      },
       reportProgress: () => (
         player.getPosition().then(position => (
           player.getDuration().then(duration => (
@@ -183,19 +198,49 @@ class AudioManager extends React.Component {
           ))
         ))
       ),
-      getDuration: () => player.getDuration().then(milis => milis / 1000),
-      seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis))
+      duration: () => player.getDuration().then(milis => milis / 1000),
+      seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis)),
+      // Idk if this will actually work
+      unload: () => playerElement.remove(),
+      setOnReadyHandler: onReady => {
+        player.unbind(SoundCloudWidget.events.READY);
+        player.bind(SoundCloudWidget.events.READY, onReady);
+      }
     };
   }
 
-  createHowlerPlayer = (song, playOnLoad) =>
-    new Howl({
+  createHowlerPlayer = (song, playOnLoad) => {
+    const player = new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
       autoplay: false,
       onload: this.onPlayerReady(song, playOnLoad),
       onend: this.props.onSongEnd,
     })
+
+    // TODO define this as a class
+    return {
+      song: song,
+      play: () => player.play(),
+      pause: () => player.pause(),
+      stop: () => player.stop(),
+      reportProgress: () => {
+        if (typeof player.seek() === 'number') {
+          this.props.setActiveSongProgress({
+            playedRatio: player.seek() / player.duration(),
+            playedSeconds: player.seek()
+          });
+        }
+      },
+      duration: () => player.duration(),
+      seekTo: ratio => player.seek(player.duration() * ratio),
+      unload: () => player.unload(),
+      setOnReadyHandler: onReady => {
+        player.off('load');
+        player.on('load', onReady);
+      }
+    }
+  }
 
   onPlayerReady = (song, playSong) => () => {
     if (!!this.loadedPlayers[song.id]) {
@@ -204,6 +249,7 @@ class AudioManager extends React.Component {
       if (playSong) {
         this.props.playSong(song, duration);
       } else {
+        // TODO are we sure we don't need to set this *every* time?
         this.props.setSongDuration(song.id, duration);
       }
     }
@@ -236,10 +282,10 @@ class AudioManager extends React.Component {
     clearInterval(this.durationInterval);
   }
 
+  // This does not work w/ embedded media on some browsers
   loadAndPlaySong = song => {
     if (!!this.loadingSongs[song.id]) {
-      this.loadedPlayers[song.id].off('load');
-      this.loadedPlayers[song.id].on('load', this.onPlayerReady(song, true));
+      this.loadedPlayers[song.id].setOnReadyHandler(this.onPlayerReady(song, true));
     }
     else if (!!this.loadedPlayers[song.id]) {
       this.onPlayerReady(song, true)();
@@ -248,17 +294,10 @@ class AudioManager extends React.Component {
     }
   }
 
-  reportActivePlayerProgress = () => {
-    if (typeof this.activePlayer.seek() === 'number') {
-      this.props.setActiveSongProgress({
-        playedRatio: this.activePlayer.seek() / this.activePlayer.duration(),
-        playedSeconds: this.activePlayer.seek()
-      });
-    }
-  }
+  reportActivePlayerProgress = () => this.activePlayer.reportProgress()
 
   updateSongProgress = progressRatio => {
-    this.activePlayer.seek(this.activePlayer.duration() * progressRatio);
+    this.activePlayer.seekTo(progressRatio);
     this.reportActivePlayerProgress();
   }
 
