@@ -9,6 +9,12 @@ import { playSong } from 'actions/player';
 
 import './audio-manager.scss';
 
+const PLAYER_DIV_ID = 'audio-manager-players';
+
+const SOUNDCLOUD_PLAYERS_ENABLED = false;
+const YOUTUBE_PLAYERS_ENABLED = false;
+const HOWLER_PLAYERS_ENABLED = true;
+
 const getParentPlayerId = i => `song-player-song-${i}`;
 const getYoutubePlayerId = i => `song-list-yt-player-${i}`;
 const getSoundcloudPlayerId = i => `song-list-sc-player-${i}`;
@@ -31,12 +37,21 @@ const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 class AudioManager extends React.Component {
   constructor(props) {
     super(props);
+    this.YT = undefined;
     this.activeSongs = {};
     this.songLoadQueue = [];
     this.loadingSongs = {};
     this.loadedPlayers = {};
     this.activePlayer = undefined;
     this.durationInterval = undefined;
+  }
+
+  componentDidMount = () => {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    window.onYouTubeIframeAPIReady = () => this.YT = window.YT;
   }
 
   shouldComponentUpdate = () => false;
@@ -79,7 +94,101 @@ class AudioManager extends React.Component {
     }
   }
 
-  createPlayer = (song, playOnLoad = false) =>
+  createPlayer = (song, playOnLoad = false) => {
+    if (!!song.soundcloud_track_id && SOUNDCLOUD_PLAYERS_ENABLED)
+      return this.createSoundCloudPlayer(song, playOnLoad);
+
+    else if ((!!song.youtube_link || !!song.youtube_track_id) && YOUTUBE_PLAYERS_ENABLED)
+      return this.createYoutubePlayer(song, playOnLoad);
+
+    else if (HOWLER_PLAYERS_ENABLED)
+      return this.createHowlerPlayer(song, playOnLoad);
+
+    console.log(`No player type available for song ${song.id}`);
+    return null
+  }
+  
+  getCleanPlayerElement = (elementTag, songId) => {
+    const elementId = `song-player-${songId}`;
+    if (document.getElementById(elementId))
+      console.log("Hey, that element already exists ... expect funkiness (not the good kind)");
+
+    const parentDiv = document.getElementById(PLAYER_DIV_ID);
+    const playerDiv = document.createElement(elementTag);
+
+    playerDiv.id = elementId;
+    playerDiv.setAttribute('allow', 'autoplay');
+    parentDiv.appendChild(playerDiv);
+
+    return playerDiv;
+  }
+
+  createYoutubePlayer = (song, playOnLoad) => {
+    const playerDiv = this.getCleanPlayerElement('div', song.id);
+    const player = new this.YT.Player(playerDiv.id, {
+      videoId: this.getYoutubeVideoId(song),
+      playerVars: {
+        playsinline: 1
+      },
+      events: {
+        'onReady': this.onPlayerReady(song.id, playOnLoad),
+        'onStateChange': this.handleYoutubePlayerStateChange
+      }
+    });
+    return {
+      song: song,
+      play: () => player.playVideo(),
+      pause: () => player.pauseVideo(),
+      reportProgress: () => (
+        this.props.setActiveSongProgress({
+          playedRatio: player.getCurrentTime() / player.getDuration(),
+          playedSeconds: player.getCurrentTime()
+        })
+      ),
+      getDuration: () => Promise.resolve(player.getDuration()),
+      seekTo: ratio => player.seekTo(ratio * player.getDuration(), true)
+    };
+  }
+
+  getYoutubeVideoId = song => {
+    if (!!song.youtube_link) {
+      const match = song.youtube_link.match(youtubeUrlPattern);
+      if (!!match) return match[1]
+    }
+    return song.youtube_id;
+  }
+
+  handleYoutubePlayerStateChange = changeEvent =>
+    changeEvent.data === 0 && this.props.onSongEnd();
+
+  createSoundcloudPlayer = (song, playOnLoad) => {
+    const playerDiv = this.getCleanPlayerElement('iframe', song.id);
+    playerDiv.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
+
+    const player = new SoundCloudWidget(playerDiv);
+    player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
+    player.bind(SoundCloudWidget.events.FINISH, this.props.onSongEnd);
+
+    return {
+      song: song,
+      play: () => player.play(),
+      pause: () => player.pause(),
+      reportProgress: () => (
+        player.getPosition().then(position => (
+          player.getDuration().then(duration => (
+            this.props.setActiveSongProgress({
+              playedRatio: position / duration,
+              playedSeconds: position / 1000
+            })
+          ))
+        ))
+      ),
+      getDuration: () => player.getDuration().then(milis => milis / 1000),
+      seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis))
+    };
+  }
+
+  createHowlerPlayer = (song, playOnLoad) =>
     new Howl({
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
@@ -153,7 +262,7 @@ class AudioManager extends React.Component {
     this.reportActivePlayerProgress();
   }
 
-  render = () => <div className="audio-manager-players"></div>;
+  render = () => <div id={PLAYER_DIV_ID}></div>;
 }
 
 export default AudioManager;
