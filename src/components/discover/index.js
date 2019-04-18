@@ -39,7 +39,7 @@ class DiscoverSection extends Component {
     window.addEventListener('scroll', this.updateFixedControlBarFlag);
     window.addEventListener('scroll', this.enableDiscoverScroll);
     window.addEventListener('resize', this.enableDiscoverScroll);
-    // clearAllBodyScrollLocks();
+    clearAllBodyScrollLocks();
     //this.updateScroll();
   }
 
@@ -47,6 +47,8 @@ class DiscoverSection extends Component {
     window.removeEventListener('scroll', this.updateFixedControlBarFlag);
     window.removeEventListener('scroll', this.enableDiscoverScroll);
     window.removeEventListener('resize', this.enableDiscoverScroll);
+    clearAllBodyScrollLocks();
+
   }
 
   /* TODO find better scroll anchoring solution
