@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import $ from 'jquery';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+// import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import { resetSongs } from 'actions/fetch/songs';
 import {
@@ -59,7 +59,7 @@ class ControlBar extends Component {
   }
 
   componentWillUnmount() {
-    // clearAllBodyScrollLocks();
+
   }
 
 
@@ -70,13 +70,12 @@ class ControlBar extends Component {
   showGenreFilters = () => {
     this.props.scrollToDiscover();
     this.disableScrolling();
-    disableBodyScroll(document.querySelector('#genreModalScroll'));
     this.setState({ isGenreFiltersActive: true });
   }
 
   hideGenreFilters = () => {
     this.enableScrolling();
-    enableBodyScroll(document.querySelector('#genreModalScroll'));
+    // enableBodyScroll(document.querySelector('#genreModalScroll'));
     this.setState({ isGenreFiltersActive: false });
   }
 

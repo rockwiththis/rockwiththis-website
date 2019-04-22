@@ -10,7 +10,6 @@ import { Helmet } from 'react-helmet';
 
 import { playSong, pauseSong } from 'actions/player';
 import ShareBox from 'components/ShareBox/ShareBox'
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 
 import pauseButton from 'images/PAUSE-BUTTON.png'

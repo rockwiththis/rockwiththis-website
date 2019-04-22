@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { find, pickBy, uniq, compact, flatten, indexOf, orderBy } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
-
+import $ from 'jquery';
 
 import { fetchGenres } from 'actions/fetch/genres';
 import { resetSongs } from 'actions/fetch/songs';
@@ -47,6 +47,10 @@ class GenreFilters extends Component {
       document.removeEventListener('click', this.hideOnClickOff);
   }
 
+  disableScrolling = () => $('body').css('overflow', 'hidden');
+
+  enableScrolling = () => $('body').css('overflow', 'auto');
+
   closeModal = () => {
     this.props.hide();
     this.setState({
@@ -60,6 +64,7 @@ class GenreFilters extends Component {
       }), {})
     });
 
+    this.enableScrolling();
   }
 
   hideOnClickOff = event =>
