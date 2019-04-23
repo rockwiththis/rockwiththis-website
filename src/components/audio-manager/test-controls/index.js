@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import { SONG_LOADING, SONG_READY, SONG_PLAYING, SONG_PAUSED } from 'constants/song-status';
 import AudioManager from 'components/audio-manager';
 import SongControl from './song-control';
@@ -23,10 +24,13 @@ class TestControls extends React.Component {
     }
   }
 
+  componentDidMount = () =>
+    this.playerBankRef.current.setActiveSongs(this.props.songs);
+
   getSongStatus = song => {
-    if (this.state.activeSong.id === song.id)
+    if (!!this.state.activeSong && this.state.activeSong.id === song.id)
       return this.state.isPaused ? SONG_PAUSED : SONG_PLAYING;
-    else if (!!this.readySongDurations[song.id])
+    else if (!!this.state.readySongDurations[song.id])
       return SONG_READY;
     else
       return SONG_LOADING;
@@ -46,13 +50,14 @@ class TestControls extends React.Component {
     this.setState({ isPaused: true });
   }
 
-  playerLoaded = (songId, duration) =>
+  playerLoaded = (songId, duration) => {
     this.setState({
       readySongDurations: {
         ...this.state.readySongDurations,
         [songId]: duration
       }
     });
+  }
 
   getSongProgress = song =>
     [SONG_PLAYING, SONG_PAUSED].includes(this.getSongStatus(song)) &&
@@ -76,8 +81,9 @@ class TestControls extends React.Component {
   render() {
     return (
         <div className="audio-test-controls">
-          { !!this.playerBankRef.current && this.props.songs.map(song => (
+          { this.props.songs.map(song => (
               <SongControl
+                key={song.id}
                 song={song}
                 songStatus={this.getSongStatus(song)}
                 durationSeconds={this.state.readySongDurations[song.id]}
