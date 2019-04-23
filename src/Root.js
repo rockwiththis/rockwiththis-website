@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Routes from './Routes';
 import AppContainer from './AppContainer';
-import TestControls from 'components/audio-manager/test-controls';
+import TestPage from 'pages/test';
 
 class Root extends Component {
   render() {
@@ -12,7 +12,7 @@ class Root extends Component {
         <Provider store={this.props.store}>
           <BrowserRouter>
             <Switch>
-              <Route exact path='/test/' component={TestControls} />
+              <Route exact path='/test/' component={TestPage} />
               <Route render = {() => (
                 <AppContainer>
                   <Routes />
