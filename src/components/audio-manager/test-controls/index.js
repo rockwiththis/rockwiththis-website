@@ -5,6 +5,8 @@ import { SONG_LOADING, SONG_READY, SONG_PLAYING, SONG_PAUSED } from 'constants/s
 import AudioManager from 'components/audio-manager';
 import SongControl from './song-control';
 
+import './stylesheets/index.scss';
+
 const propTypes = {
   songs: PropTypes.array.isRequired,
   loadMoreSongs: PropTypes.func.isRequired

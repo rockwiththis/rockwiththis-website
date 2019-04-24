@@ -1,0 +1,7 @@
+.song-control {
+  padding: 20px 0;
+  cursor: default; }
+  .song-control .status > span {
+    margin-right: 20px; }
+  .song-control .controls {
+    display: inline-block; }

@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SONG_STATUSES, { SONG_LOADING, SONG_READY, SONG_PLAYING, SONG_PAUSED } from 'constants/song-status';
 
+import './stylesheets/song-control.scss';
+
 const propTypes = {
   song: PropTypes.object.isRequired,
   songStatus: PropTypes.oneOf(SONG_STATUSES),
@@ -32,28 +34,37 @@ class SongControl extends React.Component {
       this.props.pauseSong();
   }
 
-  getControlButton = () =>
+  getPlayToggleButton = () =>
     this.props.songStatus === SONG_PLAYING ?
       this.getPauseButton() : this.getPlayButton();
 
   getPlayButton = () =>
-    <button
+    <input
+      type='button'
+      value='PLAY'
       disabled={this.props.songStatus === SONG_LOADING}
       onClick={this.props.playSong}
-    >
-      PLAY
-    </button>;
+    />;
 
   getPauseButton = () =>
-    <button onClick={this.props.pauseSong}>PAUSE</button>;
+    <input
+      type='button'
+      value='PAUSE'
+      onClick={this.props.pauseSong}
+    />;
 
   render() {
     const { song, songStatus } = this.props;
     return (
         <div className="song-control">
           <p className="title">{ `${song.artist_name} - ${song.name}` }</p>
-          <p className="duration">{ this.getTimeString() }</p>
-          { this.getControlButton() }<span className="status">{ songStatus }</span>
+          <div className="status">
+            <span className="status">{ songStatus }</span>
+            <span className="duration">{ this.getTimeString() }</span>
+          </div>
+          <div className="controls">
+            { this.getPlayToggleButton() }
+          </div>
         </div>
     )
   }
