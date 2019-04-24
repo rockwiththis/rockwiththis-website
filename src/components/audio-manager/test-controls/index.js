@@ -79,8 +79,11 @@ class TestControls extends React.Component {
   setSongProgress = ({ playedSeconds }) =>
     this.setState({ activeSongProgress: playedSeconds });
 
+  currentSongIndex = () =>
+    this.props.songs.findIndex(song => song.id === this.state.activeSong.id)
+
   playNextSong = () => {
-    const nextIndex = this.props.songs.findIndex(song => song.id === this.state.activeSong.id) + 1;
+    const nextIndex = this.currentSongIndex() + 1;
 
     if (nextIndex >= this.props.songs.length) {
       this.props.loadMoreSongs()
@@ -90,6 +93,18 @@ class TestControls extends React.Component {
       this.playSong(this.props.songs[nextIndex]);
     }
   }
+
+  playPreviousSong = () => {
+    const prevIndex = this.currentSongIndex() - 1;
+    if (prevIndex >= 0) this.playSong(this.props.songs[prevIndex]);
+  }
+
+  endActiveSong = () =>
+    this.playerBankRef.current.updateSongProgress(0.99);
+
+  getPlayerTypeForSong = song =>
+    this.playerBankRef.current &&
+    get(this.playerBankRef.current.getPlayer(song), 'type')
 
   render() {
     return (
@@ -103,6 +118,10 @@ class TestControls extends React.Component {
                 playedSeconds={this.getSongProgress(song)}
                 playSong={() => this.playSong(song)}
                 pauseSong={() => this.pauseSong(song)}
+                nextSong={() => this.playNextSong()}
+                prevSong={() => this.playPreviousSong()}
+                endSong={() => this.endActiveSong()}
+                getPlayerType={() => this.getPlayerTypeForSong(song)}
               />
           ))}
           <AudioManager

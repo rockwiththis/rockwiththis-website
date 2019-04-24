@@ -11,6 +11,10 @@ import './audio-manager.scss';
 
 const PLAYER_DIV_ID = 'audio-manager-players';
 
+const SOUNDCLOUD_PLAYER_TYPE = 'soundcloud';
+const YOUTUBE_PLAYER_TYPE = 'youtube';
+const HOWLER_PLAYER_TYPE = 'howler';
+
 const SOUNDCLOUD_PLAYERS_ENABLED = false;
 const YOUTUBE_PLAYERS_ENABLED = false;
 const HOWLER_PLAYERS_ENABLED = true;
@@ -140,6 +144,7 @@ class AudioManager extends React.Component {
     // TODO define this as a class
     return {
       song: song,
+      type: YOUTUBE_PLAYER_TYPE,
       play: () => player.playVideo(),
       pause: () => player.pauseVideo(),
       stop: () => player.stopVideo(),
@@ -182,6 +187,7 @@ class AudioManager extends React.Component {
     // TODO define this as a class
     return {
       song: song,
+      type: SOUNDCLOUD_PLAYER_TYPE,
       play: () => player.play(),
       pause: () => player.pause(),
       stop: () => {
@@ -221,6 +227,7 @@ class AudioManager extends React.Component {
     // TODO define this as a class
     return {
       song: song,
+      type: HOWLER_PLAYER_TYPE,
       play: () => player.play(),
       pause: () => player.pause(),
       stop: () => player.stop(),
@@ -300,6 +307,8 @@ class AudioManager extends React.Component {
     this.activePlayer.seekTo(progressRatio);
     this.reportActivePlayerProgress();
   }
+
+  getPlayer = song => this.loadedPlayers[song.id]
 
   render = () => <div id={PLAYER_DIV_ID}></div>;
 }

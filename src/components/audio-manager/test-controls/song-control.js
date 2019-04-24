@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SONG_STATUSES, { SONG_LOADING, SONG_READY, SONG_PLAYING, SONG_PAUSED } from 'constants/song-status';
+import SongWaitingControls from './song-waiting-controls';
+import SongPlayingControls from './song-playing-controls';
 
 import './stylesheets/song-control.scss';
 
@@ -10,7 +12,11 @@ const propTypes = {
   durationSeconds: PropTypes.number,
   playedSeconds: PropTypes.number,
   playSong: PropTypes.func.isRequired,
-  pauseSong: PropTypes.func.isRequired
+  pauseSong: PropTypes.func.isRequired,
+  nextSong: PropTypes.func.isRequired,
+  prevSong: PropTypes.func.isRequired,
+  endSong: PropTypes.func.isRequired,
+  getPlayerType: PropTypes.func.isRequired,
 }
 
 const formatTime = seconds => {
@@ -25,46 +31,33 @@ class SongControl extends React.Component {
   getTimeString = () =>
     formatTime(this.props.playedSeconds) +
     ' / ' +
-    formatTime(this.props.playedSeconds)
-
-  togglePlay = () => {
-    if ([SONG_READY, SONG_PAUSED].includes(this.props.songStatus))
-      this.props.playSong();
-    else if (this.props.songStatus === SONG_PLAYING)
-      this.props.pauseSong();
-  }
-
-  getPlayToggleButton = () =>
-    this.props.songStatus === SONG_PLAYING ?
-      this.getPauseButton() : this.getPlayButton();
-
-  getPlayButton = () =>
-    <input
-      type='button'
-      value='PLAY'
-      disabled={this.props.songStatus === SONG_LOADING}
-      onClick={this.props.playSong}
-    />;
-
-  getPauseButton = () =>
-    <input
-      type='button'
-      value='PAUSE'
-      onClick={this.props.pauseSong}
-    />;
+    formatTime(this.props.durationSeconds)
 
   render() {
     const { song, songStatus } = this.props;
+
+    const controls = this.props.songStatus === SONG_PLAYING ?
+      <SongPlayingControls
+        pauseSong={this.props.pauseSong}
+        nextSong={this.props.nextSong}
+        prevSong={this.props.prevSong}
+        endSong={this.props.endSong}
+      />
+      :
+      <SongWaitingControls
+        playSong={this.props.playSong}
+        isDisabled={this.props.songStatus === SONG_LOADING}
+      />;
+
     return (
         <div className="song-control">
           <p className="title">{ `${song.artist_name} - ${song.name}` }</p>
           <div className="status">
             <span className="status">{ songStatus }</span>
             <span className="duration">{ this.getTimeString() }</span>
+            <span className="player-type">{ this.props.getPlayerType() || '???' }</span>
           </div>
-          <div className="controls">
-            { this.getPlayToggleButton() }
-          </div>
+          <div className="controls">{ controls }</div>
         </div>
     )
   }
