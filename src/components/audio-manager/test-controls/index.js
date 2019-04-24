@@ -38,7 +38,18 @@ class TestControls extends React.Component {
       return SONG_LOADING;
   }
 
-  playSong = song => {
+  playSong = song =>
+    this.getSongStatus(song) === SONG_PAUSED ?
+      this.playPausedSong() :
+      this.playNewSong(song);
+
+
+  playPausedSong = () => {
+    this.playerBankRef.current.playActiveSong();
+    this.setState({ isPaused: false });
+  }
+
+  playNewSong = song => {
     this.playerBankRef.current.playSongListSong(song);
     this.setState({
       activeSong: song,
