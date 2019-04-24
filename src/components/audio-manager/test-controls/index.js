@@ -16,7 +16,7 @@ class TestControls extends React.Component {
 
   constructor(props) {
     super(props);
-    this.playerBankRef = React.createRef();
+    this.audioManagerRef = React.createRef();
 
     this.state = {
       isPaused: false,
@@ -27,7 +27,7 @@ class TestControls extends React.Component {
   }
 
   componentDidMount = () =>
-    this.playerBankRef.current.setActiveSongs(this.props.songs);
+    this.audioManagerRef.current.setActiveSongs(this.props.songs);
 
   getSongStatus = song => {
     if (!!this.state.activeSong && this.state.activeSong.id === song.id)
@@ -45,12 +45,12 @@ class TestControls extends React.Component {
 
 
   playPausedSong = () => {
-    this.playerBankRef.current.playActiveSong();
+    this.audioManagerRef.current.playActiveSong();
     this.setState({ isPaused: false });
   }
 
   playNewSong = song => {
-    this.playerBankRef.current.playSongListSong(song);
+    this.audioManagerRef.current.playSongListSong(song);
     this.setState({
       activeSong: song,
       isPaused: false,
@@ -59,7 +59,7 @@ class TestControls extends React.Component {
   }
 
   pauseSong = () => {
-    this.playerBankRef.current.pauseActiveSong();
+    this.audioManagerRef.current.pauseActiveSong();
     this.setState({ isPaused: true });
   }
 
@@ -100,11 +100,11 @@ class TestControls extends React.Component {
   }
 
   endActiveSong = () =>
-    this.playerBankRef.current.updateSongProgress(0.99);
+    this.audioManagerRef.current.updateSongProgress(0.99);
 
   getPlayerTypeForSong = song =>
-    this.playerBankRef.current &&
-    get(this.playerBankRef.current.getPlayer(song), 'type')
+    this.audioManagerRef.current &&
+    get(this.audioManagerRef.current.getPlayer(song), 'type')
 
   render() {
     return (
@@ -129,7 +129,7 @@ class TestControls extends React.Component {
             setActiveSongProgress={this.setSongProgress}
             playSong={this.playSong}
             onSongEnd={this.playNextSong}
-            ref={this.playerBankRef}
+            ref={this.audioManagerRef}
           />
         </div>
     )

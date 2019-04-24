@@ -29,7 +29,7 @@ class AppContainer extends Component {
     this.mainPageScroll = 0;
     this.discoveryScroll = 0;
 
-    this.playerBankRef = React.createRef();
+    this.audioManagerRef = React.createRef();
   }
 
   componentDidMount = () => {
@@ -47,18 +47,18 @@ class AppContainer extends Component {
   componentDidUpdate = prevProps => {
 
     if (!this.props.isPlaying && prevProps.isPlaying) {
-      this.playerBankRef.current.pauseActiveSong();
+      this.audioManagerRef.current.pauseActiveSong();
     }
 
     if (prevProps.activeSong.id !== this.props.activeSong.id &&
         this.props.isPlaying) {
-      this.playerBankRef.current.playSongListSong(this.props.activeSong);
+      this.audioManagerRef.current.playSongListSong(this.props.activeSong);
 
     } else if (this.props.isPlaying && !prevProps.isPlaying) {
-      this.playerBankRef.current.playActiveSong();
+      this.audioManagerRef.current.playActiveSong();
 
     } else if (!!this.props.nextSong) {
-      this.playerBankRef.current.loadAndPlaySong(this.props.nextSong)
+      this.audioManagerRef.current.loadAndPlaySong(this.props.nextSong)
     }
 
     if (this.props.shouldLoadPlayers) {
@@ -72,7 +72,7 @@ class AppContainer extends Component {
         ].filter(s => !!s && !!s.id),
         song => song.id
       );
-      this.playerBankRef.current.setActiveSongs(currActiveSongs);
+      this.audioManagerRef.current.setActiveSongs(currActiveSongs);
       this.props.actions.playerBankUpdated();
     }
   };
@@ -90,7 +90,7 @@ class AppContainer extends Component {
   }
 
   handleProgressUpdate = progressRatio => {
-      this.playerBankRef.current.updateSongProgress(progressRatio)
+      this.audioManagerRef.current.updateSongProgress(progressRatio)
   };
 
   setMainPageScroll = newScrollPos => this.mainPageScroll = newScrollPos;
@@ -117,7 +117,7 @@ class AppContainer extends Component {
               setActiveSongProgress={this.props.actions.setSongProgress}
               playSong={this.props.playSong}
               onSongEnd={this.playNextSong}
-              ref={this.playerBankRef}
+              ref={this.audioManagerRef}
             />
           }
         </div>
