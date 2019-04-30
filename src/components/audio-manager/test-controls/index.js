@@ -64,6 +64,7 @@ class TestControls extends React.Component {
   }
 
   playerLoaded = (songId, duration) => {
+    console.log("player loaded", duration)
     this.setState({
       readySongDurations: {
         ...this.state.readySongDurations,

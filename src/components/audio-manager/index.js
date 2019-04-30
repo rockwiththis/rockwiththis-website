@@ -1,6 +1,7 @@
 // TODO move control handlers into `shouldComponentUpdate` + plug into redux
 // see 'audio-controls-cleanup' branch
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SoundCloudWidget from 'soundcloud-widget';
 import { Howl } from 'howler';
@@ -15,13 +16,13 @@ const SOUNDCLOUD_PLAYER_TYPE = 'soundcloud';
 const YOUTUBE_PLAYER_TYPE = 'youtube';
 const HOWLER_PLAYER_TYPE = 'howler';
 
-const SOUNDCLOUD_PLAYERS_ENABLED = false;
-const YOUTUBE_PLAYERS_ENABLED = false;
+const SOUNDCLOUD_PLAYERS_ENABLED = true;
+const YOUTUBE_PLAYERS_ENABLED = true;
 const HOWLER_PLAYERS_ENABLED = true;
 
 const getParentPlayerId = i => `song-player-song-${i}`;
 const getYoutubePlayerId = i => `song-list-yt-player-${i}`;
-const getSoundcloudPlayerId = i => `song-list-sc-player-${i}`;
+const getSoundCloudPlayerId = i => `song-list-sc-player-${i}`;
 
 const youtubeUrlPattern = /(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})/;
 const getSoundCloudUrl = scid => {
@@ -36,7 +37,12 @@ const MAX_SONG_LOADS = 1;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
-// TODO PropTypes
+const propTypes = {
+  setActiveSongProgress: PropTypes.func.isRequired,
+  onSongEnd: PropTypes.func.isRequired,
+  playSong: PropTypes.func.isRequired,
+  setSongDuration: PropTypes.func.isRequired
+}
 
 class AudioManager extends React.Component {
   constructor(props) {
@@ -48,6 +54,7 @@ class AudioManager extends React.Component {
     this.loadedPlayers = {};
     this.activePlayer = undefined;
     this.durationInterval = undefined;
+    this.youtubeReadyCallback = () => this.YT = window.YT;
   }
 
   componentDidMount = () => {
@@ -55,7 +62,8 @@ class AudioManager extends React.Component {
     tag.src = 'https://www.youtube.com/iframe_api';
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    window.onYouTubeIframeAPIReady = () => this.YT = window.YT;
+
+    window.onYouTubeIframeAPIReady = () => this.youtubeReadyCallback();
   }
 
   shouldComponentUpdate = () => false;
@@ -67,6 +75,16 @@ class AudioManager extends React.Component {
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
   setActiveSongs = songs => {
+
+    // If youtube iframe api has not yet loaded, wait to load songs until ready
+    if (!this.YT && YOUTUBE_PLAYERS_ENABLED) {
+      this.youtubeReadyCallback = () => {
+        this.YT = window.YT;
+        this.setActiveSongs(songs)
+      };
+      return;
+    }
+
     this.activeSongs = {};
     songs.forEach((song, i) => {
       this.activeSongs[song.id] = song;
@@ -129,7 +147,7 @@ class AudioManager extends React.Component {
 
   createYoutubePlayer = (song, playOnLoad) => {
     const playerDiv = this.getCleanPlayerElement('div', song.id);
-    const onReady = this.onPlayerReady(song.id, playOnLoad);
+    const onReady = this.onPlayerReady(song, playOnLoad);
     const player = new this.YT.Player(playerDiv.id, {
       videoId: this.getYoutubeVideoId(song),
       playerVars: {
@@ -154,7 +172,7 @@ class AudioManager extends React.Component {
           playedSeconds: player.getCurrentTime()
         })
       ),
-      duration: () => Promise.resolve(player.getDuration()),
+      fetchDuration: () => Promise.resolve(player.getDuration()),
       seekTo: ratio => player.seekTo(ratio * player.getDuration(), true),
       unload: () => player.destroy(),
       setOnReadyHandler: onReady => {
@@ -176,12 +194,12 @@ class AudioManager extends React.Component {
   handleYoutubePlayerStateChange = changeEvent =>
     changeEvent.data === 0 && this.props.onSongEnd();
 
-  createSoundcloudPlayer = (song, playOnLoad) => {
+  createSoundCloudPlayer = (song, playOnLoad) => {
     const playerElement = this.getCleanPlayerElement('iframe', song.id);
     playerElement.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
 
     const player = new SoundCloudWidget(playerElement);
-    player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song.id));
+    player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song));
     player.bind(SoundCloudWidget.events.FINISH, this.props.onSongEnd);
 
     // TODO define this as a class
@@ -204,7 +222,7 @@ class AudioManager extends React.Component {
           ))
         ))
       ),
-      duration: () => player.getDuration().then(milis => milis / 1000),
+      fetchDuration: () => player.getDuration().then(milis => milis / 1000),
       seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis)),
       // Idk if this will actually work
       unload: () => playerElement.remove(),
@@ -239,7 +257,7 @@ class AudioManager extends React.Component {
           });
         }
       },
-      duration: () => player.duration(),
+      fetchDuration: () => Promise.resolve(player.duration()),
       seekTo: ratio => player.seek(player.duration() * ratio),
       unload: () => player.unload(),
       setOnReadyHandler: onReady => {
@@ -252,13 +270,14 @@ class AudioManager extends React.Component {
   onPlayerReady = (song, playSong) => () => {
     if (!!this.loadedPlayers[song.id]) {
       this.activePlayer = this.activePlayer || this.loadedPlayers[song.id];
-      const duration = this.loadedPlayers[song.id].duration();
-      if (playSong) {
-        this.props.playSong(song, duration);
-      } else {
-        // TODO are we sure we don't need to set this *every* time?
-        this.props.setSongDuration(song.id, duration);
-      }
+      this.loadedPlayers[song.id].fetchDuration().then(duration => {
+        if (playSong) {
+          this.props.playSong(song, duration);
+        } else {
+          // TODO are we sure we don't need to set this *every* time?
+          this.props.setSongDuration(song.id, duration);
+        }
+      })
     }
     this.loadingSongs[song.id] = undefined;
     this.loadNextPlayers();
@@ -312,5 +331,7 @@ class AudioManager extends React.Component {
 
   render = () => <div id={PLAYER_DIV_ID}></div>;
 }
+
+AudioManager.propTypes = propTypes;
 
 export default AudioManager;
