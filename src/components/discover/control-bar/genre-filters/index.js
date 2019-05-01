@@ -145,7 +145,6 @@ class GenreFilters extends Component {
     if (isSelectionDifferent)
       this.props.resetSongs({ genreFilters, subgenreFilters });
 
-      disableBodyScroll(document.querySelector('#genreModalScroll'));
 
     this.props.hide();
   }
