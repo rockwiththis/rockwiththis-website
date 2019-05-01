@@ -129,7 +129,7 @@ class AudioManager extends React.Component {
     console.log(`No player type available for song ${song.id}`);
     return null
   }
-  
+
   getCleanPlayerElement = (elementTag, songId) => {
     const elementId = `song-player-${songId}`;
     if (document.getElementById(elementId))
@@ -172,6 +172,7 @@ class AudioManager extends React.Component {
           playedSeconds: player.getCurrentTime()
         })
       ),
+      fetchIsPlaying: () => Promise.resolve(player.getPlayerState() === 1),
       fetchDuration: () => Promise.resolve(player.getDuration()),
       seekTo: ratio => player.seekTo(ratio * player.getDuration(), true),
       unload: () => player.destroy(),
@@ -222,6 +223,7 @@ class AudioManager extends React.Component {
           ))
         ))
       ),
+      fetchIsPlaying: () => player.isPaused(),
       fetchDuration: () => player.getDuration().then(milis => milis / 1000),
       seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis)),
       // Idk if this will actually work
@@ -257,6 +259,7 @@ class AudioManager extends React.Component {
           });
         }
       },
+      fetchIsPlaying: () => Promise.resolve(player.playing()),
       fetchDuration: () => Promise.resolve(player.duration()),
       seekTo: ratio => player.seek(player.duration() * ratio),
       unload: () => player.unload(),
@@ -326,6 +329,8 @@ class AudioManager extends React.Component {
     this.activePlayer.seekTo(progressRatio);
     this.reportActivePlayerProgress();
   }
+
+  fetchIsActivePlayerPlaying = () => this.activePlayer.fetchIsPlaying();
 
   getPlayer = song => this.loadedPlayers[song.id]
 

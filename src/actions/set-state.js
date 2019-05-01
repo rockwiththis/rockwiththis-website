@@ -5,3 +5,6 @@ export const updateSpotlightSong = newSpotlightSong =>
 
 export const updateDiscoverLayout = newDiscoverLayout =>
   createAction('app/UPDATE_DISCOVER_LAYOUT')({ newDiscoverLayout });
+
+export const didAutoplayFail = didAutoplayFail =>
+  createAction('app/DID_AUTOPLAY_FAIL')({ didAutoplayFail })

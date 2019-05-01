@@ -9,6 +9,7 @@ import * as BindActions from 'actions/bind-with-dispatch';
 
 import { loadMoreSongs } from 'actions/fetch/songs';
 import { playSong } from 'actions/player';
+import { didAutoplayFail } from 'actions/set-state';
 
 import SocialLinks from 'components/SocialLinks/SocialLinks.js';
 import Header from 'components/Header/Header.js';
@@ -21,6 +22,8 @@ const propTypes = {
   loadMoreSongs: PropTypes.func.isRequired,
   playSong: PropTypes.func.isRequired
 }
+
+const AUTOPLAY_CHECK_INTERVAL = 5000;
 
 class AppContainer extends Component {
   constructor(props) {
@@ -77,7 +80,7 @@ class AppContainer extends Component {
     }
   };
 
-  playNextSong = () => {
+  playNextSong = (isAutoplay = false) => () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
 
     if (nextIndex >= this.props.filteredPosts.length) {
@@ -87,11 +90,17 @@ class AppContainer extends Component {
     } else {
       this.props.playSong(this.props.filteredPosts[nextIndex]);
     }
+
+    if (isAutoplay) setTimeout(this.checkAutoplayStatus, AUTOPLAY_CHECK_INTERVAL);
   }
 
-  handleProgressUpdate = progressRatio => {
-      this.audioManagerRef.current.updateSongProgress(progressRatio)
-  };
+  checkAutoplayStatus = () =>
+    this.audioManagerRef.current.fetchIsActivePlayerPlaying.then(isPlaying => {
+      if (!isPlaying) this.props.autoplayDidFail();
+    });
+
+  handleProgressUpdate = progressRatio =>
+    this.audioManagerRef.current.updateSongProgress(progressRatio)
 
   setMainPageScroll = newScrollPos => this.mainPageScroll = newScrollPos;
 
@@ -107,7 +116,7 @@ class AppContainer extends Component {
 
           <MainPlayer
             onProgressUpdate={this.handleProgressUpdate}
-            playNextSong={this.playNextSong}
+            playNextSong={this.playNextSong()}
             {...this.props}
           />
           {
@@ -116,7 +125,7 @@ class AppContainer extends Component {
               setSongDuration={this.props.actions.playerLoaded}
               setActiveSongProgress={this.props.actions.setSongProgress}
               playSong={this.props.playSong}
-              onSongEnd={this.playNextSong}
+              onSongEnd={this.playNextSong(true)}
               ref={this.audioManagerRef}
             />
           }
@@ -131,7 +140,8 @@ const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(BindActions, dispatch),
     loadMoreSongs: () => dispatch(loadMoreSongs()),
-    playSong: (song, duration) => dispatch(playSong(song, duration))
+    playSong: (song, duration) => dispatch(playSong(song, duration)),
+    autoplayDidFail: () => dispatch(didAutoplayFail(true))
   }
 }
 
