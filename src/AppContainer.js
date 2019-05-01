@@ -13,7 +13,7 @@ import { didAutoplayFail } from 'actions/set-state';
 
 import SocialLinks from 'components/SocialLinks/SocialLinks.js';
 import Header from 'components/Header/Header.js';
-import MainPlayer from 'components/FooterPlayer/MainPlayer';
+import FooterAudioPlayer from 'components/footer-audio-player';
 import AudioManager from 'components/audio-manager';
 
 const propTypes = {
@@ -114,7 +114,7 @@ class AppContainer extends Component {
 
           { React.cloneElement(this.props.children, this.props) }
 
-          <MainPlayer
+          <FooterAudioPlayer
             onProgressUpdate={this.handleProgressUpdate}
             playNextSong={this.playNextSong()}
             {...this.props}
