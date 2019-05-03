@@ -23,7 +23,7 @@ const propTypes = {
   playSong: PropTypes.func.isRequired
 }
 
-const AUTOPLAY_CHECK_INTERVAL = 5000;
+const AUTOPLAY_CHECK_INTERVAL = 2000;
 
 class AppContainer extends Component {
   constructor(props) {
