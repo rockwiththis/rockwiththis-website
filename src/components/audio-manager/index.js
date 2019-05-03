@@ -223,7 +223,7 @@ class AudioManager extends React.Component {
           ))
         ))
       ),
-      fetchIsPlaying: () => player.isPaused(),
+      fetchIsPlaying: () => player.isPaused().then(isPaused => !isPaused),
       fetchDuration: () => player.getDuration().then(milis => milis / 1000),
       seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis)),
       // Idk if this will actually work

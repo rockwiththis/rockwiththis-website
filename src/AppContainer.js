@@ -95,7 +95,7 @@ class AppContainer extends Component {
   }
 
   checkAutoplayStatus = () =>
-    this.audioManagerRef.current.fetchIsActivePlayerPlaying.then(isPlaying => {
+    this.audioManagerRef.current.fetchIsActivePlayerPlaying().then(isPlaying => {
       if (!isPlaying) this.props.autoplayDidFail();
     });
 
