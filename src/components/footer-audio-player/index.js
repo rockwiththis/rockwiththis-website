@@ -201,7 +201,6 @@ class FooterAudioPlayer extends Component {
 
 
     render = () => {
-      console.log("RENDER FOOTER", this.props.didAutoplayFail);
       if (!this.props.activeSong) {
         return (
             <footer>
@@ -211,7 +210,6 @@ class FooterAudioPlayer extends Component {
             </footer>
         );
       }
-
       return (
           <footer>
 
