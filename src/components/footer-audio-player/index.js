@@ -22,6 +22,8 @@ const formatTime = (seconds = 0) => {
 
 // TODO propTypes
 
+const INTERACTION_EVENT_TYPES = ['touchstart', 'mousemove', 'keydown'];
+
 class FooterAudioPlayer extends Component {
 
     constructor(props) {
@@ -33,6 +35,20 @@ class FooterAudioPlayer extends Component {
       window.addEventListener('resize', this.checkIfStillMobile);
       setTimeout(() => this.props.setDidAutoplayFail(true), 5000);
     }
+
+    componentDidUpdate = prevProps => {
+      if (!prevProps.didAutoplayFail && this.props.didAutoplayFail) {
+        INTERACTION_EVENT_TYPES.map(eventType =>
+          window.addEventListener(eventType, this.autoplayFailureResolved)
+        );
+      } else if (prevProps.didAutoplayFail && !this.props.didAutoplayFail) {
+        INTERACTION_EVENT_TYPES.map(eventType =>
+          window.removeEventListener(eventType, this.autoplayFailureResolved)
+        )
+      }
+    }
+
+    autoplayFailureResolved = () => this.props.setDidAutoplayFail(false);
 
     updateStorePlayPause = () => {
       this.props.actions.togglePlayPause(!this.props.isPlaying)
