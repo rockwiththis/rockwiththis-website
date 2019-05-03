@@ -33,7 +33,6 @@ class FooterAudioPlayer extends Component {
 
     componentDidMount = () => {
       window.addEventListener('resize', this.checkIfStillMobile);
-      setTimeout(() => this.props.setDidAutoplayFail(true), 5000);
     }
 
     componentDidUpdate = prevProps => {
