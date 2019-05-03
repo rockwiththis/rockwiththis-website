@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css';
+
 import { toggleSong, togglePlayPause } from 'actions/queue';
+import { didAutoplayFail } from 'actions/set-state';
 
 import playButton from 'images/main-player-play-button.svg';
 import pauseButton from 'images/pauseButton-main-player-new.png';
@@ -28,6 +31,7 @@ class FooterAudioPlayer extends Component {
 
     componentDidMount = () => {
       window.addEventListener('resize', this.checkIfStillMobile);
+      setTimeout(() => this.props.setDidAutoplayFail(true), 5000);
     }
 
     updateStorePlayPause = () => {
@@ -182,6 +186,7 @@ class FooterAudioPlayer extends Component {
 
 
     render = () => {
+      console.log("RENDER FOOTER", this.props.didAutoplayFail);
       if (!this.props.activeSong) {
         return (
             <footer>
@@ -194,16 +199,29 @@ class FooterAudioPlayer extends Component {
 
       return (
           <footer>
+
+            <div className={`autoplay-error ${this.props.didAutoplayFail ? 'active' : ''}`}>
+              Your browser does not support autoplay. Touch anywhere to play the next song
+            </div>
+
             <div className={`footer-player ${this.state.fullMobilePlayer ? 'fullMobilePlayer' : ''}`}>
+
               { this.renderInfo() }
+
               <div className="player-controls-wrapper">
                 { this.renderButtons() }
               </div>
+
               { this.renderSongSource() }
+
             </div>
+
           </footer>
       );
     }
 }
 
-export default FooterAudioPlayer;
+export default connect(
+  null,
+  { setDidAutoplayFail: didAutoplayFail }
+)(FooterAudioPlayer);
