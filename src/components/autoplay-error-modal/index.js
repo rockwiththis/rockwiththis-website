@@ -8,11 +8,6 @@ const INTERACTION_EVENT_TYPES = ['touchstart', 'mousedown', 'keydown'];
 
 class AutoplayErrorModal extends React.Component {
 
-  componentDidRender = () =>
-      INTERACTION_EVENT_TYPES.map(eventType =>
-        window.addEventListener(eventType, this.autoplayFailureResolved)
-      );
-
   componentDidUpdate = prevProps => {
     if (!prevProps.didAutoplayFail && this.props.didAutoplayFail) {
       INTERACTION_EVENT_TYPES.map(eventType =>
