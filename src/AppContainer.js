@@ -15,6 +15,7 @@ import SocialLinks from 'components/SocialLinks/SocialLinks.js';
 import Header from 'components/Header/Header.js';
 import FooterAudioPlayer from 'components/footer-audio-player';
 import AudioManager from 'components/audio-manager';
+import AutoplayErrorModal from 'components/autoplay-error-modal';
 
 const propTypes = {
   // Redux
@@ -129,6 +130,7 @@ class AppContainer extends Component {
               ref={this.audioManagerRef}
             />
           }
+          <AutoplayErrorModal/>
         </div>
     )
   }

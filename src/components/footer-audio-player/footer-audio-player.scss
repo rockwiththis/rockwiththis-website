@@ -9,33 +9,6 @@ footer {
     height: 50px;
   }
 
-  .autoplay-error {
-    background-color: blue;
-    color: white;
-    height: 75px;
-    width: 100%;
-    box-sizing: border-box;
-    position: absolute;
-    z-index: 3000;
-    padding: 25px;
-
-    top: 0;
-    transition: top 500ms;
-
-    &.active {
-      top: -75px;
-
-      @media (max-width: 480px) {
-        top: -60px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      height: 60px;
-      padding: 10px;
-    }
-  }
-
   .footer-player {
     position: relative;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11);
