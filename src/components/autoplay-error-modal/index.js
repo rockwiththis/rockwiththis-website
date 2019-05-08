@@ -5,11 +5,12 @@ import { didAutoplayFail } from 'actions/set-state';
 import './autoplay-error-modal.scss';
 
 const INTERACTION_EVENT_TYPES = ['touchstart', 'mousedown', 'keydown'];
+const HAS_SHOWN_MODAL_STORAGE_NAME = 'HAS_SHOWN_AUTOPLAY_MODAL';
 
 class AutoplayErrorModal extends React.Component {
 
   componentDidUpdate = prevProps => {
-    if (!prevProps.didAutoplayFail && this.props.didAutoplayFail) {
+    if (this.shouldDisplayOnUpdate(prevProps.didAutoplayFail)) {
       INTERACTION_EVENT_TYPES.map(eventType =>
         window.addEventListener(eventType, this.autoplayFailureResolved)
       );
@@ -18,6 +19,15 @@ class AutoplayErrorModal extends React.Component {
         window.removeEventListener(eventType, this.autoplayFailureResolved)
       )
     }
+  }
+
+  shouldDisplayOnUpdate = prevDidAutoplayFail => {
+    if (prevDidAutoplayFail || !this.props.didAutoplayFail) return false;
+    if (!window.localStorage) return true;
+    if (!!window.localStorage.getItem(HAS_SHOWN_MODAL_STORAGE_NAME)) return false;
+
+    window.localStorage.setItem(HAS_SHOWN_MODAL_STORAGE_NAME, '1');
+    return true;
   }
 
   autoplayFailureResolved = () => this.props.setDidAutoplayFail(false);
