@@ -28,7 +28,7 @@ export default {
     return {
       ...state,
       didAutoplayFail: action.payload.didAutoplayFail,
-      isPlaying: !action.payload.didAutoplayFail
+      isPlaying: false
     }
   }
 }

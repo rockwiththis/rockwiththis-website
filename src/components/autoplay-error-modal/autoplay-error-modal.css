@@ -15,16 +15,20 @@
   .autoplay-error-modal .modal-content {
     position: relative;
     width: 50%;
-    height: 30%;
-    background-color: black;
+    height: 35%;
+    background: linear-gradient(to right, #1e0c49, #0097d5);
     margin: auto;
-    margin-top: 175px;
+    margin-top: 200px;
+    border: 2px solid white;
     box-sizing: border-box;
     color: white;
-    padding: 30px;
     font-size: 20pt; }
     .autoplay-error-modal .modal-content p {
-      margin-bottom: 40px; }
+      margin-bottom: 40px;
+      padding: 0 30px; }
+    .autoplay-error-modal .modal-content .modal-close {
+      font-size: 42px;
+      margin-bottom: 10px; }
     @media (max-width: 800px) {
       .autoplay-error-modal .modal-content {
         width: 80%;

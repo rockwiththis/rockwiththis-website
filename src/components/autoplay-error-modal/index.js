@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { didAutoplayFail } from 'actions/set-state';
+import { IoIosClose as CloseIcon } from 'react-icons/io';
 
 import './autoplay-error-modal.scss';
 
@@ -36,8 +37,9 @@ class AutoplayErrorModal extends React.Component {
       <div className={`autoplay-error-modal ${!this.props.didAutoplayFail ? 'hidden' : ''}`}>
         <div className="modal-background"></div>
         <div className="modal-content">
-          <p>Your browser does not support autoplay. Touch anywhere to play the next song</p>
-          <p>This message will not be shown again</p>
+          <div className="modal-close"><CloseIcon /></div>
+          <p>Your browser does not support autoplay, but we can still cue up the next song for you.</p>
+          <p>To continue playing music, just hit play below.</p>
         </div>
       </div>
   );
