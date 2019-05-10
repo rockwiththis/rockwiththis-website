@@ -20,5 +20,15 @@ export default {
       ...state,
       discoverLayout: action.payload.newDiscoverLayout
     }
+  },
+
+  'app/DID_AUTOPLAY_FAIL': (state, action) => {
+    expectPayloadValue(action.payload, 'didAutoplayFail', 'DID_AUTOPLAY_FAIL');
+
+    return {
+      ...state,
+      didAutoplayFail: action.payload.didAutoplayFail,
+      isPlaying: false
+    }
   }
 }

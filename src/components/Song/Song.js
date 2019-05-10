@@ -62,7 +62,6 @@ class Song extends Component {
 
     renderTop() {
       const { song } = this.props;
-      console.log(song, "songy");
 
       const playPauseButton = this.isPlaying() ?
         <img src={pauseButtonWhite} className="pauseButton" /> :

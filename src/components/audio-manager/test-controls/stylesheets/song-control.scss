@@ -1,0 +1,12 @@
+.song-control {
+  padding: 20px 0;
+  cursor: default;
+
+  .status > span {
+    margin-right: 20px;
+  }
+
+  .controls {
+    display: inline-block;
+  }
+}
