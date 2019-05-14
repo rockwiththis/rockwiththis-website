@@ -44,7 +44,7 @@ class Mailchimp extends React.Component {
     return (
       <form onSubmit={this.handleSubmit.bind(this)} className="form-input">
         {fields.map(input =>
-          <input key={Math.random()}
+          <input
             onBlur={({ target }) => this.setState({ [input.name]: target.value })}
             placeholder={input.placeholder}
             name={input.name}
