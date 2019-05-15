@@ -10,6 +10,9 @@ import ShareBox from 'components/ShareBox/ShareBox'
 
 import { playSong, pauseSong } from 'actions/player';
 
+import WhiteSingleSongControls from 'components/buttons/single-song-controls/white';
+import BlackSingleSongControls from 'components/buttons/single-song-controls/black';
+
 import playButton from 'images/playbutton.svg'
 import pauseButton from 'images/pauseButton.png'
 import loadingButton from 'images/Loading_Icon_2_5.gif'
@@ -31,19 +34,10 @@ const propTypes = {
 
 class Song extends Component {
 
-    isPlaying = () =>
-      this.props.isPlaying &&
-      this.props.song.id === this.props.activeSong.id
-
+    // Current loading animation behavior (kind of) ... keeping around for reference
     isLoading = () =>
       this.props.nextSong &&
       this.props.song.id === this.props.nextSong.id
-
-    // TODO it would be really slick to move this code into a shared hoc
-    togglePlay = () => {
-      if (this.isPlaying()) this.props.pauseSong();
-      else this.props.playSong(this.props.song)
-    }
 
     renderTags = (className = 'tag') => (
       <span className="postTags">
@@ -63,32 +57,19 @@ class Song extends Component {
     renderTop() {
       const { song } = this.props;
 
-      const playPauseButton = this.isPlaying() ?
-        <img src={pauseButtonWhite} className="pauseButton" /> :
-        this.isLoading() ?
-          <img src={loadingButton} className="loadingButton" /> :
-          <svg
-            className="playButton"
-            xmlns="http://www.w3.org/2000/svg"
-            width="60"
-            height="60"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/>
-          </svg>
-
       return (
           <div className="topContentContainer">
 
             <div className="postInfoContainer">
 
               <div className="singlePostPlayer hideMobile">
-                <button
-                  className="singlePostPlayerButton"
-                  onClick={this.togglePlay}
-                >
-                  {playPauseButton}
-                </button>
+                <WhiteSingleSongControls
+                  isPlaying={this.props.isPlaying}
+                  isActiveSong={this.props.song.id === this.props.activeSong.id}
+                  loadedPlayerDurations={this.props.songPlayerDurations}
+                  pauseSong={() => this.props.pauseSong(this.props.song)}
+                  playSong={() => this.props.playSong(this.props.song)}
+                />
               </div>
 
               <div className="songInfo mobile">
@@ -154,11 +135,6 @@ class Song extends Component {
     render() {
       const { song } = this.props;
 
-      const playPauseButton =
-        song.id === this.props.activeSong.id && this.props.isPlaying ?
-          <img src={pauseButton} className="pauseButton" /> :
-          <img src={playButton} className="playButton" />;
-
       return (
           <div id={song.slug} className="songContainer clearfix" key={`${song.id}`}>
 
@@ -181,12 +157,13 @@ class Song extends Component {
                   <img className="songImage" src={song.image_url} />
 
                   <div className="songImageInfoContainer grid">
-                    <button
-                      className="singlePostPlayerButton"
-                      onClick={this.togglePlay}
-                    >
-                      {playPauseButton}
-                    </button>
+                    <BlackSingleSongControls
+                      isPlaying={this.props.isPlaying}
+                      isActiveSong={this.props.song.id === this.props.activeSong.id}
+                      loadedPlayerDurations={this.props.songPlayerDurations}
+                      pauseSong={() => this.props.pauseSong(this.props.song)}
+                      playSong={() => this.props.playSong(this.props.song)}
+                    />
 
                     <div className="song-info">
                       <p className="song-title">{song.name}</p>
