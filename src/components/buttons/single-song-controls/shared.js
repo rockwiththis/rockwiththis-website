@@ -11,10 +11,10 @@ export const propTypes = {
 
 export const getVisibleButton = (props, PauseButton, LoadingButton, PlayButton) => {
 
-  if (this.props.isPlaying && this.props.isActiveSong)
+  if (props.isPlaying && props.isActiveSong)
     return <PauseButton pauseSong={props.pauseSong} />;
 
-  else if (!this.props.loadedPlayerDurations)
+  else if (!props.loadedPlayerDurations)
     return <LoadingButton />;
 
   else
