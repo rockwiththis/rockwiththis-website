@@ -18,7 +18,7 @@ const HOWLER_PLAYER_TYPE = 'howler';
 
 const SOUNDCLOUD_PLAYERS_ENABLED = true;
 const YOUTUBE_PLAYERS_ENABLED = true;
-const HOWLER_PLAYERS_ENABLED = true;
+const HOWLER_PLAYERS_ENABLED = false;
 
 const getParentPlayerId = i => `song-player-song-${i}`;
 const getYoutubePlayerId = i => `song-list-yt-player-${i}`;
@@ -50,7 +50,7 @@ class AudioManager extends React.Component {
     this.YT = undefined;
     this.activeSongs = {};
     this.songLoadQueue = [];
-    this.loadingSongs = {};
+    this.loadingPlayers = {};
     this.loadedPlayers = {};
     this.activePlayer = undefined;
     this.durationInterval = undefined;
@@ -102,7 +102,7 @@ class AudioManager extends React.Component {
   }
 
   shouldLoadMoreSongs = () =>
-    Object.values(this.loadingSongs).filter(s => !!s).length < MAX_SONG_LOADS &&
+    Object.values(this.loadingPlayers).filter(s => !!s).length < MAX_SONG_LOADS &&
     this.songLoadQueue.length > 0
 
   loadNextPlayers = () => {
@@ -110,8 +110,7 @@ class AudioManager extends React.Component {
       const nextSong = this.songLoadQueue.shift();
 
       if (!!nextSong && this.isSongActive(nextSong) && !this.loadedPlayers[nextSong.id]) {
-        this.loadingSongs[nextSong.id] = nextSong;
-        this.loadedPlayers[nextSong.id] = this.createPlayer(nextSong);
+        this.loadingPlayers[nextSong.id] = this.createPlayer(nextSong);
       }
     }
   }
@@ -147,14 +146,13 @@ class AudioManager extends React.Component {
 
   createYoutubePlayer = (song, playOnLoad) => {
     const playerDiv = this.getCleanPlayerElement('div', song.id);
-    const onReady = this.onPlayerReady(song, playOnLoad);
     const player = new this.YT.Player(playerDiv.id, {
       videoId: this.getYoutubeVideoId(song),
       playerVars: {
         playsinline: 1
       },
       events: {
-        'onReady': onReady,
+        'onReady': this.onPlayerReady(song),
         'onStateChange': this.handleYoutubePlayerStateChange
       }
     });
@@ -173,14 +171,13 @@ class AudioManager extends React.Component {
         })
       ),
       fetchIsPlaying: () => Promise.resolve(player.getPlayerState() === 1),
-      fetchDuration: () => Promise.resolve(player.getDuration()),
+      fetchDuration: () => {
+        console.log("FETCHING DURATION", player.getDuration);
+        return Promise.resolve(player.getDuration());
+      },
       seekTo: ratio => player.seekTo(ratio * player.getDuration(), true),
       unload: () => player.destroy(),
-      setOnReadyHandler: onReady => {
-        // Idk if this will actually work
-        player.removeEventListener('onReady', 'onReady');
-        player.addEventListener('onReady', onReady);
-      }
+      playOnLoad
     };
   }
 
@@ -228,10 +225,7 @@ class AudioManager extends React.Component {
       seekTo: ratio => player.getDuration().then(milis => player.seekTo(ratio * milis)),
       // Idk if this will actually work
       unload: () => playerElement.remove(),
-      setOnReadyHandler: onReady => {
-        player.unbind(SoundCloudWidget.events.READY);
-        player.bind(SoundCloudWidget.events.READY, onReady);
-      }
+      playOnLoad
     };
   }
 
@@ -240,7 +234,7 @@ class AudioManager extends React.Component {
       src: [SONG_BASE_URL + encodeURI(song.song_file_name)],
       html5: true,
       autoplay: false,
-      onload: this.onPlayerReady(song, playOnLoad),
+      onload: this.onPlayerReady(song),
       onend: this.props.onSongEnd,
     })
 
@@ -263,26 +257,25 @@ class AudioManager extends React.Component {
       fetchDuration: () => Promise.resolve(player.duration()),
       seekTo: ratio => player.seek(player.duration() * ratio),
       unload: () => player.unload(),
-      setOnReadyHandler: onReady => {
-        player.off('load');
-        player.on('load', onReady);
-      }
+      playOnLoad
     }
   }
 
-  onPlayerReady = (song, playSong) => () => {
-    if (!!this.loadedPlayers[song.id]) {
-      this.activePlayer = this.activePlayer || this.loadedPlayers[song.id];
-      this.loadedPlayers[song.id].fetchDuration().then(duration => {
-        if (playSong) {
+  onPlayerReady = song => () => {
+    const readyPlayer = this.loadingPlayers[song.id];
+    if (!!readyPlayer) {
+      this.loadedPlayers[song.id] = readyPlayer;
+      this.activePlayer = this.activePlayer || readyPlayer;
+
+      readyPlayer.fetchDuration().then(duration => {
+        if (readyPlayer.playOnLoad) {
           this.props.playSong(song, duration);
         } else {
-          // TODO are we sure we don't need to set this *every* time?
           this.props.setSongDuration(song.id, duration);
         }
       })
     }
-    this.loadingSongs[song.id] = undefined;
+    this.loadingPlayers[song.id] = undefined;
     this.loadNextPlayers();
   }
 
@@ -313,13 +306,20 @@ class AudioManager extends React.Component {
 
   // This does not work w/ embedded media on some browsers
   loadAndPlaySong = song => {
-    if (!!this.loadingSongs[song.id]) {
-      this.loadedPlayers[song.id].setOnReadyHandler(this.onPlayerReady(song, true));
-    }
-    else if (!!this.loadedPlayers[song.id]) {
-      this.onPlayerReady(song, true)();
+
+    if (!!this.loadingPlayers[song.id]) {
+      // song currently being loaded - mark to play automatically when finished
+      this.loadingPlayers[song.id].playOnLoad = true;
+
+    } else if (!!this.loadedPlayers[song.id]) {
+      // song already loaded - add loaded player to loading queue and report as loaded immediately
+      this.loadingPlayers[song.id] = this.loadedPlayers[song.id];
+      this.loadedPlayers[song.id] = undefined;
+      this.onPlayerReady(song)();
+
     } else {
-      this.loadedPlayers[song.id] = this.createPlayer(song, true);
+      // song not started loading - create player that will play on load
+      this.loadingPlayers[song.id] = this.createPlayer(song, true);
     }
   }
 

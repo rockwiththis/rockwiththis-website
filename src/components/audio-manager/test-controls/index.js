@@ -38,11 +38,26 @@ class TestControls extends React.Component {
       return SONG_LOADING;
   }
 
-  playSong = song =>
-    this.getSongStatus(song) === SONG_PAUSED ?
-      this.playPausedSong() :
-      this.playNewSong(song);
+  playSong = song => {
+    console.log("PLAY SONG", song, this.getSongStatus(song))
+    switch(this.getSongStatus(song)) {
+      case SONG_PAUSED:
+        this.playPausedSong();
+        break;
+      case SONG_LOADING:
+        this.audioManagerRef.current.loadAndPlaySong(song);
+        break;
+      case SONG_READY:
+        this.playNewSong(song);
+        break;
+    }
+  }
 
+  reportSongPlaying = song =>
+    this.setState({
+      activeSong: song,
+      isPaused: false
+    })
 
   playPausedSong = () => {
     this.audioManagerRef.current.playActiveSong();
@@ -64,7 +79,6 @@ class TestControls extends React.Component {
   }
 
   playerLoaded = (songId, duration) => {
-    console.log("player loaded", duration)
     this.setState({
       readySongDurations: {
         ...this.state.readySongDurations,
@@ -128,7 +142,7 @@ class TestControls extends React.Component {
           <AudioManager
             setSongDuration={this.playerLoaded}
             setActiveSongProgress={this.setSongProgress}
-            playSong={this.playSong}
+            playSong={this.reportSongPlaying}
             onSongEnd={this.playNextSong}
             ref={this.audioManagerRef}
           />
