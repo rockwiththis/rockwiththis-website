@@ -15,7 +15,7 @@
   .autoplay-error-modal .modal-content {
     position: relative;
     width: 50%;
-    height: 35%;
+    height: 350px;
     background: linear-gradient(to right, #1e0c49, #0097d5);
     margin: auto;
     margin-top: 200px;
@@ -33,3 +33,6 @@
       .autoplay-error-modal .modal-content {
         width: 80%;
         font-size: 16pt; } }
+    @media (max-width: 480px) {
+      .autoplay-error-modal .modal-content {
+        margin-top: 100px; } }

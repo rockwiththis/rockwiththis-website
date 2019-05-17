@@ -10,8 +10,9 @@ const HAS_SHOWN_MODAL_STORAGE_NAME = 'HAS_SHOWN_AUTOPLAY_MODAL';
 
 class AutoplayErrorModal extends React.Component {
 
+
   componentDidUpdate = prevProps => {
-    if (this.shouldDisplayOnUpdate(prevProps.didAutoplayFail)) {
+    if (!prevProps.didAutoplayFail && this.props.didAutoplayFail) {
       INTERACTION_EVENT_TYPES.map(eventType =>
         window.addEventListener(eventType, this.autoplayFailureResolved)
       );
@@ -22,8 +23,9 @@ class AutoplayErrorModal extends React.Component {
     }
   }
 
-  shouldDisplayOnUpdate = prevDidAutoplayFail => {
-    if (prevDidAutoplayFail || !this.props.didAutoplayFail) return false;
+  shouldDisplay = () => {
+    if (this.props.showModalOverride && this.props.didAutoplayFail) return true;
+    if (!this.props.didAutoplayFail) return false;
     if (!window.localStorage) return true;
     if (!!window.localStorage.getItem(HAS_SHOWN_MODAL_STORAGE_NAME)) return false;
 
@@ -34,7 +36,7 @@ class AutoplayErrorModal extends React.Component {
   autoplayFailureResolved = () => this.props.setDidAutoplayFail(false);
 
   render = () => (
-      <div className={`autoplay-error-modal ${!this.props.didAutoplayFail ? 'hidden' : ''}`}>
+      <div className={`autoplay-error-modal ${!this.shouldDisplay() ? 'hidden' : ''}`}>
         <div className="modal-background"></div>
         <div className="modal-content">
           <div className="modal-close"><CloseIcon /></div>
