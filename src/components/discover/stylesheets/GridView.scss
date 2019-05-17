@@ -34,7 +34,7 @@
 
     .songContainer {
       margin: 2px;
-      width: calc(20vw - 4px);
+      width: calc(20vw - 4px) !important;
       height: calc(20vw - 4px);
       padding: 0;
       display: inline-block;
@@ -46,7 +46,7 @@
       }
 
       @media (max-width: 1200px) and (min-width: 800px) {
-        width: calc(25vw - 4px);
+        width: calc(25vw - 4px) !important;
         height: calc(25vw - 4px);
       }
       @media (max-width: 800px) {
@@ -54,7 +54,7 @@
         vertical-align: top;
         padding: 0 0;
         margin: 1px;
-        width: calc(33.333vw - 2px);
+        width: calc(33.333vw - 2px) !important;
         height: calc(33.333vw - 2px);
       }
 
@@ -218,18 +218,20 @@
                 display: none;
               }
 
-              .singlePostPlayerButton {
-                  pointer-events: all;
-                  cursor: pointer;
-                  display: inline-block;
-                  height: 100%;
-                  padding: 5px;
+              .black-single-song-controls {
+                pointer-events: all;
+                cursor: pointer;
+                display: inline-block;
+                height: 100%;
+                padding: 5px;
 
-                  img {
-                      width: 30px;
-                      height: 30px;
-                      border-radius: 0;
-                  }
+                svg, img {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 0;
+                }
+
+
               }
               .song-info {
                   width: calc(100% - 45px);

@@ -8,12 +8,14 @@ import WhitePlayButton from './play';
 
 class WhiteSingleSongControls extends React.Component {
   render = () => (
-    getVisibleButton(
-      this.props,
-      WhitePauseButton,
-      WhiteLoadingButton,
-      WhitePlayButton
-    )
+    <div className="white-single-song-controls">
+      {getVisibleButton(
+        this.props,
+        WhitePauseButton,
+        WhiteLoadingButton,
+        WhitePlayButton
+      )}
+    </div>
   )
 }
 

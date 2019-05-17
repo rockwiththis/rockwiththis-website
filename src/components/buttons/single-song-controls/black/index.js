@@ -8,12 +8,14 @@ import BlackPlayButton from './play';
 
 export class BlackSingleSongControls extends React.Component {
   render = () => (
-    getVisibleButton(
-      this.props,
-      BlackPauseButton,
-      BlackLoadingButton,
-      BlackPlayButton
-    )
+    <div className="black-single-song-controls">
+      {getVisibleButton(
+        this.props,
+        BlackPauseButton,
+        BlackLoadingButton,
+        BlackPlayButton
+      )}
+    </div>
   )
 }
 BlackSingleSongControls.propTypes = propTypes;

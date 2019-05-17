@@ -190,19 +190,18 @@
       .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
         text-align: left;
         margin-bottom: 0px; }
-        .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
-          display: inline-block; }
-          .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton {
-            pointer-events: all;
-            cursor: pointer;
-            padding: 5px;
-            padding-left: 0;
-            height: 60px; }
-            .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
-              transition: all .3s ease;
-              width: 50px;
-              height: 50px;
-              vertical-align: baseline; }
+        .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .white-single-song-controls {
+          display: inline-block;
+          pointer-events: all;
+          cursor: pointer;
+          padding: 5px;
+          padding-left: 0;
+          height: 60px; }
+          .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .white-single-song-controls svg, .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .white-single-song-controls img {
+            transition: all .3s ease;
+            width: 50px;
+            height: 50px;
+            vertical-align: baseline; }
         .fullView .discover-full-song .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo.desktop {
           display: inline-block;
           white-space: nowrap;

@@ -296,23 +296,19 @@
               text-align: left;
               margin-bottom: 0px;
 
-              .singlePostPlayer {
+              .white-single-song-controls {
                 display: inline-block;
-                // height: 50px;
+                pointer-events: all;
+                cursor: pointer;
+                padding: 5px;
+                padding-left: 0;
+                height: 60px;
 
-                .singlePostPlayerButton {
-                  pointer-events: all;
-                  cursor: pointer;
-                  padding: 5px;
-                  padding-left: 0;
-                  height: 60px;
-
-                  svg, img {
-                    transition: all .3s ease;
-                    width: 50px;
-                    height: 50px;
-                    vertical-align: baseline;
-                  }
+                svg, img {
+                  transition: all .3s ease;
+                  width: 50px;
+                  height: 50px;
+                  vertical-align: baseline;
                 }
               }
 

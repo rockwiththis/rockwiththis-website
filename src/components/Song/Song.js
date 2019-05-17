@@ -61,16 +61,13 @@ class Song extends Component {
           <div className="topContentContainer">
 
             <div className="postInfoContainer">
-
-              <div className="singlePostPlayer hideMobile">
-                <WhiteSingleSongControls
-                  isPlaying={this.props.isPlaying}
-                  isActiveSong={this.props.song.id === this.props.activeSong.id}
-                  loadedPlayerDurations={this.props.songPlayerDurations}
-                  pauseSong={() => this.props.pauseSong(this.props.song)}
-                  playSong={() => this.props.playSong(this.props.song)}
-                />
-              </div>
+              <WhiteSingleSongControls
+                isPlaying={this.props.isPlaying}
+                isActiveSong={this.props.song.id === this.props.activeSong.id}
+                loadedPlayerDurations={this.props.songPlayerDurations}
+                pauseSong={() => this.props.pauseSong(this.props.song)}
+                playSong={() => this.props.playSong(this.props.song)}
+              />
 
               <div className="songInfo mobile">
                 <Link to={`/songs/${song.id}`}>
