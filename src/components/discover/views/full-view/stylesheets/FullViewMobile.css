@@ -52,7 +52,7 @@
             .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
               text-align: left;
               height: 55px; }
-              .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .white-single-song-controls {
+              .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .outline-single-song-controls {
                 display: none; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo {
                 width: calc(100% - 40px);
