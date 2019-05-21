@@ -94,6 +94,13 @@ class AppContainer extends Component {
     if (isAutoplay) setTimeout(this.checkAutoplayStatus, AUTOPLAY_CHECK_INTERVAL);
   }
 
+  findPreviousSong = () => {
+    const prevIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) - 1;
+    if (prevIndex < 0) return null;
+
+    return this.props.filteredPosts[prevIndex];
+  }
+
   checkAutoplayStatus = () =>
     this.audioManagerRef.current.fetchIsActivePlayerPlaying().then(isPlaying => {
       if (!isPlaying) this.props.autoplayDidFail();
@@ -117,6 +124,7 @@ class AppContainer extends Component {
           <FooterAudioPlayer
             onProgressUpdate={this.handleProgressUpdate}
             playNextSong={this.playNextSong()}
+            previousSong={this.findPreviousSong()}
             {...this.props}
           />
           {

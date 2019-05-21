@@ -141,23 +141,20 @@ footer {
         @media screen and (max-width: 650px) {
           footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons button#player-control-button-back, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons button#player-control-button-next {
             display: none; } }
-      footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play {
-        border-radius: 50%;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11);
-        flex: 0 0 40px;
-        align-items: center;
-        justify-content: center;
-        margin: 0 20px;
-        text-align: center; }
-        @media screen and (max-width: 480px) {
-          footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play {
+      footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls {
+        text-align: center;
+        cursor: pointer;
+        font-size: 18px;
+        margin: 0 20px; }
+        @media (max-width: 480px) {
+          footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls {
             margin: 0 0px; } }
-        footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play img {
-          fill: #fff; }
-          @media screen and (max-width: 480px) {
-            footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons #player-control-button-play img {
-              height: 40px;
-              width: 40px;
+        footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls img {
+          fill: #fff;
+          width: 40px;
+          height: 40px; }
+          @media (max-width: 480px) {
+            footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls img {
               padding: 5px; } }
       footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .player-control-button {
         background-repeat: no-repeat;

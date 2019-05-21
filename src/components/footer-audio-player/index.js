@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css';
 
-import { toggleSong, togglePlayPause } from 'actions/queue';
+import { playSong, pauseSong } from 'actions/player';
+
+import WhiteSingleSongControls from 'components/buttons/single-song-controls/white';
 
 import playButton from 'images/main-player-play-button.svg';
 import pauseButton from 'images/pauseButton-main-player-new.png';
@@ -22,6 +25,12 @@ const formatTime = (seconds = 0) => {
 // TODO propTypes
 
 class FooterAudioPlayer extends Component {
+
+  static propTypes = {
+    previousSong: PropTypes.object,
+    onProgressUpdate: PropTypes.func.isRequired,
+    playNextSong: PropTypes.func.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -60,7 +69,7 @@ class FooterAudioPlayer extends Component {
           <p className="artist-info">
             <Link className="songImageLink" to={`/songs/${activeSong.id}`}>
                 <span className="song-title">{activeSong.name}</span>
-            </Link> 
+            </Link>
             <span className="artist-title">{activeSong.artist_name}</span>
           </p>
         </div>
@@ -93,13 +102,13 @@ class FooterAudioPlayer extends Component {
               <i className="im im-previous"></i>
             </button>
 
-            <div
-              id="player-control-button-play"
-              className="player-control-button"
-              onClick={this.updateStorePlayPause}
-            >
-              {playPauseButton}
-            </div>
+            <WhiteSingleSongControls
+              isPlaying={this.props.isPlaying}
+              isActiveSong={true}
+              loadedPlayerDurations={this.props.songPlayerDurations}
+              pauseSong={() => this.props.pauseSong(this.props.activeSong)}
+              playSong={() => this.props.playSong(this.props.activeSong)}
+            />
 
             <button
               id="player-control-button-next"
@@ -211,4 +220,15 @@ class FooterAudioPlayer extends Component {
   }
 }
 
-export default FooterAudioPlayer;
+export default connect(
+  ({
+    isPlaying,
+    activeSong,
+    songPlayerDurations
+  }) => ({
+    isPlaying,
+    activeSong,
+    songPlayerDurations
+  }),
+  { playSong, pauseSong }
+)(FooterAudioPlayer);

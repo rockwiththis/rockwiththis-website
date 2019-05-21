@@ -230,11 +230,6 @@ a.spotifyLink {
   clear: both;
   display: table; }
 
-.playButton, .pauseButton {
-  transition: all 0.3s ease;
-  width: 50px;
-  height: 50px; }
-
 @media (min-width: 800px) {
   .songList {
     display: none; }
