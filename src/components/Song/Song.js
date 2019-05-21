@@ -30,161 +30,165 @@ const propTypes = {
 
 class Song extends Component {
 
-    // Current loading animation behavior (kind of) ... keeping around for reference
-    isLoading = () =>
-      this.props.nextSong &&
-      this.props.song.id === this.props.nextSong.id
+  isThisSongPlaying = () =>
+    this.props.isPlaying &&
+    this.props.song.id === this.props.activeSong.id
 
-    renderTags = (className = 'tag') => (
-      <span className="postTags">
-        { this.props.song.sub_genres.map(genre => (
+  // Current loading animation behavior (kind of) ... keeping around for reference
+  isLoading = () =>
+    this.props.nextSong &&
+    this.props.song.id === this.props.nextSong.id
 
-            <span key={genre.name} className={className}>{genre.name}</span>
-        ))}
-      </span>
-    );
+  renderTags = (className = 'tag') => (
+    <span className="postTags">
+      { this.props.song.sub_genres.map(genre => (
 
-    renderHoverTags = () => this.renderTags('hover-tag');
+          <span key={genre.name} className={className}>{genre.name}</span>
+      ))}
+    </span>
+  );
 
-    // TODO eliminate duplicate @ SingleSong.js
-    parsedDescription = song =>
-      song.description.replace(/\n+/g, '<br />  ')
+  renderHoverTags = () => this.renderTags('hover-tag');
 
-    renderTop() {
-      const { song } = this.props;
+  // TODO eliminate duplicate @ SingleSong.js
+  parsedDescription = song =>
+    song.description.replace(/\n+/g, '<br />  ')
 
-      return (
-          <div className="topContentContainer">
+  renderTop() {
+    const { song } = this.props;
 
-            <div className="postInfoContainer">
-              <OutlineSingleSongControls
-                isPlaying={this.props.isPlaying}
-                isActiveSong={this.props.song.id === this.props.activeSong.id}
-                loadedPlayerDurations={this.props.songPlayerDurations}
-                pauseSong={() => this.props.pauseSong(this.props.song)}
-                playSong={() => this.props.playSong(this.props.song)}
-              />
+    return (
+        <div className="topContentContainer">
 
-              <div className="songInfo mobile">
-                <Link to={`/songs/${song.id}`}>
-                  <div className="postTitleLink">
-                    <span className="songName">{song.name}</span>
-                  </div>
-                  <span className="artistName">{song.artist_name}</span>
+          <div className="postInfoContainer">
+            <OutlineSingleSongControls
+              isPlaying={this.props.isPlaying}
+              isActiveSong={this.props.song.id === this.props.activeSong.id}
+              loadedPlayerDurations={this.props.songPlayerDurations}
+              pauseSong={() => this.props.pauseSong(this.props.song)}
+              playSong={() => this.props.playSong(this.props.song)}
+            />
+
+            <div className="songInfo mobile">
+              <Link to={`/songs/${song.id}`}>
+                <div className="postTitleLink">
+                  <span className="songName">{song.name}</span>
+                </div>
+                <span className="artistName">{song.artist_name}</span>
+              </Link>
+            </div>
+
+            <div className="songInfo desktop">
+              <div className="songtitle">
+                <Link className="songName postTitleLink" to={`/songs/${song.id}`}>
+                  {song.name}
                 </Link>
+                <a target="_blank" href={song.spotify_link} className="spotify">
+                  <i className="fa fa-spotify" aria-hidden="true" />
+                </a>
               </div>
 
-              <div className="songInfo desktop">
-                <div className="songtitle">
-                  <Link className="songName postTitleLink" to={`/songs/${song.id}`}>
-                    {song.name}
-                  </Link>
-                  <a target="_blank" href={song.spotify_link} className="spotify">
-                    <i className="fa fa-spotify" aria-hidden="true" />
-                  </a>
-                </div>
-
-                <div className="artist">
-                  <span className="artistName">{song.artist_name}</span>
-                </div>
+              <div className="artist">
+                <span className="artistName">{song.artist_name}</span>
               </div>
+            </div>
 
-              <p className="metaInfo">
-                <p className="leftInfo desktop">
-                  <span className="postAuthor">
-                    <span className="curatedBy">Curated by </span>
-                    <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span>
-                  </span>
-                  &nbsp;
-                  <span className="separater">|</span>
-                </p>
-                <p className="leftInfo mobile">
-                  <span className="postAuthor">
-                    <span className="curatedBy">Curated by </span>
-                    <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span>
-                  </span>
-                  &nbsp;
-                  <span className="separater">|</span>
-                </p>
-
-                {this.renderTags()}
-
-                <ShareBox song={song} />
+            <p className="metaInfo">
+              <p className="leftInfo desktop">
+                <span className="postAuthor">
+                  <span className="curatedBy">Curated by </span>
+                  <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span>
+                </span>
+                &nbsp;
+                <span className="separater">|</span>
+              </p>
+              <p className="leftInfo mobile">
+                <span className="postAuthor">
+                  <span className="curatedBy">Curated by </span>
+                  <span className="curatorName">{`${song.curator_first_name} ${song.curator_last_name}`}</span>
+                </span>
+                &nbsp;
+                <span className="separater">|</span>
               </p>
 
-            </div>
+              {this.renderTags()}
 
-            <div className="bottomContentContainer">
-              <p
-                className="songDescription"
-                dangerouslySetInnerHTML={{ __html: this.parsedDescription(song) }}
-              />
-            </div>
+              <ShareBox song={song} />
+            </p>
 
           </div>
-      )
-    }
 
-    render() {
-      const { song } = this.props;
+          <div className="bottomContentContainer">
+            <p
+              className="songDescription"
+              dangerouslySetInnerHTML={{ __html: this.parsedDescription(song) }}
+            />
+          </div>
 
-      return (
-          <div id={song.slug} className="songContainer clearfix" key={`${song.id}`}>
+        </div>
+    )
+  }
 
-            <div className="wrapper">
-              <div className="postContent" >
+  render() {
+    const { song } = this.props;
 
-                <div className="imageContainer">
+    return (
+        <div id={song.slug} className="songContainer clearfix" key={`${song.id}`}>
 
-                  <Link className="song-hover-link" to={`/songs/${song.id}`}>
-                    <div className="hover-content">
-                      <div className="tagWrapper">
-                        {this.renderHoverTags()}
-                      </div>
-                      <p className="goToPage">Read More</p>
+          <div className="wrapper">
+            <div className="postContent" >
+
+              <div className="imageContainer">
+
+                <Link className="song-hover-link" to={`/songs/${song.id}`}>
+                  <div className="hover-content">
+                    <div className="tagWrapper">
+                      {this.renderHoverTags()}
                     </div>
-
-                    <img className="heroHoverGradient" src={hoverGradient} />
-                  </Link>
-
-                  <img className="songImage" src={song.image_url} />
-
-                  <div className="songImageInfoContainer grid">
-                    <BadgeSingleSongControls
-                      isPlaying={this.props.isPlaying}
-                      isActiveSong={this.props.song.id === this.props.activeSong.id}
-                      loadedPlayerDurations={this.props.songPlayerDurations}
-                      pauseSong={() => this.props.pauseSong(this.props.song)}
-                      playSong={() => this.props.playSong(this.props.song)}
-                    />
-
-                    <div className="song-info">
-                      <p className="song-title">{song.name}</p>
-                      <p className="song-artist">{song.artist_name}</p>
-                    </div>
+                    <p className="goToPage">Read More</p>
                   </div>
 
+                  <img className="heroHoverGradient" src={hoverGradient} />
+                </Link>
+
+                <img className="songImage" src={song.image_url} />
+
+                <div className="songImageInfoContainer grid">
+                  <BadgeSingleSongControls
+                    isPlaying={this.props.isPlaying}
+                    isActiveSong={this.props.song.id === this.props.activeSong.id}
+                    loadedPlayerDurations={this.props.songPlayerDurations}
+                    pauseSong={() => this.props.pauseSong(this.props.song)}
+                    playSong={() => this.props.playSong(this.props.song)}
+                  />
+
+                  <div className="song-info">
+                    <p className="song-title">{song.name}</p>
+                    <p className="song-artist">{song.artist_name}</p>
+                  </div>
                 </div>
 
-                {this.renderTop()}
-
               </div>
+
+              {this.renderTop()}
+
             </div>
-
-            <Link className="goToSongPage" to={`/songs/${song.id}`}>
-              <i className="im im-angle-right"></i>
-            </Link>
-
-            <Link className="seeMore" to={`/songs/${song.id}`}>
-              <span>...see more</span>
-              <i className="im im-angle-right"></i>
-            </Link>
-
-            <hr />
-
           </div>
-      )
-    }
+
+          <Link className="goToSongPage" to={`/songs/${song.id}`}>
+            <i className="im im-angle-right"></i>
+          </Link>
+
+          <Link className="seeMore" to={`/songs/${song.id}`}>
+            <span>...see more</span>
+            <i className="im im-angle-right"></i>
+          </Link>
+
+          <hr />
+
+        </div>
+    )
+  }
 }
 
 Song.propTypes = propTypes;
