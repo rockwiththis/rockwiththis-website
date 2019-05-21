@@ -5,8 +5,7 @@ import Moment from 'react-moment'
 import YouTube from 'react-youtube'
 
 import head from 'images/head.png'
-import  pauseButton  from 'images/PAUSE-BUTTON.png'
-import  playButton  from 'images/playbutton.svg'
+
 import './SongGridSquare.scss'
 
 const propTypes = {

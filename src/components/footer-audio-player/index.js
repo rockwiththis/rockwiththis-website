@@ -10,16 +10,14 @@ import { playSong, pauseSong } from 'actions/player';
 
 import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
 
-import playButton from 'images/main-player-play-button.svg';
-import pauseButton from 'images/pauseButton-main-player-new.png';
 import soundCloudImage from 'images/soundcloud-darker.png';
 
 import './footer-audio-player.scss';
 
 const formatTime = (seconds = 0) => {
-    const numMinutes = Math.floor(seconds / 60)
-    const numSeconds = (Math.floor(seconds % 60)).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
-    return `${numMinutes}:${numSeconds}`
+  const numMinutes = Math.floor(seconds / 60)
+  const numSeconds = (Math.floor(seconds % 60)).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
+  return `${numMinutes}:${numSeconds}`
 }
 
 class FooterAudioPlayer extends Component {
