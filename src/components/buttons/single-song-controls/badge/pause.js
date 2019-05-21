@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import pauseButton from 'images/pauseButton.png';
 
-const propTypes = {
-  pauseSong: PropTypes.func.isRequired
-}
+class BadgePauseButton extends React.Component {
 
-class BlackPauseButton extends React.Component {
+  static propTypes = {
+    pauseSong: PropTypes.func.isRequired
+  }
+
   render = () => (
     <img
       src={pauseButton}
@@ -17,6 +18,4 @@ class BlackPauseButton extends React.Component {
   );
 }
 
-BlackPauseButton.propTypes = propTypes;
-
-export default BlackPauseButton;
+export default BadgePauseButton;

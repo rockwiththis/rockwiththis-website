@@ -232,7 +232,6 @@
     overflow-y: scroll;
     width: 100%;
 
-
     // Hide scrollbar
     scrollbar-width: none;                /* Firefox */
     -ms-overflow-style: none;             /* IE 10+ */
@@ -296,7 +295,7 @@
               text-align: left;
               margin-bottom: 0px;
 
-              .white-single-song-controls {
+              .outline-single-song-controls {
                 display: inline-block;
                 pointer-events: all;
                 cursor: pointer;

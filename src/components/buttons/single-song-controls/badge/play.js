@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import playButton from 'images/playbutton.svg';
 
-const propTypes = {
-  playSong: PropTypes.func.isRequired
-}
+class BadgePlayButton extends React.Component {
 
-class BlackPlayButton extends React.Component {
+  static propTypes = {
+    playSong: PropTypes.func.isRequired
+  }
+
   render = () => (
     <img
       src={playButton}
@@ -17,6 +18,4 @@ class BlackPlayButton extends React.Component {
   );
 }
 
-BlackPlayButton.propTypes = propTypes;
-
-export default BlackPlayButton;
+export default BadgePlayButton;

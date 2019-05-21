@@ -10,8 +10,8 @@ import ShareBox from 'components/ShareBox/ShareBox'
 
 import { playSong, pauseSong } from 'actions/player';
 
-import WhiteSingleSongControls from 'components/buttons/single-song-controls/white';
-import BlackSingleSongControls from 'components/buttons/single-song-controls/black';
+import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
+import BadgeSingleSongControls from 'components/buttons/single-song-controls/badge';
 
 import hoverGradient from 'images/hero-hover-gradient.png'
 
@@ -57,7 +57,7 @@ class Song extends Component {
           <div className="topContentContainer">
 
             <div className="postInfoContainer">
-              <WhiteSingleSongControls
+              <OutlineSingleSongControls
                 isPlaying={this.props.isPlaying}
                 isActiveSong={this.props.song.id === this.props.activeSong.id}
                 loadedPlayerDurations={this.props.songPlayerDurations}
@@ -150,7 +150,7 @@ class Song extends Component {
                   <img className="songImage" src={song.image_url} />
 
                   <div className="songImageInfoContainer grid">
-                    <BlackSingleSongControls
+                    <BadgeSingleSongControls
                       isPlaying={this.props.isPlaying}
                       isActiveSong={this.props.song.id === this.props.activeSong.id}
                       loadedPlayerDurations={this.props.songPlayerDurations}

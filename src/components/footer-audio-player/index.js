@@ -8,7 +8,7 @@ import 'rc-slider/assets/index.css';
 
 import { playSong, pauseSong } from 'actions/player';
 
-import WhiteSingleSongControls from 'components/buttons/single-song-controls/white';
+import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
 
 import playButton from 'images/main-player-play-button.svg';
 import pauseButton from 'images/pauseButton-main-player-new.png';
@@ -102,7 +102,8 @@ class FooterAudioPlayer extends Component {
               <i className="im im-previous"></i>
             </button>
 
-            <WhiteSingleSongControls
+            <OutlineSingleSongControls
+              isWhite={true}
               isPlaying={this.props.isPlaying}
               isActiveSong={true}
               loadedPlayerDurations={this.props.songPlayerDurations}

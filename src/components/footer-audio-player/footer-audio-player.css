@@ -141,20 +141,19 @@ footer {
         @media screen and (max-width: 650px) {
           footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons button#player-control-button-back, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons button#player-control-button-next {
             display: none; } }
-      footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls {
+      footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .outline-single-song-controls {
         text-align: center;
         cursor: pointer;
         font-size: 18px;
         margin: 0 20px; }
         @media (max-width: 480px) {
-          footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls {
+          footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .outline-single-song-controls {
             margin: 0 0px; } }
-        footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls img {
-          fill: #fff;
+        footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .outline-single-song-controls svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .outline-single-song-controls img {
           width: 40px;
           height: 40px; }
           @media (max-width: 480px) {
-            footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .white-single-song-controls img {
+            footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .outline-single-song-controls svg, footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .outline-single-song-controls img {
               padding: 5px; } }
       footer .footer-player .player-controls-wrapper .player-controls .player-controls-buttons .player-control-button {
         background-repeat: no-repeat;

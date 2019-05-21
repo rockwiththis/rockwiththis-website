@@ -167,13 +167,13 @@
       @media (max-width: 800px) {
         .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid {
           display: none; } }
-      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .black-single-song-controls {
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .badge-single-song-controls {
         pointer-events: all;
         cursor: pointer;
         display: inline-block;
         height: 100%;
         padding: 5px; }
-        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .black-single-song-controls svg, .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .black-single-song-controls img {
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .badge-single-song-controls svg, .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .badge-single-song-controls img {
           width: 30px;
           height: 30px;
           border-radius: 0; }
