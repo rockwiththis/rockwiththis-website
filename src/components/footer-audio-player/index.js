@@ -22,14 +22,19 @@ const formatTime = (seconds = 0) => {
     return `${numMinutes}:${numSeconds}`
 }
 
-// TODO propTypes
-
 class FooterAudioPlayer extends Component {
 
   static propTypes = {
-    previousSong: PropTypes.object,
     onProgressUpdate: PropTypes.func.isRequired,
-    playNextSong: PropTypes.func.isRequired
+    playNextSong: PropTypes.func.isRequired,
+    previousSong: PropTypes.object,
+
+    // Redux
+    isPlaying: PropTypes.bool.isRequired,
+    activeSong: PropTypes.object.isRequired,
+    songPlayerDurations: PropTypes.object.isRequired,
+    playSong: PropTypes.func.isRequired,
+    pauseSong: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -45,14 +50,9 @@ class FooterAudioPlayer extends Component {
     this.props.actions.togglePlayPause(!this.props.isPlaying)
   }
 
-  playPreviousSong = () => {
-    this.props.filteredPosts.forEach((post, i, arr) => {
-      if (post.id === this.props.activeSong.id) {
-        const queuePosition = i - 1
-        this.props.actions.toggleSong(arr[queuePosition])
-      }
-    })
-  }
+  playPreviousSong = () =>
+    this.props.previousSong &&
+    this.props.playSong(this.props.previousSong)
 
   renderInfo = () => {
     const { activeSong } = this.props;
@@ -80,23 +80,14 @@ class FooterAudioPlayer extends Component {
   renderButtons = () => {
     const { activeSong } = this.props;
 
-    const playPauseButton = this.props.isPlaying
-      ? <img src={pauseButton} className="pause-main"/>
-      : <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>;
-
-    const disableBack = (
-      this.props.filteredPosts[0] &&
-      this.props.filteredPosts[0].id === this.props.activeSong.id
-    );
-
     return (
         <div className="player-controls">
 
           <div className="player-controls-buttons">
             <button
-              disabled={disableBack}
+              disabled={!this.props.previousSong}
               id="player-control-button-back"
-              className={`player-control-button ${disableBack ? 'disabled' : ''}`}
+              className={`player-control-button ${!this.props.previousSong ? 'disabled' : ''}`}
               onClick={this.playPreviousSong}
             >
               <i className="im im-previous"></i>
