@@ -30,10 +30,6 @@ const propTypes = {
 
 class Song extends Component {
 
-  isThisSongPlaying = () =>
-    this.props.isPlaying &&
-    this.props.song.id === this.props.activeSong.id
-
   // Current loading animation behavior (kind of) ... keeping around for reference
   isLoading = () =>
     this.props.nextSong &&
