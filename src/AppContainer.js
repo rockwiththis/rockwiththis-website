@@ -68,14 +68,17 @@ class AppContainer extends Component {
       const currActiveSongs = uniqBy(
         [
           this.props.activeSong,
+          this.props.singleSong,
           ...this.props.heroPosts,
           ...this.props.filteredPosts,
-          this.props.spotlightPost,
-          this.props.singleSong
+          this.props.spotlightPost
         ].filter(s => !!s && !!s.id),
         song => song.id
       );
-      this.audioManagerRef.current.setActiveSongs(currActiveSongs);
+      this.audioManagerRef.current.setActiveSongs(
+        currActiveSongs,
+        [this.props.singleSong]
+      );
       this.props.actions.playerBankUpdated();
     }
   };

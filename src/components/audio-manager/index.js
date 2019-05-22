@@ -70,23 +70,28 @@ class AudioManager extends React.Component {
 
   isSongLoadedOrLoading = song =>
     !!find(this.songLoadQueue, ['id', song.id]) ||
-    !!this.loadedPlayers[song.id]
+    !!this.loadedPlayers[song.id] ||
+    !!this.loadingPlayers[song.id]
 
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
-  setActiveSongs = songs => {
+  setActiveSongs = (songs, prioritySongs = []) => {
 
     // If youtube iframe api has not yet loaded, wait to load songs until ready
     if (!this.YT && YOUTUBE_PLAYERS_ENABLED) {
       this.youtubeReadyCallback = () => {
         this.YT = window.YT;
-        this.setActiveSongs(songs)
+        this.setActiveSongs(songs, prioritySongs);
       };
       return;
     }
 
     this.activeSongs = {};
-    songs.forEach((song, i) => {
+    prioritySongs.forEach(song => {
+      this.activeSongs[song.id] = song;
+      if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.unshift(song);
+    })
+    songs.forEach(song => {
       this.activeSongs[song.id] = song;
       if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.push(song);
     })
