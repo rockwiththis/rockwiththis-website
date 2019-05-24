@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 import blackLoadingButton from 'images/Loading_Icon_2_5.gif';
-// TODO replace me
-import whiteLoadingButton from 'images/Loading_Icon_2_5.gif';
+import whiteLoadingButton from 'images/Music-1.8s-200px.gif';
 
 class OutlineLoadingButton extends React.Component {
 
