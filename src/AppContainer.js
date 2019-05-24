@@ -65,23 +65,41 @@ class AppContainer extends Component {
     }
 
     if (this.props.shouldLoadPlayers) {
-      const currActiveSongs = uniqBy(
-        [
-          this.props.activeSong,
-          this.props.singleSong,
-          ...this.props.heroPosts,
-          ...this.props.filteredPosts,
-          this.props.spotlightPost
-        ].filter(s => !!s && !!s.id),
-        song => song.id
-      );
       this.audioManagerRef.current.setActiveSongs(
-        currActiveSongs,
-        [this.props.singleSong]
+        this.getActiveSongs(),
+        this.getPrioritySongs()
+      );
+      this.props.actions.playerBankUpdated();
+    }
+
+    if (this.props.shouldPrioritizePlayers) {
+      this.audioManagerRef.current.prioritizeAndLoadSongs(
+        this.getPrioritySongs()
       );
       this.props.actions.playerBankUpdated();
     }
   };
+
+  getActiveSongs = () =>
+    uniqBy(
+      [
+        this.props.activeSong,
+        this.props.singleSong,
+        ...this.props.heroPosts,
+        ...this.props.filteredPosts,
+        this.props.spotlightPost
+      ].filter(s => !!s && !!s.id),
+      song => song.id
+    );
+
+  getPrioritySongs = () =>
+    uniqBy(
+      [
+        this.props.singleSong,
+        this.props.spotlightPost
+      ].filter(s => !!s && !!s.id),
+      song => song.id
+    );
 
   playNextSong = (isAutoplay = false) => () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;

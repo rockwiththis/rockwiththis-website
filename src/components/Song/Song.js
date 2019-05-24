@@ -59,10 +59,10 @@ class Song extends Component {
           <div className="postInfoContainer">
             <OutlineSingleSongControls
               isPlaying={this.props.isPlaying}
-              isActiveSong={this.props.song.id === this.props.activeSong.id}
-              loadedPlayerDurations={this.props.songPlayerDurations}
-              pauseSong={() => this.props.pauseSong(this.props.song)}
-              playSong={() => this.props.playSong(this.props.song)}
+              isActiveSong={song.id === this.props.activeSong.id}
+              isLoading={!this.props.songPlayerDurations[song.id]}
+              pauseSong={() => this.props.pauseSong(song)}
+              playSong={() => this.props.playSong(song)}
             />
 
             <div className="songInfo mobile">
@@ -153,7 +153,7 @@ class Song extends Component {
                   <BadgeSingleSongControls
                     isPlaying={this.props.isPlaying}
                     isActiveSong={this.props.song.id === this.props.activeSong.id}
-                    loadedPlayerDurations={this.props.songPlayerDurations}
+                    isLoading={!this.props.songPlayerDurations[this.props.song.id]}
                     pauseSong={() => this.props.pauseSong(this.props.song)}
                     playSong={() => this.props.playSong(this.props.song)}
                   />

@@ -28,7 +28,7 @@ class HeroSong extends Component {
       <BadgeSingleSongControls
         isPlaying={this.props.isPlaying}
         isActiveSong={this.isSongActive()}
-        loadedPlayerDurations={this.props.songPlayerDurations}
+        isLoading={!this.props.songPlayerDurations[this.props.song.id]}
         pauseSong={() => this.props.pauseSong(this.props.song)}
         playSong={() => this.props.playSong(this.props.song)}
       />

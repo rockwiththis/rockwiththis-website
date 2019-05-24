@@ -87,10 +87,6 @@ class AudioManager extends React.Component {
     }
 
     this.activeSongs = {};
-    prioritySongs.forEach(song => {
-      this.activeSongs[song.id] = song;
-      if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.unshift(song);
-    })
     songs.forEach(song => {
       this.activeSongs[song.id] = song;
       if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.push(song);
@@ -99,11 +95,22 @@ class AudioManager extends React.Component {
     this.loadNextPlayers();
 
     Object.keys(this.loadedPlayers).forEach(songId => {
-      if (!!this.loadedPlayers[songId] && !find(songs, ['id', parseInt(songId)])) {
+      if (!this.activeSongs[parseInt(songId)]) {
         this.loadedPlayers[songId].unload();
         this.loadedPlayers[songId] = undefined;
       }
     })
+  }
+
+  prioritizeSongs = songs =>
+    songs.forEach(song => {
+      this.activeSongs[song.id] = song;
+      if (!this.isSongLoadedOrLoading(song)) this.songLoadQueue.unshift(song);
+    });
+
+  prioritizeAndLoadSongs = songs => {
+    this.prioritizeSongs(songs);
+    this.loadNextPlayers();
   }
 
   shouldLoadMoreSongs = () =>

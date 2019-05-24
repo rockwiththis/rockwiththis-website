@@ -9,7 +9,8 @@ export default {
 
     return {
       ...state,
-      spotlightPost: action.payload.newSpotlightSong
+      spotlightPost: action.payload.newSpotlightSong,
+      shouldPrioritizePlayers: true
     };
   },
 

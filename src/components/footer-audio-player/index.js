@@ -95,7 +95,7 @@ class FooterAudioPlayer extends Component {
               isWhite={true}
               isPlaying={this.props.isPlaying}
               isActiveSong={true}
-              loadedPlayerDurations={this.props.songPlayerDurations}
+              isLoading={!this.props.songPlayerDurations[this.props.activeSong.id]}
               pauseSong={() => this.props.pauseSong(this.props.activeSong)}
               playSong={() => this.props.playSong(this.props.activeSong)}
             />

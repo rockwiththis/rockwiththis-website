@@ -48,7 +48,7 @@ class SingleSong extends Component {
       <OutlineSingleSongControls
         isPlaying={this.props.isPlaying}
         isActiveSong={this.props.singleSong.id === this.props.activeSong.id}
-        loadedPlayerDurations={this.props.songPlayerDurations}
+        isLoading={!this.props.songPlayerDurations[this.props.singleSong.id]}
         pauseSong={() => this.props.pauseSong(this.props.singleSong)}
         playSong={() => this.props.playSong(this.props.singleSong)}
       />
