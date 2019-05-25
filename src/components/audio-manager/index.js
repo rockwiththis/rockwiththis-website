@@ -183,10 +183,7 @@ class AudioManager extends React.Component {
         })
       ),
       fetchIsPlaying: () => Promise.resolve(player.getPlayerState() === 1),
-      fetchDuration: () => {
-        console.log("FETCHING DURATION", player.getDuration);
-        return Promise.resolve(player.getDuration());
-      },
+      fetchDuration: () => Promise.resolve(player.getDuration()),
       seekTo: ratio => player.seekTo(ratio * player.getDuration(), true),
       unload: () => player.destroy(),
       playOnLoad
