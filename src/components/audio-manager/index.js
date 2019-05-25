@@ -95,7 +95,7 @@ class AudioManager extends React.Component {
     this.loadNextPlayers();
 
     Object.keys(this.loadedPlayers).forEach(songId => {
-      if (!this.activeSongs[parseInt(songId)]) {
+      if (!!this.loadedPlayers[songId] && !this.activeSongs[parseInt(songId)]) {
         this.loadedPlayers[songId].unload();
         this.loadedPlayers[songId] = undefined;
       }
