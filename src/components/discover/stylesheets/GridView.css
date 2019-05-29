@@ -9,7 +9,9 @@
 @media (min-width: 800px) {
   .fullGridLayout .songList {
     display: block;
-    text-align: left; } }
+    text-align: left;
+    max-width: 1400px;
+    margin: 0 auto; } }
 
 @media (max-width: 800px) {
   .fullGridLayout .songList {
@@ -17,7 +19,7 @@
 
 .fullGridLayout .songList .songContainer {
   margin: 2px;
-  width: calc(20vw - 4px);
+  width: calc(20vw - 4px) !important;
   height: calc(20vw - 4px);
   padding: 0;
   display: inline-block;
@@ -27,7 +29,7 @@
     display: none; }
   @media (max-width: 1200px) and (min-width: 800px) {
     .fullGridLayout .songList .songContainer {
-      width: calc(25vw - 4px);
+      width: calc(25vw - 4px) !important;
       height: calc(25vw - 4px); } }
   @media (max-width: 800px) {
     .fullGridLayout .songList .songContainer {
@@ -35,7 +37,7 @@
       vertical-align: top;
       padding: 0 0;
       margin: 1px;
-      width: calc(33.333vw - 2px);
+      width: calc(33.333vw - 2px) !important;
       height: calc(33.333vw - 2px); } }
   @media (max-width: 800px) {
     .fullGridLayout .songList .songContainer .wrapper {
@@ -165,13 +167,13 @@
       @media (max-width: 800px) {
         .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid {
           display: none; } }
-      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton {
+      .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .badge-single-song-controls {
         pointer-events: all;
         cursor: pointer;
         display: inline-block;
         height: 100%;
         padding: 5px; }
-        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .singlePostPlayerButton img {
+        .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .badge-single-song-controls svg, .fullGridLayout .songList .songContainer .wrapper .postContent .imageContainer .songImageInfoContainer.grid .badge-single-song-controls img {
           width: 30px;
           height: 30px;
           border-radius: 0; }

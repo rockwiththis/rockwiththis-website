@@ -342,17 +342,6 @@ a.spotifyLink {
   clear: both;
   display: table; }
 
-
-  .playButton, .pauseButton {
-    // display: flex !important;
-    transition: all 0.3s ease;
-    width: 50px;
-    height: 50px;
-    // margin-top: 5px;
-
-  }
-
-
 @media (min-width: 800px) {
 
   .songList {
@@ -371,15 +360,6 @@ a.spotifyLink {
   }
 }
 }
-
-
-@media(max-width: 800px) {
-  img.main.playButton {
-    max-width: 40px !important;
-    max-height: 40px !important;
-}
-}
-
 
 button {
   padding: 0;

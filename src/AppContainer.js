@@ -15,7 +15,6 @@ import SocialLinks from 'components/SocialLinks/SocialLinks.js';
 import Header from 'components/Header/Header.js';
 import FooterAudioPlayer from 'components/footer-audio-player';
 import AudioManager from 'components/audio-manager';
-import AutoplayErrorModal from 'components/autoplay-error-modal';
 
 const propTypes = {
   // Redux
@@ -66,20 +65,41 @@ class AppContainer extends Component {
     }
 
     if (this.props.shouldLoadPlayers) {
-      const currActiveSongs = uniqBy(
-        [
-          this.props.activeSong,
-          ...this.props.heroPosts,
-          ...this.props.filteredPosts,
-          this.props.spotlightPost,
-          this.props.singleSong
-        ].filter(s => !!s && !!s.id),
-        song => song.id
+      this.audioManagerRef.current.setActiveSongs(
+        this.getActiveSongs(),
+        this.getPrioritySongs()
       );
-      this.audioManagerRef.current.setActiveSongs(currActiveSongs);
+      this.props.actions.playerBankUpdated();
+    }
+
+    if (this.props.shouldPrioritizePlayers) {
+      this.audioManagerRef.current.prioritizeAndLoadSongs(
+        this.getPrioritySongs()
+      );
       this.props.actions.playerBankUpdated();
     }
   };
+
+  getActiveSongs = () =>
+    uniqBy(
+      [
+        this.props.activeSong,
+        this.props.singleSong,
+        ...this.props.heroPosts,
+        ...this.props.filteredPosts,
+        this.props.spotlightPost
+      ].filter(s => !!s && !!s.id),
+      song => song.id
+    );
+
+  getPrioritySongs = () =>
+    uniqBy(
+      [
+        this.props.singleSong,
+        this.props.spotlightPost
+      ].filter(s => !!s && !!s.id),
+      song => song.id
+    );
 
   playNextSong = (isAutoplay = false) => () => {
     const nextIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) + 1;
@@ -93,6 +113,13 @@ class AppContainer extends Component {
     }
 
     if (isAutoplay) setTimeout(this.checkAutoplayStatus, AUTOPLAY_CHECK_INTERVAL);
+  }
+
+  findPreviousSong = () => {
+    const prevIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSong.id) - 1;
+    if (prevIndex < 0) return null;
+
+    return this.props.filteredPosts[prevIndex];
   }
 
   checkAutoplayStatus = () =>
@@ -118,6 +145,7 @@ class AppContainer extends Component {
           <FooterAudioPlayer
             onProgressUpdate={this.handleProgressUpdate}
             playNextSong={this.playNextSong()}
+            previousSong={this.findPreviousSong()}
             {...this.props}
           />
           {
@@ -130,7 +158,6 @@ class AppContainer extends Component {
               ref={this.audioManagerRef}
             />
           }
-          <AutoplayErrorModal/>
         </div>
     )
   }

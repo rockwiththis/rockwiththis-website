@@ -180,29 +180,26 @@
           -webkit-transform: translateY(-50%);
           width: 65px;
           height: 65px; }
-          @media screen and (max-width: 650px) {
+          @media (max-width: 650px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
               width: 56px;
               height: 56px; } }
-          @media screen and (max-width: 480px) {
+          @media (max-width: 480px) {
             .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
               width: 50px;
               height: 50px; } }
-          .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
+          .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .badge-single-song-controls {
             width: 100%;
-            height: 100%;
-            padding: 8px; }
-            @media screen and (max-width: 800px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
-                padding: 6px; } }
-            @media screen and (max-width: 480px) {
-              .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
-                padding: 6px; } }
-            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton img {
-              width: 100%;
-              height: 100%;
-              max-width: none;
-              max-height: none; }
+            height: 100%; }
+            .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .badge-single-song-controls img {
+              width: 50px;
+              height: 50px;
+              margin: auto;
+              margin-top: 8px; }
+              @media (max-width: 800px) {
+                .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .badge-single-song-controls img {
+                  width: 38px;
+                  height: 38px; } }
         .hero-posts .featured-track-wrapper .feature-track .post-info .post-square-wrapper.date {
           height: 65px;
           width: 65px;
@@ -435,13 +432,11 @@
             @media (max-width: 800px) {
               .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play {
                 display: none; } }
-            .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton {
-              width: 100%;
-              height: 100%;
-              padding: 4px; }
-              .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .heroSongPlayerButton img {
-                width: 100%;
-                height: 100%; }
+            .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .post-square-wrapper.play .badge-single-song-controls img {
+              width: 32px;
+              height: 32px;
+              margin: auto;
+              margin-top: 2px; }
           .hero-posts .previous-week .less-featured-track-wrapper .feature-track .post-info .song-info {
             line-height: 20px;
             width: calc(100% - 80px);

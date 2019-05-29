@@ -126,26 +126,18 @@
 
               .postInfoContainer {
 
-                .singlePostPlayer {
+                .outline-single-song-controls {
+                  padding: 2.5px 5px 2.5px 0;
+                  display: inline-block;
+                  text-align: left;
+                  vertical-align: top;
+                  height: 50px;
 
-                  @media (min-width:800px) {
-                    display: inline-block;
-                    text-align: left;
-                    vertical-align: top;
-                    height: 50px;
+                  svg, img {
+                    width: 45px;
+                    height: 45px;
                   }
 
-                  .singlePostPlayerButton {
-                    // padding: 2.5px;
-                    padding: 2.5px 5px 2.5px 0;
-
-                    svg, img {
-                      width: 45px;
-                      height: 45px;
-                    }
-                  }
-                }
-                .hideMobile {
                   @media (max-width: 800px) {
                     display: none;
                   }

@@ -73,7 +73,7 @@
                   bottom: 4px;
                 }
 
-                .player-button {
+                .outline-single-song-controls {
                   display: inline-block;
                   height: 100%;
                   width: 60px;
@@ -81,7 +81,7 @@
                   vertical-align: top;
                   transition: all .15s linear;
 
-                  .singlePostPlayerButton {
+                  img, svg {
                     width: 50px;
                     height: 50px;
                     margin-top: 5px;
@@ -197,7 +197,7 @@
                     display: none;
                   }
 
-                  .player-button {
+                  .outline-single-song-controls {
                     display: inline-block;
                     width: 60px;
                     height: 60px;
@@ -210,17 +210,14 @@
                       margin-right: 5px;
                     }
 
-                    button.singlePostPlayerButton {
+                    img, svg {
+                      width: 60px;
+                      height: 60px;
 
                       @media (max-width: 800px) {
                         width: 50px;
                         height: 50px;
                         text-align: center;
-                      }
-
-                      svg, img {
-                          width: 60px !important;
-                          height: 60px !important;
                       }
                     }
                   }

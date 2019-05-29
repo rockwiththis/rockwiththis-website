@@ -10,7 +10,8 @@
       display: inline-block;
       vertical-align: top;
       padding: 0;
-      position: relative; }
+      position: relative;
+      width: 100%; }
       .discovery-section .fullViewLayout .songList .songContainer .wrapper {
         pointer-events: none;
         cursor: pointer; }
@@ -51,19 +52,8 @@
             .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer {
               text-align: left;
               height: 55px; }
-              .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
-                width: 35px;
-                height: 35px;
-                display: inline-block;
-                text-align: left;
-                pointer-events: all;
-                vertical-align: top;
-                margin-right: 2px;
-                transform: translateX(-2px);
-                -webkit-transform: translateX(-2px); }
-                .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
-                  width: 35px;
-                  height: 35px; }
+              .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .outline-single-song-controls {
+                display: none; }
               .discovery-section .fullViewLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo {
                 width: calc(100% - 40px);
                 display: inline-block;

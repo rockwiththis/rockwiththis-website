@@ -5,23 +5,30 @@ import { Helmet } from 'react-helmet';
 
 import HeroPosts from 'components/HeroGrid/HeroPosts';
 import DiscoverSection from 'components/discover';
+import AutoplayErrorModal from 'components/autoplay-error-modal';
 
 import { setInitialSongs } from 'actions/fetch/songs';
 import { setMainScroll } from 'actions/scroll';
+import { didAutoplayFail } from 'actions/set-state';
 
 const propTypes = {
   // Redux
   songs: PropTypes.arrayOf(PropTypes.object).isRequired,
   setInitialSongs: PropTypes.func.isRequired,
+  didAutoplayFail: PropTypes.func.isRequired
   // mainScrollPos: PropTypes.number.isRequired,
   // setMainScroll: PropTypes.func.isRequired
 }
 
 class Homepage extends Component {
 
-  componentWillMount = () =>
-    this.props.songs.length === 0 &&
-    this.props.setInitialSongs();
+  componentWillMount = () => {
+    if (this.props.songs.length === 0)
+      this.props.setInitialSongs();
+
+    if (this.props.showAutoplayModal)
+      this.props.didAutoplayFail(true);
+  }
 
   /* TODO come up w/ better scroll anchoring solution
 
@@ -64,6 +71,8 @@ class Homepage extends Component {
             />
 
             <DiscoverSection />
+
+            <AutoplayErrorModal showModalOverride={this.props.showAutoplayModal} />
           </div>
         </Fragment>
     )
@@ -74,5 +83,5 @@ Homepage.propTypes = propTypes;
 
 export default connect(
   ({ filteredPosts }) => ({ songs: filteredPosts }),
-  { setInitialSongs }
+  { setInitialSongs, didAutoplayFail }
 )(Homepage)

@@ -95,20 +95,18 @@
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer {
         width: 85%; } }
-    @media (min-width: 800px) {
-      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer {
-        display: inline-block;
-        text-align: left;
-        vertical-align: top;
-        height: 50px; } }
-    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton {
-      padding: 2.5px 5px 2.5px 0; }
-      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton svg, .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .singlePostPlayer .singlePostPlayerButton img {
+    .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .outline-single-song-controls {
+      padding: 2.5px 5px 2.5px 0;
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
+      height: 50px; }
+      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .outline-single-song-controls svg, .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .outline-single-song-controls img {
         width: 45px;
         height: 45px; }
-    @media (max-width: 800px) {
-      .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .hideMobile {
-        display: none; } }
+      @media (max-width: 800px) {
+        .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .outline-single-song-controls {
+          display: none; } }
     @media (max-width: 800px) {
       .previewScrollLayout .songList .songContainer .wrapper .postContent .topContentContainer .postInfoContainer .songInfo {
         display: inline-block;

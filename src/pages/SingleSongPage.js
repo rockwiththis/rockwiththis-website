@@ -1,69 +1,42 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import * as Scroll from 'react-scroll';
-import SingleSong from 'components/SingleSong/SingleSong'
-import RelatedSongs from 'components/RelatedSongs/RelatedSongs'
-import LoadingComponent from 'components/Loading/LoadingComponent'
-import SingleSongPlaceholder from 'components/SingleSongPlaceholder/SingleSongPlaceholder'
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+import SingleSong from 'components/SingleSong/SingleSong';
+import RelatedSongs from 'components/RelatedSongs/RelatedSongs';
+import SingleSongPlaceholder from 'components/SingleSongPlaceholder/SingleSongPlaceholder';
+
+// TODO propTypes
 
 class SingleSongPage extends Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        loading: true,
-      }
-    }
 
-    componentWillMount() {
-      const callback = () => {
-        this.setState({
-          loading: false,
-        }, () => {
-          Scroll.animateScroll.scrollToTop()
-        })
-      }
+  getSongId = (props = this.props) => parseInt(props.match.params.id);
 
-      this.props.actions.fetchSingleSong(this.props.match.params.id, callback)
-    }
+  componentWillMount = () =>
+    this.props.actions.fetchSingleSong(this.getSongId());
 
-    componentDidUpdate(prevProps) {
-        const {scrollTop} = this.state;
-        if(this.props.match.params.id !== prevProps.match.params.id) {
-          Scroll.animateScroll.scrollToTop()
-            this.props.actions.fetchSingleSong(this.props.match.params.id)
+  shouldComponentUpdate = nextProps => {
+    const loadSongId = this.getSongId(nextProps);
+    if (loadSongId != this.getSongId())
+      this.props.actions.fetchSingleSong(loadSongId);
+
+    return true
+  }
+
+  render = () => (
+      <div className="singleSongPage page">
+        { !!this.props.singleSong && this.props.singleSong.id === this.getSongId()
+          ?
+          <Fragment>
+            <div className="singleSongContainer">
+              <SingleSong {...this.props} />
+            </div>
+            <RelatedSongs {...this.props} />
+          </Fragment>
+          :
+          <SingleSongPlaceholder />
         }
-    }
-
-    render() {
-      const {
-          song,
-      } = this.props
-
-      return (
-          <div className="singleSongPage page">
-              {this.state.loading ? <SingleSongPlaceholder />
-                  :
-                  <Fragment>
-                  <div className="singleSongContainer">
-                      <SingleSong {...this.props} />
-                  </div>
-                      <RelatedSongs {...this.props} />
-                  </Fragment>
-
-              }
-          </div>
-      )
-    }
-}
-
-
-SingleSongPage.propTypes = {
-      fetchSingleSong: PropTypes.func.isRequired,
-      fetchFeaturedPosts: PropTypes.func.isRequired,
-      isFetchingSingleSong: PropTypes.bool.isRequired,
-      singleSong: PropTypes.shape({}).isRequired,
+      </div>
+  );
 }
 
 export default SingleSongPage

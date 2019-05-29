@@ -19,6 +19,7 @@
           vertical-align: top;
           padding: 0;
           position: relative;
+          width: 100%;
 
             .wrapper {
               pointer-events: none;
@@ -74,24 +75,8 @@
                     text-align: left;
                     height: 55px;
 
-                    .singlePostPlayer {
-                      width: 35px;
-                      height: 35px;
-                      display: inline-block;
-                      text-align: left;
-                      pointer-events: all;
-                      vertical-align: top;
-                      margin-right: 2px;
-                      transform: translateX(-2px);
-                      -webkit-transform: translateX(-2px);
-
-                      .singlePostPlayerButton {
-
-                        svg, img {
-                          width: 35px;
-                          height: 35px;
-                        }
-                      }
+                    .outline-single-song-controls {
+                      display: none;
                     }
 
                     .songInfo {

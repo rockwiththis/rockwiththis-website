@@ -1,27 +1,39 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Slider from 'rc-slider';
 import Tappable from 'react-tappable/lib/Tappable';
 import 'rc-slider/assets/index.css';
 
-import { toggleSong, togglePlayPause } from 'actions/queue';
+import { playSong, pauseSong } from 'actions/player';
 
-import playButton from 'images/main-player-play-button.svg';
-import pauseButton from 'images/pauseButton-main-player-new.png';
+import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
+
 import soundCloudImage from 'images/soundcloud-darker.png';
 
 import './footer-audio-player.scss';
 
 const formatTime = (seconds = 0) => {
-    const numMinutes = Math.floor(seconds / 60)
-    const numSeconds = (Math.floor(seconds % 60)).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
-    return `${numMinutes}:${numSeconds}`
+  const numMinutes = Math.floor(seconds / 60)
+  const numSeconds = (Math.floor(seconds % 60)).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false })
+  return `${numMinutes}:${numSeconds}`
 }
 
-// TODO propTypes
-
 class FooterAudioPlayer extends Component {
+
+  static propTypes = {
+    onProgressUpdate: PropTypes.func.isRequired,
+    playNextSong: PropTypes.func.isRequired,
+    previousSong: PropTypes.object,
+
+    // Redux
+    isPlaying: PropTypes.bool.isRequired,
+    activeSong: PropTypes.object.isRequired,
+    songPlayerDurations: PropTypes.object.isRequired,
+    playSong: PropTypes.func.isRequired,
+    pauseSong: PropTypes.func.isRequired
+  }
 
   constructor(props) {
     super(props);
@@ -36,14 +48,9 @@ class FooterAudioPlayer extends Component {
     this.props.actions.togglePlayPause(!this.props.isPlaying)
   }
 
-  playPreviousSong = () => {
-    this.props.filteredPosts.forEach((post, i, arr) => {
-      if (post.id === this.props.activeSong.id) {
-        const queuePosition = i - 1
-        this.props.actions.toggleSong(arr[queuePosition])
-      }
-    })
-  }
+  playPreviousSong = () =>
+    this.props.previousSong &&
+    this.props.playSong(this.props.previousSong)
 
   renderInfo = () => {
     const { activeSong } = this.props;
@@ -60,7 +67,7 @@ class FooterAudioPlayer extends Component {
           <p className="artist-info">
             <Link className="songImageLink" to={`/songs/${activeSong.id}`}>
                 <span className="song-title">{activeSong.name}</span>
-            </Link> 
+            </Link>
             <span className="artist-title">{activeSong.artist_name}</span>
           </p>
         </div>
@@ -71,35 +78,27 @@ class FooterAudioPlayer extends Component {
   renderButtons = () => {
     const { activeSong } = this.props;
 
-    const playPauseButton = this.props.isPlaying
-      ? <img src={pauseButton} className="pause-main"/>
-      : <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z"/></svg>;
-
-    const disableBack = (
-      this.props.filteredPosts[0] &&
-      this.props.filteredPosts[0].id === this.props.activeSong.id
-    );
-
     return (
         <div className="player-controls">
 
           <div className="player-controls-buttons">
             <button
-              disabled={disableBack}
+              disabled={!this.props.previousSong}
               id="player-control-button-back"
-              className={`player-control-button ${disableBack ? 'disabled' : ''}`}
+              className={`player-control-button ${!this.props.previousSong ? 'disabled' : ''}`}
               onClick={this.playPreviousSong}
             >
               <i className="im im-previous"></i>
             </button>
 
-            <div
-              id="player-control-button-play"
-              className="player-control-button"
-              onClick={this.updateStorePlayPause}
-            >
-              {playPauseButton}
-            </div>
+            <OutlineSingleSongControls
+              isWhite={true}
+              isPlaying={this.props.isPlaying}
+              isActiveSong={true}
+              isLoading={!this.props.songPlayerDurations[this.props.activeSong.id]}
+              pauseSong={() => this.props.pauseSong(this.props.activeSong)}
+              playSong={() => this.props.playSong(this.props.activeSong)}
+            />
 
             <button
               id="player-control-button-next"
@@ -211,4 +210,15 @@ class FooterAudioPlayer extends Component {
   }
 }
 
-export default FooterAudioPlayer;
+export default connect(
+  ({
+    isPlaying,
+    activeSong,
+    songPlayerDurations
+  }) => ({
+    isPlaying,
+    activeSong,
+    songPlayerDurations
+  }),
+  { playSong, pauseSong }
+)(FooterAudioPlayer);

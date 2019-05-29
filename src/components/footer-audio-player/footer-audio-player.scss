@@ -197,29 +197,26 @@ footer {
             }
           }
 
-          #player-control-button-play {
-              border-radius: 50%;
-              box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 4px 6px 0 rgba(83, 83, 92, 0.11);
-              flex: 0 0 40px;
-              align-items: center;
-              justify-content: center;
-              margin: 0 20px;
-              text-align: center;
+          .outline-single-song-controls {
+            text-align: center;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 20px;
 
-              @media screen and (max-width: 480px) {
-                margin: 0 0px;
+            @media (max-width: 480px) {
+              margin: 0 0px;
+            }
+
+            svg, img {
+              width: 40px;
+              height: 40px;
+
+              @media (max-width: 480px) {
+                padding: 5px;
               }
-
-              svg, img {
-                fill: #fff;
-
-                @media screen and (max-width: 480px) {
-                  height: 40px;
-                  width: 40px;
-                  padding: 5px;
-                }
-              }
+            }
           }
+
           .player-control-button {
             background-repeat: no-repeat;
             background-position: center;

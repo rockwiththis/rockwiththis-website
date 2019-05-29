@@ -20,7 +20,7 @@
   .modal-content {
     position: relative;
     width: 50%;
-    height: 35%;
+    height: 350px;
     background: linear-gradient(to right, #1e0c49, #0097d5);
     margin: auto;
     margin-top: 200px;
@@ -44,6 +44,10 @@
     @media (max-width: 800px) {
       width: 80%;
       font-size: 16pt;
+    }
+
+    @media (max-width: 480px) {
+      margin-top: 100px;
     }
   }
 }

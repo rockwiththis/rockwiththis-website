@@ -216,47 +216,41 @@
 
             }
             .post-square-wrapper.play {
-                left: 0;
-                float: none!important;
-                top: 50%!important;
-                position: absolute;
-                transform: translateY(-50%);
-                -webkit-transform: translateY(-50%);
-                width: 65px;
-                height: 65px;
+              left: 0;
+              float: none!important;
+              top: 50%!important;
+              position: absolute;
+              transform: translateY(-50%);
+              -webkit-transform: translateY(-50%);
+              width: 65px;
+              height: 65px;
 
-                // @media screen and (max-width: 800px) {
-                //   width: 70px;
-                //   height: 70px;
-                // }
-                @media screen and (max-width: 650px) {
-                  width: 56px;
-                  height: 56px;
-                }
-                @media screen and (max-width: 480px) {
+              @media (max-width: 650px) {
+                width: 56px;
+                height: 56px;
+              }
+              @media (max-width: 480px) {
+                width: 50px;
+                height: 50px;
+              }
+
+              // TODO for some reason a bit of the top of the button is getting cut off on desktop
+              .badge-single-song-controls {
+                width: 100%;
+                height: 100%;
+
+                img {
                   width: 50px;
                   height: 50px;
+                  margin: auto;
+                  margin-top: 8px;
+
+                  @media (max-width: 800px) {
+                    width: 38px;
+                    height: 38px;
+                  }
                 }
-
-                .heroSongPlayerButton {
-                    width: 100%;
-                    height: 100%;
-                    padding: 8px;
-
-                    @media screen and (max-width: 800px) {
-                      padding: 6px;
-                    }
-                    @media screen and (max-width: 480px) {
-                      padding: 6px;
-                    }
-
-                    img {
-                        width: 100%;
-                        height: 100%;
-                        max-width: none;
-                        max-height: none;
-                    }
-                }
+              }
             }
             .post-square-wrapper.date {
                 height: 65px;
@@ -529,6 +523,7 @@
               text-align: center;
               vertical-align: top;
             }
+
             .post-square-wrapper.play {
               float: none!important;
               top: 50%!important;
@@ -543,15 +538,13 @@
                 display: none;
               }
 
-              .heroSongPlayerButton {
-                  width: 100%;
-                  height: 100%;
-                  padding: 4px;
-
-                  img {
-                      width: 100%;
-                      height: 100%;
-                  }
+              .badge-single-song-controls {
+                img {
+                  width: 32px;
+                  height: 32px;
+                  margin: auto;
+                  margin-top: 2px;
+                }
               }
             }
 

@@ -44,9 +44,11 @@ const INITIAL_STATE = {
 
 const appReducers = handleActions({
 
-  'app/PLAYER_BANK_UPDATED': (state, action) => {
-    return update(state, { shouldLoadPlayers: { $set: false } });
-  },
+  'app/PLAYER_BANK_UPDATED': (state, action) => ({
+    ...state,
+    shouldLoadPlayers: false,
+    shouldPrioritizePlayers: false
+  }),
 
   // TODO we need a better way of indicating loaded player
   // Using this scheme, once a player is loaded, app will never "unload" it

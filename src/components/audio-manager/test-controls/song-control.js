@@ -46,7 +46,6 @@ class SongControl extends React.Component {
       :
       <SongWaitingControls
         playSong={this.props.playSong}
-        isDisabled={this.props.songStatus === SONG_LOADING}
       />;
 
     return (
