@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 import blackLoadingButton from 'images/Loading_Icon_2_5.gif';
-import whiteLoadingButton from 'images/loading-Icon-white-2.gif';
+import whiteLoadingButton from 'images/Rolling-1.6s-200px.gif';
 
 class OutlineLoadingButton extends React.Component {
 
