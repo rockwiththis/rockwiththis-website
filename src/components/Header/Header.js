@@ -4,10 +4,10 @@ import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from '
 
 import NavLeftNotHome from './NavLeftNotHome.js'
 
+import './Header.scss'
+
 const desktopLogo = '/static/images/RWT-Hortizontal-Logo-Vector.svg'
 const mobileLogo = '/static/images/RWT_HeadLogo.svg'
-
-import './Header.scss'
 
 /* eslint-disable */
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 
-import HeroPosts from 'components/HeroGrid/HeroPosts';
+import NewestSongs from 'components/newest-songs';
 import DiscoverSection from 'components/discover';
 import AutoplayErrorModal from 'components/autoplay-error-modal';
 
@@ -65,7 +65,7 @@ class Homepage extends Component {
           </Helmet>
 
           <div className="homeContainer">
-            <HeroPosts
+            <NewestSongs
               {...this.props}
               heroPosts={this.props.heroPosts}
             />

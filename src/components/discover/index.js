@@ -9,11 +9,11 @@ import ListView from './views/list-view';
 
 import { setDiscoverScroll } from 'actions/scroll';
 
-const blackImage = '/static/images/black.jpg';
-
 import './stylesheets/DiscoverSection.scss';
 import './stylesheets/GridView.scss';
 import './stylesheets/SnapListView.scss';
+
+const blackImage = '/static/images/black.jpg';
 
 
 const propTypes = {

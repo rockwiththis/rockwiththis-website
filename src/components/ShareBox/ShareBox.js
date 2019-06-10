@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ReactTooltip from 'react-tooltip'
 
-const smsImage = 'images/sms.png';
-
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -25,6 +23,8 @@ import {
 } from 'react-share';
 
 import './ShareBox.scss'
+
+const smsImage = 'images/sms.png';
 
 class ShareBox extends Component {
 
