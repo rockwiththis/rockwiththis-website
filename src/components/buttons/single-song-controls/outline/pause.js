@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import blackPauseButton from 'images/PAUSE-BUTTON.png';
-import whitePauseButton from 'images/pauseButtonWhite.png';
+const blackPauseButtonImage = '/static/images/PAUSE-BUTTON.png';
+const whitePauseButtonImage = '/static/images/pauseButtonWhite.png';
 
 class OutlinePauseButton extends React.Component {
 
@@ -13,7 +13,7 @@ class OutlinePauseButton extends React.Component {
 
   render = () => (
     <img
-      src={this.props.isWhite ? whitePauseButton : blackPauseButton}
+      src={this.props.isWhite ? whitePauseButtonImage : blackPauseButtonImage}
       className="pauseButton"
       onClick={this.props.pauseSong}
     />

@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ReactTooltip from 'react-tooltip'
-import sms from 'images/sms.png'
 
+const smsImage = 'images/sms.png';
 
 import {
   FacebookShareButton,
@@ -125,7 +125,7 @@ onCopyUrl() {
                   <EmailShareButton url={this.state.value}>
                     <EmailIcon size={40} round={false} />
                   </EmailShareButton>
-                  <a className="smsLink" href={textMessage}><img src={sms} /></a>
+                  <a className="smsLink" href={textMessage}><img src={smsImage} /></a>
 
 
                   <form className="url-clipboard">

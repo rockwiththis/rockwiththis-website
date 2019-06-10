@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import pauseButton from 'images/pauseButton.png';
+const pauseButtonImage = '/static/images/pauseButton.png';
 
 class BadgePauseButton extends React.Component {
 
@@ -11,7 +11,7 @@ class BadgePauseButton extends React.Component {
 
   render = () => (
     <img
-      src={pauseButton}
+      src={pauseButtonImage}
       className="pauseButton"
       onClick={this.props.pauseSong}
     />

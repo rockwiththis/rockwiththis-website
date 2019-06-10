@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Link, NavLink, Nav } from 'react-router-dom'
-// import * as Scroll from 'react-scroll'
 import {  Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
-import desktopLogo from 'images/RWT-Hortizontal-Logo-Vector.svg'
-import mobileLogo from 'images/RWT_HeadLogo.svg'
 import NavLeftNotHome from './NavLeftNotHome.js'
+
+const desktopLogo = '/static/images/RWT-Hortizontal-Logo-Vector.svg'
+const mobileLogo = '/static/images/RWT_HeadLogo.svg'
 
 import './Header.scss'
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import playButton from 'images/playbutton.svg';
+const playButtonImage = '/static/images/playbutton.svg';
 
 class BadgePlayButton extends React.Component {
 
@@ -11,7 +11,7 @@ class BadgePlayButton extends React.Component {
 
   render = () => (
     <img
-      src={playButton}
+      src={playButtonImage}
       className="playButton"
       onClick={this.props.playSong}
     />

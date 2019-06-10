@@ -6,10 +6,6 @@ import Mailchimp from 'react-mailchimp-form'
 import { Link } from 'react-router-dom'
 import './stylesheets/coachella.scss'
 
-
-import hands1 from 'images/hands.svg'
-
-
 class SubmitSongPage extends Component {
     constructor(props) {
         super(props)

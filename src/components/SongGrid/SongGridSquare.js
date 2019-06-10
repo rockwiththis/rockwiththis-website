@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 import YouTube from 'react-youtube'
 
-import head from 'images/head.png'
-
 import './SongGridSquare.scss'
 
 const propTypes = {

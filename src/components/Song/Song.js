@@ -13,7 +13,7 @@ import { playSong, pauseSong } from 'actions/player';
 import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
 import BadgeSingleSongControls from 'components/buttons/single-song-controls/badge';
 
-import hoverGradient from 'images/hero-hover-gradient.png'
+const hoverGradientImage = '/static/images/hero-hover-gradient.png';
 
 const propTypes = {
   song: PropTypes.object.isRequired,
@@ -144,7 +144,7 @@ class Song extends Component {
                     <p className="goToPage">Read More</p>
                   </div>
 
-                  <img className="heroHoverGradient" src={hoverGradient} />
+                  <img className="heroHoverGradient" src={hoverGradientImage} />
                 </Link>
 
                 <img className="songImage" src={song.image_url} />

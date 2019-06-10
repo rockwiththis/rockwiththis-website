@@ -5,18 +5,11 @@ import { Helmet } from 'react-helmet';
 import Mailchimp from 'react-mailchimp-form'
 import { Link } from 'react-router-dom'
 
-import hands1 from 'images/hands.svg'
-
+const hands1Image = '/static/images/hands.svg'
 
 class SubmitSongPage extends Component {
-    constructor(props) {
-        super(props)
-
-    }
 
     render() {
-
-
         return (
           <div>
           <Helmet>
@@ -29,7 +22,7 @@ class SubmitSongPage extends Component {
             <p>Want your song shared with tens of thousands of people all over the world?  Send us the song info, your email and a link for us to check it out. If we dig it, we’ll post the song and a detailed writeup on our social channels, website, and on our email newsletter.  If we don't, we'll still give you some feedback. It could be the best $5 {"you've"} ever spent. </p>
             </div>
 
-            <img className="hands1" src={hands1} />
+            <img className="hands1" src={hands1Image} />
           </div>
 
            </div>

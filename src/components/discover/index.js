@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
-
 import ControlBar from './control-bar';
 import FullView from './views/full-view';
 import ListView from './views/list-view';
 
 import { setDiscoverScroll } from 'actions/scroll';
 
-import black from 'images/black.jpg';
+const blackImage = '/static/images/black.jpg';
 
 import './stylesheets/DiscoverSection.scss';
 import './stylesheets/GridView.scss';
@@ -91,7 +90,7 @@ class DiscoverSection extends Component {
     return (
         <div className="songsContainer clearfix" ref={this.mainContainerRef}>
           <div id="discover" className="discovery-section">
-            <img className="discover-cover" src={black} />
+            <img className="discover-cover" src={blackImage} />
 
             <ControlBar
               isControlBarFixed={this.state.isControlBarFixed}

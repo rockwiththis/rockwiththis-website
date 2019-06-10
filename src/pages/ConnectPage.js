@@ -6,29 +6,10 @@ import Mailchimp from 'components/Newsletter/Mailchimp.js'
 import { Link } from 'react-router-dom'
 import SocialLinks from 'components/SocialLinks/SocialLinks.js'
 
-import introImage from 'images/intro-bigger.png'
-import diag2 from 'images/diagblue.png'
-import diagTall from 'images/blue-logo-image-grid.png'
-import logo1 from 'images/connect-logo.svg'
-import logo2 from 'images/connect-logo.svg'
-import gridPic from 'images/collage-full.png'
-import line from 'images/gradient-line.png'
-import tickets from 'images/tickets.svg'
-import songs from 'images/songs.svg'
-import pic1 from 'images/pic1.png'
-import pic2 from 'images/pic2.png'
-import pic3 from 'images/pic3.png'
-import colorFull from 'images/connectColors.png'
-import color1 from 'images/connectColors.png'
-import colorIntroLong from 'images/connectColorsIntroLong.png'
-import cross from 'images/cross.svg'
-import logoWriting from 'images/logo-writing-black.png'
-import instagram from 'images/instagram-square.jpg'
-import facebook from 'images/facebook-square.jpg'
-import twitter from 'images/twitter-square.jpg'
-import soundcloud from 'images/soundcloud-square.jpg'
-import spotify from 'images/spotify.png'
-
+const diagTallImage = '/static/images/blue-logo-image-grid.png';
+const gridPicImage = '/static/images/collage-full.png'
+const colorFullImage = '/static/images/connectColors.png'
+const color1Image = '/static/images/connectColors.png'
 
 class ConnectPage extends Component {
     constructor(props) {
@@ -59,10 +40,10 @@ class ConnectPage extends Component {
 
 
                 <div className="main-content">
-                <img className="color bottomMiddle" src={color1} />
+                <img className="color bottomMiddle" src={color1Image} />
 
                   <div className="middle-content">
-                    <img className="gridPic" src={gridPic} />
+                    <img className="gridPic" src={gridPicImage} />
                     <div className="four-content">
                         <h3>
                           HUMAN RHYTHMS. <br/>
@@ -95,12 +76,12 @@ class ConnectPage extends Component {
                   </div>
 
 
-                  <img className="color2" src={colorFull} />
+                  <img className="color2" src={colorFullImage} />
 
                 </div>
 
                 <div className="blue-content">
-                <img className="diagblue"src={diagTall} />
+                <img className="diagblue"src={diagTallImage} />
 
 
                 <div className="blue-content-container">

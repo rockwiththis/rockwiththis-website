@@ -10,8 +10,6 @@ import { playSong, pauseSong } from 'actions/player';
 
 import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
 
-import soundCloudImage from 'images/soundcloud-darker.png';
-
 import './footer-audio-player.scss';
 
 const formatTime = (seconds = 0) => {
