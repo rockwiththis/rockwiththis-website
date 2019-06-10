@@ -2,40 +2,48 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import Headers from './headers/index';
-import HeroPosts from 'components/HeroGrid/HeroPosts';
-import DiscoverSection from 'components/discover';
-import AutoplayErrorModal from 'components/autoplay-error-modal';
+import NewestSongs from 'components/newest-songs';
+import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
+// import DiscoverSection from 'components/discover';
+// import AutoplayErrorModal from 'components/autoplay-error-modal';
 
 import { setInitialSongs } from 'actions/fetch/songs';
 import { didAutoplayFail } from 'actions/set-state';
 
 class Homepage extends Component {
 
-  static getInitialProps({store}) {
-    if (this.props.songs.length === 0)
-      this.props.setInitialSongs();
-
+  componentWillMount = () => {
     if (this.props.showAutoplayModal)
       this.props.didAutoplayFail(true);
   }
+
+  componentDidMount = () =>
+    this.props.setInitialSongs();
 
   render = () => (
       <div className="homeContainer">
         <Headers />
 
-        <HeroPosts
-          {...this.props}
-          heroPosts={this.props.heroPosts}
+        <NewestSongs
+          newestSongPosts={this.props.newestSongPosts}
+          getSongPlayStatus={() => "NO_STATUS"}
+          getSongPlayerFunctions={() => ({})}
         />
 
+        {/*
         <DiscoverSection />
 
         <AutoplayErrorModal showModalOverride={this.props.showAutoplayModal} />
+        */}
       </div>
   );
 }
 
+/* TODO rename store props */
 export default connect(
-  ({ filteredPosts }) => ({ songs: filteredPosts }),
+  ({ filteredPosts, heroPosts }) => ({
+    songData: filteredPosts,
+    newestSongPosts: heroPosts
+  }),
   { setInitialSongs, didAutoplayFail }
 )(Homepage)

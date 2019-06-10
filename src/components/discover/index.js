@@ -9,9 +9,9 @@ import ListView from './views/list-view';
 
 import { setDiscoverScroll } from 'actions/scroll';
 
-import './stylesheets/DiscoverSection.scss';
-import './stylesheets/GridView.scss';
-import './stylesheets/SnapListView.scss';
+// import './stylesheets/DiscoverSection.scss';
+// import './stylesheets/GridView.scss';
+// import './stylesheets/SnapListView.scss';
 
 const blackImage = '/static/images/black.jpg';
 

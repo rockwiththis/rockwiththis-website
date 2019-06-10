@@ -11,9 +11,8 @@ import SongGridSquare from 'components/SongGrid/SongGridSquare';
 import Song from 'components/Song/Song';
 import LoadingComponent from 'components/Loading/LoadingComponent';
 
-import './stylesheets/FullView.scss'
-import './stylesheets/FullViewMobile.scss'
-
+// import './stylesheets/FullView.scss'
+// import './stylesheets/FullViewMobile.scss'
 
 const propTypes = {
   // from redux

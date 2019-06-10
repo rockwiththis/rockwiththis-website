@@ -1,7 +1,5 @@
 import React from 'react'
 
-import './HeroGridPlaceholder.scss'
-
 const HeroPostsPlaceholder = () =>
   (
     <div className="placeholder-heroPosts">

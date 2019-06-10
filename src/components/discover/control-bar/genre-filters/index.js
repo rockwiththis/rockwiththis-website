@@ -11,7 +11,7 @@ import { resetSongs } from 'actions/fetch/songs';
 
 import { ALL_GENRES } from 'constants/base-genres';
 
-import './stylesheets/genre-filters.scss';
+// import './stylesheets/genre-filters.scss';
 
 const propTypes = {
   isActive: PropTypes.bool.isRequired,

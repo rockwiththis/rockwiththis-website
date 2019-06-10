@@ -24,7 +24,7 @@ import {
   TiTime as MomentIcon
 } from 'react-icons/ti';
 
-import './stylesheets/control-bar.scss'
+// import './stylesheets/control-bar.scss'
 
 /* eslint-disable */
 

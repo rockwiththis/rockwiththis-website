@@ -13,9 +13,9 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "njs-dev": "next",
+    "njs-dev": "next -p 3001",
     "njs-build": "next build",
-    "njs-start": "next start"
+    "njs-start": "next start -p 3001"
   },
   "dependencies": {
     "assert": "^1.4.1",

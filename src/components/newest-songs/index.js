@@ -1,111 +1,36 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-import Song from './song';
-import Placeholder from './placeholder/HeroGridPlaceholder';
-
-import './HeroGrid.scss'
-
-const hoverGradientImage = '/static/images/hero-hover-gradient.png';
+import NewSong from './new-song';
+import Placeholder from './placeholder';
 
 class NewestSongs extends React.Component {
 
-    constructor(props) {
-      super(props)
-      this.state = {
-        hideSongOfDay: false
-      }
-    }
+  static propTypes = {
+    newestSongPosts: PropTypes.array.isRequired,
+    getSongPlayStatus: PropTypes.func.isRequired,
+    getSongPlayerFunctions: PropTypes.func.isRequired
+  }
 
-    componentDidMount = () => {
-      window.addEventListener('scroll', this.checkToHideHeroSong)
-      window.addEventListener('resize', this.checkToHideHeroSong)
-    }
-
-    checkToHideHeroSong = () => {
-      const songDiv = document.getElementById('hero-post');
-      if (!songDiv) return;
-
-      const scrollHeight = songDiv.clientHeight + 45
-      const hideSongOfDay = window.scrollY > scrollHeight
-      this.setState({ hideSongOfDay })
-    }
-
-    render = () => {
-      const { heroPosts } = this.props
-
-      const trackDisplay = (post, i, isSmall) => {
-          const image = post.image_url
-          // const month = moment(post.date).format('MMM')
-          const date = moment(post.created_at).format('D')
-          const day = moment(post.created_at).format('ddd');
-          const title = post.name
-          const artist = post.artist_name
-          const tags = post.sub_genres.map(tag =>
-              <span key={tag.name} className="hero-tag">{tag.name}</span>)
-
-          return (
-                <div className={`${isSmall ? 'less-' : ''}featured-track-wrapper index-${i}`} key={post.id}>
-                    <div className='feature-track'>
-                        <Link className='move-back-link' to={`/songs/${post.id}`}>
-                        <div className="hover-content">
-                          <div className="tagWrapper">
-                            {tags}
-                          </div>
-                          <p className="goToPage">
-                            Read More
-                          </p>
-                        </div>
-
-
-                        <img className="heroHoverGradient" src={hoverGradientImage} />
-
-
-                        <img src={image} />
-                        </Link>
-                        {!isSmall && <span className="song-of-day-tag">Song of the day</span>}
-                        <div className="post-info">
-
-                            <Song song={post} />
-                            <Link className='move-back-link' to={`/songs/${post.id}`}>
-                              <div className="song-info">
-                                  <p className="song-title">{title}</p>
-                                  <p className="song-artist">{artist}</p>
-                              </div>
-                              <div className="post-square-wrapper date">
-                                  <div className='post-date'>
-                                      <p className="month">{day}</p>
-                                      <p className="day">{date}</p>
-                                  </div>
-                              </div>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-          )
-      }
-      const featuredPostArg = heroPosts.length > 0 && heroPosts[0]
-      const featuredPost = featuredPostArg && trackDisplay(featuredPostArg, false)
-      const otherPosts = heroPosts.slice(1).map((post, i) => trackDisplay(post, i, true))
-
-      return (
-          <div className="hero-container">
-              <div id="hero-post" className={`hero-posts ${this.state.hideSongOfDay ? 'hideSongOfDay' : ''}`} ref={node => this.postsWrapper = node}>
-                {heroPosts.length > 0 ?
-                  <Fragment>
-                    {featuredPost}
-                    <div className='previous-week'>
-                        {otherPosts}
-                    </div>
-                  </Fragment>
-                  :
-                  <Placeholder />
-                }
-              </div>
-          </div>
-      )
-    }
+  render = () => (
+      <div className="newest-songs">
+        {this.props.newestSongPosts.length > 0 ?
+          this.props.newestSongPosts.map((songData, i) => (
+              <NewSong
+                key={songData.id}
+                songData={songData}
+                songPlayStatus={this.props.getSongPlayStatus(songData)}
+                songPlayerFunctions={this.props.getSongPlayerFunctions(songData)}
+                isSongOfTheDay={i === 0}
+              />
+          ))
+          :
+          <Placeholder />
+        }
+      </div>
+  );
 }
 
 export default NewestSongs;

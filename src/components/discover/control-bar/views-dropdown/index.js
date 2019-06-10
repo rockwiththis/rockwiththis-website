@@ -14,7 +14,7 @@ import FullViewIcon from 'components/icons/full-view';
 import SnapshotViewIcon from 'components/icons/snapshot-view';
 import GridViewIcon from 'components/icons/grid-view';
 
-import './stylesheets/views-dropdown.scss';
+// import './stylesheets/views-dropdown.scss';
 
 const propTypes = {
   isActive: PropTypes.bool.isRequired,

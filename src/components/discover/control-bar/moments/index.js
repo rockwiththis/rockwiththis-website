@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './stylesheets/moments.scss';
+// import './stylesheets/moments.scss';
 
 const propTypes = {
   isActive: PropTypes.bool.isRequired,

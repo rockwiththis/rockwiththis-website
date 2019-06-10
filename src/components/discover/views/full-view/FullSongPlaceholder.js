@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './stylesheets/FullSongPlaceholder.scss'
+// import './stylesheets/FullSongPlaceholder.scss'
 
 const FullSongPlaceHolder = () =>
   (
