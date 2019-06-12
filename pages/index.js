@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import { HOME } from 'constants/page-names';
 
-import Headers from './headers/index';
+import Head from './head-content/index';
+import Header from 'components/header';
 import NewestSongs from 'components/newest-songs';
 import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
 // import DiscoverSection from 'components/discover';
@@ -22,7 +24,9 @@ class Homepage extends Component {
 
   render = () => (
       <div className="homeContainer">
-        <Headers />
+        <Head />
+
+        <Header pageName={HOME} />
 
         <NewestSongs
           newestSongPosts={this.props.newestSongPosts}

@@ -20,6 +20,25 @@ class MyApp extends App {
         <Container>
           <Provider store={store}>
             <Component {...pageProps} />
+
+            {/*
+            <FooterAudioPlayer
+              onProgressUpdate={this.handleProgressUpdate}
+              playNextSong={this.playNextSong()}
+              previousSong={this.findPreviousSong()}
+              {...this.props}
+            />
+            {
+              !!this.props.activeSong && !!this.props.activeSong.id &&
+              <AudioManager
+                setSongDuration={this.props.actions.playerLoaded}
+                setActiveSongProgress={this.props.actions.setSongProgress}
+                playSong={this.props.playSong}
+                onSongEnd={this.playNextSong(true)}
+                ref={this.audioManagerRef}
+              />
+            }
+            */}
           </Provider>
         </Container>
     );
