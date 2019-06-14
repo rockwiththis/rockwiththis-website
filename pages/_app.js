@@ -40,6 +40,28 @@ class MyApp extends App {
             }
             */}
           </Provider>
+          <style global jsx>{`
+            body {
+              font-family: 'Object-Sans-Bold', sans-serif;
+              margin: 0;
+              overflow: scroll;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+            body::-webkit-scrollbar {
+              width: 0px;
+            }
+            @media (min-width: 800px) {
+              .mobile-only {
+                display: none;
+              }
+            }
+            @media (max-width: 800px) {
+              .desktop-only {
+                display: none;
+              }
+            }
+          `}</style>
         </Container>
     );
   }

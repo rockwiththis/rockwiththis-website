@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import { animateScroll } from 'react-scroll';
 
-const desktopLogo = '/static/images/RWT-Hortizontal-Logo-Vector.svg'
-const mobileLogo = '/static/images/RWT_HeadLogo.svg'
-
-export default class HomepageHeader extends Component {
+export default class HomepageLeftNav extends Component {
 
   constructor(props) {
     super(props)
@@ -47,38 +44,19 @@ export default class HomepageHeader extends Component {
   }
 
   render = () => (
-      <div id="homepage-header">
-
-        <div className="nav-left">
-          <div
-            className={`nav-link nav-week ${!this.state.scrolledToDiscover ? 'active' : ''}`}
-            onClick={this.scrollToTop}
-          >
-            This Week
-          </div>
-          <div
-            className={`nav-link nav-discover ${this.state.scrolledToDiscover ? 'active' : ''}`}
-            onClick={this.scrollToDiscover}
-          >
-            Discover
-          </div>
-          {/* TODO is this really needed? */}
-          <div
-            className="nav-link nav-submit"
-            to="/"
-            activeClassName='is-active'
-          >
-            HOME
-          </div>
+      <div className="homepage-left-nav">
+        <div
+          className={`nav-link nav-week ${!this.state.scrolledToDiscover ? 'active' : ''}`}
+          onClick={this.scrollToTop}
+        >
+          This Week
         </div>
-
-        <div id="header-logo" onClick={this.scrollToTop}>
-          <img src={desktopLogo} />
+        <div
+          className={`nav-link nav-discover ${this.state.scrolledToDiscover ? 'active' : ''}`}
+          onClick={this.scrollToDiscover}
+        >
+          Discover
         </div>
-        <div id="header-logo-mobile" onClick={this.scrollToTop}>
-          <img src={mobileLogo} />
-        </div>
-
       </div>
   )
 }
