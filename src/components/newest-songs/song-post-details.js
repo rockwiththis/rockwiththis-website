@@ -42,15 +42,20 @@ class SongPostDetails extends Component {
           .song-info {
             display: inline-block;
             width: calc(100% - 80px);
-            font-size: 14pt;
+            font-size: 10pt;
             white-space: nowrap;
             vertical-align: top;
             height: 100%;
+            padding-top: 5px;
+            box-sizing: border-box;
           }
           .song-info span {
             overflow: hidden;
+            text-overflow: ellipsis;
             display: block;
-            height: 50%;
+          }
+          .song-title {
+            font-weight: bold;
           }
           .post-date {
             display: inline-block;
@@ -60,17 +65,17 @@ class SongPostDetails extends Component {
             height: 100%;
             vertical-align: top;
             text-align: center;
-            padding-top: 2px;
+            padding-top: 5px;
             box-sizing: border-box;
           }
           .post-date span {
             display: block;
           }
           .month {
-            font-size: 12pt;
+            font-size: 8pt;
           }
           .day {
-            font-size: 14pt;
+            font-size: 12pt;
           }
         `}</style>
         <style global jsx>{`

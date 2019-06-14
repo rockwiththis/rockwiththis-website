@@ -32,6 +32,20 @@ class NewSong extends Component {
           songPlayerStatus={this.props.songPlayerStatus}
           songPlayerFunctions={this.props.songPlayerFunctions}
         />
+        <style jsx>{`
+          .featured-song-tag {
+            position: absolute;
+            bottom: 42px;
+            font-size: 10pt;
+            padding: 12px;
+            background-color: #ec2121;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: bold;
+            z-index: 2;
+          }
+        `}</style>
         <style global jsx>{`
           .newest-songs-song {
             position: relative;

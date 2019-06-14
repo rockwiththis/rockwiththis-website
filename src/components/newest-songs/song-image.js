@@ -26,10 +26,12 @@ class SongImage extends Component {
               <p className="page-link">Read More</p>
             </div>
           </div>
+
           <style jsx>{`
             .song-image-container {
               position: relative;
               height: 100%;
+              z-index: 1;
             }
             .song-image {
               width: 100%;
@@ -59,7 +61,8 @@ class SongImage extends Component {
             }
             .genre-tags {
               position: relative;
-              font-size: 20pt;
+              font-size: 16pt;
+              line-height: 20pt;
               color: white;
               text-align: center;
             }

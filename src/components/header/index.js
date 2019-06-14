@@ -47,7 +47,7 @@ export default class Header extends Component {
         <style global jsx>{`
           .nav-link {
             text-transform: uppercase;
-            font-size: 14pt;
+            font-size: 10pt;
             margin: 0 10px;
             color: rgba(255, 255, 255, 0.7);
           }
