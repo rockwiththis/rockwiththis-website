@@ -23,12 +23,17 @@ class NewestSongs extends React.Component {
                 songData={songData}
                 songPlayStatus={this.props.getSongPlayStatus(songData)}
                 songPlayerFunctions={this.props.getSongPlayerFunctions(songData)}
-                isSongOfTheDay={i === 0}
+                isFeaturedSong={i === 0}
               />
           ))
           :
           <Placeholder />
         }
+        <style jsx>{`
+          .newest-songs {
+            height: 674px;
+          }
+        `}</style>
       </div>
   );
 }

@@ -21,14 +21,69 @@ class SongPostDetails extends Component {
         />
         <Link href={`/songs/${this.props.songData.id}`}>
           <div className="song-info">
-            <p className="song-title">{this.props.songData.name}</p>
-            <p className="song-artist">{this.props.songData.artist_name}</p>
-            <div className="post-date">
-                <p className="month">{moment(this.props.songData.created_at).format('ddd')}</p>
-                <p className="day">{moment(this.props.songData.created_at).format('D')}</p>
-            </div>
+            <span className="song-title">{this.props.songData.name}</span>
+            <span className="song-artist">{this.props.songData.artist_name}</span>
           </div>
         </Link>
+        <div className="post-date">
+            <span className="month">{moment(this.props.songData.created_at).format('ddd')}</span>
+            <span className="day">{moment(this.props.songData.created_at).format('D')}</span>
+        </div>
+
+        <style jsx>{`
+          .post-details {
+            position: absolute;
+            bottom: 0;
+            height: 42px;
+            width: 100%;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+          }
+          .song-info {
+            display: inline-block;
+            width: calc(100% - 80px);
+            font-size: 14pt;
+            white-space: nowrap;
+            vertical-align: top;
+            height: 100%;
+          }
+          .song-info span {
+            overflow: hidden;
+            display: block;
+            height: 50%;
+          }
+          .post-date {
+            display: inline-block;
+            background-color: black;
+            color: white;
+            width: 40px;
+            height: 100%;
+            vertical-align: top;
+            text-align: center;
+            padding-top: 2px;
+            box-sizing: border-box;
+          }
+          .post-date span {
+            display: block;
+          }
+          .month {
+            font-size: 12pt;
+          }
+          .day {
+            font-size: 14pt;
+          }
+        `}</style>
+        <style global jsx>{`
+          .badge-single-song-controls {
+            height: 40px;
+            width: 40px;
+            display: inline-block;
+            padding-top: 4px;
+            padding-left: 2px;
+            box-sizing: border-box;
+          }
+          .
+        `}</style>
       </div>
   )
 }
