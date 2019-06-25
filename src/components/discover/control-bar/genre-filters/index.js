@@ -11,8 +11,6 @@ import { resetSongs } from 'actions/fetch/songs';
 
 import { ALL_GENRES } from 'constants/base-genres';
 
-// import './stylesheets/genre-filters.scss';
-
 const propTypes = {
   isActive: PropTypes.bool.isRequired,
   hide: PropTypes.func.isRequired,
@@ -35,8 +33,9 @@ class GenreFilters extends Component {
       selectedGenres: {},   // Keyed by genre name
       selectedSubgenres: {} // Keyed by genre id
     }
-    props.fetchGenres();
   }
+
+  componentDidMount = () => this.props.fetchGenres();
 
   componentDidUpdate = prevProps => {
 
@@ -256,6 +255,11 @@ class GenreFilters extends Component {
             }
           </div>
 
+        <style jsx>{`
+          .genre-filters.hidden {
+            display: none;
+          }
+        `}</style>
         </div>
     )
   }

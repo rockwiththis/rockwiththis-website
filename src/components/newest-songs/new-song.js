@@ -53,10 +53,14 @@ class NewSong extends Component {
             vertical-align: top;
             height: 20vw;
             width: 20vw;
+            max-width: calc(1658px * 0.2);
+            max-height: calc(1658px * 0.2);
           }
           .newest-songs-song.featured-song {
             height: 40vw;
             width: 40vw;
+            max-width: calc(1658px * 0.4);
+            max-height: calc(1658px * 0.4);
             float: left;
           }
         `}</style>

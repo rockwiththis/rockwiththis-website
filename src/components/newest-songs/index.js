@@ -29,11 +29,6 @@ class NewestSongs extends React.Component {
           :
           <Placeholder />
         }
-        <style jsx>{`
-          .newest-songs {
-            height: 674px;
-          }
-        `}</style>
       </div>
   );
 }

@@ -1,59 +1,32 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { animateScroll } from 'react-scroll';
 
 export default class HomepageLeftNav extends Component {
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      scrolledToDiscover: false,
-    }
-  }
-
-  componentDidMount = () => {
-    window.addEventListener('scroll', this.updateScrolledToDiscover)
-    window.addEventListener('resize', this.updateScrolledToDiscover)
-  }
-
-  componentWillUnmount = () => {
-    window.removeEventListener('scroll', this.updateScrolledToDiscover)
-    window.removeEventListener('resize', this.updateScrolledToDiscover)
-  }
-
-  getNewestSongsElement = () => document.getElementById('newest-songns');
-
-  // TODO better scroll anchoring + control
-  updateScrolledToDiscover = () => {
-    const newestSongsElement = this.getNewestSongsElement();
-    const scrolledToDiscover = (
-      newestSongsElement &&
-      newestSongsElement.clientHeight + 45 > window.scrollY
-    );
-    this.setState({ scrolledToDiscover })
-  }
-
-  scrollToDiscover = () => {
-    const newestSongsElement = this.getNewestSongsElement();
-    if (!!newestSongsElement)
-      animateScroll.scrollTo(newestSongsElement.clientHeight + 45);
-  }
-
-  scrollToTop = () => {
-    this.setState({ scrolledToDiscover: false });
-    animateScroll.scrollTo(0);
+  static propTypes = {
+    scroll: PropTypes.object
   }
 
   render = () => (
       <div className="homepage-left-nav">
         <div
-          className={`nav-link nav-week ${!this.state.scrolledToDiscover ? 'active' : ''}`}
-          onClick={this.scrollToTop}
+          className={
+            'nav-link' +
+            ' nav-week' +
+            (!this.props.scroll.scrolledToDiscover ? ' active' : '')
+          }
+          onClick={this.props.scroll.scrollToTop}
         >
           This Week
         </div>
         <div
-          className={`nav-link nav-discover ${this.state.scrolledToDiscover ? 'active' : ''}`}
-          onClick={this.scrollToDiscover}
+          className={
+            'nav-link' +
+            ' nav-discover' +
+            (this.props.scroll.scrolledToDiscover ? 'active' : '')
+          }
+          onClick={this.props.scroll.scrollToDiscover}
         >
           Discover
         </div>

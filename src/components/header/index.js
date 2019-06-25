@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { animateScroll } from 'react-scroll';
-import { HOME } from 'constants/page-names';
+import { HOME, ALL_PAGE_NAMES } from 'constants/page-names';
 
 import HomepageLeftNav from './homepage-left-nav';
 import AwayLeftNav from './away-left-nav';
@@ -11,9 +12,14 @@ const mobileLogo = '/static/images/RWT_HeadLogo.svg'
 
 export default class Header extends Component {
 
+  static propTypes = {
+    pageName: PropTypes.oneOf(ALL_PAGE_NAMES).isRequired,
+    scroll: PropTypes.object.isRequired
+  }
+
   leftNavContents = () => {
     if (this.props.pageName === HOME) {
-      return <HomepageLeftNav />
+      return <HomepageLeftNav scroll={this.props.scroll} />
     } else {
       return <AwayLeftNav />
     }

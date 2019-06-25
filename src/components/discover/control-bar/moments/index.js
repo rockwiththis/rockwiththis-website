@@ -29,8 +29,14 @@ class Moments extends Component {
             (this.props.isActive ? '' : ' hidden')
           }
         >
-        <p className="text">A playlist for all the moments of your life.</p>
-        <p className="comingSoon">Coming soon!</p>
+          <p className="text">A playlist for all the moments of your life.</p>
+          <p className="comingSoon">Coming soon!</p>
+
+          <style jsx>{`
+            .moments-modal.hidden {
+              display: none;
+            }
+          `}</style>
         </div>
     )
   }

@@ -82,6 +82,12 @@ class ViewsDropdown extends Component {
               <span>Grid View</span>
             </div>
           </div>
+
+          <style jsx>{`
+            .views-dropdown.hidden {
+              display: none;
+            }
+          `}</style>
         </div>
     )
   }

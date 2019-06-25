@@ -8,10 +8,18 @@ import configureStore from 'store/configureStore'
 
 class MyApp extends App {
 
+  constructor(props) {
+    super(props);
+    this.state = { isScrollDisabled: false }
+  }
+
   static async getInitialProps({ Component, ctx }) {
     const pageProps = !!Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
   }
+
+  setIsScrollDisabled = isScrollDisabled =>
+    this.setState({ isScrollDisabled })
 
   render = () => {
     const { Component, pageProps, store } = this.props;
@@ -19,7 +27,10 @@ class MyApp extends App {
     return (
         <Container>
           <Provider store={store}>
-            <Component {...pageProps} />
+            <Component
+              {...pageProps}
+              setIsScrollDisabled={this.setIsScrollDisabled}
+            />
 
             {/*
             <FooterAudioPlayer
@@ -47,6 +58,7 @@ class MyApp extends App {
               overflow: scroll;
               scrollbar-width: none;
               -ms-overflow-style: none;
+              overflow: ${this.state.isScrollDisabled ? 'hidden' : 'auto'}
             }
             body::-webkit-scrollbar {
               width: 0px;
