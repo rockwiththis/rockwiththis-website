@@ -22,7 +22,7 @@ import {
   PinterestIcon
 } from 'react-share';
 
-import './ShareBox.scss'
+// import './ShareBox.scss'
 
 const smsImage = 'images/sms.png';
 

@@ -7,57 +7,30 @@ import { loadMoreSongs } from 'actions/fetch/songs';
 
 import FullSongPlaceholder from './FullSongPlaceholder';
 import SongGridPlaceholder from './SongGridPlaceholder';
-import SongGridSquare from 'components/SongGrid/SongGridSquare';
-import Song from 'components/Song/Song';
-import LoadingComponent from 'components/Loading/LoadingComponent';
+import SongGrid from './song-grid';
+import FullSong from './full-song';
+import Loading from '../loading-more-songs';
 
-// import './stylesheets/FullView.scss'
-// import './stylesheets/FullViewMobile.scss'
+export default class FullView extends Component {
 
-const propTypes = {
-  // from redux
-  songs: PropTypes.arrayOf(PropTypes.object).isRequired,
-  spotlightSong: PropTypes.object.isRequired,
-  loadingSongs: PropTypes.bool.isRequired,
-  updateSpotlightSong: PropTypes.func.isRequired,
-  loadMoreSongs: PropTypes.func.isRequired
-}
-
-// TODO avoid storing direct s3 image links in code
-
-class FullView extends Component {
-
-  getSpotlightSongIndex = () => (
-      this.props.songs.findIndex(song => (
-          song.id === this.props.spotlightSong.id
-      ))
-  );
-
-  showPreviousDiscoverSong = () => {
-    const newIndex = this.getSpotlightSongIndex() - 1;
-
-    if (newIndex >= 0)
-      this.props.updateSpotlightSong(this.props.songs[newIndex]);
+  static propTypes = {
+    songPosts: PropTypes.object.isRequired,
+    songPlayStatusForSong: PropTypes.func.isRequired,
+    songPlayerFunctionsForSong: PropTypes.func.isRequired,
+    updateSpotlightSong: PropTypes.func.isRequired,
+    loadMoreSongs: PropTypes.func.isRequired,
+    isLoadingSongs: PropTypes.bool.isRequired
   }
 
-  showNextDiscoverSong = () => {
-    const newIndex = this.getSpotlightSongIndex() + 1;
-
-    if (newIndex >= this.props.songs.length)
-      this.props.loadMoreSongs({ updateSpotlight: true });
-    else
-      this.props.updateSpotlightSong(this.props.songs[newIndex]);
-  }
-
-  handleScroll = e => {
+  handleGridScroll = e => {
     const scrollThreshold = e.target.scrollHeight - (e.target.offsetHeight + 100);
 
-    if (e.target.scrollTop > scrollThreshold && !this.props.loadingSongs)
+    if (e.target.scrollTop > scrollThreshold && !this.props.isLoadingSongs)
       this.props.loadMoreSongs();
   }
 
   render() {
-    if (this.props.songs.length === 0) return (
+    if (this.props.songPosts.length === 0) return (
         <div className="fullView">
           <div className="song-grid-container">
             <SongGridPlaceholder />
@@ -69,57 +42,31 @@ class FullView extends Component {
     );
     return (
         <div className="fullView">
-
           <div className="song-grid-container">
-            <div className="songGrid" onScroll={this.handleScroll}>
-              {this.props.songs.map(song => (
-                  <SongGridSquare
-                    key={song.id}
-                    song={song}
-                    className={
-                      this.props.spotlightSong.id === song.id ?
-                      'activeDiscoverFullSong' : null
-                    }
-                    showGenresOnHover={true}
-                    onClick={() => this.props.updateSpotlightSong(song)}
+            <div className="songGrid" onScroll={this.handleGridScroll}>
+              {this.props.songPosts.map(songData => (
+                  <SongGrid
+                    key={songData.id}
+                    songData={songData}
+                    isSpotlight={this.props.spotlightSong.id === songData.id}
+                    setSongAsSpotlight={() => this.props.updateSpotlightSong(songData)}
                   />
               ))}
 
-              {this.props.loadingSongs &&
+              {this.props.isLoadingSongs &&
                 <div className='loading-bottom'>
-                  <LoadingComponent />
+                  <Loading />
                 </div>
               }
             </div>
           </div>
-
-          <div className="discover-full-song-container">
-            <div className="discover-full-song">
-              <button
-                className="toggle-song previous"
-                onClick={this.showPreviousDiscoverSong}
-              >
-                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-              </button>
-
-              <Song song={this.props.spotlightSong} />
-
-              <button
-                className="toggle-song next"
-                onClick={this.showNextDiscoverSong}
-              >
-                <img src='https://s3-us-west-1.amazonaws.com/rockwiththis/arrow.png' />
-              </button>
-            </div>
-          </div>
-
+          <FullSong song={this.props.spotlightSong} />
         </div>
     )
   }
 }
 
-FullView.propTypes = propTypes;
-
+/*
 export default connect(
   ({ filteredPosts, spotlightPost, loadingSongs }) => ({
     songs: filteredPosts,
@@ -128,3 +75,4 @@ export default connect(
   }),
   { updateSpotlightSong, loadMoreSongs }
 )(FullView);
+*/

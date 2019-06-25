@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import ControlBar from './control-bar';
-// import FullView from './views/full-view';
+import FullView from './views/full-view';
 // import ListView from './views/list-view';
 
 import {
@@ -12,15 +12,22 @@ import {
   GRID_LIST_VIEW
 } from 'constants/discover-views';
 
-class Discover extends Component {
+export default class Discover extends Component {
 
   static propTypes = {
     scroll: PropTypes.object.isRequired,
-    // Redux
-    discoverLayout: PropTypes.string.isRequired,
+    layoutType: PropTypes.string.isRequired, // TODO use state
+    songPosts: PropTypes.object.isRequired,
+    songPlayStatusForSong: PropTypes.func.isRequired,
+    songPlayerFunctionsForSong: PropTypes.func.isRequired,
+    loadMoreSongs: PropTypes.func.isRequired,
+    resetSongs: PropTypes.func.isRequired,
+    isLoadingMoreSongs: PropTypes.bool.isRequired, // TODO use state in layouts
+    updateSpotlightSong: PropTypes.func.isRequired,
+    updateDiscoverLayoutType: PropTypes.func.isRequired, // TODO use state
+    availableGenres: PropTypes.object.isRequired,
+    activeGenreFilters: PropTypes.object.isRequired
   }
-
-  // TODO tracking window scroll should really be happening in pages/Homepage instead
 
   /* TODO find better scroll anchoring solution
    * Bonus points for including this other scroll handling!
@@ -77,12 +84,18 @@ class Discover extends Component {
   }
 
   scrollToDiscover = () => this.mainContainerRef.current.scrollIntoView(true);
-
   */
 
-  getDiscoverSongs = () => {
+  getDiscoverSongView = () => {
     if (this.props.layoutType == FULL_VIEW)
-      <FullView />
+      <FullView
+        songPosts={this.props.songPosts.filtered}
+        songPlayStatusForSong={this.props.songPlayStatusForSong}
+        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
+        updateSpotlightSong={this.props.updateSpotlightSong}
+        loadMoreSongs={this.props.loadMoreSongs}
+        isLoadingSongs={this.props.isLoadingSongs}
+      />
     else if (this.props.layoutType == SNAPSHOT_LIST_VIEW)
       <SnapshotListView />
     else if (this.props.layoutType == GRID_LIST_VIEW)
@@ -95,56 +108,24 @@ class Discover extends Component {
   render = () => (
       <div className="discover">
 
-        <ControlBar scroll={this.props.scroll} />
+        <ControlBar
+          scroll={this.props.scroll}
+          discoverLayoutType={this.props.layoutType}
+          areSongsShuffled={this.props.songPosts.areShuffled}
+          resetSongs={this.props.resetSongs}
+          updateDiscoverLayoutType={this.props.updateDiscoverLayoutType}
+          availableGenres={this.props.availableGenres}
+          activeGenreFilters={this.props.activeGenreFilters}
+        />
 
         <div
           className={
             'discover-songs' +
-            (!this.props.scrolledToDiscover ? ' disableScroll' : '')
+            (!this.props.scroll.scrolledToDiscover ? ' disableScroll' : '')
           }
         >
-          { this.getDiscoverSongs() }
+          { this.getDiscoverSongView() }
         </div>
       </div>
   )
-
-  /*
-  renderOther() {
-    return (
-        <div className="songsContainer clearfix" ref={this.mainContainerRef}>
-          <div id="discover" className="discovery-section">
-
-            <ControlBar
-              isControlBarFixed={this.state.isControlBarFixed}
-              scrollToDiscover={this.scrollToDiscover}
-            />
-
-            <div
-              id="discovery-container"
-              name="discovery-container"
-              // onScroll={e => this.props.setDiscoverScroll(e.target.scrollTop)}
-              className={
-                'discovery-container' +
-                (this.state.disableScroll ? ' disableScroll' : '') +
-                (this.props.discoverLayout === 'snapshot' ? ' previewScrollLayout' : ' fullViewLayout') +
-                (this.props.discoverLayout === 'fullGrid' ? ' fullGridLayout' : '')
-              }
-            >
-              {
-                this.props.discoverLayout !== 'snapshot' &&
-                <FullView />
-              }
-
-              <ListView isControlBarFixed={this.state.isControlBarFixed} />
-            </div>
-
-          </div>
-        </div>
-    )
-  }
-  */
 }
-
-export default connect(
-  ({ discoverLayout }) => ({ discoverLayout })
-)(Discover)

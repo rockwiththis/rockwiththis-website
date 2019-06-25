@@ -31,11 +31,12 @@ class ControlBar extends Component {
 
   static propTypes = {
     scroll: PropTypes.object.isRequired,
-
-    // Redux
-    discoverLayout: PropTypes.string.isRequired,
-    isShuffle: PropTypes.bool.isRequired,
-    resetSongs: PropTypes.func.isRequired
+    discoverLayoutType: PropTypes.string.isRequired,
+    areSongsShuffled: PropTypes.bool.isRequired,
+    resetSongs: PropTypes.func.isRequired,
+    updateDiscoverViewType: PropTypes.func.isRequired,
+    availableGenres: PropTypes.object.isRequired,
+    activeGenreFilters: PRopTypes.object.isRequired
   }
 
   constructor(props) {
@@ -71,7 +72,7 @@ class ControlBar extends Component {
     this.setState({ isMomentsActive: false });
 
   getActiveViewIcon = () => {
-    switch(this.props.discoverLayout) {
+    switch(this.props.discoverLayoutType) {
       case FULL_VIEW:
         return <FullViewIcon  />;
       case SNAPSHOT_LIST_VIEW:
@@ -83,7 +84,7 @@ class ControlBar extends Component {
   }
 
   getActiveViewName = () => {
-    switch(this.props.discoverLayout) {
+    switch(this.props.discoverLayoutType) {
       case FULL_VIEW:
         return 'Full';
       case SNAPSHOT_LIST_VIEW:
@@ -173,12 +174,16 @@ class ControlBar extends Component {
         >
           <ViewsDropdown
             isActive={this.state.isViewsDropdownActive}
-            activeView={this.props.discoverLayout}
+            activeView={this.props.discoverLayoutType}
             hide={this.hideViewsDropdown}
+            updateDiscoverLayoutType={this.props.updateDiscoverLayoutType}
           />
           <GenreFilters
             isActive={this.state.isGenreFiltersActive}
             hide={this.hideGenreFilters}
+            resetSongs={this.props.resetSongs}
+            availableGenres={this.props.availableGenres}
+            activeGenreFilters={this.props.activeGenreFilters}
           />
           <Moments
             isActive={this.state.isMomentsActive}

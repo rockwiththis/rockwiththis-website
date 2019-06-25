@@ -1,5 +1,4 @@
 import React from 'react'
-import './LoadingComponent.scss'
 
 const LoadingComponent = () =>
   (

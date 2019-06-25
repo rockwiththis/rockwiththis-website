@@ -11,7 +11,7 @@ import DiscoverSection from 'components/discover';
 // import AutoplayErrorModal from 'components/autoplay-error-modal';
 
 import { setInitialSongs } from 'actions/fetch/songs';
-import { didAutoplayFail } from 'actions/set-state';
+import { didAutoplayFail, updateSpotlightSong } from 'actions/set-state';
 
 class Homepage extends Component {
 
@@ -85,8 +85,8 @@ class Homepage extends Component {
         <div className="content">
           <NewestSongs
             newestSongPosts={this.props.newestSongPosts}
-            getSongPlayStatus={() => "NO_STATUS"}
-            getSongPlayerFunctions={() => ({})}
+            songPlayStatusForSongId={() => "NO_STATUS"}
+            songPlayerFunctionsForSongId={() => ({})}
           />
 
           <DiscoverSection
@@ -110,9 +110,20 @@ class Homepage extends Component {
 
 /* TODO rename store props */
 export default connect(
-  ({ filteredPosts, heroPosts }) => ({
+  ({
+    filteredPosts,
+    heroPosts,
+    discoverLayout,
+    spotlightSong
+  }) => ({
     songData: filteredPosts,
-    newestSongPosts: heroPosts
+    newestSongPosts: heroPosts,
+    discoverLayout,
+    spotlightSong
   }),
-  { setInitialSongs, didAutoplayFail }
+  {
+    setInitialSongs,
+    didAutoplayFail,
+    updateSpotlightSong
+  }
 )(Homepage)

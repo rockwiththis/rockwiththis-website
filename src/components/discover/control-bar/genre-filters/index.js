@@ -14,13 +14,16 @@ import { ALL_GENRES } from 'constants/base-genres';
 const propTypes = {
   isActive: PropTypes.bool.isRequired,
   hide: PropTypes.func.isRequired,
+  resetSongs: PropTypes.func.isRequired,
+  // TODO use these instead
+  availableGenres: PropTypes.object.isRequired,
+  activeGenreFilters: PropTypes.object.isRequired,
 
   // Redux
   genres: PropTypes.object.isRequired,
   genreFilters: PropTypes.array.isRequired,
   subgenreFilters: PropTypes.array.isRequired,
-  fetchGenres: PropTypes.func.isRequired,
-  resetSongs: PropTypes.func.isRequired
+  fetchGenres: PropTypes.func.isRequired
 }
 
 class GenreFilters extends Component {
@@ -255,11 +258,11 @@ class GenreFilters extends Component {
             }
           </div>
 
-        <style jsx>{`
-          .genre-filters.hidden {
-            display: none;
-          }
-        `}</style>
+          <style jsx>{`
+            .genre-filters.hidden {
+              display: none;
+            }
+          `}</style>
         </div>
     )
   }
