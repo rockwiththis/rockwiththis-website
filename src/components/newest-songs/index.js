@@ -10,8 +10,8 @@ class NewestSongs extends React.Component {
 
   static propTypes = {
     newestSongPosts: PropTypes.array.isRequired,
-    getSongPlayStatus: PropTypes.func.isRequired,
-    getSongPlayerFunctions: PropTypes.func.isRequired
+    songPlayStatusForSong: PropTypes.func.isRequired,
+    songPlayerFunctionsForSong: PropTypes.func.isRequired
   }
 
   render = () => (
@@ -21,8 +21,8 @@ class NewestSongs extends React.Component {
               <NewSong
                 key={songData.id}
                 songData={songData}
-                songPlayStatus={this.props.getSongPlayStatus(songData)}
-                songPlayerFunctions={this.props.getSongPlayerFunctions(songData)}
+                songPlayStatus={this.props.songPlayStatusForSong(songData)}
+                songPlayerFunctions={this.props.songPlayerFunctionsForSong(songData)}
                 isFeaturedSong={i === 0}
               />
           ))

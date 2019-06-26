@@ -10,7 +10,7 @@ import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
 import DiscoverSection from 'components/discover';
 // import AutoplayErrorModal from 'components/autoplay-error-modal';
 
-import { setInitialSongs } from 'actions/fetch/songs';
+import { setInitialSongs, loadMoreSongs, resetSongs } from 'actions/fetch/songs';
 import { didAutoplayFail, updateSpotlightSong } from 'actions/set-state';
 
 class Homepage extends Component {
@@ -84,14 +84,23 @@ class Homepage extends Component {
 
         <div className="content">
           <NewestSongs
-            newestSongPosts={this.props.newestSongPosts}
-            songPlayStatusForSongId={() => "NO_STATUS"}
-            songPlayerFunctionsForSongId={() => ({})}
+            newestSongPosts={this.props.songData.newest}
+            songPlayStatusForSong={() => "NO_STATUS"}
+            songPlayerFunctionsForSong={() => ({})}
           />
 
           <DiscoverSection
             scroll={this.scrollControls()}
-
+            songPosts={this.props.songData}
+            songPlayStatusForSong={() => "NO_STATUS"}
+            songPlayerFunctionsForSong={() => ({})}
+            songDataFunctions={this.props.songDataFunctions}
+            resetSongs={() => null}
+            isLoadingMoreSongs={false}
+            updateSpotlightSong={() => null}
+            updateDiscoverLayoutType={() => null}
+            availableGenres={{}}
+            activeGenreFilters={{}}
           />
 
           {/*
@@ -111,19 +120,45 @@ class Homepage extends Component {
 /* TODO rename store props */
 export default connect(
   ({
-    filteredPosts,
     heroPosts,
-    discoverLayout,
-    spotlightSong
+    filteredPosts,
+    spotlightPost,
+    loadingSongs
   }) => ({
-    songData: filteredPosts,
-    newestSongPosts: heroPosts,
-    discoverLayout,
-    spotlightSong
+    songData: {
+      newest: heroPosts,
+      filtered: filteredPosts,
+      spotlight: spotlightPost
+    },
+    isLoadingSongs: loadingSongs
   }),
   {
     setInitialSongs,
     didAutoplayFail,
+    loadMoreSongs,
+    resetSongs,
+    updateSpotlightSong,
+  },
+  // TODO maybe define these aggregated collections in actions instead
+  ({
+    songData,
+    isLoadingSongs
+  }, {
+    setInitialSongs,
+    didAutoplayFail,
+    loadMoreSongs,
+    resetSongs,
     updateSpotlightSong
-  }
+  }) => ({
+    songData,
+    isLoadingSongs,
+    setInitialSongs,
+    didAutoplayFail,
+    songDataFunctions: {
+      loadMore: loadMoreSongs,
+      resetSongs: resetSongs,
+      setSpotlight: updateSpotlightSong,
+      isLoading: isLoadingSongs
+    }
+  })
 )(Homepage)

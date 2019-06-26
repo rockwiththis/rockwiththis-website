@@ -32,6 +32,7 @@ class NewSong extends Component {
           songPlayerStatus={this.props.songPlayerStatus}
           songPlayerFunctions={this.props.songPlayerFunctions}
         />
+
         <style jsx>{`
           .featured-song-tag {
             position: absolute;

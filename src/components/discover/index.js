@@ -9,25 +9,87 @@ import FullView from './views/full-view';
 import {
   FULL_VIEW,
   SNAPSHOT_LIST_VIEW,
-  GRID_LIST_VIEW
+  GRID_LIST_VIEW,
+  ALL_VIEWS
 } from 'constants/discover-views';
+
+const INITIAL_LAYOUT_TYPE = FULL_VIEW;
 
 export default class Discover extends Component {
 
   static propTypes = {
     scroll: PropTypes.object.isRequired,
-    layoutType: PropTypes.string.isRequired, // TODO use state
     songPosts: PropTypes.object.isRequired,
     songPlayStatusForSong: PropTypes.func.isRequired,
     songPlayerFunctionsForSong: PropTypes.func.isRequired,
-    loadMoreSongs: PropTypes.func.isRequired,
-    resetSongs: PropTypes.func.isRequired,
-    isLoadingMoreSongs: PropTypes.bool.isRequired, // TODO use state in layouts
+    songDataFunctions: PropTypes.exact({
+      loadMore: PropTypes.func.isRequired,
+      resetSongs: PropTypes.func.isRequired,
+      setSpotlight: PropTypes.func.isRequired,
+      isLoading: PropTypes.bool.isRequired
+    }).isRequired,
+    /*
+    isLoadingMoreSongs: PropTypes.bool.isRequired,
     updateSpotlightSong: PropTypes.func.isRequired,
-    updateDiscoverLayoutType: PropTypes.func.isRequired, // TODO use state
-    availableGenres: PropTypes.object.isRequired,
-    activeGenreFilters: PropTypes.object.isRequired
+    */
+    genres: PropTypes.exact({
+      availableGenres: PropTypes.object.isRequired,
+      activeGenreFilters: PropTypes.object.isRequired
+    }).isRequired
   }
+
+  constructor(props) {
+    super(props);
+    this.state = { layoutType: INITIAL_LAYOUT_TYPE };
+  }
+
+  updateLayoutType = newLayoutType => {
+    if (ALL_VIEWS.includes(newLayoutType)) { 
+      this.setState({ layoutType: newLayoutType });
+    } else {
+      console.log(`Requested layout type ${newLayoutType} is not recognized`);
+    }
+  }
+
+  getDiscoverSongView = () => {
+    if (this.state.layoutType === FULL_VIEW)
+      return <FullView
+        songPosts={this.props.songPosts}
+        songPlayStatusForSong={this.props.songPlayStatusForSong}
+        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
+        songDataFunctions={this.props.songDataFunctions}
+      />
+    else if (this.state.layoutType === SNAPSHOT_LIST_VIEW)
+      return <SnapshotListView />
+    else if (this.state.layoutType === GRID_LIST_VIEW)
+      return <GridListView />
+
+    console.log(`Could not recognize layout type ${this.state.layoutType}`)
+    return null;
+  }
+
+  render = () => (
+      <div className="discover">
+
+        <ControlBar
+          scroll={this.props.scroll}
+          discoverLayoutType={this.state.layoutType}
+          updateDiscoverLayoutType={this.updateLayoutType}
+          areSongsShuffled={this.props.songPosts.areShuffled}
+          songDataFunctions={this.props.songDataFunctions}
+          genres={this.props.genres}
+        />
+
+        <div
+          className={
+            'discover-songs' +
+            (!this.props.scroll.scrolledToDiscover ? ' disable-scroll' : '')
+          }
+        >
+          { this.getDiscoverSongView() }
+        </div>
+      </div>
+  )
 
   /* TODO find better scroll anchoring solution
    * Bonus points for including this other scroll handling!
@@ -85,47 +147,4 @@ export default class Discover extends Component {
 
   scrollToDiscover = () => this.mainContainerRef.current.scrollIntoView(true);
   */
-
-  getDiscoverSongView = () => {
-    if (this.props.layoutType == FULL_VIEW)
-      <FullView
-        songPosts={this.props.songPosts.filtered}
-        songPlayStatusForSong={this.props.songPlayStatusForSong}
-        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
-        updateSpotlightSong={this.props.updateSpotlightSong}
-        loadMoreSongs={this.props.loadMoreSongs}
-        isLoadingSongs={this.props.isLoadingSongs}
-      />
-    else if (this.props.layoutType == SNAPSHOT_LIST_VIEW)
-      <SnapshotListView />
-    else if (this.props.layoutType == GRID_LIST_VIEW)
-      <GridListView />
-
-    console.log(`Could not recognize layout type ${this.props.layoutType}`)
-    return null;
-  }
-
-  render = () => (
-      <div className="discover">
-
-        <ControlBar
-          scroll={this.props.scroll}
-          discoverLayoutType={this.props.layoutType}
-          areSongsShuffled={this.props.songPosts.areShuffled}
-          resetSongs={this.props.resetSongs}
-          updateDiscoverLayoutType={this.props.updateDiscoverLayoutType}
-          availableGenres={this.props.availableGenres}
-          activeGenreFilters={this.props.activeGenreFilters}
-        />
-
-        <div
-          className={
-            'discover-songs' +
-            (!this.props.scroll.scrolledToDiscover ? ' disableScroll' : '')
-          }
-        >
-          { this.getDiscoverSongView() }
-        </div>
-      </div>
-  )
 }

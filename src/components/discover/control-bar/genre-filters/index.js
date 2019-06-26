@@ -16,8 +16,7 @@ const propTypes = {
   hide: PropTypes.func.isRequired,
   resetSongs: PropTypes.func.isRequired,
   // TODO use these instead
-  availableGenres: PropTypes.object.isRequired,
-  activeGenreFilters: PropTypes.object.isRequired,
+  genres: PropTypes.object.isRequired,
 
   // Redux
   genres: PropTypes.object.isRequired,

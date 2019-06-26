@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import GenreTags from 'components/song-shared/genre-tags';
+
 export default class SongGrid extends Component {
 
   static propTypes = {
@@ -15,7 +17,7 @@ export default class SongGrid extends Component {
           'song-grid' +
           (this.props.isSpotlight ? ' spotlight' : '')
         }
-        onClick={this.props.setSongAsSpotlight()}
+        onClick={this.props.setSongAsSpotlight}
       >
         <div className="image-container">
           <img

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-import { resetSongs } from 'actions/fetch/songs';
 import {
   FULL_VIEW,
   SNAPSHOT_LIST_VIEW,
@@ -27,16 +26,15 @@ import {
  * Update songs -> scroll to top of discovery
  */
 
-class ControlBar extends Component {
+export default class ControlBar extends Component {
 
   static propTypes = {
     scroll: PropTypes.object.isRequired,
     discoverLayoutType: PropTypes.string.isRequired,
+    updateDiscoverLayoutType: PropTypes.func.isRequired,
     areSongsShuffled: PropTypes.bool.isRequired,
     resetSongs: PropTypes.func.isRequired,
-    updateDiscoverViewType: PropTypes.func.isRequired,
-    availableGenres: PropTypes.object.isRequired,
-    activeGenreFilters: PRopTypes.object.isRequired
+    genres: PropTypes.object.isRequired
   }
 
   constructor(props) {
@@ -182,8 +180,7 @@ class ControlBar extends Component {
             isActive={this.state.isGenreFiltersActive}
             hide={this.hideGenreFilters}
             resetSongs={this.props.resetSongs}
-            availableGenres={this.props.availableGenres}
-            activeGenreFilters={this.props.activeGenreFilters}
+            genres={this.props.genres}
           />
           <Moments
             isActive={this.state.isMomentsActive}
@@ -256,7 +253,9 @@ class ControlBar extends Component {
   )
 }
 
+/*
 export default connect(
   ({ discoverLayout, isShuffle }) => ({ discoverLayout, isShuffle }),
   { resetSongs }
 )(ControlBar)
+*/

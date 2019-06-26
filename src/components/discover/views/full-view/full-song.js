@@ -17,7 +17,7 @@ export default class FullSong extends Component {
 
   render = () => (
       <div className="full-song">
-        <img className="songImage" src={song.image_url} />
+        <img className="songImage" src={this.props.songData.image_url} />
         <SongHeader
           songData={this.props.songData}
           songPlayStatus={this.props.songPlayStatus}
@@ -25,7 +25,9 @@ export default class FullSong extends Component {
         />
         <p
           className="song-post-content"
-          dangerouslySetInnerHTML={parseSongDescription(song)}
+          dangerouslySetInnerHTML={{
+            __html: parseSongDescription(this.props.songData)
+          }}
         />
       </div>
   )
