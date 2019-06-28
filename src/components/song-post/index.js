@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import SongHeader from 'components/song-shared/song-header';
+import SongHeader from './song-header';
 
-export default class FullSong extends Component {
+export default class SongPost extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
@@ -14,7 +14,7 @@ export default class FullSong extends Component {
   separateParagraphs = text => text.split(/\n+/g);
 
   render = () => (
-      <div className="full-song">
+      <div className="song-post">
         <img className="song-image" src={this.props.songData.image_url} />
         <SongHeader
           songData={this.props.songData}
@@ -31,14 +31,11 @@ export default class FullSong extends Component {
           .song-image {
             float: left;
             box-sizing: border-box;
-            width: 40%;
             padding-right: 20px;
             padding-bottom: 20px;
           }
           .song-post-content {
             font-weight: 100;
-            font-size: 12pt;
-            line-height: 24pt;
           }
         `}</style>
         <style global jsx>{`

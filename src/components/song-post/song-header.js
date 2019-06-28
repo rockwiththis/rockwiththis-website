@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { FaSpotify } from 'react-icons/fa';
 
-import GenreTags from './genre-tags';
+import GenreTags from 'components/song-shared/genre-tags';
 import ShareBox from './share-box';
 
 import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
@@ -53,24 +53,19 @@ export default class SongHeader extends Component {
           .header-title {
             display: inline-block;
             vertical-align: top;
-            width: calc(60% - 20px - 50px);
             box-sizing: border-box;
             padding-left: 10px;
-            font-size: 19pt;
-            padding-bottom: 10px;
           }
           .song-name-wrapper {
             cursor: pointer;
             margin-bottom: -5px;
+            display: block;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
           }
           .song-name {
             font-weight: 700;
-          }
-          .spotify-link {
-            color: #65d36e;
-            vertical-align: middle;
-            padding-left: 5px;
-            font-size: 18pt;
           }
           .meta-info {
             font-size: 14pt;
@@ -85,12 +80,10 @@ export default class SongHeader extends Component {
         <style global jsx>{`
           .song-header .outline-single-song-controls {
             display: inline-block;
-            width: 50px;
-            height: 50px;
           }
           .song-header .outline-single-song-controls svg {
-            width: 50px;
-            height: 50px;
+            width: 100%;
+            height: 100%;
           }
           .song-header .genre-tag {
             padding: 6px 8px;

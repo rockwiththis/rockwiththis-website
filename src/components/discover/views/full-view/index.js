@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import FullSongPlaceholder from './FullSongPlaceholder';
 import SongGridPlaceholder from './SongGridPlaceholder';
 import SongGridSong from './song-grid-song';
-import FullSong from './full-song';
 import Loading from '../loading-more-songs';
+import SongPost from 'components/song-post';
 
 export default class FullView extends Component {
 
@@ -55,7 +55,7 @@ export default class FullView extends Component {
               }
             </div>
           </div>
-          <FullSong
+          <SongPost
             songData={this.props.songPosts.spotlight}
             songPlayStatus={this.props.songPlayStatusForSong(this.props.songPosts.spotlight)}
             songPlayerFunctions={this.props.songPlayerFunctionsForSong(this.props.songPosts.spotlight)}
@@ -72,26 +72,38 @@ export default class FullView extends Component {
             }
           `}</style>
           <style global jsx>{`
-            .full-song {
+            .full-view .song-post {
               display: inline-block;
               width: calc(60% - 200px);
               box-sizing: border-box;
               margin: 0 100px;
               vertical-align: top;
             }
+            .full-view .header-title {
+              // -40% for image, -20px for padding, -50px for play button
+              width: calc(60% - 20px - 50px);
+              margin-bottom: 10px;
+              font-size: 19pt;
+            }
+            .full-view .spotify-link {
+              color: #65d36e;
+              vertical-align: middle;
+              padding-left: 5px;
+              font-size: 18pt;
+            }
+            .full-view .song-post .song-image {
+              width: 40%;
+            }
+            .full-view .song-post-content {
+              font-size: 12pt;
+              line-height: 24pt;
+            }
+            .full-view .outline-single-song-controls {
+              width: 50px;
+              height: 50px;
+            }
           `}</style>
         </div>
     )
   }
 }
-
-/*
-export default connect(
-  ({ filteredPosts, spotlightPost, loadingSongs }) => ({
-    songs: filteredPosts,
-    spotlightSong: spotlightPost,
-    loadingSongs
-  }),
-  { updateSpotlightSong, loadMoreSongs }
-)(FullView);
-*/

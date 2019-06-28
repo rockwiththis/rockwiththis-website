@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ControlBar from './control-bar';
 import FullView from './views/full-view';
 import SnapshotListView from './views/snapshot-list-view';
-// import ListView from './views/list-view';
+import GridListView from './views/grid-list-view';
 
 import {
   FULL_VIEW,
@@ -14,7 +14,7 @@ import {
   ALL_VIEWS
 } from 'constants/discover-views';
 
-const INITIAL_LAYOUT_TYPE = SNAPSHOT_LIST_VIEW;
+const INITIAL_LAYOUT_TYPE = FULL_VIEW;
 
 export default class Discover extends Component {
 
@@ -64,7 +64,12 @@ export default class Discover extends Component {
         songDataFunctions={this.props.songDataFunctions}
       />
     else if (this.state.layoutType === GRID_LIST_VIEW)
-      return <GridListView />
+      return <GridListView
+        filteredSongPosts={this.props.songPosts.filtered}
+        songPlayStatusForSong={this.props.songPlayStatusForSong}
+        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
+        songDataFunctions={this.props.songDataFunctions}
+      />
 
     console.log(`Could not recognize layout type ${this.state.layoutType}`)
     return null;
