@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import ControlBar from './control-bar';
 import FullView from './views/full-view';
+import SnapshotListView from './views/snapshot-list-view';
 // import ListView from './views/list-view';
 
 import {
@@ -13,7 +14,7 @@ import {
   ALL_VIEWS
 } from 'constants/discover-views';
 
-const INITIAL_LAYOUT_TYPE = FULL_VIEW;
+const INITIAL_LAYOUT_TYPE = SNAPSHOT_LIST_VIEW;
 
 export default class Discover extends Component {
 
@@ -28,10 +29,6 @@ export default class Discover extends Component {
       setSpotlight: PropTypes.func.isRequired,
       isLoading: PropTypes.bool.isRequired
     }).isRequired,
-    /*
-    isLoadingMoreSongs: PropTypes.bool.isRequired,
-    updateSpotlightSong: PropTypes.func.isRequired,
-    */
     genres: PropTypes.exact({
       availableGenres: PropTypes.object.isRequired,
       activeGenreFilters: PropTypes.object.isRequired
@@ -44,7 +41,7 @@ export default class Discover extends Component {
   }
 
   updateLayoutType = newLayoutType => {
-    if (ALL_VIEWS.includes(newLayoutType)) { 
+    if (ALL_VIEWS.includes(newLayoutType)) {
       this.setState({ layoutType: newLayoutType });
     } else {
       console.log(`Requested layout type ${newLayoutType} is not recognized`);
@@ -60,7 +57,12 @@ export default class Discover extends Component {
         songDataFunctions={this.props.songDataFunctions}
       />
     else if (this.state.layoutType === SNAPSHOT_LIST_VIEW)
-      return <SnapshotListView />
+      return <SnapshotListView
+        filteredSongPosts={this.props.songPosts.filtered}
+        songPlayStatusForSong={this.props.songPlayStatusForSong}
+        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
+        songDataFunctions={this.props.songDataFunctions}
+      />
     else if (this.state.layoutType === GRID_LIST_VIEW)
       return <GridListView />
 
