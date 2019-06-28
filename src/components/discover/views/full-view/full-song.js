@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
 import SongHeader from 'components/song-shared/song-header';
-
-import { playSong, pauseSong } from 'actions/player';
-import parseSongDescription from 'util/parse-song-description';
 
 export default class FullSong extends Component {
 
@@ -15,20 +11,41 @@ export default class FullSong extends Component {
     songPlayerFunctions: PropTypes.object.isRequired,
   }
 
+  separateParagraphs = text => text.split(/\n+/g);
+
   render = () => (
       <div className="full-song">
-        <img className="songImage" src={this.props.songData.image_url} />
+        <img className="song-image" src={this.props.songData.image_url} />
         <SongHeader
           songData={this.props.songData}
           songPlayStatus={this.props.songPlayStatus}
           songPlayerFunctions={this.props.songPlayerFunctions}
         />
-        <p
-          className="song-post-content"
-          dangerouslySetInnerHTML={{
-            __html: parseSongDescription(this.props.songData)
-          }}
-        />
+        <div className="song-post-content">
+          { this.separateParagraphs(this.props.songData.description).map(text => (
+              <p>{ text }</p>
+          ))}
+        </div>
+
+        <style jsx>{`
+          .song-image {
+            float: left;
+            box-sizing: border-box;
+            width: 40%;
+            padding-right: 20px;
+            padding-bottom: 20px;
+          }
+          .song-post-content {
+            font-weight: 100;
+            font-size: 12pt;
+            line-height: 24pt;
+          }
+        `}</style>
+        <style global jsx>{`
+          .song-header {
+            width: 100%;
+          }
+        `}</style>
       </div>
   )
 }
