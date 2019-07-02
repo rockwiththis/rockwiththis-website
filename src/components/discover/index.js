@@ -95,6 +95,17 @@ export default class Discover extends Component {
         >
           { this.getDiscoverSongView() }
         </div>
+
+        <style jsx>{`
+          .discover {
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 70px);   // full screen height minus footer player
+          }
+          .discover-songs {
+            height: calc(100% - 55px);    // full discover height minus control bar
+          }
+        `}</style>
       </div>
   )
 

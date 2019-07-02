@@ -197,7 +197,6 @@ export default class ControlBar extends Component {
             box-sizing: border-box;
             padding: 0 15px;
             padding-top: 8px;
-            cursor: pointer;
           }
           .control-bar-item {
             display: inline-block;
@@ -207,6 +206,7 @@ export default class ControlBar extends Component {
             padding: 6px;
             text-align: center;
             color: #545454;
+            cursor: pointer;
           }
           .control-bar-separator {
             display: inline-block;
@@ -224,11 +224,9 @@ export default class ControlBar extends Component {
             vertical-align: middle;
             margin-left: 5px;
           }
-          .control-bar-controls {
-            position: absolute;
-            z-index: 1;
-            cursor: pointer;
-          }
+          // DO NOT position .control-bar-controls so children can be absolutely positioned
+          // relatively to the .full-view div
+
           // Desktop only
           @media (min-width: 800px) {
             .control-bar-title.mobile {

@@ -21,6 +21,7 @@ class Homepage extends Component {
 
   constructor(props) {
     super(props);
+    this.newestSongsRef = React.createRef();
     this.state = {
       scrolledToDiscover: false
     }
@@ -42,27 +43,20 @@ class Homepage extends Component {
     window.removeEventListener('resize', this.updateScrolledToDiscover)
   }
 
-  getNewestSongsElement = () => document.getElementById('newest-songns');
-
   // TODO better scroll anchoring + control
-  updateScrolledToDiscover = () => {
-    const newestSongsElement = this.getNewestSongsElement();
-    const scrolledToDiscover = (
-      newestSongsElement &&
-      newestSongsElement.clientHeight + 45 > window.scrollY
-    );
-    this.setState({ scrolledToDiscover })
-  }
+  updateScrolledToDiscover = () =>
+    this.setState({
+      scrolledToDiscover:
+        this.newestSongsRef.current.getClientHeight() + 45 > window.scrollY
+    })
 
-  scrollToDiscover = () => {
-    const newestSongsElement = this.getNewestSongsElement();
-    if (!!newestSongsElement)
-      animateScroll.scrollTo(newestSongsElement.clientHeight + 45);
-  }
+  // TODO replace `75` w/ toolbar height
+  scrollToDiscover = () =>
+    window.scrollTo(0, this.newestSongsRef.current.getClientHeight() + 75);
 
   scrollToTop = () => {
     this.setState({ scrolledToDiscover: false });
-    animateScroll.scrollTo(0);
+    window.scrollTo(0, 0);
   }
 
   scrollControls = () => ({
@@ -87,6 +81,7 @@ class Homepage extends Component {
             newestSongPosts={this.props.songData.newest}
             songPlayStatusForSong={() => "NO_STATUS"}
             songPlayerFunctionsForSong={() => ({})}
+            ref={this.newestSongsRef}
           />
 
           <DiscoverSection
@@ -111,6 +106,7 @@ class Homepage extends Component {
           .content {
             max-width: 1658px;
             margin: 0 auto;
+            margin-bottom: 70px;
           }
         `}</style>
       </div>
@@ -149,7 +145,8 @@ export default connect(
     loadMoreSongs,
     resetSongs,
     updateSpotlightSong
-  }) => ({
+  }, ownProps) => ({
+    ...ownProps,
     songData,
     isLoadingSongs,
     setInitialSongs,

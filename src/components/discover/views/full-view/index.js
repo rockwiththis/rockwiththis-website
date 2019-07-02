@@ -63,21 +63,37 @@ export default class FullView extends Component {
 
           <style jsx>{`
             .full-view {
+              position: relative;
               padding: 15px;
               box-sizing: border-box;
+              height: 100%;
             }
             .song-grid-container {
               display: inline-block;
               width: 40%;
+              height: 100%;
+              overflow-y: scroll;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+            .song-grid-container::-webkit-scrollbar {
+              width: 0px;
             }
           `}</style>
           <style global jsx>{`
             .full-view .song-post {
               display: inline-block;
               width: calc(60% - 200px);
+              height: 100%;
               box-sizing: border-box;
               margin: 0 100px;
               vertical-align: top;
+              overflow-y: scroll;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+            .full-view .song-post::-webkit-scrollbar {
+              width: 0px;
             }
             .full-view .header-title {
               // -40% for image, -20px for padding, -50px for play button

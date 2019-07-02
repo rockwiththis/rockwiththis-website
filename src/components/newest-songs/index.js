@@ -14,8 +14,15 @@ class NewestSongs extends React.Component {
     songPlayerFunctionsForSong: PropTypes.func.isRequired
   }
 
+  constructor(props) {
+    super(props);
+    this.mainDivRef = React.createRef();
+  }
+
+  getClientHeight = () => this.mainDivRef.current.clientHeight;
+
   render = () => (
-      <div className="newest-songs">
+      <div className="newest-songs" ref={this.mainDivRef} >
         {this.props.newestSongPosts.length > 0 ?
           this.props.newestSongPosts.map((songData, i) => (
               <NewSongGridSong

@@ -74,6 +74,7 @@ export default class SongGridSong extends Component {
             width 100%;
             background: rgba(255, 255, 255, 0.9);
             padding: 4px;
+            box-sizing: border-box;
           }
           .song-info > span {
             overflow: hidden;

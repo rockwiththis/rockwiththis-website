@@ -23,14 +23,15 @@ class MyApp extends App {
 
   render = () => {
     const { Component, pageProps, store } = this.props;
+    const componentProps = {
+      ...pageProps,
+      setIsScrollDisabled: this.setIsScrollDisabled
+    };
 
     return (
         <Container>
           <Provider store={store}>
-            <Component
-              {...pageProps}
-              setIsScrollDisabled={this.setIsScrollDisabled}
-            />
+            <Component {...componentProps} />
 
             {/*
             <FooterAudioPlayer

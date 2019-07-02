@@ -77,12 +77,16 @@ export default class ViewsDropdown extends Component {
 
         <style jsx>{`
           .views-dropdown {
+            position: absolute;
+            z-index: 10;
+            width: 120px;
             border: 2px solid #282828;
             border-top: 0;
             border-bottom-right-radius: 4px;
             border-bottom-left-radius: 4px;
             background-color: #f5f3f3;
             margin-left: 10px;
+            cursor: pointer;
           }
           .views-dropdown.hidden {
             display: none;
