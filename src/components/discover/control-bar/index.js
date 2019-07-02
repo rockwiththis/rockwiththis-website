@@ -197,6 +197,7 @@ export default class ControlBar extends Component {
             box-sizing: border-box;
             padding: 0 15px;
             padding-top: 8px;
+            cursor: pointer;
           }
           .control-bar-item {
             display: inline-block;
@@ -205,7 +206,6 @@ export default class ControlBar extends Component {
             border-radius: 8px;
             padding: 6px;
             text-align: center;
-            cursor: pointer;
             color: #545454;
           }
           .control-bar-separator {
@@ -226,6 +226,8 @@ export default class ControlBar extends Component {
           }
           .control-bar-controls {
             position: absolute;
+            z-index: 1;
+            cursor: pointer;
           }
           // Desktop only
           @media (min-width: 800px) {

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
-
-import { updateDiscoverLayout } from 'actions/set-state';
 
 import {
   FULL_VIEW,
@@ -14,18 +11,14 @@ import FullViewIcon from 'components/icons/full-view';
 import SnapshotViewIcon from 'components/icons/snapshot-view';
 import GridViewIcon from 'components/icons/grid-view';
 
-// import './stylesheets/views-dropdown.scss';
+export default class ViewsDropdown extends Component {
 
-const propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  activeView: PropTypes.bool.isRequired,
-  hide: PropTypes.func.isRequired,
-
-  // Redux
-  updateDiscoverLayout: PropTypes.func.isRequired
-}
-
-class ViewsDropdown extends Component {
+  static propTypes = {
+    isActive: PropTypes.bool.isRequired,
+    activeView: PropTypes.bool.isRequired,
+    hide: PropTypes.func.isRequired,
+    updateDiscoverLayoutType: PropTypes.func.isRequired
+  }
 
   componentDidUpdate = prevProps => {
 
@@ -36,63 +29,80 @@ class ViewsDropdown extends Component {
       document.removeEventListener('click', this.props.hide);
   }
 
-  render() {
-    return (
+  render = () => (
+      <div
+        className={
+          'views-dropdown' +
+          (this.props.isActive ? '' : ' hidden')
+        }
+      >
         <div
           className={
-            'views-dropdown' +
-            (this.props.isActive ? '' : ' hidden')
+            'view-select-item' +
+            (this.props.activeView === FULL_VIEW ? ' active' : '')
           }
+          onClick={() => this.props.updateDiscoverLayoutType(FULL_VIEW)}
         >
-          <div
-            className={
-              'view-select-item' +
-              (this.props.activeView === FULL_VIEW ? ' active' : '')
-            }
-            onClick={() => this.props.updateDiscoverLayout(FULL_VIEW)}
-          >
-            <div className="view-select-item-content">
-              <FullViewIcon />
-              <span>Full View</span>
-            </div>
+          <div className="view-select-item-content">
+            <FullViewIcon />
+            <span>Full View</span>
           </div>
-
-          <div
-            className={
-              'view-select-item' +
-              (this.props.activeView === SNAPSHOT_LIST_VIEW ? ' active' : '')
-            }
-            onClick={() => this.props.updateDiscoverLayout(SNAPSHOT_LIST_VIEW)}
-          >
-            <div className="view-select-item-content">
-              <SnapshotViewIcon />
-              <span>Snap View</span>
-            </div>
-          </div>
-
-          <div
-            className={
-              'view-select-item' +
-              (this.props.activeView === GRID_LIST_VIEW ? ' active' : '')
-            }
-            onClick={() => this.props.updateDiscoverLayout(GRID_LIST_VIEW)}
-          >
-            <div className="view-select-item-content">
-              <GridViewIcon />
-              <span>Grid View</span>
-            </div>
-          </div>
-
-          <style jsx>{`
-            .views-dropdown.hidden {
-              display: none;
-            }
-          `}</style>
         </div>
-    )
-  }
+
+        <div
+          className={
+            'view-select-item' +
+            (this.props.activeView === SNAPSHOT_LIST_VIEW ? ' active' : '')
+          }
+          onClick={() => this.props.updateDiscoverLayoutType(SNAPSHOT_LIST_VIEW)}
+        >
+          <div className="view-select-item-content">
+            <SnapshotViewIcon />
+            <span>Snap View</span>
+          </div>
+        </div>
+
+        <div
+          className={
+            'view-select-item' +
+            (this.props.activeView === GRID_LIST_VIEW ? ' active' : '')
+          }
+          onClick={() => this.props.updateDiscoverLayoutType(GRID_LIST_VIEW)}
+        >
+          <div className="view-select-item-content">
+            <GridViewIcon />
+            <span>Grid View</span>
+          </div>
+        </div>
+
+        <style jsx>{`
+          .views-dropdown {
+            border: 2px solid #282828;
+            border-top: 0;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            background-color: #f5f3f3;
+            margin-left: 10px;
+          }
+          .views-dropdown.hidden {
+            display: none;
+          }
+          .view-select-item {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+          }
+          .view-select-item-content {
+            font-size: 9pt;
+          }
+        `}</style>
+        <style global jsx>{`
+          .views-dropdown svg {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            margin-right: 10px;
+          }
+        `}</style>
+      </div>
+  )
 }
-
-ViewsDropdown.propTypes = propTypes;
-
-export default connect(null, { updateDiscoverLayout })(ViewsDropdown);
