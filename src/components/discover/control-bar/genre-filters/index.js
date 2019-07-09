@@ -1,45 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { find, pickBy, uniq, compact, flatten, indexOf, orderBy } from 'lodash';
+import { keys, values, flatten, get, orderBy, isEqual } from 'lodash';
 import { IoIosClose } from 'react-icons/io';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import $ from 'jquery';
 
-import { fetchGenres } from 'actions/fetch/genres';
-import { resetSongs } from 'actions/fetch/songs';
+export default class GenreFilters extends Component {
 
-import { ALL_GENRES } from 'constants/base-genres';
-
-const propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  hide: PropTypes.func.isRequired,
-  resetSongs: PropTypes.func.isRequired,
-  // TODO use these instead
-  genres: PropTypes.object.isRequired,
-
-  // Redux
-  genres: PropTypes.object.isRequired,
-  genreFilters: PropTypes.array.isRequired,
-  subgenreFilters: PropTypes.array.isRequired,
-  fetchGenres: PropTypes.func.isRequired
-}
-
-class GenreFilters extends Component {
+  static propTypes = {
+    isActive: PropTypes.bool.isRequired,
+    hide: PropTypes.func.isRequired,
+    resetSongs: PropTypes.func.isRequired,
+    genres: PropTypes.exact({
+      available: PropTypes.objectOf(PropTypes.string).isRequired,
+      filters: PropTypes.objectOf(PropTypes.string).isRequired
+    }).isRequired,
+  }
 
   constructor(props) {
     super(props);
     this.modalRef = React.createRef();
 
     this.state = {
-      selectedGenres: {},   // Keyed by genre name
-      selectedSubgenres: {} // Keyed by genre id
+      selectedFilters: this.props.genres.filters
     }
   }
 
-  componentDidMount = () => this.props.fetchGenres();
-
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps, prevState) => {
 
     if (!prevProps.isActive && this.props.isActive)
       document.addEventListener('click', this.hideOnClickOff);
@@ -48,23 +34,15 @@ class GenreFilters extends Component {
       document.removeEventListener('click', this.hideOnClickOff);
   }
 
+  // TODO stop using this
   disableScrolling = () => $('body').css('overflow', 'hidden');
-
   enableScrolling = () => $('body').css('overflow', 'auto');
 
   closeModal = () => {
     this.props.hide();
     this.setState({
-      selectedGenres: this.props.genreFilters.reduce((currGenres, genre) => ({
-        ...currGenres,
-        [genre.name]: genre
-      }), {}),
-      selectedSubgenres: this.props.subgenreFilters.reduce((currSubgenres, subgenre) => ({
-        ...currSubgenres,
-        [subgenre.id]: subgenre
-      }), {})
+      selectedFilters: this.props.genres.filters
     });
-
     this.enableScrolling();
   }
 
@@ -78,74 +56,96 @@ class GenreFilters extends Component {
   // Mark selected genre as set or unset
   // Always reset the child subgenres
   toggleGenre = genreName => {
-    const genre = this.props.genres[genreName];
+    const newGenreData = get(this.state.selectedFilters, [genreName, 'areAllSelected'])
+      ? {
+        areAllSelected: false,
+        subgenres: {}
+      }
+      : {
+        areAllSelected: true,
+        subgenres: this.getAllAvailableKeyedSubgenres(genreName)
+      };
     this.setState({
-      ...this.state,
-      selectedGenres: {
-        ...this.state.selectedGenres,
-        [genreName]: !!this.state.selectedGenres[genreName] ? undefined : genre
-      },
-      selectedSubgenres:
-        genre.subgenres.reduce(
-          (currSubgenres, subgenreToRemove) => ({
-            ...currSubgenres,
-            [subgenreToRemove.id]: undefined
-          }),
-          this.state.selectedSubgenres
-        )
-    })
+      selectedFilters: {
+        ...this.state.selectedFilters,
+        [genreName]: newGenreData
+      }
+    });
   }
 
   // Mark selected subgenre as set or unset
   // Always reset the parent genre
-  toggleSubgenre = (genreName, subgenre) =>
+  toggleSubgenre = (genreName, subgenre) => {
+    const currSubgenreData = get(this.state.selectedFilters, [genreName, 'subgenres'], {});
+    const newSubgenreData = {
+      ...currSubgenreData,
+      [subgenre.id]: !!currSubgenreData[subgenre.id] ? undefined : subgenre
+    }
     this.setState({
-      ...this.state,
-      selectedGenres: {
-        ...this.state.selectedGenres,
-        [genreName]: undefined
-      },
-      selectedSubgenres: {
-        ...this.state.selectedSubgenres,
-        [subgenre.id]: !!this.state.selectedSubgenres[subgenre.id] ?
-          undefined : { ...subgenre, parentGenre: genreName }
+      selectedFilters: {
+        ...this.state.selectedFilters,
+        [genreName]: {
+          areAllSelected: this.isEntireGenreSelected(genreName, newSubgenreData),
+          subgenres: newSubgenreData
+        }
       }
-    })
+    });
+  }
 
-  areAnyGenresSelected = () => find(this.state.selectedGenres, x => !!x)
+  resetFilterSelection = () =>
+    this.setState({ selectedFilters: {} });
 
-  areAllGenresSelected = () =>
-    !this.areAnyGenresSelected() &&
-    !this.areAnySubgenresSelected()
+  getAllAvailableKeyedSubgenres = genreName =>
+    get(this.props.genres.available, [genreName, 'subgenres'], [])
+      .reduce((curr, next) => ({
+        ...curr,
+        [next.id]: next
+      }), {});
 
-  areAnySubgenresSelected = () =>
-    !!find(this.state.selectedSubgenres, x => !!x)
+  // Not the safest way to do this
+  // If we notice bugs in this implementation, they are probably here
+  isEntireGenreSelected = (genreName, subgenreData) => {
+    const availableSubgenres = this.props.genres.available[genreName].subgenres
+      .filter(sg => !sg.isHidden);
 
-  areNoneSelected = () => !this.areAnyGenresSelected() && !this.areAnySubgenresSelected()
+    const selectedSubgenres = values(subgenreData).filter(sg => !!sg);
 
-  selectAllGenres = () =>
-    this.setState({
-      ...this.state,
-      selectedGenres: {},
-      selectedSubgenres: {}
-    })
+    return availableSubgenres.length === selectedSubgenres.length;
+  }
 
-  shouldHideSubgenreGroupMobile = genreName =>
-    !this.state.selectedGenres[genreName] &&
-    !find(Object.values(this.state.selectedSubgenres), ['parentGenre', genreName])
+  getAllSelectedSubgenres = (filters = this.state.selectedFilters) =>
+    flatten(values(filters).map(genre => (
+      values(genre.subgenres).filter(sg => !!sg)
+    )))
+
+  areNoneSelected = () => this.getAllSelectedSubgenres().length === 0;
+
+  getSelectedSubgenres = genreName =>
+    values(get(this.state.selectedFilters, [genreName, 'subgenres']))
+      .filter(sg => !!sg);
+
+  areNoSubgenresSelected = genreName =>
+    !this.state.selectedFilters[genreName] &&
+    this.getSelectedSubgenres(genreName).length === 0;
+
+  cssSafeGenreName = genreName =>
+    genreName.replace('/', '-');
+
+  getSubgenreButtonClass = (genreName, subgenreId) => {
+    if (get(this.state.selectedFilters, [genreName, 'areAllSelected']))
+      return ' included'
+    else if (!!get(this.state.selectedFilters, [genreName, 'subgenres', subgenreId]))
+      return ' selected'
+    else
+      return '';
+  }
 
   submit = () => {
-    const genreFilters = Object.values(this.state.selectedGenres).filter(g => !!g)
-    const subgenreFilters = Object.values(this.state.selectedSubgenres).filter(sg => !!sg)
+    const selectedSubgenreIds = this.getAllSelectedSubgenres().map(sg => sg.id);
+    const currSubgenreIds = this.getAllSelectedSubgenres(this.props.genres.filters).map(sg => sg.id);
 
-    const isSelectionDifferent = (
-      genreFilters !== this.props.genreFilters &&
-      subgenreFilters !== this.props.subgenreFilters
-    );
-
-    if (isSelectionDifferent)
-      this.props.resetSongs({ genreFilters, subgenreFilters });
-
+    if (!isEqual(selectedSubgenreIds.sort(), currSubgenreIds.sort()))
+      this.props.resetSongs({ selectedGenreFilters: this.state.selectedFilters });
 
     this.props.hide();
   }
@@ -164,7 +164,7 @@ class GenreFilters extends Component {
 
         <div className="content-wrapper">
           {
-            Object.keys(this.props.genres).length > 0 ? (
+            keys(this.props.genres.available).length > 0 && !!this.state.selectedFilters ? (
               <div className="genre-filter-content" ref={this.modalRef}>
 
                 <div className="close" onClick={() => this.closeModal()}><IoIosClose /></div>
@@ -172,41 +172,36 @@ class GenreFilters extends Component {
                 <div
                   className={
                     'genres' +
-                    (this.areAllGenresSelected() ? ' all-selected' : '')
+                    (this.areNoneSelected() ? ' all-selected' : '')
                   }
                 >
                   <div className="genre-header">
                     <span><span className="less-bold">pick your</span> genres <span className="separator">|</span></span>
                     <div
                       className="gf-button all-button"
-                      onClick={() => this.selectAllGenres()}
+                      onClick={() => this.resetFilterSelection()}
                     >
                       reset
                     </div>
                   </div>
 
-                  { ALL_GENRES.map(genreName => (
+                  { keys(this.props.genres.available).map(genreName => (
                       <div
                         className={
-                          `gf-button genre-button ${genreName}` +
-                          (!!this.state.selectedGenres[genreName] ? ' selected' : '') +
-                          (this.areAllGenresSelected() ? ' included' : '')
+                          `gf-button genre-button ${this.cssSafeGenreName(genreName)}` +
+                          (get(this.state.selectedFilters, [genreName, 'areAllSelected']) ? ' selected' : '') +
+                          (this.areNoneSelected() ? ' included' : '')
                         }
                         onClick={() => this.toggleGenre(genreName)}
                       >
                       <span>
-                        { this.getGenreName(this.props.genres[genreName]) }
+                        { this.getGenreName(this.props.genres.available[genreName]) }
                       </span>
                       </div>
                   ))}
                 </div>
 
-                <div
-                  className={
-                    'subgenres' +
-                    (this.areAnySubgenresSelected() ? ' any-selected' : '')
-                  }
-                >
+                <div className='subgenres'>
                   <div
                     className={
                       'subgenre-header' +
@@ -216,21 +211,20 @@ class GenreFilters extends Component {
                     <span className="less-bold">or your</span> subgenres
                   </div>
 
-                  { ALL_GENRES.map(genreName => (
+                  { keys(this.props.genres.available).map(genreName => (
                       <div
                         className={
                           `subgenre-group ${genreName}` +
-                          (this.shouldHideSubgenreGroupMobile(genreName) ? ' hide-mobile' : '')
+                          (this.areNoSubgenresSelected(genreName) ? ' hide-mobile' : '')
                         }
                       >
                         {
-                          orderBy(this.props.genres[genreName].subgenres,['name'], ['asc']).map(subgenre => (
+                          orderBy(this.props.genres.available[genreName].subgenres, ['name'], ['asc']).map(subgenre => (
                             !subgenre.isHidden &&
                             <div
                               className={
-                                'gf-button subgenre-button' +
-                                (!!this.state.selectedSubgenres[subgenre.id] ? ' selected' : '') +
-                                (!!this.state.selectedGenres[genreName] ? ' included' : '')
+                                `gf-button subgenre-button ${this.cssSafeGenreName(genreName)}` +
+                                this.getSubgenreButtonClass(genreName, subgenre.id)
                               }
                               onClick={() => this.toggleSubgenre(genreName, subgenre)}
                             >
@@ -321,6 +315,13 @@ class GenreFilters extends Component {
             background-color: #303030;
             box-shadow: 2px 2px 5px black;
             cursor: pointer;
+            opacity: .75;
+          }
+          .gf-button.selected {
+            opacity: 1;
+          }
+          .gf-button.included {
+            opacity: 1;
           }
           .all-button {
             font-size: 12pt;
@@ -346,7 +347,7 @@ class GenreFilters extends Component {
             font-size: 20pt;
           }
           .subgenres {
-            max-width: 900px;
+            max-width: 920px;
             margin: 0 auto;
           }
           .subgenre-header {
@@ -374,18 +375,34 @@ class GenreFilters extends Component {
           .separator {
             margin: 0 4px;
           }
+          .gf-button.dance-electronic.included, .gf-button.dance-electronic.selected {
+            background: linear-gradient(to right, #3A1399, #0097d5);
+          }
+          .gf-button.chill.included, .gf-button.chill.selected {
+            background: linear-gradient(to left, #39EF6C, #02870E);
+          }
+          .gf-button.hiphop.included, .gf-button.hiphop.selected {
+            background: linear-gradient(to right, #000, #4D4D4D);
+          }
+          .gf-button.funk.included, .gf-button.funk.selected {
+            background: linear-gradient(to right, #3023AE, #DB00FF);
+          }
+          .gf-button.soul.included, .gf-button.soul.selected {
+            background: linear-gradient(to right, #3023AE, #ED1936);
+          }
+          .gf-button.rock.included, .gf-button.rock.selected {
+            background: linear-gradient(to right, #0E018E, #C86DD7);
+          }
+          .gf-button.triphop.included, .gf-button.triphop.selected {
+            background: linear-gradient(to right, #000000, #6B1CF7);
+          }
+          .gf-button.remix.included, .gf-button.remix.selected {
+            background: linear-gradient(to right, #3A1399, #0097d5);
+          }
+          .gf-button.world.included, .gf-button.world.selected {
+            background: linear-gradient(to right, #FF0000, #F76B1C);
+          }
         `}</style>
       </div>
   );
 }
-
-GenreFilters.propTypes = propTypes;
-
-export default connect(
-  ({ genres, genreFilters, subgenreFilters }) => ({
-    genres,
-    genreFilters,
-    subgenreFilters
-  }),
-  { fetchGenres, resetSongs }
-)(GenreFilters);

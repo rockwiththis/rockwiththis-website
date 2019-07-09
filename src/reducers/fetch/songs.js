@@ -38,8 +38,7 @@ export default {
     expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
 
     const isShuffle = get(action.payload, 'isShuffle', state.isShuffle);
-    const genreFilters = get(action.payload, 'genreFilters', state.genreFilters);
-    const subgenreFilters = get(action.payload, 'subgenreFilters', state.subgenreFilters);
+    const selectedGenreFilters = get(action.payload, 'selectedGenreFilters', state.selectedGenreFilters);
 
     const newPlayerDurations = state.filteredPosts
       .filter(oldSong => (
@@ -58,11 +57,10 @@ export default {
 
     return {
       ...state,
+      isShuffle,
+      selectedGenreFilters,
       filteredPosts: action.payload.songs,
       songPlayerDurations: newPlayerDurations,
-      isShuffle: isShuffle,
-      genreFilters: genreFilters,
-      subgenreFilters: subgenreFilters,
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,

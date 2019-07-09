@@ -30,8 +30,8 @@ export default class Discover extends Component {
       isLoading: PropTypes.bool.isRequired
     }).isRequired,
     genres: PropTypes.exact({
-      availableGenres: PropTypes.object.isRequired,
-      activeGenreFilters: PropTypes.object.isRequired
+      available: PropTypes.objectOf(PropTypes.string).isRequired,
+      filters: PropTypes.objectOf(PropTypes.string).isRequired
     }).isRequired
   }
 
@@ -83,7 +83,7 @@ export default class Discover extends Component {
           discoverLayoutType={this.state.layoutType}
           updateDiscoverLayoutType={this.updateLayoutType}
           areSongsShuffled={this.props.songPosts.areShuffled}
-          songDataFunctions={this.props.songDataFunctions}
+          resetSongs={this.props.songDataFunctions.resetSongs}
           genres={this.props.genres}
         />
 

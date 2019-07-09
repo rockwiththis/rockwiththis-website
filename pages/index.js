@@ -11,11 +11,13 @@ import DiscoverSection from 'components/discover';
 // import AutoplayErrorModal from 'components/autoplay-error-modal';
 
 import { setInitialSongs, loadMoreSongs, resetSongs } from 'actions/fetch/songs';
+import { fetchGenres } from 'actions/fetch/genres';
 import { didAutoplayFail, updateSpotlightSong } from 'actions/set-state';
 
 class Homepage extends Component {
 
   static propTypes = {
+    // TODO
     setIsScrollDisabled: PropTypes.func.isRequired
   }
 
@@ -34,6 +36,7 @@ class Homepage extends Component {
 
   componentDidMount = () => {
     this.props.setInitialSongs();
+    this.props.fetchGenres();
     window.addEventListener('scroll', this.updateScrolledToDiscover)
     window.addEventListener('resize', this.updateScrolledToDiscover)
   }
@@ -90,12 +93,7 @@ class Homepage extends Component {
             songPlayStatusForSong={() => "NO_STATUS"}
             songPlayerFunctionsForSong={() => ({})}
             songDataFunctions={this.props.songDataFunctions}
-            resetSongs={() => null}
-            isLoadingMoreSongs={false}
-            updateSpotlightSong={() => null}
-            updateDiscoverLayoutType={() => null}
-            availableGenres={{}}
-            activeGenreFilters={{}}
+            genres={this.props.genres}
           />
 
           {/*
@@ -119,14 +117,20 @@ export default connect(
     heroPosts,
     filteredPosts,
     spotlightPost,
-    loadingSongs
+    loadingSongs,
+    selectedGenreFilters,
+    genres
   }) => ({
     songData: {
       newest: heroPosts,
       filtered: filteredPosts,
       spotlight: spotlightPost
     },
-    isLoadingSongs: loadingSongs
+    isLoadingSongs: loadingSongs,
+    genres: {
+      available: genres,
+      filters: selectedGenreFilters
+    }
   }),
   {
     setInitialSongs,
@@ -134,23 +138,27 @@ export default connect(
     loadMoreSongs,
     resetSongs,
     updateSpotlightSong,
+    fetchGenres
   },
   // TODO maybe define these aggregated collections in actions instead
   ({
     songData,
-    isLoadingSongs
+    isLoadingSongs,
+    genres
   }, {
     setInitialSongs,
     didAutoplayFail,
     loadMoreSongs,
     resetSongs,
-    updateSpotlightSong
+    updateSpotlightSong,
+    fetchGenres
   }, ownProps) => ({
     ...ownProps,
     songData,
-    isLoadingSongs,
+    genres,
     setInitialSongs,
     didAutoplayFail,
+    fetchGenres,
     songDataFunctions: {
       loadMore: loadMoreSongs,
       resetSongs: resetSongs,

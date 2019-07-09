@@ -1,16 +1,16 @@
 import { createAction } from 'redux-actions'
-import { flatten } from 'lodash';
+import { values, flatten } from 'lodash';
 
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
     'http://localhost:9292/api' :
     '/api';
 
-const getSubgenreIds = (genreFilters, subgenreFilters) =>
-  [
-    ...flatten(genreFilters.map(genre => genre.subgenres.map(sg => sg.id))),
-    ...subgenreFilters.map(sg => sg.id)
-  ]
+// TODO duplicate at components/.../genre-filters
+const getSubgenreIds = selectedGenreFilters =>
+  flatten(values(selectedGenreFilters).map(genre => (
+    values(genre.subgenres).filter(sg => !!sg).map(sg => sg.id)
+  )));
 
 const fetchSongs = (
   state,
@@ -31,18 +31,16 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
+export const resetSongs = ({ isShuffle, selectedGenreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
   const state = getState();
-  const subgenreIds = getSubgenreIds(
-    genreFilters || state.genreFilters,
-    subgenreFilters || state.subgenreFilters
-  );
+  const subgenreIds = getSubgenreIds(selectedGenreFilters || state.selectedGenreFilters);
+
   return fetchSongs(state, false, isShuffle, subgenreIds)
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
-        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, genreFilters, subgenreFilters }))
+        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, selectedGenreFilters }))
     ))
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
