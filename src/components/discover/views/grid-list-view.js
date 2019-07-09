@@ -56,7 +56,7 @@ export default class ListView extends Component {
                   songPlayStatus={this.props.songPlayStatusForSong(songData)}
                   songPlayerFunctions={this.props.songPlayerFunctionsForSong(songData)}
                 />
-                <Link href={`songs/ ${songData.id}`}>
+                <Link href={`/songs/[id]?id=${songData.id}`} as={`/songs/${songData.id}`}>
                   <div className="see-more">
                     ...see more
                     <IoIosArrowForward />

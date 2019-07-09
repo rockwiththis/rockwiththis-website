@@ -82,5 +82,25 @@ export default {
       loadingSongs: false,
       songLoadingError: undefined
     };
+  },
+
+  'app/SET_SINGLE_SONG': (state, action) => {
+    expectPayloadValue(action.payload, 'newSingleSong', 'SET_SINGLE_SONG');
+
+    return {
+      ...state,
+      singleSongPost: action.payload.newSingleSong,
+      activeSong: !!state.activeSong.id ? state.activeSong : actionPayload.newSingleSong,
+      shouldLoadPlayers: true
+    }
+  },
+
+  'app/SET_RELATED_SONGS': (state, action) => {
+    expectPayloadValue(action.payload, 'relatedSongs', 'SET_RELATED_SONGS');
+
+    return {
+      ...state,
+      relatedSongs: action.payload.relatedSongs
+    }
   }
 }

@@ -24,7 +24,7 @@ const INITIAL_STATE = {
   heroPosts: [],
   filteredPosts: [],
   spotlightPost: {},
-  singlePageSongPost: {},
+  singleSongPost: {},
   relatedSongs: [],
   genres: {},
   selectedGenreFilters: {},
@@ -57,13 +57,6 @@ const appReducers = handleActions({
       }}
     })
   },
-  'app/FETCH_SINGLE_SONG': (state, action) => {
-    return update(state, {
-      singleSong: { $set: action.payload },
-      activeSong: { $set: !!state.activeSong.id ? state.activeSong : action.payload },
-      shouldLoadPlayers: { $set: true }
-    })
-  },
   'app/CLEAR_SINGLE_SONG': (state, action) => {
     return update(state, {
       singleSong: { $set: {} }
@@ -72,11 +65,6 @@ const appReducers = handleActions({
   'app/SET_SONG_PROGRESS': (state, action) => {
     return update(state, {
       activeSongProgress: { $set: action.payload }
-    })
-  },
-  'app/SET_RELATED_SONGS': (state, action) => {
-    return update(state, {
-      relatedSongs: { $set: action.payload }
     })
   },
   ...fetchSongsReducers,
