@@ -22,7 +22,6 @@ import {
 } from 'react-icons/ti';
 
 /* TODO handle scroll
- * Toggle filter modal -> scroll main to discovery
  * Update songs -> scroll to top of discovery
  */
 
@@ -40,9 +39,9 @@ export default class ControlBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isGenreFiltersActive: false,
       isViewsDropdownActive: false,
-      isMomentsActive: false,
+      isGenreFiltersActive: true,
+      isMomentsActive: false
     }
   }
 

@@ -53,9 +53,8 @@ class Homepage extends Component {
         this.newestSongsRef.current.getClientHeight() + 45 > window.scrollY
     })
 
-  // TODO replace `75` w/ toolbar height
   scrollToDiscover = () =>
-    window.scrollTo(0, this.newestSongsRef.current.getClientHeight() + 75);
+    window.scrollTo(0, this.newestSongsRef.current.getClientHeight());
 
   scrollToTop = () => {
     this.setState({ scrolledToDiscover: false });

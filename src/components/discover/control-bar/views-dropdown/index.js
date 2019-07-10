@@ -94,9 +94,37 @@ export default class ViewsDropdown extends Component {
           .view-select-item {
             padding: 10px;
             border-bottom: 1px solid #ccc;
+            box-sizing: border-box;
           }
           .view-select-item-content {
             font-size: 9pt;
+          }
+          @media (max-width: 800px) {
+            .views-dropdown {
+              width: 100%;
+              margin: 0;
+              border: 0;
+              box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+              height: 45px;
+            }
+            .view-select-item {
+              display: inline-block;
+              width: 33.3%;
+              height: 100%;
+              position: relative;
+              padding: 0;
+            }
+            .view-select-item-content {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+            .view-select-item-content span {
+              display: block;
+              font-size: 7.5pt;
+              padding-top: 2px;
+            }
           }
         `}</style>
         <style global jsx>{`
@@ -105,6 +133,14 @@ export default class ViewsDropdown extends Component {
             height: 20px;
             vertical-align: middle;
             margin-right: 10px;
+          }
+          @media (max-width: 800px) {
+            .views-dropdown svg {
+              display: block;
+              width: 16px;
+              height: 16px;
+              margin: 0 auto;
+            }
           }
         `}</style>
       </div>

@@ -59,7 +59,7 @@ export default class Header extends Component {
             width: 100%;
             height: 75px;
             background: linear-gradient(to right, #1e0c49, #0097d5);
-            z-index: 10;
+            z-index: 20;
           }
           .nav-left {
             position: absolute;

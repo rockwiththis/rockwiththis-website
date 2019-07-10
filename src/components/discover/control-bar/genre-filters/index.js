@@ -53,8 +53,8 @@ export default class GenreFilters extends Component {
 
   getGenreName = genre => genre.spacedName || genre.name;
 
-  // Mark selected genre as set or unset
-  // Always reset the child subgenres
+  // If entire genre is not set, set now with all subgenres
+  // Else, remove all subgenres
   toggleGenre = genreName => {
     const newGenreData = get(this.state.selectedFilters, [genreName, 'areAllSelected'])
       ? {
@@ -73,19 +73,27 @@ export default class GenreFilters extends Component {
     });
   }
 
-  // Mark selected subgenre as set or unset
-  // Always reset the parent genre
+  // Toggle selected subgenre.
+  // If entire parent genre is selected, selected subgenre is now the only one selected.
+  // Always set parent genre to not be completely selected.
   toggleSubgenre = (genreName, subgenre) => {
-    const currSubgenreData = get(this.state.selectedFilters, [genreName, 'subgenres'], {});
-    const newSubgenreData = {
-      ...currSubgenreData,
-      [subgenre.id]: !!currSubgenreData[subgenre.id] ? undefined : subgenre
-    }
+    const currGenreData = get(this.state.selectedFilters, genreName, {});
+    const currSubgenreData = get(currGenreData, 'subgenres', {});
+    const newOtherSubgenreData = currGenreData.areAllSelected ? {} : currSubgenreData;
+    const newSubgenreData = currGenreData.areAllSelected
+      ? {
+        [subgenre.id]: subgenre
+      }
+      : {
+        ...currSubgenreData,
+        [subgenre.id]: !!currSubgenreData[subgenre.id] ? undefined : subgenre
+      };
+    console.log("TOGGLE SUBGENRE", currGenreData.areAllSelected, newSubgenreData);
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
         [genreName]: {
-          areAllSelected: this.isEntireGenreSelected(genreName, newSubgenreData),
+          areAllSelected: false,
           subgenres: newSubgenreData
         }
       }
@@ -125,7 +133,7 @@ export default class GenreFilters extends Component {
       .filter(sg => !!sg);
 
   areNoSubgenresSelected = genreName =>
-    !this.state.selectedFilters[genreName] &&
+    !this.state.selectedFilters[genreName] ||
     this.getSelectedSubgenres(genreName).length === 0;
 
   cssSafeGenreName = genreName =>
@@ -150,7 +158,9 @@ export default class GenreFilters extends Component {
     this.props.hide();
   }
 
-  render = () => (
+  render = () => {
+    console.log("RENDER", this.state.selectedFilters);
+    return (
       <div
         className={
           'genre-filters' +
@@ -205,7 +215,7 @@ export default class GenreFilters extends Component {
                   <div
                     className={
                       'subgenre-header' +
-                      (this.areNoneSelected() ? ' hide-mobile' : '')
+                      (this.areNoneSelected() ? ' none-selected' : '')
                     }
                   >
                     <span className="less-bold">or your</span> subgenres
@@ -215,7 +225,7 @@ export default class GenreFilters extends Component {
                       <div
                         className={
                           `subgenre-group ${genreName}` +
-                          (this.areNoSubgenresSelected(genreName) ? ' hide-mobile' : '')
+                          (this.areNoSubgenresSelected(genreName) ? ' none-selected' : '')
                         }
                       >
                         {
@@ -290,6 +300,7 @@ export default class GenreFilters extends Component {
           .content-wrapper {
             position: relative;
             width: 95%;
+            height: calc(100% - 20px);
             margin: 0 auto;
             margin-top: 10px;
             overflow: auto;
@@ -349,6 +360,7 @@ export default class GenreFilters extends Component {
           .subgenres {
             max-width: 920px;
             margin: 0 auto;
+            padding-bottom: 20px;
           }
           .subgenre-header {
             font-size: 16pt;
@@ -402,7 +414,37 @@ export default class GenreFilters extends Component {
           .gf-button.world.included, .gf-button.world.selected {
             background: linear-gradient(to right, #FF0000, #F76B1C);
           }
+          @media (max-width: 800px) {
+            .content-wrapper {
+              margin: 0;
+              width: 100%
+            }
+            .content-background-container {
+              top: 0;
+              bottom: 0;
+            }
+            .content-background {
+              width: 100%;
+              border-radius: 0;
+            }
+            .genre-filter-content {
+              text-align: left;
+              margin: 40px;
+            }
+            .subgenre-group {
+              margin-left: 0;
+              margin-right: 0;
+            }
+            .subgenre-group.none-selected, .subgenre-header.none-selected {
+              display: none;
+            }
+            .submit-button {
+              display: block;
+              width: 55px;
+              margin: 0 auto;
+            }
+          }
         `}</style>
       </div>
-  );
+  )};
 }

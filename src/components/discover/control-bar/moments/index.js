@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import './stylesheets/moments.scss';
+export default class Moments extends Component {
 
-const propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  activeView: PropTypes.bool.isRequired,
-  hide: PropTypes.func.isRequired,
-
-}
-
-class Moments extends Component {
+  static propTypes = {
+    isActive: PropTypes.bool.isRequired,
+    activeView: PropTypes.bool.isRequired,
+    hide: PropTypes.func.isRequired,
+  }
 
   componentDidUpdate = prevProps => {
 
@@ -48,19 +45,23 @@ class Moments extends Component {
               border-bottom-left-radius: 4px;
             }
             .text {
-              font-size: 8pt;
+              font-size: 9pt;
               margin-bottom: 10px;
             }
             .coming-soon {
-              font-size: 10pt;
+              font-size: 10.5pt;
               font-weight: bold;
+            }
+            @media (max-width: 800px) {
+              .moments-modal {
+                width: 100%;
+                left: 0;
+                text-align: center;
+                border-radius: 0;
+              }
             }
           `}</style>
         </div>
     )
   }
 }
-
-Moments.propTypes = propTypes;
-
-export default Moments
