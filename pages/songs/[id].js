@@ -57,7 +57,7 @@ class SingleSongPage extends Component {
             max-width: 1658px;
             margin: 0 auto;
             margin-bottom: 70px;
-            padding: 25px 35px 0;
+            padding: 100px 35px 0;
             box-sizing: border-box;
           }
         `}</style>

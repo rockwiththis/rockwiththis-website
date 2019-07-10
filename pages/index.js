@@ -105,6 +105,7 @@ class Homepage extends Component {
             max-width: 1658px;
             margin: 0 auto;
             margin-bottom: 70px;
+            padding-top: 75px;
           }
         `}</style>
       </div>

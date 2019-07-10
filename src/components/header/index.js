@@ -50,25 +50,16 @@ export default class Header extends Component {
           </Link>
         </div>
 
-        <style global jsx>{`
-          .nav-link {
-            text-transform: uppercase;
-            font-size: 10pt;
-            margin: 0 10px;
-            color: rgba(255, 255, 255, 0.7);
-          }
-          .nav-link.active {
-            border-bottom: 1px solid #fff;
-            color: white;
-          }
-          .nav-left div {
-            float: left;
-          }
-        `}</style>
         <style jsx>{`
           .header {
+            position: fixed;
+            top: 0
+            left: 0;
+            right: 0;
+            width: 100%;
             height: 75px;
             background: linear-gradient(to right, #1e0c49, #0097d5);
+            z-index: 10;
           }
           .nav-left {
             position: absolute;
@@ -91,6 +82,22 @@ export default class Header extends Component {
           }
           .header-logo-mobile {
             margin: auto 10px;
+            display: none;
+          }
+        `}</style>
+        <style global jsx>{`
+          .nav-link {
+            text-transform: uppercase;
+            font-size: 10pt;
+            margin: 0 10px;
+            color: rgba(255, 255, 255, 0.7);
+          }
+          .nav-link.active {
+            border-bottom: 1px solid #fff;
+            color: white;
+          }
+          .nav-left div {
+            float: left;
           }
         `}</style>
       </div>
