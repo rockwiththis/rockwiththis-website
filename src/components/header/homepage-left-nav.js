@@ -12,8 +12,7 @@ export default class HomepageLeftNav extends Component {
       <div className="homepage-left-nav">
         <div
           className={
-            'nav-link' +
-            ' nav-week' +
+            'nav-link nav-this-week' +
             (!this.props.scroll.scrolledToDiscover ? ' active' : '')
           }
           onClick={this.props.scroll.scrollToTop}
@@ -22,18 +21,33 @@ export default class HomepageLeftNav extends Component {
         </div>
         <div
           className={
-            'nav-link' +
-            ' nav-discover' +
-            (this.props.scroll.scrolledToDiscover ? 'active' : '')
+            'nav-link nav-discover' +
+            (this.props.scroll.scrolledToDiscover ? ' active' : '')
           }
           onClick={this.props.scroll.scrollToDiscover}
         >
           Discover
         </div>
+        <div
+          className='nav-link nav-home active'
+          onClick={this.props.scroll.scrollToTop}
+        >
+          Home
+        </div>
 
         <style jsx>{`
           .homepage-left-nav {
             margin-top: 5px;
+          }
+          @media (max-width: 1000px) {
+            .nav-this-week, .nav-discover {
+              display: none;
+            }
+          }
+          @media (min-width: 1000px) {
+            .nav-home {
+              display: none;
+            }
           }
         `}</style>
       </div>

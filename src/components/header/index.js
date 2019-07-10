@@ -37,10 +37,10 @@ export default class Header extends Component {
           { this.leftNavContents() }
         </div>
 
-        <div className="header-logo desktop-only" onClick={this.handleLogoClick}>
+        <div className="header-logo" onClick={this.handleLogoClick}>
           <img src={desktopLogo} />
         </div>
-        <div className="header-logo-mobile mobile-only" onClick={this.handleLogoClick}>
+        <div className="header-logo-mobile" onClick={this.handleLogoClick}>
           <img src={mobileLogo} />
         </div>
 
@@ -81,8 +81,24 @@ export default class Header extends Component {
             cursor: pointer;
           }
           .header-logo-mobile {
-            margin: auto 10px;
-            display: none;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+          .header-logo-mobile img {
+            width: 55px;
+          }
+          @media (min-width: 800px) {
+            .header-logo-mobile {
+              display: none;
+            }
+          }
+          @media (max-width: 800px) {
+            .header-logo {
+              display: none;
+            }
           }
         `}</style>
         <style global jsx>{`
