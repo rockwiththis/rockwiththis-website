@@ -204,9 +204,11 @@ export default class ControlBar extends Component {
             border: 1px solid #545454;
             border-radius: 8px;
             padding: 6px;
+            box-sizing: border-box;
             text-align: center;
             color: #545454;
             cursor: pointer;
+            font-size: 9pt;
           }
           .control-bar-separator {
             display: inline-block;
@@ -227,7 +229,6 @@ export default class ControlBar extends Component {
           // DO NOT position .control-bar-controls so children can be absolutely positioned
           // relatively to the .full-view div
 
-          // Desktop only
           @media (min-width: 800px) {
             .control-bar-title.mobile {
               display: none;
@@ -238,6 +239,35 @@ export default class ControlBar extends Component {
             }
             .control-bar-title.shuffle {
               display: none;
+            }
+          }
+          @media (max-width: 800px) {
+            .control-bar {
+              padding: 0;
+            }
+            .control-bar-title.desktop {
+              display: none;
+            }
+            .control-bar-separator {
+              display: none;
+            }
+            .control-bar-item {
+              width: 25vw;
+              margin: 0;
+              border: 0;
+              border-left: 1px solid #e3e3e3;
+            }
+            .control-bar-item:first-child {
+              border-left: 0;
+            }
+            .control-bar-icon {
+              display: block;
+              padding-top: 2px;
+            }
+            .control-bar-title {
+              display: block;
+              margin: 0;
+              padding-top: 2px;
             }
           }
         `}</style>

@@ -75,7 +75,9 @@ class NewestSongs extends React.Component {
             .newest-songs .playable-grid-song {
               height: 33.3vw;
               width: 33.3vw;
-              position: absolute;
+              // TODO it would be super nice to specify that these styles override
+              // so !important is not necessary
+              position: absolute !important;
             }
             .newest-songs .playable-grid-song.featured-song {
               height: 66.6vw;
@@ -113,13 +115,13 @@ class NewestSongs extends React.Component {
           }
           @media (max-width: 480px) {
             .newest-songs .playable-grid-song {
-              display: none;
+              display: none !important;
             }
             .newest-songs .playable-grid-song:nth-child(6) {
-              display: none;
+              display: none !important;
             }
             .newest-songs .playable-grid-song.featured-song {
-              display: inline-block;
+              display: inline-block !important;
               width: 100vw;
               height: 100vw;
             }

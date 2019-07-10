@@ -33,9 +33,11 @@ export default class PlayableGridSong extends Component {
 
         <style jsx>{`
           .playable-grid-song {
-            position: relative;
+            // TODO it would be super nice to declare these styles as "overridable"
+            // to avoid !importants @ newest-songs/index.js
             display: inline-block;
             vertical-align: top;
+            position: relative;
           }
           .featured-song-tag {
             position: absolute;

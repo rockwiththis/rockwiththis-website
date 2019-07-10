@@ -83,11 +83,11 @@ export default class FullView extends Component {
           <style global jsx>{`
             .full-view .song-post {
               display: inline-block;
-              width: calc(60% - 200px);
-              height: 100%;
-              box-sizing: border-box;
-              margin: 0 100px;
               vertical-align: top;
+              width: 60%;
+              padding: 0 35px;
+              box-sizing: border-box;
+              height: 100%;
               overflow-y: scroll;
               scrollbar-width: none;
               -ms-overflow-style: none;
