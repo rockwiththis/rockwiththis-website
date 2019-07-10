@@ -90,17 +90,20 @@ export default {
     return {
       ...state,
       singleSongPost: action.payload.newSingleSong,
-      activeSong: !!state.activeSong.id ? state.activeSong : actionPayload.newSingleSong,
+      activeSong: !!state.activeSong.id ? state.activeSong : action.payload.newSingleSong,
       shouldLoadPlayers: true
     }
   },
 
   'app/SET_RELATED_SONGS': (state, action) => {
     expectPayloadValue(action.payload, 'relatedSongs', 'SET_RELATED_SONGS');
+    const newRelatedSongs = action.payload.relatedSongs
+      .filter(s => s.id != state.singleSongPost.id)
+      .slice(0,10);
 
     return {
       ...state,
-      relatedSongs: action.payload.relatedSongs
+      relatedSongs: newRelatedSongs
     }
   }
 }

@@ -15,6 +15,16 @@ export default class AwayLeftNav extends Component {
           >
             <path d="M13 7v-6l11 11-11 11v-6h-13v-10z" />
           </svg>            
+
+          <style jsx>{`
+            .home-back-button {
+              transform: rotate(180deg);
+              fill: white;
+              height: 25px;
+              width: 25px;
+              opacity: 0.7;
+            }
+          `}</style>
         </div>
       </Link>
   );

@@ -9,6 +9,7 @@ export default class SongPost extends Component {
     songData: PropTypes.object.isRequired,
     songPlayStatus: PropTypes.string.isRequred,
     songPlayerFunctions: PropTypes.object.isRequired,
+    wrapText: PropTypes.bool
   }
 
   separateParagraphs = text => text.split(/\n+/g);
@@ -30,9 +31,6 @@ export default class SongPost extends Component {
         <style jsx>{`
           .song-image {
             float: left;
-            box-sizing: border-box;
-            padding-right: 20px;
-            padding-bottom: 20px;
           }
           .song-post-content {
             font-weight: 100;

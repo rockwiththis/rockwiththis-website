@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { HOME } from 'constants/page-names';
 
-import Head from './head-content/index';
+import HeadContent from './head-content/index';
 import Header from 'components/header';
 import NewestSongs from 'components/newest-songs';
 import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
@@ -70,8 +70,8 @@ class Homepage extends Component {
   })
 
   render = () => (
-      <div className="homeContainer">
-        <Head />
+      <div className="homepage">
+        <HeadContent />
 
         {/* TODO make this explicitly a `HomeHeader` */}
         <Header

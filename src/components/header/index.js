@@ -71,21 +71,23 @@ export default class Header extends Component {
             background: linear-gradient(to right, #1e0c49, #0097d5);
           }
           .nav-left {
-            width: 400px;
             position: absolute;
-            top: 30px;
+            top: 25px;
             left: 35px;
+            cursor: pointer;
           }
           .nav-right {
-            width: 100px;
             position: absolute;
-            top: 30px;
+            top: 25px;
             right: 35px;
+            margin-top: 5px;
+            cursor: pointer;
           }
           .header-logo {
             width: 400px;
             margin: 0 auto;
             padding-top: 15px;
+            cursor: pointer;
           }
           .header-logo-mobile {
             margin: auto 10px;

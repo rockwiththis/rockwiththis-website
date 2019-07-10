@@ -70,6 +70,11 @@ export default class SongHeader extends Component {
             .song-name {
               font-weight: 700;
             }
+            .spotify-link {
+              color: #65d36e;
+              vertical-align: middle;
+              padding-left: 10px;
+            }
             .meta-info {
               font-size: 14pt;
             }

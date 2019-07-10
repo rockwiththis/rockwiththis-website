@@ -30,6 +30,12 @@ export default class HomepageLeftNav extends Component {
         >
           Discover
         </div>
+
+        <style jsx>{`
+          .homepage-left-nav {
+            margin-top: 5px;
+          }
+        `}</style>
       </div>
   )
 }

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Head from 'next/head';
 
-class HomepageHeaders extends React.Component {
+export default class HomepageHeadContent extends Component {
 
   render = () => (
       <Head>
@@ -18,5 +18,3 @@ class HomepageHeaders extends React.Component {
       </Head>
   )
 }
-
-export default HomepageHeaders;

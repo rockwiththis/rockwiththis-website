@@ -96,9 +96,14 @@ export default class ListView extends Component {
         <style jsx global>{`
           .list-view .song-image {
             width: 35%;
+            padding-right: 20px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
           }
           .list-view .header-title {
-            // -40% for image, -20px for padding, -50px for play button
+            // TODO should we fix the entire header width instead?
+            // also, the 20px padding is not actually used b/c the image is a border-box
+            // -35% for image, -20px for padding, -50px for play button
             width: calc(65% - 20px - 40px);
             font-size: 16pt;
           }

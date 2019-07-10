@@ -87,7 +87,7 @@ export const loadSingleSong = songId => (dispatch, getState) => {
       .then(songData => {
         dispatch(SET_SINGLE_SONG({ newSingleSong: songData }))
         const subgenreIds = songData.sub_genres.map(s => s.id);
-        relatedSongsUrl = `${API_BASE_URL}/songs?tags=[${subgenreIds}]`;
+        const relatedSongsUrl = `${API_BASE_URL}/songs?tags=[${subgenreIds}]`;
 
         return fetch(relatedSongsUrl)
       })

@@ -95,7 +95,15 @@ export default class FullView extends Component {
             .full-view .song-post::-webkit-scrollbar {
               width: 0px;
             }
+            .full-view .song-post .song-image {
+              width: 40%;
+              padding-right: 20px;
+              padding-bottom: 20px;
+              box-sizing: border-box;
+            }
             .full-view .header-title {
+              // TODO should we fix the entire header width instead?
+              // also, the 20px padding is not actually used b/c the image is a border-box
               // -40% for image, -20px for padding, -50px for play button
               width: calc(60% - 20px - 50px);
               margin-bottom: 10px;
@@ -106,9 +114,6 @@ export default class FullView extends Component {
               vertical-align: middle;
               padding-left: 5px;
               font-size: 18pt;
-            }
-            .full-view .song-post .song-image {
-              width: 40%;
             }
             .full-view .song-post-content {
               font-size: 12pt;
