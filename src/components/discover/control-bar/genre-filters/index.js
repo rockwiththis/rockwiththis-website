@@ -158,9 +158,7 @@ export default class GenreFilters extends Component {
     this.props.hide();
   }
 
-  render = () => {
-    console.log("RENDER", this.state.selectedFilters);
-    return (
+  render = () => (
       <div
         className={
           'genre-filters' +
@@ -446,5 +444,5 @@ export default class GenreFilters extends Component {
           }
         `}</style>
       </div>
-  )};
+  );
 }

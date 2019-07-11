@@ -8,8 +8,7 @@ export default class SongPost extends Component {
   static propTypes = {
     songData: PropTypes.object.isRequired,
     songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
-    wrapText: PropTypes.bool
+    songPlayerFunctions: PropTypes.object.isRequired
   }
 
   separateParagraphs = text => text.split(/\n+/g);
