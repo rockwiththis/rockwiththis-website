@@ -33,7 +33,7 @@ export default class RelatedSongs extends Component {
             text-transform: uppercase;
             letter-spacing: 1px;
             color: white;
-            padding: 15px 10px 5px;
+            padding: 15px 5px 10px;
             background: #1a63a9;
             border: 1px solid white;
           }
