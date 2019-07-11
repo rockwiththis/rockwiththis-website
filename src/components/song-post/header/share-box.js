@@ -148,7 +148,7 @@ export default class ShareBox extends Component {
         <style jsx>{`
           .share-box {
             display: inline-block;
-            vertical-align: middle;
+            vertical-align: top;
           }
           .share-button {
             color: #f85f27;

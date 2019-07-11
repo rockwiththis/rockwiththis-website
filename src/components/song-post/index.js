@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import SongHeader from './song-header';
+import SongHeader from './header';
+import SongPostContent from './content';
 
 export default class SongPost extends Component {
 
@@ -15,24 +16,18 @@ export default class SongPost extends Component {
 
   render = () => (
       <div className="song-post">
+
         <img className="song-image" src={this.props.songData.image_url} />
         <SongHeader
           songData={this.props.songData}
           songPlayStatus={this.props.songPlayStatus}
           songPlayerFunctions={this.props.songPlayerFunctions}
         />
-        <div className="song-post-content">
-          { this.separateParagraphs(this.props.songData.description).map(text => (
-              <p>{ text }</p>
-          ))}
-        </div>
+        <SongPostContent songData={this.props.songData} />
 
         <style jsx>{`
           .song-image {
             float: left;
-          }
-          .song-post-content {
-            font-weight: 100;
           }
         `}</style>
         <style global jsx>{`

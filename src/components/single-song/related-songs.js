@@ -22,6 +22,10 @@ export default class RelatedSongs extends Component {
         )}
 
         <style jsx>{`
+          .related-songs {
+            width: 14%;
+            display: inline-block;
+          }
           .title {
             font-size: 10pt;
             text-align: center;
@@ -29,8 +33,7 @@ export default class RelatedSongs extends Component {
             text-transform: uppercase;
             letter-spacing: 1px;
             color: white;
-            padding-top: 15px;
-            padding-bottom: 10px;
+            padding: 15px 10px 5px;
             background: #1a63a9;
             border: 1px solid white;
           }
@@ -39,6 +42,22 @@ export default class RelatedSongs extends Component {
             box-sizing: border-box;
             border: 1px solid white;
             border-bottom: 0;
+          }
+          @media (max-width: 1200px) {
+            .related-songs {
+              width: 100%
+            }
+            .song-image {
+              width: 20%;
+            }
+          }
+          @media (max-width: 800px) {
+            .song-image {
+              width: 33.3%;
+            }
+            .song-image:last-child {
+              display: none;
+            }
           }
         `}</style>
       </div>
