@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 import Desktop from './desktop';
 import Mobile from './mobile';
-import SongGridPlaceholder from './SongGridPlaceholder';
-import FullSongPlaceholder from './FullSongPlaceholder';
 
 export const propTypes = {
   songPosts: PropTypes.object.isRequired,
@@ -17,26 +15,10 @@ export default class FullView extends Component {
 
   static propTypes = propTypes
 
-  // TODO adjust placeholder
   render = () => (
       <div className="full-view">
-        {this.props.songPosts.filtered.length > 0 ?
-          <Fragment>
-            <Desktop {...this.props} />
-            <Mobile {...this.props} />
-          </Fragment>
-          :
-          <Fragment>
-            <div className="full-view">
-              <div className="song-grid-container">
-                <SongGridPlaceholder />
-              </div>
-              <div className="discover-full-song-container">
-                <FullSongPlaceholder />
-              </div>
-            </div>
-          </Fragment>
-        }
+        <Desktop {...this.props} />
+        <Mobile {...this.props} />
 
         <style jsx global>{`
           @media (min-width: 800px) {
