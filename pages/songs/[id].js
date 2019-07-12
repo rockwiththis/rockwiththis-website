@@ -32,20 +32,14 @@ class SingleSongPage extends Component {
 
   render = () => (
       <div className="single-song-page">
-        { !!this.props.singleSong.id ?
-            <Fragment>
-              <HeadContent songData={this.props.singleSong} />
+        <HeadContent songData={this.props.singleSong} />
 
-              <Header pageName={SONG} />
+        <Header pageName={SONG} />
 
-              <div className="content">
-                <Desktop {...this.props} />
-                <Mobile {...this.props} />
-              </div>
-            </Fragment>
-            :
-            <div className="single-song-placeholder"></div>
-        }
+        <div className="content">
+          <Desktop {...this.props} />
+          <Mobile {...this.props} />
+        </div>
 
         <style jsx>{`
           .content {

@@ -1,18 +1,11 @@
 import React from 'react';
 
-const FullViewDesktopPlaceholder = () => (
-    <Fragment>
+const SingleSongDesktopPlaceholder = () => (
+    <div className="single-song-desktop-placeholder">
 
-      <div className="song-grid-container">
-        { Array(30).fill().map((_, i) => (
-            <div className="song-grid-song pulse"></div>
-        ))}
-      </div>
+      <div className="image pulse"></div>
 
-      <div className="song-post">
-        
-        <div className="image pulse"></div>
-
+      <div className="post">
         <div className="header">
           <div className="play-button pulse"></div>
           <div className="title">
@@ -23,10 +16,9 @@ const FullViewDesktopPlaceholder = () => (
             
         <div className="post-content">
           { Array(18).fill().map((_,i) => (
-            <div className={'text-line pulse' + (i < 6 ? ' wrap-image' : '')}></div>
+            <div className="text-line pulse"></div>
           ))}
         </div>
-        
       </div>
 
       <style jsx>{`
@@ -38,45 +30,42 @@ const FullViewDesktopPlaceholder = () => (
         .pulse {
           animation: pulse 1s infinite ease-in-out;
         }
-        .song-grid-container {
-          height: 605px;
-          overflow: hidden;
-        }
-        .song-grid-song {
-          width: 25%;
-          height: 0;
-          padding-bottom: 25%;
-          display: inline-block;
-          border: 1px solid white;
-          box-sizing: border-box;
+        .single-song-desktop-placeholder {
+          max-width: 1365px;
+          margin: 0 auto;
         }
         .image {
-          width: 240px;
-          height: 240px;
-          float: left;
-          margin-right: 20px;
-          margin-bottom: 20px;
-          box-sizing: border-box;
+          display: inline-block;
+          width: 45%;
+          height: 0;
+          padding-bottom: 45%;
+          margin-right: 40px;
+        }
+        .post {
+          display: inline-block;
+          vertical-align: top;
+          width: calc(55% - 40px);
+          height: 615px;
+          overflow: hidden;
         }
         .header {
-          width: calc(100% - 260px);
-          margin-left: 260px;
+          width: 100%;
           margin-bottom: 25px;
         }
         .play-button {
           display: inline-block;
-          width: 50px;
-          height: 50px;
+          width: 60px;
+          height: 60px;
           margin-right: 20px;
           border-radius: 50%;
         }
         .title {
           display: inline-block;
           vertical-align: top;
-          width: calc(100% - 70px);
+          width: calc(100% - 80px);
         }
         .song-name {
-          height: 20px;
+          height: 30px;
           width: 80%;
           margin-bottom: 15px;
         }
@@ -88,12 +77,8 @@ const FullViewDesktopPlaceholder = () => (
           height: 15px;
           margin-bottom: 15px;
         }
-        .text-line.wrap-image {
-          width: calc(100% - 260px);
-          margin-left: 260px;
-        }
       `}</style>
-    </Fragment>
+    </div>
 );
 
-export default FullViewDesktopPlaceholder;
+export default SingleSongDesktopPlaceholder;

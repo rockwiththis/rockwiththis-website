@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 
-import { propTypes } from './index';
+import { propTypes } from '../index';
 import SongGridSong from './song-grid-song';
 import Loading from '../../loading-more-songs';
 import SongPost from 'components/song-post';

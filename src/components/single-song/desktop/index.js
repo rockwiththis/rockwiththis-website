@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import SongPost from 'components/song-post';
-import RelatedSongs from './related-songs';
+import RelatedSongs from '../related-songs';
+import Placeholder from './placeholder';
 
 export default class SingleSongDesktop extends Component {
 
@@ -17,14 +18,19 @@ export default class SingleSongDesktop extends Component {
 
   render = () => (
       <div className="single-song-desktop">
+        { !!this.props.singleSong.id ?
+            <Fragment>
+              <SongPost
+                songData={this.props.singleSong}
+                songPlayStatus={this.props.songPlayStatus}
+                songPlayerFunctions={this.props.songPlayerFunctions}
+              />
 
-        <SongPost
-          songData={this.props.singleSong}
-          songPlayStatus={this.props.songPlayStatus}
-          songPlayerFunctions={this.props.songPlayerFunctions}
-        />
-
-        <RelatedSongs relatedSongsData={this.props.relatedSongs} />
+              <RelatedSongs relatedSongsData={this.props.relatedSongs} />
+            </Fragment>
+            :
+            <Placeholder />
+        }
 
         <style global jsx>{`
           .single-song-desktop .song-post {

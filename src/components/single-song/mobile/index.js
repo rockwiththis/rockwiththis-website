@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
 import HeaderTitle from 'components/song-post/header/title';
 import MetaInfo from 'components/song-post/header/meta-info';
 import SongPostContent from 'components/song-post/content';
-import RelatedSongs from './related-songs';
+import RelatedSongs from '../related-songs';
+import Placeholder from './placeholder';
 
 export default class SingleSongMobile extends Component {
 
@@ -18,25 +19,32 @@ export default class SingleSongMobile extends Component {
 
   render = () => (
       <div className="single-song-mobile">
+        { !!this.props.singleSong.id ?
+          <Fragment>
 
-        <div className="song-image-wrapper">
-          <img className="song-image" src={this.props.singleSong.image_url} />
+            <div className="song-image-wrapper">
+              <img className="song-image" src={this.props.singleSong.image_url} />
 
-          <div className="song-title-wrapper">
-            <OutlineSingleSongControls
-              songPlayerStatus={this.props.songPlayerStatus}
-              songPlayerFunctions={this.props.songPlayerFunctions}
-            />
-            <HeaderTitle songData={this.props.singleSong} />
-          </div>
-        </div>
+              <div className="song-title-wrapper">
+                <OutlineSingleSongControls
+                  songPlayerStatus={this.props.songPlayerStatus}
+                  songPlayerFunctions={this.props.songPlayerFunctions}
+                />
+                <HeaderTitle songData={this.props.singleSong} />
+              </div>
+            </div>
 
-        <div className="single-song-post-content">
-          <MetaInfo songData={this.props.singleSong} />
-          <SongPostContent songData={this.props.singleSong} />
-        </div>
+            <div className="single-song-post-content">
+              <MetaInfo songData={this.props.singleSong} />
+              <SongPostContent songData={this.props.singleSong} />
+            </div>
 
-        <RelatedSongs relatedSongsData={this.props.relatedSongs} />
+            <RelatedSongs relatedSongsData={this.props.relatedSongs} />
+
+          </Fragment>
+          :
+          <Placeholder />
+        }
 
         <style jsx>{`
           .song-image-wrapper {
@@ -44,10 +52,12 @@ export default class SingleSongMobile extends Component {
             width: 100vw;
             height: 100vw;
           }
-          .song-image {
+        `}</style>
+        <style jsx global>{`
+          .single-song-mobile .song-image {
             width: 100%;
           }
-          .song-title-wrapper {
+          .single-song-mobile .song-title-wrapper {
             position: absolute;
             bottom: 0;
             width: 100%;
@@ -55,13 +65,6 @@ export default class SingleSongMobile extends Component {
             padding: 2px 5px;
             box-sizing: border-box;
           }
-          .single-song-post-content {
-            width: 100%;
-            padding: 15px;
-            box-sizing: border-box;
-          }
-        `}</style>
-        <style jsx global>{`
           .single-song-mobile .outline-single-song-controls {
             display: inline-block;
             width: 50px;
@@ -88,6 +91,9 @@ export default class SingleSongMobile extends Component {
             font-size: 30px;
           }
           .single-song-mobile .single-song-post-content {
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
             font-size: 15px;
             line-height: 26px;
           }
