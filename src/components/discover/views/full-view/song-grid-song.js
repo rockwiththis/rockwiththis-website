@@ -24,11 +24,10 @@ export default class SongGridSong extends Component {
             className="song-image"
             src={this.props.songData.image_url}
           />
-          <div className="hover-content-overlay">
-            <div className="hover-content">
-              <GenreTags song={this.props.songData} />
-              <span className="read-more">Read More</span>
-            </div>
+          <div className="hover-overlay"></div>
+          <div className="hover-content">
+            <GenreTags song={this.props.songData} />
+            <span className="read-more">Read More</span>
           </div>
         </div>
 
@@ -41,32 +40,49 @@ export default class SongGridSong extends Component {
           .song-grid-song {
             position: relative;
             display: inline-block;
+            vertical-align: top;
             width: 25%;
             cursor: pointer;
           }
           .image-container {
             position: relative;
+            width: 100%;
           }
           .song-image {
-            width : 100%;
+            width: 100%;
           }
-          .hover-content-overlay {
+          .hover-overlay {
             position: absolute;
             top: 0;
             bottom: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background-color: black;
+            opacity: 0
+          }
+          .song-grid-song:hover .hover-overlay {
+            opacity: 0.5;
           }
           .hover-content {
             position: absolute;
-            top: 45%;
+            top: 40%;
             transform: translateY(-50%);
             -webkit-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
             text-align: center;
             width: 100%;
             color: white;
+            line-height: 10pt;
             font-size: 10pt;
+            opacity: 0;
+          }
+          .read-more {
+            font-size: 10px;
+            padding: 8px;
+            background: #1a6ea9;
+            border-radius: 4px;
+          }
+          .song-grid-song:hover .hover-content {
+            opacity: 1;
           }
           .song-info {
             position: absolute;
@@ -75,6 +91,10 @@ export default class SongGridSong extends Component {
             background: rgba(255, 255, 255, 0.9);
             padding: 4px;
             box-sizing: border-box;
+          }
+          .song-grid-song:hover .song-info {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
           }
           .song-info > span {
             overflow: hidden;
@@ -94,7 +114,8 @@ export default class SongGridSong extends Component {
         `}</style>
         <style global jsx>{`
           .song-grid-song .genre-tags {
-            margin-bottom: 10px;
+            display: block;
+            padding-bottom: 15px;
           }
           .song-grid-song .genre-tag {
             display: block;

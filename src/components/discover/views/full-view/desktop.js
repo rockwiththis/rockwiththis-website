@@ -39,6 +39,10 @@ export default class FullViewDesktop extends Component {
         />
 
         <style jsx>{`
+          .full-view-desktop {
+            padding-top: 20px;
+            height: 100vh;
+          }
           .song-grid-container {
             display: inline-block;
             width: 40%;
@@ -46,6 +50,11 @@ export default class FullViewDesktop extends Component {
             overflow-y: scroll;
             scrollbar-width: none;
             -ms-overflow-style: none;
+          }
+          .song-grid {
+            height: 100%;
+            line-height: 0;
+            font-size: 0;
           }
           .song-grid-container::-webkit-scrollbar {
             width: 0px;

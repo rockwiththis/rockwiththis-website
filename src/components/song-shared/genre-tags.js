@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { slice } from 'lodash';
 
 export default class GenreTags extends Component {
 
@@ -10,7 +11,7 @@ export default class GenreTags extends Component {
 
   render = () => {
     const subgenres = this.props.firstOnly ?
-      [this.props.song.sub_genres[0]] :
+      slice(this.props.song.sub_genres, 0, 1) :
       this.props.song.sub_genres;
 
     return (
