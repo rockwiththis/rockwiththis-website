@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
 import SongImage from './song-image';
-import SongPostDetails from './song-post-details';
+import SongDetails from './song-details';
 
-export default class PlayableGridSong extends Component {
+export default class SongTile extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
@@ -16,7 +16,7 @@ export default class PlayableGridSong extends Component {
   render = () => (
       <div
         className={
-          'playable-grid-song' +
+          'song-tile' +
           (this.props.isFeaturedSong ? ' featured-song' : '')
         }
       >
@@ -25,19 +25,20 @@ export default class PlayableGridSong extends Component {
         {this.props.isFeaturedSong &&
           <span className="featured-song-tag">Song of the day</span>
         }
-        <SongPostDetails
+        <SongDetails
           songData={this.props.songData}
           songPlayerStatus={this.props.songPlayerStatus}
           songPlayerFunctions={this.props.songPlayerFunctions}
         />
 
         <style jsx>{`
-          .playable-grid-song {
+          .song-tile {
             // TODO it would be super nice to declare these styles as "overridable"
             // to avoid !importants @ newest-songs/index.js
             display: inline-block;
             vertical-align: top;
             position: relative;
+            cursor: pointer;
           }
           .featured-song-tag {
             position: absolute;

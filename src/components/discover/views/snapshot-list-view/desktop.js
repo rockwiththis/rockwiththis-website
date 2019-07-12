@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { propTypes } from './index';
-import GridSong from 'components/song-grid/playable';
+import SongTile from 'components/song-tile';
 
 export default class SnapshotListViewDesktop extends Component {
 
@@ -11,7 +11,8 @@ export default class SnapshotListViewDesktop extends Component {
   render = () => (
       <div className="snapshot-list-view-desktop" onScroll={this.handleViewScroll}>
         { this.props.filteredSongPosts.map(songData => (
-            <GridSong
+            <SongTile
+              key={songData.id}
               songData={songData}
               songPlayStatus={this.props.songPlayStatusForSong(songData)}
               songPlayerFunctions={this.props.songPlayerFunctionsForSong(songData)}
@@ -26,7 +27,7 @@ export default class SnapshotListViewDesktop extends Component {
         }
       `}</style>
       <style global jsx>{`
-        .snapshot-list-view-desktop .playable-grid-song {
+        .snapshot-list-view-desktop .song-tile {
           width: 25%;
         }
       `}</style>

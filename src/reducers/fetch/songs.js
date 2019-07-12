@@ -105,5 +105,12 @@ export default {
       ...state,
       relatedSongs: newRelatedSongs
     }
+  },
+
+  'app/SET_IS_SHUFFLED': (state, action) => {
+    return {
+      ...state,
+      isShuffled: action.payload
+    }
   }
 }

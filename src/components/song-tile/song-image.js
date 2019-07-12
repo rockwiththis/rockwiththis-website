@@ -45,6 +45,10 @@ class SongImage extends Component {
                 width: 100%;
                 height: 100%;
                 box-sizing: border-box;
+                opacity: 0;
+              }
+              .hover-content:hover {
+                opacity: 1;
               }
               .hover-gradient {
                 position: absolute;

@@ -119,12 +119,14 @@ export default connect(
     spotlightPost,
     loadingSongs,
     selectedGenreFilters,
-    genres
+    genres,
+    isShuffled
   }) => ({
     songData: {
       newest: heroPosts,
       filtered: filteredPosts,
-      spotlight: spotlightPost
+      spotlight: spotlightPost,
+      areShuffled: isShuffled
     },
     isLoadingSongs: loadingSongs,
     genres: {

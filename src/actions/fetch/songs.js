@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { values, flatten } from 'lodash';
+import { values, flatten, get } from 'lodash';
 
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
@@ -31,8 +31,10 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle, selectedGenreFilters } = {}) => (dispatch, getState) => {
+const SET_IS_SHUFFLED = createAction('app/SET_IS_SHUFFLED');
+export const resetSongs = ({ isShuffle = null, selectedGenreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
+  if (isShuffle != null) dispatch(SET_IS_SHUFFLED(isShuffle))
   const state = getState();
   const subgenreIds = getSubgenreIds(selectedGenreFilters || state.selectedGenreFilters);
 

@@ -96,6 +96,10 @@ export default class ViewsDropdown extends Component {
             border-bottom: 1px solid #ccc;
             box-sizing: border-box;
           }
+          .view-select-item:hover, .view-select-item.active {
+            color: white;
+            background-color: #282828;
+          }
           .view-select-item-content {
             font-size: 9pt;
           }
@@ -133,6 +137,12 @@ export default class ViewsDropdown extends Component {
             height: 20px;
             vertical-align: middle;
             margin-right: 10px;
+          }
+          .view-select-item:hover svg {
+            fill: white;
+          }
+          .view-select-item.active svg {
+            fill: white;
           }
           @media (max-width: 800px) {
             .views-dropdown svg {

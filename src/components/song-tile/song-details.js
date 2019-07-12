@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import BadgeSingleSongControls from 'components/buttons/single-song-controls/badge';
 
-class SongPostDetails extends Component {
+export default class SongDetails extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
@@ -14,7 +14,7 @@ class SongPostDetails extends Component {
   }
 
   render = () => (
-      <div className="post-details">
+      <div className="song-details">
         <BadgeSingleSongControls
           songPlayerStatus={this.props.songPlayerStatus}
           songPlayerFunctions={this.props.songPlayerFunctions}
@@ -31,7 +31,7 @@ class SongPostDetails extends Component {
         </div>
 
         <style jsx>{`
-          .post-details {
+          .song-details {
             position: absolute;
             bottom: 0;
             height: 42px;
@@ -92,5 +92,3 @@ class SongPostDetails extends Component {
       </div>
   )
 }
-
-export default SongPostDetails;
