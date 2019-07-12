@@ -128,6 +128,9 @@ export default class GenreFilters extends Component {
 
   areNoneSelected = () => this.getAllSelectedSubgenres().length === 0;
 
+  isEntireGenreSelected = genreName =>
+    get(this.state.selectedFilters, [genreName, 'areAllSelected'], false);
+
   getSelectedSubgenres = genreName =>
     values(get(this.state.selectedFilters, [genreName, 'subgenres']))
       .filter(sg => !!sg);
@@ -197,7 +200,7 @@ export default class GenreFilters extends Component {
                       <div
                         className={
                           `gf-button genre-button ${this.cssSafeGenreName(genreName)}` +
-                          (get(this.state.selectedFilters, [genreName, 'areAllSelected']) ? ' selected' : '') +
+                          (this.isEntireGenreSelected(genreName) ? ' selected' : '') +
                           (this.areNoneSelected() ? ' included' : '')
                         }
                         onClick={() => this.toggleGenre(genreName)}
@@ -223,7 +226,8 @@ export default class GenreFilters extends Component {
                       <div
                         className={
                           `subgenre-group ${genreName}` +
-                          (this.areNoSubgenresSelected(genreName) ? ' none-selected' : '')
+                          (this.areNoSubgenresSelected(genreName) ? ' none-selected' : '') +
+                          (this.isEntireGenreSelected(genreName) ? ' all-selected' : '')
                         }
                       >
                         {
@@ -332,17 +336,27 @@ export default class GenreFilters extends Component {
           .gf-button.included {
             opacity: 1;
           }
+          .subgenre-button:hover {
+            opacity: 1;
+          }
           .all-button {
             font-size: 12pt;
             border-radius: 5px;
             padding: 5px 20px;
             margin-left: 8px;
+            border: 1px solid grey;
+          }
+          .all-button:hover {
+            border: 1px solid white;
           }
           .genre-button {
             padding: 9px 11px;
             font-size: 12pt;
             border: 2px solid #303030;
             border-radius: 5px;
+          }
+          .genre-button:hover {
+            border: 2px solid white;
           }
           .genres {
             margin: 20px 0;
@@ -374,6 +388,12 @@ export default class GenreFilters extends Component {
             border: 1px solid #303030;
             border-radius: 15px;
           }
+          .subgenre-button.selected, .subgenre-button:hover {
+            border: 1px solid white;
+          }
+          .subgenre-group.all-selected .subgenre-button {
+            border: 1px solid #303030;
+          }
           .submit-button {
             padding: 12px 15px;
             border: 2px solid #282828;
@@ -385,31 +405,31 @@ export default class GenreFilters extends Component {
           .separator {
             margin: 0 4px;
           }
-          .gf-button.dance-electronic.included, .gf-button.dance-electronic.selected {
+          .gf-button.dance-electronic.included, .gf-button.dance-electronic.selected, .subgenre-button.dance-electronic:hover {
             background: linear-gradient(to right, #3A1399, #0097d5);
           }
-          .gf-button.chill.included, .gf-button.chill.selected {
+          .gf-button.chill.included, .gf-button.chill.selected, .subgenre-button.chill:hover {
             background: linear-gradient(to left, #39EF6C, #02870E);
           }
-          .gf-button.hiphop.included, .gf-button.hiphop.selected {
+          .gf-button.hiphop.included, .gf-button.hiphop.selected, .subgenre-button.hiphop:hover {
             background: linear-gradient(to right, #000, #4D4D4D);
           }
-          .gf-button.funk.included, .gf-button.funk.selected {
+          .gf-button.funk.included, .gf-button.funk.selected, .subgenre-button.funk:hover {
             background: linear-gradient(to right, #3023AE, #DB00FF);
           }
-          .gf-button.soul.included, .gf-button.soul.selected {
+          .gf-button.soul.included, .gf-button.soul.selected, .subgenre-button.soul:hover {
             background: linear-gradient(to right, #3023AE, #ED1936);
           }
-          .gf-button.rock.included, .gf-button.rock.selected {
+          .gf-button.rock.included, .gf-button.rock.selected, .subgenre-button.rock:hover {
             background: linear-gradient(to right, #0E018E, #C86DD7);
           }
-          .gf-button.triphop.included, .gf-button.triphop.selected {
+          .gf-button.triphop.included, .gf-button.triphop.selected, .subgenre-button.triphop:hover {
             background: linear-gradient(to right, #000000, #6B1CF7);
           }
-          .gf-button.remix.included, .gf-button.remix.selected {
+          .gf-button.remix.included, .gf-button.remix.selected, .subgenre-button.remix:hover {
             background: linear-gradient(to right, #3A1399, #0097d5);
           }
-          .gf-button.world.included, .gf-button.world.selected {
+          .gf-button.world.included, .gf-button.world.selected, .subgenre-button.world:hover {
             background: linear-gradient(to right, #FF0000, #F76B1C);
           }
           @media (max-width: 800px) {

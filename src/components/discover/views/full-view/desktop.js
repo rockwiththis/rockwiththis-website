@@ -53,6 +53,8 @@ export default class FullViewDesktop extends Component {
           }
           .song-grid {
             height: 100%;
+            // This somehow prevents space between rows of grid songs 
+            // ... fucking CSS bullshit
             line-height: 0;
             font-size: 0;
           }

@@ -40,7 +40,7 @@ export default class ControlBar extends Component {
     super(props)
     this.state = {
       isViewsDropdownActive: false,
-      isGenreFiltersActive: false,
+      isGenreFiltersActive: true,
       isMomentsActive: false
     }
   }
