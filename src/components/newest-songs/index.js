@@ -42,6 +42,8 @@ class NewestSongs extends React.Component {
             width: 20vw;
             max-width: calc(1658px * 0.2);
             max-height: calc(1658px * 0.2);
+            border: 1px solid white;
+            box-sizing: border-box;
           }
           .newest-songs .song-tile.featured-song {
             height: 40vw;
