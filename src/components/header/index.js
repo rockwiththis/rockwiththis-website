@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { animateScroll } from 'react-scroll';
 import { HOME, SONG, ALL_PAGE_NAMES } from 'constants/page-names';
 
-import HomepageLeftNav from './homepage-left-nav';
-import SongLeftNav from './song-left-nav';
-import AwayLeftNav from './away-left-nav';
+import HomepageLeftNav from './left-nav/homepage';
+import SongLeftNav from './left-nav/song';
+import AwayLeftNav from './left-nav/away';
 
 const desktopLogo = '/static/images/RWT-Hortizontal-Logo-Vector.svg'
 const mobileLogo = '/static/images/RWT_HeadLogo.svg'

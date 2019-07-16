@@ -56,7 +56,7 @@ export default class ConnectPage extends Component {
 
           <div className="bottom-content-container">
             <img className="background-blue" src={diagTallImage} />
-            
+
             <div className="bottom-content">
               <h1>{"We don't have every song..."}</h1>
               <h1>{"Just the best you haven't heard."}</h1>
