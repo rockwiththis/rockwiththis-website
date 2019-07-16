@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { animateScroll } from 'react-scroll';
-import { HOME, ALL_PAGE_NAMES } from 'constants/page-names';
+import { HOME, SONG, ALL_PAGE_NAMES } from 'constants/page-names';
 
 import HomepageLeftNav from './homepage-left-nav';
+import SongLeftNav from './song-left-nav';
 import AwayLeftNav from './away-left-nav';
 
 const desktopLogo = '/static/images/RWT-Hortizontal-Logo-Vector.svg'
@@ -20,15 +21,16 @@ export default class Header extends Component {
   leftNavContents = () => {
     if (this.props.pageName === HOME) {
       return <HomepageLeftNav scroll={this.props.scroll} />
-    } else {
+    } else if (this.props.pageName === SONG) {
+      return <SongLeftNav />
+    } else  {
       return <AwayLeftNav />
     }
   }
 
   handleLogoClick = () => {
-    if (this.props.pageName === HOME)
-      animateScroll.scrollTo(0);
-  } 
+    if (this.props.pageName === HOME) animateScroll.scrollTo(0);
+  }
 
   render = () => (
       <div className="header">

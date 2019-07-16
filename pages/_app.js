@@ -59,7 +59,8 @@ class MyApp extends App {
               overflow: scroll;
               scrollbar-width: none;
               -ms-overflow-style: none;
-              overflow: ${this.state.isScrollDisabled ? 'hidden' : 'auto'}
+              overflow: ${this.state.isScrollDisabled ? 'hidden' : 'auto'};
+              min-width: 320px;
             }
             body::-webkit-scrollbar {
               width: 0px;
