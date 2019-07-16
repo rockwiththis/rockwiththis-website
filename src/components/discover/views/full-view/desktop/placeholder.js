@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const FullViewDesktopPlaceholder = () => (
     <Fragment>
@@ -10,7 +10,7 @@ const FullViewDesktopPlaceholder = () => (
       </div>
 
       <div className="song-post">
-        
+
         <div className="image pulse"></div>
 
         <div className="header">
@@ -20,13 +20,13 @@ const FullViewDesktopPlaceholder = () => (
             <div className="artist-name pulse"></div>
           </div>
         </div>
-            
+
         <div className="post-content">
           { Array(18).fill().map((_,i) => (
             <div className={'text-line pulse' + (i < 6 ? ' wrap-image' : '')}></div>
           ))}
         </div>
-        
+
       </div>
 
       <style jsx>{`

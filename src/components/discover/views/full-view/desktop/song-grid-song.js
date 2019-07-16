@@ -111,6 +111,11 @@ export default class SongGridSong extends Component {
           .artist-name {
             font-weight: 400;
           }
+          @media (max-width: 1100px) {
+            .song-grid-song {
+              width: 50%;
+            }
+          }
         `}</style>
         <style global jsx>{`
           .song-grid-song .genre-tags {
