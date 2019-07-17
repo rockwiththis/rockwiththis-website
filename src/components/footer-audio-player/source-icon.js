@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import SoundcloudIcon from 'components/icons/soundcloud';
 import YoutubeIcon from 'components/icons/youtube';
 
@@ -28,6 +29,18 @@ export default class FooterPlayerSourceIcon extends Component {
               <YoutubeIcon />
             </Link>
         }
+
+        <style jsx>{`
+          .footer-player-source-icon {
+            padding-top: 15px;
+            padding-right: 20px;
+          }
+        `}</style>
+        <style jsx global>{`
+          .footer-player-source-icon svg {
+            fill: white;
+          }
+        `}</style>
       </div>
   );
 }

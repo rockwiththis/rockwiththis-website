@@ -24,23 +24,44 @@ export default class FooterPlayerNavBar extends Component {
 
   render = () => (
       <div className="footer-player-nav-bar">
-        <div className="player-duration-bar-current-time">
+        <div className="player-duration current-time">
           { this.secondsToTimeString(get(this.props.activeSongTime, 'playedSeconds')) }
         </div>
 
-        <div className="player-duration-bar">
+        <div className="slider-container">
           <Slider
             min={0}
             max={1}
             step={0.001}
             value={get(this.props.activeSongTime, 'playedRatio', 0)}
             onChange={this.props.updateSongProgress}
+            railStyle={{ backgroundColor: '#3f3f3f', height: '5px' }}
+            trackStyle={{ backgroundColor: '#0097d5', height: '5px' }}
           />
         </div>
 
-        <div className="player-duration-bar-song-duration">
+        <div className="player-duration song-duration">
           { this.secondsToTimeString(get(this.props.activeSongTime, 'durationSeconds')) }
         </div>
+
+        <style jsx>{`
+          .player-duration {
+            display: inline-block;
+            vertical-align: top;
+            width: 60px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-align: center;
+            padding-top: 2px;
+          }
+          .slider-container {
+            display: inline-block;
+            vertical-align: top;
+            width: calc(100% - 120px);
+            height: 5px;
+            padding-top: 5px;
+          }
+        `}</style>
       </div>
   )
 }

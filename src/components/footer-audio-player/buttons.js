@@ -34,6 +34,30 @@ export default class FooterPlayerButtons extends Component {
         <div className="player-nav">
           <FaStepForward />
         </div>
+
+        <style jsx>{`
+          .footer-player-buttons {
+            padding-top: 10px;
+            text-align: center;
+          }
+          .player-nav {
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 13px;
+          }
+        `}</style>
+        <style jsx global>{`
+          .footer-player-buttons .outline-single-song-controls {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            margin: 0 20px;
+          }
+          .footer-player-buttons .outline-single-song-controls svg {
+            width: 100%;
+            height: 100%;
+          }
+        `}</style>
       </div>
   );
 }

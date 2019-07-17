@@ -3,6 +3,7 @@ import App, { Container } from 'next/app';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
+import { connect } from 'react-redux';
 
 import configureStore from 'store/configureStore'
 
@@ -65,6 +66,8 @@ class MyApp extends App {
             body {
               font-family: 'Object-Sans-Bold', sans-serif;
               margin: 0;
+              padding: 0;
+              border: 0;
               overflow: scroll;
               scrollbar-width: none;
               -ms-overflow-style: none;
