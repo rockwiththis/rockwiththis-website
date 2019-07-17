@@ -6,6 +6,8 @@ import withRedux from 'next-redux-wrapper';
 
 import configureStore from 'store/configureStore'
 
+import FooterAudioPlayer from 'components/footer-audio-player';
+
 class MyApp extends App {
 
   constructor(props) {
@@ -21,6 +23,12 @@ class MyApp extends App {
   setIsScrollDisabled = isScrollDisabled =>
     this.setState({ isScrollDisabled })
 
+  updateSongProgress = () => console.log("TODO: implement progress update");
+
+  playNextSong = () => console.log("TODO: implement play next song");
+
+  playPreviousSong = () => console.log("TODO: implement play previous song");
+
   render = () => {
     const { Component, pageProps, store } = this.props;
     const componentProps = {
@@ -33,14 +41,15 @@ class MyApp extends App {
           <Provider store={store}>
             <Component {...componentProps} />
 
-            {/*
             <FooterAudioPlayer
-              onProgressUpdate={this.handleProgressUpdate}
-              playNextSong={this.playNextSong()}
-              previousSong={this.findPreviousSong()}
-              {...this.props}
+              activeSong={this.props.activeSong}
+              activeSongPlayStatus={"TODO"}
+              activeSongPlayerFunctions={{}}
+              updateSongProgress={this.updateSongProgress}
+              playNextSong={this.playNextSong}
+              playPreviousSong={this.playPreviousSong}
             />
-            {
+            {/*
               !!this.props.activeSong && !!this.props.activeSong.id &&
               <AudioManager
                 setSongDuration={this.props.actions.playerLoaded}
