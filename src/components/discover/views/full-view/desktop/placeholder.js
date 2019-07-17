@@ -39,6 +39,8 @@ const FullViewDesktopPlaceholder = () => (
           animation: pulse 1s infinite ease-in-out;
         }
         .song-grid-container {
+          display: inline-block;
+          width: 40%;
           height: 605px;
           overflow: hidden;
         }
