@@ -103,8 +103,9 @@ class Homepage extends Component {
           .content {
             max-width: 1658px;
             margin: 0 auto;
-            margin-bottom: 70px;
             padding-top: 75px;
+            padding-bottom: 75px;
+            box-sizing: border-box;
           }
         `}</style>
       </div>

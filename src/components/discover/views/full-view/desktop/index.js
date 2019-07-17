@@ -51,10 +51,13 @@ export default class FullViewDesktop extends Component {
             padding: 20px;
             padding-bottom: 0;
             box-sizing: border-box;
-            height: 100vh;
+            height: 100%;
+          }
+          .song-grid-container {
+            height: calc(100% + 20px);
+            overflow: scroll;
           }
           .song-grid {
-            height: 100%;
             // This somehow prevents space between rows of grid songs
             // ... fucking CSS bullshit
             line-height: 0;

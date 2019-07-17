@@ -100,10 +100,13 @@ export default class Discover extends Component {
           .discover {
             position: relative;
             width: 100%;
-            height: calc(100vh - 70px);   // full screen height minus footer player
+            box-sizing: border-box;
+            height: calc(100vh - 75px - 75px);   // full screen height minus header + footer
+            overflow: hidden;
           }
           .discover-songs {
             height: calc(100% - 55px);    // full discover height minus control bar
+            overflow: hidden;
           }
         `}</style>
       </div>

@@ -20,6 +20,9 @@ export default class FullView extends Component {
         <Desktop {...this.props} />
         <Mobile {...this.props} />
 
+        <style jsx>{`
+          height: 100%;
+        `}</style>
         <style jsx global>{`
           @media (min-width: 800px) {
             .full-view .full-view-mobile {
