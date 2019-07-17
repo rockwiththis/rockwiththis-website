@@ -13,7 +13,7 @@ export default class FullViewDesktop extends Component {
 
   render = () => (
       <div className="full-view-desktop">
-        {this.props.songPosts.filtered.length > 0 && false ?
+        {this.props.songPosts.filtered.length > 0 ?
           <Fragment>
 
             <div className="song-grid-container">
