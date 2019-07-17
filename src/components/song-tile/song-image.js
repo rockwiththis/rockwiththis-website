@@ -47,9 +47,6 @@ class SongImage extends Component {
                 box-sizing: border-box;
                 opacity: 0;
               }
-              .hover-content:hover {
-                opacity: 1;
-              }
               .hover-gradient {
                 position: absolute;
                 top: 0;
@@ -84,9 +81,6 @@ class SongImage extends Component {
                 display: inline-block;
                 padding: 10px;
                 border-radius: 6px;
-              }
-              .hover-gradient::hover {
-                opacity: 0.7;
               }
             `}</style>
           </div>

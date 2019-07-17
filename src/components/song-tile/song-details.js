@@ -41,12 +41,13 @@ export default class SongDetails extends Component {
           }
           .song-info {
             display: inline-block;
-            width: calc(100% - 80px);
+            width: calc(100% - 37px - 40px);
             font-size: 10pt;
             white-space: nowrap;
             vertical-align: top;
             height: 100%;
             padding-top: 5px;
+            padding-left: 5px;
             box-sizing: border-box;
           }
           .song-info span {
@@ -80,11 +81,11 @@ export default class SongDetails extends Component {
         `}</style>
         <style global jsx>{`
           .badge-single-song-controls {
-            height: 40px;
-            width: 40px;
+            height: 35px;
+            width: 35px;
             display: inline-block;
-            padding-top: 4px;
-            padding-left: 2px;
+            margin-top: 4px;
+            margin-left: 2px;
             box-sizing: border-box;
           }
           .

@@ -18,6 +18,13 @@ export class BadgeSingleSongControls extends React.Component {
         BadgeLoadingButton,
         BadgePlayButton
       )}
+
+      <style jsx global>{`
+        .badge-single-song-controls img {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
     </div>
   )
 }

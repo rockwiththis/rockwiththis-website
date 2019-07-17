@@ -42,7 +42,7 @@ export default class SongTile extends Component {
           }
           .featured-song-tag {
             position: absolute;
-            bottom: 42px;
+            bottom: 65px;
             font-size: 10pt;
             padding: 12px;
             background-color: #ec2121;
@@ -51,6 +51,35 @@ export default class SongTile extends Component {
             letter-spacing: 5px;
             font-weight: bold;
             z-index: 2;
+          }
+        `}</style>
+        <style jsx global>{`
+          .song-tile:hover .hover-content {
+            opacity: 1;
+          }
+          .song-tile.featured-song .song-details {
+            height: 65px;
+          }
+          .song-tile.featured-song .badge-single-song-controls {
+            height: 50px;
+            width: 50px;
+          }
+          .song-tile.featured-song .song-info {
+            font-size: 24px;
+            line-height: 26px;
+            width: calc(100% - 52px - 65px);
+          }
+          .song-tile.featured-song .post-date {
+            width: 65px;
+            padding-top: 8px;
+          }
+          .song-tile.featured-song .post-date .month {
+            font-size: 14px;
+            line-height: 20px;
+          }
+          .song-tile.featured-song .post-date .day {
+            font-size: 26px;
+            font-weight: bold;
           }
         `}</style>
       </div>
