@@ -54,8 +54,15 @@ export default class FullViewDesktop extends Component {
             height: 100%;
           }
           .song-grid-container {
-            height: calc(100% + 20px);
-            overflow: scroll;
+            display: inline-block;
+            width: 40%;
+            height: 100%;
+            overflow-y: ${ this.props.disableScroll ? 'hidden' :  'scroll' };
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .song-grid-container::-webkit-scrollbar {
+            width: 0px;
           }
           .song-grid {
             // This somehow prevents space between rows of grid songs
@@ -65,17 +72,6 @@ export default class FullViewDesktop extends Component {
           }
         `}</style>
         <style global jsx>{`
-          .full-view-desktop .song-grid-container {
-            display: inline-block;
-            width: 40%;
-            height: 100%;
-            overflow-y: scroll;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-          }
-          .full-view-desktop .song-grid-container::-webkit-scrollbar {
-            width: 0px;
-          }
           .full-view-desktop .song-post {
             display: inline-block;
             vertical-align: top;
@@ -83,7 +79,7 @@ export default class FullViewDesktop extends Component {
             padding-left: 35px;
             box-sizing: border-box;
             height: 100%;
-            overflow-y: scroll;
+            overflow-y: ${ this.props.disableScroll ? 'hidden' :  'scroll' };
             scrollbar-width: none;
             -ms-overflow-style: none;
           }

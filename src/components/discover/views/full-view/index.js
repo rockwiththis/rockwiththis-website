@@ -8,7 +8,8 @@ export const propTypes = {
   songPosts: PropTypes.object.isRequired,
   songPlayStatusForSong: PropTypes.func.isRequired,
   songPlayerFunctionsForSong: PropTypes.func.isRequired,
-  songDataFunctions: PropTypes.object.isRequired
+  songDataFunctions: PropTypes.object.isRequired,
+  disableScroll: PropTypes.bool
 }
 
 export default class FullView extends Component {

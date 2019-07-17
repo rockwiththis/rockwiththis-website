@@ -46,11 +46,10 @@ class Homepage extends Component {
     window.removeEventListener('resize', this.updateScrolledToDiscover)
   }
 
-  // TODO better scroll anchoring + control
   updateScrolledToDiscover = () =>
     this.setState({
       scrolledToDiscover:
-        this.newestSongsRef.current.getClientHeight() + 45 > window.scrollY
+        window.scrollY >= this.newestSongsRef.current.getClientHeight()
     })
 
   scrollToDiscover = () =>

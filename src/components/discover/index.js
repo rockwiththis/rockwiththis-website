@@ -55,6 +55,7 @@ export default class Discover extends Component {
         songPlayStatusForSong={this.props.songPlayStatusForSong}
         songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
         songDataFunctions={this.props.songDataFunctions}
+        disableScroll={!this.props.scroll.scrolledToDiscover}
       />
     else if (this.state.layoutType === SNAPSHOT_LIST_VIEW)
       return <SnapshotListView
@@ -87,12 +88,7 @@ export default class Discover extends Component {
           genres={this.props.genres}
         />
 
-        <div
-          className={
-            'discover-songs' +
-            (!this.props.scroll.scrolledToDiscover ? ' disable-scroll' : '')
-          }
-        >
+        <div className="discover-songs">
           { this.getDiscoverSongView() }
         </div>
 
