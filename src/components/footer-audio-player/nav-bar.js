@@ -9,7 +9,8 @@ export default class FooterPlayerNavBar extends Component {
     activeSongTime: PropTypes.exact({
       playedSeconds: PropTypes.number.isRequired,
       playedRatio: PropTypes.number.isRequired,
-      durationSeconds: PropTypes.number.isRequired
+      durationSeconds: PropTypes.number.isRequired,
+      update: PropTypes.func.isRequired
     }),
     updateSongProgress: PropTypes.func
   }
@@ -34,7 +35,7 @@ export default class FooterPlayerNavBar extends Component {
             max={1}
             step={0.001}
             value={get(this.props.activeSongTime, 'playedRatio', 0)}
-            onChange={this.props.updateSongProgress}
+            onChange={this.props.activeSongTime.update}
             railStyle={{ backgroundColor: '#3f3f3f', height: '5px' }}
             trackStyle={{ backgroundColor: '#0097d5', height: '5px' }}
           />

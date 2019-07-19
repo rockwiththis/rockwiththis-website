@@ -14,13 +14,20 @@ export default class OutlineSongPlayerControl extends React.Component {
   }
 
   render = () => (
-    <div className="outline-single-song-controls">
+    <div className="song-player-control">
       {getVisibleButton(
         this.props,
         PauseButton,
         LoadingButton,
         PlayButton
       )}
+
+      <style jsx global>{`
+        .song-player-control img {
+          width: 100%;
+          height: 100%;
+        }
+      `}</style>
     </div>
   )
 }

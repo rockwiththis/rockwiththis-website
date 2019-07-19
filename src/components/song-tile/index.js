@@ -60,7 +60,7 @@ export default class SongTile extends Component {
           .song-tile.featured-song .song-details {
             height: 65px;
           }
-          .song-tile.featured-song .badge-single-song-controls {
+          .song-tile.featured-song .song-player-control {
             height: 50px;
             width: 50px;
           }

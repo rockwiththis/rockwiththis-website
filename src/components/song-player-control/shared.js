@@ -11,10 +11,10 @@ export const propTypes = {
 
 export const getVisibleButton = (props, PauseButton, LoadingButton, PlayButton) => {
   if (props.songPlayer.status === SONG_PLAYING)
-    return <PauseButton pauseSong={songPlayer.pause} isWhite={props.isWhite} />;
+    return <PauseButton pauseSong={props.songPlayer.pause} isWhite={props.isWhite} />;
 
   else if ([SONG_PAUSED, SONG_READY].includes(props.songPlayer.status))
-    return <PlayButton playSong={songPlayer.play} isWhite={props.isWhite} />;
+    return <PlayButton playSong={props.songPlayer.play} isWhite={props.isWhite} />;
 
   else
     return <LoadingButton isWhite={props.isWhite} />;

@@ -5,11 +5,13 @@ import moment from 'moment'
 import SongTile from 'components/song-tile';
 import Placeholder from './placeholder';
 
+import { songPlayerShape } from 'constants/prop-shapes';
+
 class NewestSongs extends React.Component {
 
   static propTypes = {
     newestSongPosts: PropTypes.array.isRequired,
-    songPlayers: PropTypes.func.isRequired
+    songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired
   }
 
   constructor(props) {
@@ -19,14 +21,16 @@ class NewestSongs extends React.Component {
 
   getClientHeight = () => this.mainDivRef.current.clientHeight;
 
-  render = () => (
+  render = () => {
+    console.log("RENDER NEWEST SONGS", this.props);
+    return (
       <div className="newest-songs" ref={this.mainDivRef} >
         {this.props.newestSongPosts.length > 0 ?
           this.props.newestSongPosts.map((songData, i) => (
               <SongTile
                 key={songData.id}
                 songData={songData}
-                songPlayer={this.props.songPlayers(songData)}
+                songPlayer={this.props.songPlayers[songData.id]}
                 isFeaturedSong={i === 0}
               />
           ))
@@ -128,7 +132,7 @@ class NewestSongs extends React.Component {
           }
         `}</style>
       </div>
-  );
+  );}
 }
 
 export default NewestSongs;

@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { songPlayerDataShape } from 'constants/prop-shapes';
+import getSongPlayer from 'util/get-song-player';
+import { playSong, pauseSong } from 'actions/player';
+
 import SongInfo from './song-info';
 import Buttons from './buttons';
 import NavBar from './nav-bar';
@@ -10,40 +14,35 @@ import SourceIcon from './source-icon';
 class FooterAudioPlayer extends Component {
 
   static propTypes = {
-    activeSongPlayStatus: PropTypes.string,
-    activeSongPlayerFunctions: PropTypes.object,
-    updateSongProgress: PropTypes.func.isRequired,
     playNextSong: PropTypes.func.isRequired,
     playPreviousSong: PropTypes.func,
     activeSongTime: PropTypes.exact({
       playedSeconds: PropTypes.number.isRequired,
       playedRatio: PropTypes.number.isRequired,
-      durationSeconds: PropTypes.number.isRequired
-    }),
+      durationSeconds: PropTypes.number.isRequired,
+      update: PropTypes.func.isRequired
+    }).isRequired,
 
     // from redux
-    activeSong: PropTypes.object.isRequired
+    activeSongData: PropTypes.object.isRequired,
+    playerData: PropTypes.exact(songPlayerDataShape).isRequired
   }
 
   render = () => (
       <footer>
-        <SongInfo activeSong={this.props.activeSong} />
+        <SongInfo activeSong={this.props.activeSongData} />
 
         <div className="song-controls">
           <Buttons
-            activeSongPlayStatus={this.props.activeSongPlayStatus}
-            activeSongPlayerFunctions={this.props.activeSongPlayerFunctions}
             playNextSong={this.props.playNextSong}
             playPreviousSong={this.props.playPreviousSong}
+            songPlayer={getSongPlayer(this.props.activeSongData, this.props.playerData)}
           />
-          <NavBar
-            activeSongTime={this.props.activeSongTime}
-            updateSongProgress={this.props.updateSongProgress}
-          />
+          <NavBar activeSongTime={this.props.activeSongTime} />
         </div>
 
         { !!this.props.activeSong &&
-            <SourceIcon activeSong={this.props.activeSong} />
+            <SourceIcon activeSong={this.props.activeSongData} />
         }
 
         <style jsx>{`
@@ -82,6 +81,37 @@ class FooterAudioPlayer extends Component {
   );
 }
 
+const stateToProps = ({
+  isPlaying,
+  songPlayerDurations,
+  activeSong
+}) => ({
+  activeSongData: activeSong,
+  player: {
+    activeSong,
+    isPlaying,
+    songPlayerDurations,
+  }
+});
+
+const actions = { playSong, pauseSong };
+
+const buildProps = (
+  { activeSongData, player },
+  { playSong, pauseSong },
+  ownProps
+) => ({
+  ...ownProps,
+  activeSongData,
+  playerData: {
+    ...player,
+    playSong,
+    pauseSong
+  }
+})
+
 export default connect(
-  ({ activeSong }) => ({ activeSong })
+  stateToProps,
+  actions,
+  buildProps
 )(FooterAudioPlayer);

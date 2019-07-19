@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { songDataShape, genresShape } from 'constants/prop-shapes';
+import { songDataShape, genresShape, songPlayerShape } from 'constants/prop-shapes';
 
 import ControlBar from './control-bar';
 import FullView from './views/full-view';
@@ -23,7 +23,7 @@ export default class Discover extends Component {
   static propTypes = {
     scroll: PropTypes.object.isRequired,
     songData: PropTypes.exact(songDataShape).isRequired,
-    songPlayers: PropTypes.func.isRequired,
+    songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired,
     genres: PropTypes.exact(genresShape).isRequired
   }
 

@@ -15,7 +15,7 @@ export default class SnapshotListViewDesktop extends Component {
             <TruncatedSongPost
               key={songData.id}
               songData={songData}
-              songPlayer={this.props.songPlayers(songData)}
+              songPlayer={this.props.songPlayers[songData.id]}
             />
         ))}
 

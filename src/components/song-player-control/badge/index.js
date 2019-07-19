@@ -6,12 +6,12 @@ import BadgePauseButton from './pause';
 import BadgeLoadingButton from './loading';
 import BadgePlayButton from './play';
 
-export export class BadgeSongPlayerControl extends React.Component {
+export default class BadgeSongPlayerControl extends React.Component {
 
   static propTypes = propTypes
 
   render = () => (
-    <div className="badge-single-song-controls">
+    <div className="song-player-control">
       {getVisibleButton(
         this.props,
         BadgePauseButton,
@@ -20,7 +20,7 @@ export export class BadgeSongPlayerControl extends React.Component {
       )}
 
       <style jsx global>{`
-        .badge-single-song-controls img {
+        .song-player-control img {
           width: 100%;
           height: 100%;
         }

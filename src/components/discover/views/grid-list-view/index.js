@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { songDataShape } from 'constants/prop-shapes';
+import { songDataShape, songPlayerShape } from 'constants/prop-shapes';
 
 import LoadingSpinner from '../loading-spinner';
 import Desktop from './desktop';
@@ -9,7 +9,7 @@ import Mobile from './mobile';
 
 export const propTypes = {
   songData: PropTypes.exact(songDataShape).isRequired,
-  songPlayers: PropTypes.func.isRequired
+  songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired
 }
 
 export default class GridListView extends Component {

@@ -10,8 +10,8 @@ import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
 import DiscoverSection from 'components/discover';
 // import AutoplayErrorModal from 'components/autoplay-error-modal';
 
-import { songDataShape, genresShape } from 'constants/prop-shapes';
-import getSongStatus from 'util/get-song-status';
+import { songDataShape, genresShape, songPlayerDataShape } from 'constants/prop-shapes';
+import getSongPlayer from 'util/get-song-player';
 
 import { setInitialSongs, loadMoreSongs, resetSongs } from 'actions/fetch/songs';
 import { fetchGenres } from 'actions/fetch/genres';
@@ -25,16 +25,10 @@ class Homepage extends Component {
 
     // from redux
     setInitialSongs: PropTypes.func.isRequired,
-    didAutoplayFail: PropTypes.bool,
+    setDidAutoplayFail: PropTypes.func.isRequired,
     songData: PropTypes.exact(songDataShape).isRequired,
     genres: PropTypes.exact(genresShape).isRequired,
-    player: PropTypes.exact({
-      activeSong: PropTypes.object.isRequired,
-      isPlaying: PropTypes.bool.isRequired,
-      songPlayerDurations: PropTypes.object.isRequired,
-      playSong: PropTypes.func.isRequired,
-      pauseSong: PropTypes.func.isRequired
-    }).isRequired
+    playerData: PropTypes.exact(songPlayerDataShape).isRequired
   }
 
   constructor(props) {
@@ -47,7 +41,7 @@ class Homepage extends Component {
 
   componentWillMount = () => {
     if (this.props.showAutoplayModal)
-      this.props.didAutoplayFail(true);
+      this.props.setDidAutoplayFail(true);
   }
 
   componentDidMount = () => {
@@ -83,11 +77,11 @@ class Homepage extends Component {
     setIsScrollDisabled: this.props.setIsScrollDisabled
   })
 
-  getSongPlayer = song => ({
-    status: getSongStatus(song, this.props.player),
-    play: () => this.props.player.playSong(song),
-    pause: () => this.props.player.pauseSong()
-  })
+  getSongPlayers = songs =>
+    songs.reduce((players, song) => ({
+      ...players,
+      [song.id]: getSongPlayer(song, this.props.playerData)
+    }), {});
 
   render = () => (
       <div className="homepage">
@@ -102,14 +96,14 @@ class Homepage extends Component {
         <div className="content">
           <NewestSongs
             newestSongPosts={this.props.songData.newest}
-            songPlayers={this.getSongPlayer}
+            songPlayers={this.getSongPlayers(this.props.songData.newest)}
             ref={this.newestSongsRef}
           />
 
           <DiscoverSection
             scroll={this.scrollControls()}
             songData={this.props.songData}
-            songPlayers={this.getSongPlayer}
+            songPlayers={this.getSongPlayers(this.props.songData.all)}
             genres={this.props.genres}
           />
 
@@ -146,7 +140,8 @@ const stateToProps = ({
     newest: heroPosts,
     filtered: filteredPosts,
     spotlight: spotlightPost,
-    areShuffled: isShuffle
+    areShuffled: isShuffle,
+    all: Array.from((new Set(filteredPosts)).add(spotlightPost)).filter(s => !!s.id)
   },
   genres: {
     available: genres,
@@ -192,7 +187,7 @@ const buildProps = (
 ) => ({
   ...ownProps,
   setInitialSongs,
-  didAutoplayFail,
+  setDidAutoplayFail: didAutoplayFail,
   genres: {
     ...genres,
     fetch: fetchGenres
@@ -204,7 +199,7 @@ const buildProps = (
     setSpotlight: updateSpotlightSong,
     isLoading: isLoadingSongs
   },
-  player: {
+  playerData: {
     activeSong,
     isPlaying,
     songPlayerDurations,

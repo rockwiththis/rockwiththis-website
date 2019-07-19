@@ -79,7 +79,7 @@ export default class SongDetails extends Component {
           }
         `}</style>
         <style global jsx>{`
-          .badge-single-song-controls {
+          .song-details .song-player-control {
             height: 35px;
             width: 35px;
             display: inline-block;

@@ -14,7 +14,7 @@ export default class GridListViewDesktop extends Component {
             <SongTile
               key={songData.id}
               songData={songData}
-              songPlayer={this.props.songPlayers(songDawta)}
+              songPlayer={this.props.songPlayers[songData.id]}
             />
         ))}
 

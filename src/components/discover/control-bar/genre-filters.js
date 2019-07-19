@@ -11,8 +11,8 @@ export default class GenreFilters extends Component {
     hide: PropTypes.func.isRequired,
     resetSongs: PropTypes.func.isRequired,
     genres: PropTypes.shape({
-      available: PropTypes.objectOf(PropTypes.string).isRequired,
-      filters: PropTypes.objectOf(PropTypes.string).isRequired
+      available: PropTypes.object.isRequired,
+      filters: PropTypes.object.isRequired
     }).isRequired,
   }
 
@@ -34,16 +34,9 @@ export default class GenreFilters extends Component {
       document.removeEventListener('click', this.hideOnClickOff);
   }
 
-  // TODO stop using this
-  disableScrolling = () => $('body').css('overflow', 'hidden');
-  enableScrolling = () => $('body').css('overflow', 'auto');
-
   closeModal = () => {
     this.props.hide();
-    this.setState({
-      selectedFilters: this.props.genres.filters
-    });
-    this.enableScrolling();
+    this.setState({ selectedFilters: this.props.genres.filters });
   }
 
   hideOnClickOff = event =>
@@ -88,7 +81,6 @@ export default class GenreFilters extends Component {
         ...currSubgenreData,
         [subgenre.id]: !!currSubgenreData[subgenre.id] ? undefined : subgenre
       };
-    console.log("TOGGLE SUBGENRE", currGenreData.areAllSelected, newSubgenreData);
     this.setState({
       selectedFilters: {
         ...this.state.selectedFilters,
@@ -204,10 +196,11 @@ export default class GenreFilters extends Component {
                           (this.areNoneSelected() ? ' included' : '')
                         }
                         onClick={() => this.toggleGenre(genreName)}
+                        key={genreName}
                       >
-                      <span>
-                        { this.getGenreName(this.props.genres.available[genreName]) }
-                      </span>
+                        <span>
+                          { this.getGenreName(this.props.genres.available[genreName]) }
+                        </span>
                       </div>
                   ))}
                 </div>
@@ -229,6 +222,7 @@ export default class GenreFilters extends Component {
                           (this.areNoSubgenresSelected(genreName) ? ' none-selected' : '') +
                           (this.isEntireGenreSelected(genreName) ? ' all-selected' : '')
                         }
+                        key={genreName}
                       >
                         {
                           orderBy(this.props.genres.available[genreName].subgenres, ['name'], ['asc']).map(subgenre => (
@@ -239,6 +233,7 @@ export default class GenreFilters extends Component {
                                 this.getSubgenreButtonClass(genreName, subgenre.id)
                               }
                               onClick={() => this.toggleSubgenre(genreName, subgenre)}
+                              key={subgenre.id}
                             >
                             <span>
                               { this.getGenreName(subgenre) }

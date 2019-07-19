@@ -13,7 +13,7 @@ export default class TruncatedSongPost extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayer: PropTypes.exact(songPlayerShape).isRequred,
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired,
     hideSongControls: PropTypes.bool
   }
 
@@ -70,7 +70,7 @@ export default class TruncatedSongPost extends Component {
             font-size: 10pt;
             line-height: 20pt;
           }
-          .truncated-song-post .outline-single-song-controls {
+          .truncated-song-post .song-player-control {
             display: this.props.hideSongControls ? 'none' : 'default';
             width: 40px;
             height: 40px;

@@ -16,35 +16,27 @@ export default class SongHeader extends Component {
     songPlayer: PropTypes.exact(songPlayerShape).isRequired
   }
 
-  render = () => {
-    const songId = this.props.songData.id;
+  render = () => (
+      <div className="song-header">
 
-    return (
-        <div className="song-header">
+        <SongPlayerControl songPlayer={this.props.songPlayer} />
+        <HeaderTitle songData={this.props.songData} />
+        <MetaInfo songData={this.props.songData} />
 
-          <SongPlayerControl songPlayer={this.props.songPlayerStatus} />
-          <HeaderTitle songData={this.props.songData} />
-          <MetaInfo songData={this.props.songData} />
-
-          <style global jsx>{`
-            .song-header .outline-single-song-controls {
-              display: inline-block;
-              width: 60px;
-              height: 60px;
-            }
-            .song-header .outline-single-song-controls svg {
-              width: 100%;
-              height: 100%;
-            }
-            .song-header .header-title {
-              display: inline-block;
-              vertical-align: top;
-              box-sizing: border-box;
-              padding-left: 10px;
-              width: calc(100% - 60px); // MUST override if play button visible + text wraps image
-            }
-          `}</style>
-        </div>
-    );
-  }
+        <style global jsx>{`
+          .song-header .song-player-control {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+          }
+          .song-header .header-title {
+            display: inline-block;
+            vertical-align: top;
+            box-sizing: border-box;
+            padding-left: 10px;
+            width: calc(100% - 60px); // MUST override if play button visible + text wraps image
+          }
+        `}</style>
+      </div>
+  );
 };

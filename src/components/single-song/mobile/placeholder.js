@@ -6,7 +6,7 @@ const SingleSongMobilePlaceholder = () => (
       <div className="song-image pulse">
 
         <div className="song-title-wrapper">
-          <div className="outline-single-song-controls pulse"></div>
+          <div className="song-player-control pulse"></div>
 
           <div className="song-info">
             <div className="song-name pulse"></div>
@@ -40,7 +40,7 @@ const SingleSongMobilePlaceholder = () => (
         .post-info {
           background: white;
         }
-        .outline-single-song-controls {
+        .song-player-control {
           border-radius: 50%;
           margin-right: 20px;
         }

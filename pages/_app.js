@@ -3,17 +3,26 @@ import App, { Container } from 'next/app';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
-import { connect } from 'react-redux';
 
 import configureStore from 'store/configureStore'
 
 import FooterAudioPlayer from 'components/footer-audio-player';
 
+const DEFAULT_ACTIVE_SONG_TIME = {
+  playedSeconds: 0,
+  playedRatio: 0,
+  durationSeconds: 0,
+  update: () => null
+}
+
 class MyApp extends App {
 
   constructor(props) {
     super(props);
-    this.state = { isScrollDisabled: false }
+    this.state = {
+      isScrollDisabled: false,
+      activeSongTime: DEFAULT_ACTIVE_SONG_TIME
+    }
   }
 
   static async getInitialProps({ Component, ctx }) {
@@ -43,12 +52,9 @@ class MyApp extends App {
             <Component {...componentProps} />
 
             <FooterAudioPlayer
-              activeSong={this.props.activeSong}
-              activeSongPlayStatus={"TODO"}
-              activeSongPlayerFunctions={{}}
-              updateSongProgress={this.updateSongProgress}
               playNextSong={this.playNextSong}
               playPreviousSong={this.playPreviousSong}
+              activeSongTime={this.state.activeSongTime}
             />
             {/*
               !!this.props.activeSong && !!this.props.activeSong.id &&

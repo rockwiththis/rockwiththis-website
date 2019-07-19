@@ -2,8 +2,8 @@ import React from 'react'
 
 const LoadingSpinner = () => (
     <div className="loading-spinner">
-      { Array(5).fill().map(_ => (
-          <div className="rect"></div>
+      { Array(5).fill().map((_, i) => (
+          <div className="rect" key={i}></div>
       ))}
 
       <style jsx>{`

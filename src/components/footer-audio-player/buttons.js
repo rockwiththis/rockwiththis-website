@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaStepBackward, FaStepForward } from 'react-icons/fa';
 
+import { songPlayerShape } from 'constants/prop-shapes';
+
 import SongPlayerControl from 'components/song-player-control/outline';
 
 export default class FooterPlayerButtons extends Component {
 
   static propTypes = {
-    activeSongPlayStatus: PropTypes.string,
-    activeSongPlayerFunctions: PropTypes.object,
     playNextSong: PropTypes.func.isRequired,
-    playPreviousSong: PropTypes.func
+    playPreviousSong: PropTypes.func,
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired
   }
 
   render = () => (
@@ -30,7 +31,7 @@ export default class FooterPlayerButtons extends Component {
           isWhite={true}
         />
 
-        <div className="player-nav">
+        <div className="player-nav" onClick={this.props.playNextSong}>
           <FaStepForward />
         </div>
 
@@ -46,15 +47,11 @@ export default class FooterPlayerButtons extends Component {
           }
         `}</style>
         <style jsx global>{`
-          .footer-player-buttons .outline-single-song-controls {
+          .footer-player-buttons .song-player-control {
             display: inline-block;
             width: 40px;
             height: 40px;
             margin: 0 20px;
-          }
-          .footer-player-buttons .outline-single-song-controls svg {
-            width: 100%;
-            height: 100%;
           }
         `}</style>
       </div>

@@ -41,7 +41,7 @@ export default class FullViewDesktop extends Component {
 
             <SongPost
               songData={this.props.songData.spotlight}
-              songPlayer={this.props.songPlayers(this.props.songData.spotlight)}
+              songPlayer={this.props.songPlayers[this.props.songData.spotlight.id]}
             />
 
           </Fragment>
@@ -110,7 +110,7 @@ export default class FullViewDesktop extends Component {
             font-size: 12pt;
             line-height: 24pt;
           }
-          .full-view-desktop .outline-single-song-controls {
+          .full-view-desktop .song-player-control {
             width: 50px !important;
             height: 50px !important;
           }

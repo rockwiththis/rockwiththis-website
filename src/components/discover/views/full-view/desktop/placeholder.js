@@ -5,7 +5,7 @@ const FullViewDesktopPlaceholder = () => (
 
       <div className="song-grid-container">
         { Array(30).fill().map((_, i) => (
-            <div className="song-grid-song pulse"></div>
+            <div className="song-grid-song pulse" key={i}></div>
         ))}
       </div>
 
@@ -23,7 +23,10 @@ const FullViewDesktopPlaceholder = () => (
 
         <div className="post-content">
           { Array(18).fill().map((_,i) => (
-            <div className={'text-line pulse' + (i < 6 ? ' wrap-image' : '')}></div>
+            <div
+              className={'text-line pulse' + (i < 6 ? ' wrap-image' : '')}
+              key={i}
+            ></div>
           ))}
         </div>
 

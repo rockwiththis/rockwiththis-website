@@ -14,9 +14,9 @@ import { loadSingleSong } from 'actions/fetch/songs';
 class SingleSongPage extends Component {
 
   static propTypes = {
-    singleSong: PropTypes.object.isRequired,
-    relatedSongs: PropTypes.array.isRequired,
+    singleSongData: PropTypes.object.isRequired,
     loadSingleSong: PropTypes.func.isRequired,
+    relatedSongs: PropTypes.array.isRequired,
     router: PropTypes.shape({
       query: PropTypes.shape({
         id: PropTypes.string.isRequired
