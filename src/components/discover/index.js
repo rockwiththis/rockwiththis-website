@@ -41,9 +41,9 @@ export default class Discover extends Component {
   }
 
   // TODO make sure this actually works
-  handleSongListScroll = scrolledSongList => {
-    const scrollDistance = scrolledSongList.scrollTop + scrolledSongList.clientHeight;
-    if (scrollDistance >= scrolledSongList.scrollHeight && !this.props.songData.isLoading)
+  handleSongListScroll = scrollEvent => {
+    const scrollDistance = scrollEvent.target.scrollTop + scrollEvent.target.clientHeight;
+    if (scrollDistance >= scrollEvent.target.scrollHeight && !this.props.songData.isLoading)
       this.props.songData.loadMore();
   }
 
