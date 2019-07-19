@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import { songPlayerShape } from 'constants/prop-shapes';
 
-import BadgeSingleSongControls from 'components/buttons/single-song-controls/badge';
+import SongPlayerControl from 'components/song-player-control/badge';
 
 export default class SongDetails extends Component {
 
@@ -16,7 +16,7 @@ export default class SongDetails extends Component {
 
   render = () => (
       <div className="song-details">
-        <BadgeSingleSongControls songPlayer={this.props.songPlayer} />
+        <SongPlayerControl songPlayer={this.props.songPlayer} />
 
         <Link href={`/songs/${this.props.songData.id}`}>
           <div className="song-info">

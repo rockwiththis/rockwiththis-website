@@ -6,7 +6,7 @@ import PauseButton from './pause';
 import LoadingButton from './loading';
 import PlayButton from './play';
 
-class OutlineSingleSongControls extends React.Component {
+export default class OutlineSongPlayerControl extends React.Component {
 
   static propTypes = {
     ...propTypes,
@@ -24,5 +24,3 @@ class OutlineSingleSongControls extends React.Component {
     </div>
   )
 }
-
-export default OutlineSingleSongControls;

@@ -6,7 +6,7 @@ import BadgePauseButton from './pause';
 import BadgeLoadingButton from './loading';
 import BadgePlayButton from './play';
 
-export class BadgeSingleSongControls extends React.Component {
+export export class BadgeSongPlayerControl extends React.Component {
 
   static propTypes = propTypes
 
@@ -28,5 +28,3 @@ export class BadgeSingleSongControls extends React.Component {
     </div>
   )
 }
-
-export default BadgeSingleSongControls;

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
+import SongPlayerControl from 'components/song-player-control/outline';
 import HeaderTitle from 'components/song-post/header/title';
 import MetaInfo from 'components/song-post/header/meta-info';
 import SongPostContent from 'components/song-post/content';
@@ -26,10 +26,7 @@ export default class SingleSongMobile extends Component {
               <img className="song-image" src={this.props.singleSong.image_url} />
 
               <div className="song-title-wrapper">
-                <OutlineSingleSongControls
-                  songPlayerStatus={this.props.songPlayerStatus}
-                  songPlayerFunctions={this.props.songPlayerFunctions}
-                />
+                <SongPlayerControl songPlayer={this.props.songPlayer} />
                 <HeaderTitle songData={this.props.singleSong} />
               </div>
             </div>

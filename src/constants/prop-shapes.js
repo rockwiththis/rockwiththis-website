@@ -18,7 +18,7 @@ export const genresShape = {
 }
 
 export const songPlayerShape = {
-  status: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FaStepBackward, FaStepForward } from 'react-icons/fa';
 
-import SongControlButton from 'components/buttons/single-song-controls/outline';
+import SongPlayerControl from 'components/song-player-control/outline';
 
 export default class FooterPlayerButtons extends Component {
 
@@ -25,10 +25,9 @@ export default class FooterPlayerButtons extends Component {
           <FaStepBackward />
         </div>
 
-        <SongControlButton
+        <SongPlayerControl
+          songPlayer={this.props.songPlayer}
           isWhite={true}
-          songPlayerStatus={this.props.activeSongPlayStatus}
-          songPlayerFunctions={this.props.activeSongPlayerFunctions}
         />
 
         <div className="player-nav">

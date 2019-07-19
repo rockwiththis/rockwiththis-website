@@ -7,7 +7,7 @@ import { songPlayerShape } from 'constants/prop-shapes';
 
 import HeaderTitle from './title';
 import MetaInfo from './meta-info';
-import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
+import SongPlayerControl from 'components/song-player-control/outline';
 
 export default class SongHeader extends Component {
 
@@ -22,10 +22,8 @@ export default class SongHeader extends Component {
     return (
         <div className="song-header">
 
-          <OutlineSingleSongControls songPlayer={this.props.songPlayerStatus} />
-
+          <SongPlayerControl songPlayer={this.props.songPlayerStatus} />
           <HeaderTitle songData={this.props.songData} />
-
           <MetaInfo songData={this.props.songData} />
 
           <style global jsx>{`

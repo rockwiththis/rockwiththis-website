@@ -84,7 +84,7 @@ class Homepage extends Component {
   })
 
   getSongPlayer = song => ({
-    status: () => getSongStatus(song, this.props.player),
+    status: getSongStatus(song, this.props.player),
     play: () => this.props.player.playSong(song),
     pause: () => this.props.player.pauseSong()
   })
