@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { songPlayerPropTypes } from 'constants/prop-types';
+import { songPlayerShape } from 'constants/prop-shapes';
 
 import SongHeader from './header';
 import SongPostContent from './content';
@@ -10,7 +10,7 @@ export default class SongPost extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayer: songPlayerPropTypes.isRequred
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired
   }
 
   separateParagraphs = text => text.split(/\n+/g);

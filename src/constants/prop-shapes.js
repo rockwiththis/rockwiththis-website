@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const songDataPropTypes = PropTypes.exact({
+export const songDataShape = {
   newest: PropTypes.array.isRequired,
   filtered: PropTypes.array.isRequired,
   spotlight: PropTypes.object.isRequired,
@@ -9,18 +9,18 @@ export const songDataPropTypes = PropTypes.exact({
   setSpotlight: PropTypes.func.isRequired,
   areShuffled: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired
-})
+};
 
-export const genresPropTypes = PropTypes.exact({
-  available: PropTypes.array.isRequired,
+export const genresShape = {
+  available: PropTypes.object.isRequired,
   filters: PropTypes.object.isRequired,
   fetch: PropTypes.func.isRequired
-})
+}
 
-export const songPlayerPropTypes = PropTypes.exact({
-  status: PropTypes.string.isRequired,
+export const songPlayerShape = {
+  status: PropTypes.func.isRequired,
   play: PropTypes.func.isRequired,
   pause: PropTypes.func.isRequired
-})
+}
 
 // TODO define expected shape of song / genre data from db

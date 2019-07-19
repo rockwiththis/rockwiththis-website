@@ -15,7 +15,7 @@ export default class ViewsDropdown extends Component {
 
   static propTypes = {
     isActive: PropTypes.bool.isRequired,
-    activeView: PropTypes.bool.isRequired,
+    activeView: PropTypes.string.isRequired,
     hide: PropTypes.func.isRequired,
     updateDiscoverLayoutType: PropTypes.func.isRequired
   }

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { songDataPropTypes, songPlayerPropTypes } from 'constants/prop-types';
+import { songDataShape } from 'constants/prop-shapes';
 
 import LoadingSpinner from '../loading-spinner';
 import Desktop from './desktop';
 import Mobile from './mobile';
 
 export const propTypes = {
-  songData: songDataPropTypes.isRequired,
+  songData: PropTypes.exact(songDataShape).isRequired,
   songPlayers: PropTypes.func.isRequired
 }
 

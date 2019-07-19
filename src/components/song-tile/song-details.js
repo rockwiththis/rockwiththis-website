@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link';
 import moment from 'moment';
 
-import { songPlayerPropTypes } from 'constants/prop-types';
+import { songPlayerShape } from 'constants/prop-shapes';
 
 import BadgeSingleSongControls from 'components/buttons/single-song-controls/badge';
 
@@ -11,8 +11,7 @@ export default class SongDetails extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired
   }
 
   render = () => (

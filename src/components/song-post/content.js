@@ -12,8 +12,8 @@ export default class SongPostContent extends Component {
   render = () => (
       <div className="song-post-content">
 
-        { this.separateParagraphs(this.props.songData.description).map(text => (
-            <p>{ text }</p>
+        { this.separateParagraphs(this.props.songData.description).map((text, i) => (
+            <p key={i}>{ text }</p>
         ))}
 
         <style jsx>{`

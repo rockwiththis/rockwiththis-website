@@ -18,6 +18,7 @@ export default class FullViewMobile extends Component {
       <div className="full-view-mobile" onScroll={this.handleViewScroll}>
         {this.props.songData.filtered.map(songData => (
             <TruncatedSongPost
+              key={songData.id}
               songData={songData}
               songPlayer={this.props.songPlayers(songData)}
               hideSongControls={true}

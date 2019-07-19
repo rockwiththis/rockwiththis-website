@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
-import { songPlayerPropTypes } from 'constants/prop-types';
+import { songPlayerShape } from 'constants/prop-shapes';
 
 import SongImage from './song-image';
 import SongDetails from './song-details';
@@ -10,7 +10,7 @@ export default class SongTile extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayer: songPlayerPropTypes.isRequred,
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired,
     isFeaturedSong: PropTypes.bool
   }
 

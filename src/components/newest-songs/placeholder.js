@@ -3,7 +3,10 @@ import React from 'react'
 const NewestSongsPlaceholder = () => (
     <div className="newest-songs-placeholder">
       { Array(7).fill().map((_,i) => (
-          <div className={'song-tile pulse' + (i === 0 ? ' featured-song ' : '')}>
+          <div
+            className={'song-tile pulse' + (i === 0 ? ' featured-song ' : '')}
+            key={i}
+          >
 
             <div className="post-info">
               <div className="play-container">

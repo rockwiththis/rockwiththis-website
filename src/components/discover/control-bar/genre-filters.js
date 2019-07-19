@@ -10,7 +10,7 @@ export default class GenreFilters extends Component {
     isActive: PropTypes.bool.isRequired,
     hide: PropTypes.func.isRequired,
     resetSongs: PropTypes.func.isRequired,
-    genres: PropTypes.exact({
+    genres: PropTypes.shape({
       available: PropTypes.objectOf(PropTypes.string).isRequired,
       filters: PropTypes.objectOf(PropTypes.string).isRequired
     }).isRequired,

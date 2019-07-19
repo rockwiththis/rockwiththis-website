@@ -10,7 +10,7 @@ import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
 import DiscoverSection from 'components/discover';
 // import AutoplayErrorModal from 'components/autoplay-error-modal';
 
-import { songDataPropTypes, genresPropTypes } from 'constants/prop-types';
+import { songDataShape, genresShape } from 'constants/prop-shapes';
 import getSongStatus from 'util/get-song-status';
 
 import { setInitialSongs, loadMoreSongs, resetSongs } from 'actions/fetch/songs';
@@ -26,8 +26,8 @@ class Homepage extends Component {
     // from redux
     setInitialSongs: PropTypes.func.isRequired,
     didAutoplayFail: PropTypes.bool,
-    songData: songDataPropTypes.isRequired,
-    genres: genresPropTypes.isRequired,
+    songData: PropTypes.exact(songDataShape).isRequired,
+    genres: PropTypes.exact(genresShape).isRequired,
     player: PropTypes.exact({
       activeSong: PropTypes.object.isRequired,
       isPlaying: PropTypes.bool.isRequired,
@@ -134,7 +134,7 @@ const stateToProps = ({
   heroPosts,
   filteredPosts,
   spotlightPost,
-  isShuffled,
+  isShuffle,
   selectedGenreFilters,
   genres,
   loadingSongs,
@@ -146,7 +146,7 @@ const stateToProps = ({
     newest: heroPosts,
     filtered: filteredPosts,
     spotlight: spotlightPost,
-    areShuffled: isShuffled
+    areShuffled: isShuffle
   },
   genres: {
     available: genres,

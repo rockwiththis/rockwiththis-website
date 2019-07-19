@@ -5,7 +5,6 @@ export default class Moments extends Component {
 
   static propTypes = {
     isActive: PropTypes.bool.isRequired,
-    activeView: PropTypes.bool.isRequired,
     hide: PropTypes.func.isRequired,
   }
 

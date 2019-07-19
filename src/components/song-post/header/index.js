@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { FaSpotify } from 'react-icons/fa';
 
-import { songPlayerPropTypes } from 'constants/prop-types';
+import { songPlayerShape } from 'constants/prop-shapes';
 
 import HeaderTitle from './title';
 import MetaInfo from './meta-info';
@@ -13,7 +13,7 @@ export default class SongHeader extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayer: songPlayerPropTypes.isRequred
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired
   }
 
   render = () => {
