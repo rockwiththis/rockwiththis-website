@@ -9,7 +9,8 @@ import Mobile from './mobile';
 export const propTypes = {
   songData: PropTypes.exact(songDataShape).isRequired,
   songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired,
-  disableScroll: PropTypes.bool
+  disableScroll: PropTypes.bool,
+  handleSongListScroll: PropTypes.func.isRequired
 }
 
 export default class FullView extends Component {

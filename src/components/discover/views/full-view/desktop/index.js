@@ -11,11 +11,6 @@ export default class FullViewDesktop extends Component {
 
   static propTypes = propTypes;
 
-  handleSongGridScroll = e => {
-    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight)
-      this.props.songData.loadMore();
-  }
-
   render = () => (
       <div className="full-view-desktop" >
         {this.props.songData.filtered.length > 0 ?
@@ -23,7 +18,7 @@ export default class FullViewDesktop extends Component {
 
             <div
               className="song-grid-container"
-              onScroll={this.handleSongGridScroll}
+              onScroll={this.props.handleSongListScroll}
             >
               <div className="song-grid" onScroll={this.handleGridScroll}>
                 {this.props.songData.filtered.map(songData => (

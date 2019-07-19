@@ -40,22 +40,32 @@ export default class Discover extends Component {
     }
   }
 
+  // TODO make sure this actually works
+  handleSongListScroll = scrolledSongList => {
+    const scrollDistance = scrolledSongList.scrollTop + scrolledSongList.clientHeight;
+    if (scrollDistance >= scrolledSongList.scrollHeight && !this.props.songData.isLoading)
+      this.props.songData.loadMore();
+  }
+
   getDiscoverSongView = () => {
     if (this.state.layoutType === FULL_VIEW)
       return <FullView
         songData={this.props.songData}
         songPlayers={this.props.songPlayers}
         disableScroll={!this.props.scroll.scrolledToDiscover}
+        handleSongListScroll={this.handleSongListScroll}
       />
     else if (this.state.layoutType === SNAPSHOT_LIST_VIEW)
       return <SnapshotListView
         songData={this.props.songData}
         songPlayers={this.props.songPlayers}
+        handleSongListScroll={this.handleSongListScroll}
       />
     else if (this.state.layoutType === GRID_LIST_VIEW)
       return <GridListView
         songData={this.props.songData}
         songPlayers={this.props.songPlayers}
+        handleSongListScroll={this.handleSongListScroll}
       />
 
     console.log(`Could not recognize layout type ${this.state.layoutType}`)

@@ -20,14 +20,14 @@ const getSongStatus = (songId, { activeSong, isPlaying, songPlayerDurations }) =
   if (isPlaying && songId === activeSong.id)
     return SONG_PLAYING;
 
+  else if (!songPlayerDurations[songId])
+    return SONG_LOADING;
+
   else if (songId === activeSong.id)
     return SONG_PAUSED;
 
-  else if (!!songPlayerDurations[songId])
-    return SONG_READY;
-
   else
-    return SONG_LOADING;
+    return SONG_READY;
 };
 
 const DEFAULT_PLAYER = {

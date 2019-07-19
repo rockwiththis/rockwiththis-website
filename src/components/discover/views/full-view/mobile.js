@@ -9,13 +9,8 @@ export default class FullViewMobile extends Component {
 
   static propTypes = propTypes;
 
-  handleViewScroll = e => {
-    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight)
-      this.props.songData.loadMore();
-  }
-
   render = () => (
-      <div className="full-view-mobile" onScroll={this.handleViewScroll}>
+      <div className="full-view-mobile" onScroll={this.props.handleSongListScroll}>
         {this.props.songData.filtered.map(songData => (
             <TruncatedSongPost
               key={songData.id}

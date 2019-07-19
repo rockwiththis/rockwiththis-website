@@ -9,20 +9,16 @@ import Mobile from './mobile';
 
 export const propTypes = {
   songData: PropTypes.exact(songDataShape).isRequired,
-  songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired
+  songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired,
+  handleSongListScroll: PropTypes.func.isRequired
 }
 
 export default class GridListView extends Component {
 
   static propTypes = propTypes
 
-  handleViewScroll = e => {
-    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight)
-      this.props.songData.loadMore();
-  }
-
   render = () => (
-      <div className="grid-list-view" onScroll={this.handleViewScroll}>
+      <div className="grid-list-view" onScroll={this.props.handleSongListScroll}>
 
         <Desktop {...this.props} />
         <Mobile {...this.props} />
