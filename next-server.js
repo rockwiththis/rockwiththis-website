@@ -6,6 +6,8 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+process.env.NODE_PATH = './src';
+
 app.prepare().then(() => {
   const server = express();
 
