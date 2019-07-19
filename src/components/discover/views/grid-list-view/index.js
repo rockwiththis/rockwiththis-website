@@ -1,63 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { songDataPropTypes, songPlayerPropTypes } from 'constants/prop-types';
+
+import LoadingSpinner from '../loading-spinner';
 import Desktop from './desktop';
 import Mobile from './mobile';
-import Loading from '../loading-more-songs';
 
 export const propTypes = {
-  filteredSongPosts: PropTypes.array.isRequired,
-  songPlayStatusForSong: PropTypes.func.isRequired,
-  songPlayerFunctionsForSong: PropTypes.func.isRequired,
-  songDataFunctions: PropTypes.object.isRequired
+  songData: songDataPropTypes.isRequired,
+  songPlayers: PropTypes.func.isRequired
 }
 
 export default class GridListView extends Component {
 
   static propTypes = propTypes
 
-  // TODO load more on scroll
-
-  componentDidMount = () => {
-    window.addEventListener('scroll', this.mobileLoadMore)
-  }
-
-  componentWillUnmount = () => {
-    window.removeEventListener('scroll', this.mobileLoadMore)
-  }
-
-  mobileLoadMore = () => {
-    if (window.innerWidth < 800) return;
-
-    const songListElement = document.getElementById('songList');
-    const shouldLoadMore = (
-      !!songListElement &&
-      window.scrollY > songListElement - 400 &&
-      !this.props.songDataFunctions.isLoading
-    );
-    if (shouldLoadMore) this.props.songDataFunctions.loadMore();
-  }
-
-  handleScroll = event => {
-    const scrollThreshold = event.target.scrollHeight - (event.target.offsetHeight + 100)
-    const shouldLoadMore = (
-      window.innerWidth >= 800 &&
-      event.target.scrollTop > scrollThreshold &&
-      !this.props.songDataFunctions.isLoading
-    );
-    if (shouldLoadMore) this.props.songDataFunctions.loadMore();
+  handleViewScroll = e => {
+    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight)
+      this.props.songData.loadMore();
   }
 
   render = () => (
-      <div className="grid-list-view">
+      <div className="grid-list-view" onScroll={this.handleViewScroll}>
+
         <Desktop {...this.props} />
         <Mobile {...this.props} />
 
-        {this.props.songDataFunctions.isLoading &&
-          <div className='loading-bottom'>
-            <Loading />
-          </div>
-        }
+        {this.props.songData.isLoading && <LoadingSpinner />}
 
         <style jsx>{`
           .grid-list-view {

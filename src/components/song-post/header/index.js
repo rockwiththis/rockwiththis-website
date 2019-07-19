@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { FaSpotify } from 'react-icons/fa';
 
+import { songPlayerPropTypes } from 'constants/prop-types';
+
 import HeaderTitle from './title';
 import MetaInfo from './meta-info';
-
 import OutlineSingleSongControls from 'components/buttons/single-song-controls/outline';
 
 export default class SongHeader extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
+    songPlayer: songPlayerPropTypes.isRequred
   }
 
   render = () => {
@@ -22,10 +22,7 @@ export default class SongHeader extends Component {
     return (
         <div className="song-header">
 
-          <OutlineSingleSongControls
-            songPlayerStatus={this.props.songPlayerStatus}
-            songPlayerFunctions={this.props.songPlayerFunctions}
-          />
+          <OutlineSingleSongControls songPlayer={this.props.songPlayerStatus} />
 
           <HeaderTitle songData={this.props.songData} />
 

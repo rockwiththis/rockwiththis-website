@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import { songPlayerPropTypes } from 'constants/prop-types';
+
 import SongHeader from './header';
 import SongPostContent from './content';
 
@@ -8,8 +10,7 @@ export default class SongPost extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired
+    songPlayer: songPlayerPropTypes.isRequred
   }
 
   separateParagraphs = text => text.split(/\n+/g);
@@ -20,8 +21,7 @@ export default class SongPost extends Component {
         <img className="song-image" src={this.props.songData.image_url} />
         <SongHeader
           songData={this.props.songData}
-          songPlayStatus={this.props.songPlayStatus}
-          songPlayerFunctions={this.props.songPlayerFunctions}
+          songPlayer={this.props.songPlayer}
         />
         <SongPostContent songData={this.props.songData} />
 

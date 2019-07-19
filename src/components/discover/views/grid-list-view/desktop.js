@@ -10,12 +10,11 @@ export default class GridListViewDesktop extends Component {
 
   render = () => (
       <div className="grid-list-view-desktop" onScroll={this.handleViewScroll}>
-        { this.props.filteredSongPosts.map(songData => (
+        { this.props.songData.filtered.map(songData => (
             <SongTile
               key={songData.id}
               songData={songData}
-              songPlayStatus={this.props.songPlayStatusForSong(songData)}
-              songPlayerFunctions={this.props.songPlayerFunctionsForSong(songData)}
+              songPlayer={this.props.songPlayers(songDawta)}
             />
         ))}
 

@@ -11,7 +11,7 @@ export default class SnapshotListViewMobile extends Component {
 
   render = () => (
       <div className="snapshot-list-view-mobile" onScroll={this.handleViewScroll}>
-        { this.props.filteredSongPosts.map(songData => (
+        { this.props.songData.filtered.map(songData => (
             <Link href={`/songs/[id]?id=${songData.id}`} as={`/songs/${songData.id}`}>
               <div className="snapshot-song">
                 <img src={songData.image_url} />

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { propTypes } from '../index';
 import SongGridSong from './song-grid-song';
-import Loading from '../../loading-more-songs';
+import LoadingSpinner from '../../loading-spinner';
 import SongPost from 'components/song-post';
 import Placeholder from './placeholder';
 
@@ -12,15 +12,13 @@ export default class FullViewDesktop extends Component {
   static propTypes = propTypes;
 
   handleSongGridScroll = e => {
-    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight) {
-      console.log("LOAD MORE SONGS");
-      this.props.songDataFunctions.loadMore();
-    }
+    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight)
+      this.props.songData.loadMore();
   }
 
   render = () => (
       <div className="full-view-desktop" >
-        {this.props.songPosts.filtered.length > 0 ?
+        {this.props.songData.filtered.length > 0 ?
           <Fragment>
 
             <div
@@ -28,23 +26,22 @@ export default class FullViewDesktop extends Component {
               onScroll={this.handleSongGridScroll}
             >
               <div className="song-grid" onScroll={this.handleGridScroll}>
-                {this.props.songPosts.filtered.map(songData => (
+                {this.props.songData.filtered.map(songData => (
                     <SongGridSong
                       key={songData.id}
                       songData={songData}
-                      isSpotlight={this.props.songPosts.spotlight.id === songData.id}
-                      setSongAsSpotlight={() => this.props.songDataFunctions.setSpotlight(songData)}
+                      isSpotlight={this.props.songData.spotlight.id === songData.id}
+                      setSongAsSpotlight={() => this.props.songData.setSpotlight(songData)}
                     />
                 ))}
 
-                {this.props.songDataFunctions.isLoading && <Loading />}
+                {this.props.songData.isLoading && <LoadingSpinner />}
               </div>
             </div>
 
             <SongPost
-              songData={this.props.songPosts.spotlight}
-              songPlayStatus={this.props.songPlayStatusForSong(this.props.songPosts.spotlight)}
-              songPlayerFunctions={this.props.songPlayerFunctionsForSong(this.props.songPosts.spotlight)}
+              songData={this.props.songData.spotlight}
+              songPlayer={this.props.songPlayers(this.props.songData.spotlight)}
             />
 
           </Fragment>

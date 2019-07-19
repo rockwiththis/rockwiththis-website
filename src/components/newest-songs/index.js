@@ -9,8 +9,7 @@ class NewestSongs extends React.Component {
 
   static propTypes = {
     newestSongPosts: PropTypes.array.isRequired,
-    songPlayStatusForSong: PropTypes.func.isRequired,
-    songPlayerFunctionsForSong: PropTypes.func.isRequired
+    songPlayers: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -27,8 +26,7 @@ class NewestSongs extends React.Component {
               <SongTile
                 key={songData.id}
                 songData={songData}
-                songPlayStatus={this.props.songPlayStatusForSong(songData)}
-                songPlayerFunctions={this.props.songPlayerFunctionsForSong(songData)}
+                songPlayer={this.props.songPlayers(songData)}
                 isFeaturedSong={i === 0}
               />
           ))

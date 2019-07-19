@@ -12,7 +12,7 @@ export default class GridListViewMobile extends Component {
   render = () => (
       <div className="grid-list-view-mobile">
 
-        {this.props.filteredSongPosts.map(songData => (
+        {this.props.songData.filtered.map(songData => (
             <Link href={`/songs/[id]?id=${songData.id}`} as={`/songs/${songData.id}`}>
               <img src={songData.image_url} />
             </Link>

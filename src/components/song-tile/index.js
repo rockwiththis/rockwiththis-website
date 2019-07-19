@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 
+import { songPlayerPropTypes } from 'constants/prop-types';
+
 import SongImage from './song-image';
 import SongDetails from './song-details';
 
@@ -8,8 +10,7 @@ export default class SongTile extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
+    songPlayer: songPlayerPropTypes.isRequred,
     isFeaturedSong: PropTypes.bool
   }
 
@@ -27,8 +28,7 @@ export default class SongTile extends Component {
         }
         <SongDetails
           songData={this.props.songData}
-          songPlayerStatus={this.props.songPlayerStatus}
-          songPlayerFunctions={this.props.songPlayerFunctions}
+          songPlayer={this.props.songPlayer}
         />
 
         <style jsx>{`

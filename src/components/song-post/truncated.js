@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
+
+import { songPlayerPropTypes } from 'constants/prop-types';
  
 import SongPost from './index';
 
@@ -11,8 +13,7 @@ export default class TruncatedSongPost extends Component {
 
   static propTypes = {
     songData: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
+    songPlayer: songPlayerPropTypes.isRequred,
     hideSongControls: PropTypes.bool
   }
 

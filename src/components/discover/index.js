@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { songDataPropTypes, genresPropTypes } from 'constants/prop-types';
+
 import ControlBar from './control-bar';
 import FullView from './views/full-view';
 import SnapshotListView from './views/snapshot-list-view';
@@ -20,19 +22,9 @@ export default class Discover extends Component {
 
   static propTypes = {
     scroll: PropTypes.object.isRequired,
-    songPosts: PropTypes.object.isRequired,
-    songPlayStatusForSong: PropTypes.func.isRequired,
-    songPlayerFunctionsForSong: PropTypes.func.isRequired,
-    songDataFunctions: PropTypes.exact({
-      loadMore: PropTypes.func.isRequired,
-      resetSongs: PropTypes.func.isRequired,
-      setSpotlight: PropTypes.func.isRequired,
-      isLoading: PropTypes.bool.isRequired
-    }).isRequired,
-    genres: PropTypes.exact({
-      available: PropTypes.objectOf(PropTypes.string).isRequired,
-      filters: PropTypes.objectOf(PropTypes.string).isRequired
-    }).isRequired
+    songData: songDataPropTypes.isRequired,
+    songPlayers: PropTypes.func.isRequired,
+    genres: genresPropTypes.isRequired
   }
 
   constructor(props) {
@@ -51,25 +43,19 @@ export default class Discover extends Component {
   getDiscoverSongView = () => {
     if (this.state.layoutType === FULL_VIEW)
       return <FullView
-        songPosts={this.props.songPosts}
-        songPlayStatusForSong={this.props.songPlayStatusForSong}
-        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
-        songDataFunctions={this.props.songDataFunctions}
+        songData={this.props.songData}
+        songPlayers={this.props.songPlayers}
         disableScroll={!this.props.scroll.scrolledToDiscover}
       />
     else if (this.state.layoutType === SNAPSHOT_LIST_VIEW)
       return <SnapshotListView
-        filteredSongPosts={this.props.songPosts.filtered}
-        songPlayStatusForSong={this.props.songPlayStatusForSong}
-        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
-        songDataFunctions={this.props.songDataFunctions}
+        songData={this.props.songData}
+        songPlayers={this.props.songPlayers}
       />
     else if (this.state.layoutType === GRID_LIST_VIEW)
       return <GridListView
-        filteredSongPosts={this.props.songPosts.filtered}
-        songPlayStatusForSong={this.props.songPlayStatusForSong}
-        songPlayerFunctionsForSong={this.props.songPlayerFunctionsForSong}
-        songDataFunctions={this.props.songDataFunctions}
+        songData={this.props.songData}
+        songPlayers={this.props.songPlayers}
       />
 
     console.log(`Could not recognize layout type ${this.state.layoutType}`)
@@ -83,8 +69,8 @@ export default class Discover extends Component {
           scroll={this.props.scroll}
           discoverLayoutType={this.state.layoutType}
           updateDiscoverLayoutType={this.updateLayoutType}
-          areSongsShuffled={this.props.songPosts.areShuffled}
-          resetSongs={this.props.songDataFunctions.resetSongs}
+          areSongsShuffled={this.props.songData.areShuffled}
+          resetSongs={this.props.songData.resetSongs}
           genres={this.props.genres}
         />
 

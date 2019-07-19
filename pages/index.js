@@ -10,15 +10,31 @@ import NewestSongsPlaceholder from 'components/newest-songs/placeholder';
 import DiscoverSection from 'components/discover';
 // import AutoplayErrorModal from 'components/autoplay-error-modal';
 
+import { songDataPropTypes, genresPropTypes } from 'constants/prop-types';
+import getSongStatus from 'util/get-song-status';
+
 import { setInitialSongs, loadMoreSongs, resetSongs } from 'actions/fetch/songs';
 import { fetchGenres } from 'actions/fetch/genres';
 import { didAutoplayFail, updateSpotlightSong } from 'actions/set-state';
+import { playSong, pauseSong } from 'actions/player';
 
 class Homepage extends Component {
 
   static propTypes = {
-    // TODO
-    setIsScrollDisabled: PropTypes.func.isRequired
+    setIsScrollDisabled: PropTypes.func.isRequired,
+
+    // from redux
+    setInitialSongs: PropTypes.func.isRequired,
+    didAutoplayFail: PropTypes.bool,
+    songData: songDataPropTypes.isRequired,
+    genres: genresPropTypes.isRequired,
+    player: PropTypes.exact({
+      activeSong: PropTypes.object.isRequired,
+      isPlaying: PropTypes.bool.isRequired,
+      songPlayerDurations: PropTypes.object.isRequired,
+      playSong: PropTypes.func.isRequired,
+      pauseSong: PropTypes.func.isRequired
+    }).isRequired
   }
 
   constructor(props) {
@@ -36,7 +52,7 @@ class Homepage extends Component {
 
   componentDidMount = () => {
     this.props.setInitialSongs();
-    this.props.fetchGenres();
+    this.props.genres.fetch();
     window.addEventListener('scroll', this.updateScrolledToDiscover)
     window.addEventListener('resize', this.updateScrolledToDiscover)
   }
@@ -67,6 +83,12 @@ class Homepage extends Component {
     setIsScrollDisabled: this.props.setIsScrollDisabled
   })
 
+  getSongPlayer = song => ({
+    status: () => getSongStatus(song, this.props.player),
+    play: () => this.props.player.playSong(song),
+    pause: () => this.props.player.pauseSong()
+  })
+
   render = () => (
       <div className="homepage">
         <HeadContent />
@@ -80,17 +102,14 @@ class Homepage extends Component {
         <div className="content">
           <NewestSongs
             newestSongPosts={this.props.songData.newest}
-            songPlayStatusForSong={() => "NO_STATUS"}
-            songPlayerFunctionsForSong={() => ({})}
+            songPlayers={this.getSongPlayer}
             ref={this.newestSongsRef}
           />
 
           <DiscoverSection
             scroll={this.scrollControls()}
-            songPosts={this.props.songData}
-            songPlayStatusForSong={() => "NO_STATUS"}
-            songPlayerFunctionsForSong={() => ({})}
-            songDataFunctions={this.props.songDataFunctions}
+            songData={this.props.songData}
+            songPlayers={this.getSongPlayer}
             genres={this.props.genres}
           />
 
@@ -111,61 +130,91 @@ class Homepage extends Component {
   );
 }
 
-/* TODO rename store props */
-export default connect(
-  ({
-    heroPosts,
-    filteredPosts,
-    spotlightPost,
-    loadingSongs,
-    selectedGenreFilters,
-    genres,
-    isShuffled
-  }) => ({
-    songData: {
-      newest: heroPosts,
-      filtered: filteredPosts,
-      spotlight: spotlightPost,
-      areShuffled: isShuffled
-    },
-    isLoadingSongs: loadingSongs,
-    genres: {
-      available: genres,
-      filters: selectedGenreFilters
-    }
-  }),
-  {
-    setInitialSongs,
-    didAutoplayFail,
-    loadMoreSongs,
-    resetSongs,
-    updateSpotlightSong,
-    fetchGenres
+const stateToProps = ({
+  heroPosts,
+  filteredPosts,
+  spotlightPost,
+  isShuffled,
+  selectedGenreFilters,
+  genres,
+  loadingSongs,
+  isPlaying,
+  songPlayerDurations,
+  activeSong
+}) => ({
+  songData: {
+    newest: heroPosts,
+    filtered: filteredPosts,
+    spotlight: spotlightPost,
+    areShuffled: isShuffled
   },
-  // TODO maybe define these aggregated collections in actions instead
-  ({
+  genres: {
+    available: genres,
+    filters: selectedGenreFilters
+  },
+  isLoadingSongs: loadingSongs,
+  isPlaying,
+  songPlayerDurations,
+  activeSong
+});
+
+const actions = {
+  setInitialSongs,
+  didAutoplayFail,
+  loadMoreSongs,
+  resetSongs,
+  updateSpotlightSong,
+  fetchGenres,
+  playSong,
+  pauseSong
+}
+
+const buildProps = (
+  { // state props
     songData,
+    genres,
     isLoadingSongs,
-    genres
-  }, {
+    isPlaying,
+    activeSong,
+    songPlayerDurations
+  },
+  { // action props
     setInitialSongs,
     didAutoplayFail,
     loadMoreSongs,
     resetSongs,
     updateSpotlightSong,
-    fetchGenres
-  }, ownProps) => ({
-    ...ownProps,
-    songData,
-    genres,
-    setInitialSongs,
-    didAutoplayFail,
     fetchGenres,
-    songDataFunctions: {
-      loadMore: loadMoreSongs,
-      resetSongs: resetSongs,
-      setSpotlight: updateSpotlightSong,
-      isLoading: isLoadingSongs
-    }
-  })
+    playSong,
+    pauseSong
+  },
+  ownProps
+) => ({
+  ...ownProps,
+  setInitialSongs,
+  didAutoplayFail,
+  genres: {
+    ...genres,
+    fetch: fetchGenres
+  },
+  songData: {
+    ...songData,
+    loadMore: loadMoreSongs,
+    resetSongs: resetSongs,
+    setSpotlight: updateSpotlightSong,
+    isLoading: isLoadingSongs
+  },
+  player: {
+    activeSong,
+    isPlaying,
+    songPlayerDurations,
+    playSong,
+    pauseSong
+  }
+})
+
+export default connect(
+  stateToProps,
+  actions,
+  buildProps
 )(Homepage)

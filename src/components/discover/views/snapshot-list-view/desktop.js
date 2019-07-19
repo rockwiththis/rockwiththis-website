@@ -10,12 +10,12 @@ export default class SnapshotListViewDesktop extends Component {
 
   render = () => (
       <div className="snapshot-list-view-desktop">
-        {this.props.filteredSongPosts.map(songData => (
+
+        {this.props.songData.filtered.map(songData => (
             <TruncatedSongPost
               key={songData.id}
               songData={songData}
-              songPlayStatus={this.props.songPlayStatusForSong(songData)}
-              songPlayerFunctions={this.props.songPlayerFunctionsForSong(songData)}
+              songPlayer={this.props.songPlayers(songData)}
             />
         ))}
 

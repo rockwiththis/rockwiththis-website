@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import { songDataPropTypes } from 'constants/prop-types';
+
 import Desktop from './desktop';
 import Mobile from './mobile';
 
 export const propTypes = {
-  songPosts: PropTypes.object.isRequired,
-  songPlayStatusForSong: PropTypes.func.isRequired,
-  songPlayerFunctionsForSong: PropTypes.func.isRequired,
-  songDataFunctions: PropTypes.object.isRequired,
+  songData: songDataPropTypes,
+  songPlayers: PropTypes.func.isRequired,
   disableScroll: PropTypes.bool
 }
 

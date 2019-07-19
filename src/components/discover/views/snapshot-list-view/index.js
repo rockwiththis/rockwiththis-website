@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { songDataPropTypes, songPlayerPropTypes } from 'constants/prop-types';
+
+import LoadingSpinner from '../loading-spinner';
 import Desktop from './desktop';
 import Mobile from './mobile';
 
 export const propTypes = {
-  filteredSongPosts: PropTypes.array.isRequired,
-  songPlayStatusForSong: PropTypes.func.isRequired,
-  songPlayerFunctionsForSong: PropTypes.func.isRequired,
-  songDataFunctions: PropTypes.object.isRequired
+  songData: songDataPropTypes.isRequired,
+  songPlayers: PropTypes.func.isRequired
 }
 
 export default class SnapshotListView extends Component {
@@ -16,10 +17,8 @@ export default class SnapshotListView extends Component {
   static propTypes = propTypes;
 
   handleViewScroll = e => {
-    const scrollThreshold = e.target.scrollHeight - (e.target.offsetHeight + 100);
-
-    if (e.target.scrollTop > scrollThreshold && !this.props.songDataFunctions.isLoading)
-      this.props.songDataFunctions.loadMore();
+    if (e.target.scrollTop + e.target.clientHeight >= e.target.scrollHeight)
+      this.props.songData.loadMore();
   }
 
   // TODO load more on scroll
@@ -29,6 +28,8 @@ export default class SnapshotListView extends Component {
 
         <Desktop {...this.props} />
         <Mobile {...this.props} />
+
+        {this.props.songData.isLoading && <LoadingSpinner />}
 
         <style jsx global>{`
           @media (min-width: 800px) {
