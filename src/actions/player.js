@@ -10,3 +10,5 @@ export const playSong = (song, duration) => (dispatch, getState) =>
 export const playActiveSong = createAction('app/PLAY_ACTIVE_SONG');
 
 export const pauseSong = createAction('app/PAUSE_SONG');
+
+export const playerBankUpdated = createAction('app/PLAYER_BANK_UPDATED');

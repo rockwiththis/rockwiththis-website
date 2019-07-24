@@ -1,5 +1,6 @@
 import React from 'react';
 import App, { Container } from 'next/app';
+import dynamic from 'next/dynamic';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
@@ -7,13 +8,14 @@ import withRedux from 'next-redux-wrapper';
 import configureStore from 'store/configureStore'
 
 import FooterAudioPlayer from 'components/footer-audio-player';
+// import AudioManager from 'components/audio-manager';
 
-const DEFAULT_ACTIVE_SONG_TIME = {
-  playedSeconds: 0,
-  playedRatio: 0,
-  durationSeconds: 0,
-  update: () => null
-}
+// Importing the soundcloud widget throws a `window is not defined` error
+// when rendered server side
+const AudioManager = dynamic(
+  () => import('components/audio-manager'),
+  { ssr: false }
+);
 
 class MyApp extends App {
 
@@ -21,8 +23,9 @@ class MyApp extends App {
     super(props);
     this.state = {
       isScrollDisabled: false,
-      activeSongTime: DEFAULT_ACTIVE_SONG_TIME
+      didAutoplayFail: false,
     }
+    this.audioManagerRef = React.createRef();
   }
 
   static async getInitialProps({ Component, ctx }) {
@@ -33,11 +36,13 @@ class MyApp extends App {
   setIsScrollDisabled = isScrollDisabled =>
     this.setState({ isScrollDisabled })
 
-  updateSongProgress = () => console.log("TODO: implement progress update");
+  updateSongProgress = progressRatio =>
+    this.audioManagerRef.current.updateSongProgress(progressRatio)
 
-  playNextSong = () => console.log("TODO: implement play next song");
+  playNextSong = () =>
+    this.audioManagerRef.current.playNextSong()
 
-  playPreviousSong = () => console.log("TODO: implement play previous song");
+  setAutoplayFailure = didAutoplayFail => this.setState({ didAutoplayFail });
 
   render = () => {
     const { Component, pageProps, store } = this.props;
@@ -53,21 +58,14 @@ class MyApp extends App {
 
             <FooterAudioPlayer
               playNextSong={this.playNextSong}
-              playPreviousSong={this.playPreviousSong}
-              activeSongTime={this.state.activeSongTime}
+              updateSongProgress={this.updateSongProgress}
             />
-            {/*
-              !!this.props.activeSong && !!this.props.activeSong.id &&
-              <AudioManager
-                setSongDuration={this.props.actions.playerLoaded}
-                setActiveSongProgress={this.props.actions.setSongProgress}
-                playSong={this.props.playSong}
-                onSongEnd={this.playNextSong(true)}
-                ref={this.audioManagerRef}
-              />
-            }
-            */}
+            <AudioManager
+              reportAutoplayFailure={() => this.setAutoplayFailure(false)}
+              ref={this.audioManagerRef}
+            />
           </Provider>
+
           <style global jsx>{`
             body {
               font-family: 'Object-Sans-Bold', sans-serif;

@@ -91,7 +91,7 @@ export default {
       ...state,
       singleSongPost: action.payload.newSingleSong,
       activeSong: !!state.activeSong.id ? state.activeSong : action.payload.newSingleSong,
-      shouldLoadPlayers: true
+      shouldPrioritizePlayers: true
     }
   },
 

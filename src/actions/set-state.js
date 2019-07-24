@@ -8,3 +8,9 @@ export const updateDiscoverLayout = newDiscoverLayout =>
 
 export const didAutoplayFail = didAutoplayFail =>
   createAction('app/DID_AUTOPLAY_FAIL')({ didAutoplayFail })
+
+export const setLoadedPlayerDuration = ({ songId, durationSeconds }) =>
+  createAction('app/SET_LOADED_PLAYER_DURATION')({ songId, durationSeconds })
+
+export const setActiveSongProgress = ({ playedRatio, secondsPlayed }) =>
+  createAction('app/SET_ACTIVE_SONG_PROGRESS')({ playedRatio, secondsPlayed })

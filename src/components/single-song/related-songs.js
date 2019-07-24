@@ -8,9 +8,7 @@ export default class RelatedSongs extends Component {
     relatedSongsData: PropTypes.array.isRequired
   }
 
-  render = () => {
-    console.log("RELATED SONGS", this.props.relatedSongsData.slice(0,11));
-    return (
+  render = () => (
       <div className="related-songs">
 
         <div className="title">Related Tracks</div>
@@ -61,5 +59,5 @@ export default class RelatedSongs extends Component {
           }
         `}</style>
       </div>
-  )}
+  )
 }

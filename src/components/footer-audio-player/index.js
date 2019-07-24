@@ -15,17 +15,26 @@ class FooterAudioPlayer extends Component {
 
   static propTypes = {
     playNextSong: PropTypes.func.isRequired,
-    playPreviousSong: PropTypes.func,
-    activeSongTime: PropTypes.exact({
-      playedSeconds: PropTypes.number.isRequired,
-      playedRatio: PropTypes.number.isRequired,
-      durationSeconds: PropTypes.number.isRequired,
-      update: PropTypes.func.isRequired
-    }).isRequired,
+    updateSongProgress: PropTypes.func.isRequired,
 
     // from redux
     activeSongData: PropTypes.object.isRequired,
-    playerData: PropTypes.exact(songPlayerDataShape).isRequired
+    playerData: PropTypes.exact(songPlayerDataShape).isRequired,
+    filteredSongData: PropTypes.array.isRequired,
+    activeSongProgress: PropTypes.exact({
+      playedRatio: PropTypes.number.isRequired,
+      secondsPlayed: PropTypes.number.isRequired,
+    }).isRequired
+  }
+
+  playPreviousSong = () =>
+    this.props.playerData.playSong(this.findPreviousSong())
+
+  findPreviousSong = () => {
+    const prevIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSongData.id) - 1;
+    if (prevIndex < 0) return null;
+
+    return this.props.filteredPosts[prevIndex];
   }
 
   render = () => (
@@ -35,13 +44,17 @@ class FooterAudioPlayer extends Component {
         <div className="song-controls">
           <Buttons
             playNextSong={this.props.playNextSong}
-            playPreviousSong={this.props.playPreviousSong}
+            playPreviousSong={this.playPreviousSong}
             songPlayer={getSongPlayer(this.props.activeSongData, this.props.playerData)}
           />
-          <NavBar activeSongTime={this.props.activeSongTime} />
+          <NavBar
+            activeSongProgress={this.props.activeSongTime}
+            activeSongDuration={this.props.playerData.songPlayerDurations[this.props.activeSongData.id]}
+            updateSongProgress={this.props.updateSongProgress}
+          />
         </div>
 
-        { !!this.props.activeSong &&
+        { !!this.props.activeSongData &&
             <SourceIcon activeSong={this.props.activeSongData} />
         }
 
@@ -84,9 +97,13 @@ class FooterAudioPlayer extends Component {
 const stateToProps = ({
   isPlaying,
   songPlayerDurations,
-  activeSong
+  activeSong,
+  filteredPosts,
+  activeSongProgress
 }) => ({
   activeSongData: activeSong,
+  filteredSongData: filteredPosts,
+  activeSongProgress,
   player: {
     activeSong,
     isPlaying,
@@ -97,12 +114,14 @@ const stateToProps = ({
 const actions = { playSong, pauseSong };
 
 const buildProps = (
-  { activeSongData, player },
+  { activeSongData, filteredSongData, activeSongProgress, player },
   { playSong, pauseSong },
   ownProps
 ) => ({
   ...ownProps,
   activeSongData,
+  filteredSongData,
+  activeSongProgress,
   playerData: {
     ...player,
     playSong,

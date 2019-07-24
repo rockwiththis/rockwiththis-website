@@ -33,19 +33,14 @@ const INITIAL_STATE = {
   songListSize: 16,
   heroSongCount: 7,
   songPlayerDurations: {},
-  shouldLoadPlayers: false,
   loadingSongs: false,
   isShuffle: false,
-  didAutoplayFail: false
+  didAutoplayFail: false,
+  shouldLoadPlayers: false,
+  shouldPrioritizePlayers: false
 }
 
 const appReducers = handleActions({
-
-  'app/PLAYER_BANK_UPDATED': (state, action) => ({
-    ...state,
-    shouldLoadPlayers: false,
-    shouldPrioritizePlayers: false
-  }),
 
   // TODO we need a better way of indicating loaded player
   // Using this scheme, once a player is loaded, app will never "unload" it

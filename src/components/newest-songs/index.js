@@ -21,9 +21,7 @@ class NewestSongs extends React.Component {
 
   getClientHeight = () => this.mainDivRef.current.clientHeight;
 
-  render = () => {
-    console.log("RENDER NEWEST SONGS", this.props);
-    return (
+  render = () => (
       <div className="newest-songs" ref={this.mainDivRef} >
         {this.props.newestSongPosts.length > 0 ?
           this.props.newestSongPosts.map((songData, i) => (
@@ -132,7 +130,7 @@ class NewestSongs extends React.Component {
           }
         `}</style>
       </div>
-  );}
+  );
 }
 
 export default NewestSongs;

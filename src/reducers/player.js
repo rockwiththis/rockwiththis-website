@@ -42,5 +42,10 @@ export default {
   'app/PAUSE_SONG': (state, action) => ({
     ...state,
     isPlaying: false
+  }),
+  'app/PLAYER_BANK_UPDATED': (state, action) => ({
+    ...state,
+    shouldLoadPlayers: false,
+    shouldPrioritizePlayers: false
   })
 }

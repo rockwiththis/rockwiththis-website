@@ -31,5 +31,31 @@ export default {
       didAutoplayFail: action.payload.didAutoplayFail,
       isPlaying: false
     }
+  },
+
+  'app/SET_LOADED_PLAYER_DURATION': (state, action) => {
+    expectPayloadValue(action.payload, 'songId', 'SET_LOADED_PLAYER_DURATION');
+    expectPayloadValue(action.payload, 'durationSeconds', 'SET_LOADED_PLAYER_DURATION');
+
+    return {
+      ...state,
+      songPlayerDurations: {
+        ...state.songPlayerDurations,
+        [action.payload.songId]: action.payload.durationSeconds
+      }
+    }
+  },
+
+  'app/SET_ACTIVE_SONG_PROGRESS': (state, action) => {
+    expectPayloadValue(action.payload, 'playedRatio', 'SET_ACTIVE_SONG_PROGRESS');
+    expectPayloadValue(action.payload, 'secondsPlayed', 'SET_ACTIVE_SONG_PROGRESS');
+
+    return {
+      ...state,
+      activeSongProgress: {
+        playedRatio: action.payload.playedRatio,
+        secondsPlayed: action.payload.secondsPlayed
+      }
+    };
   }
 }

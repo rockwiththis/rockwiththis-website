@@ -6,13 +6,12 @@ import Slider from 'rc-slider';
 export default class FooterPlayerNavBar extends Component {
 
   static propTypes = {
-    activeSongTime: PropTypes.exact({
+    activeSongProgress: PropTypes.exact({
       playedSeconds: PropTypes.number.isRequired,
       playedRatio: PropTypes.number.isRequired,
-      durationSeconds: PropTypes.number.isRequired,
-      update: PropTypes.func.isRequired
     }),
-    updateSongProgress: PropTypes.func
+    activeSongDuration: PropTypes.number,
+    updateSongProgress: PropTypes.func.isRequired
   }
 
   secondsToTimeString = (seconds = 0) => {
@@ -26,7 +25,7 @@ export default class FooterPlayerNavBar extends Component {
   render = () => (
       <div className="footer-player-nav-bar">
         <div className="player-duration current-time">
-          { this.secondsToTimeString(get(this.props.activeSongTime, 'playedSeconds')) }
+          { this.secondsToTimeString(get(this.props.activeSongProgress, 'playedSeconds')) }
         </div>
 
         <div className="slider-container">
@@ -34,15 +33,15 @@ export default class FooterPlayerNavBar extends Component {
             min={0}
             max={1}
             step={0.001}
-            value={get(this.props.activeSongTime, 'playedRatio', 0)}
-            onChange={this.props.activeSongTime.update}
+            value={get(this.props.activeSongProgress, 'playedRatio', 0)}
+            onChange={this.props.updateSongProgress}
             railStyle={{ backgroundColor: '#3f3f3f', height: '5px' }}
             trackStyle={{ backgroundColor: '#0097d5', height: '5px' }}
           />
         </div>
 
         <div className="player-duration song-duration">
-          { this.secondsToTimeString(get(this.props.activeSongTime, 'durationSeconds')) }
+          { this.secondsToTimeString(get(this.props.activeSongDuration)) }
         </div>
 
         <style jsx>{`
