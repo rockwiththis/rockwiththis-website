@@ -19,7 +19,7 @@ const INITIAL_STATE = {
   activeSong: {},
   activeSongProgress: {
     playedRatio: 0,
-    secondsPlayed: 0,
+    playedSeconds: 0,
   },
   heroPosts: [],
   filteredPosts: [],

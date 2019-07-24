@@ -47,14 +47,15 @@ export default {
   },
 
   'app/SET_ACTIVE_SONG_PROGRESS': (state, action) => {
+    console.log("SET PROGRESS", action.payload['playedRatio']);
     expectPayloadValue(action.payload, 'playedRatio', 'SET_ACTIVE_SONG_PROGRESS');
-    expectPayloadValue(action.payload, 'secondsPlayed', 'SET_ACTIVE_SONG_PROGRESS');
+    expectPayloadValue(action.payload, 'playedSeconds', 'SET_ACTIVE_SONG_PROGRESS');
 
     return {
       ...state,
       activeSongProgress: {
         playedRatio: action.payload.playedRatio,
-        secondsPlayed: action.payload.secondsPlayed
+        playedSeconds: action.payload.playedSeconds
       }
     };
   }

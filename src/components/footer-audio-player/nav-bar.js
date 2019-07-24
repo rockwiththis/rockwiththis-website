@@ -7,8 +7,8 @@ export default class FooterPlayerNavBar extends Component {
 
   static propTypes = {
     activeSongProgress: PropTypes.exact({
-      playedSeconds: PropTypes.number.isRequired,
       playedRatio: PropTypes.number.isRequired,
+      playedSeconds: PropTypes.number.isRequired
     }),
     activeSongDuration: PropTypes.number,
     updateSongProgress: PropTypes.func.isRequired

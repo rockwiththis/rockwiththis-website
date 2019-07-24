@@ -16,7 +16,7 @@ export default {
       activeSongDuration: duration,
       activeSongProgress: {
         playedRatio: 0,
-        secondsPlayed: 0,
+        playedSeconds: 0,
       },
       nextSong: undefined,
       songPlayerDurations: {

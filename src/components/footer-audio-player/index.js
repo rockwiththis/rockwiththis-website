@@ -23,7 +23,7 @@ class FooterAudioPlayer extends Component {
     filteredSongData: PropTypes.array.isRequired,
     activeSongProgress: PropTypes.exact({
       playedRatio: PropTypes.number.isRequired,
-      secondsPlayed: PropTypes.number.isRequired,
+      playedSeconds: PropTypes.number.isRequired,
     }).isRequired
   }
 

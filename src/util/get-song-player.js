@@ -9,8 +9,8 @@ export default function(songData, playerState) {
   if (songData.id)
     return {
       status: getSongStatus(songData.id, playerState),
-      play: () => playSong(songData),
-      pause: () => pauseSong()
+      play: () => playerState.playSong(songData),
+      pause: () => playerState.pauseSong()
     }
   else
     return DEFAULT_PLAYER
