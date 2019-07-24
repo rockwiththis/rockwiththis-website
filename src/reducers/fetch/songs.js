@@ -31,6 +31,10 @@ export default {
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
+      activeSongProgress: {
+        playedRatio: 0,
+        playedSeconds: 0,
+      }
     }
   },
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { songPlayerDataShape } from 'constants/prop-shapes';
 import getSongPlayer from 'util/get-song-player';
-import { playSong, pauseSong } from 'actions/player';
+import { playSong, pauseSong, loadSong, loadNextSong } from 'actions/player';
 
 import SongInfo from './song-info';
 import Buttons from './buttons';
@@ -14,7 +14,6 @@ import SourceIcon from './source-icon';
 class FooterAudioPlayer extends Component {
 
   static propTypes = {
-    playNextSong: PropTypes.func.isRequired,
     updateSongProgress: PropTypes.func.isRequired,
 
     // from redux
@@ -24,17 +23,21 @@ class FooterAudioPlayer extends Component {
     activeSongProgress: PropTypes.exact({
       playedRatio: PropTypes.number.isRequired,
       playedSeconds: PropTypes.number.isRequired,
-    }).isRequired
+    }).isRequired,
+    loadNextSong: PropTypes.func.isRequired,
+    loadSong: PropTypes.func.isRequired
   }
 
-  playPreviousSong = () =>
-    this.props.playerData.playSong(this.findPreviousSong())
+  previousSongLoader = () => {
+    const previousSong = this.findPreviousSong();
+    return previousSong && (() => this.props.loadSong(previousSong));
+  }
 
   findPreviousSong = () => {
-    const prevIndex = this.props.filteredPosts.findIndex(song => song.id === this.props.activeSongData.id) - 1;
+    const prevIndex = this.props.filteredSongData.findIndex(song => song.id === this.props.activeSongData.id) - 1;
     if (prevIndex < 0) return null;
 
-    return this.props.filteredPosts[prevIndex];
+    return this.props.filteredSongData[prevIndex];
   }
 
   render = () => (
@@ -43,12 +46,12 @@ class FooterAudioPlayer extends Component {
 
         <div className="song-controls">
           <Buttons
-            playNextSong={this.props.playNextSong}
-            playPreviousSong={this.playPreviousSong}
+            loadNextSong={this.props.loadNextSong}
+            loadPreviousSong={this.previousSongLoader()}
             songPlayer={getSongPlayer(this.props.activeSongData, this.props.playerData)}
           />
           <NavBar
-            activeSongProgress={this.props.activeSongTime}
+            activeSongProgress={this.props.activeSongProgress}
             activeSongDuration={this.props.playerData.songPlayerDurations[this.props.activeSongData.id]}
             updateSongProgress={this.props.updateSongProgress}
           />
@@ -111,11 +114,11 @@ const stateToProps = ({
   }
 });
 
-const actions = { playSong, pauseSong };
+const actions = { playSong, pauseSong, loadSong, loadNextSong };
 
 const buildProps = (
   { activeSongData, filteredSongData, activeSongProgress, player },
-  { playSong, pauseSong },
+  { playSong, pauseSong, loadSong, loadNextSong },
   ownProps
 ) => ({
   ...ownProps,
@@ -126,7 +129,9 @@ const buildProps = (
     ...player,
     playSong,
     pauseSong
-  }
+  },
+  loadSong,
+  loadNextSong
 })
 
 export default connect(

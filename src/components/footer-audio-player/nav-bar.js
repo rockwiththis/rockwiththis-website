@@ -35,13 +35,23 @@ export default class FooterPlayerNavBar extends Component {
             step={0.001}
             value={get(this.props.activeSongProgress, 'playedRatio', 0)}
             onChange={this.props.updateSongProgress}
-            railStyle={{ backgroundColor: '#3f3f3f', height: '5px' }}
-            trackStyle={{ backgroundColor: '#0097d5', height: '5px' }}
+            railStyle={{
+              position: 'absolute',
+              backgroundColor: '#3f3f3f',
+              height: '100%',
+              width: '100%',
+              cursor: 'pointer'
+            }}
+            trackStyle={{
+              position: 'absolute',
+              backgroundColor: '#0097d5',
+              height: '100%'
+            }}
           />
         </div>
 
         <div className="player-duration song-duration">
-          { this.secondsToTimeString(get(this.props.activeSongDuration)) }
+          { this.secondsToTimeString(this.props.activeSongDuration) }
         </div>
 
         <style jsx>{`
@@ -55,11 +65,13 @@ export default class FooterPlayerNavBar extends Component {
             padding-top: 2px;
           }
           .slider-container {
+            position: relative;
             display: inline-block;
             vertical-align: top;
             width: calc(100% - 120px);
             height: 5px;
-            padding-top: 5px;
+            margin-top: 5px;
+            cursor: pointer;
           }
         `}</style>
       </div>

@@ -4,7 +4,7 @@ import { expectPayloadValue } from 'reducers/util';
 const isSongLoaded = (song, state) => !!state.songPlayerDurations[song.id]
 
 export default {
-  'app/PLAY_SONG': (state, action) => {
+  'app/PLAY_NEW_SONG': (state, action) => {
     expectPayloadValue(action.payload, 'song', 'PLAY_SONG');
 
     const duration = get(action.payload, 'duration', state.songPlayerDurations[action.payload.song.id]);
@@ -27,11 +27,23 @@ export default {
     };
   },
   'app/LOAD_AND_PLAY_SONG': (state, action) => {
-    expectPayloadValue(action.payload, 'song', 'PLAY_SONG');
+    expectPayloadValue(action.payload, 'song', 'LOAD_AND_PLAY_SONG');
 
     return {
       ...state,
       nextSong: action.payload.song
+    }
+  },
+  'app/LOAD_NEW_SONG': (state, action) => {
+    expectPayloadValue(action.payload, 'song', 'LOAD_NEW_SONG');
+
+    return {
+      ...state,
+      activeSong: action.payload.song,
+      activeSongProgress: {
+        playedRatio: 0,
+        playedSeconds: 0,
+      }
     }
   },
   'app/PLAY_ACTIVE_SONG': (state, action) => ({

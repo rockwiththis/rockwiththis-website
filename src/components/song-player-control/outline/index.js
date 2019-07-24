@@ -26,6 +26,7 @@ export default class OutlineSongPlayerControl extends React.Component {
         .song-player-control img, .song-player-control svg {
           width: 100%;
           height: 100%;
+          cursor: pointer;
         }
       `}</style>
     </div>

@@ -25,7 +25,6 @@ class MyApp extends App {
       isScrollDisabled: false,
       didAutoplayFail: false,
     }
-    this.audioManagerRef = React.createRef();
   }
 
   static async getInitialProps({ Component, ctx }) {
@@ -36,13 +35,9 @@ class MyApp extends App {
   setIsScrollDisabled = isScrollDisabled =>
     this.setState({ isScrollDisabled })
 
-  updateSongProgress = progressRatio =>
-    this.audioManagerRef.current.updateSongProgress(progressRatio)
-
-  playNextSong = () =>
-    this.audioManagerRef.current.playNextSong()
-
-  setAutoplayFailure = didAutoplayFail => this.setState({ didAutoplayFail });
+  updateSongProgress = manualProgressRatio => {
+    this.setState({ manualProgressRatio });
+  }
 
   render = () => {
     const { Component, pageProps, store } = this.props;
@@ -57,12 +52,11 @@ class MyApp extends App {
             <Component {...componentProps} />
 
             <FooterAudioPlayer
-              playNextSong={this.playNextSong}
               updateSongProgress={this.updateSongProgress}
             />
             <AudioManager
-              reportAutoplayFailure={() => this.setAutoplayFailure(false)}
-              ref={this.audioManagerRef}
+              manualProgressRatio={this.state.manualProgressRatio}
+              reportAutoplayFailure={() => this.setState({ didAutoplayFail: true })}
             />
           </Provider>
 

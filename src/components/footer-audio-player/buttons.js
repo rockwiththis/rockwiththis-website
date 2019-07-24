@@ -9,8 +9,8 @@ import SongPlayerControl from 'components/song-player-control/outline';
 export default class FooterPlayerButtons extends Component {
 
   static propTypes = {
-    playNextSong: PropTypes.func.isRequired,
-    playPreviousSong: PropTypes.func,
+    loadNextSong: PropTypes.func.isRequired,
+    loadPreviousSong: PropTypes.func,
     songPlayer: PropTypes.exact(songPlayerShape).isRequired
   }
 
@@ -19,9 +19,9 @@ export default class FooterPlayerButtons extends Component {
         <div
           className={
             'player-nav' +
-            (!this.props.playPreviousSong ? ' disabled' : '')
+            (!this.props.loadPreviousSong ? ' disabled' : '')
           }
-          onClick={this.props.playPreviousSong}
+          onClick={this.props.loadPreviousSong}
         >
           <FaStepBackward />
         </div>
@@ -31,7 +31,7 @@ export default class FooterPlayerButtons extends Component {
           isWhite={true}
         />
 
-        <div className="player-nav" onClick={this.props.playNextSong}>
+        <div className="player-nav" onClick={this.props.loadNextSong}>
           <FaStepForward />
         </div>
 
@@ -44,6 +44,10 @@ export default class FooterPlayerButtons extends Component {
             display: inline-block;
             vertical-align: top;
             padding-top: 13px;
+            cursor: pointer;
+          }
+          .player-nav.disabled {
+            color: #3f3f3f;
           }
         `}</style>
         <style jsx global>{`
