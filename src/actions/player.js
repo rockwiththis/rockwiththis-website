@@ -12,7 +12,7 @@ export const playSong = (song, duration) => (dispatch, getState) => {
     dispatch(PLAY_ACTIVE_SONG())
 
   else if (!!duration || !!songPlayerDurations[song.id])
-    dispatch(PLAY_SONG({ song, duration }))
+    dispatch(PLAY_NEW_SONG({ song, duration }))
 
   else
     dispatch(LOAD_AND_PLAY_SONG({ song }))

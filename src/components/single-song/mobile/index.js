@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import { songPlayerShape } from 'constants/prop-shapes';
+
 import SongPlayerControl from 'components/song-player-control/outline';
 import HeaderTitle from 'components/song-post/header/title';
 import MetaInfo from 'components/song-post/header/meta-info';
@@ -12,14 +14,14 @@ export default class SingleSongMobile extends Component {
 
   static propTypes = {
     singleSong: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
-    relatedSongs: PropTypes.array.isRequired
+    relatedSongs: PropTypes.array.isRequired,
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired,
+    routeSongId: PropTypes.number.isRequired
   }
 
   render = () => (
       <div className="single-song-mobile">
-        { !!this.props.singleSong.id ?
+        { this.props.singleSong.id === this.props.routeSongId ?
           <Fragment>
 
             <div className="song-image-wrapper">

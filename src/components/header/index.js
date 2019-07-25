@@ -15,7 +15,7 @@ export default class Header extends Component {
 
   static propTypes = {
     pageName: PropTypes.oneOf(ALL_PAGE_NAMES).isRequired,
-    scroll: PropTypes.object.isRequired
+    scroll: PropTypes.object
   }
 
   leftNavContents = () => {

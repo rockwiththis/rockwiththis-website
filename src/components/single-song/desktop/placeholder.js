@@ -16,7 +16,7 @@ const SingleSongDesktopPlaceholder = () => (
             
         <div className="post-content">
           { Array(18).fill().map((_,i) => (
-            <div className="text-line pulse"></div>
+            <div className="text-line pulse" key={i}></div>
           ))}
         </div>
       </div>

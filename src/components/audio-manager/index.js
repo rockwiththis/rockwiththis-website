@@ -451,7 +451,8 @@ const stateToProps = ({
   filteredPosts,
   spotlightPost,
   singleSongPost,
-  shouldLoadPlayers
+  shouldLoadPlayers,
+  shouldPrioritizePlayers
 }) => ({
   isPlaying,
   songData: {
@@ -464,7 +465,8 @@ const stateToProps = ({
     playable: [activeSong, singleSongPost, ...heroPosts, ...filteredPosts, spotlightPost],
     priority: [singleSongPost, spotlightPost]
   },
-  shouldLoadPlayers
+  shouldLoadPlayers,
+  shouldPrioritizePlayers
 })
 
 const actions = {

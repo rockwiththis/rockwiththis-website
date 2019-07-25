@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import { songPlayerShape } from 'constants/prop-shapes';
+
 import SongPost from 'components/song-post';
 import RelatedSongs from '../related-songs';
 import Placeholder from './placeholder';
@@ -9,23 +11,19 @@ export default class SingleSongDesktop extends Component {
 
   static propTypes = {
     singleSong: PropTypes.object.isRequired,
-    songPlayStatus: PropTypes.string.isRequred,
-    songPlayerFunctions: PropTypes.object.isRequired,
-    relatedSongs: PropTypes.array.isRequired
+    relatedSongs: PropTypes.array.isRequired,
+    songPlayer: PropTypes.exact(songPlayerShape).isRequired,
+    routeSongId: PropTypes.number.isRequired
   }
-
-  // TODO move related songs on smaller widths
 
   render = () => (
       <div className="single-song-desktop">
-        { !!this.props.singleSong.id ?
+        { this.props.singleSong.id === this.props.routeSongId ?
             <Fragment>
               <SongPost
                 songData={this.props.singleSong}
-                songPlayStatus={this.props.songPlayStatus}
-                songPlayerFunctions={this.props.songPlayerFunctions}
+                songPlayer={this.props.songPlayer}
               />
-
               <RelatedSongs relatedSongsData={this.props.relatedSongs} />
             </Fragment>
             :

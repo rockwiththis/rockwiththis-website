@@ -14,7 +14,11 @@ export default class RelatedSongs extends Component {
         <div className="title">Related Tracks</div>
 
         { this.props.relatedSongsData.map(relatedSong =>
-            <Link href={`/songs/[id]?id=${relatedSong.id}`} as={`/songs/${relatedSong.id}`}>
+            <Link
+              href={`/songs/[id]?id=${relatedSong.id}`}
+              as={`/songs/${relatedSong.id}`}
+              key={relatedSong.id}
+            >
               <img className="song-image" src={relatedSong.image_url} />
             </Link>
         )}
@@ -40,6 +44,7 @@ export default class RelatedSongs extends Component {
             box-sizing: border-box;
             border: 1px solid white;
             border-bottom: 0;
+            cursor: pointer;
           }
           @media (max-width: 1200px) {
             .related-songs {

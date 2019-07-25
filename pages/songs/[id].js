@@ -2,7 +2,10 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'next/router';
+
 import { SONG } from 'constants/page-names';
+import { songPlayerDataShape } from 'constants/prop-shapes';
+import getSongPlayer from 'util/get-song-player';
 
 import HeadContent from '../head-content/single-song';
 import Header from 'components/header';
@@ -10,25 +13,37 @@ import Desktop from 'components/single-song/desktop';
 import Mobile from 'components/single-song/mobile';
 
 import { loadSingleSong } from 'actions/fetch/songs';
+import { playSong, pauseSong } from 'actions/player';
 
 class SingleSongPage extends Component {
 
   static propTypes = {
-    singleSongData: PropTypes.object.isRequired,
+    singleSong: PropTypes.object.isRequired,
     loadSingleSong: PropTypes.func.isRequired,
     relatedSongs: PropTypes.array.isRequired,
     router: PropTypes.shape({
       query: PropTypes.shape({
         id: PropTypes.string.isRequired
       }).isRequired
-    }).isRequired
+    }).isRequired,
+    songPlayerData: PropTypes.exact(songPlayerDataShape).isRequired
   }
-
-  getSongId = () => parseInt(this.props.router.query.id);
 
   // TODO enable fetching on server
   componentDidMount = () =>
-    this.props.loadSingleSong(this.getSongId());
+    this.props.loadSingleSong(this.getRouteSongId());
+
+  componentDidUpdate = () =>
+    this.getRouteSongId() !== this.props.singleSong.id &&
+    this.props.loadSingleSong(this.getRouteSongId());
+
+  getRouteSongId = () => parseInt(this.props.router.query.id);
+
+  contentProps = () => ({
+    ...this.props,
+    songPlayer: getSongPlayer(this.props.singleSong, this.props.songPlayerData),
+    routeSongId: this.getRouteSongId()
+  })
 
   render = () => (
       <div className="single-song-page">
@@ -37,8 +52,8 @@ class SingleSongPage extends Component {
         <Header pageName={SONG} />
 
         <div className="content">
-          <Desktop {...this.props} />
-          <Mobile {...this.props} />
+          <Desktop {...this.contentProps()} />
+          <Mobile {...this.contentProps()} />
         </div>
 
         <style jsx>{`
@@ -71,12 +86,48 @@ class SingleSongPage extends Component {
   );
 }
 
+const stateToProps = ({
+  singleSongPost,
+  relatedSongs,
+  isPlaying,
+  songPlayerDurations,
+  activeSong
+}) => ({
+  singleSong: singleSongPost,
+  relatedSongs,
+  songPlayerData: {
+    activeSong,
+    isPlaying,
+    songPlayerDurations
+  }
+})
+
+const actions = {
+  loadSingleSong,
+  playSong,
+  pauseSong
+}
+
+const buildProps = (
+  { singleSong, relatedSongs, songPlayerData },
+  { loadSingleSong, playSong, pauseSong },
+  ownProps
+) => ({
+  ...ownProps,
+  singleSong,
+  loadSingleSong,
+  relatedSongs,
+  songPlayerData: {
+    ...songPlayerData,
+    playSong,
+    pauseSong
+  }
+})
+
 export default withRouter(
   connect(
-    ({ singleSongPost, relatedSongs }) => ({
-      singleSong: singleSongPost,
-      relatedSongs
-    }),
-    { loadSingleSong }
+    stateToProps,
+    actions,
+    buildProps
   )(SingleSongPage)
 );
