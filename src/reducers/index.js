@@ -8,7 +8,6 @@ import fetchSongsReducers from './fetch/songs';
 import fetchGenresReducers from './fetch/genres';
 import setStateReducers from './set-state';
 import playerReducers from './player';
-import scrollReducers from './scroll';
 
 // TODO split this out to imported reducers
 const INITIAL_STATE = {
@@ -40,33 +39,14 @@ const INITIAL_STATE = {
   error: null
 }
 
-const appReducers = handleActions({
-
-  // TODO we need a better way of indicating loaded player
-  // Using this scheme, once a player is loaded, app will never "unload" it
-  'app/PLAYER_LOADED': (state, action) => {
-    return update(state, {
-      songPlayerDurations: { $set: {
-        ...state.songPlayerDurations,
-        [action.payload.songId]: action.payload.durationSeconds
-      }}
-    })
+const appReducers = handleActions(
+  {
+    ...fetchSongsReducers,
+    ...fetchGenresReducers,
+    ...setStateReducers,
+    ...playerReducers
   },
-  'app/CLEAR_SINGLE_SONG': (state, action) => {
-    return update(state, {
-      singleSong: { $set: {} }
-    })
-  },
-  'app/SET_SONG_PROGRESS': (state, action) => {
-    return update(state, {
-      activeSongProgress: { $set: action.payload }
-    })
-  },
-  ...fetchSongsReducers,
-  ...fetchGenresReducers,
-  ...setStateReducers,
-  ...playerReducers,
-  ...scrollReducers
-}, INITIAL_STATE)
+  INITIAL_STATE
+)
 
 export default appReducers
