@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import { FaShareAlt } from 'react-icons/fa';
 
 import GenreTags from 'components/song-shared/genre-tags';
 import ShareBox from './share-box';
@@ -10,8 +11,19 @@ export default class MetaInfo extends Component {
     songData: PropTypes.object.isRequired
   }
 
+  constructor(props) {
+    super(props);
+    this.state = { showShareBox: true }
+  }
+
   getSongCuratorFullName = () =>
     `${this.props.songData.curator_first_name} ${this.props.songData.curator_last_name}`;
+
+  showShareBox = () => {
+    console.log("SHOW SHARE BOX");
+    this.setState({ showShareBox: true });
+  }
+  hideShareBox = () => this.setState({ showShareBox: false })
 
   render = () => (
       <div className="meta-info">
@@ -20,7 +32,15 @@ export default class MetaInfo extends Component {
         <span className="curator-name">{this.getSongCuratorFullName()}</span>
         <span className="separator">|</span>
         <GenreTags song={this.props.songData} firstOnly={true} />
-        <ShareBox song={this.props.songData} />
+
+        <div className="share-button" onClick={this.showShareBox}>
+          <FaShareAlt />
+        </div>
+        <ShareBox
+          song={this.props.songData}
+          isShowing={this.state.showShareBox}
+          closePopup={this.hideShareBox}
+        />
 
         <style jsx>{`
           .meta-info {
@@ -31,6 +51,13 @@ export default class MetaInfo extends Component {
           }
           .separator {
             margin: 0 10px;
+          }
+          .share-button {
+            display: inline-block;
+            vertical-align: top;
+            color: #f85f27;
+            font-size: 18pt;
+            cursor: pointer;
           }
         `}</style>
         <style global jsx>{`

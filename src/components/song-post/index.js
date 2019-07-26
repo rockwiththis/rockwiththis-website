@@ -26,6 +26,9 @@ export default class SongPost extends Component {
         <SongPostContent songData={this.props.songData} />
 
         <style jsx>{`
+          .song-post {
+            position: relative;
+          }
           .song-image {
             float: left;
           }
