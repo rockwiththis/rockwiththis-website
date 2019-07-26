@@ -15,7 +15,7 @@ import getSongPlayer from 'util/get-song-player';
 
 import { setInitialSongs, loadMoreSongs, resetSongs } from 'actions/fetch/songs';
 import { fetchGenres } from 'actions/fetch/genres';
-import { didAutoplayFail, updateSpotlightSong } from 'actions/set-state';
+import { updateSpotlightSong } from 'actions/set-state';
 import { playSong, pauseSong } from 'actions/player';
 
 class Homepage extends Component {
@@ -25,7 +25,6 @@ class Homepage extends Component {
 
     // from redux
     setInitialSongs: PropTypes.func.isRequired,
-    setDidAutoplayFail: PropTypes.func.isRequired,
     songData: PropTypes.exact(songDataShape).isRequired,
     genres: PropTypes.exact(genresShape).isRequired,
     playerData: PropTypes.exact(songPlayerDataShape).isRequired
@@ -37,11 +36,6 @@ class Homepage extends Component {
     this.state = {
       scrolledToDiscover: false
     }
-  }
-
-  componentWillMount = () => {
-    if (this.props.showAutoplayModal)
-      this.props.setDidAutoplayFail(true);
   }
 
   componentDidMount = () => {
@@ -155,7 +149,6 @@ const stateToProps = ({
 
 const actions = {
   setInitialSongs,
-  didAutoplayFail,
   loadMoreSongs,
   resetSongs,
   updateSpotlightSong,
@@ -175,7 +168,6 @@ const buildProps = (
   },
   { // action props
     setInitialSongs,
-    didAutoplayFail,
     loadMoreSongs,
     resetSongs,
     updateSpotlightSong,
@@ -187,7 +179,6 @@ const buildProps = (
 ) => ({
   ...ownProps,
   setInitialSongs,
-  setDidAutoplayFail: didAutoplayFail,
   genres: {
     ...genres,
     fetch: fetchGenres

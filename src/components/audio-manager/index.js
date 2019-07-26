@@ -5,8 +5,9 @@ import SoundCloudWidget from 'soundcloud-widget';
 import { Howl } from 'howler';
 import { find, uniqBy } from 'lodash';
 
+import { AUTOPLAY_FAILED } from 'constants/errors';
 import { playSong, loadNextSong, playerBankUpdated } from 'actions/player';
-import { setLoadedPlayerDuration, setActiveSongProgress } from 'actions/set-state';
+import { setLoadedPlayerDuration, setActiveSongProgress, setError } from 'actions/set-state';
 
 const PLAYER_DIV_ID = 'audio-manager';
 
@@ -42,7 +43,6 @@ class AudioManager extends React.Component {
 
   static propTypes = {
     manualProgressRatio: PropTypes.number,
-    reportAutoplayFailure: PropTypes.func.isRequired,
 
     // redux
     isPlaying: PropTypes.bool.isRequired,
@@ -62,6 +62,7 @@ class AudioManager extends React.Component {
     setLoadedPlayerDuration: PropTypes.func.isRequired,
     setActiveSongProgress: PropTypes.func.isRequired,
     playerBankUpdated: PropTypes.func.isRequired,
+    setError: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -375,7 +376,7 @@ class AudioManager extends React.Component {
     this.fetchIsActivePlayerPlaying().then(isPlaying => {
       if (!isPlaying) {
         clearInterval(this.durationInterval);
-        this.props.reportAutoplayFailure();
+        this.props.setError(AUTOPLAY_FAILED);
       }
     });
 
@@ -474,7 +475,8 @@ const actions = {
   loadNextSong,
   setLoadedPlayerDuration,
   setActiveSongProgress,
-  playerBankUpdated
+  playerBankUpdated,
+  setError
 }
 
 export default connect(

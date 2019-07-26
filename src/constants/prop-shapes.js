@@ -32,4 +32,10 @@ export const songPlayerDataShape = {
   pauseSong: PropTypes.func.isRequired
 }
 
+export const errorShape = {
+  typeKey: PropTypes.string.isRequired,
+  messageLines: PropTypes.arrayOf(PropTypes.string).isRequired,
+  showOnce: PropTypes.bool
+}
+
 // TODO define expected shape of song / genre data from db

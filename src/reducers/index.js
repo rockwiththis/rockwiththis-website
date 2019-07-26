@@ -35,9 +35,9 @@ const INITIAL_STATE = {
   songPlayerDurations: {},
   loadingSongs: false,
   isShuffle: false,
-  didAutoplayFail: false,
   shouldLoadPlayers: false,
-  shouldPrioritizePlayers: false
+  shouldPrioritizePlayers: false,
+  error: null
 }
 
 const appReducers = handleActions({

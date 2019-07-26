@@ -5,10 +5,10 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 
-import configureStore from 'store/configureStore'
+import configureStore from 'store/configureStore';
 
 import FooterAudioPlayer from 'components/footer-audio-player';
-// import AudioManager from 'components/audio-manager';
+import ErrorModal from 'components/error-modal';
 
 // Importing the soundcloud widget throws a `window is not defined` error
 // when rendered server side
@@ -22,8 +22,7 @@ class MyApp extends App {
   constructor(props) {
     super(props);
     this.state = {
-      isScrollDisabled: false,
-      didAutoplayFail: false,
+      isScrollDisabled: false
     }
   }
 
@@ -51,12 +50,12 @@ class MyApp extends App {
           <Provider store={store}>
             <Component {...componentProps} />
 
+            <ErrorModal />
             <FooterAudioPlayer
               updateSongProgress={this.updateSongProgress}
             />
             <AudioManager
               manualProgressRatio={this.state.manualProgressRatio}
-              reportAutoplayFailure={() => this.setState({ didAutoplayFail: true })}
             />
           </Provider>
 

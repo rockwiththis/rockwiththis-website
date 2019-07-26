@@ -23,16 +23,6 @@ export default {
     }
   },
 
-  'app/DID_AUTOPLAY_FAIL': (state, action) => {
-    expectPayloadValue(action.payload, 'didAutoplayFail', 'DID_AUTOPLAY_FAIL');
-
-    return {
-      ...state,
-      didAutoplayFail: action.payload.didAutoplayFail,
-      isPlaying: false
-    }
-  },
-
   'app/SET_LOADED_PLAYER_DURATION': (state, action) => {
     expectPayloadValue(action.payload, 'songId', 'SET_LOADED_PLAYER_DURATION');
     expectPayloadValue(action.payload, 'durationSeconds', 'SET_LOADED_PLAYER_DURATION');
@@ -47,7 +37,6 @@ export default {
   },
 
   'app/SET_ACTIVE_SONG_PROGRESS': (state, action) => {
-    console.log("SET PROGRESS", action.payload['playedRatio']);
     expectPayloadValue(action.payload, 'playedRatio', 'SET_ACTIVE_SONG_PROGRESS');
     expectPayloadValue(action.payload, 'playedSeconds', 'SET_ACTIVE_SONG_PROGRESS');
 
@@ -58,5 +47,12 @@ export default {
         playedSeconds: action.payload.playedSeconds
       }
     };
+  },
+
+  'app/SET_ERROR': (state, action) => {
+    return {
+      ...state,
+      error: action.payload.error
+    }
   }
 }

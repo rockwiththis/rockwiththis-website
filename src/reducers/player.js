@@ -22,8 +22,7 @@ export default {
       songPlayerDurations: {
         ...state.songPlayerDurations,
         [action.payload.song.id]: duration
-      },
-      didAutoplayFail: false
+      }
     };
   },
   'app/LOAD_AND_PLAY_SONG': (state, action) => {
@@ -48,8 +47,7 @@ export default {
   },
   'app/PLAY_ACTIVE_SONG': (state, action) => ({
     ...state,
-    isPlaying: true,
-    didAutoplayFail: false
+    isPlaying: true
   }),
   'app/PAUSE_SONG': (state, action) => ({
     ...state,
