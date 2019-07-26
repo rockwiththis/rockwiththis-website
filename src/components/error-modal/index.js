@@ -19,12 +19,16 @@ class ErrorModal extends Component {
     resolveError: PropTypes.func.isRequired
   }
 
-  componentDidUpdate = prevProps => {
-    if (!prevProps.didAutoplayFail && this.props.didAutoplayFail) {
+  componentDidMount = prevProps => this.setEventHandlers(null);
+
+  componentDidUpdate = prevProps => this.setEventHandlers(prevProps.error);
+  
+  setEventHandlers = prevError => {
+    if (!prevError && !!this.props.error) {
       INTERACTION_EVENT_TYPES.map(eventType =>
         window.addEventListener(eventType, this.props.resolveError)
       );
-    } else if (prevProps.didAutoplayFail && !this.props.didAutoplayFail) {
+    } else if (!!prevError && !this.props.error) {
       INTERACTION_EVENT_TYPES.map(eventType =>
         window.removeEventListener(eventType, this.props.resolveError)
       )
@@ -55,7 +59,7 @@ class ErrorModal extends Component {
           <div className="modal-content">
             <div className="modal-close"><CloseIcon /></div>
 
-            { this.props.error.messsageLines.map((text, i) =>
+            { this.props.error.messageLines.map((text, i) =>
                 <p key={i}>{ text }</p>
             )}
           </div>
@@ -63,6 +67,7 @@ class ErrorModal extends Component {
           <style jsx>{`
             .error-modal {
               position: fixed;
+              top: 0;
               width: 100%;
               height: 100%;
               z-index: 3000;
@@ -82,24 +87,34 @@ class ErrorModal extends Component {
               height: 350px;
               background: linear-gradient(to right, #1e0c49, #0097d5);
               border: 2px solid white;
+              padding: 10px;
               box-sizing: border-box;
               color: white;
-              font-size: 20pt;
+              font-size: 24px;
               overflow: scroll;
+              scrollbar-width: none;
+              -ms-overflow-style: none;
+            }
+            .modal-content::-webkit-scrollbar {
+              width: 0px;
             }
             .modal-close {
               font-size: 42px;
-              margin-bottom: 10px;
             }
             .modal-content p {
-              font-size: 42px;
-              margin-bottom: 10px;
+              margin-top: 10px;
+              padding: 0 10px;
             }
             @media (max-width: 800px) {
               .modal-content {
-                wdith: 80%;
+                width: 80%;
                 font-size: 16pt;
               }
+            }
+          `}</style>
+          <style global jsx>{`
+            .modal-close svg {
+              cursor: pointer;
             }
           `}</style>
         </div>
