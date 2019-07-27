@@ -1,16 +1,15 @@
-// TODO move control handlers into `shouldComponentUpdate` + plug into redux
-// see 'audio-controls-cleanup' branch
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SoundCloudWidget from 'soundcloud-widget';
 import { Howl } from 'howler';
-import { find } from 'lodash';
-import { playSong } from 'actions/player';
+import { find, uniqBy } from 'lodash';
 
-import './audio-manager.scss';
+import { AUTOPLAY_FAILED } from 'constants/errors';
+import { playSong, loadNextSong, playerBankUpdated } from 'actions/player';
+import { setLoadedPlayerDuration, setActiveSongProgress, setError } from 'actions/set-state';
 
-const PLAYER_DIV_ID = 'audio-manager-players';
+const PLAYER_DIV_ID = 'audio-manager';
 
 const SOUNDCLOUD_PLAYER_TYPE = 'soundcloud';
 const YOUTUBE_PLAYER_TYPE = 'youtube';
@@ -32,22 +31,43 @@ const getSoundCloudUrl = scid => {
 
 const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
+const AUTOPLAY_CHECK_INTERVAL = 2000;
+// TODO instead of this just fix the slider
+const DURATION_UPDATE_THROTTLE = 1000;
 
 const MAX_SONG_LOADS = 1;
 
 const SONG_BASE_URL = 'https://s3-us-west-1.amazonaws.com/rockwiththis/songs/'
 
-const propTypes = {
-  setActiveSongProgress: PropTypes.func.isRequired,
-  onSongEnd: PropTypes.func.isRequired,
-  playSong: PropTypes.func.isRequired,
-  setSongDuration: PropTypes.func.isRequired
-}
-
 class AudioManager extends React.Component {
+
+  static propTypes = {
+    manualProgressRatio: PropTypes.number,
+
+    // redux
+    isPlaying: PropTypes.bool.isRequired,
+    songData: PropTypes.exact({
+      active: PropTypes.object.isRequired,
+      nextUp: PropTypes.object,
+      newest: PropTypes.array.isRequired,
+      filtered: PropTypes.array.isRequired,
+      spotlight: PropTypes.object.isRequired,
+      single: PropTypes.object.isRequired,
+      playable: PropTypes.array.isRequired,
+      priority: PropTypes.array.isRequired
+    }).isRequired,
+    shouldLoadPlayers: PropTypes.bool,
+    playSong: PropTypes.func.isRequired,
+    loadNextSong: PropTypes.func.isRequired,
+    setLoadedPlayerDuration: PropTypes.func.isRequired,
+    setActiveSongProgress: PropTypes.func.isRequired,
+    playerBankUpdated: PropTypes.func.isRequired,
+    setError: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props);
-    this.YT = undefined;
+    this.YT = window.YT;
     this.activeSongs = {};
     this.songLoadQueue = [];
     this.loadingPlayers = {};
@@ -55,6 +75,7 @@ class AudioManager extends React.Component {
     this.activePlayer = undefined;
     this.durationInterval = undefined;
     this.youtubeReadyCallback = () => this.YT = window.YT;
+    this.isProgressThrottled = false;
   }
 
   componentDidMount = () => {
@@ -66,7 +87,47 @@ class AudioManager extends React.Component {
     window.onYouTubeIframeAPIReady = () => this.youtubeReadyCallback();
   }
 
-  shouldComponentUpdate = () => false;
+  // This is where we will handle prop changes that control playing / loading songs
+  // Always return `false` to prevent re-rendering
+  shouldComponentUpdate = nextProps => {
+    // Doing this so dev page re-render uses already-loaded YT script
+    this.YT = this.YT || window.YT;
+
+    if (!nextProps.isPlaying && this.props.isPlaying) {
+      this.pauseActiveSong();
+    }
+
+    if (this.props.songData.active.id !== nextProps.songData.active.id && nextProps.isPlaying) {
+      this.playSongListSong(nextProps.songData.active);
+
+    } else if (nextProps.isPlaying && !this.props.isPlaying) {
+      this.playActiveSong();
+
+    } else if (!!nextProps.nextUp) {
+      this.loadAndPlaySong(nextProps.nextUp)
+    }
+
+    if (nextProps.shouldLoadPlayers) {
+      this.setActiveSongs(
+        this.uniqueSongs(nextProps.songData.playable)
+      );
+      this.props.playerBankUpdated();
+    }
+
+    if (nextProps.shouldPrioritizePlayers) {
+      this.prioritizeAndLoadSongs(
+        this.uniqueSongs(nextProps.songData.priority)
+      );
+      this.props.playerBankUpdated();
+    }
+
+    if (nextProps.manualProgressRatio !== this.props.manualProgressRatio)
+      this.updateSongProgress(nextProps.manualProgressRatio);
+
+    return false;
+  };
+
+  uniqueSongs = songs => uniqBy(songs, s => s.id).filter(s => !!s.id)
 
   isSongLoadedOrLoading = song =>
     !!find(this.songLoadQueue, ['id', song.id]) ||
@@ -75,13 +136,13 @@ class AudioManager extends React.Component {
 
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
-  setActiveSongs = (songs, prioritySongs = []) => {
+  setActiveSongs = songs => {
 
     // If youtube iframe api has not yet loaded, wait to load songs until ready
     if (!this.YT && YOUTUBE_PLAYERS_ENABLED) {
       this.youtubeReadyCallback = () => {
         this.YT = window.YT;
-        this.setActiveSongs(songs, prioritySongs);
+        this.setActiveSongs(songs);
       };
       return;
     }
@@ -199,7 +260,7 @@ class AudioManager extends React.Component {
   }
 
   handleYoutubePlayerStateChange = changeEvent =>
-    changeEvent.data === 0 && this.props.onSongEnd();
+    changeEvent.data === 0 && this.props.loadNextSong();
 
   createSoundCloudPlayer = (song, playOnLoad) => {
     const playerElement = this.getCleanPlayerElement('iframe', song.id);
@@ -207,7 +268,7 @@ class AudioManager extends React.Component {
 
     const player = new SoundCloudWidget(playerElement);
     player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song));
-    player.bind(SoundCloudWidget.events.FINISH, this.props.onSongEnd);
+    player.bind(SoundCloudWidget.events.FINISH, this.props.loadNextSong);
 
     // TODO define this as a class
     return {
@@ -244,7 +305,7 @@ class AudioManager extends React.Component {
       html5: true,
       autoplay: false,
       onload: this.onPlayerReady(song),
-      onend: this.props.onSongEnd,
+      onend: this.props.loadNextSong,
     })
 
     // TODO define this as a class
@@ -279,8 +340,12 @@ class AudioManager extends React.Component {
       readyPlayer.fetchDuration().then(duration => {
         if (readyPlayer.playOnLoad) {
           this.props.playSong(song, duration);
+          setTimeout(this.checkAutoplayStatus, AUTOPLAY_CHECK_INTERVAL);
         } else {
-          this.props.setSongDuration(song.id, duration);
+          this.props.setLoadedPlayerDuration({
+            songId: song.id,
+            durationSeconds: duration
+          });
         }
       })
     }
@@ -291,21 +356,40 @@ class AudioManager extends React.Component {
   playSongListSong = songToPlay => {
     const newActivePlayer = this.loadedPlayers[songToPlay.id];
     if (!!newActivePlayer) {
-      newActivePlayer.play();
-
       if (!!this.activePlayer) {
         clearInterval(this.durationInterval);
         this.activePlayer.stop();
       }
+      newActivePlayer.play();
+
       this.activePlayer = newActivePlayer;
       this.durationInterval = setInterval(this.reportActivePlayerProgress, REPORT_DURATION_INTERVAL);
+
+      setTimeout(this.checkAutoplayStatus, AUTOPLAY_CHECK_INTERVAL);
+
+    } else {
+      this.loadAndPlaySong(songToPlay);
     }
-    // TODO handle undefined player data
   }
 
+  checkAutoplayStatus = () =>
+    this.fetchIsActivePlayerPlaying().then(isPlaying => {
+      if (!isPlaying) {
+        clearInterval(this.durationInterval);
+        this.props.setError(AUTOPLAY_FAILED);
+      }
+    });
+
   playActiveSong = () => {
-    this.activePlayer.play();
-    this.durationInterval = setInterval(this.reportActivePlayerProgress, REPORT_DURATION_INTERVAL);
+    this.activePlayer = this.loadedPlayers[this.props.songData.active.id];
+
+    if (!!this.activePlayer) {
+      this.activePlayer.play();
+      this.durationInterval = setInterval(this.reportActivePlayerProgress, REPORT_DURATION_INTERVAL);
+
+    } else {
+      this.loadAndPlaySong(this.props.songData.active);
+    }
   }
 
   pauseActiveSong = () => {
@@ -335,17 +419,67 @@ class AudioManager extends React.Component {
   reportActivePlayerProgress = () => this.activePlayer.reportProgress()
 
   updateSongProgress = progressRatio => {
+    if (this.isProgressThrottled) return;
+
+    this.isProgressThrottled = true;
     this.activePlayer.seekTo(progressRatio);
+    // TODO is this always being run synchronously?
     this.reportActivePlayerProgress();
+    setTimeout(() => this.isProgressThrottled = false, DURATION_UPDATE_THROTTLE);
   }
 
   fetchIsActivePlayerPlaying = () => this.activePlayer.fetchIsPlaying();
 
   getPlayer = song => this.loadedPlayers[song.id]
 
-  render = () => <div id={PLAYER_DIV_ID}></div>;
+  render = () => (
+      <div id={ PLAYER_DIV_ID } className="audio-manager">
+        <style jsx>{`
+          .audio-manager {
+            opacity: 0 !important;
+            position: fixed;
+          }
+        `}</style>
+      </div>
+  )
 }
 
-AudioManager.propTypes = propTypes;
+const stateToProps = ({
+  isPlaying,
+  activeSong,
+  nextSong,
+  heroPosts,
+  filteredPosts,
+  spotlightPost,
+  singleSongPost,
+  shouldLoadPlayers,
+  shouldPrioritizePlayers
+}) => ({
+  isPlaying,
+  songData: {
+    active: activeSong,
+    nextUp: nextSong,
+    newest: heroPosts,
+    filtered: filteredPosts,
+    spotlight: spotlightPost,
+    single: singleSongPost,
+    playable: [activeSong, singleSongPost, ...heroPosts, ...filteredPosts, spotlightPost],
+    priority: [singleSongPost, spotlightPost]
+  },
+  shouldLoadPlayers,
+  shouldPrioritizePlayers
+})
 
-export default AudioManager;
+const actions = {
+  playSong,  // for autoplay
+  loadNextSong,
+  setLoadedPlayerDuration,
+  setActiveSongProgress,
+  playerBankUpdated,
+  setError
+}
+
+export default connect(
+  stateToProps,
+  actions
+)(AudioManager);

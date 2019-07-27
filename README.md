@@ -10,15 +10,18 @@ To keep the credentials safe, save them in a file called `server/db/config-prod.
 ```
 $ npm install                   # Install client packages
 $ npm install --prefix server   # Install server packages
-$ npm run start-all             # Boot server + client webpack server
+$ npm run njs-dev-all           # Boot server + client webpack server
 ```
 You can also boot the data server and react webpack server separately from the root directory with the following commands:
 ```
-$ npm run start         # react server
+$ npm run njs-dev       # react server
 $ npm run start-server  # data server
 ```
 
 ## Deployment
+
+_TODO update this to handle next.js_
+
 The following scripts will pull the latest code from the branch specified in `deploy/config.sh` and deploy to the remote server configured in the same file. The client script will first create a new build of the specified branch. The server script will start or restart an active server process on the remote server.
 ```
 $ deploy/client.sh  # build and deploy react client

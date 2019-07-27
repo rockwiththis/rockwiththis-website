@@ -6,5 +6,12 @@ export const updateSpotlightSong = newSpotlightSong =>
 export const updateDiscoverLayout = newDiscoverLayout =>
   createAction('app/UPDATE_DISCOVER_LAYOUT')({ newDiscoverLayout });
 
-export const didAutoplayFail = didAutoplayFail =>
-  createAction('app/DID_AUTOPLAY_FAIL')({ didAutoplayFail })
+export const setLoadedPlayerDuration = ({ songId, durationSeconds }) =>
+  createAction('app/SET_LOADED_PLAYER_DURATION')({ songId, durationSeconds })
+
+export const setActiveSongProgress = ({ playedRatio, playedSeconds }) =>
+  createAction('app/SET_ACTIVE_SONG_PROGRESS')({ playedRatio, playedSeconds })
+
+const SET_ERROR = createAction('app/SET_ERROR');
+export const setError = error => SET_ERROR({ error })
+export const resolveError = () => SET_ERROR({ error: null })

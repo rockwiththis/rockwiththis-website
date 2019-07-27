@@ -31,6 +31,10 @@ export default {
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
+      activeSongProgress: {
+        playedRatio: 0,
+        playedSeconds: 0,
+      }
     }
   },
 
@@ -38,8 +42,7 @@ export default {
     expectPayloadValue(action.payload, 'songs', 'RESET_SONGS');
 
     const isShuffle = get(action.payload, 'isShuffle', state.isShuffle);
-    const genreFilters = get(action.payload, 'genreFilters', state.genreFilters);
-    const subgenreFilters = get(action.payload, 'subgenreFilters', state.subgenreFilters);
+    const selectedGenreFilters = get(action.payload, 'selectedGenreFilters', state.selectedGenreFilters);
 
     const newPlayerDurations = state.filteredPosts
       .filter(oldSong => (
@@ -58,11 +61,10 @@ export default {
 
     return {
       ...state,
+      isShuffle,
+      selectedGenreFilters,
       filteredPosts: action.payload.songs,
       songPlayerDurations: newPlayerDurations,
-      isShuffle: isShuffle,
-      genreFilters: genreFilters,
-      subgenreFilters: subgenreFilters,
       shouldLoadPlayers: true,
       loadingSongs: false,
       songLoadingError: undefined,
@@ -84,5 +86,35 @@ export default {
       loadingSongs: false,
       songLoadingError: undefined
     };
+  },
+
+  'app/SET_SINGLE_SONG': (state, action) => {
+    expectPayloadValue(action.payload, 'newSingleSong', 'SET_SINGLE_SONG');
+
+    return {
+      ...state,
+      singleSongPost: action.payload.newSingleSong,
+      activeSong: !!state.activeSong.id ? state.activeSong : action.payload.newSingleSong,
+      shouldPrioritizePlayers: true
+    }
+  },
+
+  'app/SET_RELATED_SONGS': (state, action) => {
+    expectPayloadValue(action.payload, 'relatedSongs', 'SET_RELATED_SONGS');
+    const newRelatedSongs = action.payload.relatedSongs
+      .filter(s => s.id != state.singleSongPost.id)
+      .slice(0,10);
+
+    return {
+      ...state,
+      relatedSongs: newRelatedSongs
+    }
+  },
+
+  'app/SET_IS_SHUFFLED': (state, action) => {
+    return {
+      ...state,
+      isShuffled: action.payload
+    }
   }
 }

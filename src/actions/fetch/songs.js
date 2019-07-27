@@ -1,16 +1,16 @@
 import { createAction } from 'redux-actions'
-import { flatten } from 'lodash';
+import { values, flatten, get } from 'lodash';
 
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
     'http://localhost:9292/api' :
     '/api';
 
-const getSubgenreIds = (genreFilters, subgenreFilters) =>
-  [
-    ...flatten(genreFilters.map(genre => genre.subgenres.map(sg => sg.id))),
-    ...subgenreFilters.map(sg => sg.id)
-  ]
+// TODO duplicate at components/.../genre-filters
+const getSubgenreIds = selectedGenreFilters =>
+  flatten(values(selectedGenreFilters).map(genre => (
+    values(genre.subgenres).filter(sg => !!sg).map(sg => sg.id)
+  )));
 
 const fetchSongs = (
   state,
@@ -31,18 +31,18 @@ const LOADING_SONGS = createAction('app/LOADING_SONGS');
 const LOAD_SONGS_FAILED = createAction('app/LOAD_SONGS_FAILED');
 
 const RESET_SONGS = createAction('app/RESET_SONGS');
-export const resetSongs = ({ isShuffle, genreFilters, subgenreFilters } = {}) => (dispatch, getState) => {
+const SET_IS_SHUFFLED = createAction('app/SET_IS_SHUFFLED');
+export const resetSongs = ({ isShuffle = null, selectedGenreFilters } = {}) => (dispatch, getState) => {
   dispatch(LOADING_SONGS());
+  if (isShuffle != null) dispatch(SET_IS_SHUFFLED(isShuffle))
   const state = getState();
-  const subgenreIds = getSubgenreIds(
-    genreFilters || state.genreFilters,
-    subgenreFilters || state.subgenreFilters
-  );
+  const subgenreIds = getSubgenreIds(selectedGenreFilters || state.selectedGenreFilters);
+
   return fetchSongs(state, false, isShuffle, subgenreIds)
     .then(fetchedSongs => (
       fetchedSongs.length === 0 ?
         dispatch(LOAD_SONGS_FAILED({ errorMessage: 'Fetched empty list of songs' })) :
-        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, genreFilters, subgenreFilters }))
+        dispatch(RESET_SONGS({ songs: fetchedSongs, isShuffle, selectedGenreFilters }))
     ))
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
 }
@@ -71,4 +71,32 @@ export const loadMoreSongs = ({ updateSpotlight = false } = {}) => (dispatch, ge
       return fetchedSongs;
     })
     .catch(e => dispatch(LOAD_SONGS_FAILED({ errorMessage: e.message })));
+}
+
+const SET_SINGLE_SONG = createAction('app/SET_SINGLE_SONG');
+const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS');
+export const loadSingleSong = songId => (dispatch, getState) => {
+
+  const loadedSingleSong = getState().filteredPosts[songId]
+  if (!!loadedSingleSong) {
+    dispatch(SET_SINGLE_SONG({ newSingleSong: loadedSingleSong }));
+    return;
+
+  } else {
+    const songUrl = `${API_BASE_URL}/songs/${songId}`;
+    return fetch(songUrl)
+      .then(res => res.json())
+      .then(songData => {
+        dispatch(SET_SINGLE_SONG({ newSingleSong: songData }))
+        const subgenreIds = songData.sub_genres.map(s => s.id);
+        const relatedSongsUrl = `${API_BASE_URL}/songs?tags=[${subgenreIds}]`;
+
+        return fetch(relatedSongsUrl)
+      })
+      .then(res => res.json())
+      .then(relatedSongsData => {
+        dispatch(SET_RELATED_SONGS({ relatedSongs: relatedSongsData }));
+        return relatedSongsData
+      })
+  }
 }
