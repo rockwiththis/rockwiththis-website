@@ -16,9 +16,9 @@ ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   rm -rf $DEST_PATH"
 
 find ./ -path ./node_modules -prune -o -path ./build -prune -o -path ./.next -prune -o -path ./.git -prune -o -path ./deploy -prune -o -path ./server -prune -o -path ./scripts -prune -o -print \
-  | xargs tar cf - \
+  | xargs tar cf client \
   | ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
-    tar xf - -C $DEST_PATH"
+    tar xf client -C $REMOTE_PATH"
 
 printf "Success!\n"
 
