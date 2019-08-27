@@ -59,12 +59,14 @@ export default class Discover extends Component {
       return <SnapshotListView
         songData={this.props.songData}
         songPlayers={this.props.songPlayers}
+        disableScroll={!this.props.scroll.scrolledToDiscover}
         handleSongListScroll={this.handleSongListScroll}
       />
     else if (this.state.layoutType === GRID_LIST_VIEW)
       return <GridListView
         songData={this.props.songData}
         songPlayers={this.props.songPlayers}
+        disableScroll={!this.props.scroll.scrolledToDiscover}
         handleSongListScroll={this.handleSongListScroll}
       />
 

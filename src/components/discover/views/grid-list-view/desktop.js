@@ -20,9 +20,9 @@ export default class GridListViewDesktop extends Component {
 
       <style jsx>{`
         .grid-list-view-desktop {
-          width: 80%;
+          max-width: 1200px;
+          width: 100%;
           margin: 0 auto;
-          min-width: 1200px;
         }
       `}</style>
       <style global jsx>{`

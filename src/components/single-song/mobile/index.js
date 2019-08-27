@@ -46,6 +46,9 @@ export default class SingleSongMobile extends Component {
         }
 
         <style jsx>{`
+          .single-song-mobile {
+            padding-bottom: 75px;
+          }
           .song-image-wrapper {
             position: relative;
             width: 100vw;
@@ -64,15 +67,11 @@ export default class SingleSongMobile extends Component {
             padding: 2px 5px;
             box-sizing: border-box;
           }
-          .single-song-mobile .outline-single-song-controls {
+          .single-song-mobile .song-player-control {
             display: inline-block;
             width: 50px;
             height: 50px;
             padding-top: 4px;
-          }
-          .single-song-mobile .outline-single-song-controls svg {
-            width: 100%;
-            height: 100%;
           }
           .single-song-mobile .header-title {
             display: inline-block;

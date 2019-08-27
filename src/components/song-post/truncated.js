@@ -39,19 +39,20 @@ export default class TruncatedSongPost extends Component {
             font-size: 10pt;
             text-align: right;
           }
+          hr {
+            color: #c9c6cb;
+            height: 1px;
+          }
         `}</style>
         <style jsx global>{`
           .truncated-song-post .song-image {
-            width: 35%;
+            width: 30%;
             padding-right: 20px;
             padding-bottom: 20px;
             box-sizing: border-box;
           }
           .truncated-song-post .header-title {
-            // TODO should we fix the entire header width instead?
-            // also, the 20px padding is not actually used b/c the image is a border-box
-            // -35% for image, -20px for padding, -50px for play button
-            width: calc(65% - 20px - 40px);
+            width: calc(70% - 40px);
             font-size: 16pt;
           }
           .truncated-song-post .spotify-link {
@@ -62,8 +63,11 @@ export default class TruncatedSongPost extends Component {
             position: relative;
             overflow: hidden;
           }
-          .list -view .meta-info {
+          .truncated-song-post .meta-info {
             font-size: 12pt;
+          }
+          .truncated-song-post .badges {
+            display: none;
           }
           .truncated-song-post .song-post-content p {
             margin: 0;

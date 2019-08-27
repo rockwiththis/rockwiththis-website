@@ -259,6 +259,7 @@ export default class ControlBar extends Component {
               margin: 0;
               border: 0;
               border-left: 1px solid #e3e3e3;
+              border-radius: 0;
             }
             .control-bar-item:first-child {
               border-left: 0;

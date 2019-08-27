@@ -30,7 +30,8 @@ export default class SnapshotListViewDesktop extends Component {
             height: 250px;
             display: inline-block;
             vertical-align: top;
-            margin: 20px 1%;
+            margin: 0px 1%;
+            margin-top: 10px;
           }
         `}</style>
       </div>

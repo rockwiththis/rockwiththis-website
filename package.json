@@ -13,7 +13,7 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "njs-dev-all": "npm-run-all njs-dev start-server",
+    "njs-dev-all": "npm-run-all -p start-server njs-dev",
     "njs-dev": "node next-server.js",
     "njs-build": "next build",
     "njs-start": "NODE_ENV=production node next-server.js"

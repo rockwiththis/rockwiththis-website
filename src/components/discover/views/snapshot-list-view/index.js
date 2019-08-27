@@ -10,6 +10,7 @@ import Mobile from './mobile';
 export const propTypes = {
   songData: PropTypes.exact(songDataShape).isRequired,
   songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired,
+  disableScroll: PropTypes.bool,
   handleSongListScroll: PropTypes.func.isRequired
 }
 
@@ -25,6 +26,17 @@ export default class SnapshotListView extends Component {
 
         {this.props.songData.isLoading && <LoadingSpinner />}
 
+        <style jsx>{`
+          .snapshot-list-view {
+            height: 100%;
+            overflow-y: ${ this.props.disableScroll ? 'hidden' :  'scroll' };
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .snapshot-list-view::-webkit-scrollbar {
+            width: 0px;
+          }
+        `}</style>
         <style jsx global>{`
           @media (min-width: 800px) {
             .snapshot-list-view .snapshot-list-view-mobile {

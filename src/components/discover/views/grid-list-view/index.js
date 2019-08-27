@@ -10,6 +10,7 @@ import Mobile from './mobile';
 export const propTypes = {
   songData: PropTypes.exact(songDataShape).isRequired,
   songPlayers: PropTypes.objectOf(PropTypes.exact(songPlayerShape)).isRequired,
+  disableScroll: PropTypes.bool,
   handleSongListScroll: PropTypes.func.isRequired
 }
 
@@ -30,6 +31,13 @@ export default class GridListView extends Component {
             width: 100%;
             max-width: 1400px;
             margin: 0 auto;
+            height: 100%;
+            overflow-y: ${ this.props.disableScroll ? 'hidden' :  'scroll' };
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .grid-list-view::-webkit-scrollbar {
+            width: 0px;
           }
         `}</style>
         <style jsx global>{`

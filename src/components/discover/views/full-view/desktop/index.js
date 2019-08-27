@@ -92,7 +92,6 @@ export default class FullViewDesktop extends Component {
           }
           .full-view-desktop .header-title {
             width: calc(60% - 50px) !important;
-            margin-bottom: 10px;
             font-size: 19pt;
           }
           .full-view-desktop .spotify-link {

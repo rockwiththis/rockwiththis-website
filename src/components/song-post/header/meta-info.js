@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { FaShareAlt } from 'react-icons/fa';
+import { FaSpotify } from 'react-icons/fa';
 
 import GenreTags from 'components/song-shared/genre-tags';
 import ShareBox from './share-box';
@@ -13,44 +14,50 @@ export default class MetaInfo extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { showShareBox: true }
+    this.state = { showShareBox: false }
   }
 
   getSongCuratorFullName = () =>
     `${this.props.songData.curator_first_name} ${this.props.songData.curator_last_name}`;
 
   showShareBox = () => {
-    console.log("SHOW SHARE BOX");
     this.setState({ showShareBox: true });
   }
+
   hideShareBox = () => this.setState({ showShareBox: false })
 
   render = () => (
       <div className="meta-info">
 
-        <span className="curated-by">Curated by </span>
-        <span className="curator-name">{this.getSongCuratorFullName()}</span>
-        <span className="separator">|</span>
-        <GenreTags song={this.props.songData} firstOnly={true} />
-
-        <div className="share-button" onClick={this.showShareBox}>
-          <FaShareAlt />
+        <div className="curated">
+          <span className="curated-by">Curated by </span>
+          <span className="curator-name">{this.getSongCuratorFullName()}</span>
         </div>
-        <ShareBox
-          song={this.props.songData}
-          isShowing={this.state.showShareBox}
-          closePopup={this.hideShareBox}
-        />
+
+        <div className="badges">
+          <GenreTags song={this.props.songData} firstOnly={true} />
+          <div className="share-button" onClick={this.showShareBox}>
+            <FaShareAlt />
+          </div>
+          <a className="spotify-link" href={this.props.songData.spotify_link}>
+            <FaSpotify />
+          </a>
+          <ShareBox
+            song={this.props.songData}
+            isShowing={this.state.showShareBox}
+            closePopup={this.hideShareBox}
+          />
+        </div>
 
         <style jsx>{`
           .meta-info {
             font-size: 14pt;
           }
+          .curated {
+            margin-bottom: 5px;
+          }
           .curator-name {
             font-weight: bold;
-          }
-          .separator {
-            margin: 0 10px;
           }
           .share-button {
             display: inline-block;
@@ -58,6 +65,11 @@ export default class MetaInfo extends Component {
             color: #f85f27;
             font-size: 18pt;
             cursor: pointer;
+          }
+          .spotify-link {
+            color: #65d36e;
+            vertical-align: middle;
+            padding-left: 10px;
           }
         `}</style>
         <style global jsx>{`
@@ -68,7 +80,7 @@ export default class MetaInfo extends Component {
             background: #1a6ea9;
             font-size: 11px;
             margin-right: 10px;
-            vertical-align: middle;
+            vertical-align: text-top;
           }
         `}</style>
       </div>

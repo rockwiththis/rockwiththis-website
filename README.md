@@ -20,8 +20,6 @@ $ npm run start-server  # data server
 
 ## Deployment
 
-_TODO update this to handle next.js_
-
 The following scripts will pull the latest code from the branch specified in `deploy/config.sh` and deploy to the remote server configured in the same file. The client script will first create a new build of the specified branch. The server script will start or restart an active server process on the remote server.
 ```
 $ deploy/client.sh  # build and deploy react client

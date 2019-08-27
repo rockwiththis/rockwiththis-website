@@ -35,6 +35,7 @@ export default class SongHeader extends Component {
             box-sizing: border-box;
             padding-left: 10px;
             width: calc(100% - 60px); // MUST override if play button visible + text wraps image
+            margin-bottom: 5px;
           }
         `}</style>
       </div>

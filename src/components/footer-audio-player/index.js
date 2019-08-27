@@ -92,6 +92,11 @@ class FooterAudioPlayer extends Component {
             top: 0;
             display: inline-block;
           }
+          @media (max-width: 800px) {
+            footer .footer-player-nav-bar {
+              display: none;
+            }
+          }
         `}</style>
       </footer>
   );
