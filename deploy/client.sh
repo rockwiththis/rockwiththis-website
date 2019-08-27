@@ -4,33 +4,41 @@ echo
 CURRENT_BRANCH=`git branch | grep \* | cut -d ' ' -f2`
 source deploy/setup.sh
 
-npm run build
-
-DEST_PATH=$REMOTE_PATH/build
-DEST_NAME=build-$(date +%Y%m%d%H%M%S)
-printf "Pushing from ./build to remote $DEST_PATH/$DEST_NAME\n"
-
-find build -type f -not -path '*/node_modules*' \
-  | xargs tar cf - \
-  | ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
-    tar xf - -C $DEST_PATH && mv $DEST_PATH/build $DEST_PATH/$DEST_NAME"
-
+DEST_PATH=$REMOTE_PATH/client
+printf "Archiving remote $DEST_PATH\n"
+ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
+  rm $REMOTE_PATH/archive/client.tar.gz; \
+  cd $REMOTE_PATH \
+  && tar czf client.tar.gz client \
+  && mv ./client.tar.gz ./archive"
 printf "Success!\n"
 
-printf "Updating current link\n"
+printf "Pushing client to remote $DEST_PATH\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
-  ln -sfn $DEST_PATH/$DEST_NAME $DEST_PATH/current"
+  rm -rf $DEST_PATH"
 
-printf "Success!\n"
+tar czf client.tar.gz ./static ./ecosystem.client.config.js ./public ./next.config.js ./next-server.js ./src ./package.json ./pages/
+# find ./ -path ./node_modules -prune -o -path ./build -prune -o -path ./.next -prune -o -path ./.git -prune -o -path ./deploy -prune -o -path ./server -prune -o -path ./scripts -prune -o -print \
+  # | xargs tar czf client
 
-printf "Removing oldest build from $REMOTE_PATH/build\n"
+scp -i $REMOTE_SSH_KEY_PATH ./client.tar.gz $REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH
+rm ./client.tar.gz
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
-  ls -d $REMOTE_PATH/build/build* \
-  | head -n1 \
-  | xargs rm -rf"
+  mkdir $REMOTE_PATH/client \
+  && tar xzf $REMOTE_PATH/client.tar.gz -C $REMOTE_PATH/client \
+  && rm $REMOTE_PATH/client.tar.gz"
 
 printf "Success!\n"
 
+printf "Starting client process\n"
+ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
+  cd $REMOTE_PATH/client \
+  && npm install --production \
+  && NODE_PATH='./src' npm run njs-build \
+  && pm2 startOrRestart ecosystem.client.config.js"
+printf "Success!\n"
+
+printf "Returning to branch $CURRENT_BRANCH\n"
 git checkout $CURRENT_BRANCH

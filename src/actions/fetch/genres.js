@@ -14,7 +14,6 @@ export const fetchGenres = () => dispatch => {
   return fetch(`${API_BASE_URL}/subgenres/grouped`)
     .then(res => res.json())
     .then(fetchedGenres => {
-      console.log("FETCHED GENRES!!!",fetchedGenres);
       Object.keys(fetchedGenres).length === 0 ?
         dispatch(LOAD_GENRES_FAILED({ errorMessage: 'Could not find any genres' })) :
         dispatch(GENRES_LOADED({ genres: fetchedGenres }))
