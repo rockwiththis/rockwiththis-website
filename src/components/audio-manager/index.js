@@ -137,7 +137,6 @@ class AudioManager extends React.Component {
   isSongActive = song => !!find(this.activeSongs, ['id', song.id])
 
   setActiveSongs = songs => {
-
     // If youtube iframe api has not yet loaded, wait to load songs until ready
     if (!this.YT && YOUTUBE_PLAYERS_ENABLED) {
       this.youtubeReadyCallback = () => {
@@ -266,6 +265,9 @@ class AudioManager extends React.Component {
     const playerElement = this.getCleanPlayerElement('iframe', song.id);
     playerElement.setAttribute("src", getSoundCloudUrl(song.soundcloud_track_id));
 
+    // TODO replace this w/ our own implementation
+    // Currently if we pass an invalid soundcloud url to this constructor,
+    // an unhandleable error is thrown and all code execution stops
     const player = new SoundCloudWidget(playerElement);
     player.bind(SoundCloudWidget.events.READY, this.onPlayerReady(song));
     player.bind(SoundCloudWidget.events.FINISH, this.props.loadNextSong);
