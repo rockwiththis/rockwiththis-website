@@ -38,6 +38,7 @@ class SongImage extends Component {
               }
               .song-image {
                 width: 100%;
+                height: 100%;
               }
               .hover-content {
                 position: absolute;
