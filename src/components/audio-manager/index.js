@@ -31,7 +31,7 @@ const getSoundCloudUrl = scid => {
 
 const SONG_LOAD_WAIT_TIME = 1000;
 const REPORT_DURATION_INTERVAL = 1000;
-const AUTOPLAY_CHECK_INTERVAL = 2000;
+const AUTOPLAY_CHECK_INTERVAL = 5000;
 // TODO instead of this just fix the slider
 const DURATION_UPDATE_THROTTLE = 1000;
 
