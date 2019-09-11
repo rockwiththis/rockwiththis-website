@@ -7,6 +7,7 @@ import withRedux from 'next-redux-wrapper';
 
 import configureStore from 'store/configureStore';
 
+import HeadContent from './head-content/app';
 import FooterAudioPlayer from 'components/footer-audio-player';
 import ErrorModal from 'components/error-modal';
 
@@ -50,6 +51,7 @@ class MyApp extends App {
     return (
         <Container>
           <Provider store={store}>
+            <HeadContent />
             <Component {...componentProps} />
 
             <ErrorModal />
