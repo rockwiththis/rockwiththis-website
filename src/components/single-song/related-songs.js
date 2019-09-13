@@ -27,6 +27,7 @@ export default class RelatedSongs extends Component {
           .related-songs {
             width: 14%;
             display: inline-block;
+            // prevent unwanted space between rows
             line-height: 0;
             font-size: 0;
           }
