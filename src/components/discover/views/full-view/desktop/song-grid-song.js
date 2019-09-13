@@ -135,6 +135,16 @@ export default class SongGridSong extends Component {
             display: block;
             width: 100%;
           }
+          @media (max-width: 1300px) and (min-width: 1100px) {
+            .song-grid-song .genre-tag:nth-child(n+3) {
+              display: none;
+            }
+          }
+          @media (max-width: 1500px) and (min-width: 1300px) {
+            .song-grid-song .genre-tag:nth-child(n+4) {
+              display: none;
+            }
+          }
         `}</style>
       </div>
   )
