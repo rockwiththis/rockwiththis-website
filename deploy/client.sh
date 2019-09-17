@@ -29,7 +29,7 @@ tar czf client.tar.gz ./static ./ecosystem.client.config.js ./next.config.js ./n
 printf "Success!\n\n"
 
 
-printf "Uploading client to remote $DEST_PATH\n\n"
+printf "Uploading client to remote $DEST_PATH\n"
 
 scp -i $REMOTE_SSH_KEY_PATH ./client.tar.gz $REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH
 rm ./client.tar.gz
@@ -39,6 +39,15 @@ ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   && tar xzf $REMOTE_PATH/client.tar.gz -C $REMOTE_PATH/client \
   && rm $REMOTE_PATH/client.tar.gz"
 
+printf "Success!\n\n"
+
+
+printf "Installing dependencies...\n\n"
+
+ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
+  cd $REMOTE_PATH/client \
+  && npm install --production"
+
 printf "\nSuccess!\n\n"
 
 
@@ -46,12 +55,8 @@ printf "Starting client process...\n\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   cd $REMOTE_PATH/client \
-  && npm install --production \
-  && echo installed \
   && NODE_PATH='./src' npm run njs-build \
-  && echo built \
-  && pm2 startOrRestart ecosystem.client.config.js \
-  && echo started"
+  && pm2 startOrRestart ecosystem.client.config.js"
 
 printf "\nSuccess!\n\n"
 
