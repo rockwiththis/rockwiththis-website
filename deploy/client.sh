@@ -6,7 +6,7 @@ source deploy/setup.sh
 
 DEST_PATH=$REMOTE_PATH/client
 
-printf "\nArchiving remote $DEST_PATH\n\n"
+printf "\nArchiving remote $DEST_PATH...\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   rm $REMOTE_PATH/archive/client.tar.gz; \
@@ -17,27 +17,22 @@ ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   rm -rf $DEST_PATH"
 
-printf "\nSuccess!\n\n"
+printf "Success!\n\n"
 
 
-printf "\nCompressing client code to remote $DEST_PATH\n\n"
+printf "Compressing local client code...\n"
 
 tar czf client.tar.gz ./static ./ecosystem.client.config.js ./next.config.js ./next-server.js ./src ./package.json ./pages/
 # find ./ -path ./node_modules -prune -o -path ./build -prune -o -path ./.next -prune -o -path ./.git -prune -o -path ./deploy -prune -o -path ./server -prune -o -path ./scripts -prune -o -print \
   # | xargs tar czf client
 
-printf "\nSuccess!\n\n"
+printf "Success!\n\n"
 
 
-printf "\nUploading client to remote $DEST_PATH\n\n"
+printf "Uploading client to remote $DEST_PATH\n\n"
 
 scp -i $REMOTE_SSH_KEY_PATH ./client.tar.gz $REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH
 rm ./client.tar.gz
-
-printf "\nSuccess!\n\n"
-
-
-printf "\Unpacking updated client code\n\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   mkdir $REMOTE_PATH/client \
@@ -47,13 +42,16 @@ ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
 printf "\nSuccess!\n\n"
 
 
-printf "\nStarting client process\n\n"
+printf "Starting client process...\n\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   cd $REMOTE_PATH/client \
   && npm install --production \
+  && echo installed \
   && NODE_PATH='./src' npm run njs-build \
-  && pm2 startOrRestart ecosystem.client.config.js"
+  && echo built \
+  && pm2 startOrRestart ecosystem.client.config.js \
+  && echo started"
 
 printf "\nSuccess!\n\n"
 
