@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 
 import { propTypes } from './index';
 import LoadingSpinner from '../loading-spinner';
