@@ -95,6 +95,9 @@ export default class SingleSongMobile extends Component {
             font-size: 15px;
             line-height: 26px;
           }
+          .single-song-mobile .share-button {
+            display: none; // TODO remove this once share looks ok on mobile
+          }
         `}</style>
       </div>
   )

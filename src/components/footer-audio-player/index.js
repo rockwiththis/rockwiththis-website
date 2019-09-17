@@ -76,6 +76,24 @@ class FooterAudioPlayer extends Component {
             width: 550px;
             margin: 0 auto;
           }
+          @media (max-width: 1200px) {
+            .song-controls {
+              margin-top: 5px;
+            }
+          }
+          @media (max-width: 800px) {
+            .song-controls {
+              width: 200px;
+              float: right;
+              margin-right: 70px;
+            }
+          }
+          @media (max-width: 600px) {
+            .song-controls {
+              float: left;
+              width: 50px;
+            }
+          }
         `}</style>
         <style jsx global>{`
           footer .footer-player-song-info {
@@ -92,9 +110,20 @@ class FooterAudioPlayer extends Component {
             top: 0;
             display: inline-block;
           }
-          @media (max-width: 800px) {
+          @media (max-width: 1200px) {
             footer .footer-player-nav-bar {
               display: none;
+            }
+          }
+          @media (max-width: 600px) {
+            footer .song-image {
+              display: none;
+            }
+            footer .song-title {
+              margin-left: 50px;
+            }
+            footer .player-nav {
+              display: none !important;
             }
           }
         `}</style>

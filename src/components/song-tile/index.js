@@ -21,6 +21,7 @@ export default class SongTile extends Component {
           (this.props.isFeaturedSong ? ' featured-song' : '')
         }
       >
+        <div className="dummy">{/* This lets us size the height the same as the width */}</div>
         <SongImage songData={this.props.songData} />
 
         {this.props.isFeaturedSong &&
@@ -39,6 +40,9 @@ export default class SongTile extends Component {
             vertical-align: top;
             position: relative;
             cursor: pointer;
+          }
+          .dummy {
+            margin-top: 100%;
           }
           .featured-song-tag {
             position: absolute;
@@ -61,8 +65,8 @@ export default class SongTile extends Component {
             height: 65px;
           }
           .song-tile.featured-song .song-player-control {
-            height: 50px;
-            width: 50px;
+            height: 55px;
+            width: 55px;
           }
           .song-tile.featured-song .song-info {
             font-size: 24px;
@@ -70,7 +74,7 @@ export default class SongTile extends Component {
             width: calc(100% - 52px - 65px);
           }
           .song-tile.featured-song .post-date {
-            width: 65px;
+            width: 60px;
             padding-top: 8px;
           }
           .song-tile.featured-song .post-date .month {

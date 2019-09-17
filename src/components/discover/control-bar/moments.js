@@ -35,7 +35,7 @@ export default class Moments extends Component {
             .moments-modal {
               position: absolute;
               z-index: 10;
-              left: 320px;
+              left: 300px;
               width: auto;
               padding: 15px;
               color: #fff;

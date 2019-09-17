@@ -19,6 +19,10 @@ export default class GridListViewMobile extends Component {
         ))}
         
         <style jsx>{`
+          .grid-list-view-mobile {
+            line-height: 0;
+            font-size: 0;
+          }
           img {
             width: 33.3vw;
             height: 33.3vw;

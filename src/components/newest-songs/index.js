@@ -52,6 +52,13 @@ class NewestSongs extends React.Component {
             max-height: calc(1658px * 0.4);
             float: left;
           }
+          .newest-songs .genre-tag {
+            font-weight: bold;
+          }
+          .newest-songs .song-tile.featured-song .genre-tag {
+            font-size: 30pt;
+            line-height: 32pt;
+          }
           @media (max-width: 1200px) {
             .newest-songs .song-tile:nth-last-child(1) {
               display: none;

@@ -19,6 +19,7 @@ export default class SongGridSong extends Component {
         }
         onClick={this.props.setSongAsSpotlight}
       >
+        <div className="dummy">{/* This lets us size the height the same as the width */}</div>
         <div className="image-container">
           <img
             className="song-image"
@@ -44,12 +45,20 @@ export default class SongGridSong extends Component {
             width: 25%;
             cursor: pointer;
           }
+          .dummy {
+            margin-top: 100%;
+          }
           .image-container {
-            position: relative;
+            position: absolute;
+            top: 0;
             width: 100%;
+            height: 100%;
           }
           .song-image {
+            position: absolute;
+            top: 0;
             width: 100%;
+            height: 100%;
           }
           .hover-overlay {
             position: absolute;
@@ -125,6 +134,16 @@ export default class SongGridSong extends Component {
           .song-grid-song .genre-tag {
             display: block;
             width: 100%;
+          }
+          @media (max-width: 1300px) and (min-width: 1100px) {
+            .song-grid-song .genre-tag:nth-child(n+3) {
+              display: none;
+            }
+          }
+          @media (max-width: 1500px) and (min-width: 1300px) {
+            .song-grid-song .genre-tag:nth-child(n+4) {
+              display: none;
+            }
           }
         `}</style>
       </div>

@@ -42,10 +42,13 @@ export default class SingleSongDesktop extends Component {
           }
           .single-song-desktop .song-header {
             width: 55%;
-            height: 100px;
             margin-left: 45%;
             padding 0 25px;
             box-sizing: border-box;
+          }
+          .single-song-desktop .header-title {
+            font-size: 22pt;
+            line-height: 28pt;
           }
           .single-song-desktop .song-post-content {
             height: calc(100% - 100px);
@@ -58,9 +61,6 @@ export default class SingleSongDesktop extends Component {
           }
           .single-song-desktop .song-post-content::-webkit-scrollbar {
             width: 0px;
-          }
-          .single-song-desktop .song-header {
-            font-size: 19pt;
           }
           .single-song-desktop .song-post-content {
             font-size: 10.5pt;

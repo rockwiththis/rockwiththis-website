@@ -7,8 +7,11 @@ import withRedux from 'next-redux-wrapper';
 
 import configureStore from 'store/configureStore';
 
+import HeadContent from './head-content/app';
 import FooterAudioPlayer from 'components/footer-audio-player';
 import ErrorModal from 'components/error-modal';
+
+import './fonts.scss'
 
 // Importing the soundcloud widget throws a `window is not defined` error
 // when rendered server side
@@ -48,6 +51,7 @@ class MyApp extends App {
     return (
         <Container>
           <Provider store={store}>
+            <HeadContent />
             <Component {...componentProps} />
 
             <ErrorModal />
@@ -61,7 +65,7 @@ class MyApp extends App {
 
           <style global jsx>{`
             body {
-              font-family: 'Object-Sans-Bold', sans-serif;
+              font-family: 'Object-Sans-Regular', sans-serif;
               margin: 0;
               padding: 0;
               border: 0;
@@ -84,6 +88,7 @@ class MyApp extends App {
                 display: none;
               }
             }
+
           `}</style>
         </Container>
     );

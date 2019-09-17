@@ -45,7 +45,7 @@ export default class SongDetails extends Component {
             white-space: nowrap;
             vertical-align: top;
             height: 100%;
-            padding-top: 5px;
+            padding-top: 8px;
             padding-left: 5px;
             box-sizing: border-box;
           }
@@ -65,7 +65,7 @@ export default class SongDetails extends Component {
             height: 100%;
             vertical-align: top;
             text-align: center;
-            padding-top: 5px;
+            padding-top: 8px;
             box-sizing: border-box;
           }
           .post-date span {
