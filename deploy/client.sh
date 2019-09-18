@@ -20,16 +20,9 @@ ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
 printf "Success!\n\n"
 
 
-printf "Building locally...\n"
-
-NODE_PATH='./src' npm run njs-build
-
-printf "Success!\n\n"
-
-
 printf "Compressing local client code...\n"
 
-tar czf client.tar.gz ./static ./ecosystem.client.config.js ./next.config.js ./next-server.js ./src ./package.json ./pages/ ./build
+tar czf client.tar.gz ./static ./ecosystem.client.config.js ./next.config.js ./next-server.js ./src ./package.json ./pages/
 
 printf "Success!\n\n"
 
@@ -38,7 +31,6 @@ printf "Uploading client to remote $DEST_PATH\n"
 
 scp -i $REMOTE_SSH_KEY_PATH ./client.tar.gz $REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH
 rm ./client.tar.gz
-rm ./build
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   mkdir $REMOTE_PATH/client \
@@ -61,6 +53,7 @@ printf "Starting client process...\n\n"
 
 ssh -i $REMOTE_SSH_KEY_PATH $REMOTE_USER@$REMOTE_HOST "\
   cd $REMOTE_PATH/client \
+  && NODE_PATH='./src' npm run njs-build \
   && pm2 startOrRestart ecosystem.client.config.js"
 
 printf "\nSuccess!\n\n"
