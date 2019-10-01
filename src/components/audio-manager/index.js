@@ -84,10 +84,11 @@ class AudioManager extends React.Component {
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    window.onYouTubeIframeAPIReady = () => this.youtubeReadyCallback();
-
-    this.maybeLoadPlayers(this.props);
-    this.maybePrioritizePlayers(this.props);
+    window.onYouTubeIframeAPIReady = () => {
+      this.youtubeReadyCallback();
+      this.maybeLoadPlayers(this.props);
+      this.maybePrioritizePlayers(this.props);
+    }
   }
 
   // This is where we will handle prop changes that control playing / loading songs

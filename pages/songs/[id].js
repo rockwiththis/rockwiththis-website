@@ -32,10 +32,6 @@ class SingleSongPage extends Component {
   static getInitialProps = ({ reduxStore, query }) =>
     reduxStore.dispatch(loadSingleSong(query.id))
 
-  componentDidUpdate = () =>
-    this.getRouteSongId() !== this.props.singleSong.id &&
-    this.props.loadSingleSong(this.getRouteSongId());
-
   getRouteSongId = () => parseInt(this.props.router.query.id);
 
   contentProps = () => ({

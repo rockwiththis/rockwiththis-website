@@ -78,6 +78,8 @@ const SET_SINGLE_SONG = createAction('app/SET_SINGLE_SONG');
 const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS');
 export const loadSingleSong = songId => (dispatch, getState) => {
 
+  // TODO if single song set correctly, do not fetch / update
+  // TODO in this case, still update related songs
   const loadedSingleSong = getState().filteredPosts[songId]
   if (!!loadedSingleSong) {
     dispatch(SET_SINGLE_SONG({ newSingleSong: loadedSingleSong }));
