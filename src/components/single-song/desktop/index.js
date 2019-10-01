@@ -30,6 +30,11 @@ export default class SingleSongDesktop extends Component {
             <Placeholder />
         }
 
+        <style jsx>{`
+          .single-song-desktop {
+            padding-bottom: 75px;
+          }
+        `}</style>
         <style global jsx>{`
           .single-song-desktop .song-post {
             width: 86%;
