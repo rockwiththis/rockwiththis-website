@@ -5,8 +5,7 @@ import Head from 'next/head';
 export default class SingleSongHeadContent extends Component {
 
   static propTypes = {
-    // TODO make required once songs are being fetched server-side
-    songData: PropTypes.object
+    songData: PropTypes.object.isRequired
   }
 
   render = () => {
@@ -17,9 +16,16 @@ export default class SingleSongHeadContent extends Component {
           <meta name="song" content={this.props.songData.name} />
           <meta name="artist" content={this.props.songData.artist_name} />
           <meta name="description" content={this.props.songData.description} />
+
+          <meta property="og:title" content={`${this.props.songData.artist_name} - ${this.props.songData.name}`} />
+          <meta property="og:description" content={this.props.songData.description} />
+          <meta property="og:url" content={`http://rockwiththis.com/${this.props.songData.id}`} />
+          <meta name="twitter:card" content="rockwiththis_song" />
+
           <meta name="og:image" content={this.props.songData.image_url} />
           <meta property="og:image:width"  content="300" />
           <meta property="og:image:height" content="300" />
+
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           { this.props.songData.sub_genres.map((genre, i) =>
               <meta name="tag" content={genre.name} key={i} />

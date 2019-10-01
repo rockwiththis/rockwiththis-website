@@ -29,9 +29,13 @@ class SingleSongPage extends Component {
     songPlayerData: PropTypes.exact(songPlayerDataShape).isRequired
   }
 
-  // TODO enable fetching on server
+  static getInitialProps = ({ reduxStore, query }) =>
+    reduxStore.dispatch(loadSingleSong(query.id))
+
+  /*
   componentDidMount = () =>
     this.props.loadSingleSong(this.getRouteSongId());
+  */
 
   componentDidUpdate = () =>
     this.getRouteSongId() !== this.props.singleSong.id &&
