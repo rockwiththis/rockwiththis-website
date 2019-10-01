@@ -85,6 +85,9 @@ class AudioManager extends React.Component {
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     window.onYouTubeIframeAPIReady = () => this.youtubeReadyCallback();
+
+    this.maybeLoadPlayers(this.props);
+    this.maybePrioritizePlayers(this.props);
   }
 
   // This is where we will handle prop changes that control playing / loading songs
@@ -107,25 +110,32 @@ class AudioManager extends React.Component {
       this.loadAndPlaySong(nextProps.nextUp)
     }
 
-    if (nextProps.shouldLoadPlayers) {
-      this.setActiveSongs(
-        this.uniqueSongs(nextProps.songData.playable)
-      );
-      this.props.playerBankUpdated();
-    }
-
-    if (nextProps.shouldPrioritizePlayers) {
-      this.prioritizeAndLoadSongs(
-        this.uniqueSongs(nextProps.songData.priority)
-      );
-      this.props.playerBankUpdated();
-    }
+    this.maybeLoadPlayers(nextProps);
+    this.maybePrioritizePlayers(nextProps);
 
     if (nextProps.manualProgressRatio !== this.props.manualProgressRatio)
       this.updateSongProgress(nextProps.manualProgressRatio);
 
     return false;
   };
+
+  maybeLoadPlayers = props => {
+    if (props.shouldLoadPlayers) {
+      this.setActiveSongs(
+        this.uniqueSongs(props.songData.playable)
+      );
+      this.props.playerBankUpdated();
+    }
+  }
+
+  maybePrioritizePlayers = props => {
+    if (props.shouldPrioritizePlayers) {
+      this.prioritizeAndLoadSongs(
+        this.uniqueSongs(props.songData.priority)
+      );
+      this.props.playerBankUpdated();
+    }
+  }
 
   uniqueSongs = songs => uniqBy(songs, s => s.id).filter(s => !!s.id)
 
