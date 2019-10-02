@@ -17,9 +17,9 @@ export default class SingleSongHeadContent extends Component {
           <meta name="artist" content={this.props.songData.artist_name} />
           <meta name="description" content={this.props.songData.description} />
 
-          <meta property="og:title" content={`${this.props.songData.artist_name} - ${this.props.songData.name}`} />
+          <meta property="og:title" content={`${this.props.songData.name} - ${this.props.songData.artist_name}`} />
           <meta property="og:description" content={this.props.songData.description} />
-          <meta property="og:url" content={`http://rockwiththis.com/${this.props.songData.id}`} />
+          <meta property="og:url" content={`http://rockwiththis.com/songs/${this.props.songData.id}`} />
           <meta name="twitter:card" content="rockwiththis_song" />
 
           <meta name="og:image" content={this.props.songData.image_url} />
