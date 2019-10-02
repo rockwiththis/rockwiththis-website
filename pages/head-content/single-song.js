@@ -20,11 +20,12 @@ export default class SingleSongHeadContent extends Component {
           <meta property="og:title" content={`${this.props.songData.name} - ${this.props.songData.artist_name}`} />
           <meta property="og:description" content={this.props.songData.description} />
           <meta property="og:url" content={`http://rockwiththis.com/songs/${this.props.songData.id}`} />
-          <meta name="twitter:card" content="rockwiththis_song" />
 
-          <meta name="og:image" content={this.props.songData.image_url} />
+          <meta property="og:image" content={this.props.songData.image_url} />
           <meta property="og:image:width"  content="300" />
           <meta property="og:image:height" content="300" />
+
+          <meta name="twitter:card" content="rockwiththis_song" />
 
           <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
           { this.props.songData.sub_genres.map((genre, i) =>
