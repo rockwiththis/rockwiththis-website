@@ -2,10 +2,8 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import dynamic from 'next/dynamic';
 import { createStore } from 'redux';
+import withReduxStore from '../lib/with-redux-store';
 import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
-
-import configureStore from 'store/configureStore';
 
 import HeadContent from './head-content/app';
 import FooterAudioPlayer from 'components/footer-audio-player';
@@ -29,10 +27,9 @@ class MyApp extends App {
     }
   }
 
-  static async getInitialProps({ Component, ctx }) {
-    const pageProps = !!Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
-    return { pageProps };
-  }
+  static getInitialProps = ({ Component, ctx }) =>
+    !!Component.getInitialProps ?
+      Component.getInitialProps(ctx) : {};
 
   setIsScrollDisabled = isScrollDisabled =>
     this.setState({ isScrollDisabled })
@@ -42,7 +39,7 @@ class MyApp extends App {
   }
 
   render = () => {
-    const { Component, pageProps, store } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
     const componentProps = {
       ...pageProps,
       setIsScrollDisabled: this.setIsScrollDisabled
@@ -50,7 +47,7 @@ class MyApp extends App {
 
     return (
         <Container>
-          <Provider store={store}>
+          <Provider store={reduxStore}>
             <HeadContent />
             <Component {...componentProps} />
 
@@ -95,4 +92,4 @@ class MyApp extends App {
   }
 }
 
-export default withRedux(configureStore)(MyApp);
+export default withReduxStore(MyApp);

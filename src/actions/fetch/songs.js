@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions'
 import { values, flatten, get } from 'lodash';
+import axios from 'axios';
 
 const API_BASE_URL =
   process.env.NODE_ENV == 'development' ?
@@ -24,7 +25,7 @@ const fetchSongs = (
     (subgenreIds ? `tags=[${subgenreIds}]&` : '') +
     (omitCurrSongs ? `omitSongIds=[${currSongIds}]` : '');
 
-  return fetch(fullURL).then(res => res.json());
+  return axios.get(fullURL).then(({ data }) => data);
 }
 
 const LOADING_SONGS = createAction('app/LOADING_SONGS');
@@ -77,6 +78,8 @@ const SET_SINGLE_SONG = createAction('app/SET_SINGLE_SONG');
 const SET_RELATED_SONGS = createAction('app/SET_RELATED_SONGS');
 export const loadSingleSong = songId => (dispatch, getState) => {
 
+  // TODO if single song set correctly, do not fetch / update
+  // TODO in this case, still update related songs
   const loadedSingleSong = getState().filteredPosts[songId]
   if (!!loadedSingleSong) {
     dispatch(SET_SINGLE_SONG({ newSingleSong: loadedSingleSong }));
@@ -84,19 +87,17 @@ export const loadSingleSong = songId => (dispatch, getState) => {
 
   } else {
     const songUrl = `${API_BASE_URL}/songs/${songId}`;
-    return fetch(songUrl)
-      .then(res => res.json())
-      .then(songData => {
-        dispatch(SET_SINGLE_SONG({ newSingleSong: songData }))
-        const subgenreIds = songData.sub_genres.map(s => s.id);
+    return axios.get(songUrl)
+      .then(({ data }) => {
+        dispatch(SET_SINGLE_SONG({ newSingleSong: data }))
+
+        const subgenreIds = data.sub_genres.map(s => s.id);
         const relatedSongsUrl = `${API_BASE_URL}/songs?tags=[${subgenreIds}]`;
 
-        return fetch(relatedSongsUrl)
+        return axios.get(relatedSongsUrl)
       })
-      .then(res => res.json())
-      .then(relatedSongsData => {
-        dispatch(SET_RELATED_SONGS({ relatedSongs: relatedSongsData }));
-        return relatedSongsData
+      .then(({ data }) => {
+        dispatch(SET_RELATED_SONGS({ relatedSongs: data }));
       })
   }
 }

@@ -22,7 +22,7 @@ printf "Success!\n\n"
 
 printf "Compressing local client code...\n"
 
-tar czf client.tar.gz ./static ./ecosystem.client.config.js ./next.config.js ./next-server.js ./src ./package.json ./pages/
+tar czf client.tar.gz ./static ./ecosystem.client.config.js ./next.config.js ./next-server.js ./src ./package.json ./pages ./lib
 
 printf "Success!\n\n"
 
